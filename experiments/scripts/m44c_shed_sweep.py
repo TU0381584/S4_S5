@@ -73,7 +73,14 @@ def launch_reporting_traffic(slice_id: str, bitrate_kbps: float, ue_ip: str, ns:
                               log_path: Path) -> subprocess.Popen:
     info = m44a.SLICE_TRAFFIC[slice_id]
     prefix = f"sudo ip netns exec {ns} " if ns else "sudo "
-    cmd = (f"{prefix}iperf3 -c {m44a.TARGET_CONTAINER_IP} -p {info['port']} -B {ue_ip} "
+    # stdbuf -oL forces line-buffered stdout on iperf3 itself (redirected to
+    # a file, iperf3's own libc stdio is fully block-buffered by default --
+    # M44-D found this the hard way: a tight ~15s sampling cadence read the
+    # log before the first flush and got None/stale readings for the first
+    # 40+ seconds of every cold-start run). Harmless for a longer-running
+    # sweep like this one's callers too; only affects I/O timeliness, not
+    # the traffic itself.
+    cmd = (f"{prefix}stdbuf -oL -eL iperf3 -c {m44a.TARGET_CONTAINER_IP} -p {info['port']} -B {ue_ip} "
            f"-u -b {bitrate_kbps}K -l {info['packet_len']} --reverse -i 1 -t 3600")
     fh = open(log_path, "w")
     proc = subprocess.Popen(cmd, shell=True, stdout=fh, stderr=subprocess.STDOUT)
