@@ -1,0 +1,28 @@
+paper,campaign,config,slice,nominal_ratio_pct,floor_ratio_pct,cap_ratio_pct,nominal_raw_prbs,floor_raw_prbs,cap_raw_prbs,min_rbSize,n_rb_sched_init,verdict,backs
+Paper4-CACS26,N128 baseline (Static) arm,experiments/configs/saclb_campaign_baseline_v2.yaml,embb,3,1,12,3,1,12,5,106,MARGINAL,"main.tex Table tab:results, 'Static' row"
+Paper4-CACS26,N128 baseline (Static) arm,experiments/configs/saclb_campaign_baseline_v2.yaml,urllc,2,1,4,2,1,4,5,106,BROKEN,"main.tex Table tab:results, 'Static' row"
+Paper4-CACS26,N128 baseline (Static) arm,experiments/configs/saclb_campaign_baseline_v2.yaml,mmtc,2,1,3,2,1,3,5,106,BROKEN,"main.tex Table tab:results, 'Static' row"
+Paper4-CACS26,N128 static_at_cap arm,experiments/configs/saclb_campaign_static_at_cap_v2.yaml,embb,12,1,12,12,1,12,5,106,MARGINAL,"main.tex Table tab:results, 'Static-at-cap' row"
+Paper4-CACS26,N128 static_at_cap arm,experiments/configs/saclb_campaign_static_at_cap_v2.yaml,urllc,4,1,4,4,1,4,5,106,BROKEN,"main.tex Table tab:results, 'Static-at-cap' row"
+Paper4-CACS26,N128 static_at_cap arm,experiments/configs/saclb_campaign_static_at_cap_v2.yaml,mmtc,3,1,3,3,1,3,5,106,BROKEN,"main.tex Table tab:results, 'Static-at-cap' row"
+Paper4-CACS26,N128 dqn_sla arm,experiments/configs/saclb_campaign_v2.yaml,embb,3,1,12,3,1,12,5,106,MARGINAL,"main.tex Table tab:results, 'DQN-SLA' row"
+Paper4-CACS26,N128 dqn_sla arm,experiments/configs/saclb_campaign_v2.yaml,urllc,2,1,4,2,1,4,5,106,BROKEN,"main.tex Table tab:results, 'DQN-SLA' row"
+Paper4-CACS26,N128 dqn_sla arm,experiments/configs/saclb_campaign_v2.yaml,mmtc,2,1,3,2,1,3,5,106,BROKEN,"main.tex Table tab:results, 'DQN-SLA' row"
+Paper4-CACS26,N128 dqn_qoe arm (same config file as dqn_sla),experiments/configs/saclb_campaign_v2.yaml,embb,3,1,12,3,1,12,5,106,MARGINAL,"main.tex Table tab:results, 'DQN-QoE' row"
+Paper4-CACS26,N128 dqn_qoe arm (same config file as dqn_sla),experiments/configs/saclb_campaign_v2.yaml,urllc,2,1,4,2,1,4,5,106,BROKEN,"main.tex Table tab:results, 'DQN-QoE' row"
+Paper4-CACS26,N128 dqn_qoe arm (same config file as dqn_sla),experiments/configs/saclb_campaign_v2.yaml,mmtc,2,1,3,2,1,3,5,106,BROKEN,"main.tex Table tab:results, 'DQN-QoE' row"
+Paper5-WPC,Fig.8 Original checkpoint @ 3UE (m31_highconf/3ue_20ep),experiments/configs/saclb_campaign.yaml,embb,3,1,12,3,1,12,5,106,MARGINAL,"WPC Fig. 8, 'Original, 3UE'"
+Paper5-WPC,Fig.8 Original checkpoint @ 3UE (m31_highconf/3ue_20ep),experiments/configs/saclb_campaign.yaml,urllc,2,1,4,2,1,4,5,106,BROKEN,"WPC Fig. 8, 'Original, 3UE'"
+Paper5-WPC,Fig.8 Original checkpoint @ 3UE (m31_highconf/3ue_20ep),experiments/configs/saclb_campaign.yaml,mmtc,2,1,3,2,1,3,5,106,BROKEN,"WPC Fig. 8, 'Original, 3UE'"
+Paper5-WPC,Fig.8 Original checkpoint @ 6UE (m31_highconf/6ue_20ep),experiments/configs/saclb_campaign.yaml,embb,3,1,12,3,1,12,5,106,MARGINAL,"WPC Fig. 8, 'Original, 6UE'"
+Paper5-WPC,Fig.8 Original checkpoint @ 6UE (m31_highconf/6ue_20ep),experiments/configs/saclb_campaign.yaml,urllc,2,1,4,2,1,4,5,106,BROKEN,"WPC Fig. 8, 'Original, 6UE'"
+Paper5-WPC,Fig.8 Original checkpoint @ 6UE (m31_highconf/6ue_20ep),experiments/configs/saclb_campaign.yaml,mmtc,2,1,3,2,1,3,5,106,BROKEN,"WPC Fig. 8, 'Original, 6UE'"
+Paper5-WPC,Fig.8 Recalibrated checkpoint @ 6UE (m34_realistic_retrain_check/6ue_20ep),experiments/configs/saclb_campaign.yaml,embb,3,1,12,3,1,12,5,106,MARGINAL,"WPC Fig. 8, 'Recalibrated, 6UE'"
+Paper5-WPC,Fig.8 Recalibrated checkpoint @ 6UE (m34_realistic_retrain_check/6ue_20ep),experiments/configs/saclb_campaign.yaml,urllc,2,1,4,2,1,4,5,106,BROKEN,"WPC Fig. 8, 'Recalibrated, 6UE'"
+Paper5-WPC,Fig.8 Recalibrated checkpoint @ 6UE (m34_realistic_retrain_check/6ue_20ep),experiments/configs/saclb_campaign.yaml,mmtc,2,1,3,2,1,3,5,106,BROKEN,"WPC Fig. 8, 'Recalibrated, 6UE'"
+Paper5-WPC,M8 live single-gNB anchor (both runs),"__HISTORICAL__:saclb_live.yaml (pre-M41-fix, 2026-07-16 to 2026-09-05)",urllc,3,1,3,3,1,3,5,106,BROKEN,WPC section on the Live Single-gNB Anchor
+Paper5-WPC,M8 live single-gNB anchor (both runs),"__HISTORICAL__:saclb_live.yaml (pre-M41-fix, 2026-07-16 to 2026-09-05)",embb,3,1,4,3,1,4,5,106,BROKEN,WPC section on the Live Single-gNB Anchor
+Paper5-WPC,M8 live single-gNB anchor (both runs),"__HISTORICAL__:saclb_live.yaml (pre-M41-fix, 2026-07-16 to 2026-09-05)",mmtc,2,1,3,2,1,3,5,106,BROKEN,WPC section on the Live Single-gNB Anchor
+"N/A (M41 fix, post-2026-09-05)",current state of saclb_live.yaml after the M41 fix,framework/qoe_oran_framework/configs/saclb_live.yaml,urllc,18,6,18,19,6,19,5,106,OK,not a published number -- included for contrast
+"N/A (M41 fix, post-2026-09-05)",current state of saclb_live.yaml after the M41 fix,framework/qoe_oran_framework/configs/saclb_live.yaml,embb,18,6,24,19,6,25,5,106,OK,not a published number -- included for contrast
+"N/A (M41 fix, post-2026-09-05)",current state of saclb_live.yaml after the M41 fix,framework/qoe_oran_framework/configs/saclb_live.yaml,mmtc,12,6,18,12,6,19,5,106,OK,not a published number -- included for contrast
