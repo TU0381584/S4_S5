@@ -364,8 +364,14 @@ M37 / M38 (RECALIBRATED-SIM GENERALIZATION / LIVE CORRECTNESS CAMPAIGN) — Orig
 
 ================================================================================
 PART 3 — THE M38 LIVE-INSTABILITY INVESTIGATION (2026-09-01 to 2026-09-03),
-THE MOST RECENT AND MOST DEEPLY INVESTIGATED FINDING
+LATER SUPERSEDED BY PART 3B'S ROOT-CAUSE FIX — KEPT HERE FOR THE RECORD
 ================================================================================
+(This part's own "current recommendation" at the end — treat the failure as a
+permanent, unexplained live limitation and report it as-is — did NOT hold up.
+Part 3B below found and fixed the actual root cause seven days later. Kept
+here, not deleted, per this project's own "superseded, not erased" practice:
+every elimination step below is still true and still useful context for how
+thoroughly the wrong turns were ruled out before the real cause was found.)
 
 STARTING POINT: a live 3-UE pilot (recalibrated checkpoint, real per-slice traffic)
 was attempted to fill M38's data gaps. Bring-up succeeded cleanly (further than
@@ -466,6 +472,235 @@ treat it purely as a blocker standing in the way of M37/M38's originally-envisio
 design.
 
 ================================================================================
+PART 3B — M41: ROOT CAUSE ACTUALLY FOUND AND FIXED (2026-09-04 to 2026-09-06),
+THE MOST RECENT AND MOST CONSEQUENTIAL DEVELOPMENT IN THE PROJECT'S HISTORY
+================================================================================
+
+STARTING POINT: an external Claude Web review of the WPC manuscript proposed a
+gated, supervised envelope-sweep experiment (write-cadence x offered-load x
+write-magnitude) to characterize the Part 3 failure rather than keep treating
+it as an unexplained black box. Built `experiments/scripts/m41_envelope_sweep.py`
+(orchestrator + probe roles). Found and fixed several real harness bugs before
+trusting any result: a missing env var for the contention-gate subprocess, the
+gate needing to run AFTER bring-up (not before), a `pkill -f` self-match
+footgun that could kill the invoking script, and (much later) a genuine
+decimal-parsing bug in the loss-check regex (below).
+
+GATE S0/S1 (pre-fix): EVERY tested condition — write cadence 1s/5s/30s, offered
+load 1.0x/0.5x/0.25x, a magnitude cap, a fully static single-write mode —
+failed within the same ~10-second window, all three slices, 100% packet loss.
+No survivor found anywhere in the originally-planned grid. Per the reviewer's
+own plan ("if nothing survives on either axis, stop and report, await
+decision"), stopped rather than auto-expanding scope.
+
+ROOT CAUSE, FOUND BY RUNTIME INSTRUMENTATION (not more black-box screening):
+added wall-clock-timestamped logging at the E2 control write itself, at the
+gNB scheduler's per-slot per-slice PRB accounting (`SL_sched[i].{min_prbs,
+max_prbs}` in `dl_sched_unit()`/`pf_dl_slice()`), and at the RLC layer's
+retry-counter increments. Confirmed three independent ways:
+  1. LIVE: immediately after any control write, the computed DL PRB ceiling
+     for the affected slice was 1-2 raw PRBs (out of ~106 real PRBs on this
+     carrier) — and actual scheduled usage was 0 in 96-100% of ~15,000
+     sampled post-write slots per slice, for the remainder of the run.
+  2. SOURCE: `pf_dl_slice()`'s new-transmission scheduling loop
+     (`gNB_scheduler_dlsch.c`) hard-guards on `n_rb_remain_s >= min_rbSize`
+     where `min_rbSize=5` — false on entry whenever the slice's ceiling
+     computes to fewer than 5 PRBs, so the ONLY new-transmission scheduling
+     path never executes at all. Not a race condition; a plain, deterministic
+     guard-clause miss.
+  3. CONFIG: `saclb_live.yaml`'s entire configured ratio range for every
+     slice — floor through cap — converted to 1-4 raw PRBs on this ~106-PRB
+     carrier. There was NO value anywhere in the configured range that would
+     have avoided the failure, regardless of which policy or checkpoint
+     issued the write. The ratios had been carefully, honestly calibrated
+     against real measured live traffic (~5.17 PRB/UE demand) back on
+     2026-07-14/16 — but never cross-checked against this specific
+     gNB-scheduler C constant, three layers away from the Python/YAML config,
+     which nobody had read together with the config until this investigation.
+
+WHY THIS EXPLAINS THE ENTIRE PART-3 SAGA IN ONE STROKE: any live control write
+— the very first one, regardless of what triggered it, regardless of UE count,
+slice identity, cadence, or magnitude — applied a ratio from this
+structurally-too-small range. The instant it landed, that slice's DL new-
+transmission scheduling stopped completely. Without DL PRBs, the gNB could
+not deliver the DL-direction STATUS/ACK traffic an active RLC AM sender
+depends on, so the UE's own RLC retry counter climbed every ~90-100ms until
+it cleared its 32-retry budget — "[RLC] max RETX reached," the exact signature
+chased for a week. Write-free baselines were always clean because no control
+write ever applied a ratio from this broken range at all. Every one of Part
+3's elimination steps (CPU governor, host fatigue, the real sched_lock race,
+CPU-core pinning, UE concurrency, traffic burstiness, per-slice QoS
+provisioning, a clean reboot) was a correct, valid experiment — they just
+weren't testing the actual variable that mattered, because nobody had yet
+read the gNB scheduler's own C source against the Python config's numbers.
+
+FIX APPLIED AND LIVE-CONFIRMED: scaled every slice's ratios 6x in
+`saclb_live.yaml` (proportions preserved from the original 2026-07-14
+measurement) so the floor alone (6 PRB) clears the 5-PRB scheduler minimum
+with a full PRB of margin. Rebuilt `nr-softmodem`, retested:
+  - Single static write, 40s: zero RLC retry events on any UE (was 123-413
+    events/UE, failing within 7-30s, before the fix).
+  - Full 300s sustained test, normal cadence: survived to t=192s clean, then
+    hit an apparent "100% loss" with ZERO retry events behind it — investigated
+    rather than accepted, and found a SECOND independent bug: `check_loss()`'s
+    regex had no `.` in its digit class, so ping's own genuine decimal loss
+    readings (e.g. "66.6667% packet loss," produced whenever exactly 1 or 2 of
+    3 packets are lost) matched only the post-decimal digits and got clamped
+    to a false 100%. This is the exact "anomalous 6667%" symptom flagged
+    earlier in the same investigation and originally (wrongly) assumed to be
+    a duplicate-reply artifact — now root-caused as a parsing bug capable of
+    turning a mild, transient reading into something indistinguishable from
+    total failure. Fixed the regex.
+  - Same test, both fixes applied: SURVIVED THE FULL 300 SECONDS. 0% loss on
+    all three slices at every checkpoint, zero RLC retry events anywhere —
+    the first live condition in the ENTIRE Part-3/M41 history to survive the
+    standard test.
+
+GATE S0/S1 RE-RUN POST-FIX: the identical original 6-condition grid (1s/5s/30s
+cadence, 1.0x/0.5x/0.25x load, static write mode) was re-run byte-for-byte.
+ALL 6 SURVIVE THE FULL 300s, ZERO PACKET LOSS, ZERO RLC RETRY EVENTS. This
+completely inverts the original "envelope is empty" conclusion — that result
+correctly described the miscalibrated config, but never actually characterized
+the live control loop, since every condition had been failing on the same
+below-floor bug regardless of which axis was varied.
+
+STRESS CAMPAIGN PAST THE ORIGINAL RANGE (user-authorized, to find the fixed
+system's real limits rather than just re-confirm the original grid):
+  - OFFERED LOAD: 1x/2x/3x native all survive (3x had one small, self-
+    recovering wobble). 4x GENUINELY FAILS at t=31.5s — but checked directly
+    and confirmed NOT the old bug: the affected slice's ceiling stayed
+    healthy (18-19%, well above the floor), PHY/HARQ stats were clean, RSRP
+    was strong, and there were ZERO RLC retry events. This is real data-plane
+    congestion (offered demand exceeding capacity at 4x) — the correct,
+    expected failure mode for a working system under genuine overload, not a
+    bug. The real capacity boundary for this topology sits between 3x and 4x
+    native offered load.
+  - WRITE CADENCE: 1s/0.5s/0.2s/0.1s (10 writes/sec/slice) all survive — no
+    boundary found at 10x the originally-tested fastest rate.
+  - UE COUNT: every single-UE condition (embb/mmtc/urllc alone) and every
+    2-UE combination survives cleanly at native load. This resolves the
+    single-UE-native-load question left open since the original M36/M37/M38
+    scoping (previously blocked only because the contention gate itself
+    cannot detect real contention from a single UE's traffic — a gate
+    limitation, confirmed directly by bypassing it, not an actual rig
+    failure). THIS DIRECTLY UNBLOCKS M37/M38's ORIGINAL DESIGN — both had
+    been "fully blocked on the same 2-UE+ instability" since M36; that
+    instability, as characterized in Part 3, no longer exists.
+
+A SCHEDULER-SIDE WORKAROUND WAS TRIED AND REVERTED: investigated whether the
+gNB scheduler's own `min_rbSize=5` constant (a plain OAI heuristic, not a
+3GPP requirement — single-PRB grants are valid NR allocations) could simply be
+lowered to 1, as an alternative to requiring every config's ratios to
+individually clear 5 PRBs. The static reasoning was sound (tracing
+`nr_find_nb_rb()` showed lowering it would also close a latent, narrower
+over-allocation edge case). Applied, rebuilt, and tested WITH EXPLICIT CAUTION
+against the already-validated config — and it caused a genuine NEW regression:
+the previously-clean config failed at t=71.7s with zero RLC retry events, and
+the gNB's own diagnostic log stream stopped dead at the exact failure moment
+(no gradual slowdown, no crash message, file-write-time matching the last log
+line exactly) — consistent with a crash or hang in downstream PHY/HARQ/DCI
+code that OAI's own scheduler had never previously exercised at an allocation
+this small. REVERTED to `min_rbSize=5`, rebuilt, confirmed via a clean A/B
+that reverting restores full clean survival. CONCLUSION: `min_rbSize=5` may be
+an unintentional safety margin against real downstream fragility, not just a
+throughput preference — this is NOT a safe general workaround, and the
+scheduler's own minimum grant size should not be touched again without first
+finding and hardening whatever breaks downstream at very small TBS. The
+validated, safe fix remains config-side only (raise ratios so ceilings clear
+5 PRBs), exactly as already applied and confirmed above.
+
+A SEPARATE, INDEPENDENT SOURCE-READING INVESTIGATION (Op B, before the actual
+root cause above was found) used an 8-agent adversarial workflow to read the
+RLC/MAC scheduler source directly. Its leading hypothesis (an uninitialized
+stack read of `SL_sched[0]` in `dl_sched_unit()`, combined with a floor-less
+cross-slice PRB subtraction) was REFUTED by 2 of 3 adversarial skeptics on
+rigorous re-tracing (the bug is unconditional and would fire in write-free
+clean baselines too, which contradicts the established fact that those run
+clean for minutes) — an honest example of a plausible-sounding mechanism not
+surviving adversarial verification. One finding from that investigation DID
+survive and was applied as a real, independent fix: `get_ue_list()`
+(the E2 agent's telemetry-read function) took no lock at all on live MAC
+scheduler state, unlike its sibling functions — fixed with the same
+lock convention used elsewhere in the codebase, and confirmed via live retest
+to be a genuine correctness improvement, though (as later established) it was
+never the cause of the RLC failure. The uninitialized `SL_sched[0]` bug is
+real and was independently re-confirmed live (still present, still garbage,
+still inert since that array slot has no attached UE) but is unrelated to the
+mechanism above; it remains unfixed as a low-priority hygiene item.
+
+CURRENT STATE OF THE RLC FAILURE: RESOLVED, WITH A VALIDATED, LIVE-CONFIRMED
+FIX, AND THE FIXED SYSTEM'S REAL OPERATING ENVELOPE HAS BEEN CHARACTERIZED
+(cadence: no limit found; UE count: no limit found up to 3 simultaneous UEs
+in every combination; offered load: a real, expected boundary between 3x and
+4x native). This is a complete reversal of Part 3's own "treat this as a
+permanent unexplained limitation" recommendation — the actual root cause
+turned out to be a single Python config file's ratio scale never having been
+cross-checked against a C-source scheduler constant three layers away,
+something no prior session had done until this investigation specifically
+went looking for it via direct runtime instrumentation rather than continued
+black-box elimination.
+
+================================================================================
+PART 3C — THE FIG. 8 VALIDITY QUESTION — CURRENTLY OPEN, UNRESOLVED, THE
+MOST PRESSING PLACE FOR FRESH IDEAS RIGHT NOW
+================================================================================
+
+While scoping what to do next given M37/M38's mechanism-level unblocking
+above, checked whether it is actually safe to reuse the manuscript's existing
+Fig. 8 live-anchor data (original checkpoint @ 3UE/6UE, recalibrated
+checkpoint @ 6UE — all real live data, already published) rather than
+re-collecting it, since M37/M38's own scoping document explicitly recommended
+reuse. That data was collected live, over the same real E2 control mechanism
+M41 just found broken — so it needed to be checked, not assumed safe.
+
+FOUND: the config actually used for that historical live-anchor evaluation
+(`experiments/configs/saclb_campaign.yaml`, confirmed via the historical
+data's own recorded live ceiling values matching this file's exact numbers,
+NOT the `saclb_live.yaml` file M41 fixed) has the IDENTICAL structural flaw:
+urllc's entire configured range (nominal 2% / floor 1% / cap 4%) and mmtc's
+entire range (2%/1%/3%) NEVER clear the scheduler's 5-PRB floor, at any
+value, including the cap — only embb's cap (12%) does.
+
+VERIFIED LIVE: ran the actual original checkpoint (the same one used for the
+published Fig. 8 numbers) against the real, unmodified `saclb_campaign.yaml`
+at native ("3UE"-equivalent) load. FAILED AT t=10.0s — urllc hit 100% packet
+loss with 19 "max RETX reached" events, the exact same signature M41's whole
+investigation is about — at what should be, per the manuscript, the published
+HEALTHY "3UE" condition.
+
+THE PART THAT IS NOT YET EXPLAINED, AND WHERE FRESH APPROACHES WOULD HELP
+MOST: this does not, by itself, explain why the manuscript's own "Original,
+3UE" result reports fully healthy behavior (reward -7.091, zero collapsed
+episodes across all 20 published episodes) when this exact config's urllc
+slice appears structurally unable to avoid collapsing. Candidate explanations
+considered, NONE confirmed:
+  - A traffic-generation mismatch: this verification reused the M41 harness's
+    own iperf3-based traffic profiles, not the original evaluation's own
+    `run_live_eval_arm.py` / `traffic_profiles.yaml`-driven methodology — if
+    the original urllc traffic pattern generates much less real backlog, the
+    below-floor ceiling might simply never get exercised hard enough to
+    matter within a 20-episode session, matching an already-established
+    pattern elsewhere in this project (insufficient real demand never
+    triggers this class of failure at all, regardless of how broken the
+    ceiling math is).
+  - A timeline gap: `saclb_campaign.yaml`'s own header notes urllc was
+    "restored" to the live core at some point after being dropped for lacking
+    a real MAC slice — if the specific historical run predates that
+    restoration, its "3UE" condition might never have included a live urllc
+    bearer at all, despite the config file listing it.
+  - Some other methodological difference between this quick verification and
+    the original evaluation's exact harness/invocation, not yet traced.
+
+PRACTICAL CONSEQUENCE, NOT YET RESOLVED: the M37/M38 scoping document's plan
+to reuse the existing 3UE/6UE Fig. 8 data cannot currently be trusted without
+resolving this, particularly for any cell involving urllc's live ceiling
+control. This is exactly the kind of question this tracklist is being
+prepared to get outside input on — the mechanism connecting "a structurally
+broken config" to "a manuscript figure that reports healthy behavior anyway"
+is the single most valuable unresolved technical question in the project
+right now.
+
+================================================================================
 PART 4 — RECURRING PATTERNS AND STANDING LIMITATIONS ACROSS THE WHOLE PROJECT
 ================================================================================
 
@@ -519,14 +754,76 @@ PART 4 — RECURRING PATTERNS AND STANDING LIMITATIONS ACROSS THE WHOLE PROJECT
    failure's cause).
 
 ================================================================================
-PART 5 — CURRENT STATUS SNAPSHOT (as of this document)
+PART 5 — CURRENT STATUS SNAPSHOT (updated 2026-09-06, supersedes the original
+2026-09-03 snapshot where they conflict)
 ================================================================================
 
 - Paper #4 (CACS26): SUBMITTED 2026-08-31. Final title: "DQN-QoE Slice Admission
   Control for Live OAI Open RAN." Nothing further planned unless reviewers respond.
 - Paper #5 (WPC): ACTIVE. 25 pages, compiles clean, cites Paper #4 as a companion
-  submission. M1-M8, M27, M35, M36(offline) complete and written in. M28's live demo
-  and M36(live)/M37/M38's live components are blocked, per the findings in Part 3.
+  submission. M1-M8, M27, M35, M36(offline) complete and written in.
+- M28's live 2-gNB demo: still not achieved as designed; recorded as a genuine
+  hardware-capacity limitation (Part 2), not something the M41 fix changes (a
+  different failure mechanism entirely — CPU/RT-scheduling capacity for two
+  simultaneous RF stacks, not RLC/scheduler ceiling math).
+- M36/M37/M38's live components: THE MECHANISM THAT BLOCKED THEM IS NOW RESOLVED
+  (Part 3B) — root cause found, fixed, live-confirmed at scale (300s sustained,
+  up to 3x native load, up to 3 simultaneous UEs in every combination, write
+  cadence up to 10x faster than originally tested). BUT actually proceeding
+  with M37/M38's original plan is currently ON HOLD pending Part 3C's open
+  question: whether the existing published Fig. 8 live-anchor data (which the
+  M37/M38 plan intended to reuse) is itself affected by the same class of bug,
+  for reasons not yet understood. This is the single most active, unresolved
+  decision point in the project right now.
+- A scheduler-side alternative fix (relaxing `min_rbSize` from 5 to 1) was
+  tried and reverted after causing a new, more severe regression (apparent gNB
+  crash/hang) — see Part 3B. Not a currently viable path without further
+  investigation into what breaks downstream at very small allocations.
 - Paper #5 (IEEE Access variant): PAUSED, standing instruction not to edit.
 - The corresponding-author email in both manuscripts is still a placeholder
   (TODO@taylors.edu.my) — needs a real address from a co-author, not guessable.
+
+================================================================================
+PART 6 — WHERE THIS PROJECT NEEDS FRESH APPROACHES RIGHT NOW
+================================================================================
+
+In priority order, the open technical questions where an outside perspective
+would be most useful:
+
+1. THE FIG. 8 DISCREPANCY (Part 3C). Why does the manuscript's published
+   "Original checkpoint, 3UE" live result report full health (reward -7.091,
+   zero collapsed episodes) when the config it was run under has been directly
+   verified — both by static PRB-vs-scheduler-floor math and by a live
+   reproduction using the actual same checkpoint — to make urllc's slice
+   structurally incapable of avoiding the same catastrophic RLC collapse M41
+   spent a week chasing? Is there a real, benign explanation (traffic-pattern
+   mismatch, a slice-restoration timeline gap, a methodology difference from
+   this quick verification's harness), or does this mean the published number
+   needs to be revisited? What is the fastest, most rigorous way to actually
+   distinguish these possibilities without guessing?
+
+2. THE min_rbSize CRASH (Part 3B). Lowering the gNB scheduler's minimum
+   PRB-allocation-size constant from 5 to 1 caused what looks like a crash or
+   hang somewhere downstream (PHY encoding, HARQ handling, or DCI formatting)
+   when a slice's ceiling made a very small (1-4 PRB) real allocation possible
+   for the first time. No assert/fatal message was produced. What is the most
+   efficient way to actually root-cause this (rather than just avoiding the
+   change, as currently done) — is it worth pursuing at all, given the
+   config-side fix already works without it?
+
+3. IF THE FIG. 8 DATA TURNS OUT TO NEED RE-COLLECTION: what is the most
+   efficient path to redo the M37/M38 live campaign (given the mechanism is
+   now understood and the fixed system's operating envelope is characterized)
+   without repeating the multi-week elimination process this project's history
+   shows can happen when a wrong assumption goes unchecked?
+
+4. MORE GENERALLY: this project has now found and fixed real bugs in THREE
+   separate, independently-authored config/source layers (the live E2 agent's
+   locking, the gNB scheduler's own C-source floor, and now a second Python
+   config file with the identical miscalibration) that all trace back to the
+   same root pattern — a value calibrated correctly at one layer (Python
+   ratios, tuned against real measured PRB demand) was never cross-checked
+   against a hard constraint enforced at a different layer (C-source scheduler
+   minimum). Is there a systematic way to audit for OTHER instances of this
+   same cross-layer-mismatch pattern elsewhere in this codebase, rather than
+   continuing to find them one at a time via live failures?
