@@ -172,8 +172,34 @@ index 3e6ad1c..c8c397f 100644
      n_rb_sched_s_tot += SL_sched[i].min_prbs;
  
      if (n_rb_sched_s_tot > n_rb_sched_init ) AssertFatal(1==0,"PRB Violation \n");
+diff --git a/oai_ran/openair2/LAYER2/nr_pdcp/nr_pdcp_entity.c b/oai_ran/openair2/LAYER2/nr_pdcp/nr_pdcp_entity.c
+index c125eb4..7a0c125 100644
+--- a/oai_ran/openair2/LAYER2/nr_pdcp/nr_pdcp_entity.c
++++ b/oai_ran/openair2/LAYER2/nr_pdcp/nr_pdcp_entity.c
+@@ -24,6 +24,7 @@
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
++#include <sys/time.h>
+ 
+ #include "nr_pdcp_security_nea2.h"
+ #include "nr_pdcp_integrity_nia2.h"
+@@ -240,6 +241,13 @@ static int nr_pdcp_entity_process_sdu(nr_pdcp_entity_t *entity,
+   entity->stats.rxsdu_pkts++;
+   entity->stats.rxsdu_bytes += size;
+ 
++  {
++    struct timeval m43_tv;
++    gettimeofday(&m43_tv, NULL);
++    LOG_I(PDCP, "M43DBG pdcp_ingress t=%ld.%06ld rb_id=%d size=%d rxsdu_pkts=%u rxsdu_bytes=%u\n",
++          (long)m43_tv.tv_sec, (long)m43_tv.tv_usec, entity->rb_id, size,
++          entity->stats.rxsdu_pkts, entity->stats.rxsdu_bytes);
++  }
+ 
+   count = entity->tx_next;
+   sn = entity->tx_next & entity->sn_max;
 diff --git a/oai_ran/openair2/LAYER2/nr_rlc/nr_rlc_entity_am.c b/oai_ran/openair2/LAYER2/nr_rlc/nr_rlc_entity_am.c
-index 9198539..8b3d3ca 100644
+index 9198539..89bae31 100644
 --- a/oai_ran/openair2/LAYER2/nr_rlc/nr_rlc_entity_am.c
 +++ b/oai_ran/openair2/LAYER2/nr_rlc/nr_rlc_entity_am.c
 @@ -23,6 +23,7 @@
@@ -198,7 +224,34 @@ index 9198539..8b3d3ca 100644
          /* report max RETX reached for all retx_count >= max_retx_threshold
           * (specs say to report if retx_count == max_retx_threshold).
           * Upper layers should react (radio link failure), so no big deal.
-@@ -1854,6 +1862,14 @@ static void check_t_poll_retransmit(nr_rlc_entity_am_t *entity)
+@@ -1772,6 +1780,26 @@ void nr_rlc_entity_am_recv_sdu(nr_rlc_entity_t *_entity,
+     entity->t_log_buffer_full = entity->t_current;
+   }
+ 
++  {
++    // M43-P1: the real, active bounded-buffer drop mechanism (confirmed by
++    // source reading -- PDCP's own discard_timer is stored but never
++    // checked anywhere in this codebase, so it cannot be the mechanism;
++    // this is). Logged for both outcomes (accepted/rejected) so the
++    // tx_size trajectory and the exact moment rejection begins are both
++    // visible, paired against nr_rlc_oai_api.c's M43DBG rlc_ingress log
++    // (same SDU, PDCP-ingress side) and dl_sched_unit()'s existing M41DBG
++    // ceiling/postpf logs (same slice, scheduler side) via wall-clock
++    // correlation across all three log points.
++    struct timeval m43_tv;
++    gettimeofday(&m43_tv, NULL);
++    int m43_would_reject = (entity->tx_size + size > entity->tx_maxsize) ? 1 : 0;
++    LOG_I(RLC, "M43DBG rlc_am_recv_sdu t=%ld.%06ld entity=%p size=%d tx_size=%d "
++          "tx_maxsize=%d sdu_rejected=%d rejected_this_sdu=%d\n",
++          (long)m43_tv.tv_sec, (long)m43_tv.tv_usec, (void *)entity, size,
++          entity->tx_size, entity->tx_maxsize, entity->sdu_rejected,
++          m43_would_reject);
++  }
++
+   if (entity->tx_size + size > entity->tx_maxsize) {
+     entity->sdu_rejected++;
+     return;
+@@ -1854,6 +1882,14 @@ static void check_t_poll_retransmit(nr_rlc_entity_am_t *entity)
    int sdu_retx_count = cur->sdu->retx_count;
    int retransmit_sn = cur->sdu->sn;
  
@@ -214,7 +267,7 @@ index 9198539..8b3d3ca 100644
     * SDU segments with the retransmit SN in the wait list.
     */
 diff --git a/oai_ran/openair2/LAYER2/nr_rlc/nr_rlc_oai_api.c b/oai_ran/openair2/LAYER2/nr_rlc/nr_rlc_oai_api.c
-index 4f34a64..7df7621 100644
+index 4f34a64..48b215e 100644
 --- a/oai_ran/openair2/LAYER2/nr_rlc/nr_rlc_oai_api.c
 +++ b/oai_ran/openair2/LAYER2/nr_rlc/nr_rlc_oai_api.c
 @@ -19,6 +19,7 @@
@@ -225,7 +278,30 @@ index 4f34a64..7df7621 100644
  /* from openair */
  #include "rlc.h"
  #include "LAYER2/nr_pdcp/nr_pdcp_oai_api.h"
-@@ -615,9 +616,14 @@ static void max_retx_reached(void *_ue, nr_rlc_entity_t *entity)
+@@ -346,6 +347,22 @@ rlc_op_status_t rlc_data_req(const protocol_ctxt_t *const ctxt_pP,
+ 
+   if (rb != NULL) {
+     rb->set_time(rb, nr_rlc_current_time);
++    if (ctxt_pP->enb_flag) {
++      // M43-P1: DL-direction only (T_ENB_RLC_DL above confirms this call
++      // site fires on the gNB for downlink SDUs handed down from PDCP).
++      // Logs RLC-ingress (this call's own sdu_sizeP, to compare directly
++      // against PDCP's own M43DBG pdcp_ingress log for the same rb_id) --
++      // paired with nr_rlc_entity_am_recv_sdu()'s own M43DBG log (added
++      // separately) for the real tx_size/tx_maxsize/sdu_rejected state,
++      // since nr_rlc_statistics_t/get_stats() is not populated by the AM
++      // entity (checked: zero writes to txbuf_occ_bytes/txpdu_dd_pkts
++      // anywhere in nr_rlc_entity_am.c) and would read stale/zero
++      // regardless of real drop activity.
++      struct timeval m43_tv;
++      gettimeofday(&m43_tv, NULL);
++      LOG_I(RLC, "M43DBG rlc_ingress t=%ld.%06ld rnti=%d rb_id=%ld size=%d\n",
++            (long)m43_tv.tv_sec, (long)m43_tv.tv_usec, ue_id, rb_idP, sdu_sizeP);
++    }
+     rb->recv_sdu(rb, (char *)sdu_pP, sdu_sizeP, muiP);
+   } else {
+     LOG_E(RLC, "%s:%d:%s: fatal: SDU sent to unknown RB\n", __FILE__, __LINE__, __FUNCTION__);
+@@ -615,9 +632,14 @@ static void max_retx_reached(void *_ue, nr_rlc_entity_t *entity)
    exit(1);
  
  rb_found:
