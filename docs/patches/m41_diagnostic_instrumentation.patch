@@ -89,7 +89,7 @@ index 0abf654..69fd130 100644
  }
  
 diff --git a/oai_ran/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_dlsch.c b/oai_ran/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_dlsch.c
-index 3e6ad1c..85acbef 100644
+index 3e6ad1c..c8c397f 100644
 --- a/oai_ran/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_dlsch.c
 +++ b/oai_ran/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_dlsch.c
 @@ -30,6 +30,7 @@
@@ -100,7 +100,31 @@ index 3e6ad1c..85acbef 100644
  /*MAC*/
  #include "NR_MAC_COMMON/nr_mac.h"
  #include "NR_MAC_gNB/nr_mac_gNB.h"
-@@ -1510,6 +1511,16 @@ static void dl_sched_unit(module_id_t module_id,
+@@ -1054,6 +1055,23 @@ static void pf_dl_slice(module_id_t module_id,
+   qsort(UE_sched, sizeofArray(UE_sched), sizeof(UEsched_t), comparator);
+   UEsched_t *iterator = UE_sched;
+ 
++  // 2026-09-06: TRIED lowering this from 5 to 1 to let slices with a small
++  // configured ceiling (<5 PRB) actually get scheduled instead of
++  // permanently starving (see docs/PAPER5_M41_envelope_sweep.md) -- the
++  // reasoning held up statically (min_rbSize=1 makes min_rbSize<=max_rbSize
++  // a guaranteed invariant, closing an inverted-range case in
++  // nr_find_nb_rb() too), but live-tested REVERTED: it caused a genuine
++  // regression even on the ALREADY-WORKING saclb_live.yaml config -- the
++  // gNB's own instrumentation stream stopped dead (no more log lines at
++  // all, not a slowdown) at t=71.7s with zero RLC retx events and no
++  // Assert/Fatal message, consistent with a crash or hang triggered by an
++  // actual very-small allocation now being attempted, not by the ceiling
++  // math itself. Reverted to 5. Whatever downstream code path handles a
++  // small TBS/rbSize (PHY encoding, HARQ, or DCI formatting) is not
++  // provably safe at this scale, and this constant may be an unintentional
++  // safety margin against it, not just a spectral-efficiency preference.
++  // The validated fix for below-floor ceilings remains config-side
++  // (raise ratios so the floor itself clears 5 PRBs), not this.
+   const int min_rbSize = 5;
+ 
+   /* Loop UE_sched to find max coeff and allocate transmission */
+@@ -1510,6 +1528,16 @@ static void dl_sched_unit(module_id_t module_id,
      SL_sched[i].max_prbs = n_rb_sched_init;
    }
  
@@ -117,7 +141,7 @@ index 3e6ad1c..85acbef 100644
    // Scheduling of slices
    for(int i =0; i < mac->dl_num_slice; i++){
  
-@@ -1528,6 +1539,15 @@ static void dl_sched_unit(module_id_t module_id,
+@@ -1528,6 +1556,15 @@ static void dl_sched_unit(module_id_t module_id,
        SL_sched[i].max_prbs = (n_rb_sched_init * SL_i->spolicy.max_ratio) / 100;
      }
  
@@ -133,7 +157,7 @@ index 3e6ad1c..85acbef 100644
      // pf scheduling within i-th slice
      pf_dl_slice(module_id,
                  frame,
-@@ -1538,6 +1558,14 @@ static void dl_sched_unit(module_id_t module_id,
+@@ -1538,6 +1575,14 @@ static void dl_sched_unit(module_id_t module_id,
                  rballoc_mask,
                  SL_sched+i);
  

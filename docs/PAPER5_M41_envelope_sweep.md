@@ -634,3 +634,56 @@ any bug -- exactly the kind of result a correctly-functioning live
 control loop should produce under genuine overload. Full result data:
 `experiments/results/m41_envelope/manifest.csv` (gated conditions,
 `postfix_S2_*` rows) and `nogate_manifest.csv` (non-gated conditions).
+
+## Scheduler-side workaround tried and reverted: min_rbSize=1
+
+While scoping the `saclb_campaign.yaml` discrepancy
+(`docs/PAPER5_FIG8_validity_check.md`), investigated whether the
+scheduler's own hard `min_rbSize=5` floor (`gNB_scheduler_dlsch.c`,
+inside `pf_dl_slice()`) could be relaxed as an alternative/complementary
+fix, instead of requiring every config's ratios to individually clear 5
+PRBs. `min_rbSize=5` is a plain OAI scheduler heuristic, not a 3GPP
+requirement -- single-PRB grants are valid NR allocations. Tracing
+`nr_find_nb_rb()` (`gNB_scheduler_primitives.c:614`), whose `nb_rb_min`
+argument this feeds, showed a real, well-scoped rationale for lowering
+it: `max_rbSize` (computed from the slice's own remaining ceiling
+budget, `n_rb_remain_s`) can legitimately be 1-4 when a slice's
+configured ceiling is small, producing an inverted `nb_rb_min(5) >
+nb_rb_max` search range -- which for realistic packet sizes correctly
+returns "doesn't fit" (matching the observed permanent starvation), but
+for a small enough packet falls through to reporting 5 PRBs needed,
+more than were actually free or permitted (a latent over-allocation
+risk into `rballoc_mask`). Lowering `min_rbSize` to 1 makes
+`min_rbSize <= max_rbSize` a guaranteed invariant, closing that
+inverted-range case entirely.
+
+**Applied, rebuilt, tested with caution -- reverted after a genuine
+regression.** Ran the standard regression check (`saclb_live.yaml`,
+already fully validated, native load, normal 1s cadence, 180s) with
+this ONE additional change on top of the already-confirmed fix.
+**Failed at t=71.7s** -- zero RLC `retx_inc`/`max RETX reached` events
+(ruling out the mechanism this whole investigation is about), and the
+gNB's own M41DBG instrumentation stream **stopped dead** at the exact
+failure moment: no gradual slowdown, no further log lines of any kind,
+no `Assert`/`Fatal` message, file mtime matching the last log line's
+own embedded timestamp exactly. This is consistent with a crash or
+hang in the gNB process itself, triggered by something downstream
+(PHY encoding, HARQ, or DCI formatting) not handling a very-small
+`rbSize`/TBS combination safely -- not by the ceiling/scheduling math,
+which traced correctly. Reverted `min_rbSize` to 5, rebuilt, reran the
+identical regression check: **survived the full 180s cleanly**, a clean
+A/B confirming this specific change caused the new failure.
+
+**Conclusion: this is not a safe general workaround.** `min_rbSize=5`
+may be an unintentional safety margin against real downstream fragility
+at very small allocations, not just a spectral-efficiency preference --
+OAI's own authors may never have exercised or hardened that path, since
+their own scheduler never previously produced grants below 5 PRBs. The
+validated, safe fix for below-floor ceilings remains config-side
+(raise ratios so the floor itself clears 5 PRBs, as already done for
+`saclb_live.yaml`) -- not touching the scheduler's own minimum grant
+size. Diff preserved in
+`docs/patches/m41_diagnostic_instrumentation.patch` (the tried-and-
+reverted change is left in place as a comment explaining why, with the
+value restored to 5) for anyone who wants to investigate the downstream
+crash further before considering this approach again.
