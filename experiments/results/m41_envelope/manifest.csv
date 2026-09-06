@@ -33,3 +33,4 @@ postfix_S2_cadence0.1s,1.0,0.1,normal,,300.0,20260905_230227,True,True,True,,,30
 postfix_S2_embb_only,1.0,1.0,normal,,300.0,20260905_230958,False,True,False,,gate_failed,,TODO(MEASURE),TODO(MEASURE)
 postfix_S2_embb_mmtc,1.0,1.0,normal,,300.0,20260905_234147,True,True,True,,,304.2,TODO(MEASURE),TODO(MEASURE)
 postfix_S2_embb_urllc,1.0,1.0,normal,,300.0,20260905_235338,True,True,True,,,303.3,TODO(MEASURE),TODO(MEASURE)
+verify_orig_ckpt_campaign_1x,1.0,1.0,normal,,120.0,20260906_093822,True,True,False,10.0,"100pct_loss:{'mmtc': 0.0, 'embb': 0.0, 'urllc': 100.0}",19.8,TODO(MEASURE),TODO(MEASURE)
