@@ -188,6 +188,11 @@ def main() -> int:
     ap.add_argument("--slice", required=True, choices=["mmtc", "embb"])
     ap.add_argument("--ceilings", type=int, nargs="+", default=None)
     ap.add_argument("--offered-mult", type=float, default=None)
+    ap.add_argument("--out-dir", type=str, default=None,
+                     help="override the results dir (default experiments/results/m44e/) -- use this "
+                          "for any run at a DIFFERENT offered load than a slice's own default, so it "
+                          "doesn't append into the same trajectory_<slice>_ceil<N>.jsonl files as a "
+                          "prior run at a different load and conflate the two datasets")
     args = ap.parse_args()
 
     ceilings = args.ceilings or DEFAULT_CEILINGS[args.slice]
@@ -197,6 +202,10 @@ def main() -> int:
               f"-- pass --ceilings and --offered-mult explicitly (TODO(MEASURE): not yet scoped)",
               file=sys.stderr)
         return 1
+
+    global OUT_DIR
+    if args.out_dir:
+        OUT_DIR = Path(args.out_dir)
 
     info = SLICE_INFO[args.slice]
     bitrate = info["native_bitrate_kbps"] * offered_mult
