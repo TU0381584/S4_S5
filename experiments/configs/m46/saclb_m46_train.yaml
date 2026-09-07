@@ -1,0 +1,137 @@
+# M46-MR1: NEW training config. NOT saclb_campaign_v2.yaml, NOT the
+# submission record, NOT the m41fix_test verification-only file -- this is
+# a fresh, purpose-built config whose sole job is to fix PF2-0's fatal
+# action-space-exclusion confound (docs/PAPER5_M45_PF2_train_eval_consistency.md)
+# BEFORE any retraining. The cross-slice coupling question (PF2-0's second
+# confound -- ClosedLoopKpmSource has no cross-slice term) is explicitly
+# NOT addressed here; that is M46's later step.
+#
+# Derivation method: each controllable slice's min_ratio_floor/max_ratio_cap
+# is set so raw_prbs(floor) and raw_prbs(cap) land exactly on the bottom/top
+# of that slice's own LIVE-MEASURED graded band (not a blind multiply of the
+# old broken config, unlike experiments/configs/saclb_campaign_m41fix_test.yaml,
+# which is explicitly verification-only and must not be reused as a training
+# config per this milestone's standing constraint).
+#
+# Conversion (cited, same as M41/M42 -- see
+# experiments/scripts/m42_floor_matrix.py's own docstring for the full
+# source citation):
+#     raw_prbs = (n_rb_sched_init * ratio_pct) // 100
+#   n_rb_sched_init = 106 (confirmed empirically via M41DBG, this rig's real
+#     106-PRB/numerology-1 carrier)
+#   min_rbSize = 5 (gNB_scheduler_dlsch.c:1075, inside pf_dl_slice() -- the
+#     hard scheduling-eligibility guard: n_rb_remain_s >= min_rbSize)
+#
+# Per-slice arithmetic (all raw_prbs values below computed and statically
+# verified by experiments/scripts/m46_config_band_alignment.py, reusing
+# m42_floor_matrix.py's own raw_prbs()/parsing helpers -- not hand-typed):
+#
+#   urllc  floor=6 -> raw_prbs(6)=636//100=6   (M44-D band bottom, commit d3a9d12)
+#          nominal=7 -> raw_prbs(7)=742//100=7 (design choice: low/mid of the
+#                       3-point band: 6,7,8 -- not itself a measured quantity,
+#                       does not affect the floor/cap verification below)
+#          cap=8   -> raw_prbs(8)=848//100=8   (M44-D band top)
+#          M44-D's own confirmed real graded band: 6,7,8 raw PRB @ 3600 Kbps
+#          (12x native urllc traffic). Range floor(6)..cap(8) exactly spans it.
+#
+#   embb   floor=5 -> raw_prbs(5)=530//100=5   (M44-E2b band bottom, commit
+#                       4fb98dc; 5 raw PRB is also exactly min_rbSize -- the
+#                       lowest value the scheduler will ever grant, not below it)
+#          nominal=7 -> raw_prbs(7)=742//100=7 (design choice, same rationale
+#                       as urllc's nominal above)
+#          cap=10  -> raw_prbs(10)=1060//100=10 (M44-E2b band top)
+#          M44-E2b's own confirmed real graded band: 5,6,7,8,9,10 raw PRB @
+#          12000 Kbps (3x native embb traffic). Range floor(5)..cap(10)
+#          exactly spans all 6 measured points.
+#
+#   mmtc   floor=nominal=cap=5 -> raw_prbs(5)=530//100=5 (FIXED, NOT graded --
+#          see header note below)
+#
+# mmtc has NO realistic graded band at any load this project has found
+# controllable-and-realistic (M44-E1: 2500 Kbps/50x native -- uniformly
+# healthy at every tested ceiling INCLUDING the floor; M44-E1b: a band only
+# appears at 4000 Kbps/80x = ~320x true native average rate, categorically
+# non-mMTC traffic, commit 074b6ec). Rather than give mmtc a fake
+# floor<cap range implying it is part of this campaign's controllable
+# action space, its ratio is collapsed to a single fixed point (floor ==
+# nominal == cap == 5), parked exactly at the scheduler's minimum grant
+# size -- the specific value M44-E1 already confirmed mmtc serves cleanly
+# at, at its own native/realistic load. mmtc remains present and served in
+# the environment; it is just not an actionable dimension of this
+# campaign's policy, by explicit, documented choice, not omission.
+name: saclb_m46_train
+random_seed: 256
+paper_variant: paper2
+B: 100
+Lmax: 1000   # matches saclb_campaign_v2_offline_train.yaml's training-time value (Stage 5); unrelated to this milestone's ratio fix, carried over unchanged
+
+gnbs:
+  - gnb_id: gnb-0
+    prb_capacity: 100
+
+slices:
+  - slice_id: embb
+    sst: 1
+    sd: 16777215  # 0xFFFFFF, the confirmed real "no-SD" sentinel on this gNB
+    nominal_ratio: 7    # design choice, see header derivation notes -- not a measured quantity
+    min_ratio_floor: 5  # raw_prbs=5 -- M44-E2b band bottom (commit 4fb98dc), == min_rbSize
+    max_ratio_cap: 10   # raw_prbs=10 -- M44-E2b band top (commit 4fb98dc)
+    latency_budget_ms: 45
+    loss_budget_pct: 2.0
+    priority_weight: 3.5
+    accept_reward: 1.0
+    violation_penalty: 5.0
+  - slice_id: urllc
+    sst: 1
+    sd: 1  # confirmed real MAC slice id3 (sst=1, sd=0x000001) -- see gNB boot log
+    nominal_ratio: 7    # design choice, see header derivation notes -- not a measured quantity
+    min_ratio_floor: 6  # raw_prbs=6 -- M44-D band bottom (commit d3a9d12), clears min_rbSize=5
+    max_ratio_cap: 8    # raw_prbs=8 -- M44-D band top (commit d3a9d12)
+    latency_budget_ms: 20     # tightest of the 3 slices -- URLLC's defining SLA characteristic
+    loss_budget_pct: 0.5      # tightest loss budget -- URLLC is loss-intolerant
+    priority_weight: 5.0      # highest priority weight -- matches papers #1/#2's objective (minimize URLLC block rate first)
+    accept_reward: 1.0
+    violation_penalty: 8.0    # highest violation penalty, consistent with priority_weight
+  - slice_id: mmtc
+    sst: 1
+    sd: 2
+    nominal_ratio: 5    # FIXED, not graded -- see header note: no realistic band exists (E1/E1b)
+    min_ratio_floor: 5  # == max_ratio_cap: collapses mmtc's action range to one point, by design
+    max_ratio_cap: 5    # raw_prbs=5 == min_rbSize -- the exact value M44-E1 confirmed healthy at native load
+    latency_budget_ms: 65
+    loss_budget_pct: 3.5
+    priority_weight: 0.3
+    accept_reward: 1.0
+    violation_penalty: 2.5
+
+reward:
+  congestion_coeff: 1.5
+  lb_coeff: 1.0
+
+arrivals:
+  synthetic_arrivals_per_step: 2
+  max_pending_per_step: 8
+  ceiling_step_ratio: 1
+
+episode:
+  step_seconds: 5.0
+  steps_per_episode: 60
+
+# QoE-mode reward (eq.9) -- unchanged from saclb_campaign_v2(_offline_train).yaml.
+# Out of scope for MR1 (ratio/action-space fix only); carried over verbatim.
+qoe:
+  reward:
+    alpha: 1.0
+    beta: 0.2
+    gamma: 0.5
+  lstm_hidden: 32
+  window: 8
+  max_staleness: 20
+  mapper_checkpoint:
+    urllc: qoe_oran_framework/results/qoe_mapper/qoe_mapper_urllc.pt
+    embb: qoe_oran_framework/results/qoe_mapper/qoe_mapper_embb.pt
+    mmtc: qoe_oran_framework/results/qoe_mapper/qoe_mapper_mmtc.pt
+  iqx_coeffs:
+    urllc: {alpha: 6.000000, beta: 10.000000, gamma: 14.038857, delta: 61.073355, epsilon: 0.000000}
+    embb:  {alpha: 5.733636, beta: 1.423627, gamma: 0.136083, delta: 0.000000, epsilon: 0.510134}
+    mmtc:  {alpha: 6.000000, beta: 10.000000, gamma: 0.000000, delta: 11.420383, epsilon: 0.000000}

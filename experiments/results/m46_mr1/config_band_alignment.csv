@@ -1,0 +1,4 @@
+slice,floor_ratio_pct,nominal_ratio_pct,cap_ratio_pct,floor_raw_prbs,nominal_raw_prbs,cap_raw_prbs,min_rbSize,n_rb_sched_init,target_band,band_source,in_band,distinct_points_expressible,note
+embb,5,7,10,5,7,10,5,106,5-10,"M44-E2b (commit 4fb98dc): 5,6,7,8,9,10 raw PRB @ 12000 Kbps (3x native)",True,6,"expressible raw PRBs: [5, 6, 7, 8, 9, 10]"
+urllc,6,7,8,6,7,8,5,106,6-8,"M44-D (commit d3a9d12): 6,7,8 raw PRB @ 3600 Kbps (12x native)",True,3,"expressible raw PRBs: [6, 7, 8]"
+mmtc,5,5,5,5,5,5,5,106,"N/A (no band, fixed by design)",M44-E1/E1b (commits 1e8d2b8/074b6ec): no realistic band at any controllable+realistic load,"N/A (fixed by design, no band exists)",1,fixed-at-5raw
