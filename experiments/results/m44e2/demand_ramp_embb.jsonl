@@ -1,0 +1,9 @@
+{"mult": 1, "bitrate_kbps": 4000, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 17.27, 23.0]], "target_rnti": "30219", "target_mean_prb": 17.27, "target_max_prb": 23.0}
+{"mult": 1.5, "bitrate_kbps": 6000.0, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 15.0, 18.0]], "target_rnti": "30219", "target_mean_prb": 15.0, "target_max_prb": 18.0}
+{"mult": 2, "bitrate_kbps": 8000, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 16.6, 21.0]], "target_rnti": "30219", "target_mean_prb": 16.6, "target_max_prb": 21.0}
+{"mult": 3, "bitrate_kbps": 12000, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 21.07, 34.0]], "target_rnti": "30219", "target_mean_prb": 21.07, "target_max_prb": 34.0}
+{"mult": 4, "bitrate_kbps": 16000, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 26.4, 37.0]], "target_rnti": "30219", "target_mean_prb": 26.4, "target_max_prb": 37.0}
+{"mult": 5, "bitrate_kbps": 20000, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 30.33, 37.0]], "target_rnti": "30219", "target_mean_prb": 30.33, "target_max_prb": 37.0}
+{"mult": 6, "bitrate_kbps": 24000, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 37.47, 43.0]], "target_rnti": "30219", "target_mean_prb": 37.47, "target_max_prb": 43.0}
+{"mult": 8, "bitrate_kbps": 32000, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 56.13, 70.0]], "target_rnti": "30219", "target_mean_prb": 56.13, "target_max_prb": 70.0}
+{"mult": 10, "bitrate_kbps": 40000, "rntis": [["17783", 5.0, 5.0], ["25516", 5.0, 5.0], ["30219", 82.33, 99.0]], "target_rnti": "30219", "target_mean_prb": 82.33, "target_max_prb": 99.0}
