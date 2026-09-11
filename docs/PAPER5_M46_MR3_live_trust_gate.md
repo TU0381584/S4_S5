@@ -1,5 +1,35 @@
 # M46-MR3 — THE TRUST GATE: live revalidation of MR2's retrained checkpoints
 
+## CORRECTION (2026-09-11, from M46-MR3b)
+
+**Question (1) below overstates severity and question (2)'s
+correlations are understated.** M46-MR3b's diagnosis of the uncapped-
+ceiling origin found that the ~31-37%-of-samples figure reported below
+is a real count of logged M41DBG lines, but a misleading measure of
+real-world/wall-clock impact: M41DBG logging is rate-limited to
+~1-in-20 scheduler calls, and the scheduler's own call rate is far
+from time-uniform, running disproportionately densely during the
+volatile first ~15-30s after traffic launch. Re-reading this report's
+own already-computed per-window `trajectory` data (not re-collected --
+the same `results/m46_mr3/*/trajectory.jsonl` written at the time)
+shows the uncapped ceiling is concentrated almost entirely in the
+episode's first 15-30 seconds, then clean and stable for the remaining
+~90%+ of wall-clock time, in all 4 runs. Root cause (confirmed via new
+live pointer-identity instrumentation): `RANEnv.reset()` never pushes
+the post-`reset_ceilings()` starting ceiling to the gNB via
+`send_control()` -- the real applied ceiling for a slice sits at the
+gNB's own boot default until that slice's first admission request is
+processed, independent of anything coupling-related. Recomputed
+state-responsiveness on the settled (t>=30s) samples: urllc
+r=0.65-0.85 (not 0.18-0.44), embb r=0.51-0.73 (not the originally
+reported near-null -0.05 to +0.19) -- the startup-gap block of points
+was diluting a substantially stronger live-backlog-tracking
+relationship for both slices. Question (3)'s "does not transfer"
+framing and the DECISION below should be read alongside this
+correction, not taken at face value; question (4)'s PWC/shed
+classification did not depend on this and is not reopened. Full
+account: `docs/PAPER5_M46_MR3b_control_path_origin.md`.
+
 Live, cold-start, running the REAL policy control loop
 (`framework/qoe_oran_framework/xapp/saclb_xapp.py`, frozen, unmodified)
 against the real gNB/E2, at E4's co-located regime (urllc 3600Kbps/12x +
@@ -189,7 +219,7 @@ recorded) before this sweep was re-run from scratch. No git corruption,
 no MR1/MR2 artifact loss. Reported for completeness; unrelated to the
 GATE MR3 findings above, which come entirely from the clean re-run.
 
-## DECISION: STOP
+## DECISION: STOP (see correction above -- the "coupling-breaks-it" basis for this is weaker than stated; re-evaluate against MR3b before acting on it as originally worded)
 
 Per this milestone's own decision structure: **trustworthy → PF2-1**,
 **in-band-not-responsive → STOP**, **coupling-breaks-it → STOP**. The

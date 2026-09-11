@@ -1,0 +1,203 @@
+diff --git a/oai_ran/openair2/E2_AGENT/e2_message_handlers.c b/oai_ran/openair2/E2_AGENT/e2_message_handlers.c
+index 0abf654..3db29e0 100644
+--- a/oai_ran/openair2/E2_AGENT/e2_message_handlers.c
++++ b/oai_ran/openair2/E2_AGENT/e2_message_handlers.c
+@@ -4,6 +4,7 @@
+ 
+ #include "e2_message_handlers.h"
+ #include "common/ran_context.h"
++#include <sys/time.h>
+ 
+ #include "PHY/defs_nr_UE.h"
+ #include "PHY/phy_extern_nr_ue.h"
+@@ -199,14 +200,47 @@ void apply_slicing_ctrl(SlicingControlM* slicing_ctrl_mess)
+     min_ratio = slicing_ctrl_mess->min_ratio;
+     max_ratio = slicing_ctrl_mess->max_ratio;
+ 
++    {
++        struct timeval m41_tv;
++        gettimeofday(&m41_tv, NULL);
++        LOG_I(E2_AGENT, "M41DBG e2_write t=%ld.%06ld sst=%d sd=%06x min_ratio=%u max_ratio=%u\n",
++              (long)m41_tv.tv_sec, (long)m41_tv.tv_usec, sst, sd, min_ratio, max_ratio);
++    }
++
++    // SL_info is also read every scheduling slot by the DL/UL scheduler
++    // (gNB_scheduler_dlsch.c's nr_slice_preprocess/slice_prb_estimate,
++    // which run under sched_lock -- see NR_SCHED_ENSURE_LOCKED there).
++    // This E2-triggered write previously took no lock at all, unlike
++    // every other asynchronous external writer into gNB_MAC_INST state
++    // (see mac_rrc_dl_handler.c), making it a genuine unsynchronized
++    // data race against the real-time scheduler thread.
++    NR_SCHED_LOCK(&mac->sched_lock);
+     SL_iterator(SL_info->list, SL) {
+       if (SL->nssai.sst == sst && SL->nssai.sd == sd) {
+         SL->spolicy.min_ratio = min_ratio;
+         SL->spolicy.max_ratio = max_ratio;
+         LOG_I(E2_AGENT, "Slicing_Ctrl_Msg Applied: NSSAI.SST %d, NSSAI.SD %d, min_ratio %d, max_ratio %d \n", sst, sd, min_ratio, max_ratio);
++        // M46DBG (temporary, MR3b control-path-origin diagnostic): record
++        // the exact struct instance + owning mac instance this write landed
++        // on, to compare against what the scheduler's read side (M46DBG
++        // sched_read, gNB_scheduler_dlsch.c) resolves for the same sst/sd --
++        // tests the hypothesis that the ~106/uncapped excursions found in
++        // M46-MR3 come from the scheduler resolving a DIFFERENT NR_slice_info_t
++        // instance (still at its gnb_config.c boot default of min_ratio=0,
++        // max_ratio=100) than the one this write updates, rather than from
++        // the E2 write itself (already ruled out: this file's own pre-existing
++        // M41DBG e2_write line above, re-examined against MR3's actual gNB
++        // logs, shows every write is a clean in-band ratio, never (0,100)).
++        {
++            struct timeval m46_tv;
++            gettimeofday(&m46_tv, NULL);
++            LOG_I(E2_AGENT, "M46DBG e2_apply t=%ld.%06ld sst=%d sd=%06x sl_ptr=%p mac_ptr=%p min_ratio=%u max_ratio=%u\n",
++                  (long)m46_tv.tv_sec, (long)m46_tv.tv_usec, sst, sd, (void*)SL, (void*)mac, min_ratio, max_ratio);
++        }
+       }
+       sum_min_ratio += SL->spolicy.min_ratio;
+     }
++    NR_SCHED_UNLOCK(&mac->sched_lock);
+     if (sum_min_ratio > 100)
+         AssertFatal(1 == 0, "Sum of min ratios in the prb policy exceeding 100 \n");
+ }
+@@ -317,7 +351,27 @@ UeListM* get_ue_list(){
+     UeListM* ue_list_m = malloc(sizeof(UeListM));
+     ue_list_m__init(ue_list_m);
+ 
+-    NR_UEs_t *UE_info_gnb = &RC.nrmac[0]->UE_info;
++    gNB_MAC_INST *mac = RC.nrmac[0];
++    NR_UEs_t *UE_info_gnb = &mac->UE_info;
++
++    // This function runs on the E2_AGENT's own real-time-priority thread on
++    // every single ran_read() (i.e. every INDICATION_REQUEST poll), and reads
++    // curr_ue->{is_GBR,avg_tbs_1s_dl/ul,avg_prbs_dl,avg_tbs_per_prb_dl},
++    // sched_ctrl (num_total_bytes, mcs, ph, pcmax, bler_stats, dl_sl_info),
++    // and mac_stats -- every one of which is mutated every slot by the
++    // real-time scheduler under sched_lock (nr_schedule_ue_spec asserts
++    // sched_lock held via NR_SCHED_ENSURE_LOCKED). It also walks
++    // UE_info_gnb->list itself, which mac_remove_nr_ue() only ever mutates
++    // under sched_lock + UE_info.mutex together (see dump_mac_stats() in
++    // main.c for the same double-lock convention on a read). This function
++    // previously took no lock at all -- a genuine, continuously-firing
++    // unsynchronized read of live scheduler state, unlike apply_slicing_ctrl
++    // (see e2_message_handlers.c's own fix above). Lock both, in the same
++    // order used everywhere else in this codebase, for the whole critical
++    // section -- not just the count loop -- so the list can't be mutated
++    // between counting UEs and reading their fields.
++    NR_SCHED_LOCK(&mac->sched_lock);
++    NR_SCHED_LOCK(&UE_info_gnb->mutex);
+ 
+     // count how many ues are connected
+     int num_ues;
+@@ -331,6 +385,8 @@ UeListM* get_ue_list(){
+     ue_list_m->connected_ues = num_ues;
+     ue_list_m->n_ue_info = num_ues;
+     if(num_ues == 0){
++        NR_SCHED_UNLOCK(&UE_info_gnb->mutex);
++        NR_SCHED_UNLOCK(&mac->sched_lock);
+         return ue_list_m;
+     }
+     NR_UE_info_t* curr_ue;
+@@ -405,6 +461,9 @@ UeListM* get_ue_list(){
+     ue_info_list[num_ues] = NULL;
+     // assign ue info pointer
+     ue_list_m->ue_info = ue_info_list;
++
++    NR_SCHED_UNLOCK(&UE_info_gnb->mutex);
++    NR_SCHED_UNLOCK(&mac->sched_lock);
+     return ue_list_m;
+ }
+ 
+diff --git a/oai_ran/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_dlsch.c b/oai_ran/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_dlsch.c
+index 3e6ad1c..ce02105 100644
+--- a/oai_ran/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_dlsch.c
++++ b/oai_ran/openair2/LAYER2/NR_MAC_gNB/gNB_scheduler_dlsch.c
+@@ -30,6 +30,7 @@
+  */
+ 
+ #include "common/utils/nr/nr_common.h"
++#include <sys/time.h>
+ /*MAC*/
+ #include "NR_MAC_COMMON/nr_mac.h"
+ #include "NR_MAC_gNB/nr_mac_gNB.h"
+@@ -1054,6 +1055,23 @@ static void pf_dl_slice(module_id_t module_id,
+   qsort(UE_sched, sizeofArray(UE_sched), sizeof(UEsched_t), comparator);
+   UEsched_t *iterator = UE_sched;
+ 
++  // 2026-09-06: TRIED lowering this from 5 to 1 to let slices with a small
++  // configured ceiling (<5 PRB) actually get scheduled instead of
++  // permanently starving (see docs/PAPER5_M41_envelope_sweep.md) -- the
++  // reasoning held up statically (min_rbSize=1 makes min_rbSize<=max_rbSize
++  // a guaranteed invariant, closing an inverted-range case in
++  // nr_find_nb_rb() too), but live-tested REVERTED: it caused a genuine
++  // regression even on the ALREADY-WORKING saclb_live.yaml config -- the
++  // gNB's own instrumentation stream stopped dead (no more log lines at
++  // all, not a slowdown) at t=71.7s with zero RLC retx events and no
++  // Assert/Fatal message, consistent with a crash or hang triggered by an
++  // actual very-small allocation now being attempted, not by the ceiling
++  // math itself. Reverted to 5. Whatever downstream code path handles a
++  // small TBS/rbSize (PHY encoding, HARQ, or DCI formatting) is not
++  // provably safe at this scale, and this constant may be an unintentional
++  // safety margin against it, not just a spectral-efficiency preference.
++  // The validated fix for below-floor ceilings remains config-side
++  // (raise ratios so the floor itself clears 5 PRBs), not this.
+   const int min_rbSize = 5;
+ 
+   /* Loop UE_sched to find max coeff and allocate transmission */
+@@ -1510,6 +1528,16 @@ static void dl_sched_unit(module_id_t module_id,
+     SL_sched[i].max_prbs = n_rb_sched_init;
+   }
+ 
++  // M41 diagnostic instrumentation (temporary): correlate per-slot SL_sched
++  // PRB accounting against the live RLC max-RETX failure. Rate-limited to
++  // ~1 sample/10ms (every 20th call at 2000 slots/s) to keep log volume
++  // bounded over a ~30-40s single-write test. Wall-clock (not frame/slot)
++  // so it lines up directly against the UE-side RLC instrumentation added
++  // alongside this, since gNB and UE are native processes on the same host
++  // clock. Remove once the mechanism is confirmed or ruled out.
++  static uint64_t m41_dbg_call_count = 0;
++  const bool m41_dbg_log = (++m41_dbg_call_count % 20 == 0);
++
+   // Scheduling of slices
+   for(int i =0; i < mac->dl_num_slice; i++){
+ 
+@@ -1528,6 +1556,26 @@ static void dl_sched_unit(module_id_t module_id,
+       SL_sched[i].max_prbs = (n_rb_sched_init * SL_i->spolicy.max_ratio) / 100;
+     }
+ 
++    if (m41_dbg_log) {
++      struct timeval m41_tv;
++      gettimeofday(&m41_tv, NULL);
++      LOG_I(NR_MAC, "M41DBG ceiling t=%ld.%06ld frame=%d slot=%d sid=%d min_ratio=%u max_ratio=%u dedi_prbs=%d min_prbs=%d max_prbs=%d n_rb_sched_init=%d\n",
++            (long)m41_tv.tv_sec, (long)m41_tv.tv_usec, frame, slot, SL_i->sid,
++            SL_i->spolicy.min_ratio, SL_i->spolicy.max_ratio,
++            SL_sched[i].dedi_prbs, SL_sched[i].min_prbs, SL_sched[i].max_prbs, n_rb_sched_init);
++      // M46DBG (temporary, MR3b control-path-origin diagnostic): same event,
++      // plus the exact struct instance this READ resolved -- compare
++      // sl_ptr/mac_ptr here against the M46DBG e2_apply line
++      // (e2_message_handlers.c) for the same sst/sd to test whether an
++      // uncapped (min_ratio=0,max_ratio=100, matching gnb_config.c's boot
++      // default exactly) reading corresponds to a DIFFERENT pointer than
++      // the one the E2 write landed on.
++      LOG_I(NR_MAC, "M46DBG sched_read t=%ld.%06ld frame=%d slot=%d sid=%d sst=%d sd=%06x sl_ptr=%p mac_ptr=%p module_id=%d min_ratio=%u max_ratio=%u\n",
++            (long)m41_tv.tv_sec, (long)m41_tv.tv_usec, frame, slot, SL_i->sid,
++            SL_i->nssai.sst, SL_i->nssai.sd, (void*)SL_i, (void*)mac, module_id,
++            SL_i->spolicy.min_ratio, SL_i->spolicy.max_ratio);
++    }
++
+     // pf scheduling within i-th slice
+     pf_dl_slice(module_id,
+                 frame,
+@@ -1538,6 +1586,14 @@ static void dl_sched_unit(module_id_t module_id,
+                 rballoc_mask,
+                 SL_sched+i);
+ 
++    if (m41_dbg_log) {
++      struct timeval m41_tv;
++      gettimeofday(&m41_tv, NULL);
++      LOG_I(NR_MAC, "M41DBG postpf t=%ld.%06ld frame=%d slot=%d sid=%d min_prbs=%d max_prbs=%d remainUEs=%d n_rb_sched=%d\n",
++            (long)m41_tv.tv_sec, (long)m41_tv.tv_usec, frame, slot, SL_i->sid,
++            SL_sched[i].min_prbs, SL_sched[i].max_prbs, remainUEs, n_rb_sched);
++    }
++
+     n_rb_sched_s_tot += SL_sched[i].min_prbs;
+ 
+     if (n_rb_sched_s_tot > n_rb_sched_init ) AssertFatal(1==0,"PRB Violation \n");
