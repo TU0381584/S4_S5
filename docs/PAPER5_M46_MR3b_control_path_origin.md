@@ -1,5 +1,27 @@
 # M46-MR3b — locating the origin of MR3's uncapped-ceiling excursions
 
+## CORRECTION (2026-09-11, from M46-MR3c): the "residual recurring pattern" below is retracted
+
+The "smaller, still-open residual finding" section below (and the
+corrected-but-still-partial state-responsiveness figures computed
+alongside it) used a fixed `t>=30s` steady-state cutoff to exclude the
+startup gap. M46-MR3c checked this properly, using each slice's own
+TRUE first-`e2_apply`-write timestamp (already logged, just not used
+this way yet) instead of a fixed cutoff: **that timestamp is ~93-103s
+for some slices/runs, well past the 30s cutoff used below** -- so what
+looked like a "residual, post-settling recurrence" was still sitting
+inside the same, single, already-explained startup gap, not a second
+mechanism. Re-checked directly against both of this report's own
+already-collected runs: restricting to samples after each slice's own
+true first write, the uncapped rate is **exactly 0.00%**, both slices,
+both runs, no exceptions. There is no second mechanism to isolate. The
+state-responsiveness figures quoted below (urllc r=0.65-0.85, embb
+r=0.51-0.73) are similarly retracted as still-partially-contaminated
+by this same too-early cutoff -- MR3c measures these cleanly, with the
+fix applied and no exclusion window needed at all, instead of
+recovering them from the contaminated pre-fix run. See
+`docs/PAPER5_M46_MR3c_clean_revalidation.md` for the clean numbers.
+
 Diagnostic-only, no retraining, no Path A decision (per this milestone's
 own explicit gating). MR3 found the live-commanded ceiling (`M41DBG`
 `max_prbs`) reading ~106 (the cell's full `n_rb_sched_init`) a large

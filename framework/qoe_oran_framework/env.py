@@ -156,6 +156,31 @@ class RANEnv:
         self._step_in_episode = 0
         self._episode_idx += 1
         self.gate.reset_ceilings()
+        # M46-MR3c fix: reset_ceilings() only sets AdmissionGate's own
+        # in-memory starting ceiling (min_ratio_floor, nominal_ratio) --
+        # it never reaches the real controller (gNB live, or the
+        # offline env's own simulated ceiling state) because it doesn't
+        # call send_control(). step()'s own E2-write loop only fires for
+        # (gnb_id, slice_id) keys present in a step's apply_result,
+        # which requires a pending admission REQUEST for that slice --
+        # so before any given slice's first request of the episode,
+        # nothing has ever told the controller what reset_ceilings()
+        # just decided. Live, this left the gNB's OWN scheduler at its
+        # boot-time default (config_band_alignment.csv's calibrated
+        # in-band range was never applied) for however long that
+        # slice's first request took to arrive -- M46-MR3b traced this
+        # precisely and found it explains the dominant share of MR3's
+        # uncapped-ceiling finding. Pushing every slice's freshly-reset
+        # ceiling here, unconditionally, closes exactly that gap -- same
+        # send_control() call site and argument shape as step()'s own
+        # loop below, just for every (gnb_id, slice_id) pair rather than
+        # only ones with a pending request this step.
+        for gnb_id in self.cfg.gnb_ids:
+            for slice_id, spec in self.cfg.slice_by_id.items():
+                ceiling = self.gate.ceiling_for(gnb_id, slice_id)
+                self.kpm_source.send_control(
+                    gnb_id, spec.sst, spec.sd, ceiling.min_ratio, ceiling.max_ratio
+                )
         ue_samples = self.kpm_source.poll()
         self._last_cluster_state = self._build_cluster_state(ue_samples)
         self._pending = self._synthesize_requests(ue_samples)
