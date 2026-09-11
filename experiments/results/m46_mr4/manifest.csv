@@ -1,0 +1,17 @@
+era,mode,train_seed,slice,expected_sign,pearson_r,n,classification
+MR3_orig_t30s_proxy,qoe,256,urllc,+,0.8272437302478515,29466,match
+MR3_orig_t30s_proxy,qoe,256,embb,-,0.7244859100737668,29466,contradict
+MR3_orig_t30s_proxy,qoe,257,urllc,+,0.7820998458789051,29288,match
+MR3_orig_t30s_proxy,qoe,257,embb,-,0.672143950988918,29288,contradict
+MR3_orig_t30s_proxy,sla,256,urllc,+,0.8438587574989371,24366,match
+MR3_orig_t30s_proxy,sla,256,embb,-,0.7121324577346116,24366,contradict
+MR3_orig_t30s_proxy,sla,257,urllc,+,0.646343311006385,28785,match
+MR3_orig_t30s_proxy,sla,257,embb,-,0.7284334285111238,28785,contradict
+MR3c_clean_firstwrite,qoe,256,urllc,+,0.05124152951641511,20890,negligible
+MR3c_clean_firstwrite,qoe,256,embb,-,-0.007275411066546473,20890,negligible
+MR3c_clean_firstwrite,qoe,257,urllc,+,-0.9750537408411861,25056,contradict
+MR3c_clean_firstwrite,qoe,257,embb,-,-0.8243973878951127,25056,match
+MR3c_clean_firstwrite,sla,256,urllc,+,-0.01649664793472245,23801,negligible
+MR3c_clean_firstwrite,sla,256,embb,-,0.004048566580580987,23802,negligible
+MR3c_clean_firstwrite,sla,257,urllc,+,0.2652449117192929,24332,match
+MR3c_clean_firstwrite,sla,257,embb,-,-0.2817407932252836,24332,match
