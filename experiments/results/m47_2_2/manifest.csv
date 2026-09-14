@@ -1,0 +1,2 @@
+mode,train_seed,eval_seed,error,coupling_pass,urllc_uncapped_n,embb_uncapped_n,in_band_pass,urllc_r,embb_r,responsiveness_pass,pwc,pwc_eq,shed_classification,overall_pass
+qoe,264,972,,True,0,0,True,0.06198162175873055,0.0034653575147998794,True,0.3654538874595352,0.34248567545608766,indiscriminate_failure,True
