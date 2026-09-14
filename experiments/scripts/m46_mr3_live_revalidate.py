@@ -163,9 +163,25 @@ def state_responsiveness(ceiling_rows, postpf_rows, sid):
     }
 
 
-def run_one(mode: str, train_seed: int, eval_seed: int, run_idx: int, total: int) -> dict:
-    ckpt = checkpoint_path(mode, train_seed)
-    assert ckpt.exists(), f"missing checkpoint: {ckpt}"
+def run_one(mode: str, train_seed: int, eval_seed: int, run_idx: int, total: int,
+            algorithm: str = "dqn", config_override: Path = None,
+            checkpoint_override: Path = None, reward_mode_override: str = None) -> dict:
+    """M47-PF2-1c extension (backward compatible: every prior caller
+    passes only the first 5 positional args, unaffected): algorithm/
+    config_override/checkpoint_override let this same cold-start/gate/
+    traffic/parsing pipeline run the 3 non-learning PF2-1c arms
+    (static-at-cap, static-at-floor, lb_only) alongside the DQN arms,
+    without duplicating any of the surrounding live-rig machinery.
+    algorithm="lb_only" needs no checkpoint (mirrors saclb_xapp.py's
+    own argparse: --checkpoint required unless --algorithm lb_only)."""
+    if checkpoint_override is not None:
+        ckpt = checkpoint_override
+    elif algorithm == "dqn":
+        ckpt = checkpoint_path(mode, train_seed)
+        assert ckpt.exists(), f"missing checkpoint: {ckpt}"
+    else:
+        ckpt = None
+    cfg_path = config_override if config_override is not None else CONFIG
     run_id = f"m46mr3_{mode}_seed{train_seed}"
     print(f"[m46-mr3] === run {run_idx}/{total}: {run_id} (eval_seed={eval_seed}) === "
           f"COLD START urllc=3600Kbps/12x embb=12000Kbps/3x mmtc=native", file=sys.stderr)
@@ -228,11 +244,15 @@ def run_one(mode: str, train_seed: int, eval_seed: int, run_idx: int, total: int
 
     xapp_cmd = [
         str(RIG / "venv/bin/python3"), str(XAPP_SCRIPT),
-        "--config", str(CONFIG), "--algorithm", "dqn",
-        "--checkpoint", str(ckpt), "--gnb-id", "gnb-0",
+        "--config", str(cfg_path), "--algorithm", algorithm,
+    ]
+    if ckpt is not None:
+        xapp_cmd += ["--checkpoint", str(ckpt)]
+    xapp_cmd += [
+        "--gnb-id", "gnb-0",
         "--episodes", str(EPISODES_PER_RUN), "--seed", str(eval_seed),
         "--run-id", run_id, "--omega-jsonl", str(omega_path),
-        "--reward-mode", mode,
+        "--reward-mode", (reward_mode_override if reward_mode_override is not None else mode),
     ]
     print(f"[m46-mr3] launching live policy loop: {' '.join(xapp_cmd)}", file=sys.stderr)
     t0 = time.time()
@@ -305,7 +325,8 @@ def run_one(mode: str, train_seed: int, eval_seed: int, run_idx: int, total: int
 
     result = {
         "mode": mode, "train_seed": train_seed, "eval_seed": eval_seed, "run_id": run_id,
-        "checkpoint": str(ckpt), "elapsed_s": elapsed, "ts2": ts2,
+        "checkpoint": (str(ckpt) if ckpt is not None else None), "algorithm": algorithm,
+        "config": str(cfg_path), "elapsed_s": elapsed, "ts2": ts2,
         "pre_traffic_buffer": pre_buf, "sd_to_entity": sd_to_entity,
         "urllc_maxprbs_observed": sorted(urllc_inband), "urllc_in_band": urllc_inband.issubset(EXPECTED_RANGE["urllc"]) and len(urllc_inband) > 0,
         "embb_maxprbs_observed": sorted(embb_inband), "embb_in_band": embb_inband.issubset(EXPECTED_RANGE["embb"]) and len(embb_inband) > 0,
