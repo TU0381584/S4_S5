@@ -69,14 +69,26 @@ finding, `docs/PAPER5_M45_PF1_priority_weighted_correctness.md`:
 structurally blind to exactly the starvation failure mode this
 campaign is checking for).
 
-**Arms**: DQN-QoE, DQN-SLA (MR2's existing checkpoints, MR1's config,
-unedited), a non-ML baseline (`LbOnlyHeuristic`, `algorithm="lb_only"`
-in `mc_runner.py` -- already-implemented, no new code), and a
-static-at-cap arm -- config now built and committed
-(`experiments/configs/m47/saclb_m47_static_at_cap.yaml`, M47-1),
-a variant of `saclb_m46_train.yaml` with `nominal_ratio` raised to
-equal `max_ratio_cap` and `ceiling_step_ratio: 0`, NOT a reuse of the
-pre-M41-fix `saclb_campaign_static_at_cap_v2.yaml`.
+**Arms, 5 total** (locked M47-2-0, `docs/PAPER5_M47_2_0_arm_set.md` --
+all 5 confirmed mechanistically distinct, none redundant): DQN-QoE,
+DQN-SLA (MR2's existing checkpoints, extended to n>=11/arm by M47-2,
+MR1's config, unedited); a non-ML baseline (`LbOnlyHeuristic`,
+`algorithm="lb_only"` in `mc_runner.py` -- already-implemented, no new
+code; confirmed via direct source reading to be a REACTIVE,
+state-dependent quota-threshold rule that moves the ceiling through
+the same `AdmissionGate.apply()` channel DQN uses, not a frozen
+reference -- genuinely distinct from the two static arms below, not a
+redundant cut); a static-at-cap arm
+(`experiments/configs/m47/saclb_m47_static_at_cap.yaml`, M47-1); and a
+static-at-floor arm (`experiments/configs/m47/saclb_m47_static_at_floor.yaml`,
+M47-2-0 -- the more discriminating second non-learned reference this
+milestone's own gate logic required, since one static point alone
+cannot distinguish "the scheduler favors urllc regardless of ceiling
+position" from "wide-open specifically happened to coincide with what
+the scheduler wants"). Both static configs are variants of
+`saclb_m46_train.yaml` (`nominal_ratio` set equal to `max_ratio_cap`
+or `min_ratio_floor` respectively, plus `ceiling_step_ratio: 0`), NOT
+reuses of the pre-M41-fix `saclb_campaign_static_at_cap_v2.yaml`.
 
 **Paired test**: paired (by seed) two-sided t-test on PWC, matching
 PF2-1a's own method exactly (same metric, same pairing logic, applied

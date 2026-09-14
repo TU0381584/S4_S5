@@ -1,0 +1,6 @@
+gate,arm,mechanism,config_path,algorithm_flag,training_needed,redundant_with_static_at_cap
+M47-2-0,DQN-QoE,learned (reward_mode=qoe),experiments/configs/m46/saclb_m46_train.yaml,dqn,yes (M47-2-1),n/a
+M47-2-0,DQN-SLA,learned (reward_mode=sla),experiments/configs/m46/saclb_m46_train.yaml,dqn,yes (M47-2-1),n/a
+M47-2-0,static-at-cap,frozen ceiling pinned at max_ratio_cap (ceiling_step_ratio=0),experiments/configs/m47/saclb_m47_static_at_cap.yaml,dqn (inert -- action space structurally disabled),no,n/a
+M47-2-0,static-at-floor,frozen ceiling pinned at min_ratio_floor (ceiling_step_ratio=0),experiments/configs/m47/saclb_m47_static_at_floor.yaml,dqn (inert -- action space structurally disabled),no,n/a
+M47-2-0,non-ML baseline,reactive per-step quota-threshold rule (moves ceiling via AdmissionGate.apply same as DQN),experiments/configs/m46/saclb_m46_train.yaml,lb_only,no,False (confirmed mechanistically distinct)

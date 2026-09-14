@@ -1,0 +1,99 @@
+# M47-2-0: static-at-floor arm -- the second, more discriminating
+# non-learned reference this milestone's own gate logic asked for.
+# static-at-cap alone (M47-1) cannot distinguish "the scheduler favors
+# urllc regardless of where the ceiling sits" (a strong, structural
+# claim about the three-way hypothesis) from "wide-open specifically
+# happens to coincide with what the scheduler wants" (a weaker,
+# coincidental one) -- pinning at the OPPOSITE extreme is the natural
+# complementary test: urllc's floor (6 raw PRB) already clears the
+# scheduler's hard min_rbSize=5 grant-eligibility guard
+# (gNB_scheduler_dlsch.c:1075) by construction (M46-MR1's own
+# derivation), so if urllc STILL gets protected even pinned at its
+# tightest calibrated point, that is even stronger evidence the
+# scheduler -- not the admission ceiling -- is doing the protecting.
+# If urllc instead fails here, that shows the ceiling VALUE matters
+# after all, and static-at-cap's success is not just "any fixed
+# policy works."
+#
+# Built on saclb_m46_train.yaml's own corrected bands (never the
+# pre-fix config), same mechanism as static-at-cap
+# (nominal_ratio == min_ratio_floor this time, ceiling_step_ratio: 0)
+# and identical in every other field to saclb_m47_static_at_cap.yaml
+# -- the two files differ ONLY in embb/urllc's nominal_ratio value, by
+# design, so any outcome difference between them isolates the ceiling
+# position as the cause.
+name: saclb_m47_static_at_floor
+random_seed: 256
+paper_variant: paper2
+B: 100
+Lmax: 1000
+
+gnbs:
+  - gnb_id: gnb-0
+    prb_capacity: 100
+
+slices:
+  - slice_id: embb
+    sst: 1
+    sd: 16777215  # 0xFFFFFF, the confirmed real "no-SD" sentinel on this gNB
+    nominal_ratio: 5    # == min_ratio_floor (was 7 in saclb_m46_train.yaml) -- pins the ceiling at floor from reset()
+    min_ratio_floor: 5  # raw_prbs=5 -- M44-E2b band bottom (commit 4fb98dc), == min_rbSize, unchanged from MR1
+    max_ratio_cap: 10   # raw_prbs=10 -- M44-E2b band top (commit 4fb98dc), unchanged from MR1
+    latency_budget_ms: 45
+    loss_budget_pct: 2.0
+    priority_weight: 3.5
+    accept_reward: 1.0
+    violation_penalty: 5.0
+  - slice_id: urllc
+    sst: 1
+    sd: 1  # confirmed real MAC slice id3 (sst=1, sd=0x000001)
+    nominal_ratio: 6    # == min_ratio_floor (was 7 in saclb_m46_train.yaml) -- pins the ceiling at floor from reset()
+    min_ratio_floor: 6  # raw_prbs=6 -- M44-D band bottom (commit d3a9d12), clears min_rbSize=5, unchanged from MR1
+    max_ratio_cap: 8    # raw_prbs=8 -- M44-D band top (commit d3a9d12), unchanged from MR1
+    latency_budget_ms: 20
+    loss_budget_pct: 0.5
+    priority_weight: 5.0
+    accept_reward: 1.0
+    violation_penalty: 8.0
+  - slice_id: mmtc
+    sst: 1
+    sd: 2
+    nominal_ratio: 5    # unchanged: already a fixed point (floor==nominal==cap) in saclb_m46_train.yaml
+    min_ratio_floor: 5
+    max_ratio_cap: 5
+    latency_budget_ms: 65
+    loss_budget_pct: 3.5
+    priority_weight: 0.3
+    accept_reward: 1.0
+    violation_penalty: 2.5
+
+reward:
+  congestion_coeff: 1.5
+  lb_coeff: 1.0
+
+arrivals:
+  synthetic_arrivals_per_step: 2
+  max_pending_per_step: 8
+  ceiling_step_ratio: 0   # ONLY other change from saclb_m46_train.yaml -- ceiling can never move from its reset() value, regardless of policy
+
+episode:
+  step_seconds: 5.0
+  steps_per_episode: 60
+
+# QoE-mode reward section carried over verbatim, structural completeness only (see saclb_m47_static_at_cap.yaml's identical note).
+qoe:
+  reward:
+    alpha: 1.0
+    beta: 0.2
+    gamma: 0.5
+  lstm_hidden: 32
+  window: 8
+  max_staleness: 20
+  mapper_checkpoint:
+    urllc: qoe_oran_framework/results/qoe_mapper/qoe_mapper_urllc.pt
+    embb: qoe_oran_framework/results/qoe_mapper/qoe_mapper_embb.pt
+    mmtc: qoe_oran_framework/results/qoe_mapper/qoe_mapper_mmtc.pt
+  iqx_coeffs:
+    urllc: {alpha: 6.000000, beta: 10.000000, gamma: 14.038857, delta: 61.073355, epsilon: 0.000000}
+    embb:  {alpha: 5.733636, beta: 1.423627, gamma: 0.136083, delta: 0.000000, epsilon: 0.510134}
+    mmtc:  {alpha: 6.000000, beta: 10.000000, gamma: 0.000000, delta: 11.420383, epsilon: 0.000000}
