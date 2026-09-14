@@ -1,0 +1,114 @@
+# M47-1: static-at-cap arm, built on M46-MR1's corrected action-space
+# config (experiments/configs/m46/saclb_m46_train.yaml), NOT the old
+# pre-fix saclb_campaign_static_at_cap_v2.yaml -- that file's
+# min_ratio_floor/max_ratio_cap values were calibrated against the
+# below-scheduler-floor ratio scale M41/M42 found and fixed (see
+# docs/PAPER5_M41_envelope_sweep.md, docs/PAPER5_M42_floor_audit.md);
+# reusing it here would silently reintroduce the exact bug this whole
+# M46/M45 milestone family exists to have moved past.
+#
+# Mechanism, IDENTICAL to Paper #4's own established static-at-cap
+# arm (see that file's own header comment for the full citation):
+# AdmissionGate.reset_ceilings() (frozen, action_mapping.py:68-75)
+# always initializes each slice's ceiling to spec.nominal_ratio, never
+# max_ratio_cap directly -- setting nominal_ratio == max_ratio_cap is
+# the only way to realize "ceiling pinned at the calibrated cap for
+# the whole episode" through configuration alone, without touching
+# frozen framework source. Combined with arrivals.ceiling_step_ratio:
+# 0 so the ceiling can never move away from that initial value
+# regardless of what any policy (including a real DQN checkpoint, if
+# one were pointed at this config) decides -- the action becomes
+# structurally inert, not just empirically unused.
+#
+# Only 3 changes from saclb_m46_train.yaml, everything else byte-
+# identical: embb/urllc's nominal_ratio raised to match their own
+# already-corrected max_ratio_cap, and ceiling_step_ratio set to 0.
+# mmtc's floor==nominal==cap==5 is already a fixed point in the source
+# config; unchanged here.
+#
+# Built for M47-1's NO-RIG estimate (docs/PAPER5_M47_1_static_at_cap_estimate.md):
+# that report found DQN-SLA's own converged live behavior already
+# sits at its calibrated cap for the large majority of samples in
+# every run examined (urllc 94.5-100.0%, embb 89.3-97.4%, MR3+MR3c+
+# PF2-1a combined, 7/7 runs, never touching the floor) -- this config
+# is what a live run needs to test that estimate directly, not
+# something this milestone runs itself (M47-1 is NO RIG; the live
+# static-at-cap run belongs to the powered PF2-1c campaign).
+name: saclb_m47_static_at_cap
+random_seed: 256
+paper_variant: paper2
+B: 100
+Lmax: 1000
+
+gnbs:
+  - gnb_id: gnb-0
+    prb_capacity: 100
+
+slices:
+  - slice_id: embb
+    sst: 1
+    sd: 16777215  # 0xFFFFFF, the confirmed real "no-SD" sentinel on this gNB
+    nominal_ratio: 10   # == max_ratio_cap (was 7 in saclb_m46_train.yaml) -- pins the ceiling at cap from reset()
+    min_ratio_floor: 5  # raw_prbs=5 -- M44-E2b band bottom (commit 4fb98dc), == min_rbSize, unchanged from MR1
+    max_ratio_cap: 10   # raw_prbs=10 -- M44-E2b band top (commit 4fb98dc), unchanged from MR1
+    latency_budget_ms: 45
+    loss_budget_pct: 2.0
+    priority_weight: 3.5
+    accept_reward: 1.0
+    violation_penalty: 5.0
+  - slice_id: urllc
+    sst: 1
+    sd: 1  # confirmed real MAC slice id3 (sst=1, sd=0x000001)
+    nominal_ratio: 8    # == max_ratio_cap (was 7 in saclb_m46_train.yaml) -- pins the ceiling at cap from reset()
+    min_ratio_floor: 6  # raw_prbs=6 -- M44-D band bottom (commit d3a9d12), clears min_rbSize=5, unchanged from MR1
+    max_ratio_cap: 8    # raw_prbs=8 -- M44-D band top (commit d3a9d12), unchanged from MR1
+    latency_budget_ms: 20
+    loss_budget_pct: 0.5
+    priority_weight: 5.0
+    accept_reward: 1.0
+    violation_penalty: 8.0
+  - slice_id: mmtc
+    sst: 1
+    sd: 2
+    nominal_ratio: 5    # unchanged: already a fixed point (floor==nominal==cap) in saclb_m46_train.yaml
+    min_ratio_floor: 5
+    max_ratio_cap: 5
+    latency_budget_ms: 65
+    loss_budget_pct: 3.5
+    priority_weight: 0.3
+    accept_reward: 1.0
+    violation_penalty: 2.5
+
+reward:
+  congestion_coeff: 1.5
+  lb_coeff: 1.0
+
+arrivals:
+  synthetic_arrivals_per_step: 2
+  max_pending_per_step: 8
+  ceiling_step_ratio: 0   # ONLY other change from saclb_m46_train.yaml -- ceiling can never move from its reset() value, regardless of policy
+
+episode:
+  step_seconds: 5.0
+  steps_per_episode: 60
+
+# QoE-mode reward section carried over verbatim from saclb_m46_train.yaml
+# for structural completeness (this arm never uses reward_mode="qoe" --
+# static-at-cap has no learned reward signal at all -- but load_saclb_config
+# expects the section to be present when any code path checks cfg.qoe).
+qoe:
+  reward:
+    alpha: 1.0
+    beta: 0.2
+    gamma: 0.5
+  lstm_hidden: 32
+  window: 8
+  max_staleness: 20
+  mapper_checkpoint:
+    urllc: qoe_oran_framework/results/qoe_mapper/qoe_mapper_urllc.pt
+    embb: qoe_oran_framework/results/qoe_mapper/qoe_mapper_embb.pt
+    mmtc: qoe_oran_framework/results/qoe_mapper/qoe_mapper_mmtc.pt
+  iqx_coeffs:
+    urllc: {alpha: 6.000000, beta: 10.000000, gamma: 14.038857, delta: 61.073355, epsilon: 0.000000}
+    embb:  {alpha: 5.733636, beta: 1.423627, gamma: 0.136083, delta: 0.000000, epsilon: 0.510134}
+    mmtc:  {alpha: 6.000000, beta: 10.000000, gamma: 0.000000, delta: 11.420383, epsilon: 0.000000}

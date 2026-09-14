@@ -23,19 +23,37 @@ of already-collected data, not something PF2-1c is testing fresh.
 
 ## What IS pre-registered
 
+**REVISED 2026 (M47-1)**: the primary claim below was updated after
+M47-1's NO-RIG estimate (`docs/PAPER5_M47_1_static_at_cap_estimate.md`)
+found DQN-SLA has converged, live, to a policy behaviorally
+near-indistinguishable from static-at-cap for both controllable
+slices (94.5-100.0% of urllc samples and 89.3-97.4% of embb samples
+sit at the exact calibrated cap, in all 7 DQN-SLA runs collected to
+date, zero exceptions) -- i.e., PF2-1b's own decomposition finding
+("SLA protects urllc only by leaving ceilings wide open; the
+scheduler does the work") is not just directionally true but
+QUANTITATIVELY close to literal. This is still untested AT POWER (no
+run has yet compared static-at-cap's actual live outcome against
+DQN-SLA's side by side), so it is honestly pre-registrable as a fresh
+claim -- unlike the per-slice sign, which PF2-1a already measured.
+
 **The shed-classification split, at power, across 4 arms, on a FRESH
 eval draw** (new `--seed` / admission-arrival realization, distinct
 from every eval_seed already used in MR3/MR3c/PF2-1a, so the primary
 powered campaign is not simply re-scoring already-seen draws).
 
-**Discriminating prediction**: DQN-SLA classifies `correct_shed`
-(urllc's per-window `C_urllc` compliance high, embb sacrificed) more
-often than DQN-QoE, which classifies `indiscriminate_failure` (embb
-sacrificed AND urllc still fails) more often than DQN-SLA, at the E4
-co-located overload regime. This is the pattern already seen in 14/14
-prior run-arm observations (MR3 + MR3c + PF2-1a combined) -- the
-pre-registered claim is that it HOLDS UP on data none of those prior
-observations touched, not that it will be discovered fresh.
+**Primary discriminating prediction (three-way, per M47-1)**:
+static-at-cap and DQN-SLA are statistically indistinguishable on PWC
+and shed-classification (both lean `correct_shed`), while DQN-QoE is
+significantly worse than BOTH (leans `indiscriminate_failure`) -- i.e.,
+**learned admission control does not beat a trivial, non-adaptive
+policy at this regime, and the QoE reward's learned behavior actively
+makes outcomes worse, not better.** The original two-arm claim (DQN-SLA
+`correct_shed` more often than DQN-QoE) is retained as a component of
+this -- already seen in 14/14 prior run-arm observations (MR3 + MR3c +
+PF2-1a combined), and the pre-registered claim is that it HOLDS UP on
+data none of those prior observations touched, not that it will be
+discovered fresh.
 
 **Metrics, exactly as computed by the existing, unmodified
 `m45_priority_weighted_correctness.py`** (reused across every prior
@@ -54,36 +72,42 @@ campaign is checking for).
 **Arms**: DQN-QoE, DQN-SLA (MR2's existing checkpoints, MR1's config,
 unedited), a non-ML baseline (`LbOnlyHeuristic`, `algorithm="lb_only"`
 in `mc_runner.py` -- already-implemented, no new code), and a
-static-at-cap arm (precedent: `saclb_campaign_static_at_cap_v2.yaml`
-from Paper #4's own submitted campaign -- **NOTE, flagged not
-resolved here**: that exact config predates the M41 ratio-floor fix
-and the MR1 band-alignment rework, so PF2-1c needs a static-at-cap
-variant built on `saclb_m46_train.yaml`'s own calibrated bands, not a
-direct reuse of the old file; scoping that variant is PF2-1c's own
-first step, not this document's).
+static-at-cap arm -- config now built and committed
+(`experiments/configs/m47/saclb_m47_static_at_cap.yaml`, M47-1),
+a variant of `saclb_m46_train.yaml` with `nominal_ratio` raised to
+equal `max_ratio_cap` and `ceiling_step_ratio: 0`, NOT a reuse of the
+pre-M41-fix `saclb_campaign_static_at_cap_v2.yaml`.
 
 **Paired test**: paired (by seed) two-sided t-test on PWC, matching
 PF2-1a's own method exactly (same metric, same pairing logic, applied
-fresh to the new draw) -- SLA vs QoE as the primary discriminating
-pair; DQN arms vs static-at-cap and vs the non-ML baseline as the
-secondary comparisons per GATE PF2-1c's own question (2).
-Significance threshold alpha=0.05, two-sided, paired on seed.
+fresh to the new draw). Primary pair: DQN-SLA vs static-at-cap (tests
+the three-way claim's "≈" -- expects NO significant difference) and
+DQN-QoE vs the better of {DQN-SLA, static-at-cap} (expects a
+significant deficit for QoE). DQN-SLA vs DQN-QoE (the original two-arm
+claim) and both DQN arms vs the non-ML baseline are secondary
+comparisons per GATE PF2-1c's own question (2). Significance threshold
+alpha=0.05, two-sided, paired on seed throughout.
 
 **n**: the power fork below (not resolved in this document).
 
 **Confirmation vs disconfirmation, fixed in advance**: the
-pre-registered claim is CONFIRMED if DQN-SLA's PWC significantly
-exceeds DQN-QoE's on the fresh draw (paired t-test, alpha=0.05) AND
-the shed-classification pattern (SLA leaning `correct_shed`, QoE
-leaning `indiscriminate_failure`) replicates directionally. It is
-DISCONFIRMED if the difference is not significant at the pre-
-registered n, or if the classification pattern reverses or becomes
-inconsistent. A significant result at an UNDERPOWERED n (see the fork
-below) is reported as suggestive, not confirmatory -- this project has
-already seen a result of this exact shape (small-n significant,
-p=0.0149) collapse entirely once properly powered (Stage 3->10,
-Paper #4/CACS26 history, n=46, p=1.0) and treats that as binding
-precedent for how any PF2-1c result at n=6 must be read.
+pre-registered THREE-WAY claim is CONFIRMED if (a) DQN-SLA vs
+static-at-cap shows NO significant PWC difference (paired t-test,
+alpha=0.05) AND their shed-classifications agree (both lean
+`correct_shed`), AND (b) DQN-QoE's PWC is significantly lower than
+BOTH on the fresh draw AND its shed-classification leans
+`indiscriminate_failure`. It is DISCONFIRMED if static-at-cap
+significantly UNDERperforms DQN-SLA (a genuine learned-SLA component
+would exist beyond staying wide open) or if DQN-QoE is not
+significantly worse than the other two. The original two-arm claim
+(DQN-SLA `correct_shed` more than DQN-QoE) is confirmed/disconfirmed
+by the same criteria as before, independently of the three-way result.
+A significant result at an UNDERPOWERED n (see the fork below) is
+reported as suggestive, not confirmatory -- this project has already
+seen a result of this exact shape (small-n significant, p=0.0149)
+collapse entirely once properly powered (Stage 3->10, Paper #4/CACS26
+history, n=46, p=1.0) and treats that as binding precedent for how any
+PF2-1c result at n=6 must be read.
 
 ## Power fork -- for supervisor decision (Pang/Phang), not resolved here
 
