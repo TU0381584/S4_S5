@@ -1,0 +1,7 @@
+phase,mode,train_seed,eval_seed,ts2,elapsed_s,urllc_r_clean,embb_r_clean,pwc,pwc_equal_weight,shed_classification,shed_precision
+pf21a,qoe,258,954,20260914_182633,317.2,-0.910,-0.757,0.3426,0.3015,indiscriminate_failure,0.0
+pf21a,qoe,259,955,20260914_184117,317.4,-0.862,-0.204,0.3416,0.3195,indiscriminate_failure,0.0
+pf21a,qoe,260,956,20260914_185611,316.7,-0.971,-0.889,0.3334,0.2937,indiscriminate_failure,0.0
+pf21a,sla,258,957,20260914_191053,316.7,-0.083,-0.099,0.5693,0.5165,correct_shed,1.0
+pf21a,sla,259,958,20260914_192532,316.0,-0.066,-0.065,0.5702,0.5176,correct_shed,1.0
+pf21a,sla,260,959,20260914_194007,316.5,-0.186,-0.060,0.5384,0.4886,correct_shed,1.0
