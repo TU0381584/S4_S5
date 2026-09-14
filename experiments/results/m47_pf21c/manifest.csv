@@ -1,2 +1,3 @@
 draw,slot_seed,arm,eval_seed,error,coupling_pass,urllc_uncapped_n,embb_uncapped_n,in_band_pass,urllc_r,embb_r,responsiveness_pass,pwc,pwc_eq,shed_classification
 primary,260,dqn_sla,2002,,True,0,0,True,0.005614168690992918,0.01067507107952666,True,0.6948440855920437,0.6296122626633546,correct_shed
+primary,260,lb_only,2002,,True,0,0,True,-0.7895970298690703,-0.5574832077128001,True,0.558503556097179,0.49406183207368626,correct_shed
