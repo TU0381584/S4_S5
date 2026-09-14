@@ -1,0 +1,60 @@
+[m46mr3_static_cap_seed267] talking to gNB E2 agent (listen=6600, gNB=6655)...
+
+Omega log: /home/kmanojp/oranslice_rig/experiments/results/m47_pf21c/static_cap/seed267/omega_log.jsonl
+{
+  "run_id": "m46mr3_static_cap_seed267",
+  "algorithm": "lb_only",
+  "mode": "live_testbed",
+  "seed": 2006,
+  "n_episodes": 1,
+  "mean_reward_per_step": -7.2997499999999995,
+  "mean_blocks_per_episode": 75.0,
+  "mean_urllc_blocks_per_episode": 16.0,
+  "blocks_per_episode": [
+    75
+  ],
+  "blocks_per_episode_by_slice": [
+    {
+      "mmtc": 42,
+      "urllc": 16,
+      "embb": 17
+    }
+  ],
+  "mean_rho": null,
+  "omega_path": "/home/kmanojp/oranslice_rig/experiments/results/m47_pf21c/static_cap/seed267/omega_log.jsonl",
+  "checkpoint_path": "",
+  "drift_flag": true,
+  "drift_reason": "mean URLLC block rate 16.00/episode exceeds 2x the 1.0/episode acceptance bar",
+  "sla_compliance_by_slice": {
+    "embb": 0.016666666666666666,
+    "urllc": 0.3,
+    "mmtc": 1.0
+  },
+  "sla_compliance_all_slices": 0.0,
+  "sla_compliance_by_slice_per_episode": [
+    {
+      "embb": 0.016666666666666666,
+      "urllc": 0.3,
+      "mmtc": 1.0
+    }
+  ],
+  "sla_margin_by_slice": {
+    "embb": -9512.743433333333,
+    "urllc": -2.1517500000000003,
+    "mmtc": 0.9923999993751196
+  },
+  "sla_margin_by_slice_per_episode": [
+    {
+      "embb": -9512.743433333333,
+      "urllc": -2.1517500000000003,
+      "mmtc": 0.9923999993751196
+    }
+  ],
+  "mean_mos_by_slice": {
+    "embb": 1.4275454699993133,
+    "urllc": 1.973030944665273,
+    "mmtc": 4.938523236910502
+  },
+  "mean_cost": 0.16650000000000006,
+  "mean_sla_viol": 0.9874555555555555
+}
