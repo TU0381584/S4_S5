@@ -1,0 +1,312 @@
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 49472 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.369 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.342 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.03   sec  12.4 KBytes  50.2 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.342 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 40493 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.4 Kbits/sec  0.983 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  50.0 Kbits/sec  1.306 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.06   sec  12.6 KBytes  50.0 Kbits/sec  0.000 ms  0/161 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.306 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 34795 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.271 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  0.907 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.03   sec  12.4 KBytes  50.1 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  0.907 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 50945 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.007 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.252 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.03   sec  12.4 KBytes  50.2 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.252 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 36322 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.002 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.150 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.03   sec  12.4 KBytes  50.1 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.150 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 53887 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.148 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.031 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.03   sec  12.4 KBytes  50.2 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.031 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 36392 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.349 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.181 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.06   sec  12.6 KBytes  50.1 Kbits/sec  0.000 ms  0/161 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.181 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 51750 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.132 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.123 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.05   sec  12.6 KBytes  50.3 Kbits/sec  0.000 ms  0/161 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.123 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 40036 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.270 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.197 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.06   sec  12.7 KBytes  50.3 Kbits/sec  0.000 ms  0/162 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.197 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 34799 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.6 Kbits/sec  1.253 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.700 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.05   sec  12.6 KBytes  50.2 Kbits/sec  0.000 ms  0/161 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.700 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 54625 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.031 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.147 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.05   sec  12.6 KBytes  50.3 Kbits/sec  0.000 ms  0/161 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.147 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 49570 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.09 KBytes  49.9 Kbits/sec  0.973 ms  0/78 (0%)  
+[  5]   1.00-2.00   sec  6.17 KBytes  50.6 Kbits/sec  0.948 ms  0/79 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.3 KBytes  50.0 Kbits/sec  0.000 ms  0/158 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  0.948 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 34529 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.09 KBytes  49.9 Kbits/sec  1.981 ms  0/78 (0%)  
+[  5]   1.00-2.00   sec  6.17 KBytes  50.6 Kbits/sec  1.075 ms  0/79 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.4 KBytes  50.3 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.075 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 39584 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.064 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.028 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.3 KBytes  50.1 Kbits/sec  0.000 ms  0/158 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.028 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 38869 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.192 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  0.937 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.3 KBytes  50.0 Kbits/sec  0.000 ms  0/158 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  0.937 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 40556 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.650 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.146 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.3 KBytes  50.0 Kbits/sec  0.000 ms  0/158 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.146 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 55914 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.4 Kbits/sec  0.955 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  50.0 Kbits/sec  1.108 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.04   sec  12.5 KBytes  50.3 Kbits/sec  0.000 ms  0/160 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.108 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 57260 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.192 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  0.891 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.06   sec  12.7 KBytes  50.3 Kbits/sec  0.000 ms  0/162 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  0.891 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 33864 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.485 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.123 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.3 KBytes  50.0 Kbits/sec  0.000 ms  0/158 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.123 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 49595 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.763 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.8 Kbits/sec  0.941 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.04   sec  12.5 KBytes  50.3 Kbits/sec  0.000 ms  0/160 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  0.941 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 47829 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.353 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.137 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.03   sec  12.4 KBytes  50.2 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.137 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 48104 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.09 KBytes  49.8 Kbits/sec  0.890 ms  0/78 (0%)  
+[  5]   1.00-2.00   sec  6.17 KBytes  50.6 Kbits/sec  1.114 ms  0/79 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.03   sec  12.4 KBytes  50.0 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.114 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 44359 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.4 Kbits/sec  1.325 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  50.1 Kbits/sec  0.873 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.3 KBytes  50.0 Kbits/sec  0.000 ms  0/158 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  0.873 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 41803 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.621 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.053 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.4 KBytes  50.3 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.053 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 60206 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.296 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.327 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.02   sec  12.3 KBytes  50.1 Kbits/sec  0.000 ms  0/158 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.327 ms  0/157 (0%)  receiver
+
+iperf Done.
+Connecting to host 172.22.0.50, port 5206
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.3 port 53703 connected to 172.22.0.50 port 5206
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  2.242 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  0.882 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.04   sec  12.5 KBytes  50.3 Kbits/sec  0.000 ms  0/160 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  0.882 ms  0/157 (0%)  receiver
+
+iperf Done.

@@ -1,0 +1,12 @@
+Connecting to host 172.22.0.50, port 5203
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.200.2 port 47815 connected to 172.22.0.50 port 5203
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  6.17 KBytes  50.5 Kbits/sec  1.225 ms  0/79 (0%)  
+[  5]   1.00-2.00   sec  6.09 KBytes  49.9 Kbits/sec  1.279 ms  0/78 (0%)  
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-2.03   sec  12.4 KBytes  50.1 Kbits/sec  0.000 ms  0/159 (0%)  sender
+[  5]   0.00-2.00   sec  12.3 KBytes  50.2 Kbits/sec  1.279 ms  0/157 (0%)  receiver
+
+iperf Done.

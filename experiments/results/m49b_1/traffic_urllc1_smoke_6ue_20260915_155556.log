@@ -1,0 +1,7 @@
+Connecting to host 172.22.0.50, port 5202
+Reverse mode, remote host 172.22.0.50 is sending
+[  5] local 192.168.102.2 port 34580 connected to 172.22.0.50 port 5202
+[ ID] Interval           Transfer     Bitrate         Jitter    Lost/Total Datagrams
+[  5]   0.00-1.00   sec  36.7 KBytes   301 Kbits/sec  1.328 ms  0/376 (0%)  
+[  5]   1.00-2.00   sec  36.5 KBytes   299 Kbits/sec  1.330 ms  0/374 (0%)  
+[  5]   2.00-3.00   sec  36.6 KBytes   300 Kbits/sec  1.270 ms  0/375 (0%)  
