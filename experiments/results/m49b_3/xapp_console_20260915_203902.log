@@ -1,0 +1,114 @@
+[m49b3_6ue_native_seed900] talking to gNB E2 agent (listen=6600, gNB=6655)...
+
+Omega log: /home/kmanojp/oranslice_rig/experiments/results/m49b_3/seed900/omega_log.jsonl
+{
+  "run_id": "m49b3_6ue_native_seed900",
+  "algorithm": "dqn",
+  "mode": "live_testbed",
+  "seed": 3003,
+  "n_episodes": 5,
+  "mean_reward_per_step": 1.3618166666666667,
+  "mean_blocks_per_episode": 1.0,
+  "mean_urllc_blocks_per_episode": 0.0,
+  "blocks_per_episode": [
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "blocks_per_episode_by_slice": [
+    {
+      "mmtc": 1
+    },
+    {
+      "mmtc": 1
+    },
+    {
+      "mmtc": 1
+    },
+    {
+      "mmtc": 1
+    },
+    {
+      "mmtc": 1
+    }
+  ],
+  "mean_rho": null,
+  "omega_path": "/home/kmanojp/oranslice_rig/experiments/results/m49b_3/seed900/omega_log.jsonl",
+  "checkpoint_path": "",
+  "drift_flag": false,
+  "drift_reason": "",
+  "sla_compliance_by_slice": {
+    "urllc": 0.5,
+    "embb": 0.49000000000000005,
+    "mmtc": 0.93
+  },
+  "sla_compliance_all_slices": 0.33666666666666667,
+  "sla_compliance_by_slice_per_episode": [
+    {
+      "urllc": 0.38333333333333336,
+      "embb": 0.4,
+      "mmtc": 0.9333333333333333
+    },
+    {
+      "urllc": 0.4666666666666667,
+      "embb": 0.5166666666666667,
+      "mmtc": 0.9333333333333333
+    },
+    {
+      "urllc": 0.55,
+      "embb": 0.5666666666666667,
+      "mmtc": 0.9333333333333333
+    },
+    {
+      "urllc": 0.5,
+      "embb": 0.5166666666666667,
+      "mmtc": 0.9666666666666667
+    },
+    {
+      "urllc": 0.6,
+      "embb": 0.45,
+      "mmtc": 0.8833333333333333
+    }
+  ],
+  "sla_margin_by_slice": {
+    "urllc": -6.682666697592381,
+    "embb": -70.21033333355348,
+    "mmtc": 0.10833313842462063
+  },
+  "sla_margin_by_slice_per_episode": [
+    {
+      "urllc": -7.710000154628561,
+      "embb": -83.24666666776731,
+      "mmtc": 0.14666569212310468
+    },
+    {
+      "urllc": -7.48666666666668,
+      "embb": -70.7366666666667,
+      "mmtc": 0.1466666666666663
+    },
+    {
+      "urllc": -5.7,
+      "embb": -60.063333333333354,
+      "mmtc": 0.14666666666666667
+    },
+    {
+      "urllc": -6.816666666666664,
+      "embb": -63.76833333333336,
+      "mmtc": 0.5199999999999997
+    },
+    {
+      "urllc": -5.7,
+      "embb": -73.23666666666668,
+      "mmtc": -0.4183333333333343
+    }
+  ],
+  "mean_mos_by_slice": {
+    "urllc": 2.7320246013005574,
+    "embb": 1.2020037873586018,
+    "mmtc": 4.824272298812867
+  },
+  "mean_cost": 0.7958999999999999,
+  "mean_sla_viol": 0.6633333333333333
+}
