@@ -10,6 +10,16 @@
 % fill in or decide -- same convention as Papers_4-5/Paper_4/main.tex.
 \newcommand{\authorTODO}[1]{\par\noindent\fbox{\parbox{0.95\linewidth}{\textbf{\color{red}TODO(MANOJ):} #1}}\par}
 
+% M49b-0: visible draft flags marking content under live re-collection
+% (docs/PAPER5_M48b_provenance_audit.csv found the entire Live Single-gNB
+% Anchor section ran pre-M41-fix, below the scheduler floor on all three
+% slices). Two forms: a boxed flag for section-level content, an inline
+% one for a single flagged sentence embedded in flowing prose (abstract,
+% Introduction) where a full box would be disruptive. Neither deletes the
+% flagged text -- it is the re-collection target, not discarded.
+\newcommand{\prefixflag}[1]{\par\noindent\fbox{\parbox{0.95\linewidth}{\textbf{\color{red}PRE-FIX DATA -- DO NOT SUBMIT (M49b re-collection):} #1}}\par}
+\newcommand{\prefixinline}[1]{\textcolor{red}{[PRE-FIX DATA -- M49b re-collection: #1]}}
+
 \begin{document}
 
 \title[GAT-CTDE for Coordinated Multi-gNB Admission Control]{GAT-CTDE: A Graph-Attention Architecture for Coordinated Multi-gNB Slice Admission Control}
@@ -46,7 +56,7 @@ metric scored no worse than correct behaviour, and a
 reproduction-versus-replication discipline that caught and retracted
 one architectural overclaim under disruption before publication. A
 live single-gNB anchor confirms the architecture's decision logic
-transfers to real traffic unchanged.}
+transfers to real traffic unchanged. \prefixinline{this live anchor ran before the M41 scheduler-floor fix; re-collection pending, see docs/PAPER5\_M48b\_provenance\_audit.csv}}
 
 \keywords{Network Slicing, Slice Admission Control, Multi-Agent Reinforcement Learning, Graph Attention Networks, Federated Learning, Open RAN}
 
@@ -63,7 +73,7 @@ S.~K.~Phang: orcid.org/0000-0002-7877-8766.
 Network slicing lets a single physical radio access network serve heterogeneous service classes, namely Ultra-Reliable Low-Latency Communication (URLLC), enhanced Mobile Broadband (eMBB), and massive Machine-Type Communication (mMTC), under distinct per-slice Service Level Agreements (SLAs). Our earlier work~\cite{mecon-paper1,icraie-paper2}
 established that a Deep Q-Network (DQN) admission controller can learn
 to enforce these SLAs under a single gNodeB (gNB), validated on a live
-OpenAirInterface (OAI) testbed. A companion submission~\cite{cacs26-paper} extends this single-gNB live validation to a QoE-aware reward variant, with a properly powered live evaluation, 128 episodes per arm, showing its compliance advantage survives correction for multiple comparisons where an SLA-only reward's does not. A real multi-cell deployment does not admit requests at one gNB in isolation, since neighbouring cells share backhaul, spectrum planning, and a cluster-wide load-balance objective, making coordinated admission a genuinely multi-agent problem. This raises a direct question: does a shared, graph-structured representation of the cluster's state help a set of per-gNB agents make better joint decisions than a single agent using the flattened joint state, or independent per-gNB agents with no shared representation at all?
+OpenAirInterface (OAI) testbed. A companion submission~\cite{cacs26-paper} extends this single-gNB live validation to a QoE-aware reward variant, independently confirming the live E2 control loop's feasibility (median round-trip latency 0.57\,ms) for a policy under 20,000 parameters. A real multi-cell deployment does not admit requests at one gNB in isolation, since neighbouring cells share backhaul, spectrum planning, and a cluster-wide load-balance objective, making coordinated admission a genuinely multi-agent problem. This raises a direct question: does a shared, graph-structured representation of the cluster's state help a set of per-gNB agents make better joint decisions than a single agent using the flattened joint state, or independent per-gNB agents with no shared representation at all?
 
 This paper's contribution is GAT-CTDE, a centralised-training,
 decentralised-execution multi-agent architecture built on a shared
@@ -81,7 +91,7 @@ Reporting these results honestly required two methodological
 safeguards we also contribute, since neither is standard practice in
 this literature. First, the standard episode-level SLA-compliance metric can score a degenerate, always-accept policy no worse than genuinely differentiated decision-making, because blocking a low-priority slice under congestion is the reward-optimal action, yet it costs compliance without ever recovering it. We introduce a correctness-aware metric pair (mean reward per step and block precision, both computed from data every run already logs) that exposes this gap, and use it to diagnose and fix a real training collapse our first encoder suffered on all 30 campaign seeds. Second, we establish a reproduction-versus-replication discipline. Every headline result is checked against an independent seed sample rather than only reproduced on the same seeds, a distinction that caught and retracted a real architectural overclaim under mid-episode disruption before it could be reported as a finding. We finally anchor the architecture's
 single-gNB baseline against a real OAI testbed, confirming its
-offline-trained decision logic transfers to live traffic unchanged.
+offline-trained decision logic transfers to live traffic unchanged. \prefixinline{pre-M41-fix live anchor, re-collection pending}
 
 \section{Related Work}
 \label{sec:litreview}
@@ -530,6 +540,7 @@ samples). Pooling all three samples gives 68/192 cells collapsed, 35.4\% (seed-l
 
 \section{Live Single-gNB Anchor}
 \label{sec:results-m8}
+\prefixflag{Every live run in this section (both anchor runs below) used \texttt{saclb\_live.yaml} between commits 82b20f6 (2026-07-16) and 40ae2f3 (2026-08-19) -- before the M41 scheduler-floor fix (cda9d65, 2026-09-05). M42's config-floor audit confirms all three slices' ratio ranges sit below the scheduler's 5-PRB grant minimum for this exact config. The decision-logic-transfer claim below may be unaffected, revised, or overturned once re-collected post-fix; see docs/PAPER5\_M48b\_provenance\_audit.csv and docs/PAPER5\_M49b\_supervisor\_note.md.}
 Prior live-testbed work on this rig already found that the offline
 environment cannot predict live \emph{ranking} (Spearman
 $\rho=0.097$, $p=0.855$, across six single-gNB checkpoints); we do not
@@ -547,6 +558,7 @@ exploded. Checking 28 seeds of an already-committed prior live campaign on this 
 
 \subsection{Heavier Live Load}
 \label{sec:results-m8-load}
+\prefixflag{Same pre-M41-fix config as sec:results-m8 above. The complete 6-UE collapse reported here may be the floor-starvation bug's own universal failure signature (which onsets independent of UE count or traffic shape, per M41's own root-cause finding) rather than a genuine out-of-distribution generalisation failure. CONFIRM/REVISE/OVERTURN pending M49b-3.}
 The anchor above uses 3 UEs and 2 episodes, matching the reproduction budget of the original live sanity check. To ask whether its finding holds under heavier load with real statistical weight rather than a two-episode snapshot, we ran the same seed-900 single-agent-DQN checkpoint for 20 live episodes at 3 UEs and, separately, 20 live episodes at 6 UEs (two per slice), real per-slice UDP traffic throughout, same episode length, 95\% bootstrap CIs (10{,}000 resamples) over the real per-episode values. Fig.~\ref{fig:live-3v6} reports both campaigns directly from their raw logs.
 
 The two loads produced qualitatively different live behaviour from the same frozen checkpoint, not just a quantitative shift. At 3 UEs, block precision was perfect in every one of the 20 episodes (1.000, mmTC-only). At 6 UEs, the same checkpoint blocked nothing at all in any of the 20 episodes; precision is undefined for the entire campaign, not merely low. This is a complete, sustained collapse to always-accept, not an occasional lapse, and it holds throughout a full 100-minute live session rather than clearing after one or two episodes. Mean reward per step is significantly worse at 6 UEs (mean $-8.363$, 95\% CI [$-8.757$, $-7.975$], against 3 UEs' $-7.091$, 95\% CI [$-7.484$, $-6.703$]; the intervals do not overlap). SLA margins worsen substantially and consistently across all three slices (URLLC $+100\%$, eMBB $+100\%$, mmTC $+92\%$ more negative at 6 UEs, each with a bootstrap CI that excludes zero). Doubling live load did not just cost margin on the slices the 3-UE checkpoint left unprotected; it removed the differentiated-shedding behaviour itself for the full duration of this campaign.
@@ -562,6 +574,7 @@ This comparison remains single-gNB throughout, matching every other live result 
 
 \subsection{Recalibrating the Simulator to Match Live Congestion}
 \label{sec:results-m8-fix}
+\prefixflag{This section's headline recalibration result, including its own LIVE confirmation at 6 UEs, also predates the M41 fix. The ``served PRB completely flat against ratio'' reading this section's premise rests on is very likely the \texttt{avg\_prbs\_dl} observability-floor artifact M44-A later documented (\texttt{min\_rbSize=5} is the finest granularity the metric can ever show, not evidence that the ceiling has no real effect), not a genuine physical property of the control surface. Whether the recalibration's own benefit survives once re-run against a fixed floor and honest, non-artifact anchors is exactly what M49b-1 through M49b-4 test. Do not cite this section's numbers as established until that completes.}
 The complete 6-UE collapse above raises an obvious question: is it fixable, or an inherent limit of what this checkpoint's architecture can learn? We tested two increasingly targeted offline retraining attempts before finding the actual mechanism, and report both, since neither worked and the reason why is itself informative.
 
 The first attempt doubled the offline simulator's synthetic arrival rate, retrained single-agent DQN from scratch, and ran the result live at 6 UEs for 20 episodes: the checkpoint blocked nothing in any episode, identical to the original. The second attempt doubled the simulator's demand parameter calibrated directly from real single-UE probe measurements rather than an arbitrary synthetic rate. An offline control test first checked whether this lever could even distinguish the original (collapsing) checkpoint's behaviour under 1$\times$ versus 2$\times$ demand: it could not, producing byte-identical block counts and decisions in both conditions. Retraining under it regardless reproduced the same complete live collapse.
@@ -600,7 +613,7 @@ At $N{=}7$, the picture is more informative than a simple replication. \S\ref{se
 
 The two scales tell different parts of the same honest story. At $N{=}19$ -- the scale carrying this paper's actual comparative claims -- the recalibration validates rather than retracts \S\ref{sec:results-m6}: GAT-CTDE's advantage over single-agent DQN on collapse resistance was not an artifact of the original simulator's miscalibrated congestion range. At $N{=}7$, the recalibration (or simply the thirteen-fold larger sample that came with it) reveals real complexity a 3-seed pilot could never have shown: single-agent DQN is not reliably safe at small scale either, and GAT-CTDE's collapse-proneness does not wait for a large cluster to appear. Two concrete corrections follow: independent DQN's "never fully collapses" claim softens to "rarely, not never" (consistent at both scales, $0/36$ and $3/36$), and any reading of $N{=}7$ as a collapse-free scale for single-agent DQN should be retracted -- it was never well-supported, only under-sampled.
 
-This section's own live anchor uses the SLA-only reward and, at 20--24 episodes per campaign, is powered to detect a collapse but not to carry a formal significance claim. A companion submission~\cite{cacs26-paper} independently confirms the same offline-to-live transfer for a QoE-aware reward variant on the same rig, at 128 episodes per arm with correction for multiple comparisons, and separately measures the E2 control loop itself as negligible overhead (median round-trip 0.57\,ms) from a policy under 20,000 parameters. The two campaigns use different reward formulations and different sample sizes, but arrive at the same qualitative conclusion, that an offline-trained decision policy retains its behaviour once deployed against real traffic, from two independent live campaigns on this rig rather than one.
+This section's own live anchor uses the SLA-only reward and, at 20--24 episodes per campaign, is powered to detect a collapse but not to carry a formal significance claim. \prefixinline{that live anchor is pre-M41-fix, re-collection pending (docs/PAPER5\_M48b\_provenance\_audit.csv)} A companion submission~\cite{cacs26-paper} separately measures the E2 control loop itself as negligible overhead (median round-trip 0.57\,ms) from a policy under 20,000 parameters, on the same rig.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -629,7 +642,7 @@ testbed essentially unchanged, while its SLA-margin metric diverged by
 orders of magnitude for reasons traced to a concrete unit mismatch
 rather than left unexplained.
 
-Two limits bound every claim in this paper. First, every multi-gNB, federated, and disruption result is offline-only, since this rig cannot yet sustain a live multi-gNB test, so whether these rankings would survive contact with a live, multi-gNB testbed remains untested, not just under-tested. A companion submission~\cite{cacs26-paper} establishes that this rig's live E2 control loop is itself well-behaved for a single gNB, negligible round-trip latency, a lightweight policy, a QoE-aware reward's compliance advantage surviving correction for multiple comparisons, but whether that same loop stays well-behaved once it is coordinating $N>1$ gNBs live is exactly the untested step this limit names, not something either paper yet answers.
+Two limits bound every claim in this paper. First, every multi-gNB, federated, and disruption result is offline-only, since this rig cannot yet sustain a live multi-gNB test, so whether these rankings would survive contact with a live, multi-gNB testbed remains untested, not just under-tested. A companion submission~\cite{cacs26-paper} establishes that this rig's live E2 control loop is itself well-behaved for a single gNB, negligible round-trip latency, a lightweight policy, but whether that same loop stays well-behaved once it is coordinating $N>1$ gNBs live is exactly the untested step this limit names, not something either paper yet answers.
 Second, this paper's federated scenario is a synthetic privacy setting (one operator's cluster, not genuine cross-organisation data separation), so we lead with the operational benefit of periodic, not per-step, synchronisation for disaggregated RAN Intelligent Controllers rather than a privacy motivation this scale cannot substantiate. Together, these results argue that admission-control
 evaluation in multi-agent, privacy-constrained, disruption-prone
 settings needs metrics tied to the actual training objective, not only
