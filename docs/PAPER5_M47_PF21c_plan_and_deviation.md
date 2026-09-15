@@ -117,3 +117,41 @@ effect is identical across both draws.
 
 Per this milestone's own "pre-commit metrics, no relaxation" standing
 constraint. Execution begins after this commit.
+
+## ADDENDUM (post-execution): replication draw stopped early, by explicit user decision
+
+The primary draw ran to completion (30/30 runs). The replication draw
+was **not completed** -- it was stopped at run 5/30 by an explicit,
+direct user instruction given mid-campaign ("option 2": stop now,
+report primary-only, explicitly labeled preliminary/unreplicated),
+after I raised the time-cost-vs-value tradeoff and the user chose to
+accept the weaker evidentiary position rather than spend the
+remaining ~6.5 hours. This is a second, real, logged deviation from
+the pre-registration -- reported here exactly as such, same as the
+n=6/arm deviation above.
+
+**Consequence for GATE PF2-1c's own pre-committed reporting
+criterion #2** ("does the three-way ranking + the DQN split hold on
+the independent draw, or move -- cf. Stage 3->10 precedent"): this
+question is **UNANSWERED**, not answered favorably. Only 5 of the 30
+replication (slot, arm) pairs were ever run, and those 5 were not
+selected as a designed sub-sample -- they are simply the first 5 in
+the pre-committed random run order. They are reported in
+`docs/PAPER5_M47_PF21c_gate_report.md` as an informal spot-check
+(all 5 matched their primary-draw shed_classification), but this is
+explicitly NOT a substitute for a powered independent replication,
+and must not be read as one. The GATE report's findings are
+preliminary on the primary draw alone.
+
+Also noting, for the record, two premature/incorrect arm-completion
+claims made in commit messages during execution (verified now against
+the final manifest, not against the commit messages themselves):
+run 23's commit claimed "dqn_sla arm complete for primary draw, 6/6"
+-- this was wrong, dqn_sla was actually 4/6 at that point and reached
+6/6 only at run 28. Run 24's equivalent claim about static_floor
+(also wrong at the time, "4/4" when the arm has 6 total slots) was
+caught and corrected in-conversation at the time; the run-23 error
+was not caught until this addendum. Neither affected the manifest
+data itself (only prose in commit messages), and the true per-arm
+completion is what `experiments/results/m47_pf21c/manifest.csv`
+shows directly, not any interim commit-message claim.
