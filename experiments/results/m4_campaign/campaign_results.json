@@ -97,7 +97,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 901,
-      "sla_compliance_all_slices": 0.10166666666666666,
+      "sla_compliance_all_slices": 0.09733333333333334,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev1/902": {
@@ -105,7 +105,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 902,
-      "sla_compliance_all_slices": 0.6006666666666667,
+      "sla_compliance_all_slices": 0.595,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev2/900": {
@@ -121,7 +121,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 901,
-      "sla_compliance_all_slices": 0.10166666666666666,
+      "sla_compliance_all_slices": 0.09766666666666668,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev2/902": {
@@ -129,7 +129,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 902,
-      "sla_compliance_all_slices": 0.6006666666666667,
+      "sla_compliance_all_slices": 0.5943333333333334,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev3/900": {
@@ -145,7 +145,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 901,
-      "sla_compliance_all_slices": 0.10166666666666666,
+      "sla_compliance_all_slices": 0.09733333333333334,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev3/902": {
@@ -153,7 +153,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 902,
-      "sla_compliance_all_slices": 0.6006666666666667,
+      "sla_compliance_all_slices": 0.5926666666666667,
       "n_episodes": 50
     },
     "gat_ctde/churn_sev1/900": {
@@ -305,7 +305,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 900,
-      "sla_compliance_all_slices": 0.07400000000000001,
+      "sla_compliance_all_slices": 0.07233333333333333,
       "n_episodes": 50
     },
     "independent_dqn/spike_sev1/901": {
@@ -329,7 +329,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 900,
-      "sla_compliance_all_slices": 0.08066666666666666,
+      "sla_compliance_all_slices": 0.07633333333333334,
       "n_episodes": 50
     },
     "independent_dqn/spike_sev2/901": {
@@ -353,7 +353,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 900,
-      "sla_compliance_all_slices": 0.07033333333333333,
+      "sla_compliance_all_slices": 0.07500000000000001,
       "n_episodes": 50
     },
     "independent_dqn/spike_sev3/901": {
@@ -457,7 +457,7 @@
       "kind": "dropout",
       "severity": 1,
       "seed": 901,
-      "sla_compliance_all_slices": 0.007333333333333333,
+      "sla_compliance_all_slices": 0.006333333333333333,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev1/902": {
@@ -465,7 +465,7 @@
       "kind": "dropout",
       "severity": 1,
       "seed": 902,
-      "sla_compliance_all_slices": 0.59,
+      "sla_compliance_all_slices": 0.5820000000000001,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev2/900": {
@@ -481,7 +481,7 @@
       "kind": "dropout",
       "severity": 2,
       "seed": 901,
-      "sla_compliance_all_slices": 0.007333333333333333,
+      "sla_compliance_all_slices": 0.006333333333333333,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev2/902": {
@@ -489,7 +489,7 @@
       "kind": "dropout",
       "severity": 2,
       "seed": 902,
-      "sla_compliance_all_slices": 0.51,
+      "sla_compliance_all_slices": 0.504,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev3/900": {
@@ -505,7 +505,7 @@
       "kind": "dropout",
       "severity": 3,
       "seed": 901,
-      "sla_compliance_all_slices": 0.007333333333333333,
+      "sla_compliance_all_slices": 0.006333333333333333,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev3/902": {
@@ -513,7 +513,7 @@
       "kind": "dropout",
       "severity": 3,
       "seed": 902,
-      "sla_compliance_all_slices": 0.37333333333333335,
+      "sla_compliance_all_slices": 0.38766666666666666,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev1/900": {
@@ -529,7 +529,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 901,
-      "sla_compliance_all_slices": 0.011,
+      "sla_compliance_all_slices": 0.006666666666666666,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev1/902": {
@@ -537,7 +537,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 902,
-      "sla_compliance_all_slices": 0.6006666666666667,
+      "sla_compliance_all_slices": 0.595,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev2/900": {
@@ -553,7 +553,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 901,
-      "sla_compliance_all_slices": 0.011333333333333332,
+      "sla_compliance_all_slices": 0.006333333333333333,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev2/902": {
@@ -561,7 +561,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 902,
-      "sla_compliance_all_slices": 0.6006666666666667,
+      "sla_compliance_all_slices": 0.5943333333333334,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev3/900": {
@@ -577,7 +577,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 901,
-      "sla_compliance_all_slices": 0.011333333333333332,
+      "sla_compliance_all_slices": 0.006333333333333333,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev3/902": {
@@ -585,7 +585,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 902,
-      "sla_compliance_all_slices": 0.6006666666666667,
+      "sla_compliance_all_slices": 0.5926666666666667,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev1/900": {
@@ -593,7 +593,7 @@
       "kind": "dropout",
       "severity": 1,
       "seed": 900,
-      "sla_compliance_all_slices": 0.21233333333333335,
+      "sla_compliance_all_slices": 0.20366666666666666,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev1/901": {
@@ -601,7 +601,7 @@
       "kind": "dropout",
       "severity": 1,
       "seed": 901,
-      "sla_compliance_all_slices": 0.316,
+      "sla_compliance_all_slices": 0.29733333333333334,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev1/902": {
@@ -617,7 +617,7 @@
       "kind": "dropout",
       "severity": 2,
       "seed": 900,
-      "sla_compliance_all_slices": 0.17799999999999996,
+      "sla_compliance_all_slices": 0.17166666666666663,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev2/901": {
@@ -625,7 +625,7 @@
       "kind": "dropout",
       "severity": 2,
       "seed": 901,
-      "sla_compliance_all_slices": 0.17833333333333332,
+      "sla_compliance_all_slices": 0.1703333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev2/902": {
@@ -649,7 +649,7 @@
       "kind": "dropout",
       "severity": 3,
       "seed": 901,
-      "sla_compliance_all_slices": 0.07933333333333333,
+      "sla_compliance_all_slices": 0.069,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev3/902": {
@@ -665,7 +665,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 900,
-      "sla_compliance_all_slices": 0.24,
+      "sla_compliance_all_slices": 0.23,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev1/901": {
@@ -673,7 +673,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 901,
-      "sla_compliance_all_slices": 0.3673333333333333,
+      "sla_compliance_all_slices": 0.3483333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev1/902": {
@@ -689,7 +689,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 900,
-      "sla_compliance_all_slices": 0.24,
+      "sla_compliance_all_slices": 0.2293333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev2/901": {
@@ -697,7 +697,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 901,
-      "sla_compliance_all_slices": 0.3673333333333333,
+      "sla_compliance_all_slices": 0.3503333333333334,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev2/902": {
@@ -713,7 +713,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 900,
-      "sla_compliance_all_slices": 0.24,
+      "sla_compliance_all_slices": 0.23133333333333334,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev3/901": {
@@ -721,7 +721,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 901,
-      "sla_compliance_all_slices": 0.3673333333333333,
+      "sla_compliance_all_slices": 0.3506666666666666,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev3/902": {
@@ -737,7 +737,7 @@
       "kind": "churn",
       "severity": 1,
       "seed": 900,
-      "sla_compliance_all_slices": 0.24,
+      "sla_compliance_all_slices": 0.22833333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev1/901": {
@@ -745,7 +745,7 @@
       "kind": "churn",
       "severity": 1,
       "seed": 901,
-      "sla_compliance_all_slices": 0.316,
+      "sla_compliance_all_slices": 0.29733333333333334,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev1/902": {
@@ -761,7 +761,7 @@
       "kind": "churn",
       "severity": 2,
       "seed": 900,
-      "sla_compliance_all_slices": 0.24,
+      "sla_compliance_all_slices": 0.22833333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev2/901": {
@@ -769,7 +769,7 @@
       "kind": "churn",
       "severity": 2,
       "seed": 901,
-      "sla_compliance_all_slices": 0.17833333333333332,
+      "sla_compliance_all_slices": 0.1703333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev2/902": {
@@ -777,7 +777,7 @@
       "kind": "churn",
       "severity": 2,
       "seed": 902,
-      "sla_compliance_all_slices": 0.004,
+      "sla_compliance_all_slices": 0.006999999999999999,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev3/900": {
@@ -785,7 +785,7 @@
       "kind": "churn",
       "severity": 3,
       "seed": 900,
-      "sla_compliance_all_slices": 0.19866666666666666,
+      "sla_compliance_all_slices": 0.18966666666666665,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev3/901": {
@@ -793,7 +793,7 @@
       "kind": "churn",
       "severity": 3,
       "seed": 901,
-      "sla_compliance_all_slices": 0.086,
+      "sla_compliance_all_slices": 0.07466666666666667,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev3/902": {
@@ -801,7 +801,7 @@
       "kind": "churn",
       "severity": 3,
       "seed": 902,
-      "sla_compliance_all_slices": 0.008666666666666666,
+      "sla_compliance_all_slices": 0.02666666666666667,
       "n_episodes": 50
     },
     "gat_ctde/dropout_sev1/903": {
@@ -977,7 +977,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 903,
-      "sla_compliance_all_slices": 0.44233333333333325,
+      "sla_compliance_all_slices": 0.4303333333333333,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev1/904": {
@@ -1009,7 +1009,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 907,
-      "sla_compliance_all_slices": 0.5206666666666667,
+      "sla_compliance_all_slices": 0.5113333333333333,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev1/908": {
@@ -1033,7 +1033,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 903,
-      "sla_compliance_all_slices": 0.44233333333333325,
+      "sla_compliance_all_slices": 0.4293333333333333,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev2/904": {
@@ -1065,7 +1065,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 907,
-      "sla_compliance_all_slices": 0.5206666666666667,
+      "sla_compliance_all_slices": 0.5123333333333334,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev2/908": {
@@ -1089,7 +1089,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 903,
-      "sla_compliance_all_slices": 0.44233333333333325,
+      "sla_compliance_all_slices": 0.434,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev3/904": {
@@ -1121,7 +1121,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 907,
-      "sla_compliance_all_slices": 0.5206666666666667,
+      "sla_compliance_all_slices": 0.504,
       "n_episodes": 50
     },
     "gat_ctde/spike_sev3/908": {
@@ -1513,7 +1513,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 907,
-      "sla_compliance_all_slices": 0.04466666666666667,
+      "sla_compliance_all_slices": 0.046,
       "n_episodes": 50
     },
     "independent_dqn/spike_sev1/908": {
@@ -1561,7 +1561,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 906,
-      "sla_compliance_all_slices": 0.005666666666666666,
+      "sla_compliance_all_slices": 0.014999999999999998,
       "n_episodes": 50
     },
     "independent_dqn/spike_sev2/907": {
@@ -1569,7 +1569,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 907,
-      "sla_compliance_all_slices": 0.04666666666666667,
+      "sla_compliance_all_slices": 0.04733333333333333,
       "n_episodes": 50
     },
     "independent_dqn/spike_sev2/908": {
@@ -1617,7 +1617,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 906,
-      "sla_compliance_all_slices": 0.005666666666666666,
+      "sla_compliance_all_slices": 0.01966666666666667,
       "n_episodes": 50
     },
     "independent_dqn/spike_sev3/907": {
@@ -1625,7 +1625,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 907,
-      "sla_compliance_all_slices": 0.04533333333333333,
+      "sla_compliance_all_slices": 0.04733333333333333,
       "n_episodes": 50
     },
     "independent_dqn/spike_sev3/908": {
@@ -1825,7 +1825,7 @@
       "kind": "dropout",
       "severity": 1,
       "seed": 904,
-      "sla_compliance_all_slices": 0.36200000000000004,
+      "sla_compliance_all_slices": 0.35233333333333333,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev1/905": {
@@ -1857,7 +1857,7 @@
       "kind": "dropout",
       "severity": 1,
       "seed": 908,
-      "sla_compliance_all_slices": 0.2683333333333333,
+      "sla_compliance_all_slices": 0.2583333333333333,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev1/909": {
@@ -1881,7 +1881,7 @@
       "kind": "dropout",
       "severity": 2,
       "seed": 904,
-      "sla_compliance_all_slices": 0.25766666666666665,
+      "sla_compliance_all_slices": 0.2516666666666667,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev2/905": {
@@ -1913,7 +1913,7 @@
       "kind": "dropout",
       "severity": 2,
       "seed": 908,
-      "sla_compliance_all_slices": 0.14933333333333335,
+      "sla_compliance_all_slices": 0.14266666666666666,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev2/909": {
@@ -1937,7 +1937,7 @@
       "kind": "dropout",
       "severity": 3,
       "seed": 904,
-      "sla_compliance_all_slices": 0.158,
+      "sla_compliance_all_slices": 0.15166666666666667,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev3/905": {
@@ -1969,7 +1969,7 @@
       "kind": "dropout",
       "severity": 3,
       "seed": 908,
-      "sla_compliance_all_slices": 0.09300000000000001,
+      "sla_compliance_all_slices": 0.09,
       "n_episodes": 50
     },
     "single_agent_dqn/dropout_sev3/909": {
@@ -1977,7 +1977,7 @@
       "kind": "dropout",
       "severity": 3,
       "seed": 909,
-      "sla_compliance_all_slices": 0.036333333333333336,
+      "sla_compliance_all_slices": 0.036000000000000004,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev1/903": {
@@ -1993,7 +1993,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 904,
-      "sla_compliance_all_slices": 0.395,
+      "sla_compliance_all_slices": 0.38666666666666666,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev1/905": {
@@ -2025,7 +2025,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 908,
-      "sla_compliance_all_slices": 0.2793333333333333,
+      "sla_compliance_all_slices": 0.27266666666666667,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev1/909": {
@@ -2033,7 +2033,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 909,
-      "sla_compliance_all_slices": 0.04066666666666666,
+      "sla_compliance_all_slices": 0.040999999999999995,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev2/903": {
@@ -2049,7 +2049,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 904,
-      "sla_compliance_all_slices": 0.406,
+      "sla_compliance_all_slices": 0.39666666666666667,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev2/905": {
@@ -2081,7 +2081,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 908,
-      "sla_compliance_all_slices": 0.2793333333333333,
+      "sla_compliance_all_slices": 0.2723333333333333,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev2/909": {
@@ -2089,7 +2089,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 909,
-      "sla_compliance_all_slices": 0.037333333333333336,
+      "sla_compliance_all_slices": 0.038,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev3/903": {
@@ -2105,7 +2105,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 904,
-      "sla_compliance_all_slices": 0.41100000000000003,
+      "sla_compliance_all_slices": 0.41766666666666663,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev3/905": {
@@ -2137,7 +2137,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 908,
-      "sla_compliance_all_slices": 0.2793333333333333,
+      "sla_compliance_all_slices": 0.27366666666666667,
       "n_episodes": 50
     },
     "single_agent_dqn/spike_sev3/909": {
@@ -2153,7 +2153,7 @@
       "kind": "dropout",
       "severity": 1,
       "seed": 903,
-      "sla_compliance_all_slices": 0.39233333333333337,
+      "sla_compliance_all_slices": 0.381,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev1/904": {
@@ -2193,7 +2193,7 @@
       "kind": "dropout",
       "severity": 1,
       "seed": 908,
-      "sla_compliance_all_slices": 0.26833333333333337,
+      "sla_compliance_all_slices": 0.2583333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev1/909": {
@@ -2209,7 +2209,7 @@
       "kind": "dropout",
       "severity": 2,
       "seed": 903,
-      "sla_compliance_all_slices": 0.3393333333333333,
+      "sla_compliance_all_slices": 0.3403333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev2/904": {
@@ -2249,7 +2249,7 @@
       "kind": "dropout",
       "severity": 2,
       "seed": 908,
-      "sla_compliance_all_slices": 0.14933333333333335,
+      "sla_compliance_all_slices": 0.14266666666666666,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev2/909": {
@@ -2265,7 +2265,7 @@
       "kind": "dropout",
       "severity": 3,
       "seed": 903,
-      "sla_compliance_all_slices": 0.11866666666666668,
+      "sla_compliance_all_slices": 0.12,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev3/904": {
@@ -2305,7 +2305,7 @@
       "kind": "dropout",
       "severity": 3,
       "seed": 908,
-      "sla_compliance_all_slices": 0.09300000000000001,
+      "sla_compliance_all_slices": 0.09,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/dropout_sev3/909": {
@@ -2321,7 +2321,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 903,
-      "sla_compliance_all_slices": 0.44233333333333325,
+      "sla_compliance_all_slices": 0.4303333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev1/904": {
@@ -2361,7 +2361,7 @@
       "kind": "spike",
       "severity": 1,
       "seed": 908,
-      "sla_compliance_all_slices": 0.2793333333333333,
+      "sla_compliance_all_slices": 0.27266666666666667,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev1/909": {
@@ -2377,7 +2377,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 903,
-      "sla_compliance_all_slices": 0.44233333333333325,
+      "sla_compliance_all_slices": 0.4293333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev2/904": {
@@ -2417,7 +2417,7 @@
       "kind": "spike",
       "severity": 2,
       "seed": 908,
-      "sla_compliance_all_slices": 0.2793333333333333,
+      "sla_compliance_all_slices": 0.2723333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev2/909": {
@@ -2433,7 +2433,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 903,
-      "sla_compliance_all_slices": 0.44233333333333325,
+      "sla_compliance_all_slices": 0.434,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev3/904": {
@@ -2473,7 +2473,7 @@
       "kind": "spike",
       "severity": 3,
       "seed": 908,
-      "sla_compliance_all_slices": 0.2793333333333333,
+      "sla_compliance_all_slices": 0.27366666666666667,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/spike_sev3/909": {
@@ -2489,7 +2489,7 @@
       "kind": "churn",
       "severity": 1,
       "seed": 903,
-      "sla_compliance_all_slices": 0.39233333333333337,
+      "sla_compliance_all_slices": 0.381,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev1/904": {
@@ -2529,7 +2529,7 @@
       "kind": "churn",
       "severity": 1,
       "seed": 908,
-      "sla_compliance_all_slices": 0.2743333333333333,
+      "sla_compliance_all_slices": 0.264,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev1/909": {
@@ -2545,7 +2545,7 @@
       "kind": "churn",
       "severity": 2,
       "seed": 903,
-      "sla_compliance_all_slices": 0.347,
+      "sla_compliance_all_slices": 0.348,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev2/904": {
@@ -2585,7 +2585,7 @@
       "kind": "churn",
       "severity": 2,
       "seed": 908,
-      "sla_compliance_all_slices": 0.21633333333333332,
+      "sla_compliance_all_slices": 0.21466666666666667,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev2/909": {
@@ -2601,7 +2601,7 @@
       "kind": "churn",
       "severity": 3,
       "seed": 903,
-      "sla_compliance_all_slices": 0.163,
+      "sla_compliance_all_slices": 0.15933333333333333,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev3/904": {
@@ -2641,7 +2641,7 @@
       "kind": "churn",
       "severity": 3,
       "seed": 908,
-      "sla_compliance_all_slices": 0.17800000000000002,
+      "sla_compliance_all_slices": 0.17733333333333334,
       "n_episodes": 50
     },
     "fl_gat_ctde_sigma0.0/churn_sev3/909": {
