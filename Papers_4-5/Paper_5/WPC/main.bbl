@@ -1,4 +1,4 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -69,6 +69,12 @@ Kunasegran MP, Pang WL, Phang SK (2026{\natexlab{a}}) Comprehensive review of
 Kunasegran MP, Pang WL, Phang SK (2026{\natexlab{b}}) {DQN-QoE} slice admission
   control for live {OAI} open {RAN}. In: 2026 International Automatic Control
   Conference (CACS), submitted
+
+\bibitem[{Kunasegran et~al.(2026{\natexlab{c}})Kunasegran, Pang, and
+  Phang}]{paper6-companion}
+Kunasegran MP, Pang WL, Phang SK (2026{\natexlab{c}}) Evaluation integrity in
+  live multi-agent radio access network control: A systems study. Companion
+  work, in preparation
 
 \bibitem[{Li et~al.(2020)Li, Sahu, Zaheer, Sanjabi, Talwalkar, and
   Smith}]{fedprox}

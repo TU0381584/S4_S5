@@ -1,0 +1,34 @@
+manuscript_location,claim_or_number,source,manifest_row
+Abstract,"35.4% [25.5,45.8] N=19 pooled collapse rate, 64 seeds",experiments/scripts/m49_n19_collapse_reproduction.py,PAPER5_M49_reproducibility_manifest.csv row 6
+Abstract,44/49 (89.8%) correctness-aware/compliance metric disagreement,experiments/scripts/m35_metric_disagreement_ledger.py,PAPER5_M49_reproducibility_manifest.csv row 3
+Abstract,live deployment executes correctly + cross-layer scheduler-floor bug finding (prose claim),"docs/PAPER5_M49b4_recalibration_retirement.md; experiments/results/m49b_1/, m49b_2/, m49b_3/",PAPER5_M49_reproducibility_manifest.csv rows 18-20
+Introduction,"gaps->delivers framing (prose, no new numbers)",docs/PAPER5_M48_scope_map.csv; docs/PAPER5_M48_novelty_statement.md,n/a (prose)
+Introduction,cacs26-paper citation (0.57ms round-trip E2 loop; <20K params) -- fixed citation #1 of 3,Papers_4-5/Paper_4/main.tex Section 'Deployment Feasibility',PAPER5_M49_reproducibility_manifest.csv row 21 (external citation, not re-derived)
+System Model,"all 3 slices ~100% served, ~0% loss, 3UE/6UE native",experiments/results/m49b_1/trajectory_full_{3ue,6ue}.jsonl + gate1_1_report.md,PAPER5_M49_reproducibility_manifest.csv row 18
+Evaluation Safeguards,correctness-aware metric pair definition,experiments/scripts/m2_correctness_metrics.py,PAPER5_M49_reproducibility_manifest.csv row 2
+Evaluation Safeguards,44/49 (89.8%) metric-disagreement ledger + 21/24 (87.5%) independent confirmation,experiments/scripts/m35_metric_disagreement_ledger.py,PAPER5_M49_reproducibility_manifest.csv row 3
+Evaluation Safeguards,reproduction-vs-replication discipline (prose method statement; tally lives in sec:results-m4),n/a (method description),n/a (see Disruption row below for the concrete tally)
+GAT Encoder + CTDE (Table 1),"compliance 0.151/0.049/0.115 (gat_ctde/indep/single-agent)",experiments/scripts/m2_campaign_analysis.py,PAPER5_M49_reproducibility_manifest.csv row 4
+GAT Encoder + CTDE (Table 1),"reward 14.062/12.601/13.867; paired +1.461 p<0.0001 vs indep; +0.195 p=0.0577 vs single-agent; block precision 0.952/0.901/0.987",experiments/scripts/m2_correctness_metrics.py,PAPER5_M49_reproducibility_manifest.csv row 5
+FL + Privacy,"federation cost +0.133 [-0.138,0.470] p=0.8125",experiments/scripts/m3_correctness_metrics.py,PAPER5_M49_reproducibility_manifest.csv row 8
+FL + Privacy,"DP block-precision threshold 1.000/1.000/0.834/0.584 at sigma=0/0.5/1/2/4",experiments/scripts/m3_correctness_metrics.py,PAPER5_M49_reproducibility_manifest.csv row 9
+FL + Privacy,zCDP (epsilon,delta) closed-form bound,analytic formula (no data dependency),PAPER5_M49_reproducibility_manifest.csv row 10
+FL + Privacy,"FedProx null result: bit-identical to FedAvg at mu in {0.01,0.1,1.0}",decision-sequence comparison vs experiments/results/m7_campaign/,PAPER5_M49_reproducibility_manifest.csv row 11
+Disruption,"GAT-CTDE dropout cost +0.165/+0.601/+1.710; churn +0.059/+0.200/+0.529",experiments/scripts/m4_correctness_metrics.py --m4-campaign-dir experiments/results/m4_paired_test,PAPER5_M49_reproducibility_manifest.csv row 12
+Disruption,"independent-DQN churn +0.000/+0.168/+0.640 (original, n.s.) / +0.097/+0.657/+1.223 (replication, sig, retraction)",experiments/scripts/m4_correctness_metrics.py,PAPER5_M49_reproducibility_manifest.csv row 13
+Disruption,"federated-arm churn +0.078/+0.246/+0.585 (REGENERATED, was cited as +0.073/+0.240/+0.585)",experiments/scripts/m4_correctness_metrics.py vs experiments/results/m4_campaign/fl_gat_ctde_sigma0.0/,PAPER5_M49_reproducibility_manifest.csv row 14; resolution docs/PAPER5_M49c_m4_resolution.md (verdict BENIGN)
+Disruption,"single-agent DQN spike p=0.0020 (original) / p=0.084 (replication)",experiments/scripts/m4_correctness_metrics.py,PAPER5_M49_reproducibility_manifest.csv row 15
+Disruption,spike block-precision flat/near-ceiling all arms,experiments/scripts/m4_correctness_metrics.py,PAPER5_M49_reproducibility_manifest.csv row 16
+Disruption,"formal paired GAT-CTDE-vs-independent-DQN, sig only at dropout 10% (+0.0135, p=0.0059)",experiments/scripts/m4_correctness_metrics.py --m4-campaign-dir experiments/results/m4_paired_test,PAPER5_M49_reproducibility_manifest.csv row 17
+Cluster-Size Scaling (N=19),"single-agent 100% (15/15); GAT-CTDE 35.4% [25.5,45.8] (64 seeds); independent-DQN 0/36",experiments/scripts/m49_n19_collapse_reproduction.py,PAPER5_M49_reproducibility_manifest.csv row 6
+Cluster-Size Scaling at N=7 (Table tab:m27-n7),"single-agent 91.7%/75.0%; GAT-CTDE 41.7%/58.3%; independent-DQN 0.0%/16.7% (primary/replication)",experiments/scripts/m49b5_n7_collapse_analysis.py,PAPER5_M49_reproducibility_manifest.csv row 7
+Live Single-gNB Deployment,"M41 bug description + root-cause fix (commit cda9d65) (prose)",docs/PAPER5_M48b_provenance_audit.csv,n/a (provenance finding, not a regenerable number)
+Live Single-gNB Deployment,">100,000 combined scheduler-state readings (0 below-floor)",experiments/results/m49b_2/gate_report.md (35702) + experiments/results/m49b_3/gate_report.md (71498) = 107200,PAPER5_M49_reproducibility_manifest.csv rows 19-20
+Live Single-gNB Deployment,"all 3 slices ~100% served, 0.000% loss, 1UE/2UE per slice native",experiments/results/m49b_1/ (trajectory_full_{3ue,6ue}.jsonl),PAPER5_M49_reproducibility_manifest.csv row 18
+Live Single-gNB Deployment,"embb margin -47.64 post-fix vs -1,002,377.5 pre-fix catastrophic reading (~21,000x smaller)",experiments/results/m49b_2/native/seed900/omega_log.jsonl,PAPER5_M49_reproducibility_manifest.csv row 19
+Live Single-gNB Deployment,recalibration retirement rationale (prose),docs/PAPER5_M49b4_recalibration_retirement.md,PAPER5_M49_reproducibility_manifest.csv row 22
+Live Single-gNB Deployment,cacs26-paper citation (0.57ms round-trip; <20K params) -- fixed citation #2 of 3,Papers_4-5/Paper_4/main.tex Section 'Deployment Feasibility',PAPER5_M49_reproducibility_manifest.csv row 21
+Conclusion,"novelty/limitations framing (prose, no new numbers)",docs/PAPER5_M48_novelty_statement.md; docs/PAPER5_M48_scope_map.csv,n/a (prose)
+Conclusion,cacs26-paper citation (E2-loop feasibility) -- fixed citation #3 of 3,Papers_4-5/Paper_4/main.tex Section 'Deployment Feasibility',PAPER5_M49_reproducibility_manifest.csv row 21
+Conclusion,paper6-companion citation (in preparation, no dependency),Papers_4-5/Paper_5/WPC/refs.bib (new entry this gate),n/a (forward pointer, no numeric dependency)
+Declarations,Data availability (~48.6GB Zenodo, CC-BY-4.0, pinned toolchain),docs/PAPER5_M49_gate_report.md 'Release plan' section,PAPER5_M49_reproducibility_manifest.csv (all rows; toolchain versions column)
