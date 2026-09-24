@@ -2,11 +2,10 @@
 \usepackage{amsmath,amssymb}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{array}
 \usepackage{xcolor}
 \usepackage{algorithm}
 \usepackage{algorithmic}
-\usepackage{pifont}
-\providecommand{\xmark}{\ding{55}}
 
 % Visible TODO marker for content the author (not Claude) still needs to
 % fill in or decide -- same convention as Papers_4-5/Paper_4/main.tex.
@@ -206,7 +205,7 @@ own granularity.
 \subsection{Federated Training with Differential Privacy}
 Fig.~\ref{fig:architecture}(b) shows the federated variant, in which each gNB becomes an FL client with a private copy of the same network, training only on its own requests. Transitions are partitioned by owning agent, so no client sees another client's raw admission data, while its GAT encoder still consumes the full joint node-feature snapshot every arm observes. Every $R$ local steps, the server averages all
 clients' online weights (FedAvg~\cite{fedavg}) and broadcasts the
-result back. We also implement FedProx~\cite{fedprox} (a proximal term pulling local weights toward the last broadcast global model), motivated by an implicit, seeded per-gNB load multiplier this project's own cluster-scaling investigation (Section~\ref{sec:results-m6}) later revealed as genuine, uncontrolled client heterogeneity. Swept at $\mu \in \{0.01, 0.1, 1.0\}$ under both a homogeneous-load control and this heterogeneity, FedProx earns no measurable dividend at any tested strength. This traces to a concrete mechanism, since real per-round client drift within \texttt{local\_steps\_per\_round} averages only 0.03\% of the TD loss, too small for the proximal term to matter. A follow-up at 10$\times$ the round length lets real drift grow nearly 50-fold (to a mean 1.44\%) yet still produces eval-time behaviour bit-identical to FedAvg, ruling out round length as the limiting factor rather than leaving it untested.
+result back. We also implement FedProx~\cite{fedprox} (a proximal term pulling local weights toward the last broadcast global model), motivated by an implicit, seeded per-gNB load multiplier this project's own cluster-scaling investigation (Section~\ref{sec:results-m6}) later revealed as genuine, uncontrolled client heterogeneity. Swept at $\mu \in \{0.01, 0.1, 1.0\}$ under both a homogeneous-load control and this heterogeneity, FedProx earns no measurable dividend at any tested strength, traced to per-round client drift being negligible relative to the loss scale.
 
 Differential privacy is applied as a standard DP-SGD~\cite{dpsgd} step, in which every client's gradient is clipped to a fixed norm and, when enabled, perturbed with Gaussian noise scaled by a noise multiplier $\sigma$, before that client's own optimiser step. We report $\sigma$ as the
 primary privacy parameter, alongside a formal $(\varepsilon,\delta)$
@@ -276,8 +275,8 @@ are necessary in full).
 \caption{Four evaluation-pipeline failures this paper's safeguards caught, none of which a standard pipeline would have surfaced.}
 \label{tab:safeguards}
 \centering
-\small
-\begin{tabular}{@{}llll@{}}
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.225\textwidth} >{\raggedright\arraybackslash}p{0.205\textwidth} >{\raggedright\arraybackslash}p{0.245\textwidth}@{}}
 \toprule
 Failure & Missed by & Caught by & Outcome \\
 \midrule
@@ -291,9 +290,9 @@ Scheduler-floor bug (\S\ref{sec:results-m8}) & Can't see cross-layer floor & Dir
 
 While generating a federated privacy-utility sweep (Section~\ref{sec:results-m3}), noise levels that should have produced different, stochastically-trained checkpoints instead produced bit-identical per-seed compliance, tracing to our first GAT-CTDE encoder's eval policy blocking zero requests on all 30 campaign seeds -- a genuine failure, confirmed by a Q-value probe showing $Q(\text{accept})-Q(\text{reject})$ positive and large for every slice including mMTC, while the independent-DQN ablation (Section~\ref{sec:results-m2}), with no encoder at all, does not collapse; this isolates the encoder as the fault.
 
-We compared the encoder's own embedding for a synthetic idle state against a congested one on the collapsed checkpoint. The raw input difference has $\ell_2$ norm 2.55 and the resulting embedding difference has norm 19.6, an apparently large, congestion-sensitive response, but the cosine similarity between the two embeddings is 0.99997. This means the encoder was encoding congestion almost entirely as embedding \emph{magnitude}, with no mechanism preventing this and no rotation of direction. Since the downstream Q-head is roughly linear in its input, larger magnitude pushes $Q(\text{accept})$ up faster than $Q(\text{reject})$ as congestion increases, which runs backwards from the reward's intent.
+The collapsed checkpoint's encoder embeds congestion almost entirely as embedding \emph{magnitude} rather than direction, and since the downstream Q-head is roughly linear in its input, larger magnitude pushes $Q(\text{accept})$ up faster than $Q(\text{reject})$ as congestion increases, running backwards from the reward's intent.
 
-Two targeted fixes -- a per-layer \texttt{LayerNorm} (zero-mean, unit-variance embeddings) and the per-slice Q-heads of Section~\ref{sec:methodology-perslice} -- progressively reduce the collapse from 30/30 to 27/30 to a final 9/30 seeds (Fig.~\ref{fig:collapse}); not every variant helped (one, reverted, made results worse), reported here rather than omitted.
+Two targeted fixes -- a per-layer \texttt{LayerNorm} (zero-mean, unit-variance embeddings) and the per-slice Q-heads of Section~\ref{sec:methodology-perslice} -- progressively reduce the collapse from 30/30 to 27/30 to a final 9/30 seeds (Fig.~\ref{fig:collapse}).
 
 \begin{figure}[t]
 \centering
@@ -480,43 +479,42 @@ demand spike is entirely external to the policy, acting on the
 arrival process the environment synthesises for the following step.
 All three are evaluation-only perturbations, and the policy itself is never updated.
 
-Table~\ref{tab:disruption} reports each arm's own per-severity cost
-where an individual triple was computed; every dropout and churn cost
+Table~\ref{tab:disruption} reports each arm's own per-severity dropout
+and churn cost where an individual triple was computed; every cost
 accelerates with severity rather than growing proportionally (Wilcoxon
-$p\leq0.03$, 9 or 10 of 10 seeds hurt in every case), while demand
-spike shows no threshold at all on block precision, flat and
-near-ceiling through the highest tested multiplier for every arm.
+$p\leq0.03$, 9 or 10 of 10 seeds hurt in every case). Demand spike does
+not corrupt decision quality on the volume-invariant block-precision
+metric (Fig.~\ref{fig:m4-disruption}(c)); its apparent per-step reward
+gain is a denominator artifact (diluted by request volume), not better
+decision-making.
 
 \begin{table}[t]
 \caption{Disruption cost by severity, committed sample (900--909), normalised reward. $\dagger$: not individually computed beyond the qualitative accelerating pattern common to every arm (see text). $\ddagger$: agent churn does not apply to a single-agent architecture.}
 \label{tab:disruption}
 \centering
-\small
-\begin{tabular}{@{}lccc@{}}
+\footnotesize
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.26\textwidth} >{\centering\arraybackslash}p{0.30\textwidth} >{\centering\arraybackslash}p{0.30\textwidth}@{}}
 \toprule
-Arm & Dropout (10/30/60\%) & Churn (10/30/60\%) & Spike thresholds? \\
+Arm & Dropout (10/30/60\%) & Churn (10/30/60\%) \\
 \midrule
-GAT-CTDE & +0.165/+0.601/+1.710 & +0.059/+0.200/+0.529 & \xmark \\
-Federated ($\sigma$=0) & accelerates$^\dagger$ & +0.078/+0.246/+0.585 & \xmark \\
-Independent DQN & accelerates$^\dagger$ & +0.000/+0.168/+0.640 & \xmark \\
-Single-agent DQN & accelerates$^\dagger$ & $\ddagger$ & \xmark \\
+GAT-CTDE & +0.165/+0.601/+1.710 & +0.059/+0.200/+0.529 \\
+Federated ($\sigma$=0) & accelerates$^\dagger$ & +0.078/+0.246/+0.585 \\
+Independent DQN & accelerates$^\dagger$ & +0.000/+0.168/+0.640 \\
+Single-agent DQN & accelerates$^\dagger$ & $\ddagger$ \\
 \botrule
 \end{tabular}
 \end{table}
 
 The federated arm's own churn cost above was regenerated post-hoc from the still-intact frozen checkpoint after the original per-seed logs were found missing during this paper's own reproducibility audit, with environment drift over the intervening months identified as the cause by systematic elimination of every code- and data-level alternative. Independent DQN's own churn cost needs both samples reported together to state honestly: the committed value above is small and not conventionally significant ($p=0.084/0.106/0.065$), which an earlier pass read as independent DQN being architecturally immune to churn, since it never attends to another agent's features. An independent-seed replication (Table~\ref{tab:replication}) contradicts that reading directly, significant at every severity and \emph{larger} than GAT-CTDE's or the federated arm's at matched severities, the opposite of immune. We do not conclude independent DQN is immune to churn, since the direction was consistent across both samples (churn always hurts, never helps); what was wrong was treating a borderline, underpowered $n=10$ result as a confirmed architectural property, and this section reports the corrected reading, not the retracted one.
 
-A reward-based signal that spike \emph{improves} per-step reward is real and reproduces across both seed samples for GAT-CTDE, independent DQN, and the federated arm ($p\leq0.014$ in both), but traces to a fixed per-step violation penalty diluted by a larger request-volume denominator, not better decision-making. Block precision, a volume-invariant ratio, is the metric that actually answers whether spike corrupts decision quality, and it says no.
-Single-agent DQN's version of this same signal is significant in the original sample ($p=0.0020$) but not the replication ($p=0.084$); the direction is consistent, the significance is sample-dependent, and both are reported as such.
-
-Every dropout and churn result above was independently checked against the 1000--1009 sample and holds up in direction and approximate magnitude; GAT-CTDE's own dropout costs replicate closely (+0.170/+0.552/+1.449, against the committed sample's +0.165/+0.601/+1.710). Table~\ref{tab:replication} reports this paper's four cross-section headline comparisons side by side against their own independent-seed replication. Three of the four hold up with overlapping confidence intervals across samples; the fourth, independent DQN's churn cost (flagged $\dagger$), does not, and is the retraction above.
+Table~\ref{tab:replication} reports this paper's four cross-section headline comparisons against their own independent-seed replication; GAT-CTDE's own dropout costs also replicate closely (+0.170/+0.552/+1.449, against the committed sample's +0.165/+0.601/+1.710). Three of the four hold up with overlapping confidence intervals across samples; the fourth, independent DQN's churn cost (flagged $\dagger$), does not, and is the retraction above.
 
 \begin{table}[t]
 \caption{Independent-seed replication (1000--1009) against the committed sample (900--909) for this paper's four cross-section headline comparisons. $\dagger$: the one comparison that does not replicate.}
 \label{tab:replication}
 \centering
 \small
-\begin{tabular}{@{}lll@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.28\textwidth} >{\raggedright\arraybackslash}p{0.32\textwidth} >{\raggedright\arraybackslash}p{0.32\textwidth}@{}}
 \toprule
 Comparison & Committed (900--909) & Replication (1000--1009) \\
 \midrule
@@ -527,8 +525,6 @@ Independent-DQN churn cost$^\dagger$ & +0.000/+0.168/+0.640, n.s. & +0.097/+0.65
 \botrule
 \end{tabular}
 \end{table}
-
-A formal paired Wilcoxon test on (GAT-CTDE's cost $-$ independent DQN's cost), computed across the same 10 seeds for every (kind, severity) cell, reaches significance only once, at dropout at the mildest severity (10\% window), where GAT-CTDE's cost is significantly \emph{higher} than independent DQN's (+0.0135, 95\% CI [0.0053, 0.0236], Wilcoxon $p=0.0059$, 9 losses / 0 ties / 1 win). Every other cell, dropout at 30\%/60\% and churn at all three severities, shows no significant difference ($p \geq 0.23$). We report the result as it is, real at one severity and absent everywhere else tested, not a general claim that coordination costs more under disruption.
 
 \section{Cluster-Size Scaling}
 \label{sec:results-m6}
@@ -634,12 +630,10 @@ load, and the already-applied fix, converting backlog to a
 queueing-delay estimate via Little's Law against each slice's own
 latency budget, remains correct and is kept.
 
-An earlier version of this section reported a targeted simulator
-recalibration that appeared to reverse a complete live collapse at
-double load; re-collection under the fixed config shows that collapse
-never reproduced once the floor bug was fixed at its root, so the
-recalibration is retired (its anchors preserved, unmodified, as
-evidence of the misdiagnosis, not deleted). A companion
+An earlier recalibration was retired once the floor fix removed the
+collapse it had targeted; a companion paper in
+preparation~\cite{paper6-companion} examines this and other live
+evaluation-integrity findings from this rig in more depth. A companion
 submission~\cite{cacs26-paper} separately measures the E2 control loop
 as negligible overhead (median round-trip 0.57\,ms) from a policy
 under 20,000 parameters, on the same rig -- consistent with, and
