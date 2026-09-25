@@ -28,7 +28,7 @@ Bouroudi A, Outtagarts A, Hadjadj-Aoul Y (2025) {GNN}-based multi-agent {DRL}
 \bibitem[{Bun and Steinke(2016)}]{zcdp}
 Bun M, Steinke T (2016) Concentrated differential privacy: Simplifications,
   extensions, and lower bounds. In: Theory of Cryptography Conference (TCC), pp
-  635--658
+  635--658, \doi{10.1007/978-3-662-53641-4_24}
 
 \bibitem[{Fatehi et~al.(2026)Fatehi, {Rahmani Ghourtani}, Sonee, Yadav, Russo,
   Ahmadi, and Calinescu}]{fatehi2026attentionmarl}

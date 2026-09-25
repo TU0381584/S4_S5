@@ -7,37 +7,37 @@ sn-basic.bst [2024/07/19 v1.1 bibliography style]
 Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
 You've used 21 entries,
             3567 wiz_defined-function locations,
-            833 strings with 10130 characters,
-and the built_in function-call counts, 16859 in all, are:
-= -- 1519
+            834 strings with 10158 characters,
+and the built_in function-call counts, 16868 in all, are:
+= -- 1520
 > -- 861
 < -- 10
 + -- 331
 - -- 256
-* -- 1396
-:= -- 2476
+* -- 1399
+:= -- 2477
 add.period$ -- 27
 call.type$ -- 21
 change.case$ -- 225
 chr.to.int$ -- 18
 cite$ -- 21
-duplicate$ -- 1119
-empty$ -- 1232
+duplicate$ -- 1120
+empty$ -- 1233
 format.name$ -- 323
-if$ -- 3509
+if$ -- 3511
 int.to.chr$ -- 4
 int.to.str$ -- 1
 missing$ -- 146
 newline$ -- 72
 num.names$ -- 84
-pop$ -- 526
+pop$ -- 524
 preamble$ -- 1
 purify$ -- 176
 quote$ -- 0
-skip$ -- 543
+skip$ -- 542
 stack$ -- 0
 substring$ -- 1013
-swap$ -- 400
+swap$ -- 402
 text.length$ -- 8
 text.prefix$ -- 0
 top$ -- 1
@@ -45,4 +45,4 @@ type$ -- 189
 warning$ -- 0
 while$ -- 106
 width$ -- 0
-write$ -- 245
+write$ -- 246
