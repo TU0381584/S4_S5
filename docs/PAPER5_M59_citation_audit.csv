@@ -1,0 +1,22 @@
+bib_number,key,type,title,year,venue,doi,structural_status
+1,dpsgd,inproceedings,Deep Learning with Differential Privacy,2016,Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security (CCS),(none - no DOI registered for this entry/venue),ok
+2,ahmadi2024generalizable,article,Generalizable {5G} {RAN}/{MEC} Slicing and Admission Control for Reliable Network Operation,2024,IEEE Trans. Netw. Service Manag.,10.1109/TNSM.2024.3437217,ok
+3,bouroudi2025gnnmarl,inproceedings,{GNN}-Based Multi-Agent {DRL} for Energy-Efficient Multi-Domain {6G} Resource Orchestration,2025,Proc. IEEE Global Commun. Conf. (GLOBECOM),10.1109/GLOBECOM59602.2025.11432814,ok
+4,zcdp,inproceedings,"Concentrated Differential Privacy: Simplifications, Extensions, and Lower Bounds",2016,Theory of Cryptography Conference (TCC),10.1007/978-3-662-53641-4_24,ok
+5,fatehi2026attentionmarl,inproceedings,Interpretable Attention-Based Multi-Agent {PPO} for Latency Spike Resolution in {6G} {RAN} Slicing,2026,Proc. IEEE Int. Conf. Commun. (ICC),10.1109/ICC59461.2026.11586913,ok
+6,gong2026femaddpg,article,Intelligent Resource Allocation for Multiaccess Edge Computing in {5G} Ultra-Dense Slicing Network Using Federated Multiagent {DDPG},2026,China Commun.,10.23919/JCC.fa.2022-0187.202601,ok
+7,mecon-paper1,inproceedings,Optimising Resource Allocation in {5G} Networks: Balancing {URLLC} and {eMBB} Traffic under {gNB} Congestion,2025,2025 Multimedia University Engineering Conference (MECON),(none - no DOI registered for this entry/venue),ok
+8,icraie-paper2,inproceedings,{SLA}-Aware {DRL} for Joint Slice Admission Control and Load Balancing in Multi-Service {5G} {RAN},2025,2025 9th International Conference on Recent Advances and Innovations in Engineering (ICRAIE),(none - no DOI registered for this entry/venue),ok
+9,ref:access,article,Comprehensive Review of Optimisation Techniques for User-Centric Distributed Network Slicing in {5G} Networks,2026,IEEE Access,10.1109/ACCESS.2026.3716911,ok
+10,cacs26-paper,inproceedings,{DQN-QoE} Slice Admission Control for Live {OAI} Open {RAN},2026,2026 International Automatic Control Conference (CACS),"(none - submitted, not yet published)",ok
+11,paper6-companion,misc,Evaluation Integrity in Live Multi-Agent Radio Access Network Control: A Systems Study,2026,n/a (misc),"(none - in preparation, not yet published)",ok
+12,fedprox,inproceedings,Federated Optimization in Heterogeneous Networks,2020,Proceedings of Machine Learning and Systems (MLSys),(none - no DOI registered for this entry/venue),ok
+13,fedavg,inproceedings,Communication-Efficient Learning of Deep Networks from Decentralized Data,2017,Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS),(none - no DOI registered for this entry/venue),ok
+14,mohajer2026pronto,article,Joint {SLA}-Aware Task Offloading and Adaptive Service Orchestration With Graph-Attentive Multi-Agent Reinforcement Learning,2026,IEEE Trans. Netw. Service Manag.,10.1109/TNSM.2026.3673188,ok
+15,qasim2025tgnnfl,article,Transformer and Graph Neural Network-Based Federated Learning for Cellular Traffic Prediction With Sustainability Analysis,2025,IEEE Access,10.1109/ACCESS.2025.3605380,ok
+16,shao2021gatmarl,article,Graph Attention Network-Based Multi-Agent Reinforcement Learning for Slicing Resource Management in Dense Cellular Network,2021,IEEE Trans. Veh. Technol.,10.1109/TVT.2021.3103416,ok
+17,sulaiman2023coordinated,article,Coordinated Slicing and Admission Control Using Multi-Agent Deep Reinforcement Learning,2023,IEEE Trans. Netw. Service Manag.,10.1109/TNSM.2022.3222589,ok
+18,tashman2026adversarial,inproceedings,Adversarial Attacks in {AI}-Driven {RAN} Slicing: {SLA} Violations and Recovery,2026,Proc. Int. Wireless Commun. and Mobile Computing (IWCMC),10.1109/IWCMC69287.2026.11580033,ok
+19,gat,inproceedings,Graph Attention Networks,2018,International Conference on Learning Representations (ICLR),(none - no DOI registered for this entry/venue),ok
+20,yasin2025dpfl,inproceedings,Differential Privacy Federated Edge Learning-Assisted for Securing {RAN} Intelligent Controller in {O-RAN} {6G} Communications,2025,Proc. IEEE VTS Asia Pacific Wireless Commun. Symp. (APWCS),10.1109/APWCS67981.2025.11151868,ok
+21,zhang2022federatedoran,inproceedings,Federated Deep Reinforcement Learning for Resource Allocation in {O-RAN} Slicing,2022,Proc. IEEE Global Commun. Conf. (GLOBECOM),10.1109/GLOBECOM48099.2022.10001658,ok
