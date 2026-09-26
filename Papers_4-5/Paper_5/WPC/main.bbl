@@ -10,7 +10,7 @@
   and Zhang}]{dpsgd}
 Abadi M, Chu A, Goodfellow I, et~al (2016) Deep learning with differential
   privacy. In: Proceedings of the 2016 ACM SIGSAC Conference on Computer and
-  Communications Security (CCS), pp 308--318
+  Communications Security (CCS), pp 308--318, \doi{10.1145/2976749.2978318}
 
 \bibitem[{Ahmadi et~al.(2024)Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba,
   and Saleh}]{ahmadi2024generalizable}
@@ -49,14 +49,14 @@ Gong Y, Gong P, Jiang H, et~al (2026) Intelligent resource allocation for
 Kunasegran MP, Pang WL, Phang SK (2025{\natexlab{a}}) Optimising resource
   allocation in {5G} networks: Balancing {URLLC} and {eMBB} traffic under {gNB}
   congestion. In: 2025 Multimedia University Engineering Conference (MECON), pp
-  1--6
+  1--6, \doi{10.1109/MECON67253.2025.11277096}
 
 \bibitem[{Kunasegran et~al.(2025{\natexlab{b}})Kunasegran, Pang, and
   Phang}]{icraie-paper2}
 Kunasegran MP, Pang WL, Phang SK (2025{\natexlab{b}}) {SLA}-aware {DRL} for
   joint slice admission control and load balancing in multi-service {5G} {RAN}.
   In: 2025 9th International Conference on Recent Advances and Innovations in
-  Engineering (ICRAIE), pp 207--212
+  Engineering (ICRAIE), pp 207--212, \doi{10.1109/ICRAIE65839.2025.11239148}
 
 \bibitem[{Kunasegran et~al.(2026{\natexlab{a}})Kunasegran, Pang, and
   Phang}]{ref:access}
