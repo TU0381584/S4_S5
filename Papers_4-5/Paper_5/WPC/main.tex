@@ -38,7 +38,7 @@ S.~K.~Phang: orcid.org/0000-0002-7877-8766.
 Network slicing lets a single physical radio access network serve heterogeneous service classes, namely Ultra-Reliable Low-Latency Communication (URLLC), enhanced Mobile Broadband (eMBB), and massive Machine-Type Communication (mMTC), under distinct per-slice Service Level Agreements (SLAs). Our earlier work~\cite{mecon-paper1,icraie-paper2}
 established that a Deep Q-Network (DQN) admission controller can learn
 to enforce these SLAs under a single gNodeB (gNB), validated on a live
-OpenAirInterface (OAI) testbed. A companion submission~\cite{cacs26-paper} extends this single-gNB live validation to a Quality of Experience (QoE)-aware reward variant, independently confirming the live E2 control loop's feasibility (median round-trip latency 0.57\,ms) for a policy under 20,000 parameters. A real multi-cell deployment does not admit requests at one gNB in isolation, since neighbouring cells share backhaul, spectrum planning, and a cluster-wide load-balance objective, making coordinated admission a genuinely multi-agent problem. This raises a direct question: does a shared, graph-structured representation of the cluster's state help a set of per-gNB agents make better joint decisions than a single agent using the flattened joint state, or independent per-gNB agents with no shared representation at all?
+OpenAirInterface (OAI) testbed. A real multi-cell deployment does not admit requests at one gNB in isolation, since neighbouring cells share backhaul, spectrum planning, and a cluster-wide load-balance objective, making coordinated admission a genuinely multi-agent problem. This raises a direct question: does a shared, graph-structured representation of the cluster's state help a set of per-gNB agents make better joint decisions than a single agent using the flattened joint state, or independent per-gNB agents with no shared representation at all?
 
 This paper's contribution is GAT-CTDE, a centralised-training,
 decentralised-execution multi-agent architecture built on a shared
@@ -678,16 +678,8 @@ backlog reading divided by a calibration constant tuned for the
 offline environment's synthetic proxy, rather than the real Medium
 Access Control (MAC) scheduler's byte-count scale) is real regardless of load, and is fixed
 by converting backlog to a queueing-delay estimate via Little's Law
-against each slice's own latency budget.
-
-An earlier recalibration was retired once the floor fix removed the
-collapse it had targeted. A companion paper in
-preparation~\cite{paper6-companion} examines this and other live
-evaluation-integrity findings from this rig in more depth. A companion
-submission~\cite{cacs26-paper} separately measures the E2 control loop
-as negligible overhead (median round-trip 0.57\,ms) from a policy
-under 20,000 parameters, on the same rig, consistent with, and
-independent of, this deployability finding.
+against each slice's own latency budget. An earlier recalibration was
+retired once the floor fix removed the collapse it had targeted.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -728,10 +720,7 @@ only in the disclosed offline stress regime, not live.
 
 Four limits bound every claim in this paper. First, every multi-gNB,
 federated, and disruption result is offline-only, since this rig cannot
-yet sustain a live multi-gNB test (a companion
-submission~\cite{cacs26-paper} shows the live E2 loop itself is
-well-behaved for a single gNB, but not whether it stays so coordinating
-$N>1$ gNBs). Second, the offline stress environment is deliberately
+yet sustain a live multi-gNB test. Second, the offline stress environment is deliberately
 calibrated harder than any congestion level this rig has been measured
 to reach, a disclosed design choice rather than a validated one. Third,
 the graph representation models only the gNB cluster, with no
@@ -744,10 +733,7 @@ privacy-constrained, disruption-prone settings needs metrics tied to
 the actual training objective, that architectural claims need more than
 one seed sample before they are trusted, and that a live testbed's own
 evidentiary reach needs to be checked, not assumed, before its silence
-about contention is read as safety. A companion paper in
-preparation~\cite{paper6-companion} examines a wider set of live
-evaluation-integrity findings from this same rig in more depth, and the
-results reported here stand independently of it.
+about contention is read as safety.
 
 \backmatter
 
