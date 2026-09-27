@@ -6,6 +6,8 @@
 \usepackage{xcolor}
 \usepackage{algorithm}
 \usepackage{algorithmic}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,fit}
 
 \newcommand{\authorTODO}[1]{\par\noindent\fbox{\parbox{0.95\linewidth}{\textbf{\color{red}TODO(MANOJ):} #1}}\par}
 
@@ -635,6 +637,70 @@ using a single-agent-DQN checkpoint (seed 900, dimension-matched to the
 live evaluation path) against a real gNB, real UEs, and real per-slice
 User Datagram Protocol (UDP) traffic, at native load (1 UE/slice) and double native load
 (2 UEs/slice).
+
+\begin{figure}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  block/.style={draw, thick, rounded corners, align=center, fill=gray!8,
+                font=\footnotesize, inner sep=6pt},
+  arr/.style={-{Latex[length=2.5mm]}, thick},
+  lbl/.style={font=\scriptsize, fill=white, inner sep=1pt}
+]
+\node[block, text width=3.6cm, minimum height=2.0cm] (core)
+  at (2.01,5.6)
+  {\textbf{Core network}\\[2pt]
+   Open5GS, Docker Compose\\
+   17 containers (AMF/SMF$\times$3/\\UPF$\times$3/AUSF/UDM/UDR/\\PCF/BSF/NSSF/NRF/SCP)\\
+   MongoDB};
+\node[block, text width=4.2cm, minimum height=2.0cm] (ran)
+  at (7.03,5.6)
+  {\textbf{RAN}\\[2pt]
+   OAI gNB (ORANSlice fork)\\
+   \textbf{rfsim} -- software radio\\
+   \textit{no SDR/RF hardware}\\
+   n78, 106 PRB, $\mu{=}1$, TDD-SA};
+\node[block, text width=3.6cm, minimum height=2.0cm] (ues)
+  at (12.05,5.6)
+  {\textbf{UEs + traffic}\\[2pt]
+   Up to 6 native\\
+   \texttt{nr-uesoftmodem} UEs\\
+   (netns-isolated)\\
+   eMBB/URLLC/mMTC,\\
+   iperf3 UDP flows};
+\node[block, text width=5.6cm, minimum height=2.3cm] (ctrl)
+  at (7.03,2.45)
+  {\textbf{Control loop (RIC-free)}\\[2pt]
+   UDP E2 agent (ports 6600/6655)\\
+   xApp/orchestrator: \texttt{slicing\_control\_m}\\
+   -- per-slice (min,max) PRB-ratio\\
+   ceiling; \texttt{omega\_log}};
+\node[block, text width=3.6cm, minimum height=2.3cm] (policy)
+  at (12.75,2.45)
+  {\textbf{Policy}\\[2pt]
+   Single-agent DQN checkpoint\\
+   (seed 900)\\
+   18{,}562 parameters\\
+   CPU inference};
+\draw[arr] (core.east) -- (ran.west) node[lbl, midway, above] {N2/N3};
+\draw[arr] (ran.east) -- (ues.west) node[lbl, midway, above] {Uu / rfsim};
+\draw[arr] (7.03,4.6) -- (7.03,3.6) node[lbl, midway, right] {E2 (UDP)};
+\draw[arr] (ctrl.east) -- (policy.west) node[lbl, midway, above] {state / action};
+\node[draw, thick, dashed, rounded corners, inner sep=0pt,
+      fit={(-0.3,1.0) (15.06,6.9)}] {};
+\node[font=\footnotesize\bfseries, anchor=south west] at (-0.3,7.0)
+  {Single commodity host: Intel i5-1135G7 (4C/8T), 7.4\,GiB RAM -- CPU-only, no GPU, no SDR/RF hardware};
+\end{tikzpicture}%
+}
+\caption{This rig's real testbed stack: a single-host, software-radio
+(\texttt{rfsim}), RIC-free O-RAN deployment, distinguished here from
+SDR/hardware-in-the-loop O-RAN testbeds. Every block and label is a
+directly measured or configured value from this rig (no component is
+borrowed from any reference testbed figure). All five blocks run as
+processes/containers on the one physical host outlined by the dashed
+boundary; no element of this stack is external hardware.}
+\label{fig:testbed}
+\end{figure}
 
 An early live campaign on this rig read findings from data collected
 while a scheduler-configuration bug was active:
