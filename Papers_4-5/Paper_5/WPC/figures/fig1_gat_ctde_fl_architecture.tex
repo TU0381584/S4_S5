@@ -31,7 +31,6 @@
 \draw[thick, gray] (n1) -- (n2);
 \draw[thick, gray] (n1) -- (n3);
 \draw[thick, gray] (n2) -- (n3);
-\node[font=\scriptsize, gray, above=0.05cm of n1, xshift=-0.3cm] {attention};
 
 \node[encoder, below=0.5cm of n3] (gat) {Shared GAT encoder\\\footnotesize (2-layer, 4-head, LayerNorm)};
 \draw[arrow] (n1.south) .. controls +(0,-0.6) and +(-0.6,0.5) .. (gat.west);
@@ -45,13 +44,13 @@
 \draw[arrow] (gat.south) -- (q2.north);
 \draw[arrow] (gat.south) -- ++(0,-0.15) -| (q3.north);
 \node[draw, dashed, rounded corners, fit=(q1)(q2)(q3), inner sep=4pt,
-      label={[font=\scriptsize]below:per-slice Q-heads, separate parameters}] (qbox) {};
+      label={[font=\scriptsize, fill=white, inner sep=1.5pt]below:per-slice Q-heads, separate parameters}] (qbox) {};
 
-\node[below=0.55cm of qbox, font=\scriptsize, align=center] (action) {accept / reject\\(decentralised execution:\\own embedding row only)};
+\node[below=0.55cm of qbox, font=\scriptsize, align=center] (action) {accept / reject};
 \draw[arrow] (qbox.south) -- (action.north);
 
 % ===== Right half: federated training loop =====
-\node[font=\sffamily\bfseries\small] (righttitle) at (5.6,3.3) {(b) Federated training (M3)};
+\node[font=\sffamily\bfseries\small] (righttitle) at (5.6,3.3) {(b) Federated training};
 
 \node[client, minimum width=2.1cm] (c1) at (3.9,2.2) {Client 0\\\footnotesize local GAT-CTDE};
 \node[client, minimum width=2.1cm] (c2) at (6.3,2.2) {Client 1\\\footnotesize local GAT-CTDE};
@@ -62,13 +61,13 @@
 \draw[arrow] (c1.south) .. controls +(0,-0.7) and +(-1.0,0.7) .. (server.north west);
 \draw[arrow] (c2.south) -- (server.north);
 \draw[arrow] (c3.south) .. controls +(0,-0.7) and +(1.0,0.7) .. (server.north east);
-\node[font=\scriptsize, align=center, below=0.15cm of c1, xshift=-0.35cm] {clip + DP\\noise};
 
 \draw[dashedarrow] (server.west) .. controls +(-0.7,0.2) and +(-0.4,-0.7) .. (c1.west);
 \draw[dashedarrow] (server.east) .. controls +(0.7,0.2) and +(0.4,-0.7) .. (c3.east);
-\node[font=\scriptsize, below=0.05cm of c3, xshift=-0.3cm] {broadcast};
+\node[font=\scriptsize, align=center] at (5.05,1.5) {clip + DP\\noise};
+\node[font=\scriptsize] at (7.35,1.55) {broadcast};
 
-\node[below=0.4cm of server, font=\scriptsize, align=center] {every $R$ local steps\\(periodic sync, not per-step)};
+\node[below=0.4cm of server, font=\scriptsize, align=center] {every $R$ local steps};
 
 \end{tikzpicture}
 \end{document}
