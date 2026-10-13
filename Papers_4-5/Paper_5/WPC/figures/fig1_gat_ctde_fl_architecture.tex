@@ -1,4 +1,4 @@
-% F1: GAT-CTDE encoder + per-slice Q-heads (left) and the federated
+% F1: AXIOM encoder + per-slice Q-heads (left) and the federated
 % training loop (right). Standalone-compilable for iteration; \input{}
 % into the paper body. Mirrors Papers_4-5/Paper_4/figures/fig1_architecture.tex's
 % style conventions (box/arrow styles, font, palette).
@@ -21,8 +21,8 @@
   dashedarrow/.style={-{Latex[length=1.8mm]}, thick, dashed},
 ]
 
-% ===== Left half: GAT-CTDE per-agent pipeline =====
-\node[font=\sffamily\bfseries\small] (lefttitle) at (0,3.3) {(a) GAT-CTDE (per gNB agent)};
+% ===== Left half: AXIOM per-agent pipeline =====
+\node[font=\sffamily\bfseries\small] (lefttitle) at (0,3.3) {(a) AXIOM (per gNB agent)};
 
 % 3-gNB fully-connected graph
 \node[node1] (n1) at (-0.8,2.1) {gNB-0};
@@ -52,9 +52,9 @@
 % ===== Right half: federated training loop =====
 \node[font=\sffamily\bfseries\small] (righttitle) at (5.6,3.3) {(b) Federated training};
 
-\node[client, minimum width=2.1cm] (c1) at (3.9,2.2) {Client 0\\\footnotesize local GAT-CTDE};
-\node[client, minimum width=2.1cm] (c2) at (6.3,2.2) {Client 1\\\footnotesize local GAT-CTDE};
-\node[client, minimum width=2.1cm] (c3) at (8.7,2.2) {Client 2\\\footnotesize local GAT-CTDE};
+\node[client, minimum width=2.1cm] (c1) at (3.9,2.2) {Client 0\\\footnotesize local AXIOM};
+\node[client, minimum width=2.1cm] (c2) at (6.3,2.2) {Client 1\\\footnotesize local AXIOM};
+\node[client, minimum width=2.1cm] (c3) at (8.7,2.2) {Client 2\\\footnotesize local AXIOM};
 
 \node[server, below=1.3cm of c2] (server) {FedAvg server\\\footnotesize weight averaging};
 

@@ -11,8 +11,8 @@
 \citation{shao2021gatmarl}
 \citation{ahmadi2024generalizable}
 \citation{sulaiman2023coordinated}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System view. A cluster of gNBs, coordinated by the shared GAT-CTDE encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling.}}{3}{figure.1}\protected@file@percent }
-\newlabel{fig:sysview}{{1}{3}{System view. A cluster of gNBs, coordinated by the shared GAT-CTDE encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling}{figure.1}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System view. A cluster of gNBs, coordinated by the shared AXIOM encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling.}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:sysview}{{1}{3}{System view. A cluster of gNBs, coordinated by the shared AXIOM encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling}{figure.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
 \newlabel{sec:litreview}{{2}{3}{Related Work}{section.2}{}}
 \citation{tashman2026adversarial}
@@ -22,17 +22,17 @@
 \citation{mohajer2026pronto,bouroudi2025gnnmarl,qasim2025tgnnfl,gong2026femaddpg}
 \@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{4}{section.3}\protected@file@percent }
 \newlabel{sec:system-model}{{3}{4}{System Model and Problem Formulation}{section.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the research. A GAT-CTDE controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed.}}{5}{figure.2}\protected@file@percent }
-\newlabel{fig:overview}{{2}{5}{Overview of the research. A GAT-CTDE controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed}{figure.2}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the research. A AXIOM controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed.}}{5}{figure.2}\protected@file@percent }
+\newlabel{fig:overview}{{2}{5}{Overview of the research. A AXIOM controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed}{figure.2}{}}
 \newlabel{eq:reward}{{1}{5}{System Model and Problem Formulation}{equation.3.1}{}}
 \newlabel{eq:margin}{{2}{5}{System Model and Problem Formulation}{equation.3.2}{}}
 \citation{gat}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig.}}{6}{figure.3}\protected@file@percent }
 \newlabel{fig:testbed}{{3}{6}{Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig}{figure.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces GAT-CTDE architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step.}}{6}{figure.4}\protected@file@percent }
-\newlabel{fig:architecture}{{4}{6}{GAT-CTDE architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step}{figure.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}GAT-CTDE Method}{7}{section.4}\protected@file@percent }
-\newlabel{sec:methodology}{{4}{7}{GAT-CTDE Method}{section.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces AXIOM architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step.}}{6}{figure.4}\protected@file@percent }
+\newlabel{fig:architecture}{{4}{6}{AXIOM architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step}{figure.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}The AXIOM Architecture}{7}{section.4}\protected@file@percent }
+\newlabel{sec:methodology}{{4}{7}{The AXIOM Architecture}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shared Encoder, Decentralised Q-Heads}{7}{subsection.4.1}\protected@file@percent }
 \newlabel{sec:methodology-perslice}{{4.1}{7}{Shared Encoder, Decentralised Q-Heads}{subsection.4.1}{}}
 \newlabel{eq:gat}{{3}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
@@ -41,11 +41,11 @@
 \citation{fedprox}
 \citation{dpsgd}
 \citation{zcdp}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces GAT-CTDE: centralised training, decentralised execution}}{8}{algorithm.1}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces AXIOM: centralised training, decentralised execution}}{8}{algorithm.1}\protected@file@percent }
 \newlabel{alg:gat-ctde}{{1}{8}{Shared Encoder, Decentralised Q-Heads}{algorithm.1}{}}
 \newlabel{eq:td}{{5}{8}{Shared Encoder, Decentralised Q-Heads}{equation.4.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Federated Training with Differential Privacy}{8}{subsection.4.2}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Federated GAT-CTDE round with DP-SGD}}{9}{algorithm.2}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Federated AXIOM round with DP-SGD}}{9}{algorithm.2}\protected@file@percent }
 \newlabel{alg:fed-dp}{{2}{9}{Federated Training with Differential Privacy}{algorithm.2}{}}
 \newlabel{eq:zcdp}{{6}{9}{Federated Training with Differential Privacy}{equation.4.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Setup}{9}{subsection.4.3}\protected@file@percent }
@@ -76,12 +76,12 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cluster-Size Scaling}{14}{subsection.5.4}\protected@file@percent }
 \newlabel{sec:results-m6}{{5.4}{14}{Cluster-Size Scaling}{subsection.5.4}{}}
 \newlabel{eq:collapse}{{9}{14}{Cluster-Size Scaling}{equation.5.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces $N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and GAT-CTDE converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds.}}{15}{figure.8}\protected@file@percent }
-\newlabel{fig:m6-topology}{{8}{15}{$N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and GAT-CTDE converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces $N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds.}}{15}{figure.8}\protected@file@percent }
+\newlabel{fig:m6-topology}{{8}{15}{$N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds}{figure.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Live Deployment}{15}{subsection.5.5}\protected@file@percent }
 \newlabel{sec:results-m8}{{5.5}{15}{Live Deployment}{subsection.5.5}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{16}{section.6}\protected@file@percent }
-\newlabel{sec:conclusion}{{6}{16}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{15}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{15}{Conclusion}{section.6}{}}
 \@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{16}{section*.2}\protected@file@percent }
 \bibdata{refs}
 \bibcite{dpsgd}{{1}{2016}{{Abadi et~al.}}{{Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar, and Zhang}}}
