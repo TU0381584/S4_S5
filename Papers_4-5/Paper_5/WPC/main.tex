@@ -355,6 +355,11 @@ Both campaigns use 300 training and 50 evaluation episodes per seed. The central
 \label{sec:collapse}
 Two safeguards make the results below trustworthy. Table~\ref{tab:safeguards} summarises the four pipeline issues they caught. A standard pipeline would have surfaced each one as a clean result. The first safeguard is a correctness-aware metric pair, computed from data every run already logs. Mean reward per step is the actual training objective. Block precision is the fraction of blocked requests that correctly target mMTC, the only slice the reward calibration ever makes reject-optimal. Writing $b_{\text{mMTC}}$ and $b$ for the mMTC-targeted and total blocks over an evaluation, it is $\pi = b_{\text{mMTC}}/b$ for $b>0$ and undefined for $b=0$, so a seed that never blocks is excluded rather than scored as a success.
 
+\label{sec:correctness-metrics}
+The pair is needed because \texttt{sla\_compliance\_all\_slices} scores worse when the policy becomes more correct. Blocking mMTC under congestion never recovers mMTC's own SLA margin in this stress regime. We re-checked every paired comparison in this paper against both metrics. The correctness-aware pair and compliance disagree on direction or significance in 44 of 49 comparisons, or 89.8\%. A disjoint supplementary seed range confirmed this at 21 of 24. Every number in this paper that matters is therefore reported through the correctness-aware pair.
+
+The second safeguard is a reproduction-versus-replication discipline, in which we recompute every headline comparison on an independent, disjoint seed sample and report both. Reproduction re-runs the same seeds, whereas replication draws fresh ones, so only replication can catch a result that is an artifact of one seed sample. The remaining pipeline issues of Table~\ref{tab:safeguards} were each fixed at their source, with the churn correction detailed in Section~\ref{sec:results-m4} and the scheduler floor in Section~\ref{sec:results-m8}.
+
 \begin{table}[t]
 \caption{Four evaluation-pipeline failures this paper's safeguards caught, none of which a standard pipeline would have surfaced.}
 \label{tab:safeguards}
@@ -372,11 +377,6 @@ Scheduler floor (\S\ref{sec:results-m8}) & Cross-layer floor & Direct instrument
 \botrule
 \end{tabular}}
 \end{table}
-
-\label{sec:correctness-metrics}
-The pair is needed because \texttt{sla\_compliance\_all\_slices} scores worse when the policy becomes more correct. Blocking mMTC under congestion never recovers mMTC's own SLA margin in this stress regime. We re-checked every paired comparison in this paper against both metrics. The correctness-aware pair and compliance disagree on direction or significance in 44 of 49 comparisons, or 89.8\%. A disjoint supplementary seed range confirmed this at 21 of 24. Every number in this paper that matters is therefore reported through the correctness-aware pair.
-
-The second safeguard is a reproduction-versus-replication discipline, in which we recompute every headline comparison on an independent, disjoint seed sample and report both. Reproduction re-runs the same seeds, whereas replication draws fresh ones, so only replication can catch a result that is an artifact of one seed sample. The remaining pipeline issues of Table~\ref{tab:safeguards} were each fixed at their source, with the churn correction detailed in Section~\ref{sec:results-m4} and the scheduler floor in Section~\ref{sec:results-m8}.
 
 \section{Results}
 

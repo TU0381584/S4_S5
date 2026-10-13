@@ -82,7 +82,7 @@ def draw_radar(ax):
     # AXIOM first (its fill dominates), baselines on top so their lines stay visible.
     # Distinct dash patterns keep all three readable where the lines overlap.
     zbase = {"AXIOM": 4, "Independent DQN": 5, "Single-agent DQN": 6}
-    LS = {"AXIOM": "-", "Independent DQN": (0, (5, 2)), "Single-agent DQN": (0, (1, 1.6))}
+    LS = {"AXIOM": (0, (1, 1.35)), "Independent DQN": (0, (5, 2)), "Single-agent DQN": "-"}
     for name in ["AXIOM", "Independent DQN", "Single-agent DQN"]:
         v = vals[name] + vals[name][:1]
         lw = 2.2 if name == "AXIOM" else 1.9
