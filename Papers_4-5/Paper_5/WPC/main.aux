@@ -6,9 +6,9 @@
 \Newlabel{1}{1}
 \citation{mecon-paper1,icraie-paper2}
 \citation{gat}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System view. A cluster of gNBs, coordinated by the shared AXIOM encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling.}}{2}{figure.1}\protected@file@percent }
 \newlabel{fig:sysview}{{1}{2}{System view. A cluster of gNBs, coordinated by the shared AXIOM encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling}{figure.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
 \citation{ref:access}
 \citation{shao2021gatmarl}
 \citation{ahmadi2024generalizable}
@@ -20,10 +20,10 @@
 \citation{mohajer2026pronto,bouroudi2025gnnmarl,qasim2025tgnnfl,gong2026femaddpg}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
 \newlabel{sec:litreview}{{2}{3}{Related Work}{section.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the research. An AXIOM controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed.}}{4}{figure.2}\protected@file@percent }
-\newlabel{fig:overview}{{2}{4}{Overview of the research. An AXIOM controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed}{figure.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{4}{section.3}\protected@file@percent }
 \newlabel{sec:system-model}{{3}{4}{System Model and Problem Formulation}{section.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the research. An AXIOM controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed.}}{4}{figure.2}\protected@file@percent }
+\newlabel{fig:overview}{{2}{4}{Overview of the research. An AXIOM controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed}{figure.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig.}}{5}{figure.3}\protected@file@percent }
 \newlabel{fig:testbed}{{3}{5}{Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig}{figure.3}{}}
 \newlabel{eq:reward}{{1}{5}{System Model and Problem Formulation}{equation.3.1}{}}
@@ -52,19 +52,19 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Safeguards}{9}{subsection.4.4}\protected@file@percent }
 \newlabel{sec:collapse}{{4.4}{9}{Evaluation Safeguards}{subsection.4.4}{}}
 \newlabel{sec:correctness-metrics}{{4.4}{9}{Evaluation Safeguards}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{10}{section.5}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces How the three policies compare. AXIOM is the architecture of this paper; the two DQN policies are ablations that strip out its coordination. The three-gNB values come from the campaign of Table~\ref {tab:m2-results}.}}{10}{table.2}\protected@file@percent }
 \newlabel{tab:compare}{{2}{10}{How the three policies compare. AXIOM is the architecture of this paper; the two DQN policies are ablations that strip out its coordination. The three-gNB values come from the campaign of Table~\ref {tab:m2-results}}{table.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{10}{section.5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces M2 centralised campaign, per-seed evidence. a, Paired per-seed mean reward per step versus single-agent DQN, coloured by win, tie, or loss, the source of the borderline $p=0.0577$. b, Per-seed reward distribution for all three arms.}}{11}{figure.5}\protected@file@percent }
-\newlabel{fig:m2-results}{{5}{11}{M2 centralised campaign, per-seed evidence. a, Paired per-seed mean reward per step versus single-agent DQN, coloured by win, tie, or loss, the source of the borderline $p=0.0577$. b, Per-seed reward distribution for all three arms}{figure.5}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs.}}{11}{table.3}\protected@file@percent }
+\newlabel{tab:m2-results}{{3}{11}{M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs}{table.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Centralised}{11}{subsection.5.1}\protected@file@percent }
 \newlabel{sec:results-m2}{{5.1}{11}{Centralised}{subsection.5.1}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Federated Training and DP}{11}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:results-m3}{{5.2}{11}{Federated Training and DP}{subsection.5.2}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs.}}{12}{table.3}\protected@file@percent }
-\newlabel{tab:m2-results}{{3}{12}{M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs}{table.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces M2 centralised campaign, per-seed evidence. a, Paired per-seed mean reward per step versus single-agent DQN, coloured by win, tie, or loss, the source of the borderline $p=0.0577$. b, Per-seed reward distribution for all three arms.}}{11}{figure.5}\protected@file@percent }
+\newlabel{fig:m2-results}{{5}{11}{M2 centralised campaign, per-seed evidence. a, Paired per-seed mean reward per step versus single-agent DQN, coloured by win, tie, or loss, the source of the borderline $p=0.0577$. b, Per-seed reward distribution for all three arms}{figure.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces M3 federated and DP sweep. a, Paired per-seed federation cost on mean reward per step, no measurable difference at $p=0.8125$. b, Block precision versus DP noise multiplier $\sigma $, perfect through $\sigma {=}1.0$ then dropping sharply.}}{12}{figure.6}\protected@file@percent }
 \newlabel{fig:m3-privacy}{{6}{12}{M3 federated and DP sweep. a, Paired per-seed federation cost on mean reward per step, no measurable difference at $p=0.8125$. b, Block precision versus DP noise multiplier $\sigma $, perfect through $\sigma {=}1.0$ then dropping sharply}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Federated Training and DP}{12}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:results-m3}{{5.2}{12}{Federated Training and DP}{subsection.5.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces M4 disruption campaign, 10 seeds per arm. a, b, Normalised reward cost versus severity for dropout and churn, accelerating with severity. c, Block precision versus demand-spike multiplier, flat and near-ceiling.}}{13}{figure.7}\protected@file@percent }
 \newlabel{fig:m4-disruption}{{7}{13}{M4 disruption campaign, 10 seeds per arm. a, b, Normalised reward cost versus severity for dropout and churn, accelerating with severity. c, Block precision versus demand-spike multiplier, flat and near-ceiling}{figure.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Disruption}{13}{subsection.5.3}\protected@file@percent }

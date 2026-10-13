@@ -68,7 +68,7 @@ S.~K.~Phang: orcid.org/0000-0002-7877-8766.
 \section{Introduction}
 Network slicing virtualises physical radio access network (RAN) to serve heterogenous service delivery under Ultra-Reliable Low-Latency Communication (URLLC), enhanced Mobile Broadband (eMBB), and massive Machine-Type Communication (mMTC) categories. Each slice carries distinct Service Level Agreement (SLA) targets that are in turn based on Quality of Service (QoS) thresholds. Our earlier work~\cite{mecon-paper1,icraie-paper2} validated that a Deep Q-Network (DQN) admission controller can enforce SLAs for a single gNodeB (gNB) in a live OpenAirInterface (OAI) testbed. However, a real deployment spans multiple gNBs that share backhaul, spectrum planning, and a cluster-wide load-balance objective. Thus, slice admission at one gNB is rarely isolated, and coordinated admission is in fact a multi-gNB, multi-agent challenge. This research aims to address whether a shared, graph-structured view of the cluster could enable per-gNB agents to decide better than a single agent on a flattened state, as opposed to independent agents. Fig.~\ref{fig:sysview} places the research premise in context.
 
-\begin{figure}[!t]
+\begin{figure}[!b]
 \centering
 \resizebox{0.68\textwidth}{!}{%
 \begin{tikzpicture}[
@@ -158,7 +158,7 @@ Rather than adding a new point in the GAT, MARL, and FL design space, this paper
 \label{sec:system-model}
 Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller runs across four offline campaigns in a disclosed stress environment. Two correctness safeguards check every result. The offline-trained logic is then verified on the live single-gNB testbed of Fig.~\ref{fig:testbed}.
 
-\begin{figure}[t]
+\begin{figure}[b]
 \centering
 \resizebox{0.98\textwidth}{!}{%
 \begin{tikzpicture}[
@@ -384,7 +384,7 @@ We compare three policies throughout this section. AXIOM is the architecture of 
 
 Three quantities carry the comparison. Mean reward per step tracks the objective the policies train on, so higher is better. Block precision is the share of a policy's rejections that land on the slice the reward rule marks lowest priority, so a value near one means the policy sheds the right traffic. Collapse names a failure mode in which a trained policy stops discriminating and simply accepts every request, which can look acceptable on raw reward yet abandons admission control altogether. Table~\ref{tab:compare} sets out how the three policies stand on these axes, and the subsections that follow give the evidence.
 
-\begin{table}[t]
+\begin{table}[b]
 \caption{How the three policies compare. AXIOM is the architecture of this
 paper; the two DQN policies are ablations that strip out its coordination.
 The three-gNB values come from the campaign of Table~\ref{tab:m2-results}.}
@@ -408,23 +408,6 @@ Federated, privacy-ready & Yes, no reward cost & Not applicable & Not applicable
 
 The headline is that no baseline matches AXIOM on every axis at once. The single-agent DQN rivals it at three gNBs and even edges its block precision there, yet collapses completely at nineteen. The independent DQN avoids total collapse but learns the weakest policy of the three. AXIOM is the only policy that earns the top reward, blocks accurately, and still functions as the cluster grows, which is the sense in which it stands above the other two.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\textwidth]{figures/fig3_m2_results.pdf}
-\caption{M2 centralised campaign, per-seed evidence. a, Paired per-seed
-mean reward per step versus single-agent DQN, coloured by win, tie, or
-loss, the source of the borderline $p=0.0577$. b, Per-seed reward
-distribution for all three arms.}
-\label{fig:m2-results}
-\end{figure}
-
-\subsection{Centralised}
-\label{sec:results-m2}
-
-The three-gNB fully-connected setting is deliberately the hardest case for a graph encoder, since every gNB already sees every other and there is little topology left to exploit. It is therefore a clean place to establish the evaluation-integrity findings with no topology effect in play. The encoder's coordination advantage is tested in earnest only once the cluster grows and its adjacency thins, in Section~\ref{sec:results-m6}.
-
-Table~\ref{tab:m2-results} and Fig.~\ref{fig:m2-results} report the final thirty-seed campaign. AXIOM earns the highest mean reward per step of the three policies. Its lead over the independent-DQN ablation is large and statistically clear, at $+1.461$ with 95\% CI [0.550, 2.782] and $p<0.0001$, an 11.6\% gain that pins a real contribution on the shared encoder and joint training. Its lead over the single-agent DQN is genuine but small, at $+0.195$ with 95\% CI [$-$0.017, 0.442], and at thirty seeds it does not reach significance at $p=0.0577$. We state that limit plainly rather than overclaim it. On block precision AXIOM blocks the reward-correct slice with precision 0.952, just behind the single-agent policy at 0.987 and 5.7\% above the independent learner at 0.901. The compliance metric points nowhere, at $+0.036$ with $p=0.4549$, and that is the measurement artifact Section~\ref{sec:collapse} explains rather than any real performance gap.
-
 \begin{table}[t]
 \caption{M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs.}
 \label{tab:m2-results}
@@ -444,6 +427,23 @@ Single-agent & 13.867 [13.69, 14.05] & 0.987 & 0.115 [0.061, 0.176] \\
 \item[$\ast$] Low compliance is the metric artifact Section~\ref{sec:collapse} explains, not a performance failure.
 \end{tablenotes}
 \end{table}
+
+\begin{figure}[b]
+\centering
+\includegraphics[width=\textwidth]{figures/fig3_m2_results.pdf}
+\caption{M2 centralised campaign, per-seed evidence. a, Paired per-seed
+mean reward per step versus single-agent DQN, coloured by win, tie, or
+loss, the source of the borderline $p=0.0577$. b, Per-seed reward
+distribution for all three arms.}
+\label{fig:m2-results}
+\end{figure}
+
+\subsection{Centralised}
+\label{sec:results-m2}
+
+The three-gNB fully-connected setting is deliberately the hardest case for a graph encoder, since every gNB already sees every other and there is little topology left to exploit. It is therefore a clean place to establish the evaluation-integrity findings with no topology effect in play. The encoder's coordination advantage is tested in earnest only once the cluster grows and its adjacency thins, in Section~\ref{sec:results-m6}.
+
+Table~\ref{tab:m2-results} and Fig.~\ref{fig:m2-results} report the final thirty-seed campaign. AXIOM earns the highest mean reward per step of the three policies. Its lead over the independent-DQN ablation is large and statistically clear, at $+1.461$ with 95\% CI [0.550, 2.782] and $p<0.0001$, an 11.6\% gain that pins a real contribution on the shared encoder and joint training. Its lead over the single-agent DQN is genuine but small, at $+0.195$ with 95\% CI [$-$0.017, 0.442], and at thirty seeds it does not reach significance at $p=0.0577$. We state that limit plainly rather than overclaim it. On block precision AXIOM blocks the reward-correct slice with precision 0.952, just behind the single-agent policy at 0.987 and 5.7\% above the independent learner at 0.901. The compliance metric points nowhere, at $+0.036$ with $p=0.4549$, and that is the measurement artifact Section~\ref{sec:collapse} explains rather than any real performance gap.
 
 \subsection{Federated Training and DP}
 \label{sec:results-m3}
@@ -538,14 +538,14 @@ grant FRGS/1/2024/ICT06/TAYLOR/02/1.
 this manuscript unless otherwise indicated.
 
 \begin{itemize}
-\item Funding: This work was supported by the Fundamental Research Grant Scheme (FRGS), Ministry of Higher Education (MOHE), Malaysia, under grant number FRGS/1/2024/ICT06/TAYLOR/02/1.
-\item Competing interests: The authors declare no competing interests.
-\item Ethics approval and consent to participate: Not applicable, since this study involves no human participants, animal subjects, or identifiable patient data. All reported results are either offline simulation campaigns or measurements from a laboratory radio testbed.
-\item Consent for publication: Not applicable, since this manuscript contains no personal data or identifying information about any individual.
-\item Data availability: The experiment logs, checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request.
-\item Materials availability: Not applicable, since this study involves no physical or biological materials.
-\item Code availability: The framework and experiment scripts used to produce this paper's results, including the reproducibility manifest and analysis scripts used to independently re-derive every table and figure in this paper, are available from the corresponding author on reasonable request.
-\item Author contribution: M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
+\item \textbf{Funding:} This work was supported by the Fundamental Research Grant Scheme (FRGS), Ministry of Higher Education (MOHE), Malaysia, under grant number FRGS/1/2024/ICT06/TAYLOR/02/1.
+\item \textbf{Competing interests:} The authors declare no competing interests.
+\item \textbf{Ethics approval and consent to participate:} Not applicable, since this study involves no human participants, animal subjects, or identifiable patient data. All reported results are either offline simulation campaigns or measurements from a laboratory radio testbed.
+\item \textbf{Consent for publication:} Not applicable, since this manuscript contains no personal data or identifying information about any individual.
+\item \textbf{Data availability:} The experiment logs, checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request.
+\item \textbf{Materials availability:} Not applicable, since this study involves no physical or biological materials.
+\item \textbf{Code availability:} The framework and experiment scripts used to produce this paper's results, including the reproducibility manifest and analysis scripts used to independently re-derive every table and figure in this paper, are available from the corresponding author on reasonable request.
+\item \textbf{Author contribution:} M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
 \end{itemize}
 
 \bibliography{refs}
