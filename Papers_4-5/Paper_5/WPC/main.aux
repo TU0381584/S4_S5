@@ -51,7 +51,6 @@
 \newlabel{tab:safeguards}{{1}{9}{Four evaluation-pipeline failures this paper's safeguards caught, none of which a standard pipeline would have surfaced}{table.1}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Safeguards}{9}{subsection.4.4}\protected@file@percent }
 \newlabel{sec:collapse}{{4.4}{9}{Evaluation Safeguards}{subsection.4.4}{}}
-\newlabel{eq:precision}{{7}{9}{Evaluation Safeguards}{equation.4.7}{}}
 \newlabel{sec:correctness-metrics}{{4.4}{9}{Evaluation Safeguards}{table.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces How the three policies compare. AXIOM is the architecture of this paper; the two DQN policies are ablations that strip out its coordination. The three-gNB values come from the campaign of Table~\ref {tab:m2-results}.}}{10}{table.2}\protected@file@percent }
 \newlabel{tab:compare}{{2}{10}{How the three policies compare. AXIOM is the architecture of this paper; the two DQN policies are ablations that strip out its coordination. The three-gNB values come from the campaign of Table~\ref {tab:m2-results}}{table.2}{}}
@@ -62,30 +61,28 @@
 \newlabel{fig:m2-results}{{5}{11}{M2 centralised campaign, per-seed evidence. a, Paired per-seed mean reward per step versus single-agent DQN, coloured by win, tie, or loss, the source of the borderline $p=0.0577$. b, Per-seed reward distribution for all three arms}{figure.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs.}}{11}{table.3}\protected@file@percent }
 \newlabel{tab:m2-results}{{3}{11}{M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Federated Training and DP}{11}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:results-m3}{{5.2}{11}{Federated Training and DP}{subsection.5.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces M3 federated and DP sweep. a, Paired per-seed federation cost on mean reward per step, no measurable difference at $p=0.8125$. b, Block precision versus DP noise multiplier $\sigma $, perfect through $\sigma {=}1.0$ then dropping sharply.}}{12}{figure.6}\protected@file@percent }
 \newlabel{fig:m3-privacy}{{6}{12}{M3 federated and DP sweep. a, Paired per-seed federation cost on mean reward per step, no measurable difference at $p=0.8125$. b, Block precision versus DP noise multiplier $\sigma $, perfect through $\sigma {=}1.0$ then dropping sharply}{figure.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Federated Training and DP}{12}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:results-m3}{{5.2}{12}{Federated Training and DP}{subsection.5.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Disruption}{12}{subsection.5.3}\protected@file@percent }
 \newlabel{sec:results-m4}{{5.3}{12}{Disruption}{subsection.5.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces M4 disruption campaign, 10 seeds per arm. a, b, Normalised reward cost versus severity for dropout and churn, accelerating with severity. c, Block precision versus demand-spike multiplier, flat and near-ceiling.}}{13}{figure.7}\protected@file@percent }
 \newlabel{fig:m4-disruption}{{7}{13}{M4 disruption campaign, 10 seeds per arm. a, b, Normalised reward cost versus severity for dropout and churn, accelerating with severity. c, Block precision versus demand-spike multiplier, flat and near-ceiling}{figure.7}{}}
-\newlabel{eq:norm}{{8}{13}{Disruption}{equation.5.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cluster-Size Scaling}{13}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:results-m6}{{5.4}{13}{Cluster-Size Scaling}{subsection.5.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces $N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds.}}{14}{figure.8}\protected@file@percent }
 \newlabel{fig:m6-topology}{{8}{14}{$N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds}{figure.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cluster-Size Scaling}{14}{subsection.5.4}\protected@file@percent }
-\newlabel{sec:results-m6}{{5.4}{14}{Cluster-Size Scaling}{subsection.5.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces AXIOM against the two baselines. a, Reward quality at three gNBs with 95\% CIs against collapse resistance at seven gNBs across two 12-seed samples, where AXIOM alone is accurate and robust. b, Each axis as a fraction of the best policy on it, so AXIOM encloses the largest area and leads the two capability axes outright.}}{15}{figure.9}\protected@file@percent }
 \newlabel{fig:quadrant}{{9}{15}{AXIOM against the two baselines. a, Reward quality at three gNBs with 95\% CIs against collapse resistance at seven gNBs across two 12-seed samples, where AXIOM alone is accurate and robust. b, Each axis as a fraction of the best policy on it, so AXIOM encloses the largest area and leads the two capability axes outright}{figure.9}{}}
-\newlabel{eq:collapse}{{9}{15}{Cluster-Size Scaling}{equation.5.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Live Deployment}{16}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:results-m8}{{5.5}{16}{Live Deployment}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Live Deployment}{15}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:results-m8}{{5.5}{15}{Live Deployment}{subsection.5.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{16}{section.6}\protected@file@percent }
 \newlabel{sec:conclusion}{{6}{16}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{16}{section*.2}\protected@file@percent }
 \bibdata{refs}
 \bibcite{dpsgd}{{1}{2016}{{Abadi et~al.}}{{Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar, and Zhang}}}
 \bibcite{ahmadi2024generalizable}{{2}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
-\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{17}{section*.2}\protected@file@percent }
 \bibcite{bouroudi2025gnnmarl}{{3}{2025}{{Bouroudi et~al.}}{{Bouroudi, Outtagarts, and Hadjadj-Aoul}}}
 \bibcite{zcdp}{{4}{2016}{{Bun and Steinke}}{{}}}
 \bibcite{fatehi2026attentionmarl}{{5}{2026}{{Fatehi et~al.}}{{Fatehi, {Rahmani Ghourtani}, Sonee, Yadav, Russo, Ahmadi, and Calinescu}}}

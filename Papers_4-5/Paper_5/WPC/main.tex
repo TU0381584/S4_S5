@@ -343,12 +343,7 @@ Both campaigns use 300 training and 50 evaluation episodes per seed. The central
 
 \subsection{Evaluation Safeguards}
 \label{sec:collapse}
-Two safeguards make the results below trustworthy. Table~\ref{tab:safeguards} summarises the four pipeline issues they caught. A standard pipeline would have surfaced each one as a clean result. The first safeguard is a correctness-aware metric pair, computed from data every run already logs. Mean reward per step is the actual training objective. Block precision is the fraction of blocked requests that correctly target mMTC, the only slice the reward calibration ever makes reject-optimal. Writing $b_{\text{mMTC}}$ and $b$ for the mMTC-targeted and total blocks over an evaluation,
-\begin{equation}
-\label{eq:precision}
-\pi = \frac{b_{\text{mMTC}}}{b}, \quad b>0,\qquad \text{undefined for } b=0,
-\end{equation}
-a seed that never blocks is therefore excluded, rather than scored as a success.
+Two safeguards make the results below trustworthy. Table~\ref{tab:safeguards} summarises the four pipeline issues they caught. A standard pipeline would have surfaced each one as a clean result. The first safeguard is a correctness-aware metric pair, computed from data every run already logs. Mean reward per step is the actual training objective. Block precision is the fraction of blocked requests that correctly target mMTC, the only slice the reward calibration ever makes reject-optimal. Writing $b_{\text{mMTC}}$ and $b$ for the mMTC-targeted and total blocks over an evaluation, it is $\pi = b_{\text{mMTC}}/b$ for $b>0$ and undefined for $b=0$, so a seed that never blocks is excluded rather than scored as a success.
 
 \begin{table}[t]
 \caption{Four evaluation-pipeline failures this paper's safeguards caught, none of which a standard pipeline would have surfaced.}
@@ -356,14 +351,14 @@ a seed that never blocks is therefore excluded, rather than scored as a success.
 \centering
 \footnotesize
 {\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.215\textwidth} >{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}p{0.235\textwidth} >{\raggedright\arraybackslash}p{0.235\textwidth}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}p{0.215\textwidth} >{\raggedright\arraybackslash}p{0.235\textwidth} >{\raggedright\arraybackslash}p{0.225\textwidth}@{}}
 \toprule
 Failure & Missed by & Caught by & Outcome \\
 \midrule
-Training collapse & Blind to no-op & Correctness-aware pair & 0/30$\to$21/30 correct \\
-Log contamination & Append-mode stacking & Episode-index audit & Cleared, no retrain \\
-Reproducibility gap & Single-sample overclaim & Repro-vs-replication & Churn claim retracted \\
-Scheduler-floor bug & Cross-layer floor hidden & Direct instrumentation & 100k+ readings clear \\
+Training collapse (\S\ref{sec:methodology-perslice}) & Blind to no-op & Correctness-aware pair & 0/30$\to$21/30 correct \\
+Eval-log contamination & Append-mode stacking & Episode-index audit & Cleared, no retrain \\
+Repro. gap (\S\ref{sec:results-m4}) & Single-sample claim & Repro-vs-replication & Churn claim retracted \\
+Scheduler floor (\S\ref{sec:results-m8}) & Cross-layer floor & Direct instrumentation & 100k+ readings clear \\
 \botrule
 \end{tabular}}
 \end{table}
@@ -386,18 +381,19 @@ The three-gNB values come from the campaign of Table~\ref{tab:m2-results}.}
 \label{tab:compare}
 \centering
 \footnotesize
-\begin{tabular}{@{}p{2.2cm}p{2.45cm}p{2.45cm}p{2.45cm}@{}}
+{\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.225\textwidth} >{\raggedright\arraybackslash}p{0.24\textwidth} >{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}p{0.225\textwidth}@{}}
 \toprule
 Property & AXIOM & Single-agent DQN & Independent DQN \\
 \midrule
-Design & Shared graph encoder, one head per slice & One flattened controller, no agent structure & One learner per gNB, no sharing \\[2pt]
-Mean reward per step, 3 gNBs & Highest, 14.062 & Close, 13.867 & Lowest, 12.601 \\[2pt]
-Block precision, 3 gNBs & High, 0.952 & Highest, 0.987 & Low, 0.901 \\[2pt]
-Behaviour at 19 gNBs & Partial collapse, 35.4\% & Total collapse, all 15 cells & Collapses rarely, 0.0--16.7\% \\[2pt]
-Reads cluster layout & Yes & No & No \\[2pt]
-Federated and privacy-ready & Yes, no measurable reward cost & Not applicable & Not applicable \\
+Design & Shared encoder, per-slice heads & One flattened controller & One learner per gNB \\
+Reward/step, 3 gNBs & Highest, 14.062 & Close, 13.867 & Lowest, 12.601 \\
+Block precision, 3 gNBs & High, 0.952 & Highest, 0.987 & Low, 0.901 \\
+Behaviour at 19 gNBs & Partial, 35.4\% & Total, all 15 cells & Rare, 0.0--16.7\% \\
+Reads cluster layout & Yes & No & No \\
+Federated, privacy-ready & Yes, no reward cost & Not applicable & Not applicable \\
 \botrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 The headline is that no baseline matches AXIOM on every axis at once. The single-agent DQN rivals it at three gNBs and even edges its block precision there, yet collapses completely at nineteen. The independent DQN avoids total collapse but learns the weakest policy of the three. AXIOM is the only policy that earns the top reward, blocks accurately, and still functions as the cluster grows, which is the sense in which it stands above the other two.
@@ -456,11 +452,7 @@ With federation switched on and no privacy noise, mean reward per step barely mo
 
 \subsection{Disruption}
 \label{sec:results-m4}
-We test every policy's frozen checkpoint against three mid-episode disruptions, injected at evaluation time with no retraining. A 'gNB dropout' forces one gNB to reject everything and blanks its row in the shared feature matrix for a window. A 'demand spike' briefly multiplies the arrival rate from outside the policy. An 'agent churn' swaps one gNB's decisions for a fresh, untrained copy of its own policy for a window and leaves the others intact. Churn applies to every genuinely multi-agent policy but not to the single-agent one. For dropout and churn the severity is how long the window lasts, at 10\%, 30\%, or 60\% of the episode. For the spike it is the arrival multiplier, at 2$\times$, 4$\times$, or 8$\times$. Because raw reward grows mechanically with request volume, we report a volume-normalised reward $\bar r$ over an episode of $T$ steps, dividing each step reward $r_t$ by its own pending-request count $n_t$ before averaging,
-\begin{equation}
-\label{eq:norm}
-\bar r \;=\; \frac{1}{T}\sum_{t=1}^{T}\frac{r_t}{\max(n_t,\,1)}.
-\end{equation}
+We test every policy's frozen checkpoint against three mid-episode disruptions, injected at evaluation time with no retraining. A 'gNB dropout' forces one gNB to reject everything and blanks its row in the shared feature matrix for a window. A 'demand spike' briefly multiplies the arrival rate from outside the policy. An 'agent churn' swaps one gNB's decisions for a fresh, untrained copy of its own policy for a window and leaves the others intact. Churn applies to every genuinely multi-agent policy but not to the single-agent one. For dropout and churn the severity is how long the window lasts, at 10\%, 30\%, or 60\% of the episode. For the spike it is the arrival multiplier, at 2$\times$, 4$\times$, or 8$\times$. Because raw reward grows mechanically with request volume, we report a volume-normalised reward over an episode of $T$ steps, $\bar r = \frac{1}{T}\sum_{t=1}^{T} r_t/\max(n_t,1)$, which divides each step reward $r_t$ by its own pending-request count $n_t$ before averaging.
 
 \begin{figure}[t]
 \centering
@@ -478,7 +470,7 @@ One disruption result needed a second, independent sample to report honestly. An
 
 \subsection{Cluster-Size Scaling}
 \label{sec:results-m6}
-We grow the cluster from three gNBs to seven and nineteen under three layouts, fully-connected, ring, and hex-grid, scaling the synthetic arrivals with the cluster so per-gNB load stays roughly constant. Only AXIOM's decision head actually reads this layout, so the two DQN policies double as a check that nothing depends on topology by accident. We normalise reward per gNB as in Eq.~\ref{eq:norm}, and we lean on block precision rather than compliance here, because compliance is combined across gNBs with a logical OR and drifts to zero as the cluster grows whatever the policy does. The main sample is twelve seeds at nineteen gNBs across every layout and policy, with further independent seeds to test generalisation.
+We grow the cluster from three gNBs to seven and nineteen under three layouts, fully-connected, ring, and hex-grid, scaling the synthetic arrivals with the cluster so per-gNB load stays roughly constant. Only AXIOM's decision head actually reads this layout, so the two DQN policies double as a check that nothing depends on topology by accident. We normalise reward per gNB with the same volume-normalised $\bar r$ as in Section~\ref{sec:results-m4}, and we lean on block precision rather than compliance here, because compliance is combined across gNBs with a logical OR and drifts to zero as the cluster grows whatever the policy does. The main sample is twelve seeds at nineteen gNBs across every layout and policy, with further independent seeds to test generalisation.
 
 At nineteen gNBs the per-gNB reward margins are not significant for any layout, and that is expected rather than disappointing. The single-agent policy's always-accept collapse banks the service reward on every request, while AXIOM pays a real price each time it correctly rejects low-priority mMTC traffic. The true separation therefore shows up in collapse resistance and block precision, not in raw reward.
 
@@ -494,12 +486,7 @@ seeds.}
 
 The contrast between the three policies at scale is stark. The single-agent DQN collapses completely at nineteen gNBs, in all 15 of 15 cells across both samples and every layout, which a direct probe of its decision values confirms at the level of individual choices. AXIOM, by contrast, collapses only part of the time. The independent DQN never collapses fully, but settles into a narrow and mediocre 0.29--0.49 block-precision band that is identical across layouts, exactly as expected for a policy that never reads its neighbours.
 
-Pooled across 64 independently drawn seeds, covering 68 of 192 cells, AXIOM's collapse rate converges to a stable value,
-\begin{equation}
-\label{eq:collapse}
-\hat p_{\text{collapse}} = 35.4\%,\qquad \text{95\% CI } [25.5\%,\;45.8\%],
-\end{equation}
-This single bootstrapped estimate replaces two smaller samples that had disagreed. A properly powered twelve-seed run at seven gNBs, with a disjoint twelve-seed replication, puts AXIOM at 41.7\% and 58.3\% collapse across the two samples. Both are statistically indistinguishable from Eq.~\ref{eq:collapse}, so this collapse-proneness is present from seven gNBs onward, not only at large scale. Over the same two samples the single-agent DQN collapses at 91.7\% and 75.0\%, against 0\% in its earlier three-seed pilot, the sharpest single result in this extension, while the independent DQN collapses at 0.0\% and 16.7\%, confirming that it collapses rarely rather than never. AXIOM therefore sits between the two, far more robust than the single-agent policy it is meant to replace, and the only one of the three that stays robust while also learning a strong, topology-aware blocking rule. Fig.~\ref{fig:quadrant}a places the three policies on one map of reward quality against scaling robustness. AXIOM alone falls in the region that is both accurate and robust, while the independent DQN trades reward away for its robustness and the single-agent policy trades robustness away for reward. The capability radar in Fig.~\ref{fig:quadrant}b makes the same point across five axes at once, where AXIOM holds the largest enclosed area.
+Pooled across 64 independently drawn seeds, covering 68 of 192 cells, AXIOM's collapse rate converges to a stable $\hat p_{\text{collapse}} = 35.4\%$ with 95\% CI [25.5\%, 45.8\%]. This single bootstrapped estimate replaces two smaller samples that had disagreed. A properly powered twelve-seed run at seven gNBs, with a disjoint twelve-seed replication, puts AXIOM at 41.7\% and 58.3\% collapse across the two samples. Both are statistically indistinguishable from this pooled 35.4\% estimate, so this collapse-proneness is present from seven gNBs onward, not only at large scale. Over the same two samples the single-agent DQN collapses at 91.7\% and 75.0\%, against 0\% in its earlier three-seed pilot, the sharpest single result in this extension, while the independent DQN collapses at 0.0\% and 16.7\%, confirming that it collapses rarely rather than never. AXIOM therefore sits between the two, far more robust than the single-agent policy it is meant to replace, and the only one of the three that stays robust while also learning a strong, topology-aware blocking rule. Fig.~\ref{fig:quadrant}a places the three policies on one map of reward quality against scaling robustness. AXIOM alone falls in the region that is both accurate and robust, while the independent DQN trades reward away for its robustness and the single-agent policy trades robustness away for reward. The capability radar in Fig.~\ref{fig:quadrant}b makes the same point across five axes at once, where AXIOM holds the largest enclosed area.
 
 \begin{figure}[t]
 \centering
