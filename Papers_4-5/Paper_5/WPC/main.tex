@@ -9,6 +9,14 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}
 
+% let floats pack onto earlier pages rather than drifting one page late
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{5}
+
 % --- reusable vector icons for the system-view figure ---
 \newcommand{\gnbtower}[1]{%
   \begin{scope}[shift={#1}]
@@ -44,7 +52,7 @@
 
 \affil[1]{\orgdiv{School of Engineering}, \orgname{Taylor's University}, \orgaddress{\city{Subang Jaya}, \country{Malaysia}}}
 
-\abstract{Fifth generation (5G) network slicing must admit heterogeneous service requests across many cooperating base stations under strict per-slice guarantees. This paper presents AXIOM, a correctness-aware graph-attention architecture for federated multi-agent slice admission control. A shared Graph Attention Network (GAT) encoder reads the base-station cluster graph and feeds decentralised per-slice action heads. The policy trains centrally and executes locally, so each gNodeB (gNB) decides independently from a shared view of the cluster. The design closes three gaps identified in our prior systematic review, namely trustworthy evaluation, privacy-preserving coordination, and validated deployment. On the metric that reflects the training objective, AXIOM decisively outperforms an independent-learner baseline. Scaled from 3 to 19 gNBs, it resists a training collapse that overwhelms a flattened single-agent baseline. It converges across 64 independent seeds to a stable 35.4\% [25.5\%, 45.8\%] residual rate already present at 7 gNBs. Federated training adds no measurable reward cost, and differential privacy degrades decision quality only beyond a clear threshold. A correctness-aware metric pair and a reproduction-versus-replication discipline keep every reported result trustworthy. A live deployment on OpenAirInterface (OAI) hardware confirms that the offline-trained policy executes correctly end to end, establishing deployability on a real Open Radio Access Network stack. Contention-dependent behaviour is characterised in a disclosed offline stress regime calibrated harder than the live rig reaches.}
+\abstract{Fifth generation (5G) network slicing must admit heterogeneous service requests across many cooperating base stations under strict per-slice guarantees. This paper presents AXIOM, a correctness-aware graph-attention architecture for federated multi-agent slice admission control that closes three gaps from our prior systematic review, namely trustworthy evaluation, privacy-preserving coordination, and validated deployment. A shared Graph Attention Network (GAT) encoder reads the base-station cluster graph and feeds decentralised per-slice action heads, so each gNodeB (gNB) trains on a cluster-wide view yet decides locally. AXIOM is the only policy among three that is strong on reward, blocking accuracy, and scalability at once. It outperforms an independent-learner baseline by a decisive $+1.461$ in mean reward per step at $p<0.0001$ and blocks the correct slice with precision 0.952. Scaled from 3 to 19 gNBs, a flattened single-agent baseline collapses into always-accept in every one of 15 test cells, whereas AXIOM holds a stable 35.4\% residual collapse rate that is already present at 7 gNBs. Federated training adds no measurable reward cost at $p=0.8125$, and differential privacy keeps blocking accuracy perfect up to a clear noise threshold. A correctness-aware metric pair and a reproduction-versus-replication discipline keep every result trustworthy, catching four evaluation-pipeline faults a standard pipeline would have reported as clean. A live deployment on OpenAirInterface (OAI) hardware serves every slice at 0.000\% loss and executes the offline-trained logic correctly end to end, establishing deployability on a real Open Radio Access Network stack. Contention-dependent behaviour is characterised in a disclosed offline stress regime calibrated harder than the live rig reaches.}
 
 \keywords{Network Slicing, Slice Admission Control, Multi-Agent Reinforcement Learning, Graph Attention Networks, Federated Learning, Open RAN}
 
@@ -60,11 +68,7 @@ S.~K.~Phang: orcid.org/0000-0002-7877-8766.
 \section{Introduction}
 Network slicing virtualises physical radio access network (RAN) to serve heterogenous service delivery under Ultra-Reliable Low-Latency Communication (URLLC), enhanced Mobile Broadband (eMBB), and massive Machine-Type Communication (mMTC) categories. Each slice carries distinct Service Level Agreement (SLA) targets that are in turn based on Quality of Service (QoS) thresholds. Our earlier work~\cite{mecon-paper1,icraie-paper2} validated that a Deep Q-Network (DQN) admission controller can enforce SLAs for a single gNodeB (gNB) in a live OpenAirInterface (OAI) testbed. However, a real deployment spans multiple gNBs that share backhaul, spectrum planning, and a cluster-wide load-balance objective. Thus, slice admission at one gNB is rarely isolated, and coordinated admission is in fact a multi-gNB, multi-agent challenge. This research aims to address whether a shared, graph-structured view of the cluster could enable per-gNB agents to decide better than a single agent on a flattened state, as opposed to independent agents. Fig.~\ref{fig:sysview} places the research premise in context.
 
-This paper introduces AXIOM, an Attention-based eXecution with Integrity for O-RAN Multi-agent slice-admission controller. AXIOM is a centralised-training, decentralised-execution multi-agent architecture that is built on a shared Graph Attention Network (GAT)~\cite{gat} encoder over a multi-gNB topology, which feeds decentralised per-slice Q-heads. We deliver it together with the evaluation discipline needed to trust what it reports. Three gaps from our systematic review of 67 core studies motivate this pairing, as Section~\ref{sec:litreview} details. First, no reviewed study checks whether its own outcome metric can score a degenerate policy as well as a correct one. Second, none replicates a headline architectural finding on an independent seed sample. Third, none tests whether a live testbed can reach the contention regime its offline claims assume. We close all three gaps through a per-component realisation of the architecture, namely the GAT encoder, the Multi-Agent Reinforcement Learning (MARL) controller, the Federated Learning (FL) coordinator, and the Differential Privacy (DP) layer, each measured and isolated rather than folded into one end-to-end number. We apply a correctness-aware metric pair and a reproduction-versus-replication discipline throughout, and we add a live single-gNB deployment that tests, rather than assumes, whether the rig reaches genuine per-slice scarcity.
-
-We extend the architecture to federated training with differential privacy, and we stress it under mid-episode gNB dropout, demand spikes, agent churn, and cluster growth to $N \in \{7, 19\}$ gNBs under ring and hex-grid adjacency. On the objective it trains on, AXIOM decisively beats an independent-learner ablation and resists a training collapse that becomes total for a flattened single-agent baseline. A correctness-aware metric pair and an independent-seed replication keep every reported result trustworthy.
-
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
 \resizebox{0.68\textwidth}{!}{%
 \begin{tikzpicture}[
@@ -136,6 +140,10 @@ rejects per-slice requests through a PRB-ratio ceiling.}
 \label{fig:sysview}
 \end{figure}
 
+This paper introduces AXIOM, an Attention-based eXecution with Integrity for O-RAN Multi-agent slice-admission controller. AXIOM is a centralised-training, decentralised-execution multi-agent architecture that is built on a shared Graph Attention Network (GAT)~\cite{gat} encoder over a multi-gNB topology, which feeds decentralised per-slice Q-heads. We deliver it together with the evaluation discipline needed to trust what it reports. Three gaps from our systematic review of 67 core studies motivate this pairing, as Section~\ref{sec:litreview} details. First, no reviewed study checks whether its own outcome metric can score a degenerate policy as well as a correct one. Second, none replicates a headline architectural finding on an independent seed sample. Third, none tests whether a live testbed can reach the contention regime its offline claims assume. We close all three gaps through a per-component realisation of the architecture, namely the GAT encoder, the Multi-Agent Reinforcement Learning (MARL) controller, the Federated Learning (FL) coordinator, and the Differential Privacy (DP) layer, each measured and isolated rather than folded into one end-to-end number. We apply a correctness-aware metric pair and a reproduction-versus-replication discipline throughout, and we add a live single-gNB deployment that tests, rather than assumes, whether the rig reaches genuine per-slice scarcity.
+
+We extend the architecture to federated training with differential privacy, and we stress it under mid-episode gNB dropout, demand spikes, agent churn, and cluster growth to $N \in \{7, 19\}$ gNBs under ring and hex-grid adjacency. On the objective it trains on, AXIOM decisively beats an independent-learner ablation and resists a training collapse that becomes total for a flattened single-agent baseline. A correctness-aware metric pair and an independent-seed replication keep every reported result trustworthy.
+
 \section{Related Work}
 \label{sec:litreview}
 Our prior systematic review~\cite{ref:access} screened 6{,}286 records down to 67 core studies from 2024 to 2026 on machine-learning-driven, user-centric distributed network slicing. The review organised them around three enabling pillars, namely topology-aware graph representation, distributed multi-agent control, and privacy-preserving federation. Each pillar is well developed on its own, but the three are rarely combined under realistic constraints, and never with a validated live deployment. No reviewed study checks whether its own evaluation metric can mask a degenerate policy, and none replicates a headline finding on an independent seed sample, which is the gap this paper fills.
@@ -189,24 +197,7 @@ checked by two safeguards, then validated on a live single-gNB testbed.}
 \label{fig:overview}
 \end{figure}
 
-We consider a cluster of $N{=}3$ gNBs, each serving the same three slices, URLLC, eMBB, and mMTC, under a shared per-gNB Physical Resource Block (PRB) budget $B$. An admission decision is a PRB-ceiling adjustment through the \texttt{slicing\_control\_m} minimum and maximum ratio, rather than a literal per-flow accept or reject, since the real OAI xApp control interface exposes only ratio ceilings. No real multi-gNB physical topology is available to us, so we take the least assumption-laden choice and treat the cluster as fully connected, as a modelling choice rather than a measured fact. At each control step, every gNB holds zero or more pending admission requests, each tagged with a slice identity, and an agent decides whether to accept or reject for each request independently, conditioned on the current cluster state. The discrete action space matches our single-gNB work exactly at \texttt{action\_dim}${=}2$, so any coordination benefit found here is due to the architecture and not a richer action space.
-
-The step reward follows our prior single-gNB formulation. It has a per-slice service term net of SLA-violation penalties, a congestion charge on admitted volume, and a load-imbalance penalty across gNBs. The step reward $r_t$ sums over slices indexed by $k$. It uses priority weight $\omega_k$, per-accept reward $R_k$, admitted count $n_k$, violation penalty $\lambda_k$, and the indicator $\mathbf{1}[\cdot]$ equal to one exactly when slice $k$ is in SLA violation that step,
-\begin{equation}
-\label{eq:reward}
-r_t = \sum_{k}\!\big(\omega_k R_k\, n_k - \lambda_k\,\mathbf{1}[v_k]\big)
-      \;-\; \kappa\, C_t \lVert a_t \rVert_1
-      \;-\; \beta\,(1 - F_t),
-\end{equation}
-where $\lVert a_t \rVert_1$ is the total admitted this step, $C_t$ the cluster-mean congestion level, $\kappa$ the congestion coefficient, $F_t\!\in\![0,1]$ the min-over-max PRB-utilisation fairness ratio, and $\beta$ the load-balance weight. The violation flag $v_k$ follows from a continuous SLA margin $m_k$. The correctness-aware metrics of Section~\ref{sec:collapse} also build on this margin. We take it as the worse of the queue and loss channels,
-\begin{equation}
-\label{eq:margin}
-m_k = \min\!\Big(1 - \tilde q_k,\; 1 - \tfrac{\ell_k}{\ell_k^{\max}}\Big),
-\qquad v_k \Leftrightarrow m_k \le 0,
-\end{equation}
-with $\tilde q_k$ the slice backlog relative to its budget, and $\ell_k$ and $\ell_k^{\max}$ its loss proxy and loss budget. These weights are tuned in prior work so that, under congestion, the reward-optimal policy is differentiated shedding, which continues accepting URLLC, mostly accepts eMBB, and rejects mMTC. We confirm this by Q-value inspection on a working baseline policy in Section~\ref{sec:methodology-perslice}, rather than assume it. Every result uses an offline, closed-loop simulation, except the bounded live anchor of Section~\ref{sec:results-m8}. The simulation is deliberately oversubscribed to roughly 110\% of one gNB's PRB budget and reuses our existing multi-gNB configuration unmodified, as a deliberately harder, disclosed stress environment. The concrete rig behind every live measurement is the single-host, software-radio, Open Radio Access Network (O-RAN) stack of Fig.~\ref{fig:testbed}, which runs without a near-real-time RAN Intelligent Controller (RIC).
-
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
 \resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
@@ -267,6 +258,23 @@ this rig.}
 \label{fig:testbed}
 \end{figure}
 
+We consider a cluster of $N{=}3$ gNBs, each serving the same three slices, URLLC, eMBB, and mMTC, under a shared per-gNB Physical Resource Block (PRB) budget $B$. An admission decision is a PRB-ceiling adjustment through the \texttt{slicing\_control\_m} minimum and maximum ratio, rather than a literal per-flow accept or reject, since the real OAI xApp control interface exposes only ratio ceilings. No real multi-gNB physical topology is available to us, so we take the least assumption-laden choice and treat the cluster as fully connected, as a modelling choice rather than a measured fact. At each control step, every gNB holds zero or more pending admission requests, each tagged with a slice identity, and an agent decides whether to accept or reject for each request independently, conditioned on the current cluster state. The discrete action space matches our single-gNB work exactly at \texttt{action\_dim}${=}2$, so any coordination benefit found here is due to the architecture and not a richer action space.
+
+The step reward follows our prior single-gNB formulation. It has a per-slice service term net of SLA-violation penalties, a congestion charge on admitted volume, and a load-imbalance penalty across gNBs. The step reward $r_t$ sums over slices indexed by $k$. It uses priority weight $\omega_k$, per-accept reward $R_k$, admitted count $n_k$, violation penalty $\lambda_k$, and the indicator $\mathbf{1}[\cdot]$ equal to one exactly when slice $k$ is in SLA violation that step,
+\begin{equation}
+\label{eq:reward}
+r_t = \sum_{k}\!\big(\omega_k R_k\, n_k - \lambda_k\,\mathbf{1}[v_k]\big)
+      \;-\; \kappa\, C_t \lVert a_t \rVert_1
+      \;-\; \beta\,(1 - F_t),
+\end{equation}
+where $\lVert a_t \rVert_1$ is the total admitted this step, $C_t$ the cluster-mean congestion level, $\kappa$ the congestion coefficient, $F_t\!\in\![0,1]$ the min-over-max PRB-utilisation fairness ratio, and $\beta$ the load-balance weight. The violation flag $v_k$ follows from a continuous SLA margin $m_k$. The correctness-aware metrics of Section~\ref{sec:collapse} also build on this margin. We take it as the worse of the queue and loss channels,
+\begin{equation}
+\label{eq:margin}
+m_k = \min\!\Big(1 - \tilde q_k,\; 1 - \tfrac{\ell_k}{\ell_k^{\max}}\Big),
+\qquad v_k \Leftrightarrow m_k \le 0,
+\end{equation}
+with $\tilde q_k$ the slice backlog relative to its budget, and $\ell_k$ and $\ell_k^{\max}$ its loss proxy and loss budget. These weights are tuned in prior work so that, under congestion, the reward-optimal policy is differentiated shedding, which continues accepting URLLC, mostly accepts eMBB, and rejects mMTC. We confirm this by Q-value inspection on a working baseline policy in Section~\ref{sec:methodology-perslice}, rather than assume it. Every result uses an offline, closed-loop simulation, except the bounded live anchor of Section~\ref{sec:results-m8}. The simulation is deliberately oversubscribed to roughly 110\% of one gNB's PRB budget and reuses our existing multi-gNB configuration unmodified, as a deliberately harder, disclosed stress environment. The concrete rig behind every live measurement is the single-host, software-radio, Open Radio Access Network (O-RAN) stack of Fig.~\ref{fig:testbed}, which runs without a near-real-time RAN Intelligent Controller (RIC).
+
 \section{The AXIOM Architecture}
 \label{sec:methodology}
 
@@ -299,16 +307,7 @@ Centralisation comes from this encoder, whose parameters every agent's loss upda
 
 The \texttt{LayerNorm} and the per-slice heads both answer a real training collapse, rather than a theoretical preference. An early design fed each embedding, concatenated with a one-hot slice context, into a single shared Q-head multi-layer perceptron (MLP). All three slices then update the same shared parameters. URLLC's large priority weight produces large gradients that overwrite mMTC's much smaller true signal. This is a standard shared-parameter class imbalance, and it drove the evaluation policy to block zero requests. We replace the single shared head with one small MLP per slice, selected by the context one-hot. Each slice then owns its parameters, so one slice's gradients can no longer overwrite another's. Together with the \texttt{LayerNorm}, this reduced the collapse from 30 of 30 to 9 of 30 seeds. Correctly-targeted differentiated shedding rose from 0 to 21 of the 30 seeds. A seed here is one independent random initialisation of network weights and environment stream. We report every seed rather than a single best run.
 
-Algorithm~\ref{alg:gat-ctde} states the training loop, where the encoder updates from every request in a sampled minibatch regardless of gNB or slice. This is centralised training, while action selection at rollout time consults only the acting agent's own embedding row, which is decentralised execution. Every pending request at gNB $i$, slice $k$ is its own temporal-difference sample, and we never sum requests across a step before the loss. For a request with immediate reward $r$, next-state embedding $z_i'$, and candidate next action $a'$, the bootstrapped target $y$ at discount $\gamma$ and the minibatch loss are
-\begin{equation}
-\label{eq:td}
-y = r + \gamma\,(1-d)\max_{a'} Q_{\phi_k^-}\!\big(z_i'\big)[a'],
-\qquad
-\mathcal{L} = \frac{1}{|B|}\sum_{(i,k,a)\in B}\ell_\delta\!\Big(Q_{\phi_k}(z_i)[a]-y\Big),
-\end{equation}
-where $Q_{\phi_k}$ is slice $k$'s online Q-head, $Q_{\phi_k^-}$ its target copy, $d$ the episode-done flag, and $B$ the sampled minibatch of requests. We use the Huber loss $\ell_\delta$ in place of squared error, which keeps the deeper encoder stable under long bootstraps.
-
-\begin{algorithm}[t]
+\begin{algorithm}[!t]
 \caption{AXIOM: centralised training, decentralised execution}
 \label{alg:gat-ctde}
 \begin{algorithmic}[1]
@@ -326,6 +325,15 @@ where $Q_{\phi_k}$ is slice $k$'s online Q-head, $Q_{\phi_k^-}$ its target copy,
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
+
+Algorithm~\ref{alg:gat-ctde} states the training loop, where the encoder updates from every request in a sampled minibatch regardless of gNB or slice. This is centralised training, while action selection at rollout time consults only the acting agent's own embedding row, which is decentralised execution. Every pending request at gNB $i$, slice $k$ is its own temporal-difference sample, and we never sum requests across a step before the loss. For a request with immediate reward $r$, next-state embedding $z_i'$, and candidate next action $a'$, the bootstrapped target $y$ at discount $\gamma$ and the minibatch loss are
+\begin{equation}
+\label{eq:td}
+y = r + \gamma\,(1-d)\max_{a'} Q_{\phi_k^-}\!\big(z_i'\big)[a'],
+\qquad
+\mathcal{L} = \frac{1}{|B|}\sum_{(i,k,a)\in B}\ell_\delta\!\Big(Q_{\phi_k}(z_i)[a]-y\Big),
+\end{equation}
+where $Q_{\phi_k}$ is slice $k$'s online Q-head, $Q_{\phi_k^-}$ its target copy, $d$ the episode-done flag, and $B$ the sampled minibatch of requests. We use the Huber loss $\ell_\delta$ in place of squared error, which keeps the deeper encoder stable under long bootstraps.
 
 \subsection{Federated Training with Differential Privacy}
 Fig.~\ref{fig:architecture}b shows the federated variant. Each gNB becomes a federated-learning client. It holds a private copy of the same network and trains only on its own requests. Transitions are partitioned by owning agent, so no client sees another's raw admission data. Each client's GAT encoder still consumes the full joint node-feature snapshot. Every $R$ local steps, the server averages all clients' online weights by FedAvg~\cite{fedavg} and broadcasts the result back. We also implement FedProx~\cite{fedprox}, which adds a proximal term that pulls local weights toward the last broadcast global model. We sweep it at $\mu \in \{0.01, 0.1, 1.0\}$ under both homogeneous and heterogeneous per-gNB load. FedProx earns no measurable dividend at any strength, since per-round client drift is negligible relative to the loss scale.
@@ -513,7 +521,7 @@ The architecture delivers on each of these fronts. AXIOM beats the independent-l
 
 Two safeguards keep these results trustworthy. A correctness-aware metric pair ties evaluation to the training objective, while a reproduction-versus-replication discipline tests each headline finding on an independent seed sample. Together they caught issues a standard pipeline would have reported as clean. The broader lesson is that evaluation here needs metrics tied to the objective, that architectural claims need an independent sample before they are trusted, and that a live testbed's reach must be checked rather than assumed.
 
-Future work targets the remaining gaps from our review. The first goal is a full-scale simulation with real contention, so admission-control behaviour under genuine scarcity can be measured directly rather than in the disclosed stress regime. The second is Multi-Access Edge Computing (MEC) scaling, which adds compute-placement nodes to the cluster graph and extends the controller to joint admission and offloading. We also plan a live multi-gNB deployment, broader privacy settings across operators, and direct Quality of Experience (QoE) inference in the reward. Together these steps define AXIOM-X, the eXtended version of AXIOM, moving the architecture toward a scalable, privacy-aware, and user-centric controller for 5G and Beyond-5G networks.
+Future work targets the remaining gaps from our review. The first goal is a full-scale simulation with real contention, so admission-control behaviour under genuine scarcity can be measured directly rather than in the disclosed stress regime. The second is Multi-Access Edge Computing (MEC) scaling, which adds compute-placement nodes to the cluster graph and extends the controller to joint admission and offloading. We also plan a live multi-gNB deployment, broader privacy settings across operators, and direct Quality of Experience (QoE) inference in the reward. Together these steps move the architecture toward a scalable, privacy-aware, and user-centric controller for 5G and Beyond-5G networks.
 
 \backmatter
 

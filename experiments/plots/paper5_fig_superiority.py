@@ -60,8 +60,6 @@ def draw_quadrant(ax):
     ax.set_ylabel("Collapse resistance, 7 gNBs (%)")
     ax.set_title("(a) Only AXIOM is accurate and robust", fontweight="bold")
     ax.set_yticks([0, 20, 40, 60, 80, 100])
-    ax.text(11.1, 111, "reward over 30 seeds; collapse over 2$\\times$12 seeds",
-            fontsize=6.5, style="italic", color="#666", va="top")
 
 
 def draw_radar(ax):
@@ -83,11 +81,15 @@ def draw_radar(ax):
     ax.set_yticklabels(["0.25", "0.5", "0.75", "1.0"], fontsize=6.5, color="#999")
     ax.tick_params(axis="x", pad=6)
     ax.grid(linewidth=0.4, alpha=0.5)
-    for name in ["Single-agent DQN", "Independent DQN", "AXIOM"]:
+    # AXIOM first (its fill dominates), baselines on top so their lines stay visible
+    zbase = {"AXIOM": 4, "Independent DQN": 5, "Single-agent DQN": 6}
+    for name in ["AXIOM", "Independent DQN", "Single-agent DQN"]:
         v = vals[name] + vals[name][:1]
-        lw = 2.0 if name == "AXIOM" else 1.3
-        ax.plot(ang, v, color=C[name], linewidth=lw, marker=M[name], markersize=4, zorder=4)
-        ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.08, zorder=2)
+        lw = 2.2 if name == "AXIOM" else 1.8
+        ms = 4 if name == "AXIOM" else 5
+        ax.plot(ang, v, color=C[name], linewidth=lw, marker=M[name], markersize=ms,
+                zorder=zbase[name])
+        ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.06, zorder=2)
     # raw AXIOM values, placed just inside each vertex so they clear the axis labels
     raw = ["14.06", "0.95", "50%", "yes", "yes"]
     for a_i, r_i, txt in zip(ang[:-1], vals["AXIOM"], raw):

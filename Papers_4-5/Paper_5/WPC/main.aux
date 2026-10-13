@@ -6,8 +6,10 @@
 \Newlabel{1}{1}
 \citation{mecon-paper1,icraie-paper2}
 \citation{gat}
-\citation{ref:access}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System view. A cluster of gNBs, coordinated by the shared AXIOM encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling.}}{2}{figure.1}\protected@file@percent }
+\newlabel{fig:sysview}{{1}{2}{System view. A cluster of gNBs, coordinated by the shared AXIOM encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling}{figure.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\citation{ref:access}
 \citation{shao2021gatmarl}
 \citation{ahmadi2024generalizable}
 \citation{sulaiman2023coordinated}
@@ -16,35 +18,33 @@
 \citation{zhang2022federatedoran}
 \citation{yasin2025dpfl}
 \citation{mohajer2026pronto,bouroudi2025gnnmarl,qasim2025tgnnfl,gong2026femaddpg}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces System view. A cluster of gNBs, coordinated by the shared AXIOM encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling.}}{3}{figure.1}\protected@file@percent }
-\newlabel{fig:sysview}{{1}{3}{System view. A cluster of gNBs, coordinated by the shared AXIOM encoder over the cluster graph and backhauled to a 5G core, serves UEs across the URLLC, eMBB, and mMTC slices. Each gNB admits or rejects per-slice requests through a PRB-ratio ceiling}{figure.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{3}{section.2}\protected@file@percent }
 \newlabel{sec:litreview}{{2}{3}{Related Work}{section.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the research. An AXIOM controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed.}}{4}{figure.2}\protected@file@percent }
 \newlabel{fig:overview}{{2}{4}{Overview of the research. An AXIOM controller is evaluated across four offline campaigns in a stress environment, every result checked by two safeguards, then validated on a live single-gNB testbed}{figure.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{4}{section.3}\protected@file@percent }
 \newlabel{sec:system-model}{{3}{4}{System Model and Problem Formulation}{section.3}{}}
-\citation{gat}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig.}}{5}{figure.3}\protected@file@percent }
+\newlabel{fig:testbed}{{3}{5}{Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig}{figure.3}{}}
 \newlabel{eq:reward}{{1}{5}{System Model and Problem Formulation}{equation.3.1}{}}
 \newlabel{eq:margin}{{2}{5}{System Model and Problem Formulation}{equation.3.2}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}The AXIOM Architecture}{5}{section.4}\protected@file@percent }
-\newlabel{sec:methodology}{{4}{5}{The AXIOM Architecture}{section.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shared Encoder, Decentralised Q-Heads}{5}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:methodology-perslice}{{4.1}{5}{Shared Encoder, Decentralised Q-Heads}{subsection.4.1}{}}
-\newlabel{eq:gat}{{3}{5}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig.}}{6}{figure.3}\protected@file@percent }
-\newlabel{fig:testbed}{{3}{6}{Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig}{figure.3}{}}
+\citation{gat}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces AXIOM architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step.}}{6}{figure.4}\protected@file@percent }
 \newlabel{fig:architecture}{{4}{6}{AXIOM architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step}{figure.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}The AXIOM Architecture}{6}{section.4}\protected@file@percent }
+\newlabel{sec:methodology}{{4}{6}{The AXIOM Architecture}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shared Encoder, Decentralised Q-Heads}{6}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:methodology-perslice}{{4.1}{6}{Shared Encoder, Decentralised Q-Heads}{subsection.4.1}{}}
+\newlabel{eq:gat}{{3}{6}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
 \newlabel{eq:gat-agg}{{4}{6}{Shared Encoder, Decentralised Q-Heads}{equation.4.4}{}}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces AXIOM: centralised training, decentralised execution}}{7}{algorithm.1}\protected@file@percent }
+\newlabel{alg:gat-ctde}{{1}{7}{Shared Encoder, Decentralised Q-Heads}{algorithm.1}{}}
+\newlabel{eq:td}{{5}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.5}{}}
 \citation{fedavg}
 \citation{fedprox}
 \citation{dpsgd}
 \citation{zcdp}
-\newlabel{eq:td}{{5}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Federated Training with Differential Privacy}{7}{subsection.4.2}\protected@file@percent }
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces AXIOM: centralised training, decentralised execution}}{8}{algorithm.1}\protected@file@percent }
-\newlabel{alg:gat-ctde}{{1}{8}{Shared Encoder, Decentralised Q-Heads}{algorithm.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Federated Training with Differential Privacy}{8}{subsection.4.2}\protected@file@percent }
 \newlabel{eq:zcdp}{{6}{8}{Federated Training with Differential Privacy}{equation.4.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Setup}{8}{subsection.4.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Four evaluation-pipeline failures this paper's safeguards caught, none of which a standard pipeline would have surfaced.}}{9}{table.1}\protected@file@percent }
