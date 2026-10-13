@@ -66,7 +66,7 @@ We extend the architecture to federated training with differential privacy, and 
 
 \begin{figure}[t]
 \centering
-\resizebox{0.76\textwidth}{!}{%
+\resizebox{0.68\textwidth}{!}{%
 \begin{tikzpicture}[
   font=\footnotesize,
   core/.style={draw=blue!55!black, fill=blue!7, ellipse,
@@ -208,7 +208,7 @@ with $\tilde q_k$ the slice backlog relative to its budget, and $\ell_k$ and $\e
 
 \begin{figure}[t]
 \centering
-\resizebox{0.88\textwidth}{!}{%
+\resizebox{0.78\textwidth}{!}{%
 \begin{tikzpicture}[
   block/.style={draw, thick, rounded corners, align=center, fill=gray!8,
                 font=\footnotesize, inner sep=6pt},
@@ -339,7 +339,7 @@ Differential privacy gives a formal guarantee that one client's training data ca
 We apply the same clip whether or not noise is added, so a $\sigma{=}0$ run and a $\sigma{>}0$ run differ only in whether noise is injected, which is what lets the privacy-cost comparison in Section~\ref{sec:results-m3} isolate the effect of the noise. Each federated round therefore runs $R$ local Huber-TD steps per client with an optional FedProx proximal term $\tfrac{\mu}{2}\lVert \theta_i - \bar\theta \rVert^2$, clips and optionally perturbs the gradient, and closes with a FedAvg average that is broadcast back.
 
 \subsection{Experimental Setup}
-Both campaigns use 300 training and 50 evaluation episodes per seed. The centralised campaign uses a fixed 30-seed list, seeds 900 to 929, across three arms. The first arm is AXIOM, which the result figures label GAT-CTDE after its architecture. The second is a single-agent DQN baseline run against the flattened joint state. The third is an independent-DQN ablation. An ablation is a deliberately reduced variant with one component removed, so its effect can be isolated. Here it is one per-gNB DQN with no parameter sharing and no topology information, which isolates the contribution of the shared encoder and centralised training. All three arms use matched hyperparameters, with discount factor $\gamma=0.95$ and per-episode epsilon decay. The federated campaign uses the first 10 of these seeds and a five-level noise sweep $\sigma \in \{0, 0.5, 1, 2, 4\}$. Its $\sigma{=}0$ level is therefore directly comparable to the same 10 centralised seeds. All confidence intervals (CIs) are 95\% bootstrap percentile intervals over 10{,}000 resamples. Paired comparisons use the Wilcoxon signed-rank test.
+Both campaigns use 300 training and 50 evaluation episodes per seed. The centralised campaign uses a fixed 30-seed list, seeds 900 to 929, across three arms. The first arm is AXIOM, which the result figures label GAT-CTDE after its architecture. The second is a single-agent DQN baseline run against the flattened joint state. The third is an independent-DQN ablation. An ablation is a deliberately reduced variant with one component removed, so its effect can be isolated. Here it is one per-gNB DQN with no parameter sharing and no topology information, which isolates the contribution of the shared encoder and centralised training. All three arms use matched hyperparameters, with discount factor $\gamma=0.95$ and per-episode epsilon decay. The federated campaign uses the first 10 of these seeds and a five-level noise sweep $\sigma \in \{0, 0.5, 1, 2, 4\}$. Its $\sigma{=}0$ level is therefore directly comparable to the same 10 centralised seeds. All confidence intervals (CIs) are 95\% bootstrap percentile intervals over 10{,}000 resamples, and paired comparisons use the Wilcoxon signed-rank test. The remaining settings are fixed across every seed. AXIOM trains at learning rate $1{\times}10^{-4}$ and the DQN baselines at $1{\times}10^{-3}$, both under the Adam optimiser, with epsilon decaying from $1.0$ to $0.05$ at a per-episode factor of $0.985$ and the target network synchronised every 10 episodes. The GAT encoder uses hidden and output dimension 16, feeding per-slice Q-heads of hidden dimension 32. Each federated round runs 50 local steps under FedAvg with FedProx weight $\mu{=}0$ and a differential-privacy gradient-clip norm of $1.0$.
 
 \subsection{Evaluation Safeguards}
 \label{sec:collapse}
@@ -436,38 +436,6 @@ Single-agent & 13.867 [13.69, 14.05] & 0.987 & 0.115 [0.061, 0.176] \\
 \footnotesize
 \item[$\ast$] Low compliance is the metric artifact Section~\ref{sec:collapse} explains, not a performance failure.
 \end{tablenotes}
-\end{table}
-
-\begin{table}[t]
-\caption{Training hyperparameters, all fixed across seeds.}
-\label{tab:hyperparams}
-\centering
-\footnotesize
-\begin{tabular}{ll}
-\toprule
-Hyperparameter & Value \\
-\midrule
-Learning rate (AXIOM) & $1{\times}10^{-4}$ \\
-Learning rate (DQN baselines) & $1{\times}10^{-3}$ \\
-Discount $\gamma$ & 0.95 \\
-Epsilon: start $\to$ end (decay/episode) & $1.0 \to 0.05$ (0.985) \\
-Target-network sync & every 10 episodes \\
-Optimiser & Adam \\
-Training / evaluation episodes & 300 / 50 \\
-\midrule
-\multicolumn{2}{l}{GAT encoder, AXIOM only} \\
-Hidden / output dim & 16 / 16 \\
-Attention heads & 4 \\
-Encoder layers & 2 \\
-Q-head hidden dim & 32 \\
-\midrule
-\multicolumn{2}{l}{Federated + DP, federated AXIOM only} \\
-Local steps per round & 50 \\
-Aggregator & FedAvg ($\mu$=0) \\
-DP gradient clip norm & 1.0 \\
-DP noise multiplier sweep $\sigma$ & $\{0, 0.5, 1, 2, 4\}$ \\
-\botrule
-\end{tabular}
 \end{table}
 
 \subsection{Federated Training and DP}
