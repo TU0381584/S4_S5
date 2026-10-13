@@ -152,7 +152,7 @@ Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller
 
 \begin{figure}[t]
 \centering
-\resizebox{0.88\textwidth}{!}{%
+\resizebox{0.7\textwidth}{!}{%
 \begin{tikzpicture}[
   base/.style={draw, semithick, rounded corners, align=center, font=\footnotesize, inner sep=4pt},
   pblk/.style={base, fill=blue!8,   draw=blue!55!black},
@@ -183,7 +183,7 @@ Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller
 \draw[ar] (safe) -- (live);
 \end{tikzpicture}%
 }
-\caption{Overview of the research. A AXIOM controller is evaluated
+\caption{Overview of the research. An AXIOM controller is evaluated
 across four offline campaigns in a stress environment, every result
 checked by two safeguards, then validated on a live single-gNB testbed.}
 \label{fig:overview}
@@ -336,23 +336,7 @@ Differential privacy gives a formal guarantee that one client's training data ca
 \rho=\frac{m}{2\sigma^{2}},\qquad
 \varepsilon(\delta)=\rho+2\sqrt{\rho\ln(1/\delta)}.
 \end{equation}
-We apply the same clip whether or not noise is added, so a $\sigma{=}0$ run and a $\sigma{>}0$ run differ only in whether noise is injected, and the privacy-cost comparison in Section~\ref{sec:results-m3} depends on this isolation. Algorithm~\ref{alg:fed-dp} states one federated round, in which the proximal weight $\mu$ is the FedProx strength swept above.
-
-\begin{algorithm}[t]
-\caption{Federated AXIOM round with DP-SGD}
-\label{alg:fed-dp}
-\begin{algorithmic}[1]
-\REQUIRE $N$ clients with local nets $(\theta_i,\{\phi_{i,k}\})$, global snapshot $\bar\theta$, local steps $R$, clip norm $C_{\text{dp}}$, noise $\sigma$, FedProx weight $\mu$
-\FOR{each round}
-  \FOR{$R$ local steps, each client $i$ independently}
-    \STATE $\mathcal{L}_i \gets$ per-request Huber TD loss of Alg.~\ref{alg:gat-ctde} on $i$'s own requests $+\ \frac{\mu}{2}\lVert \theta_i - \bar\theta \rVert^2$
-    \STATE $g_i \gets \text{clip}(\nabla\mathcal{L}_i,\,C_{\text{dp}})$, then $g_i \gets g_i + \mathcal{N}(0,(\sigma C_{\text{dp}})^2 I)$ if $\sigma>0$ \COMMENT{same clip isolates privacy cost}
-    \STATE $(\theta_i,\phi_i) \gets (\theta_i,\phi_i) - \eta\,g_i$
-  \ENDFOR
-  \STATE $\bar\theta,\bar\phi \gets \frac{1}{N}\sum_i (\theta_i,\phi_i)$ and broadcast to every client \COMMENT{FedAvg}
-\ENDFOR
-\end{algorithmic}
-\end{algorithm}
+We apply the same clip whether or not noise is added, so a $\sigma{=}0$ run and a $\sigma{>}0$ run differ only in whether noise is injected, which is what lets the privacy-cost comparison in Section~\ref{sec:results-m3} isolate the effect of the noise. Each federated round therefore runs $R$ local Huber-TD steps per client with an optional FedProx proximal term $\tfrac{\mu}{2}\lVert \theta_i - \bar\theta \rVert^2$, clips and optionally perturbs the gradient, and closes with a FedAvg average that is broadcast back.
 
 \subsection{Experimental Setup}
 Both campaigns use 300 training and 50 evaluation episodes per seed. The centralised campaign uses a fixed 30-seed list, seeds 900 to 929, across three arms. The first arm is AXIOM, which the result figures label GAT-CTDE after its architecture. The second is a single-agent DQN baseline run against the flattened joint state. The third is an independent-DQN ablation. An ablation is a deliberately reduced variant with one component removed, so its effect can be isolated. Here it is one per-gNB DQN with no parameter sharing and no topology information, which isolates the contribution of the shared encoder and centralised training. All three arms use matched hyperparameters, with discount factor $\gamma=0.95$ and per-episode epsilon decay. The federated campaign uses the first 10 of these seeds and a five-level noise sweep $\sigma \in \{0, 0.5, 1, 2, 4\}$. Its $\sigma{=}0$ level is therefore directly comparable to the same 10 centralised seeds. All confidence intervals (CIs) are 95\% bootstrap percentile intervals over 10{,}000 resamples. Paired comparisons use the Wilcoxon signed-rank test.
