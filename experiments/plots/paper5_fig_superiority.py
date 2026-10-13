@@ -1,0 +1,104 @@
+"""Fig: AXIOM superiority, two panels side by side.
+(a) quality-versus-robustness quadrant, (b) capability radar.
+
+Every value is a number already reported in the WPC manuscript. The radar
+normalises each axis as a fraction of the best policy on that axis, so a
+baseline reads 0 only where it genuinely has no such capability, namely the
+topology and privacy axes. Colours/markers match the other result figures.
+"""
+import numpy as np
+import matplotlib as mpl
+mpl.use("Agg")
+import matplotlib.pyplot as plt
+from matplotlib.patches import Rectangle
+from matplotlib.lines import Line2D
+
+mpl.rcParams.update({
+    "font.size": 9.5, "axes.titlesize": 10.5, "axes.labelsize": 9.5,
+    "xtick.labelsize": 8.5, "ytick.labelsize": 8.5,
+    "axes.linewidth": 0.7, "pdf.fonttype": 42, "ps.fonttype": 42,
+    "savefig.bbox": "tight",
+})
+
+C = {"AXIOM": "#2a78d6", "Single-agent DQN": "#1baf7a", "Independent DQN": "#eb6834"}
+M = {"AXIOM": "o", "Single-agent DQN": "s", "Independent DQN": "^"}
+
+
+def draw_quadrant(ax):
+    arms = {
+        "AXIOM": dict(x=14.062, xci=(13.91, 14.23), y=50.00, yspan=(41.7, 58.3),
+                      tx=14.06, ty=66, ha="center", va="bottom"),
+        "Single-agent DQN": dict(x=13.867, xci=(13.69, 14.05), y=16.65, yspan=(8.3, 25.0),
+                                 tx=13.45, ty=28, ha="right", va="center"),
+        "Independent DQN": dict(x=12.601, xci=(11.30, 13.49), y=91.65, yspan=(83.3, 100.0),
+                                tx=12.40, ty=78, ha="center", va="top"),
+    }
+    ax.grid(True, linewidth=0.4, alpha=0.4)
+    ax.spines[["top", "right"]].set_visible(False)
+    zx, zy = 13.35, 40.0
+    ax.add_patch(Rectangle((zx, zy), 14.9 - zx, 112 - zy, facecolor="#eaf1fb",
+                           edgecolor="none", zorder=0))
+    ax.axvline(zx, color="#9bb6d8", linestyle=(0, (4, 3)), linewidth=0.8, zorder=1)
+    ax.axhline(zy, color="#9bb6d8", linestyle=(0, (4, 3)), linewidth=0.8, zorder=1)
+    ax.text(14.85, 106, "accurate\n+ scalable", ha="right", va="top",
+            fontsize=8.5, style="italic", color="#3a6aa5", zorder=1)
+    for name, a in arms.items():
+        xerr = [[a["x"] - a["xci"][0]], [a["xci"][1] - a["x"]]]
+        yerr = [[a["y"] - a["yspan"][0]], [a["yspan"][1] - a["y"]]]
+        ax.errorbar(a["x"], a["y"], xerr=xerr, yerr=yerr, fmt=M[name], color=C[name],
+                    markersize=11, markeredgecolor="white", markeredgewidth=0.8,
+                    elinewidth=1.1, capsize=3.5, capthick=1.0, zorder=5)
+        ax.annotate(name, (a["x"], a["y"]), xytext=(a["tx"], a["ty"]),
+                    ha=a["ha"], va=a["va"], fontsize=9, color=C[name], fontweight="bold",
+                    zorder=6, arrowprops=dict(arrowstyle="-", color=C[name], lw=0.7,
+                                              shrinkA=2, shrinkB=8, alpha=0.7))
+    ax.set_xlim(11.0, 14.95)
+    ax.set_ylim(-3, 114)
+    ax.set_xlabel("Mean reward per step, 3 gNBs")
+    ax.set_ylabel("Collapse resistance, 7 gNBs (%)")
+    ax.set_title("(a) Only AXIOM is accurate and robust", fontweight="bold")
+    ax.set_yticks([0, 20, 40, 60, 80, 100])
+
+
+def draw_radar(ax):
+    labels = ["Reward", "Blocking\naccuracy", "Scale\nrobustness", "Topology\naware", "Privacy\nready"]
+    vals = {
+        "AXIOM":            [1.000, 0.964, 0.546, 1.0, 1.0],
+        "Single-agent DQN": [0.986, 1.000, 0.182, 0.0, 0.0],
+        "Independent DQN":  [0.896, 0.913, 1.000, 0.0, 0.0],
+    }
+    N = len(labels)
+    ang = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
+    ang += ang[:1]
+    ax.set_theta_offset(np.pi / 2)
+    ax.set_theta_direction(-1)
+    ax.set_xticks(ang[:-1])
+    ax.set_xticklabels(labels, fontsize=8.5)
+    ax.set_ylim(0, 1.0)
+    ax.set_yticks([0.25, 0.5, 0.75, 1.0])
+    ax.set_yticklabels(["", "0.5", "", "1.0"], fontsize=7, color="#888")
+    ax.tick_params(axis="x", pad=6)
+    ax.grid(linewidth=0.4, alpha=0.5)
+    for name in ["Single-agent DQN", "Independent DQN", "AXIOM"]:
+        v = vals[name] + vals[name][:1]
+        lw = 2.0 if name == "AXIOM" else 1.3
+        ax.plot(ang, v, color=C[name], linewidth=lw, marker=M[name], markersize=4, zorder=4)
+        ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.08, zorder=2)
+    ax.set_title("(b) Capability profile, fraction of best", fontweight="bold", pad=16)
+    handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=2, label=n)
+               for n in ["AXIOM", "Single-agent DQN", "Independent DQN"]]
+    ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.09),
+              ncol=3, frameon=False, fontsize=8, handlelength=1.4, columnspacing=1.2)
+
+
+fig = plt.figure(figsize=(8.6, 3.7))
+axL = fig.add_subplot(1, 2, 1)
+axR = fig.add_subplot(1, 2, 2, projection="polar")
+draw_quadrant(axL)
+draw_radar(axR)
+fig.subplots_adjust(wspace=0.35, bottom=0.12)
+
+out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
+fig.savefig(out + ".pdf", bbox_inches="tight")
+fig.savefig(out + ".png", dpi=200, bbox_inches="tight")
+print("wrote", out + ".pdf / .png")

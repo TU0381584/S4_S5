@@ -152,7 +152,7 @@ Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller
 
 \begin{figure}[t]
 \centering
-\resizebox{0.7\textwidth}{!}{%
+\resizebox{0.98\textwidth}{!}{%
 \begin{tikzpicture}[
   base/.style={draw, semithick, rounded corners, align=center, font=\footnotesize, inner sep=4pt},
   pblk/.style={base, fill=blue!8,   draw=blue!55!black},
@@ -208,7 +208,7 @@ with $\tilde q_k$ the slice backlog relative to its budget, and $\ell_k$ and $\e
 
 \begin{figure}[t]
 \centering
-\resizebox{0.78\textwidth}{!}{%
+\resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
   block/.style={draw, thick, rounded corners, align=center, fill=gray!8,
                 font=\footnotesize, inner sep=6pt},
@@ -355,16 +355,17 @@ a seed that never blocks is therefore excluded, rather than scored as a success.
 \label{tab:safeguards}
 \centering
 \footnotesize
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.225\textwidth} >{\raggedright\arraybackslash}p{0.205\textwidth} >{\raggedright\arraybackslash}p{0.245\textwidth}@{}}
+{\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.215\textwidth} >{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}p{0.235\textwidth} >{\raggedright\arraybackslash}p{0.235\textwidth}@{}}
 \toprule
 Failure & Missed by & Caught by & Outcome \\
 \midrule
-Training collapse (\S\ref{sec:methodology-perslice}) & Compliance blind to no-op & Correctness-aware pair & 0/30$\to$21/30 differentiate \\
-Eval-log contamination & Append-mode log stacking & Episode-index audit & Logs cleared, no retrain \\
-Reproducibility gap (\S\ref{sec:results-m4}) & Single-sample overclaim & Repro-vs-replication & Churn claim retracted \\
-Scheduler-floor bug (\S\ref{sec:results-m8}) & Can't see cross-layer floor & Direct state instrumentation & $>$100k readings clear \\
+Training collapse & Blind to no-op & Correctness-aware pair & 0/30$\to$21/30 correct \\
+Log contamination & Append-mode stacking & Episode-index audit & Cleared, no retrain \\
+Reproducibility gap & Single-sample overclaim & Repro-vs-replication & Churn claim retracted \\
+Scheduler-floor bug & Cross-layer floor hidden & Direct instrumentation & 100k+ readings clear \\
 \botrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 \label{sec:correctness-metrics}
@@ -498,15 +499,16 @@ Pooled across 64 independently drawn seeds, covering 68 of 192 cells, AXIOM's co
 \label{eq:collapse}
 \hat p_{\text{collapse}} = 35.4\%,\qquad \text{95\% CI } [25.5\%,\;45.8\%],
 \end{equation}
-This single bootstrapped estimate replaces two smaller samples that had disagreed. A properly powered twelve-seed run at seven gNBs, with a disjoint twelve-seed replication, puts AXIOM at 41.7\% and 58.3\% collapse across the two samples. Both are statistically indistinguishable from Eq.~\ref{eq:collapse}, so this collapse-proneness is present from seven gNBs onward, not only at large scale. Over the same two samples the single-agent DQN collapses at 91.7\% and 75.0\%, against 0\% in its earlier three-seed pilot, the sharpest single result in this extension, while the independent DQN collapses at 0.0\% and 16.7\%, confirming that it collapses rarely rather than never. AXIOM therefore sits between the two, far more robust than the single-agent policy it is meant to replace, and the only one of the three that stays robust while also learning a strong, topology-aware blocking rule. Fig.~\ref{fig:quadrant} places the three policies on one map of reward quality against scaling robustness. AXIOM alone falls in the region that is both accurate and robust, while the independent DQN trades reward away for its robustness and the single-agent policy trades robustness away for reward.
+This single bootstrapped estimate replaces two smaller samples that had disagreed. A properly powered twelve-seed run at seven gNBs, with a disjoint twelve-seed replication, puts AXIOM at 41.7\% and 58.3\% collapse across the two samples. Both are statistically indistinguishable from Eq.~\ref{eq:collapse}, so this collapse-proneness is present from seven gNBs onward, not only at large scale. Over the same two samples the single-agent DQN collapses at 91.7\% and 75.0\%, against 0\% in its earlier three-seed pilot, the sharpest single result in this extension, while the independent DQN collapses at 0.0\% and 16.7\%, confirming that it collapses rarely rather than never. AXIOM therefore sits between the two, far more robust than the single-agent policy it is meant to replace, and the only one of the three that stays robust while also learning a strong, topology-aware blocking rule. Fig.~\ref{fig:quadrant}a places the three policies on one map of reward quality against scaling robustness. AXIOM alone falls in the region that is both accurate and robust, while the independent DQN trades reward away for its robustness and the single-agent policy trades robustness away for reward. The capability radar in Fig.~\ref{fig:quadrant}b makes the same point across five axes at once, where AXIOM holds the largest enclosed area.
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.5\textwidth]{figures/fig10_axiom_quadrant.pdf}
-\caption{Reward quality against scaling robustness, from mean reward per step
-at three gNBs with 95\% CIs and collapse resistance at seven gNBs across two
-12-seed samples. AXIOM alone is both accurate and robust, while the other two
-each miss one axis.}
+\includegraphics[width=\textwidth]{figures/fig10_axiom_superiority.pdf}
+\caption{AXIOM against the two baselines. a, Reward quality at three gNBs with
+95\% CIs against collapse resistance at seven gNBs across two 12-seed samples,
+where AXIOM alone is accurate and robust. b, Each axis as a fraction of the
+best policy on it, so AXIOM encloses the largest area and leads the two
+capability axes outright.}
 \label{fig:quadrant}
 \end{figure}
 

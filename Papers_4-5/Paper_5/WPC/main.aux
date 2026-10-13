@@ -25,26 +25,26 @@
 \@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{4}{section.3}\protected@file@percent }
 \newlabel{sec:system-model}{{3}{4}{System Model and Problem Formulation}{section.3}{}}
 \citation{gat}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig.}}{5}{figure.3}\protected@file@percent }
-\newlabel{fig:testbed}{{3}{5}{Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig}{figure.3}{}}
 \newlabel{eq:reward}{{1}{5}{System Model and Problem Formulation}{equation.3.1}{}}
 \newlabel{eq:margin}{{2}{5}{System Model and Problem Formulation}{equation.3.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}The AXIOM Architecture}{5}{section.4}\protected@file@percent }
 \newlabel{sec:methodology}{{4}{5}{The AXIOM Architecture}{section.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shared Encoder, Decentralised Q-Heads}{5}{subsection.4.1}\protected@file@percent }
 \newlabel{sec:methodology-perslice}{{4.1}{5}{Shared Encoder, Decentralised Q-Heads}{subsection.4.1}{}}
+\newlabel{eq:gat}{{3}{5}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig.}}{6}{figure.3}\protected@file@percent }
+\newlabel{fig:testbed}{{3}{6}{Real testbed stack, a single-host, software-radio rfsim, RIC-free O-RAN deployment distinguished from SDR hardware-in-the-loop testbeds. Every block and label is a measured or configured value from this rig}{figure.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces AXIOM architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step.}}{6}{figure.4}\protected@file@percent }
 \newlabel{fig:architecture}{{4}{6}{AXIOM architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step}{figure.4}{}}
-\newlabel{eq:gat}{{3}{6}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
 \newlabel{eq:gat-agg}{{4}{6}{Shared Encoder, Decentralised Q-Heads}{equation.4.4}{}}
 \citation{fedavg}
 \citation{fedprox}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces AXIOM: centralised training, decentralised execution}}{7}{algorithm.1}\protected@file@percent }
-\newlabel{alg:gat-ctde}{{1}{7}{Shared Encoder, Decentralised Q-Heads}{algorithm.1}{}}
-\newlabel{eq:td}{{5}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Federated Training with Differential Privacy}{7}{subsection.4.2}\protected@file@percent }
 \citation{dpsgd}
 \citation{zcdp}
+\newlabel{eq:td}{{5}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Federated Training with Differential Privacy}{7}{subsection.4.2}\protected@file@percent }
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces AXIOM: centralised training, decentralised execution}}{8}{algorithm.1}\protected@file@percent }
+\newlabel{alg:gat-ctde}{{1}{8}{Shared Encoder, Decentralised Q-Heads}{algorithm.1}{}}
 \newlabel{eq:zcdp}{{6}{8}{Federated Training with Differential Privacy}{equation.4.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Setup}{8}{subsection.4.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Four evaluation-pipeline failures this paper's safeguards caught, none of which a standard pipeline would have surfaced.}}{9}{table.1}\protected@file@percent }
@@ -53,39 +53,39 @@
 \newlabel{sec:collapse}{{4.4}{9}{Evaluation Safeguards}{subsection.4.4}{}}
 \newlabel{eq:precision}{{7}{9}{Evaluation Safeguards}{equation.4.7}{}}
 \newlabel{sec:correctness-metrics}{{4.4}{9}{Evaluation Safeguards}{table.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{9}{section.5}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces How the three policies compare. AXIOM is the architecture of this paper; the two DQN policies are ablations that strip out its coordination. The three-gNB values come from the campaign of Table~\ref {tab:m2-results}.}}{10}{table.2}\protected@file@percent }
 \newlabel{tab:compare}{{2}{10}{How the three policies compare. AXIOM is the architecture of this paper; the two DQN policies are ablations that strip out its coordination. The three-gNB values come from the campaign of Table~\ref {tab:m2-results}}{table.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Results}{10}{section.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Centralised}{10}{subsection.5.1}\protected@file@percent }
 \newlabel{sec:results-m2}{{5.1}{10}{Centralised}{subsection.5.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces M2 centralised campaign, per-seed evidence. a, Paired per-seed mean reward per step versus single-agent DQN, coloured by win, tie, or loss, the source of the borderline $p=0.0577$. b, Per-seed reward distribution for all three arms.}}{11}{figure.5}\protected@file@percent }
 \newlabel{fig:m2-results}{{5}{11}{M2 centralised campaign, per-seed evidence. a, Paired per-seed mean reward per step versus single-agent DQN, coloured by win, tie, or loss, the source of the borderline $p=0.0577$. b, Per-seed reward distribution for all three arms}{figure.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs.}}{11}{table.3}\protected@file@percent }
 \newlabel{tab:m2-results}{{3}{11}{M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Federated Training and DP}{11}{subsection.5.2}\protected@file@percent }
-\newlabel{sec:results-m3}{{5.2}{11}{Federated Training and DP}{subsection.5.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces M3 federated and DP sweep. a, Paired per-seed federation cost on mean reward per step, no measurable difference at $p=0.8125$. b, Block precision versus DP noise multiplier $\sigma $, perfect through $\sigma {=}1.0$ then dropping sharply.}}{12}{figure.6}\protected@file@percent }
 \newlabel{fig:m3-privacy}{{6}{12}{M3 federated and DP sweep. a, Paired per-seed federation cost on mean reward per step, no measurable difference at $p=0.8125$. b, Block precision versus DP noise multiplier $\sigma $, perfect through $\sigma {=}1.0$ then dropping sharply}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Federated Training and DP}{12}{subsection.5.2}\protected@file@percent }
+\newlabel{sec:results-m3}{{5.2}{12}{Federated Training and DP}{subsection.5.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Disruption}{12}{subsection.5.3}\protected@file@percent }
 \newlabel{sec:results-m4}{{5.3}{12}{Disruption}{subsection.5.3}{}}
-\newlabel{eq:norm}{{8}{12}{Disruption}{equation.5.8}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces M4 disruption campaign, 10 seeds per arm. a, b, Normalised reward cost versus severity for dropout and churn, accelerating with severity. c, Block precision versus demand-spike multiplier, flat and near-ceiling.}}{13}{figure.7}\protected@file@percent }
 \newlabel{fig:m4-disruption}{{7}{13}{M4 disruption campaign, 10 seeds per arm. a, b, Normalised reward cost versus severity for dropout and churn, accelerating with severity. c, Block precision versus demand-spike multiplier, flat and near-ceiling}{figure.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cluster-Size Scaling}{13}{subsection.5.4}\protected@file@percent }
-\newlabel{sec:results-m6}{{5.4}{13}{Cluster-Size Scaling}{subsection.5.4}{}}
+\newlabel{eq:norm}{{8}{13}{Disruption}{equation.5.8}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces $N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds.}}{14}{figure.8}\protected@file@percent }
 \newlabel{fig:m6-topology}{{8}{14}{$N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds}{figure.8}{}}
-\newlabel{eq:collapse}{{9}{14}{Cluster-Size Scaling}{equation.5.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Reward quality against scaling robustness, from mean reward per step at three gNBs with 95\% CIs and collapse resistance at seven gNBs across two 12-seed samples. AXIOM alone is both accurate and robust, while the other two each miss one axis.}}{15}{figure.9}\protected@file@percent }
-\newlabel{fig:quadrant}{{9}{15}{Reward quality against scaling robustness, from mean reward per step at three gNBs with 95\% CIs and collapse resistance at seven gNBs across two 12-seed samples. AXIOM alone is both accurate and robust, while the other two each miss one axis}{figure.9}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Live Deployment}{15}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:results-m8}{{5.5}{15}{Live Deployment}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Cluster-Size Scaling}{14}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:results-m6}{{5.4}{14}{Cluster-Size Scaling}{subsection.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces AXIOM against the two baselines. a, Reward quality at three gNBs with 95\% CIs against collapse resistance at seven gNBs across two 12-seed samples, where AXIOM alone is accurate and robust. b, Each axis as a fraction of the best policy on it, so AXIOM encloses the largest area and leads the two capability axes outright.}}{15}{figure.9}\protected@file@percent }
+\newlabel{fig:quadrant}{{9}{15}{AXIOM against the two baselines. a, Reward quality at three gNBs with 95\% CIs against collapse resistance at seven gNBs across two 12-seed samples, where AXIOM alone is accurate and robust. b, Each axis as a fraction of the best policy on it, so AXIOM encloses the largest area and leads the two capability axes outright}{figure.9}{}}
+\newlabel{eq:collapse}{{9}{15}{Cluster-Size Scaling}{equation.5.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Live Deployment}{16}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:results-m8}{{5.5}{16}{Live Deployment}{subsection.5.5}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{16}{section.6}\protected@file@percent }
 \newlabel{sec:conclusion}{{6}{16}{Conclusion}{section.6}{}}
-\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{16}{section*.2}\protected@file@percent }
 \bibdata{refs}
 \bibcite{dpsgd}{{1}{2016}{{Abadi et~al.}}{{Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar, and Zhang}}}
 \bibcite{ahmadi2024generalizable}{{2}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
+\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{17}{section*.2}\protected@file@percent }
 \bibcite{bouroudi2025gnnmarl}{{3}{2025}{{Bouroudi et~al.}}{{Bouroudi, Outtagarts, and Hadjadj-Aoul}}}
 \bibcite{zcdp}{{4}{2016}{{Bun and Steinke}}{{}}}
 \bibcite{fatehi2026attentionmarl}{{5}{2026}{{Fatehi et~al.}}{{Fatehi, {Rahmani Ghourtani}, Sonee, Yadav, Russo, Ahmadi, and Calinescu}}}

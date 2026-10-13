@@ -145,11 +145,11 @@ def main() -> None:
     handles2.append(Line2D([0], [0], marker="D", color="#0b0b0b", linestyle="none",
                             markersize=5, label="Mean $\\pm$ 95% CI"))
     labels2.append("Mean $\\pm$ 95% CI")
-    ax2.legend(handles2, labels2, loc="lower center", bbox_to_anchor=(0.5, -0.62),
+    ax2.legend(handles2, labels2, loc="lower left", bbox_to_anchor=(0.01, 0.01),
                ncol=1, frameon=False, fontsize=6, handlelength=1.3)
 
     fig.suptitle("M2 campaign: per-seed reward evidence, 30 seeds/arm", y=1.02, fontsize=9)
-    fig.subplots_adjust(bottom=0.34, wspace=0.32)
+    fig.subplots_adjust(bottom=0.14, wspace=0.32)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
