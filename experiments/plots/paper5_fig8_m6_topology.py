@@ -3,7 +3,7 @@
 (a) collapse rate (fraction of arm x topology cells with zero blocks in
 eval) by arm, three independent seed samples (primary 900-911,
 replication 1000-1002, and an M7 extension 2000-2048 aimed specifically
-at narrowing GAT-CTDE's own collapse-rate estimate -- gat_ctde only,
+at narrowing GAT-CTDE's own collapse-rate estimate -- AXIOM only,
 the other two arms were not re-run since their profiles were already
 well-supported), pooled across all three topologies per arm -- the same
 multi-sample-forest logic fig7_replication_forest already uses
@@ -100,7 +100,7 @@ def main() -> None:
     width = 0.26
     sample_defs = [("Primary\n(900-911)", primary, "#5b5a52", -width),
                    ("Replication\n(1000-1002)", replication, "#c3c2b7", 0.0),
-                   ("Extension\n(2000-2048,\ngat_ctde only)", extension, "#8fa6c9", width)]
+                   ("Extension\n(2000-2048,\nAXIOM only)", extension, "#8fa6c9", width)]
     for label, sample, color, offset in sample_defs:
         rates, labels = [], []
         for arm in ARMS:

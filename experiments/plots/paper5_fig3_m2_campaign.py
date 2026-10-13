@@ -60,7 +60,7 @@ def main() -> None:
         reward_by_arm[arm] = np.array(rewards)
         blocks_by_arm[arm] = np.array(blocks)
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.16, 3.05))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.16, 2.5))
 
     # ---- (a) paired slope: single_agent_dqn -> gat_ctde, per seed ----
     single = reward_by_arm["single_agent_dqn"]
@@ -86,7 +86,7 @@ def main() -> None:
 
     ax1.set_xlim(-0.25, 1.25)
     ax1.set_xticks([0, 1])
-    ax1.set_xticklabels(["Single-agent\nDQN", "GAT-CTDE\n(proposed)"])
+    ax1.set_xticklabels(["Single-agent\nDQN", "AXIOM\n(proposed)"])
     ax1.set_ylabel("Mean reward per step")
     ax1.set_title(f"(a) Paired per-seed comparison (n={len(single)})")
 
@@ -100,11 +100,11 @@ def main() -> None:
 
     legend_handles = [
         Line2D([0], [0], color=STATUS_COLORS["good"], linestyle="-", linewidth=1.4,
-               label=f"GAT-CTDE higher ({n_win})"),
+               label=f"AXIOM higher ({n_win})"),
         Line2D([0], [0], color=STATUS_COLORS["neutral"], linestyle=":", linewidth=1.4,
                label=f"Tie ({n_tie})"),
         Line2D([0], [0], color=STATUS_COLORS["critical"], linestyle="--", linewidth=1.4,
-               label=f"GAT-CTDE lower ({n_lose})"),
+               label=f"AXIOM lower ({n_lose})"),
     ]
     ax1.legend(handles=legend_handles, loc="upper left", frameon=False, handlelength=1.6)
 
@@ -119,10 +119,10 @@ def main() -> None:
     jitter = rng.uniform(-0.13, 0.13, size=len(all_seeds))
     ax2.scatter(x_pos["gat_ctde"] + jitter[gat_diff_mask], reward_by_arm["gat_ctde"][gat_diff_mask],
                 s=16, color=M2_ARM_STYLE["gat_ctde"]["color"], marker="o", alpha=0.75,
-                linewidth=0, zorder=3, label=f"GAT-CTDE, differentiated ({n_diff})")
+                linewidth=0, zorder=3, label=f"AXIOM, differentiated ({n_diff})")
     ax2.scatter(x_pos["gat_ctde"] + jitter[~gat_diff_mask], reward_by_arm["gat_ctde"][~gat_diff_mask],
                 s=22, color="#898781", marker="x", alpha=0.9, linewidth=1.1,
-                zorder=3, label=f"GAT-CTDE, still collapsed ({n_collapsed})")
+                zorder=3, label=f"AXIOM, still collapsed ({n_collapsed})")
 
     for arm in ["independent_dqn", "single_agent_dqn"]:
         style = M2_ARM_STYLE[arm]
@@ -137,7 +137,7 @@ def main() -> None:
 
     ax2.set_xlim(-0.5, 2.7)
     ax2.set_xticks([0, 1, 2])
-    ax2.set_xticklabels(["GAT-CTDE", "Independent\nDQN", "Single-agent\nDQN"])
+    ax2.set_xticklabels(["AXIOM", "Independent\nDQN", "Single-agent\nDQN"])
     ax2.set_ylabel("Mean reward per step")
     ax2.set_title(f"(b) Per-seed distribution (n={len(all_seeds)}/arm)")
 

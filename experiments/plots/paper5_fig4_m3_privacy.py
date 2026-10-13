@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Figure 4: M3 federated + DP results, per-seed evidence --
-(a) a paired slope chart, centralized GAT-CTDE -> federated/no-DP
+(a) a paired slope chart, centralized AXIOM -> federated/no-DP
 mean_reward_per_step, one line per seed (same 10 seeds), colored by
 whether federation cost or helped reward that seed -- the actual paired
 unit the Wilcoxon result (computed fresh below, not hardcoded -- an
@@ -110,7 +110,7 @@ def main() -> None:
     ax1.set_ylim(ymin - 0.34 * (ymax - ymin), ymax)
     ax1.set_xlim(-0.25, 1.25)
     ax1.set_xticks([0, 1])
-    ax1.set_xticklabels(["Centralised\n(GAT-CTDE)", "Federated\n(no DP)"])
+    ax1.set_xticklabels(["Centralised\n(AXIOM)", "Federated\n(no DP)"])
     ax1.set_ylabel("Mean reward per step")
     ax1.set_title(f"(a) Federation cost, per seed (n={len(seeds)})")
 
@@ -162,18 +162,18 @@ def main() -> None:
     ax2.errorbar(x_cat, prec_means, yerr=[prec_los, prec_his], color=style["color"],
                  marker=style["marker"], markersize=5.5, linewidth=1.6, capsize=3, zorder=4)
     for xi, n in zip(x_cat, n_seeds):
-        ax2.annotate(f"n={n}", (xi, -0.17), ha="center", va="top", fontsize=5.8,
-                     color="#898781", annotation_clip=False)
+        ax2.annotate(f"n={n}", (xi, -0.17), ha="center", va="top", fontsize=7,
+                     color="#333333", fontweight="bold", annotation_clip=False)
 
     ax2.set_xlim(-0.5, len(sigma_vals) - 0.5)
     ax2.set_xticks(x_cat)
     ax2.set_xticklabels([f"{s:g}" for s in sigma_vals])
-    ax2.set_xlabel("DP noise multiplier $\\sigma$")
+    ax2.set_xlabel("DP noise multiplier $\\sigma$", labelpad=14)
     ax2.set_ylabel("Block precision\n(fraction targeting mMTC)")
     ax2.set_ylim(-0.05, 1.08)
     ax2.set_title("(b) Privacy-utility (per-seed spread shown)")
 
-    fig.suptitle("M3 federated GAT-CTDE: federation and privacy costs, per seed", y=1.02, fontsize=9)
+    fig.suptitle("M3 federated AXIOM: federation and privacy costs, per seed", y=1.02, fontsize=9)
     fig.subplots_adjust(bottom=0.28, wspace=0.32)
 
     out_path = Path(args.out)

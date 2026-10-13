@@ -52,7 +52,7 @@
 
 \affil[1]{\orgdiv{School of Engineering}, \orgname{Taylor's University}, \orgaddress{\city{Subang Jaya}, \country{Malaysia}}}
 
-\abstract{Fifth generation (5G) network slicing must admit heterogeneous service requests across many cooperating base stations under strict per-slice guarantees. This paper presents AXIOM, a correctness-aware graph-attention architecture for federated multi-agent slice admission control that closes three gaps from our prior systematic review, namely trustworthy evaluation, privacy-preserving coordination, and validated deployment. A shared Graph Attention Network (GAT) encoder reads the base-station cluster graph and feeds decentralised per-slice action heads, so each gNodeB (gNB) trains on a cluster-wide view yet decides locally. AXIOM is the only policy among three that is strong on reward, blocking accuracy, and scalability at once. It outperforms an independent-learner baseline by a decisive $+1.461$ in mean reward per step at $p<0.0001$ and blocks the correct slice with precision 0.952. Scaled from 3 to 19 gNBs, a flattened single-agent baseline collapses into always-accept in every one of 15 test cells, whereas AXIOM holds a stable 35.4\% residual collapse rate that is already present at 7 gNBs. Federated training adds no measurable reward cost at $p=0.8125$, and differential privacy keeps blocking accuracy perfect up to a clear noise threshold. A correctness-aware metric pair and a reproduction-versus-replication discipline keep every result trustworthy, catching four evaluation-pipeline faults a standard pipeline would have reported as clean. A live deployment on OpenAirInterface (OAI) hardware serves every slice at 0.000\% loss and executes the offline-trained logic correctly end to end, establishing deployability on a real Open Radio Access Network stack. Contention-dependent behaviour is characterised in a disclosed offline stress regime calibrated harder than the live rig reaches.}
+\abstract{Fifth generation (5G) network slicing must admit heterogeneous service requests across many cooperating base stations under strict per-slice guarantees. This paper presents AXIOM, a correctness-aware graph-attention architecture for federated multi-agent slice admission control that closes three gaps from our prior systematic review, namely trustworthy evaluation, privacy-preserving coordination, and validated deployment. A shared Graph Attention Network (GAT) encoder reads the base-station cluster graph and feeds decentralised per-slice action heads, so each gNodeB (gNB) trains on a cluster-wide view yet decides locally. AXIOM is the only policy among three that is strong on reward, blocking accuracy, and scalability at once. It earns 11.6\% higher mean reward per step than an independent-learner baseline and blocks the correct slice 5.7\% more often. Scaled from 3 to 19 gNBs, a flattened single-agent baseline collapses into always-accept in every one of 15 test cells, whereas AXIOM cuts that collapse rate to a stable 35.4\% that is already present at 7 gNBs. Federated training adds no measurable reward cost, and differential privacy keeps blocking accuracy perfect up to a clear noise threshold. A correctness-aware metric pair and a reproduction-versus-replication discipline keep every result trustworthy, catching four evaluation-pipeline faults a standard pipeline would have reported as clean. A live deployment on OpenAirInterface (OAI) hardware serves every slice at 0.000\% loss and executes the offline-trained logic correctly end to end, establishing deployability on a real Open Radio Access Network stack. Contention-dependent behaviour is characterised in a disclosed offline stress regime calibrated harder than the live rig reaches.}
 
 \keywords{Network Slicing, Slice Admission Control, Multi-Agent Reinforcement Learning, Graph Attention Networks, Federated Learning, Open RAN}
 
@@ -82,7 +82,7 @@ Network slicing virtualises physical radio access network (RAN) to serve heterog
   gedge/.style={dashed, thick, draw=orange!75!black}
 ]
 % --- 5G Core (cloud-like ellipse) with a small server-rack glyph ---
-\node[core] (core) at (7.5,6.75) {\\[2pt]\textbf{5G Core}\\[2pt]{\scriptsize Open5GS, AMF / SMF / UPF}};
+\node[core] (core) at (7.5,6.75) {\\[2pt]5G Core\\[2pt]{\scriptsize Open5GS, AMF / SMF / UPF}};
 \begin{scope}[shift={(7.5,7.05)}]
   \foreach \yy in {0,0.14}{
     \draw[thick,gray!55!black,fill=gray!18,rounded corners=0.4pt] (-0.24,\yy) rectangle (0.24,\yy+0.1);
@@ -100,16 +100,16 @@ Network slicing virtualises physical radio access network (RAN) to serve heterog
 \draw[gedge] (g1) to[bend right=20] (g3);
 \node[draw=orange!75!black, dashed, thick, rounded corners, inner sep=3pt,
       fit={(0.7,2.3) (14.3,4.6)}] (clu) {};
-\node[font=\scriptsize\bfseries, text=orange!55!black, fill=white, inner sep=1.5pt]
+\node[font=\scriptsize, text=orange!55!black, fill=white, inner sep=1.5pt]
       at (2.5,2.6) {AXIOM cluster graph};
 \draw[ar] (core.south) -- (7.5,4.62) node[pos=0.5, right=1pt, font=\scriptsize, fill=white, inner sep=1pt] {N2 / N3};
 % --- slice bands with icons + short labels ---
 \node[band, fill=red!14,   draw=red!60!black]   (s1) at (2.5,1.05) {};
 \node[band, fill=blue!14,  draw=blue!60!black]  (s2) at (7.5,1.05) {};
 \node[band, fill=green!14, draw=green!55!black] (s3) at (12.5,1.05) {};
-\node[font=\small\bfseries] at (2.9,1.05) {URLLC};
-\node[font=\small\bfseries] at (7.9,1.05) {eMBB};
-\node[font=\small\bfseries] at (12.9,1.05) {mMTC};
+\node[font=\small] at (2.9,1.05) {URLLC};
+\node[font=\small] at (7.9,1.05) {eMBB};
+\node[font=\small] at (12.9,1.05) {mMTC};
 % URLLC bolt
 \fill[red!75!black] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)--cycle;
 % eMBB bandwidth bars
@@ -172,19 +172,19 @@ Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller
   ar/.style={-{Latex[length=2.3mm]}, thick}
 ]
 \node[pblk, text width=14cm] (prob) at (8,7.4)
-  {\textbf{Problem}\quad coordinated slice admission across an $N$-gNB cluster, URLLC / eMBB / mMTC under per-slice SLAs, action is a per-slice PRB-ratio ceiling};
+  {Problem\quad coordinated slice admission across an $N$-gNB cluster, URLLC / eMBB / mMTC under per-slice SLAs, action is a per-slice PRB-ratio ceiling};
 \node[ablk, text width=15cm] (arch) at (8,6.0)
-  {\textbf{AXIOM controller}\\[1pt] 2-layer, 4-head graph-attention encoder over the gNB graph, then per-slice Q-heads; centralised training, decentralised execution; per-request Huber TD, $\gamma{=}0.95$};
+  {AXIOM controller\\[1pt] 2-layer, 4-head graph-attention encoder over the gNB graph, then per-slice Q-heads; centralised training, decentralised execution; per-request Huber TD, $\gamma{=}0.95$};
 \node[grp, fit={(0.3,3.3) (15.7,5.0)}] (grp) {};
-\node[font=\scriptsize\bfseries, anchor=north west, text=green!45!black] at (0.45,4.93) {Offline stress environment, $\approx$110\% PRB oversubscription};
-\node[cblk, text width=3.3cm] (c1) at (2.35,3.95) {\textbf{Centralised} $N{=}3$\\[1pt] 30 seeds, 3 arms};
-\node[cblk, text width=3.3cm] (c2) at (6.25,3.95) {\textbf{Federated + DP}\\[1pt] FedAvg/FedProx, DP-SGD $\sigma$};
-\node[cblk, text width=3.3cm] (c3) at (10.1,3.95) {\textbf{Disruption}\\[1pt] dropout/spike/churn};
-\node[cblk, text width=3.3cm] (c4) at (13.95,3.95) {\textbf{Scaling} $N\!\in\!\{7,19\}$\\[1pt] ring/hex/full-mesh};
+\node[font=\scriptsize, anchor=north west, text=green!45!black] at (0.45,4.93) {Offline stress environment, $\approx$110\% PRB oversubscription};
+\node[cblk, text width=3.3cm] (c1) at (2.35,3.95) {Centralised $N{=}3$\\[1pt] 30 seeds, 3 arms};
+\node[cblk, text width=3.3cm] (c2) at (6.25,3.95) {Federated + DP\\[1pt] FedAvg/FedProx, DP-SGD $\sigma$};
+\node[cblk, text width=3.3cm] (c3) at (10.1,3.95) {Disruption\\[1pt] dropout/spike/churn};
+\node[cblk, text width=3.3cm] (c4) at (13.95,3.95) {Scaling $N\!\in\!\{7,19\}$\\[1pt] ring/hex/full-mesh};
 \node[sblk, text width=15cm] (safe) at (8,2.3)
-  {\textbf{Evaluation safeguards}\quad correctness-aware pair, mean reward per step and block precision; reproduction versus replication on disjoint seeds};
+  {Evaluation safeguards\quad correctness-aware pair, mean reward per step and block precision; reproduction versus replication on disjoint seeds};
 \node[lblk, text width=14cm] (live) at (8,0.9)
-  {\textbf{Live single-gNB OAI deployment}, rfsim\quad 18{,}562-parameter DQN, deployability at 0.000\% loss};
+  {Live single-gNB OAI deployment, rfsim\quad 18{,}562-parameter DQN, deployability at 0.000\% loss};
 \draw[ar] (prob) -- (arch);
 \draw[ar] (arch) -- (grp.north);
 \draw[ar] (grp.south) -- (safe);
@@ -208,20 +208,20 @@ checked by two safeguards, then validated on a live single-gNB testbed.}
 ]
 \node[block, text width=3.6cm, minimum height=2.0cm] (core)
   at (2.01,5.6)
-  {\textbf{Core network}\\[2pt]
+  {Core network\\[2pt]
    Open5GS, Docker Compose\\
    17 containers (AMF/SMF$\times$3/\\UPF$\times$3/AUSF/UDM/UDR/\\PCF/BSF/NSSF/NRF/SCP)\\
    MongoDB};
 \node[block, text width=4.2cm, minimum height=2.0cm] (ran)
   at (7.03,5.6)
-  {\textbf{RAN}\\[2pt]
+  {RAN\\[2pt]
    OAI gNB (ORANSlice fork)\\
    rfsim software radio\\
    no SDR/RF hardware\\
    n78, 106 PRB, $\mu{=}1$, TDD-SA};
 \node[block, text width=3.6cm, minimum height=2.0cm] (ues)
   at (12.05,5.6)
-  {\textbf{UEs + traffic}\\[2pt]
+  {UEs + traffic\\[2pt]
    Up to 6 native\\
    \texttt{nr-uesoftmodem} UEs\\
    (netns-isolated)\\
@@ -229,14 +229,14 @@ checked by two safeguards, then validated on a live single-gNB testbed.}
    iperf3 UDP flows};
 \node[block, text width=5.6cm, minimum height=2.3cm] (ctrl)
   at (7.03,3.0)
-  {\textbf{Control loop (RIC-free)}\\[2pt]
+  {Control loop (RIC-free)\\[2pt]
    UDP E2 agent (ports 6600/6655)\\
    xApp/orchestrator: \texttt{slicing\_control\_m}\\
    -- per-slice (min,max) PRB-ratio\\
    ceiling; \texttt{omega\_log}};
 \node[block, text width=3.6cm, minimum height=2.3cm] (policy)
   at (12.75,3.0)
-  {\textbf{Policy}\\[2pt]
+  {Policy\\[2pt]
    Single-agent DQN checkpoint\\
    (seed 900)\\
    18{,}562 parameters\\
@@ -247,7 +247,7 @@ checked by two safeguards, then validated on a live single-gNB testbed.}
 \draw[arr] (ctrl.east) -- (policy.west) node[lbl, midway, above] {state / action};
 \node[draw, thick, dashed, rounded corners, inner sep=0pt,
       fit={(-0.3,1.55) (15.06,6.9)}] {};
-\node[font=\footnotesize\bfseries, anchor=south west] at (-0.3,7.0)
+\node[font=\footnotesize, anchor=south west] at (-0.3,7.0)
   {Single commodity host, CPU-only, no GPU, no SDR/RF hardware};
 \end{tikzpicture}%
 }
@@ -273,10 +273,12 @@ where $\lVert a_t \rVert_1$ is the total admitted this step, $C_t$ the cluster-m
 m_k = \min\!\Big(1 - \tilde q_k,\; 1 - \tfrac{\ell_k}{\ell_k^{\max}}\Big),
 \qquad v_k \Leftrightarrow m_k \le 0,
 \end{equation}
-with $\tilde q_k$ the slice backlog relative to its budget, and $\ell_k$ and $\ell_k^{\max}$ its loss proxy and loss budget. These weights are tuned in prior work so that, under congestion, the reward-optimal policy is differentiated shedding, which continues accepting URLLC, mostly accepts eMBB, and rejects mMTC. We confirm this by Q-value inspection on a working baseline policy in Section~\ref{sec:methodology-perslice}, rather than assume it. Every result uses an offline, closed-loop simulation, except the bounded live anchor of Section~\ref{sec:results-m8}. The simulation is deliberately oversubscribed to roughly 110\% of one gNB's PRB budget and reuses our existing multi-gNB configuration unmodified, as a deliberately harder, disclosed stress environment. The concrete rig behind every live measurement is the single-host, software-radio, Open Radio Access Network (O-RAN) stack of Fig.~\ref{fig:testbed}, which runs without a near-real-time RAN Intelligent Controller (RIC).
+with $\tilde q_k$ the slice backlog relative to its budget, and $\ell_k$ and $\ell_k^{\max}$ its loss proxy and loss budget. These weights are tuned in prior work so that, under congestion, the reward-optimal policy is differentiated shedding, which continues accepting URLLC, mostly accepts eMBB, and rejects mMTC. We confirm this by Q-value inspection on a working baseline policy in Section~\ref{sec:methodology-perslice}, rather than assume it. Every result uses an offline, closed-loop simulation, except the bounded live anchor of Section~\ref{sec:results-m8}. The simulation is deliberately oversubscribed to roughly 110\% of one gNB's PRB budget and reuses our existing multi-gNB configuration unmodified, as a deliberately harder, disclosed stress environment. The concrete rig behind every live measurement is the single-host, software-radio, Open Radio Access Network (O-RAN) stack of Fig.~\ref{fig:testbed}, which runs without a near-real-time RAN Intelligent Controller (RIC). We omit the RIC because the ORANSlice fork applies slicing control directly through a lightweight UDP E2 agent, which exercises the real per-slice PRB-ratio primitive without the overhead of a separate RIC on a single commodity host.
 
 \section{The AXIOM Architecture}
 \label{sec:methodology}
+
+AXIOM differs from its two baselines in exactly what each policy sees and shares. AXIOM runs one graph-attention encoder over the whole gNB cluster, trains that encoder jointly from every agent's experience, and reads out one dedicated Q-head per slice, so every gNB decides from a shared, topology-aware view of the cluster. The single-agent DQN keeps one controller over a flattened joint state, with no per-gNB structure and no graph. The independent DQN gives each gNB its own learner that sees only local features and never shares parameters or reads the cluster topology. The two baselines are therefore ablations of AXIOM that remove the shared encoder and the graph input in turn, so any gap between them and AXIOM measures what those two components add.
 
 \begin{figure}[t]
 \centering
@@ -305,8 +307,6 @@ z_i=\mathrm{LN}\!\Big(\tfrac{1}{H}\textstyle\sum_{h=1}^{H}\sum_{j\in\mathcal{N}_
 \end{equation}
 Centralisation comes from this encoder, whose parameters every agent's loss updates jointly, so it sees the full cluster state during training. Decentralised execution comes next, since at action-selection time each agent consumes only its own embedding row $z_i$ to decide its own pending requests.
 
-The \texttt{LayerNorm} and the per-slice heads both answer a real training collapse, rather than a theoretical preference. An early design fed each embedding, concatenated with a one-hot slice context, into a single shared Q-head multi-layer perceptron (MLP). All three slices then update the same shared parameters. URLLC's large priority weight produces large gradients that overwrite mMTC's much smaller true signal. This is a standard shared-parameter class imbalance, and it drove the evaluation policy to block zero requests. We replace the single shared head with one small MLP per slice, selected by the context one-hot. Each slice then owns its parameters, so one slice's gradients can no longer overwrite another's. Together with the \texttt{LayerNorm}, this reduced the collapse from 30 of 30 to 9 of 30 seeds. Correctly-targeted differentiated shedding rose from 0 to 21 of the 30 seeds. A seed here is one independent random initialisation of network weights and environment stream. We report every seed rather than a single best run.
-
 \begin{algorithm}[!t]
 \caption{AXIOM: centralised training, decentralised execution}
 \label{alg:gat-ctde}
@@ -325,6 +325,8 @@ The \texttt{LayerNorm} and the per-slice heads both answer a real training colla
 \ENDFOR
 \end{algorithmic}
 \end{algorithm}
+
+The \texttt{LayerNorm} and the per-slice heads both answer a real training collapse, rather than a theoretical preference. An early design fed each embedding, concatenated with a one-hot slice context, into a single shared Q-head multi-layer perceptron (MLP). All three slices then update the same shared parameters. URLLC's large priority weight produces large gradients that overwrite mMTC's much smaller true signal. This is a standard shared-parameter class imbalance, and it drove the evaluation policy to block zero requests. We replace the single shared head with one small MLP per slice, selected by the context one-hot. Each slice then owns its parameters, so one slice's gradients can no longer overwrite another's. Together with the \texttt{LayerNorm}, this reduced the collapse from 30 of 30 to 9 of 30 seeds. Correctly-targeted differentiated shedding rose from 0 to 21 of the 30 seeds. A seed here is one independent random initialisation of network weights and environment stream. We report every seed rather than a single best run.
 
 Algorithm~\ref{alg:gat-ctde} states the training loop, where the encoder updates from every request in a sampled minibatch regardless of gNB or slice. This is centralised training, while action selection at rollout time consults only the acting agent's own embedding row, which is decentralised execution. Every pending request at gNB $i$, slice $k$ is its own temporal-difference sample, and we never sum requests across a step before the loss. For a request with immediate reward $r$, next-state embedding $z_i'$, and candidate next action $a'$, the bootstrapped target $y$ at discount $\gamma$ and the minibatch loss are
 \begin{equation}
@@ -347,7 +349,7 @@ Differential privacy gives a formal guarantee that one client's training data ca
 We apply the same clip whether or not noise is added, so a $\sigma{=}0$ run and a $\sigma{>}0$ run differ only in whether noise is injected, which is what lets the privacy-cost comparison in Section~\ref{sec:results-m3} isolate the effect of the noise. Each federated round therefore runs $R$ local Huber-TD steps per client with an optional FedProx proximal term $\tfrac{\mu}{2}\lVert \theta_i - \bar\theta \rVert^2$, clips and optionally perturbs the gradient, and closes with a FedAvg average that is broadcast back.
 
 \subsection{Experimental Setup}
-Both campaigns use 300 training and 50 evaluation episodes per seed. The centralised campaign uses a fixed 30-seed list, seeds 900 to 929, across three arms. The first arm is AXIOM, which the result figures label GAT-CTDE after its architecture. The second is a single-agent DQN baseline run against the flattened joint state. The third is an independent-DQN ablation. An ablation is a deliberately reduced variant with one component removed, so its effect can be isolated. Here it is one per-gNB DQN with no parameter sharing and no topology information, which isolates the contribution of the shared encoder and centralised training. All three arms use matched hyperparameters, with discount factor $\gamma=0.95$ and per-episode epsilon decay. The federated campaign uses the first 10 of these seeds and a five-level noise sweep $\sigma \in \{0, 0.5, 1, 2, 4\}$. Its $\sigma{=}0$ level is therefore directly comparable to the same 10 centralised seeds. All confidence intervals (CIs) are 95\% bootstrap percentile intervals over 10{,}000 resamples, and paired comparisons use the Wilcoxon signed-rank test. The remaining settings are fixed across every seed. AXIOM trains at learning rate $1{\times}10^{-4}$ and the DQN baselines at $1{\times}10^{-3}$, both under the Adam optimiser, with epsilon decaying from $1.0$ to $0.05$ at a per-episode factor of $0.985$ and the target network synchronised every 10 episodes. The GAT encoder uses hidden and output dimension 16, feeding per-slice Q-heads of hidden dimension 32. Each federated round runs 50 local steps under FedAvg with FedProx weight $\mu{=}0$ and a differential-privacy gradient-clip norm of $1.0$.
+Both campaigns use 300 training and 50 evaluation episodes per seed. The centralised campaign uses a fixed 30-seed list, seeds 900 to 929, across three arms. The first arm is AXIOM. The second is a single-agent DQN baseline run against the flattened joint state. The third is an independent-DQN ablation. An ablation is a deliberately reduced variant with one component removed, so its effect can be isolated. Here it is one per-gNB DQN with no parameter sharing and no topology information, which isolates the contribution of the shared encoder and centralised training. All three arms use matched hyperparameters, with discount factor $\gamma=0.95$ and per-episode epsilon decay. The federated campaign uses the first 10 of these seeds and a five-level noise sweep $\sigma \in \{0, 0.5, 1, 2, 4\}$. Its $\sigma{=}0$ level is therefore directly comparable to the same 10 centralised seeds. All confidence intervals (CIs) are 95\% bootstrap percentile intervals over 10{,}000 resamples, and paired comparisons use the Wilcoxon signed-rank test. The remaining settings are fixed across every seed. AXIOM trains at learning rate $1{\times}10^{-4}$ and the DQN baselines at $1{\times}10^{-3}$, both under the Adam optimiser, with epsilon decaying from $1.0$ to $0.05$ at a per-episode factor of $0.985$ and the target network synchronised every 10 episodes. The GAT encoder uses hidden and output dimension 16, feeding per-slice Q-heads of hidden dimension 32. Each federated round runs 50 local steps under FedAvg with FedProx weight $\mu{=}0$ and a differential-privacy gradient-clip norm of $1.0$.
 
 \subsection{Evaluation Safeguards}
 \label{sec:collapse}
@@ -421,7 +423,7 @@ distribution for all three arms.}
 
 The three-gNB fully-connected setting is deliberately the hardest case for a graph encoder, since every gNB already sees every other and there is little topology left to exploit. It is therefore a clean place to establish the evaluation-integrity findings with no topology effect in play. The encoder's coordination advantage is tested in earnest only once the cluster grows and its adjacency thins, in Section~\ref{sec:results-m6}.
 
-Table~\ref{tab:m2-results} and Fig.~\ref{fig:m2-results} report the final thirty-seed campaign. AXIOM earns the highest mean reward per step of the three policies. Its lead over the independent-DQN ablation is large and statistically clear, at $+1.461$ with 95\% CI [0.550, 2.782] and $p<0.0001$, which pins a real gain on the shared encoder and joint training. Its lead over the single-agent DQN is genuine but small, at $+0.195$ with 95\% CI [$-$0.017, 0.442], and at thirty seeds it does not reach significance at $p=0.0577$. We state that limit plainly rather than overclaim it. On block precision AXIOM blocks the reward-correct slice with precision 0.952, just behind the single-agent policy at 0.987 and well ahead of the independent learner at 0.901. The compliance metric points nowhere, at $+0.036$ with $p=0.4549$, and that is the measurement artifact Section~\ref{sec:collapse} explains rather than any real performance gap.
+Table~\ref{tab:m2-results} and Fig.~\ref{fig:m2-results} report the final thirty-seed campaign. AXIOM earns the highest mean reward per step of the three policies. Its lead over the independent-DQN ablation is large and statistically clear, at $+1.461$ with 95\% CI [0.550, 2.782] and $p<0.0001$, an 11.6\% gain that pins a real contribution on the shared encoder and joint training. Its lead over the single-agent DQN is genuine but small, at $+0.195$ with 95\% CI [$-$0.017, 0.442], and at thirty seeds it does not reach significance at $p=0.0577$. We state that limit plainly rather than overclaim it. On block precision AXIOM blocks the reward-correct slice with precision 0.952, just behind the single-agent policy at 0.987 and 5.7\% above the independent learner at 0.901. The compliance metric points nowhere, at $+0.036$ with $p=0.4549$, and that is the measurement artifact Section~\ref{sec:collapse} explains rather than any real performance gap.
 
 \begin{table}[t]
 \caption{M2 campaign results, 30 seeds/arm, 95\% bootstrap CIs.}
@@ -536,14 +538,14 @@ grant FRGS/1/2024/ICT06/TAYLOR/02/1.
 this manuscript unless otherwise indicated.
 
 \begin{itemize}
-\item \textbf{Funding:} This work was supported by the Fundamental Research Grant Scheme (FRGS), Ministry of Higher Education (MOHE), Malaysia, under grant number FRGS/1/2024/ICT06/TAYLOR/02/1.
-\item \textbf{Competing interests:} The authors declare no competing interests.
-\item \textbf{Ethics approval and consent to participate:} Not applicable, since this study involves no human participants, animal subjects, or identifiable patient data. All reported results are either offline simulation campaigns or measurements from a laboratory radio testbed.
-\item \textbf{Consent for publication:} Not applicable, since this manuscript contains no personal data or identifying information about any individual.
-\item \textbf{Data availability:} The experiment logs, checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request.
-\item \textbf{Materials availability:} Not applicable, since this study involves no physical or biological materials.
-\item \textbf{Code availability:} The framework and experiment scripts used to produce this paper's results, including the reproducibility manifest and analysis scripts used to independently re-derive every table and figure in this paper, are available from the corresponding author on reasonable request.
-\item \textbf{Author contribution:} M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
+\item Funding: This work was supported by the Fundamental Research Grant Scheme (FRGS), Ministry of Higher Education (MOHE), Malaysia, under grant number FRGS/1/2024/ICT06/TAYLOR/02/1.
+\item Competing interests: The authors declare no competing interests.
+\item Ethics approval and consent to participate: Not applicable, since this study involves no human participants, animal subjects, or identifiable patient data. All reported results are either offline simulation campaigns or measurements from a laboratory radio testbed.
+\item Consent for publication: Not applicable, since this manuscript contains no personal data or identifying information about any individual.
+\item Data availability: The experiment logs, checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request.
+\item Materials availability: Not applicable, since this study involves no physical or biological materials.
+\item Code availability: The framework and experiment scripts used to produce this paper's results, including the reproducibility manifest and analysis scripts used to independently re-derive every table and figure in this paper, are available from the corresponding author on reasonable request.
+\item Author contribution: M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
 \end{itemize}
 
 \bibliography{refs}

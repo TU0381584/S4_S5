@@ -50,15 +50,15 @@ mpl.rcParams.update({
 
 M2_ARM_ORDER: List[str] = ["gat_ctde", "independent_dqn", "single_agent_dqn"]
 M2_ARM_STYLE: Dict[str, dict] = {
-    "gat_ctde":         {"color": "#2a78d6", "marker": "o", "label": "GAT-CTDE (proposed)"},
+    "gat_ctde":         {"color": "#2a78d6", "marker": "o", "label": "AXIOM (proposed)"},
     "independent_dqn":  {"color": "#eb6834", "marker": "^", "label": "Independent DQN"},
     "single_agent_dqn": {"color": "#1baf7a", "marker": "s", "label": "Single-agent DQN"},
 }
 
 M3_STYLE: Dict[str, dict] = {
-    "centralized": {"color": "#2a78d6", "marker": "o", "label": "Centralised (GAT-CTDE)"},
+    "centralized": {"color": "#2a78d6", "marker": "o", "label": "Centralised (AXIOM)"},
     "federated":   {"color": "#eb6834", "marker": "D", "label": "Federated, no DP ($\\sigma$=0)"},
-    "curve":       {"color": "#2a78d6", "marker": "o", "label": "Federated GAT-CTDE"},
+    "curve":       {"color": "#2a78d6", "marker": "o", "label": "Federated AXIOM"},
 }
 
 # M4 shows all four arms together (unlike M3's Fig. 4, which only ever

@@ -40,8 +40,6 @@ def draw_quadrant(ax):
                            edgecolor="none", zorder=0))
     ax.axvline(zx, color="#9bb6d8", linestyle=(0, (4, 3)), linewidth=0.8, zorder=1)
     ax.axhline(zy, color="#9bb6d8", linestyle=(0, (4, 3)), linewidth=0.8, zorder=1)
-    ax.text(14.85, 106, "accurate\n+ scalable", ha="right", va="top",
-            fontsize=8.5, style="italic", color="#3a6aa5", zorder=1)
     for name, a in arms.items():
         xerr = [[a["x"] - a["xci"][0]], [a["xci"][1] - a["x"]]]
         yerr = [[a["y"] - a["yspan"][0]], [a["yspan"][1] - a["y"]]]
@@ -81,22 +79,24 @@ def draw_radar(ax):
     ax.set_yticklabels(["0.25", "0.5", "0.75", "1.0"], fontsize=6.5, color="#999")
     ax.tick_params(axis="x", pad=6)
     ax.grid(linewidth=0.4, alpha=0.5)
-    # AXIOM first (its fill dominates), baselines on top so their lines stay visible
+    # AXIOM first (its fill dominates), baselines on top so their lines stay visible.
+    # Distinct dash patterns keep all three readable where the lines overlap.
     zbase = {"AXIOM": 4, "Independent DQN": 5, "Single-agent DQN": 6}
+    LS = {"AXIOM": "-", "Independent DQN": (0, (5, 2)), "Single-agent DQN": (0, (1, 1.6))}
     for name in ["AXIOM", "Independent DQN", "Single-agent DQN"]:
         v = vals[name] + vals[name][:1]
-        lw = 2.2 if name == "AXIOM" else 1.8
+        lw = 2.2 if name == "AXIOM" else 1.9
         ms = 4 if name == "AXIOM" else 5
-        ax.plot(ang, v, color=C[name], linewidth=lw, marker=M[name], markersize=ms,
-                zorder=zbase[name])
-        ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.06, zorder=2)
+        ax.plot(ang, v, color=C[name], linewidth=lw, linestyle=LS[name], marker=M[name],
+                markersize=ms, zorder=zbase[name])
+        ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.05, zorder=2)
     # raw AXIOM values, placed just inside each vertex so they clear the axis labels
     raw = ["14.06", "0.95", "50%", "yes", "yes"]
     for a_i, r_i, txt in zip(ang[:-1], vals["AXIOM"], raw):
         ax.text(a_i, max(min(r_i, 1.0) - 0.15, 0.13), txt, color=C["AXIOM"], fontsize=6.8,
                 fontweight="bold", ha="center", va="center", zorder=7)
     ax.set_title("(b) Capability profile, fraction of best", fontweight="bold", pad=16)
-    handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=2, label=n)
+    handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=2, linestyle=LS[n], label=n)
                for n in ["AXIOM", "Single-agent DQN", "Independent DQN"]]
     ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.09),
               ncol=3, frameon=False, fontsize=8, handlelength=1.4, columnspacing=1.2)
