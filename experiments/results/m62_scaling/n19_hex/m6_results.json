@@ -1,0 +1,16 @@
+{
+  "single_agent_dqn": {
+    "1000": {
+      "sla_compliance_all_slices": 0.011666666666666667,
+      "n_episodes": 50
+    },
+    "1001": {
+      "sla_compliance_all_slices": 0.008333333333333333,
+      "n_episodes": 50
+    },
+    "1002": {
+      "sla_compliance_all_slices": 0.007666666666666667,
+      "n_episodes": 50
+    }
+  }
+}
