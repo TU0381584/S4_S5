@@ -42,7 +42,7 @@ def main():
     ap.add_argument("--out")
     a = ap.parse_args()
     rows = {}
-    for d in sorted(glob.glob(f"{a.m3_dir}/fl_gat_ctde_sigma*")):
+    for d in sorted(p for p in glob.glob(f"{a.m3_dir}/fl_gat_ctde_sigma*") if not p.endswith(".json")):
         sigma = float(d.rsplit("sigma", 1)[1])
         steps = []
         for ck in sorted(glob.glob(f"{d}/seed*/train/checkpoint.pt")):

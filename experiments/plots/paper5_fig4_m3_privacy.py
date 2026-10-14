@@ -131,7 +131,7 @@ def main() -> None:
         Line2D([0], [0], color=STATUS_COLORS["good"], linestyle="-", linewidth=1.4,
                label=f"Federation helps reward ({n_help})"),
     ]
-    ax1.legend(handles=legend_handles, loc="upper left", frameon=False, handlelength=1.6, fontsize=6)
+    ax1.legend(handles=legend_handles, loc="lower left", bbox_to_anchor=(0.0, 0.2), frameon=False, handlelength=1.6, fontsize=6)
 
     # ---- (b) block_precision vs sigma, evenly-spaced categorical x, per-seed
     # jitter, n annotations (sigma is not spaced evenly -- 0/0.5/1/2/4 -- so a

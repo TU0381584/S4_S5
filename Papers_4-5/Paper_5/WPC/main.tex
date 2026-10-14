@@ -343,15 +343,15 @@ y = r + \gamma\,(1-d)\max_{a'} Q_{\phi_k^-}\!\big(z_i'\big)[a'],
 where $Q_{\phi_k}$ is slice $k$'s online Q-head, $Q_{\phi_k^-}$ its target copy, $d$ the episode-done flag, and $B$ the sampled minibatch of requests. We use the Huber loss $\ell_\delta$ in place of squared error, which keeps the deeper encoder stable under long bootstraps. An earlier variant passed each gNB's summed per-request values through a QMIX-style monotonic mixer~\cite{rashid2020qmix}. Because the number of pending requests changes from step to step, that mixed target changed scale with the request count, and the mean training loss diverged, rising from about 76 over the first fifth of training steps to about 409 over the last fifth. Treating each request as its own sample removes that dependence.
 
 \subsection{Federated Training with Differential Privacy}
-Fig.~\ref{fig:architecture}b shows the federated variant. Each gNB becomes a federated-learning client. It holds a private copy of the same network and trains only on its own requests. Transitions are partitioned by owning agent, so no client sees another's raw admission data. Each client's GAT encoder still consumes the full joint node-feature snapshot. Every $R$ local steps, the server averages all clients' online weights by FedAvg~\cite{fedavg} and broadcasts the result back. We also implement FedProx~\cite{fedprox}, which adds a proximal term that pulls local weights toward the last broadcast global model. We sweep it at $\mu \in \{0.01, 0.1, 1.0\}$ under both homogeneous and heterogeneous per-gNB load. FedProx earns no measurable dividend at any strength, since per-round client drift is negligible relative to the loss scale.
+Fig.~\ref{fig:architecture}b shows the federated variant. Each gNB becomes a federated-learning client. It holds a private copy of the same network and trains only on its own requests. Transitions are partitioned by owning agent, so no client sees another's raw admission data. Each client's GAT encoder still consumes the full joint node-feature snapshot. Every $R$ local steps, the server averages all clients' online weights by FedAvg~\cite{fedavg} and broadcasts the result back. We also implement FedProx~\cite{fedprox}, which adds a proximal term that pulls local weights toward the last broadcast global model. We sweep it at $\mu \in \{0.01, 0.1, 1.0\}$ under both homogeneous and heterogeneous per-gNB load. FedProx earns no measurable dividend at any strength, since per-round client drift is negligible relative to the loss scale. \authorTODO{FedProx sentence is from the old environment; update from the shared-budget FedProx rerun (default load only, 3 seeds per strength).}
 
-Differential privacy gives a formal guarantee that one client's training data cannot be inferred from the shared model. We apply it as a standard differentially private stochastic gradient descent (DP-SGD) step~\cite{dpsgd}. Each client clips its gradient to a fixed norm $C_{\text{dp}}$. When privacy is enabled, the client then perturbs the gradient with Gaussian noise scaled by a noise multiplier $\sigma$, before its optimiser step. We report $\sigma$ as the primary privacy parameter. Alongside it we report a formal $(\varepsilon,\delta)$ bound via zero-concentrated differential privacy (zCDP)~\cite{zcdp}. Here $\varepsilon$ and $\delta$ are the standard privacy-loss and failure-probability parameters. Composing the Gaussian mechanism over $m$ per-client gradient releases gives the zCDP parameter $\rho$ and the bound
+Differential privacy (DP) bounds how much any one client's training data can change what the shared model reveals. We apply it as a differentially private stochastic gradient descent (DP-SGD) step~\cite{dpsgd}. Each client clips its minibatch gradient to a fixed norm $C_{\text{dp}}$ and, when privacy is enabled, adds Gaussian noise of standard deviation $\sigma C_{\text{dp}}$ before its optimiser step. The clip applies to the whole minibatch gradient rather than to each example, so changing any of the client's data in one step moves the clipped gradient by at most $2C_{\text{dp}}$, and the guarantee covers the client's whole step batch. We account for it with zero-concentrated differential privacy (zCDP)~\cite{zcdp}, where $\varepsilon$ and $\delta$ are the standard privacy-loss and failure-probability parameters. Composing the Gaussian mechanism over the $m$ noisy steps a client takes gives
 \begin{equation}
 \label{eq:zcdp}
-\rho=\frac{m}{2\sigma^{2}},\qquad
+\rho=\frac{2m}{\sigma^{2}},\qquad
 \varepsilon(\delta)=\rho+2\sqrt{\rho\ln(1/\delta)}.
 \end{equation}
-We apply the same clip whether or not noise is added, so a $\sigma{=}0$ run and a $\sigma{>}0$ run differ only in whether noise is injected, which is what lets the privacy-cost comparison in Section~\ref{sec:results-m3} isolate the effect of the noise. Each federated round therefore runs $R$ local Huber-TD steps per client with an optional FedProx proximal term $\tfrac{\mu}{2}\lVert \theta_i - \bar\theta \rVert^2$, clips and optionally perturbs the gradient, and closes with a FedAvg average that is broadcast back.
+We credit no amplification by subsampling, because minibatches come from a growing replay buffer that reuses records, so Eq.~\eqref{eq:zcdp} is an upper bound. The clip is applied whether or not noise is added, so a $\sigma{=}0$ run and a $\sigma{>}0$ run differ only in the injected noise. The noise protects each client's own admission decisions and rewards, but not its congestion features, which every client's encoder reads from the shared node-feature snapshot by design. Each federated round therefore runs $R$ local Huber-TD steps per client with an optional FedProx proximal term $\tfrac{\mu}{2}\lVert \theta_i - \bar\theta \rVert^2$, clips and optionally perturbs the gradient, and closes with a FedAvg average that is broadcast back.
 
 \subsection{Experimental Setup}
 \label{sec:setup}
@@ -416,7 +416,7 @@ Block precision, 3 gNBs & 1.000 & 0.877 & 0.937 \\
 URLLC/eMBB SLA, 3 gNBs & 91.9\%/95.5\% & 61.6\%/31.6\% & 41.4\%/25.5\% \\
 Behaviour at 19 gNBs & Partial, 35.4\% & Total, all 45 cells & Rare, 0.0--16.7\% \\
 Reads cluster layout & Yes & No & No \\
-Federated, privacy-ready & Yes, no reward cost & Not applicable & Not applicable \\
+Federated, noise-free & Yes, no significant cost & Not applicable & Not applicable \\
 \botrule
 \end{tabular}}
 \end{table}
@@ -470,19 +470,18 @@ Third, the advantage holds when the environment changes within its feasible rang
 
 \subsection{Federated Training and DP}
 \label{sec:results-m3}
-\authorTODO{Old-environment numbers. Replace with the shared-budget federated and noise-sweep results, and report the epsilon bound per noise level, when the rerun finishes.}
-
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig4_m3_privacy.pdf}
-\caption{M3 federated and DP sweep. a, Paired per-seed federation cost on
-mean reward per step, no measurable difference at $p=0.8125$. b, Block
-precision versus DP noise multiplier $\sigma$, perfect through
-$\sigma{=}1.0$ then dropping sharply.}
+\caption{Federated campaign, 10 seeds. a, Paired per-seed federation cost
+on mean reward per step, not significant at $p=0.31$. b, Block precision
+versus DP noise multiplier $\sigma$, which drops at every tested level.}
 \label{fig:m3-privacy}
 \end{figure}
 
-With federation switched on and no privacy noise, mean reward per step barely moves against the centralised run on the same ten seeds, by $+0.133$ with 95\% CI [$-$0.138, 0.470] and $p=0.8125$. Federating the training therefore costs nothing measurable, and both variants keep perfect block precision on the seeds that block at all. We then add differential-privacy noise, random perturbation to each shared update that hides any single gNB's data. Block precision holds perfect through a noise multiplier of $\sigma{=}1.0$, then falls sharply to 0.834 at $\sigma{=}2.0$ and 0.584 at $\sigma{=}4.0$, as Fig.~\ref{fig:m3-privacy}b shows. This is a clear threshold rather than a gentle slide. Mean reward per step stays inside a narrow 12.45--14.19 band throughout, because the noise erodes which slice gets blocked long before it erodes whether the policy decides at all. Read together with the FedProx null result, this answers a deployability question directly. Periodic, infrequent synchronisation is enough for this architecture, a disaggregated controller needs no per-step coordination between gNBs to match centralised reward, and privacy can be bought at a bounded and known precision cost.
+With federation switched on and no noise, mean reward per step on the ten shared seeds moves from 11.333 for centralised AXIOM to 10.481 for the federated variant, a difference of $+0.853$ with 95\% CI [$-$0.005, 2.431] and $p=0.31$. Federation therefore costs nothing significant at this sample size and keeps block precision at 1.000. It is more variable across seeds, though, since five seeds tie exactly while one loses 7.8 reward per step. The DQN baselines are not federated, because averaging the independent learners' weights would turn them into a parameter-sharing learner that is no longer the ablation, and the single-agent DQN is one central controller with nothing to federate.
+
+Adding DP-SGD noise is a different matter. At every tested noise multiplier, from $\sigma{=}0.5$ to $\sigma{=}4$, block precision falls to between 0.27 and 0.49, eMBB compliance falls to at most 20.3\%, and reward drops to between 3.5 and 5.5 per step, all significantly below centralised AXIOM at Holm-adjusted $p<0.02$, as Fig.~\ref{fig:m3-privacy}b shows. The formal guarantee is also weak at these settings. Each client takes 17{,}969 noisy steps, so Eq.~\eqref{eq:zcdp} gives $\varepsilon$ of about 146{,}000, 37{,}000, 9{,}600, and 2{,}600 at $\delta{=}10^{-5}$ for $\sigma$ of 0.5, 1, 2, and 4, far from the single-digit values that carry meaning. Per-step DP-SGD therefore delivers neither a usable policy nor a meaningful guarantee here. A useful guarantee would need noise on the roughly 360 per-round model updates rather than on every step, which Section~\ref{sec:conclusion} lists as future work. Read together, the federation result answers the deployability question, since periodic, infrequent synchronisation matches centralised training without per-step coordination between gNBs, while privacy remains open.
 
 \subsection{Disruption}
 \label{sec:results-m4}

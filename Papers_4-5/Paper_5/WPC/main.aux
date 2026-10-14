@@ -62,8 +62,8 @@
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Evaluation failures this paper's safeguards caught during the work, none of which a standard pipeline would have surfaced.}}{11}{table.1}\protected@file@percent }
 \newlabel{tab:safeguards}{{1}{11}{Evaluation failures this paper's safeguards caught during the work, none of which a standard pipeline would have surfaced}{table.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Results}{11}{section.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Centralised}{11}{subsection.5.1}\protected@file@percent }
-\newlabel{sec:results-m2}{{5.1}{11}{Centralised}{subsection.5.1}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Centralised}{12}{subsection.5.1}\protected@file@percent }
+\newlabel{sec:results-m2}{{5.1}{12}{Centralised}{subsection.5.1}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces How the three policies compare. AXIOM is the architecture of this paper; the two DQN policies are ablations that strip out its coordination. The three-gNB values come from the campaign of Table~\ref {tab:m2-results}.}}{12}{table.2}\protected@file@percent }
 \newlabel{tab:compare}{{2}{12}{How the three policies compare. AXIOM is the architecture of this paper; the two DQN policies are ablations that strip out its coordination. The three-gNB values come from the campaign of Table~\ref {tab:m2-results}}{table.2}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Centralised campaign, per-seed evidence. a, Paired per-seed mean reward per step of AXIOM versus single-agent DQN, coloured by win, tie, or loss. b, Per-seed reward distribution for the three learned arms.}}{12}{figure.5}\protected@file@percent }
@@ -72,28 +72,28 @@
 \newlabel{tab:m2-results}{{3}{13}{Centralised campaign, 30 seeds per arm, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance}{table.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Baselines, Ablations, and Sensitivity}{13}{subsection.5.2}\protected@file@percent }
 \newlabel{sec:results-ablation}{{5.2}{13}{Baselines, Ablations, and Sensitivity}{subsection.5.2}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Federated Training and DP}{13}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:results-m3}{{5.3}{13}{Federated Training and DP}{subsection.5.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces M3 federated and DP sweep. a, Paired per-seed federation cost on mean reward per step, no measurable difference at $p=0.8125$. b, Block precision versus DP noise multiplier $\sigma $, perfect through $\sigma {=}1.0$ then dropping sharply.}}{14}{figure.6}\protected@file@percent }
-\newlabel{fig:m3-privacy}{{6}{14}{M3 federated and DP sweep. a, Paired per-seed federation cost on mean reward per step, no measurable difference at $p=0.8125$. b, Block precision versus DP noise multiplier $\sigma $, perfect through $\sigma {=}1.0$ then dropping sharply}{figure.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Disruption}{14}{subsection.5.4}\protected@file@percent }
-\newlabel{sec:results-m4}{{5.4}{14}{Disruption}{subsection.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Federated campaign, 10 seeds. a, Paired per-seed federation cost on mean reward per step, not significant at $p=0.31$. b, Block precision versus DP noise multiplier $\sigma $, which drops at every tested level.}}{14}{figure.6}\protected@file@percent }
+\newlabel{fig:m3-privacy}{{6}{14}{Federated campaign, 10 seeds. a, Paired per-seed federation cost on mean reward per step, not significant at $p=0.31$. b, Block precision versus DP noise multiplier $\sigma $, which drops at every tested level}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Federated Training and DP}{14}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:results-m3}{{5.3}{14}{Federated Training and DP}{subsection.5.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces M4 disruption campaign, 10 seeds per arm. a, b, Normalised reward cost versus severity for dropout and churn, accelerating with severity. c, Block precision versus demand-spike multiplier, flat and near-ceiling.}}{15}{figure.7}\protected@file@percent }
 \newlabel{fig:m4-disruption}{{7}{15}{M4 disruption campaign, 10 seeds per arm. a, b, Normalised reward cost versus severity for dropout and churn, accelerating with severity. c, Block precision versus demand-spike multiplier, flat and near-ceiling}{figure.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cluster-Size Scaling}{15}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:results-m6}{{5.5}{15}{Cluster-Size Scaling}{subsection.5.5}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces $N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds.}}{16}{figure.8}\protected@file@percent }
-\newlabel{fig:m6-topology}{{8}{16}{$N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds}{figure.8}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces AXIOM against the two baselines. a, Reward quality at three gNBs with 95\% CIs against collapse resistance at seven gNBs across two 12-seed samples, where AXIOM alone is accurate and robust. b, Each axis as a fraction of the best policy on it, so AXIOM encloses the largest area and leads the two capability axes outright.}}{17}{figure.9}\protected@file@percent }
-\newlabel{fig:quadrant}{{9}{17}{AXIOM against the two baselines. a, Reward quality at three gNBs with 95\% CIs against collapse resistance at seven gNBs across two 12-seed samples, where AXIOM alone is accurate and robust. b, Each axis as a fraction of the best policy on it, so AXIOM encloses the largest area and leads the two capability axes outright}{figure.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Disruption}{15}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:results-m4}{{5.4}{15}{Disruption}{subsection.5.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Cluster-Size Scaling}{16}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:results-m6}{{5.5}{16}{Cluster-Size Scaling}{subsection.5.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces $N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds.}}{17}{figure.8}\protected@file@percent }
+\newlabel{fig:m6-topology}{{8}{17}{$N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled across topologies, single-agent DQN total and AXIOM converging to 35.4\% across 64 seeds. b, Block precision by topology for non-collapsed seeds}{figure.8}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Live Deployment}{17}{subsection.5.6}\protected@file@percent }
 \newlabel{sec:results-m8}{{5.6}{17}{Live Deployment}{subsection.5.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces AXIOM against the two baselines. a, Reward quality at three gNBs with 95\% CIs against collapse resistance at seven gNBs across two 12-seed samples, where AXIOM alone is accurate and robust. b, Each axis as a fraction of the best policy on it, so AXIOM encloses the largest area and leads the two capability axes outright.}}{18}{figure.9}\protected@file@percent }
+\newlabel{fig:quadrant}{{9}{18}{AXIOM against the two baselines. a, Reward quality at three gNBs with 95\% CIs against collapse resistance at seven gNBs across two 12-seed samples, where AXIOM alone is accurate and robust. b, Each axis as a fraction of the best policy on it, so AXIOM encloses the largest area and leads the two capability axes outright}{figure.9}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{18}{section.6}\protected@file@percent }
 \newlabel{sec:conclusion}{{6}{18}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{19}{section*.2}\protected@file@percent }
 \bibdata{refs}
 \bibcite{dpsgd}{{1}{2016}{{Abadi et~al.}}{{Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar, and Zhang}}}
 \bibcite{ahmadi2024generalizable}{{2}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
-\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{19}{section*.2}\protected@file@percent }
 \bibcite{bega2020market}{{3}{2020}{{Bega et~al.}}{{Bega, Gramaglia, Banchs, Sciancalepore, and Costa-P{\'e}rez}}}
 \bibcite{bouroudi2025gnnmarl}{{4}{2025}{{Bouroudi et~al.}}{{Bouroudi, Outtagarts, and Hadjadj-Aoul}}}
 \bibcite{zcdp}{{5}{2016}{{Bun and Steinke}}{{}}}
