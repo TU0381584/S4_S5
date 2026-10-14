@@ -66,6 +66,7 @@ S.~K.~Phang: orcid.org/0000-0002-7877-8766.
 \vspace{6pt}
 
 \section{Introduction}
+\authorTODO{The abstract and the introduction's result sentences still quote old-environment numbers. Rewrite both once all shared-budget reruns finish.}
 Network slicing virtualises the physical radio access network (RAN) to serve heterogeneous services under Ultra-Reliable Low-Latency Communication (URLLC), enhanced Mobile Broadband (eMBB), and massive Machine-Type Communication (mMTC) categories. Each slice carries distinct Service Level Agreement (SLA) targets that are in turn based on Quality of Service (QoS) thresholds. Our earlier work~\cite{mecon-paper1,icraie-paper2} validated that a Deep Q-Network (DQN) admission controller can enforce SLAs for a single gNodeB (gNB) in a live OpenAirInterface (OAI) testbed. However, a real deployment spans multiple gNBs that share backhaul, spectrum planning, and a cluster-wide load-balance objective. Thus, slice admission at one gNB is rarely isolated, and coordinated admission is in fact a multi-gNB, multi-agent challenge. This research aims to address whether a shared, graph-structured view of the cluster could enable per-gNB agents to decide better than a single agent on a flattened state, as opposed to independent agents. Fig.~\ref{fig:sysview} places the research premise in context.
 
 \begin{figure}[!b]
@@ -469,6 +470,7 @@ Third, the advantage holds when the environment changes within its feasible rang
 
 \subsection{Federated Training and DP}
 \label{sec:results-m3}
+\authorTODO{Old-environment numbers. Replace with the shared-budget federated and noise-sweep results, and report the epsilon bound per noise level, when the rerun finishes.}
 
 \begin{figure}[t]
 \centering
@@ -484,6 +486,7 @@ With federation switched on and no privacy noise, mean reward per step barely mo
 
 \subsection{Disruption}
 \label{sec:results-m4}
+\authorTODO{Old-environment numbers. Replace with the shared-budget disruption results and their replication when the rerun finishes.}
 We test every policy's frozen checkpoint against three mid-episode disruptions, injected at evaluation time with no retraining. A 'gNB dropout' forces one gNB to reject everything and blanks its row in the shared feature matrix for a window. A 'demand spike' briefly multiplies the arrival rate from outside the policy. An 'agent churn' swaps one gNB's decisions for a fresh, untrained copy of its own policy for a window and leaves the others intact. Churn applies to every genuinely multi-agent policy but not to the single-agent one. For dropout and churn the severity is how long the window lasts, at 10\%, 30\%, or 60\% of the episode. For the spike it is the arrival multiplier, at 2$\times$, 4$\times$, or 8$\times$. Because raw reward grows mechanically with request volume, we report a volume-normalised reward over an episode of $T$ steps, $\bar r = \frac{1}{T}\sum_{t=1}^{T} r_t/\max(n_t,1)$, which divides each step reward $r_t$ by its own pending-request count $n_t$ before averaging.
 
 \begin{figure}[t]
@@ -502,6 +505,7 @@ One disruption result needed a second, independent sample to report honestly. An
 
 \subsection{Cluster-Size Scaling}
 \label{sec:results-m6}
+\authorTODO{Old-environment numbers. Replace with the shared-budget N=7 and N=19 scaling results, regenerate Figs 8 and 9, when the rerun finishes.}
 We grow the cluster from three gNBs to seven and nineteen under three layouts, fully-connected, ring, and hex-grid, scaling the synthetic arrivals with the cluster so per-gNB load stays roughly constant. Only AXIOM's decision head actually reads this layout, so the two DQN policies double as a check that nothing depends on topology by accident. We normalise reward per gNB with the same volume-normalised $\bar r$ as in Section~\ref{sec:results-m4}, and we lean on block precision rather than compliance here, because compliance is combined across gNBs with a logical OR and drifts to zero as the cluster grows whatever the policy does. The main sample is twelve seeds at nineteen gNBs across every layout and policy, with further independent seeds to test generalisation.
 
 At nineteen gNBs the per-gNB reward margins are not significant for any layout, and that is expected rather than disappointing. The single-agent policy's always-accept collapse banks the service reward on every request, while AXIOM pays a real price each time it correctly rejects low-priority mMTC traffic. The true separation therefore shows up in collapse resistance and block precision, not in raw reward.
@@ -539,6 +543,7 @@ A capacity probe at a deliberately wide-open ceiling showed all three slices ser
 
 \section{Conclusion}
 \label{sec:conclusion}
+\authorTODO{Rewrite the conclusion from the shared-budget results once all reruns finish.}
 This paper presented AXIOM, a correctness-aware graph-attention architecture for federated multi-agent slice admission control. A shared GAT encoder reads the cluster graph and feeds decentralised per-slice action heads. The design closes three gaps from our prior systematic review, namely trustworthy evaluation, privacy-preserving coordination, and validated deployment.
 
 The architecture delivers on each of these fronts. AXIOM beats the independent-learner ablation decisively on the training objective, resists at 19 gNBs a collapse that overwhelms the single-agent baseline, and holds its reward under federation while differential privacy stays accurate up to a clear noise threshold. A live single-gNB deployment confirms that the offline-trained logic executes correctly on real hardware. These results carry honest bounds, since the multi-gNB, federated, and disruption campaigns are offline, the graph models only the gNB cluster, and the federated setting assumes a single operator.
