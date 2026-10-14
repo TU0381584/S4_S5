@@ -158,7 +158,7 @@ Rather than adding a new point in the GAT, MARL, and FL design space, this paper
 
 \section{System Model and Problem Formulation}
 \label{sec:system-model}
-Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller runs across four offline campaigns in a disclosed stress environment. Two correctness safeguards check every result. The deployment pipeline is then checked on the live single-gNB testbed of Fig.~\ref{fig:testbed}.
+Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller runs across four offline campaigns in a shared-budget simulation environment. Three evaluation safeguards check every result. The deployment pipeline is then checked on the live single-gNB testbed of Fig.~\ref{fig:testbed}.
 
 \begin{figure}[b]
 \centering
@@ -179,12 +179,12 @@ Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller
   {AXIOM controller\\[1pt] 2-layer, 4-head graph-attention encoder over the gNB graph, then per-slice Q-heads; centralised training, decentralised execution; per-request Huber TD, $\gamma{=}0.95$};
 \node[grp, fit={(0.3,3.3) (15.7,5.0)}] (grp) {};
 \node[font=\scriptsize, anchor=north west, text=green!45!black] at (0.45,4.93) {Offline shared-budget environment, $\approx$105\% PRB demand};
-\node[cblk, text width=3.3cm] (c1) at (2.35,3.95) {Centralised $N{=}3$\\[1pt] 30 seeds, 3 arms};
+\node[cblk, text width=3.3cm] (c1) at (2.35,3.95) {Centralised $N{=}3$\\[1pt] 30 seeds, oracle + 6 arms};
 \node[cblk, text width=3.3cm] (c2) at (6.25,3.95) {Federated + DP\\[1pt] FedAvg/FedProx, DP-SGD $\sigma$};
 \node[cblk, text width=3.3cm] (c3) at (10.1,3.95) {Disruption\\[1pt] dropout/spike/churn};
 \node[cblk, text width=3.3cm] (c4) at (13.95,3.95) {Scaling $N\!\in\!\{7,19\}$\\[1pt] ring/hex/full-mesh};
 \node[sblk, text width=15cm] (safe) at (8,2.3)
-  {Evaluation safeguards\quad correctness-aware pair, mean reward per step and block precision; reproduction versus replication on disjoint seeds};
+  {Evaluation safeguards\quad trivial-policy check; reward, block precision, and per-slice SLA; replication on disjoint seeds};
 \node[lblk, text width=14cm] (live) at (8,0.9)
   {Live single-gNB OAI pipeline check, rfsim\quad 18{,}562-parameter DQN checkpoint, AXIOM evaluated offline};
 \draw[ar] (prob) -- (arch);
@@ -194,8 +194,8 @@ Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller
 \end{tikzpicture}%
 }
 \caption{Overview of the research. An AXIOM controller is evaluated
-across four offline campaigns in a stress environment, every result
-checked by two safeguards, with the deployment pipeline checked on a live single-gNB testbed.}
+across four offline campaigns in a shared-budget environment, every result
+checked by three safeguards, with the deployment pipeline checked on a live single-gNB testbed.}
 \label{fig:overview}
 \end{figure}
 
@@ -536,7 +536,7 @@ Fig.~\ref{fig:quadrant}a places the three policies on one map of accuracy at thr
 \label{sec:results-m8}
 This section reports what the real OAI testbed of Fig.~\ref{fig:testbed}, introduced in Section~\ref{sec:system-model}, can and cannot establish about the offline-trained policy. AXIOM itself is not deployed on the live testbed. Its multi-gNB policy needs at least two live gNBs, and our two-gNB attempt registered both gNBs with the core but did not sustain traffic, so a live AXIOM run is left to future work. This section therefore validates the deployment pipeline that AXIOM would use, namely the E2 control path, the PRB-ratio actuation, and real-time inference of an offline-trained checkpoint. For that we run a single-agent-DQN checkpoint, seed 900, against a real gNB, real User Equipments (UEs), and real per-slice User Datagram Protocol (UDP) traffic, at one UE per slice and again at two UEs per slice.
 
-A capacity probe at a deliberately wide-open ceiling showed all three slices serving essentially 100\% of offered demand with 0.000\% loss at both loads. The frozen checkpoint's decision logic runs correctly end to end, through the real E2 control loop, with real accept and reject decisions, and its signature low-priority-only blocking of mMTC reappears at both loads, which establishes deployability end to end. Because the rig never actually runs short of capacity, the same pattern is equally consistent with the policy's trained priority bias, so we claim admission-control behaviour under contention only in the disclosed offline stress regime, not live. Two integrity issues surfaced and were fixed during these checks. A scheduler-configuration error had turned the per-slice PRB-ratio ranges into raw grants below the gNB scheduler's hard five-PRB floor, which we fixed at the root, after which direct instrumentation confirmed zero below-floor grants across more than 100{,}000 readings. A separate unit mismatch in the live SLA-margin diagnostic was corrected by converting backlog into a queueing-delay estimate, using Little's law, against each slice's own latency budget.
+A capacity probe at a deliberately wide-open ceiling showed all three slices serving essentially 100\% of offered demand with 0.000\% loss at both loads. The frozen checkpoint's decision logic runs correctly end to end, through the real E2 control loop, with real accept and reject decisions, and its signature low-priority-only blocking of mMTC reappears at both loads, which shows that the deployment pipeline works end to end. Because the rig never actually runs short of capacity, the same pattern is equally consistent with the policy's trained priority bias, so we claim admission-control behaviour under contention only in the offline shared-budget environment, not live. Two integrity issues surfaced and were fixed during these checks. A scheduler-configuration error had turned the per-slice PRB-ratio ranges into raw grants below the gNB scheduler's hard five-PRB floor, which we fixed at the root, after which direct instrumentation confirmed zero below-floor grants across more than 100{,}000 readings. A separate unit mismatch in the live SLA-margin diagnostic was corrected by converting backlog into a queueing-delay estimate, using Little's law, against each slice's own latency budget.
 
 \section{Conclusion}
 \label{sec:conclusion}
