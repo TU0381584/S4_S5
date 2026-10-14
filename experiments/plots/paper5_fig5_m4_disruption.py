@@ -155,7 +155,7 @@ def main() -> None:
     fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, -0.16), ncol=4, frameon=False)
 
     if not args.no_titles:
-        fig.suptitle("M4: disruption cost vs. severity, 10 seeds/arm", y=1.05, fontsize=9)
+        fig.suptitle("Disruption cost versus severity, 10 seeds per arm", y=1.05, fontsize=9)
     fig.subplots_adjust(bottom=0.05, wspace=0.45)
 
     out_path = Path(args.out)

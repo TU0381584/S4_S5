@@ -1,0 +1,52 @@
+{
+  "arm": "axiom_mlp",
+  "env": "shared",
+  "condition": "base",
+  "caps": {
+    "urllc": 33,
+    "embb": 66,
+    "mmtc": 11
+  },
+  "weights": {
+    "urllc": 12.0,
+    "embb": 3.5,
+    "mmtc": 0.3
+  },
+  "results": {
+    "905": {
+      "mean_reward_per_step": 10.680774552152435,
+      "mmtc_blocks": 3415,
+      "total_blocks": 3424,
+      "eval_omega": "../experiments/results/m62_reviewer/base/axiom_mlp/seed905/eval/omega_log.jsonl",
+      "elapsed_s": 485.7
+    },
+    "906": {
+      "mean_reward_per_step": 11.000630895280086,
+      "mmtc_blocks": 3501,
+      "total_blocks": 3512,
+      "eval_omega": "../experiments/results/m62_reviewer/base/axiom_mlp/seed906/eval/omega_log.jsonl",
+      "elapsed_s": 465.5
+    },
+    "907": {
+      "mean_reward_per_step": 11.668495421013553,
+      "mmtc_blocks": 3535,
+      "total_blocks": 3535,
+      "eval_omega": "../experiments/results/m62_reviewer/base/axiom_mlp/seed907/eval/omega_log.jsonl",
+      "elapsed_s": 479.7
+    },
+    "908": {
+      "mean_reward_per_step": 11.841355338950887,
+      "mmtc_blocks": 3414,
+      "total_blocks": 3414,
+      "eval_omega": "../experiments/results/m62_reviewer/base/axiom_mlp/seed908/eval/omega_log.jsonl",
+      "elapsed_s": 453.5
+    },
+    "909": {
+      "mean_reward_per_step": 11.610254713860638,
+      "mmtc_blocks": 3525,
+      "total_blocks": 3525,
+      "eval_omega": "../experiments/results/m62_reviewer/base/axiom_mlp/seed909/eval/omega_log.jsonl",
+      "elapsed_s": 378.9
+    }
+  }
+}

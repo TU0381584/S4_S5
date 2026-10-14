@@ -1,4 +1,4 @@
-\begin{thebibliography}{19}
+\begin{thebibliography}{26}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -17,6 +17,12 @@ Abadi M, Chu A, Goodfellow I, et~al (2016) Deep learning with differential
 Ahmadi M, Moayyedi A, Sulaiman M, et~al (2024) Generalizable {5G} {RAN}/{MEC}
   slicing and admission control for reliable network operation. IEEE Trans Netw
   Service Manag \doi{10.1109/TNSM.2024.3437217}
+
+\bibitem[{Bega et~al.(2020)Bega, Gramaglia, Banchs, Sciancalepore, and
+  Costa-P{\'e}rez}]{bega2020market}
+Bega D, Gramaglia M, Banchs A, et~al (2020) A machine learning approach to {5G}
+  infrastructure market optimization. IEEE Transactions on Mobile Computing
+  19(3):498--512. \doi{10.1109/TMC.2019.2896950}
 
 \bibitem[{Bouroudi et~al.(2025)Bouroudi, Outtagarts, and
   Hadjadj-Aoul}]{bouroudi2025gnnmarl}
@@ -83,12 +89,38 @@ Mohajer A, Mirzaei A, Darabi M, et~al (2026) Joint {SLA}-aware task offloading
   reinforcement learning. IEEE Trans Netw Service Manag 23:3737--3754.
   \doi{10.1109/TNSM.2026.3673188}
 
+\bibitem[{Polese et~al.(2023{\natexlab{a}})Polese, Bonati, D'Oro, Basagni, and
+  Melodia}]{polese2023coloran}
+Polese M, Bonati L, D'Oro S, et~al (2023{\natexlab{a}}) {ColO-RAN}: Developing
+  machine learning-based {xApps} for open {RAN} closed-loop control on
+  programmable experimental platforms. IEEE Transactions on Mobile Computing
+  22(10):5787--5800. \doi{10.1109/TMC.2022.3188013}
+
+\bibitem[{Polese et~al.(2023{\natexlab{b}})Polese, Bonati, D'Oro, Basagni, and
+  Melodia}]{polese2023oran}
+Polese M, Bonati L, D'Oro S, et~al (2023{\natexlab{b}}) Understanding {O-RAN}:
+  Architecture, interfaces, algorithms, security, and research challenges. IEEE
+  Communications Surveys \& Tutorials 25(2):1376--1411.
+  \doi{10.1109/COMST.2023.3239220}
+
 \bibitem[{Qasim et~al.(2025)Qasim, Imran, Akram, {Ahmad Bilal}, and {Jaleed
   Khan}}]{qasim2025tgnnfl}
 Qasim M, Imran M, Akram F, et~al (2025) Transformer and graph neural
   network-based federated learning for cellular traffic prediction with
   sustainability analysis. IEEE Access 13:159649--159666.
   \doi{10.1109/ACCESS.2025.3605380}
+
+\bibitem[{Rashid et~al.(2020)Rashid, Samvelyan, Schroeder~de Witt, Farquhar,
+  Foerster, and Whiteson}]{rashid2020qmix}
+Rashid T, Samvelyan M, Schroeder~de Witt C, et~al (2020) Monotonic value
+  function factorisation for deep multi-agent reinforcement learning. Journal
+  of Machine Learning Research 21(178):1--51
+
+\bibitem[{Raza et~al.(2019)Raza, Natalino, {\"O}hlen, Wosinska, and
+  Monti}]{raza2019slicing}
+Raza MR, Natalino C, {\"O}hlen P, et~al (2019) Reinforcement learning for
+  slicing in a {5G} flexible {RAN}. Journal of Lightwave Technology
+  37(20):5161--5169. \doi{10.1109/JLT.2019.2924345}
 
 \bibitem[{Shao et~al.(2021)Shao, Li, Hu, Wu, Zhao, and Zhang}]{shao2021gatmarl}
 Shao Y, Li R, Hu B, et~al (2021) Graph attention network-based multi-agent
@@ -107,6 +139,13 @@ Tashman DH, Cherkaoui S (2026) Adversarial attacks in {AI}-driven {RAN}
   slicing: {SLA} violations and recovery. In: Proc. Int. Wireless Commun. and
   Mobile Computing (IWCMC), \doi{10.1109/IWCMC69287.2026.11580033}
 
+\bibitem[{Tsampazi et~al.(2023)Tsampazi, D'Oro, Polese, Bonati, Poitau, Healy,
+  and Melodia}]{tsampazi2023xapps}
+Tsampazi M, D'Oro S, Polese M, et~al (2023) A comparative analysis of deep
+  reinforcement learning-based {xApps} in {O-RAN}. In: Proc. IEEE Global
+  Communications Conference (GLOBECOM), pp 1638--1643,
+  \doi{10.1109/GLOBECOM54140.2023.10437367}
+
 \bibitem[{Veli{\v{c}}kovi{\'c} et~al.(2018)Veli{\v{c}}kovi{\'c}, Cucurull,
   Casanova, Romero, Li{\`o}, and Bengio}]{gat}
 Veli{\v{c}}kovi{\'c} P, Cucurull G, Casanova A, et~al (2018) Graph attention
@@ -117,6 +156,12 @@ Yasin TV, Yu CM, Wang LC (2025) Differential privacy federated edge
   learning-assisted for securing {RAN} intelligent controller in {O-RAN} {6G}
   communications. In: Proc. IEEE VTS Asia Pacific Wireless Commun. Symp.
   (APWCS), \doi{10.1109/APWCS67981.2025.11151868}
+
+\bibitem[{Yu et~al.(2022)Yu, Velu, Vinitsky, Gao, Wang, Bayen, and
+  Wu}]{yu2022mappo}
+Yu C, Velu A, Vinitsky E, et~al (2022) The surprising effectiveness of {PPO} in
+  cooperative multi-agent games. In: Advances in Neural Information Processing
+  Systems (NeurIPS), Datasets and Benchmarks Track
 
 \bibitem[{Zhang et~al.(2022)Zhang, Zhou, and
   Erol-Kantarci}]{zhang2022federatedoran}

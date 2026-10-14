@@ -93,8 +93,8 @@ def main() -> None:
     lo, hi = bootstrap_ci(diff)
     _w_stat, w_p = stats.wilcoxon(gat, single)
     ax1.text(0.5, 0.02,
-              f"mean $\\Delta$=+{diff.mean():.3f} [{lo:.2f}, {hi:.2f}]\n"
-              f"Wilcoxon $p$={w_p:.4f}",
+              f"mean $\\Delta$=+{diff.mean():.3f} [{lo:.2f}, {hi:.2f}]\n" +
+              (f"Wilcoxon $p$={w_p:.4f}" if w_p >= 1e-4 else "Wilcoxon $p$<0.0001"),
               transform=ax1.transAxes, ha="center", va="bottom", fontsize=6.5,
               bbox=dict(boxstyle="round,pad=0.3", facecolor="#fcfcfb", edgecolor="#c3c2b7", linewidth=0.6))
 
@@ -106,7 +106,7 @@ def main() -> None:
         Line2D([0], [0], color=STATUS_COLORS["critical"], linestyle="--", linewidth=1.4,
                label=f"AXIOM lower ({n_lose})"),
     ]
-    ax1.legend(handles=legend_handles, loc="upper left", frameon=False, handlelength=1.6)
+    ax1.legend(handles=legend_handles, loc="lower right", bbox_to_anchor=(1.0, 0.2), frameon=False, handlelength=1.6, fontsize=6.5)
 
     # ---- (b) per-seed reward strip, all 3 arms, gat_ctde split by collapse status ----
     rng = np.random.RandomState(0)
@@ -145,10 +145,11 @@ def main() -> None:
     handles2.append(Line2D([0], [0], marker="D", color="#0b0b0b", linestyle="none",
                             markersize=5, label="Mean $\\pm$ 95% CI"))
     labels2.append("Mean $\\pm$ 95% CI")
-    ax2.legend(handles2, labels2, loc="lower left", bbox_to_anchor=(0.01, 0.01),
-               ncol=1, frameon=False, fontsize=6, handlelength=1.3)
+    ymin, ymax = ax2.get_ylim(); ax2.set_ylim(ymin - 0.45 * (ymax - ymin), ymax)
+    ax2.legend(handles2, labels2, loc="lower left", bbox_to_anchor=(0.01, 0.01), ncol=2, columnspacing=0.8,
+               frameon=False, fontsize=6, handlelength=1.3)
 
-    fig.suptitle("M2 campaign: per-seed reward evidence, 30 seeds/arm", y=1.02, fontsize=9)
+    fig.suptitle("Centralised campaign, per-seed reward evidence, 30 seeds per arm", y=1.02, fontsize=9)
     fig.subplots_adjust(bottom=0.14, wspace=0.32)
 
     out_path = Path(args.out)
