@@ -48,6 +48,10 @@ def main() -> None:
     ap.add_argument("--no-titles", action="store_true",
                      help="Bare (a)/(b)/(c) panel tags, no descriptive words, no suptitle "
                           "(WPC copy: caption carries the description instead).")
+    ap.add_argument("--level", action="store_true",
+                    help="Panels (a)/(b) plot the normalised reward each policy keeps, with the "
+                         "undisrupted level at 'None', instead of the baseline-minus-disrupted cost. "
+                         "Shows that a larger cost can come from a higher starting level.")
     args = ap.parse_args()
 
     with open(args.m4_results) as fh:
@@ -58,10 +62,17 @@ def main() -> None:
         conditions.setdefault((cell["arm"], cell["kind"], cell["severity"]), []).append(cell["seed"])
 
     def cost_series(kind, arms):
-        """Returns {arm: (means[3], los[3], his[3])} for severities 1/2/3."""
+        """Returns {arm: (means, los, his)} for severities 1/2/3, or, with
+        --level, for the undisrupted level followed by severities 1/2/3."""
         out = {}
         for arm in arms:
             means, los, his = [], [], []
+            if args.level:
+                seeds = sorted(conditions.get((arm, kind, 1), []))
+                v = np.array([per_seed_metrics_normalized(baseline_eval_path(arm, s_, args.m2_campaign_dir,
+                              args.m3_campaign_dir))[0] for s_ in seeds])
+                lo, hi = bootstrap_ci(v)
+                means.append(v.mean()); los.append(v.mean() - lo); his.append(hi - v.mean())
             for severity in (1, 2, 3):
                 seeds = sorted(conditions.get((arm, kind, severity), []))
                 if not seeds:
@@ -76,7 +87,7 @@ def main() -> None:
                         continue
                     d_norm, _, _ = per_seed_metrics_normalized(d_path)
                     b_norm, _, _ = per_seed_metrics_normalized(b_path)
-                    diffs.append(b_norm - d_norm)
+                    diffs.append(d_norm if args.level else b_norm - d_norm)
                 v = np.array(diffs)
                 lo, hi = bootstrap_ci(v)
                 means.append(v.mean()); los.append(v.mean() - lo); his.append(hi - v.mean())
@@ -114,28 +125,31 @@ def main() -> None:
 
     fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(9.2, 2.7))
     x = np.array([1, 2, 3])
+    xl = np.array([0, 1, 2, 3]) if args.level else x
+    sev_ticks = ["None", "10%", "30%", "60%"] if args.level else ["10%", "30%", "60%"]
+    ylab = "Normalised reward kept\n(higher is better)" if args.level else "Normalised reward cost\n(baseline $-$ disrupted)"
 
     for arm in M4_ARM_ORDER:
         style = M4_ARM_STYLE[arm]
         means, los, his = dropout[arm]
-        ax1.errorbar(x, means, yerr=[los, his], color=style["color"], marker=style["marker"],
+        ax1.errorbar(xl, means, yerr=[los, his], color=style["color"], marker=style["marker"],
                      markersize=5, linewidth=1.4, capsize=3, label=style["label"])
-    ax1.set_xticks(x)
-    ax1.set_xticklabels(["10%", "30%", "60%"])
+    ax1.set_xticks(xl)
+    ax1.set_xticklabels(sev_ticks)
     ax1.set_xlabel("Dropout window (% of episode)")
-    ax1.set_ylabel("Normalised reward cost\n(baseline $-$ disrupted)")
+    ax1.set_ylabel(ylab)
     ax1.set_title("(a)" if args.no_titles else "(a) gNB dropout", loc="left")
     ax1.axhline(0, color="#c3c2b7", linewidth=0.6, zorder=0)
 
     for arm in churn_arms:
         style = M4_ARM_STYLE[arm]
         means, los, his = churn[arm]
-        ax2.errorbar(x, means, yerr=[los, his], color=style["color"], marker=style["marker"],
+        ax2.errorbar(xl, means, yerr=[los, his], color=style["color"], marker=style["marker"],
                      markersize=5, linewidth=1.4, capsize=3, label=style["label"])
-    ax2.set_xticks(x)
-    ax2.set_xticklabels(["10%", "30%", "60%"])
+    ax2.set_xticks(xl)
+    ax2.set_xticklabels(sev_ticks)
     ax2.set_xlabel("Churn window (% of episode)")
-    ax2.set_ylabel("Normalised reward cost\n(baseline $-$ disrupted)")
+    ax2.set_ylabel(ylab)
     ax2.set_title("(b)" if args.no_titles else "(b) Agent churn", loc="left")
     ax2.axhline(0, color="#c3c2b7", linewidth=0.6, zorder=0)
 
@@ -155,7 +169,8 @@ def main() -> None:
     fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, -0.16), ncol=4, frameon=False)
 
     if not args.no_titles:
-        fig.suptitle("Disruption cost versus severity, 10 seeds per arm", y=1.05, fontsize=9)
+        fig.suptitle("Reward kept under disruption, 10 seeds per arm" if args.level
+                     else "Disruption cost versus severity, 10 seeds per arm", y=1.05, fontsize=9)
     fig.subplots_adjust(bottom=0.05, wspace=0.45)
 
     out_path = Path(args.out)
@@ -165,7 +180,7 @@ def main() -> None:
     print(f"[paper5:fig5] wrote {out_path}.pdf / .png")
     for panel_name, series in [("dropout", dropout), ("churn", churn)]:
         for arm, (means, los, his) in series.items():
-            print(f"  {panel_name}/{arm}: sev1/2/3 cost = {means}")
+            print(f"  {panel_name}/{arm}: {'none/' if args.level else ''}sev1/2/3 = {[round(float(m), 3) for m in means]}")
 
 
 if __name__ == "__main__":

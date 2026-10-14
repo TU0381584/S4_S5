@@ -74,7 +74,7 @@ M4_ARM_STYLE: Dict[str, dict] = {
     "gat_ctde":            M2_ARM_STYLE["gat_ctde"],
     "independent_dqn":     M2_ARM_STYLE["independent_dqn"],
     "single_agent_dqn":    M2_ARM_STYLE["single_agent_dqn"],
-    "fl_gat_ctde_sigma0.0": {"color": "#eda100", "marker": "D", "label": "Federated"},
+    "fl_gat_ctde_sigma0.0": {"color": "#eda100", "marker": "D", "label": "Federated AXIOM"},
 }
 
 # Fixed (never themed) status roles, dataviz skill palette.md -- used for
