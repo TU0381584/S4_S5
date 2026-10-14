@@ -100,7 +100,7 @@ def main():
     ax2.set_ylim(-0.03, 1.05)
     ax2.set_ylabel("URLLC and eMBB SLA\ncompliance, N = 19")
     ax2.set_title("(b)", loc="left")
-    ax2.legend(loc="lower left", frameon=False, fontsize=6.5)
+    ax2.legend(loc="center left", bbox_to_anchor=(0.01, 0.38), frameon=False, fontsize=6.5)
     fig.tight_layout()
 
     out = Path(a.out)

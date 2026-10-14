@@ -414,14 +414,15 @@ Design & Shared encoder, per-slice heads & One flattened controller & One learne
 Reward/step, 3 gNBs & 10.89, oracle-level & 3.90 & 1.69 \\
 Block precision, 3 gNBs & 1.000 & 0.877 & 0.937 \\
 URLLC/eMBB SLA, 3 gNBs & 91.9\%/95.5\% & 61.6\%/31.6\% & 41.4\%/25.5\% \\
-Behaviour at 19 gNBs & Partial, 35.4\% & Total, all 45 cells & Rare, 0.0--16.7\% \\
+Collapse, 7 and 19 gNBs & 4/45 and 2/45 & 0/45 and 43/45 & 0/45 and 0/45 \\
+URLLC/eMBB SLA, 19 gNBs & 73.9\%/65.8\% & 1.5\%/0.9\% & 6.4\%/1.5\% \\
 Reads cluster layout & Yes & No & No \\
 Federated, noise-free & Yes, no significant cost & Not applicable & Not applicable \\
 \botrule
 \end{tabular}}
 \end{table}
 
-\authorTODO{Rewrite this headline paragraph and the 19-gNB and federated rows of Table~\ref{tab:compare} once the shared-budget scaling and federated reruns finish.} The headline at three gNBs is that AXIOM is the only learned policy that reaches the oracle, shedding exactly the right traffic in every seed while both baselines leave the priority slices poorly protected.
+The headline is that AXIOM is the only learned policy that matches the oracle at three gNBs and the only one that still protects the priority slices at nineteen. Its one weakness is a rare collapse, in 6 of 150 cells. The independent DQN never collapses but leaves the priority slices unprotected, and Section~\ref{sec:results-m6} gives a simple guard against AXIOM's collapse.
 
 \begin{table}[t]
 \caption{Centralised campaign, 30 seeds per arm, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance.}
@@ -504,39 +505,37 @@ One disruption result needed a second, independent sample to report honestly. An
 
 \subsection{Cluster-Size Scaling}
 \label{sec:results-m6}
-\authorTODO{Old-environment numbers. Replace with the shared-budget N=7 and N=19 scaling results, regenerate Figs 8 and 9, when the rerun finishes.}
-We grow the cluster from three gNBs to seven and nineteen under three layouts, fully-connected, ring, and hex-grid, scaling the synthetic arrivals with the cluster so per-gNB load stays roughly constant. Only AXIOM's decision head actually reads this layout, so the two DQN policies double as a check that nothing depends on topology by accident. We normalise reward per gNB with the same volume-normalised $\bar r$ as in Section~\ref{sec:results-m4}, and we lean on block precision rather than compliance here, because compliance is combined across gNBs with a logical OR and drifts to zero as the cluster grows whatever the policy does. The main sample is twelve seeds at nineteen gNBs across every layout and policy, with further independent seeds to test generalisation.
-
-At nineteen gNBs the per-gNB reward margins are not significant for any layout, and that is expected rather than disappointing. The single-agent policy's always-accept collapse banks the service reward on every request, while AXIOM pays a real price each time it correctly rejects low-priority mMTC traffic. The true separation therefore shows up in collapse resistance and block precision, not in raw reward.
+We grow the cluster from three gNBs to seven and nineteen under three layouts, fully-connected, ring, and hex-grid. Every gNB keeps its own shared 100-PRB budget and its own demand, so per-gNB load stays the same as the cluster grows. Each of the 18 cells, one per size, layout, and policy, runs 15 seeds, namely 900 to 911 and the replication seeds 1000 to 1002. Only AXIOM's encoder reads the layout, so the independent DQN gives identical results under all three layouts, which serves as a check that the layout changes nothing else. We test the per-layout gaps on reward and on the mean of URLLC and eMBB compliance, Holm-correcting the 12 comparisons at each size.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\columnwidth]{figures/fig6_m6_topology.pdf}
-\caption{$N{=}19$ cluster, per-seed evidence. a, Collapse rate pooled
-across topologies, single-agent DQN total and AXIOM converging to
-35.4\% across 64 seeds. b, Block precision by topology for non-collapsed
-seeds.}
+\caption{Scaling, 15 seeds per cell. a, Collapse rate pooled over layouts,
+with collapsed over total cells. b, Mean URLLC and eMBB compliance at 19
+gNBs by layout, per-seed points behind the mean and 95\% CI.}
 \label{fig:m6-topology}
 \end{figure}
 
-The contrast between the three policies at scale is stark. The single-agent DQN collapses completely at nineteen gNBs, in all 45 of 45 cells across both samples and every layout, which a direct probe of its decision values confirms at the level of individual choices. AXIOM, by contrast, collapses only part of the time. The independent DQN never collapses fully, but settles into a narrow and mediocre 0.29--0.49 block-precision band that is identical across layouts, exactly as expected for a policy that never reads its neighbours.
+At nineteen gNBs the gap between AXIOM and both baselines is the widest in this paper. Pooled over the three layouts, AXIOM keeps URLLC and eMBB at 73.9\% and 65.8\% compliance. The independent DQN keeps them at 6.4\% and 1.5\%, and the single-agent DQN at 1.5\% and 0.9\%. Fig.~\ref{fig:m6-topology}a shows why the single-agent DQN fails, since it collapses into accepting every request in 43 of its 45 cells. The independent DQN never collapses, yet it still sheds too little mMTC to protect the priority slices. AXIOM collapses in only 2 of its 45 cells. Under every layout AXIOM leads both baselines on priority-slice compliance by 63 to 71 percentage points, winning 12 to 15 of 15 seeds, and on cluster reward by 13.1 to 22.9 per step, all at Holm-adjusted $p\leq0.009$.
 
-Pooled across 64 independently drawn seeds, covering 68 of 192 cells, AXIOM's collapse rate converges to a stable $\hat p_{\text{collapse}} = 35.4\%$ with 95\% CI [25.5\%, 45.8\%]. This single bootstrapped estimate replaces two smaller samples that had disagreed. A properly powered twelve-seed run at seven gNBs, with a disjoint twelve-seed replication, puts AXIOM at 41.7\% and 58.3\% collapse across the two samples. Both are statistically indistinguishable from this pooled 35.4\% estimate, so this collapse-proneness is present from seven gNBs onward, not only at large scale. Over the same two samples the single-agent DQN collapses at 91.7\% and 75.0\%, against 0\% in its earlier three-seed pilot, the sharpest single result in this extension, while the independent DQN collapses at 0.0\% and 16.7\%, confirming that it collapses rarely rather than never. AXIOM therefore sits between the two, far more robust than the single-agent policy it is meant to replace, and the only one of the three that stays robust while also learning a strong, topology-aware blocking rule. Fig.~\ref{fig:quadrant}a places the three policies on one map of reward quality against scaling robustness. AXIOM alone falls in the region that is both accurate and robust, while the independent DQN trades reward away for its robustness and the single-agent policy trades robustness away for reward. The capability radar in Fig.~\ref{fig:quadrant}b makes the same point across five axes at once, where AXIOM holds the largest enclosed area.
+At seven gNBs the picture is mixed and we report it in full. AXIOM still protects the priority slices best, at 77.9\% URLLC and 77.0\% eMBB compliance, against 55.8\% and 10.4\% for the single-agent DQN and 27.7\% and 3.9\% for the independent DQN. Under the ring layout it leads both baselines on compliance and reward at Holm-adjusted $p\leq0.032$. Under the hex layout its compliance lead is significant against both baselines, but neither reward lead survives correction. Under the fully-connected layout only the compliance lead over the independent DQN is significant, at $p=0.005$. AXIOM is also the only policy that collapses at this size, in 4 of 45 cells, against none for either baseline. The weakest results come from the fully-connected layout, which matches Section~\ref{sec:results-ablation}, where at three fully-connected gNBs the graph encoder added nothing measurable over a per-node MLP.
+
+Collapse in AXIOM is rare and concentrated in a few seeds. Across all 150 AXIOM cells at three, seven, and nineteen gNBs it collapses in 6, from only four distinct training seeds, and one seed accounts for three of the six. A collapsed policy never blocks, so it is visible from a short validation rollout on training streams before deployment. This suggests a simple protocol, in which an operator trains two seeds and deploys one that blocks. If collapses are independent across seeds at the observed rate of 6 in 120 at seven and nineteen gNBs, both seeds fail with probability of about 0.25\%. We have not tested this protocol, so we state it as a mitigation rather than a result.
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig10_axiom_superiority.pdf}
-\caption{AXIOM against the two baselines. a, Reward quality at three gNBs with
-95\% CIs against collapse resistance at seven gNBs across two 12-seed samples,
-where AXIOM alone is accurate and robust. b, Each axis as a fraction of the
-best policy on it, so AXIOM encloses the largest area and leads the two
-capability axes outright.}
+\caption{AXIOM against the two baselines. a, Reward at three gNBs as a share of
+the oracle rule against URLLC and eMBB compliance at 19 gNBs, with 95\% CIs.
+b, Each axis as a fraction of the best policy on it.}
 \label{fig:quadrant}
 \end{figure}
 
+Fig.~\ref{fig:quadrant}a places the three policies on one map of accuracy at three gNBs against priority-slice protection at nineteen. AXIOM alone reaches the upper-right region, at 99.6\% of the oracle reward and 69.8\% compliance with 95\% CI [58.7\%, 80.6\%]. The single-agent DQN reaches 35.6\% and 1.2\%, and the independent DQN 15.5\% and 4.0\%. The capability radar in Fig.~\ref{fig:quadrant}b adds blocking accuracy, collapse resistance at nineteen gNBs, and the two structural capabilities. It shows the one axis where a baseline leads, since the independent DQN never collapses, while AXIOM holds the largest area overall.
+
 \subsection{Live Deployment}
 \label{sec:results-m8}
-This section reports what the real OAI testbed of Fig.~\ref{fig:testbed}, introduced in Section~\ref{sec:system-model}, can and cannot establish about the offline-trained policy. AXIOM itself is not deployed live. Its multi-gNB policy needs at least two live gNBs, and our two-gNB attempt registered both gNBs with the core but did not sustain traffic, so a live AXIOM run is left to future work. This section therefore validates the deployment pipeline that AXIOM would use, namely the E2 control path, the PRB-ratio actuation, and real-time inference of an offline-trained checkpoint. For that we run a single-agent-DQN checkpoint, seed 900, against a real gNB, real User Equipments (UEs), and real per-slice User Datagram Protocol (UDP) traffic, at one UE per slice and again at two UEs per slice.
+This section reports what the real OAI testbed of Fig.~\ref{fig:testbed}, introduced in Section~\ref{sec:system-model}, can and cannot establish about the offline-trained policy. AXIOM itself is not deployed on the live testbed. Its multi-gNB policy needs at least two live gNBs, and our two-gNB attempt registered both gNBs with the core but did not sustain traffic, so a live AXIOM run is left to future work. This section therefore validates the deployment pipeline that AXIOM would use, namely the E2 control path, the PRB-ratio actuation, and real-time inference of an offline-trained checkpoint. For that we run a single-agent-DQN checkpoint, seed 900, against a real gNB, real User Equipments (UEs), and real per-slice User Datagram Protocol (UDP) traffic, at one UE per slice and again at two UEs per slice.
 
 A capacity probe at a deliberately wide-open ceiling showed all three slices serving essentially 100\% of offered demand with 0.000\% loss at both loads. The frozen checkpoint's decision logic runs correctly end to end, through the real E2 control loop, with real accept and reject decisions, and its signature low-priority-only blocking of mMTC reappears at both loads, which establishes deployability end to end. Because the rig never actually runs short of capacity, the same pattern is equally consistent with the policy's trained priority bias, so we claim admission-control behaviour under contention only in the disclosed offline stress regime, not live. Two integrity issues surfaced and were fixed during these checks. A scheduler-configuration error had turned the per-slice PRB-ratio ranges into raw grants below the gNB scheduler's hard five-PRB floor, which we fixed at the root, after which direct instrumentation confirmed zero below-floor grants across more than 100{,}000 readings. A separate unit mismatch in the live SLA-margin diagnostic was corrected by converting backlog into a queueing-delay estimate, using Little's law, against each slice's own latency budget.
 

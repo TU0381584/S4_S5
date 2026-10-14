@@ -33,6 +33,15 @@ if __name__ == "__main__":
         mod = sys.modules.get(name)
         if mod is not None and hasattr(mod, "make_kpm_source_factory"):
             mod.make_kpm_source_factory = shared_factory
+    import os
+    if os.environ.get("M62_ENCODER") == "mlp":
+        # GAT-to-MLP ablation inside an existing runner: swap the policy class it constructs
+        from m62_reviewer_experiments import MlpCtdeMarlPolicy
+        for name in [sys.argv[1], "m6_run_experiment"]:
+            mod = sys.modules.get(name)
+            if mod is not None and hasattr(mod, "GatCtdeMarlPolicy"):
+                mod.GatCtdeMarlPolicy = MlpCtdeMarlPolicy
+        print("[m62-shared-env] encoder swapped to per-node MLP (ablation)", flush=True)
     sys.argv = [sys.argv[1] + ".py"] + sys.argv[2:]
     print(f"[m62-shared-env] {sys.argv[0]} running on the shared-budget simulator", flush=True)
     module.main()
