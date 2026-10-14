@@ -1,0 +1,238 @@
+{
+  "root": "experiments/results/m62_fedprox_view",
+  "summary": {
+    "fedavg": {
+      "n": 3,
+      "reward_mean": 10.792007846379283,
+      "reward_ci": [
+        10.179056138001771,
+        11.178271551526757
+      ],
+      "precision_mean": 1.0,
+      "precision_ci": [
+        1.0,
+        1.0
+      ],
+      "n_blocking": 3,
+      "collapsed": 0,
+      "sla": {
+        "embb": 0.9314444444444444,
+        "mmtc": 0.009555555555555555,
+        "urllc": 0.9313333333333332
+      },
+      "per_seed": {
+        "900": {
+          "reward": 10.179056138001771,
+          "mmtc_blocks": 3531,
+          "total_blocks": 3531,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.9313333333333332,
+            "embb": 0.8043333333333333,
+            "mmtc": 0.008
+          }
+        },
+        "901": {
+          "reward": 11.018695849609317,
+          "mmtc_blocks": 3125,
+          "total_blocks": 3125,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.9356666666666665,
+            "embb": 1.0,
+            "mmtc": 0.012333333333333333
+          }
+        },
+        "902": {
+          "reward": 11.178271551526759,
+          "mmtc_blocks": 3406,
+          "total_blocks": 3406,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.927,
+            "embb": 0.99,
+            "mmtc": 0.008333333333333333
+          }
+        }
+      }
+    },
+    "fedprox_mu0.01": {
+      "n": 3,
+      "reward_mean": 10.075021390364034,
+      "reward_ci": [
+        8.538057684835676,
+        11.507950348254658
+      ],
+      "precision_mean": 1.0,
+      "precision_ci": [
+        1.0,
+        1.0
+      ],
+      "n_blocking": 3,
+      "collapsed": 0,
+      "sla": {
+        "embb": 0.899888888888889,
+        "mmtc": 0.00977777777777778,
+        "urllc": 0.8767777777777778
+      },
+      "per_seed": {
+        "900": {
+          "reward": 10.179056138001771,
+          "mmtc_blocks": 3531,
+          "total_blocks": 3531,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.9313333333333332,
+            "embb": 0.8043333333333333,
+            "mmtc": 0.008
+          }
+        },
+        "901": {
+          "reward": 8.538057684835676,
+          "mmtc_blocks": 3009,
+          "total_blocks": 3009,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.7433333333333334,
+            "embb": 0.8980000000000001,
+            "mmtc": 0.013000000000000001
+          }
+        },
+        "902": {
+          "reward": 11.507950348254656,
+          "mmtc_blocks": 3421,
+          "total_blocks": 3421,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.9556666666666667,
+            "embb": 0.9973333333333333,
+            "mmtc": 0.008333333333333333
+          }
+        }
+      }
+    },
+    "fedprox_mu0.1": {
+      "n": 3,
+      "reward_mean": 10.48935614397721,
+      "reward_ci": [
+        10.137416544853432,
+        11.151595749076428
+      ],
+      "precision_mean": 1.0,
+      "precision_ci": [
+        1.0,
+        1.0
+      ],
+      "n_blocking": 3,
+      "collapsed": 0,
+      "sla": {
+        "embb": 0.924,
+        "mmtc": 0.009222222222222222,
+        "urllc": 0.9004444444444445
+      },
+      "per_seed": {
+        "900": {
+          "reward": 10.179056138001771,
+          "mmtc_blocks": 3531,
+          "total_blocks": 3531,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.9313333333333332,
+            "embb": 0.8043333333333333,
+            "mmtc": 0.008
+          }
+        },
+        "901": {
+          "reward": 11.151595749076428,
+          "mmtc_blocks": 3439,
+          "total_blocks": 3439,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.9356666666666665,
+            "embb": 1.0,
+            "mmtc": 0.011666666666666667
+          }
+        },
+        "902": {
+          "reward": 10.137416544853432,
+          "mmtc_blocks": 3402,
+          "total_blocks": 3402,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.8343333333333334,
+            "embb": 0.9676666666666667,
+            "mmtc": 0.008
+          }
+        }
+      }
+    },
+    "fedprox_mu1.0": {
+      "n": 3,
+      "reward_mean": 9.415259865670313,
+      "reward_ci": [
+        6.916441899283352,
+        11.15028155972582
+      ],
+      "precision_mean": 1.0,
+      "precision_ci": [
+        1.0,
+        1.0
+      ],
+      "n_blocking": 3,
+      "collapsed": 0,
+      "sla": {
+        "embb": 0.7754444444444445,
+        "mmtc": 0.01,
+        "urllc": 0.8672222222222222
+      },
+      "per_seed": {
+        "900": {
+          "reward": 10.179056138001771,
+          "mmtc_blocks": 3531,
+          "total_blocks": 3531,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.9313333333333332,
+            "embb": 0.8043333333333333,
+            "mmtc": 0.008
+          }
+        },
+        "901": {
+          "reward": 11.15028155972582,
+          "mmtc_blocks": 3434,
+          "total_blocks": 3434,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.9356666666666665,
+            "embb": 1.0,
+            "mmtc": 0.012
+          }
+        },
+        "902": {
+          "reward": 6.916441899283351,
+          "mmtc_blocks": 3400,
+          "total_blocks": 3400,
+          "precision": 1.0,
+          "collapsed": false,
+          "sla": {
+            "urllc": 0.7346666666666667,
+            "embb": 0.522,
+            "mmtc": 0.01
+          }
+        }
+      }
+    }
+  },
+  "paired_vs_fedavg": {}
+}
