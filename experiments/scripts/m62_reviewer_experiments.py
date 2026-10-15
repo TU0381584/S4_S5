@@ -227,6 +227,56 @@ def run_learned(arm, cfg, sd_for_slice, seeds, train_episodes, eval_episodes, ou
     return results
 
 
+def install_backlog_reset():
+    """Patch RANEnv.reset (framework stays unedited) so each episode starts
+    with empty queues. Without this, backlog persists across all episodes
+    of a run, and at ~0.5 PRB of headroom a backlog built in episode 1
+    never drains (M63 diagnosis)."""
+    from qoe_oran_framework.env import RANEnv
+    original_reset = RANEnv.reset
+
+    def reset(self):
+        backlog = getattr(self.kpm_source, "_backlog", None)
+        if isinstance(backlog, dict):
+            for key in backlog:
+                backlog[key] = 0.0
+        return original_reset(self)
+
+    RANEnv.reset = reset
+    print("[m63] per-episode backlog reset installed", flush=True)
+
+
+def install_per_gnb_violation():
+    """M63 reward variant: charge each slice's violation penalty once per
+    violating gNB, instead of once per slice if ANY gNB violates. The
+    original OR form saturates as the cluster grows, so after one gNB
+    violates, further violations elsewhere cost nothing, while the
+    service term keeps growing with N. Everything else in the step
+    reward is unchanged; the original info dict is kept and only
+    violation_term and reward are rewritten. Framework stays unedited."""
+    import qoe_oran_framework.env as env_mod
+    from qoe_oran_framework.reward import compute_step_reward as original
+
+    def compute_step_reward(cluster_state, slice_specs, accepted_counts, weights, include_lb_term):
+        reward, info = original(cluster_state, slice_specs, accepted_counts, weights, include_lb_term)
+        per_gnb = 0.0
+        for slice_states in cluster_state.per_gnb.values():
+            for slice_id, agg in slice_states.items():
+                if slice_id not in slice_specs:
+                    continue
+                spec = slice_specs[slice_id]
+                if agg.queue_len_norm > 1.0 or agg.loss_proxy > spec.loss_budget_pct:
+                    per_gnb += spec.violation_penalty
+        reward = reward + info["violation_term"] - per_gnb
+        info["violation_term_or"] = info["violation_term"]
+        info["violation_term"] = per_gnb
+        info["reward"] = reward
+        return reward, info
+
+    env_mod.compute_step_reward = compute_step_reward
+    print("[m63] per-gNB violation penalty installed", flush=True)
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--arm", required=True,
@@ -239,7 +289,16 @@ def main():
     ap.add_argument("--out-dir", required=True)
     ap.add_argument("--env", default="shared", choices=["original", "shared"],
                     help="shared = shared-budget simulator fix (shared_budget_kpm_source.py)")
+    ap.add_argument("--backlog-reset", action="store_true",
+                    help="M63: clear every (gNB, slice) queue backlog at each episode reset, so one "
+                         "transient cannot carry over into every later episode of a run")
+    ap.add_argument("--per-gnb-violation", action="store_true",
+                    help="M63 reward variant: violation penalty per violating gNB (see install_per_gnb_violation)")
     args = ap.parse_args()
+    if args.per_gnb_violation:
+        install_per_gnb_violation()
+    if args.backlog_reset:
+        install_backlog_reset()
     if args.env == "shared":
         # every runner in this script and in m2_run_experiment looks the factory up on m2 at call time
         m2.make_kpm_source_factory = make_shared_budget_factory

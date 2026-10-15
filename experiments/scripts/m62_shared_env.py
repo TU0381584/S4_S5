@@ -42,6 +42,12 @@ if __name__ == "__main__":
             if mod is not None and hasattr(mod, "GatCtdeMarlPolicy"):
                 mod.GatCtdeMarlPolicy = MlpCtdeMarlPolicy
         print("[m62-shared-env] encoder swapped to per-node MLP (ablation)", flush=True)
+    if os.environ.get("M63_PER_GNB_VIOLATION") == "1":
+        from m62_reviewer_experiments import install_per_gnb_violation
+        install_per_gnb_violation()
+    if os.environ.get("M63_BACKLOG_RESET") == "1":
+        from m62_reviewer_experiments import install_backlog_reset
+        install_backlog_reset()
     sys.argv = [sys.argv[1] + ".py"] + sys.argv[2:]
     print(f"[m62-shared-env] {sys.argv[0]} running on the shared-budget simulator", flush=True)
     module.main()

@@ -1,0 +1,137 @@
+[
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 900,
+  "val_blocks": 2116,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9328333333333332
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 901,
+  "val_blocks": 2244,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9141666666666668
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 902,
+  "val_blocks": 2146,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9301666666666666
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 903,
+  "val_blocks": 2141,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9866666666666668
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 904,
+  "val_blocks": 2257,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9485000000000001
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 905,
+  "val_blocks": 4335,
+  "val_mmtc_share": 0.5128027681660899,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.5008333333333334
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 906,
+  "val_blocks": 47,
+  "val_mmtc_share": 0.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.0018333333333333333
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 907,
+  "val_blocks": 2206,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9943333333333333
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 908,
+  "val_blocks": 2208,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.48683333333333334
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 909,
+  "val_blocks": 0,
+  "val_mmtc_share": null,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.016166666666666666
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 910,
+  "val_blocks": 82,
+  "val_mmtc_share": 0.14634146341463414,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.0016666666666666666
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 911,
+  "val_blocks": 2184,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9508333333333334
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 1000,
+  "val_blocks": 2176,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9596666666666667
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 1001,
+  "val_blocks": 2265,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.957
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 1002,
+  "val_blocks": 2172,
+  "val_mmtc_share": 0.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.5008333333333334
+ }
+]

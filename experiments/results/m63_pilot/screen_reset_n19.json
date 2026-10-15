@@ -1,0 +1,29 @@
+[
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2000,
+  "val_blocks": 0,
+  "val_mmtc_share": null,
+  "eval_collapsed": true,
+  "eval_priority_sla": 0.6461666666666668
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2001,
+  "val_blocks": 2159,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 1.0
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2002,
+  "val_blocks": 2208,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9978333333333333
+ }
+]

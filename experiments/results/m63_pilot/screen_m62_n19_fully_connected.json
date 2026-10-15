@@ -1,0 +1,137 @@
+[
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 900,
+  "val_blocks": 2116,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9328333333333332
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 901,
+  "val_blocks": 2244,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9141666666666668
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 902,
+  "val_blocks": 2146,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9301666666666666
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 903,
+  "val_blocks": 0,
+  "val_mmtc_share": null,
+  "eval_collapsed": true,
+  "eval_priority_sla": 0.0125
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 904,
+  "val_blocks": 2257,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9485000000000001
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 905,
+  "val_blocks": 4335,
+  "val_mmtc_share": 0.5128027681660899,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.5008333333333334
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 906,
+  "val_blocks": 87,
+  "val_mmtc_share": 0.27586206896551724,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.006000000000000001
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 907,
+  "val_blocks": 2206,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9943333333333333
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 908,
+  "val_blocks": 2208,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.7828333333333333
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 909,
+  "val_blocks": 2141,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9025000000000001
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 910,
+  "val_blocks": 61,
+  "val_mmtc_share": 0.39344262295081966,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.003666666666666666
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 911,
+  "val_blocks": 2184,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9508333333333334
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 1000,
+  "val_blocks": 2176,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9596666666666667
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 1001,
+  "val_blocks": 2265,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.957
+ },
+ {
+  "n": 19,
+  "topology": "fully_connected",
+  "seed": 1002,
+  "val_blocks": 2183,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.9908333333333332
+ }
+]

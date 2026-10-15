@@ -1,0 +1,56 @@
+[
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2003,
+  "val_blocks": 2183,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 1.0
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2004,
+  "val_blocks": 2934,
+  "val_mmtc_share": 0.7528970688479891,
+  "eval_collapsed": false,
+  "eval_priority_sla": 0.7726666666666666
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2005,
+  "val_blocks": 2243,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 1.0
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2006,
+  "val_blocks": 2135,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 1.0
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2007,
+  "val_blocks": 2136,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 1.0
+ },
+ {
+  "n": 19,
+  "topology": "ring",
+  "seed": 2008,
+  "val_blocks": 2208,
+  "val_mmtc_share": 1.0,
+  "eval_collapsed": false,
+  "eval_priority_sla": 1.0
+ }
+]
