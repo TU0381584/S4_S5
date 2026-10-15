@@ -1,0 +1,8 @@
+#!/bin/bash
+tag="${1%%|*}"; cmd="${1#*|}"
+export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 M63_BACKLOG_RESET=1
+case "$tag" in mlp_*) export M62_ENCODER=mlp;; esac
+case "$cmd" in *m62_reviewer_experiments.py*) cmd="$cmd --backlog-reset";; esac
+cd /home/kmanojp/oranslice_rig/framework
+../venv/bin/python3 $cmd > ../experiments/logs/m63/full/p_$tag.log 2>&1
+echo "$(date +%H:%M:%S) done p_$tag exit=$?" >> ../experiments/logs/m63/full/progress.log
