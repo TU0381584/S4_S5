@@ -1,0 +1,28 @@
+{
+  "gat_ctde": {
+    "906": {
+      "sla_compliance_all_slices": 0.3303333333333333,
+      "n_episodes": 50
+    },
+    "907": {
+      "sla_compliance_all_slices": 0.3363333333333334,
+      "n_episodes": 50
+    },
+    "908": {
+      "sla_compliance_all_slices": 0.3406666666666666,
+      "n_episodes": 50
+    },
+    "909": {
+      "sla_compliance_all_slices": 0.3396666666666666,
+      "n_episodes": 50
+    },
+    "910": {
+      "sla_compliance_all_slices": 0.3423333333333333,
+      "n_episodes": 50
+    },
+    "911": {
+      "sla_compliance_all_slices": 0.335,
+      "n_episodes": 50
+    }
+  }
+}

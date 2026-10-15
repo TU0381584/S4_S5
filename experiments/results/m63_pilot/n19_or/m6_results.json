@@ -1,0 +1,16 @@
+{
+  "gat_ctde": {
+    "2006": {
+      "sla_compliance_all_slices": 0.303,
+      "n_episodes": 50
+    },
+    "2007": {
+      "sla_compliance_all_slices": 0.304,
+      "n_episodes": 50
+    },
+    "2008": {
+      "sla_compliance_all_slices": 0.31166666666666665,
+      "n_episodes": 50
+    }
+  }
+}

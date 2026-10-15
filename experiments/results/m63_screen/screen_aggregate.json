@@ -1,0 +1,110 @@
+{
+ "3|axiom": {
+  "seeds": 40,
+  "fail": 0,
+  "coll": 0,
+  "coll_caught": 0,
+  "pass_bad": 0,
+  "prio_all": 0.9998125,
+  "prio_pass": 0.9998125,
+  "pairs": 20,
+  "prot_prio": 0.9998416666666667,
+  "prot_coll": 0
+ },
+ "3|single_agent_dqn": {
+  "seeds": 40,
+  "fail": 2,
+  "coll": 0,
+  "coll_caught": 0,
+  "pass_bad": 0,
+  "prio_all": 0.9528833333333335,
+  "prio_pass": 0.9620745614035088,
+  "pairs": 20,
+  "prot_prio": 0.96135,
+  "prot_coll": 0
+ },
+ "3|independent_dqn": {
+  "seeds": 40,
+  "fail": 4,
+  "coll": 0,
+  "coll_caught": 0,
+  "pass_bad": 0,
+  "prio_all": 0.9385208333333332,
+  "prio_pass": 0.963740740740741,
+  "pairs": 20,
+  "prot_prio": 0.9732499999999998,
+  "prot_coll": 0
+ },
+ "7|gat_ctde": {
+  "seeds": 45,
+  "fail": 5,
+  "coll": 1,
+  "coll_caught": 1,
+  "pass_bad": 0,
+  "prio_all": 0.9715111111111112,
+  "prio_pass": 0.9948874999999999,
+  "pairs": 21,
+  "prot_prio": 0.9991904761904762,
+  "prot_coll": 0
+ },
+ "7|single_agent_dqn": {
+  "seeds": 45,
+  "fail": 12,
+  "coll": 1,
+  "coll_caught": 0,
+  "pass_bad": 1,
+  "prio_all": 0.7623296296296297,
+  "prio_pass": 0.8523282828282829,
+  "pairs": 21,
+  "prot_prio": 0.7886111111111112,
+  "prot_coll": 1
+ },
+ "7|independent_dqn": {
+  "seeds": 45,
+  "fail": 21,
+  "coll": 0,
+  "coll_caught": 0,
+  "pass_bad": 0,
+  "prio_all": 0.7458888888888888,
+  "prio_pass": 0.8228958333333333,
+  "pairs": 21,
+  "prot_prio": 0.7932857142857143,
+  "prot_coll": 0
+ },
+ "19|gat_ctde": {
+  "seeds": 45,
+  "fail": 20,
+  "coll": 3,
+  "coll_caught": 3,
+  "pass_bad": 0,
+  "prio_all": 0.7910592592592591,
+  "prio_pass": 0.9158066666666665,
+  "pairs": 21,
+  "prot_prio": 0.8884365079365081,
+  "prot_coll": 0
+ },
+ "19|single_agent_dqn": {
+  "seeds": 45,
+  "fail": 44,
+  "coll": 44,
+  "coll_caught": 44,
+  "pass_bad": 0,
+  "prio_all": 0.6585333333333333,
+  "prio_pass": 0.639,
+  "pairs": 21,
+  "prot_prio": 0.6532142857142857,
+  "prot_coll": 20
+ },
+ "19|independent_dqn": {
+  "seeds": 45,
+  "fail": 33,
+  "coll": 0,
+  "coll_caught": 0,
+  "pass_bad": 0,
+  "prio_all": 0.5440555555555554,
+  "prio_pass": 0.6924583333333332,
+  "pairs": 21,
+  "prot_prio": 0.5942380952380951,
+  "prot_coll": 0
+ }
+}

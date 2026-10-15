@@ -1,0 +1,87 @@
+{
+  "arm": "axiom_mlp",
+  "env": "shared",
+  "condition": "base",
+  "caps": {
+    "urllc": 33,
+    "embb": 66,
+    "mmtc": 11
+  },
+  "weights": {
+    "urllc": 12.0,
+    "embb": 3.5,
+    "mmtc": 0.3
+  },
+  "results": {
+    "2000": {
+      "mean_reward_per_step": 12.805821549908252,
+      "mmtc_blocks": 3560,
+      "total_blocks": 3560,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2000/eval/omega_log.jsonl",
+      "elapsed_s": 382.0
+    },
+    "2001": {
+      "mean_reward_per_step": 12.41567747807533,
+      "mmtc_blocks": 3547,
+      "total_blocks": 3588,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2001/eval/omega_log.jsonl",
+      "elapsed_s": 462.8
+    },
+    "2002": {
+      "mean_reward_per_step": 12.928352151440517,
+      "mmtc_blocks": 3438,
+      "total_blocks": 3438,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2002/eval/omega_log.jsonl",
+      "elapsed_s": 376.1
+    },
+    "2003": {
+      "mean_reward_per_step": 12.76719810663117,
+      "mmtc_blocks": 3449,
+      "total_blocks": 3449,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2003/eval/omega_log.jsonl",
+      "elapsed_s": 363.3
+    },
+    "2004": {
+      "mean_reward_per_step": 13.000964610255217,
+      "mmtc_blocks": 3429,
+      "total_blocks": 3429,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2004/eval/omega_log.jsonl",
+      "elapsed_s": 319.2
+    },
+    "2005": {
+      "mean_reward_per_step": 12.632736932296675,
+      "mmtc_blocks": 3548,
+      "total_blocks": 3548,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2005/eval/omega_log.jsonl",
+      "elapsed_s": 298.8
+    },
+    "2006": {
+      "mean_reward_per_step": 12.807416635112409,
+      "mmtc_blocks": 3487,
+      "total_blocks": 3487,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2006/eval/omega_log.jsonl",
+      "elapsed_s": 354.0
+    },
+    "2007": {
+      "mean_reward_per_step": 12.874326740429854,
+      "mmtc_blocks": 3421,
+      "total_blocks": 3421,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2007/eval/omega_log.jsonl",
+      "elapsed_s": 334.2
+    },
+    "2008": {
+      "mean_reward_per_step": 12.700982671277565,
+      "mmtc_blocks": 3473,
+      "total_blocks": 3473,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2008/eval/omega_log.jsonl",
+      "elapsed_s": 308.9
+    },
+    "2009": {
+      "mean_reward_per_step": 12.968234881573524,
+      "mmtc_blocks": 3481,
+      "total_blocks": 3481,
+      "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/reset/axiom_mlp/seed2009/eval/omega_log.jsonl",
+      "elapsed_s": 310.5
+    }
+  }
+}

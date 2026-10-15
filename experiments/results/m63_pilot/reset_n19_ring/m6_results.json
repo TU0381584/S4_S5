@@ -1,0 +1,16 @@
+{
+  "independent_dqn": {
+    "2000": {
+      "sla_compliance_all_slices": 0.2033333333333333,
+      "n_episodes": 50
+    },
+    "2001": {
+      "sla_compliance_all_slices": 0.21166666666666667,
+      "n_episodes": 50
+    },
+    "2002": {
+      "sla_compliance_all_slices": 0.36733333333333335,
+      "n_episodes": 50
+    }
+  }
+}

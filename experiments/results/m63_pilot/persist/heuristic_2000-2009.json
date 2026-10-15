@@ -1,0 +1,87 @@
+{
+  "arm": "heuristic",
+  "env": "shared",
+  "condition": "base",
+  "caps": {
+    "urllc": 33,
+    "embb": 66,
+    "mmtc": 11
+  },
+  "weights": {
+    "urllc": 12.0,
+    "embb": 3.5,
+    "mmtc": 0.3
+  },
+  "results": {
+    "selected_tau": 0.0,
+    "tau_selection_train_reward": {
+      "0.0": 11.843625951277412,
+      "0.5": 11.843625951277412,
+      "0.8": 11.843625951277412,
+      "0.9": 11.821987561473069,
+      "0.97": 11.433451887524686
+    },
+    "per_seed": {
+      "2000": {
+        "mean_reward_per_step": 11.964035054737373,
+        "mmtc_blocks": 3560,
+        "total_blocks": 3560,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2000/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2001": {
+        "mean_reward_per_step": 11.286793539169794,
+        "mmtc_blocks": 3547,
+        "total_blocks": 3547,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2001/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2002": {
+        "mean_reward_per_step": 11.697626609403779,
+        "mmtc_blocks": 3438,
+        "total_blocks": 3438,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2002/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2003": {
+        "mean_reward_per_step": 11.867320609902002,
+        "mmtc_blocks": 3449,
+        "total_blocks": 3449,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2003/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2004": {
+        "mean_reward_per_step": 9.898587436000831,
+        "mmtc_blocks": 3429,
+        "total_blocks": 3429,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2004/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2005": {
+        "mean_reward_per_step": 11.56843130842055,
+        "mmtc_blocks": 3548,
+        "total_blocks": 3548,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2005/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2006": {
+        "mean_reward_per_step": 9.36723401437128,
+        "mmtc_blocks": 3487,
+        "total_blocks": 3487,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2006/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2007": {
+        "mean_reward_per_step": 11.724504309658025,
+        "mmtc_blocks": 3421,
+        "total_blocks": 3421,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2007/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2008": {
+        "mean_reward_per_step": 11.196203340319562,
+        "mmtc_blocks": 3473,
+        "total_blocks": 3473,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2008/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "2009": {
+        "mean_reward_per_step": 11.792977226858982,
+        "mmtc_blocks": 3481,
+        "total_blocks": 3481,
+        "eval_omega": "/home/kmanojp/oranslice_rig/experiments/results/m63_pilot/persist/heuristic/seed2009/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      }
+    }
+  }
+}

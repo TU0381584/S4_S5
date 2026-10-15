@@ -92,7 +92,7 @@ for n in 7 19; do for t in fully_connected ring hex; do for arm in gat_ctde sing
   echo "$V --cell ../$R/m63_scaling/n${n}_$t --arm $arm --n $n --topology $t --seeds $(seq -s' ' 900 911) 1000 1001 1002 --out ../$SC/n${n}_${t}_$arm.json" >> $J; done; done; done
 echo "$V --mlp --cell ../$R/m63_scaling_mlp/n19_ring --arm gat_ctde --n 19 --topology ring --seeds $(seq -s' ' 900 911) --out ../$SC/n19_ring_mlp.json" >> $J
 (cd framework && tr '\n' '\0' < ../$J | xargs -0 -P 5 -I{} sh -c '../venv/bin/python3 {} > /dev/null 2>&1')
-$PY $S/m63_screen_report.py $SC/*.json --out $SC/screen_report.json
+$PY $S/m63_screen_report.py $(ls $SC/*.json | grep -v screen_report) --out $SC/screen_report.json
 
 # --- 6. figures (superiority and capability figures need numbers copied in by hand afterwards)
 $PY $P/paper5_fig3_m2_campaign.py --results $R/m63_m2_view/campaign_results.json --campaign-dir $R/m63_m2_view --out $F/fig3_m2_results

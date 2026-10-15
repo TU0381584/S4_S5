@@ -118,7 +118,7 @@ def main() -> None:
     lo, hi = bootstrap_ci(diff_c_minus_f)
     _w_stat, w_p = stats.wilcoxon(centralized_rewards, fl_no_dp_rewards)
     ax1.text(0.5, 0.02,
-              f"mean $\\Delta$=+{diff_mean:.3f} [{lo:.2f}, {hi:.2f}]\n"
+              f"mean $\\Delta$={diff_mean:+.3f} [{lo:.2f}, {hi:.2f}]\n"
               f"Wilcoxon $p$={w_p:.4f}",
               transform=ax1.transAxes, ha="center", va="bottom", fontsize=6.5,
               bbox=dict(boxstyle="round,pad=0.3", facecolor="#fcfcfb", edgecolor="#c3c2b7", linewidth=0.6))

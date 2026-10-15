@@ -53,13 +53,13 @@ def main():
     groups = defaultdict(list)
     for f in a.screens:
         for r in json.load(open(f)):
-            groups[(r["n"], r["cell"].rstrip("/").split("/")[-1], r["arm"])].append(r)
+            groups[(r["n"], "/".join(r["cell"].rstrip("/").split("/")[-2:]), r["arm"])].append(r)
     out = {}
     for k in sorted(groups):
         s = summarise(groups[k])
         out["|".join(map(str, k))] = s
         fmt = lambda x: "-" if x is None else f"{x:.3f}"
-        print(f"N={k[0]:2d} {k[1]:22s} {k[2]:24s} seeds={s['seeds']:2d} fail={s['fail']:2d} "
+        print(f"N={k[0]:2d} {k[1]:34s} {k[2]:24s} seeds={s['seeds']:2d} fail={s['fail']:2d} "
               f"(bad {s['fail_and_bad']}) pass_bad={s['pass_but_bad']} coll={s['collapsed_all']}->{s['collapsed_passed']} "
               f"prio {fmt(s['prio_all'])}->{fmt(s['prio_passed'])} protocol {fmt(s['protocol_prio'])} "
               f"(coll {s['protocol_collapsed']}/{s['pairs']})")

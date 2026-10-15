@@ -1,0 +1,16 @@
+{
+  "independent_dqn": {
+    "1000": {
+      "sla_compliance_all_slices": 0.18666666666666665,
+      "n_episodes": 50
+    },
+    "1001": {
+      "sla_compliance_all_slices": 0.21099999999999997,
+      "n_episodes": 50
+    },
+    "1002": {
+      "sla_compliance_all_slices": 0.172,
+      "n_episodes": 50
+    }
+  }
+}

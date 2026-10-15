@@ -1,0 +1,87 @@
+{
+  "arm": "heuristic",
+  "env": "shared",
+  "condition": "load102",
+  "caps": {
+    "urllc": 33,
+    "embb": 66,
+    "mmtc": 11
+  },
+  "weights": {
+    "urllc": 12.0,
+    "embb": 3.5,
+    "mmtc": 0.3
+  },
+  "results": {
+    "selected_tau": 0.0,
+    "tau_selection_train_reward": {
+      "0.0": 13.055493873147807,
+      "0.5": 13.055493873147807,
+      "0.8": 13.055493873147807,
+      "0.9": 12.935685525714865,
+      "0.97": 12.676785264169803
+    },
+    "per_seed": {
+      "900": {
+        "mean_reward_per_step": 12.927744825697646,
+        "mmtc_blocks": 3531,
+        "total_blocks": 3531,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed900/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "901": {
+        "mean_reward_per_step": 12.80706798102553,
+        "mmtc_blocks": 3455,
+        "total_blocks": 3455,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed901/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "902": {
+        "mean_reward_per_step": 12.983719271317858,
+        "mmtc_blocks": 3493,
+        "total_blocks": 3493,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed902/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "903": {
+        "mean_reward_per_step": 12.74564934657668,
+        "mmtc_blocks": 3431,
+        "total_blocks": 3431,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed903/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "904": {
+        "mean_reward_per_step": 12.887784499125118,
+        "mmtc_blocks": 3415,
+        "total_blocks": 3415,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed904/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "905": {
+        "mean_reward_per_step": 13.145512715151229,
+        "mmtc_blocks": 3415,
+        "total_blocks": 3415,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed905/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "906": {
+        "mean_reward_per_step": 12.945680301731574,
+        "mmtc_blocks": 3501,
+        "total_blocks": 3501,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed906/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "907": {
+        "mean_reward_per_step": 12.929768585164627,
+        "mmtc_blocks": 3535,
+        "total_blocks": 3535,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed907/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "908": {
+        "mean_reward_per_step": 12.993271316932383,
+        "mmtc_blocks": 3414,
+        "total_blocks": 3414,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed908/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      },
+      "909": {
+        "mean_reward_per_step": 12.884771397758405,
+        "mmtc_blocks": 3525,
+        "total_blocks": 3525,
+        "eval_omega": "../experiments/results/m63_reviewer/load102/heuristic/seed909/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"
+      }
+    }
+  }
+}

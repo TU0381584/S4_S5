@@ -1,0 +1,52 @@
+{
+  "arm": "axiom",
+  "env": "shared",
+  "condition": "base",
+  "caps": {
+    "urllc": 33,
+    "embb": 66,
+    "mmtc": 11
+  },
+  "weights": {
+    "urllc": 12.0,
+    "embb": 3.5,
+    "mmtc": 0.3
+  },
+  "results": {
+    "900": {
+      "mean_reward_per_step": 12.783515257384698,
+      "mmtc_blocks": 3531,
+      "total_blocks": 3531,
+      "eval_omega": "../experiments/results/m63_reviewer/base/axiom/seed900/eval/omega_log.jsonl",
+      "elapsed_s": 690.5
+    },
+    "901": {
+      "mean_reward_per_step": 12.664480891955442,
+      "mmtc_blocks": 3455,
+      "total_blocks": 3455,
+      "eval_omega": "../experiments/results/m63_reviewer/base/axiom/seed901/eval/omega_log.jsonl",
+      "elapsed_s": 506.4
+    },
+    "902": {
+      "mean_reward_per_step": 12.845261901380816,
+      "mmtc_blocks": 3493,
+      "total_blocks": 3493,
+      "eval_omega": "../experiments/results/m63_reviewer/base/axiom/seed902/eval/omega_log.jsonl",
+      "elapsed_s": 639.3
+    },
+    "903": {
+      "mean_reward_per_step": 12.523238250550508,
+      "mmtc_blocks": 3408,
+      "total_blocks": 3447,
+      "eval_omega": "../experiments/results/m63_reviewer/base/axiom/seed903/eval/omega_log.jsonl",
+      "elapsed_s": 630.6
+    },
+    "904": {
+      "mean_reward_per_step": 12.72763548197471,
+      "mmtc_blocks": 3415,
+      "total_blocks": 3415,
+      "eval_omega": "../experiments/results/m63_reviewer/base/axiom/seed904/eval/omega_log.jsonl",
+      "elapsed_s": 643.4
+    }
+  }
+}
