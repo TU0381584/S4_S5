@@ -29,12 +29,12 @@ TOPO_LABEL = {"fully_connected": "Fully-\nconnected", "ring": "Ring", "hex": "He
 SEEDS = list(range(900, 912)) + [1000, 1001, 1002]
 
 
-def collect(root: str, n: int) -> dict:
+def collect(root: str, n: int, arms=None, seeds=None) -> dict:
     out = {}
     for topo in TOPOLOGIES:
-        for arm in ARMS:
+        for arm in (arms or ARMS):
             rows = {}
-            for s in SEEDS:
+            for s in (seeds or SEEDS):
                 p = eval_log(f"{root}/n{n}_{topo}", arm, s)
                 if p:
                     rows[s] = seed_metrics(p)
@@ -46,8 +46,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="experiments/results/m62_scaling")
     ap.add_argument("--out", default="Papers_4-5/Paper_5/WPC/figures/fig6_m6_topology")
+    ap.add_argument("--arms", nargs="+", default=ARMS)
+    ap.add_argument("--seeds7", type=int, nargs="+", default=SEEDS)
+    ap.add_argument("--seeds19", type=int, nargs="+", default=SEEDS)
     a = ap.parse_args()
-    data = {n: collect(a.root, n) for n in (7, 19)}
+    ARMS[:] = a.arms
+    data = {7: collect(a.root, 7, a.arms, a.seeds7), 19: collect(a.root, 19, a.arms, a.seeds19)}
 
     summary = {}
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.16, 2.9))
@@ -78,7 +82,8 @@ def main():
     ax1.legend(loc="upper right", frameon=False, fontsize=7)
 
     xc = np.arange(len(TOPOLOGIES))
-    offs = {"single_agent_dqn": -0.25, "gat_ctde": 0.0, "independent_dqn": 0.25}
+    width = 0.6 / max(1, len(ARMS) - 1)
+    offs = {arm: -0.3 + i * width for i, arm in enumerate(ARMS)}
     rng = np.random.RandomState(0)
     for arm in ARMS:
         st = M2_ARM_STYLE[arm]
@@ -92,7 +97,7 @@ def main():
             m = float(np.mean(vals))
             ax2.errorbar(xi + offs[arm], m, yerr=[[m - lo], [hi - m]], fmt=st["marker"], color=st["color"],
                          markersize=6, capsize=3, linewidth=1.2,
-                         label=st["label"].replace(" (proposed)", "") if topo == "fully_connected" else None)
+                         label=st["label"].replace(" (proposed)", "") if topo == TOPOLOGIES[0] else None)
             summary.setdefault("n19_priority_sla_by_topology", {}).setdefault(arm, {})[topo] = {
                 "mean": m, "ci": [lo, hi], "n": len(vals)}
     ax2.set_xticks(xc)
