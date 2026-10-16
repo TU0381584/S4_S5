@@ -30,15 +30,19 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--arms", nargs="+", default=ARMS, help="first arm is the reference")
+    ap.add_argument("--seeds", type=int, nargs="+", default=SEEDS)
+    ap.add_argument("--sizes", type=int, nargs="+", default=[7, 19])
     a = ap.parse_args()
+    arms, seeds, ref = a.arms, a.seeds, a.arms[0]
     out = {}
-    for n in (7, 19):
-        data = {(t, arm): {s: seed_metrics(p) for s in SEEDS if (p := eval_log(f"{a.root}/n{n}_{t}", arm, s))}
-                for t in TOPOS for arm in ARMS}
+    for n in a.sizes:
+        data = {(t, arm): {s: seed_metrics(p) for s in seeds if (p := eval_log(f"{a.root}/n{n}_{t}", arm, s))}
+                for t in TOPOS for arm in arms}
         pv, rows = {}, {}
         for t in TOPOS:
-            g = data[(t, "gat_ctde")]
-            for b in ARMS[1:]:
+            g = data[(t, ref)]
+            for b in arms[1:]:
                 c = sorted(set(g) & set(data[(t, b)]))
                 if len(c) < 5:
                     continue
@@ -57,13 +61,13 @@ def main():
             print(f"N={n} {k:36s} axiom={r['axiom']:.3f} base={r['base']:.3f} diff={r['diff']:+.3f} "
                   f"[{r['ci'][0]:+.3f},{r['ci'][1]:+.3f}] W/T/L={r['wtl']} p_holm={r['p_holm']:.3g}")
         coll = {arm: [sum(r["collapsed"] for t in TOPOS for r in data[(t, arm)].values()),
-                      sum(len(data[(t, arm)]) for t in TOPOS)] for arm in ARMS}
+                      sum(len(data[(t, arm)]) for t in TOPOS)] for arm in arms}
         slices = {arm: {k: float(np.mean([r["sla"][k] for t in TOPOS for r in data[(t, arm)].values()]))
-                        for k in ("urllc", "embb")} for arm in ARMS}
+                        for k in ("urllc", "embb")} for arm in arms}
         pooled = {arm: (lambda v: {"mean": float(np.mean(v)), "ci": boot_ci(v)})(
-            [prio(r) for t in TOPOS for r in data[(t, arm)].values()]) for arm in ARMS}
+            [prio(r) for t in TOPOS for r in data[(t, arm)].values()]) for arm in arms}
         collapsed_seeds = {f"{t}|{arm}": [s for s, r in data[(t, arm)].items() if r["collapsed"]]
-                           for t in TOPOS for arm in ARMS}
+                           for t in TOPOS for arm in arms}
         print(f"N={n} collapse {coll}\nN={n} slices {slices}\nN={n} pooled prio {pooled}")
         out[n] = {"tests": rows, "collapse": coll, "slices": slices, "pooled_priority_sla": pooled,
                   "collapsed_seeds": collapsed_seeds}

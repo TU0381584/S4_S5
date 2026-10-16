@@ -50,9 +50,16 @@ def _blocks(path):
     return blk
 
 
+ENV = "A"   # set by --env; B uses the M64 coupled time-varying simulator
+
+
 def validate(cfg, arm, topology, cell, seed, episodes, mlp):
     sd = {sid: spec.sd for sid, spec in cfg.slice_by_id.items()}
-    factory = shared_factory(cfg, sd)
+    if ENV == "B":
+        import coupled_dynamic_kpm_source as cdk
+        factory = cdk.make_coupled_factory(cfg, sd, topology=topology)
+    else:
+        factory = shared_factory(cfg, sd)
     with tempfile.TemporaryDirectory() as td:
         if arm.startswith("single_agent_dqn"):
             ckpt = f"{cell}/{arm}/seed{seed}/train/dqn/offline_train/rep_0/checkpoint.pt"
@@ -70,6 +77,15 @@ def validate(cfg, arm, topology, cell, seed, episodes, mlp):
             nd, cd = node_feature_dim(cfg), request_context_dim(cfg)
             if arm.startswith("independent_dqn"):
                 policy = IndependentPerGnbDqnPolicy(n, nd, cd, m6.ACTION_DIM)
+            elif arm.startswith("mappo"):
+                from m64_mappo import MappoPolicy
+                policy = MappoPolicy(n, nd, cd)
+            elif arm.startswith("axiom2") or (ENV == "B" and arm == "gat_ctde"):
+                from m64_axiom2 import AxiomV2Policy, MlpAxiomV2Policy
+                adj2 = m6.adjacency_for(topology, n)
+                policy = (MlpAxiomV2Policy if (arm == "axiom2_mlp" or mlp) else AxiomV2Policy)(n, nd, cd, m6.ACTION_DIM, adj2)
+                if arm == "axiom2_wide":
+                    raise SystemExit("screen not defined for sensitivity variants")
             else:
                 adj = m6.adjacency_for(topology, n)
                 if mlp or arm == "axiom_mlp":
@@ -100,8 +116,11 @@ def main():
     ap.add_argument("--episodes", type=int, default=5)
     ap.add_argument("--mlp", action="store_true", help="checkpoints use the per-node MLP encoder")
     ap.add_argument("--backlog-reset", action="store_true")
+    ap.add_argument("--env", default="A", choices=["A", "B"])
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
+    global ENV
+    ENV = a.env
     if a.backlog_reset:
         from m62_reviewer_experiments import install_backlog_reset
         install_backlog_reset()

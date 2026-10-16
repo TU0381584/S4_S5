@@ -102,3 +102,11 @@ Baselines are reused from M63, since the same environment means the same baselin
 - **Screen:** the M63 validation screen rule is applied unchanged to every learned arm in M64 and M65.
 
 Every result is reported, including any that weaken AXIOM.
+
+## Addendum 1 (2026-10-16, 19:40), before any M64/M65 main result was read
+
+**Problem.** Testing the screen on Env B pilot checkpoints (seeds 2000-2001, MAPPO) showed that its second criterion (fail if fewer than 90% of blocks target mMTC) is miscalibrated for Env B. In Env B the reward-optimal policy deliberately sheds eMBB under pressure, as the calibrated adaptive rule does, so a good policy can legitimately have an mMTC block share below 90%. The pilot MAPPO seed failed the screen with a reward of 7.50 and no collapse.
+
+**Amendment, applying to Env B only.** The primary screen criterion is the first one alone: a checkpoint that blocks no request in its five greedy training-stream episodes is flagged as collapsed. The 90% criterion is still computed and reported in full for every arm, but no Env B claim rests on it.
+
+**Unchanged.** For Env A (M65) the screen is applied exactly as pre-registered, with both criteria. No other part of the pre-registration changes.
