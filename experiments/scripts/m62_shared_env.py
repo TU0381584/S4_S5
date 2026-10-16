@@ -34,7 +34,11 @@ if __name__ == "__main__":
         if mod is not None and hasattr(mod, "make_kpm_source_factory"):
             mod.make_kpm_source_factory = shared_factory
     import os
-    if os.environ.get("M62_ENCODER") == "mlp":
+    if os.environ.get("M64_AXIOM_V2") == "1":
+        # AXIOM v2 everywhere (skip + LR 1e-3); M62_ENCODER=mlp selects its MLP ablation
+        import m64_axiom2
+        m64_axiom2.install(mlp=os.environ.get("M62_ENCODER") == "mlp")
+    elif os.environ.get("M62_ENCODER") == "mlp":
         # GAT-to-MLP ablation inside an existing runner: swap the policy class it constructs
         from m62_reviewer_experiments import MlpCtdeMarlPolicy
         for name in [sys.argv[1], "m6_run_experiment"]:

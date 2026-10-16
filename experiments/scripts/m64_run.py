@@ -76,6 +76,9 @@ class WideGatPolicy(GatCtdeMarlPolicy):
         self.optimizer = torch.optim.Adam(self.online.parameters(), lr=kw.get("learning_rate", 1e-4))
 
 
+from m64_axiom2 import AxiomV2Policy, MlpAxiomV2Policy, SkipEncoder, add_skip  # noqa: E402,F401  single v2 definition
+
+
 def clear(out_dir, arm, seed):
     m2._clear_seed_dir(out_dir, arm, seed)
 
@@ -112,7 +115,10 @@ def run_learned(arm, cfg, factory, adj, seed, train_eps, out_dir):
                policy_factory=pf, reward_mode="sla")
         return f"{out_dir}/{arm}/seed{seed}/eval/dqn/offline_eval/rep_0/omega_log.jsonl", train_s
     torch.manual_seed(seed)
-    if arm == "mappo":
+    if arm.startswith("mappo"):
+        import m64_mappo as mp
+        if arm == "mappo_tuned":   # pilot-seed tuning only; see pre-registration
+            mp.LR_ACTOR, mp.EPOCHS, mp.MINIBATCH = 1e-3, 10, 64
         policy = MappoPolicy(n, nd, cd_)
         env = RANEnv(cfg, factory(seed), seed=seed, reward_mode="sla")
         train_mappo(env, policy, cfg, train_eps, curve_path=f"{train_dir}/curve.json")
@@ -124,8 +130,23 @@ def run_learned(arm, cfg, factory, adj, seed, train_eps, out_dir):
             policy = m62.MlpCtdeMarlPolicy(n, nd, cd_, 2, adj, learning_rate=1e-4)
         elif arm == "axiom_wide":
             policy = WideGatPolicy(n, nd, cd_, 2, adj, learning_rate=1e-4)
+        elif arm in ("axiom_skip", "axiom_skip_lr1e-3", "axiom_mlp_skip", "axiom_mlp_skip_lr1e-3"):
+            lr = 1e-3 if arm.endswith("lr1e-3") else 1e-4
+            base = (m62.MlpCtdeMarlPolicy if "mlp" in arm else GatCtdeMarlPolicy)(n, nd, cd_, 2, adj, learning_rate=lr)
+            policy = add_skip(base, nd, cd_, lr)
+        elif arm.startswith("axiom2"):
+            # AXIOM v2 (m64_axiom2.py): raw-feature skip into the per-slice heads, LR 1e-3
+            if arm == "axiom2":
+                policy = AxiomV2Policy(n, nd, cd_, 2, adj)
+            elif arm == "axiom2_mlp":
+                policy = MlpAxiomV2Policy(n, nd, cd_, 2, adj)
+            elif arm == "axiom2_wide":
+                policy = add_skip(WideGatPolicy(n, nd, cd_, 2, adj, learning_rate=1e-3), nd, cd_, 1e-3)
+            else:
+                lr = {"axiom2_lr3e-4": 3e-4, "axiom2_lr3e-3": 3e-3}[arm]
+                policy = AxiomV2Policy(n, nd, cd_, 2, adj, learning_rate=lr)
         elif arm.startswith("axiom"):
-            lr = {"axiom": 1e-4, "axiom_lr3e-5": 3e-5, "axiom_lr3e-4": 3e-4}[arm]
+            lr = {"axiom": 1e-4, "axiom_lr3e-5": 3e-5, "axiom_lr3e-4": 3e-4, "axiom_lr1e-3": 1e-3}[arm]
             policy = GatCtdeMarlPolicy(n, nd, cd_, 2, adj, learning_rate=lr)
         else:
             raise ValueError(arm)
@@ -182,14 +203,26 @@ def main():
     ap.add_argument("--seeds", type=int, nargs="+", required=True)
     ap.add_argument("--train-episodes", type=int, default=300)
     ap.add_argument("--out-dir", required=True)
+    ap.add_argument("--condition", default="base", choices=["base", "load102", "load107", "weights"],
+                    help="Env A sensitivity conditions, as in m62_reviewer_experiments.py")
+    ap.add_argument("--env", default="B", choices=["A", "B"],
+                    help="B = coupled time-varying simulator (default); A = M63 shared-budget simulator")
     a = ap.parse_args()
     m62.install_backlog_reset()                 # also calls Env B's on_episode_reset
     cfg = load_saclb_config(CONFIGS[a.n])
+    if a.condition != "base":
+        if a.env != "A":
+            raise SystemExit("sensitivity conditions apply to Env A only")
+        m62.apply_condition(cfg, a.condition)
     sd = {k: v.sd for k, v in cfg.slice_by_id.items()}
-    factory = cd.make_coupled_factory(cfg, sd, topology=a.topology)
+    if a.env == "A":
+        from shared_budget_kpm_source import make_shared_budget_factory
+        factory = make_shared_budget_factory(cfg, sd)
+    else:
+        factory = cd.make_coupled_factory(cfg, sd, topology=a.topology)
     nbrs = cd.neighbour_lists(len(cfg.gnb_ids), a.topology)
     adj = m6.adjacency_for(a.topology, len(cfg.gnb_ids))
-    print(f"[m64] arm={a.arm} N={a.n} topology={a.topology} alpha={cd.COUPLING_ALPHA} amp={cd.LOAD_AMPLITUDE} "
+    print(f"[m64] env={a.env} arm={a.arm} N={a.n} topology={a.topology} alpha={cd.COUPLING_ALPHA} amp={cd.LOAD_AMPLITUDE} "
           f"base={cd.LOAD_BASE} seeds={a.seeds}", flush=True)
     Path(a.out_dir).mkdir(parents=True, exist_ok=True)
     if a.arm.startswith("rule_"):

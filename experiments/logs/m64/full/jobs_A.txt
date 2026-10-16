@@ -1,0 +1,166 @@
+m3_sigma0.0|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 902 903 904 905 906 907 908 909 --train-episodes 300 --eval-episodes 50 --noise-multiplier 0.0 --tag fl_gat_ctde_sigma0.0 --out-dir ../experiments/results/m65_m3
+m3_sigma0.5|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 902 903 904 905 906 907 908 909 --train-episodes 300 --eval-episodes 50 --noise-multiplier 0.5 --tag fl_gat_ctde_sigma0.5 --out-dir ../experiments/results/m65_m3
+m3_sigma1.0|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 902 903 904 905 906 907 908 909 --train-episodes 300 --eval-episodes 50 --noise-multiplier 1.0 --tag fl_gat_ctde_sigma1.0 --out-dir ../experiments/results/m65_m3
+m3_sigma2.0|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 902 903 904 905 906 907 908 909 --train-episodes 300 --eval-episodes 50 --noise-multiplier 2.0 --tag fl_gat_ctde_sigma2.0 --out-dir ../experiments/results/m65_m3
+m3_sigma4.0|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 902 903 904 905 906 907 908 909 --train-episodes 300 --eval-episodes 50 --noise-multiplier 4.0 --tag fl_gat_ctde_sigma4.0 --out-dir ../experiments/results/m65_m3
+m3_sigma0.0_rep|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009 --train-episodes 300 --eval-episodes 50 --noise-multiplier 0.0 --tag fl_gat_ctde_sigma0.0 --out-dir ../experiments/results/m65_m3_replication
+fedprox_mu0.01|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 902 --train-episodes 300 --eval-episodes 50 --aggregator fedprox --fedprox-mu 0.01 --tag fedprox_mu0.01 --out-dir ../experiments/results/m65_fedprox
+fedprox_mu0.1|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 902 --train-episodes 300 --eval-episodes 50 --aggregator fedprox --fedprox-mu 0.1 --tag fedprox_mu0.1 --out-dir ../experiments/results/m65_fedprox
+fedprox_mu1.0|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 902 --train-episodes 300 --eval-episodes 50 --aggregator fedprox --fedprox-mu 1.0 --tag fedprox_mu1.0 --out-dir ../experiments/results/m65_fedprox
+A19_fully_connected_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 900 901 902 903 904
+A19_fully_connected_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 905 906 907 908 909
+A19_fully_connected_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 910 911 1000 1001 1002
+A19_fully_connected_axiom2_912|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 912 913 914 915 916
+A19_fully_connected_axiom2_917|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 917 918 919 920 921
+A19_fully_connected_axiom2_922|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 922 923 924 925 926
+A19_fully_connected_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+A19_fully_connected_mappo_912|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926
+A19_fully_connected_indep_912|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 912 913 914 915 916
+A19_fully_connected_indep_917|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 917 918 919 920 921
+A19_fully_connected_indep_922|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 922 923 924 925 926
+A19_fully_connected_single_912|../experiments/scripts/m64_run.py --arm single_agent_dqn --env A --n 19 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n19_fully_connected --seeds 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926
+A19_ring_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 900 901 902 903 904
+A19_ring_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 905 906 907 908 909
+A19_ring_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 910 911 1000 1001 1002
+A19_ring_axiom2_912|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 912 913 914 915 916
+A19_ring_axiom2_917|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 917 918 919 920 921
+A19_ring_axiom2_922|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 922 923 924 925 926
+A19_ring_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+A19_ring_mappo_912|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926
+A19_ring_indep_912|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 912 913 914 915 916
+A19_ring_indep_917|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 917 918 919 920 921
+A19_ring_indep_922|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 922 923 924 925 926
+A19_ring_single_912|../experiments/scripts/m64_run.py --arm single_agent_dqn --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling/n19_ring --seeds 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926
+A19_hex_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 900 901 902 903 904
+A19_hex_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 905 906 907 908 909
+A19_hex_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 910 911 1000 1001 1002
+A19_hex_axiom2_912|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 912 913 914 915 916
+A19_hex_axiom2_917|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 917 918 919 920 921
+A19_hex_axiom2_922|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 922 923 924 925 926
+A19_hex_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+A19_hex_mappo_912|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926
+A19_hex_indep_912|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 912 913 914 915 916
+A19_hex_indep_917|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 917 918 919 920 921
+A19_hex_indep_922|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 922 923 924 925 926
+A19_hex_single_912|../experiments/scripts/m64_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m65_scaling/n19_hex --seeds 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926
+A19_ring_mlp_900|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling_mlp/n19_ring --seeds 900 901 902 903
+A19_ring_mlp_904|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling_mlp/n19_ring --seeds 904 905 906 907
+A19_ring_mlp_908|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 19 --topology ring --out-dir ../experiments/results/m65_scaling_mlp/n19_ring --seeds 908 909 910 911
+B7_fully_connected_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904
+B7_fully_connected_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 905 906 907 908 909
+B7_fully_connected_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 910 911 1000 1001 1002
+B7_fully_connected_mlp_900|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904
+B7_fully_connected_mlp_905|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 905 906 907 908 909
+B7_fully_connected_mlp_910|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 910 911 1000 1001 1002
+B7_fully_connected_indep_900|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904 905 906 907
+B7_fully_connected_indep_908|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 908 909 910 911 1000 1001 1002
+B7_fully_connected_single_900|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_fully_connected_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_fully_connected_rule_static_900|../experiments/scripts/m64_run.py --arm rule_static --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_fully_connected_rule_accept_all_900|../experiments/scripts/m64_run.py --arm rule_accept_all --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_fully_connected_rule_local_900|../experiments/scripts/m64_run.py --arm rule_local --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_fully_connected_rule_neighbour_900|../experiments/scripts/m64_run.py --arm rule_neighbour --n 7 --topology fully_connected --out-dir ../experiments/results/m64/n7_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_ring_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904
+B7_ring_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 905 906 907 908 909
+B7_ring_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 910 911 1000 1001 1002
+B7_ring_mlp_900|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904
+B7_ring_mlp_905|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 905 906 907 908 909
+B7_ring_mlp_910|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 910 911 1000 1001 1002
+B7_ring_indep_900|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904 905 906 907
+B7_ring_indep_908|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 908 909 910 911 1000 1001 1002
+B7_ring_single_900|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_ring_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_ring_rule_static_900|../experiments/scripts/m64_run.py --arm rule_static --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_ring_rule_accept_all_900|../experiments/scripts/m64_run.py --arm rule_accept_all --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_ring_rule_local_900|../experiments/scripts/m64_run.py --arm rule_local --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_ring_rule_neighbour_900|../experiments/scripts/m64_run.py --arm rule_neighbour --n 7 --topology ring --out-dir ../experiments/results/m64/n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_hex_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904
+B7_hex_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 905 906 907 908 909
+B7_hex_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 910 911 1000 1001 1002
+B7_hex_mlp_900|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904
+B7_hex_mlp_905|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 905 906 907 908 909
+B7_hex_mlp_910|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 910 911 1000 1001 1002
+B7_hex_indep_900|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904 905 906 907
+B7_hex_indep_908|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 908 909 910 911 1000 1001 1002
+B7_hex_single_900|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_hex_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_hex_rule_static_900|../experiments/scripts/m64_run.py --arm rule_static --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_hex_rule_accept_all_900|../experiments/scripts/m64_run.py --arm rule_accept_all --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_hex_rule_local_900|../experiments/scripts/m64_run.py --arm rule_local --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B7_hex_rule_neighbour_900|../experiments/scripts/m64_run.py --arm rule_neighbour --n 7 --topology hex --out-dir ../experiments/results/m64/n7_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+B3_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904
+B3_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 905 906 907 908 909
+B3_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 910 911 912 913 914
+B3_axiom2_915|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 915 916 917 918 919
+B3_axiom2_920|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 920 921 922 923 924
+B3_axiom2_925|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 925 926 927 928 929
+B3_mlp_900|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904
+B3_mlp_905|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 905 906 907 908 909
+B3_mlp_910|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 910 911 912 913 914
+B3_mlp_915|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 915 916 917 918 919
+B3_mlp_920|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 920 921 922 923 924
+B3_mlp_925|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 925 926 927 928 929
+B3_indep_900|../experiments/scripts/m64_run.py --arm independent_dqn --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909
+B3_indep_910|../experiments/scripts/m64_run.py --arm independent_dqn --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 910 911 912 913 914 915 916 917 918 919
+B3_indep_920|../experiments/scripts/m64_run.py --arm independent_dqn --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 920 921 922 923 924 925 926 927 928 929
+B3_single_900|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909
+B3_single_910|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 910 911 912 913 914 915 916 917 918 919
+B3_single_920|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 920 921 922 923 924 925 926 927 928 929
+B3_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 912 913 914
+B3_mappo_915|../experiments/scripts/m64_run.py --arm mappo_tuned --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929
+B3_rule_static_900|../experiments/scripts/m64_run.py --arm rule_static --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929
+B3_rule_accept_all_900|../experiments/scripts/m64_run.py --arm rule_accept_all --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929
+B3_rule_local_900|../experiments/scripts/m64_run.py --arm rule_local --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929
+B3_rule_neighbour_900|../experiments/scripts/m64_run.py --arm rule_neighbour --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929
+B3_axiomv1_900|../experiments/scripts/m64_run.py --arm axiom --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904
+B3_axiomv1_905|../experiments/scripts/m64_run.py --arm axiom --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 905 906 907 908 909
+B3_axiom2_lr3e-4_900|../experiments/scripts/m64_run.py --arm axiom2_lr3e-4 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904
+B3_axiom2_lr3e-4_905|../experiments/scripts/m64_run.py --arm axiom2_lr3e-4 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 905 906 907 908 909
+B3_axiom2_lr3e-3_900|../experiments/scripts/m64_run.py --arm axiom2_lr3e-3 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904
+B3_axiom2_lr3e-3_905|../experiments/scripts/m64_run.py --arm axiom2_lr3e-3 --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 905 906 907 908 909
+B3_axiom2_wide_900|../experiments/scripts/m64_run.py --arm axiom2_wide --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 900 901 902 903 904
+B3_axiom2_wide_905|../experiments/scripts/m64_run.py --arm axiom2_wide --n 3 --out-dir ../experiments/results/m64/n3_fully_connected --seeds 905 906 907 908 909
+B3rep_axiom2_1000|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1000 1001 1002 1003 1004
+B3rep_axiom2_1005|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1005 1006 1007 1008 1009
+B3rep_independent_dqn_1000|../experiments/scripts/m64_run.py --arm independent_dqn --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
+B3rep_single_agent_dqn_1000|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
+B3rep_mappo_tuned_1000|../experiments/scripts/m64_run.py --arm mappo_tuned --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
+B3rep_rule_static_1000|../experiments/scripts/m64_run.py --arm rule_static --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
+B3rep_rule_accept_all_1000|../experiments/scripts/m64_run.py --arm rule_accept_all --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
+B3rep_rule_local_1000|../experiments/scripts/m64_run.py --arm rule_local --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
+B3rep_rule_neighbour_1000|../experiments/scripts/m64_run.py --arm rule_neighbour --n 3 --out-dir ../experiments/results/m64/n3_replication --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
+A3_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 900 901 902 903 904
+A3_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 905 906 907 908 909
+A3_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 910 911 912 913 914
+A3_axiom2_915|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 915 916 917 918 919
+A3_axiom2_920|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 920 921 922 923 924
+A3_axiom2_925|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 925 926 927 928 929
+A3_mlp_900|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 900 901 902 903 904
+A3_mlp_905|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 905 906 907 908 909
+A3_mlp_910|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 910 911 912 913 914
+A3_mlp_915|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 915 916 917 918 919
+A3_mlp_920|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 920 921 922 923 924
+A3_mlp_925|../experiments/scripts/m64_run.py --arm axiom2_mlp --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 925 926 927 928 929
+A3_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 900 901 902 903 904 905 906 907 908 909 910 911 912 913 914
+A3_mappo_915|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 3 --out-dir ../experiments/results/m65_reviewer/base --seeds 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929
+A3rep_axiom2_1000|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m65_reviewer/replication --seeds 1000 1001 1002 1003 1004
+A3rep_axiom2_1005|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m65_reviewer/replication --seeds 1005 1006 1007 1008 1009
+A3rep_mappo_1000|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 3 --out-dir ../experiments/results/m65_reviewer/replication --seeds 1000 1001 1002 1003 1004 1005 1006 1007 1008 1009
+A3_load102_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --condition load102 --n 3 --out-dir ../experiments/results/m65_reviewer/load102 --seeds 900 901 902 903 904
+A3_load102_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --condition load102 --n 3 --out-dir ../experiments/results/m65_reviewer/load102 --seeds 905 906 907 908 909
+A3_load107_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --condition load107 --n 3 --out-dir ../experiments/results/m65_reviewer/load107 --seeds 900 901 902 903 904
+A3_load107_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --condition load107 --n 3 --out-dir ../experiments/results/m65_reviewer/load107 --seeds 905 906 907 908 909
+A3_weights_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --condition weights --n 3 --out-dir ../experiments/results/m65_reviewer/weights --seeds 900 901 902 903 904
+A3_weights_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --condition weights --n 3 --out-dir ../experiments/results/m65_reviewer/weights --seeds 905 906 907 908 909
+A7_fully_connected_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n7_fully_connected --seeds 900 901 902 903 904
+A7_fully_connected_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n7_fully_connected --seeds 905 906 907 908 909
+A7_fully_connected_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n7_fully_connected --seeds 910 911 1000 1001 1002
+A7_fully_connected_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 7 --topology fully_connected --out-dir ../experiments/results/m65_scaling/n7_fully_connected --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+A7_ring_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology ring --out-dir ../experiments/results/m65_scaling/n7_ring --seeds 900 901 902 903 904
+A7_ring_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology ring --out-dir ../experiments/results/m65_scaling/n7_ring --seeds 905 906 907 908 909
+A7_ring_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology ring --out-dir ../experiments/results/m65_scaling/n7_ring --seeds 910 911 1000 1001 1002
+A7_ring_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 7 --topology ring --out-dir ../experiments/results/m65_scaling/n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+A7_hex_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology hex --out-dir ../experiments/results/m65_scaling/n7_hex --seeds 900 901 902 903 904
+A7_hex_axiom2_905|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology hex --out-dir ../experiments/results/m65_scaling/n7_hex --seeds 905 906 907 908 909
+A7_hex_axiom2_910|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 7 --topology hex --out-dir ../experiments/results/m65_scaling/n7_hex --seeds 910 911 1000 1001 1002
+A7_hex_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 7 --topology hex --out-dir ../experiments/results/m65_scaling/n7_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
