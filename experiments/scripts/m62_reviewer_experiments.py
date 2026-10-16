@@ -240,6 +240,9 @@ def install_backlog_reset():
         if isinstance(backlog, dict):
             for key in backlog:
                 backlog[key] = 0.0
+        hook = getattr(self.kpm_source, "on_episode_reset", None)  # M64 Env B redraws load phases here
+        if callable(hook):
+            hook()
         return original_reset(self)
 
     RANEnv.reset = reset
