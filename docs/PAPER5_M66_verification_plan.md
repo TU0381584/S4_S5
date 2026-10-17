@@ -43,3 +43,15 @@ Script: m66_verify.py.
 - Seed sets are disjoint where the manuscript says they are disjoint.
 - The DP epsilon values are recomputed from the logged noisy-step counts with an independent implementation of the zCDP formula.
 - Every figure's plotted numbers agree with the text.
+
+## Addendum 1, M66b: further fresh seeds (committed 2026-10-17, after M66 and before any M66b run)
+
+M66 left two reported claims without a fresh-seed check: Env A scaling at seven gNBs, and the absence of a significant federated cost. It also checked only the ring layout at nineteen gNBs. M66b retrains on fresh seeds 3000-3009, which no Env A N=7, N=19 hex, or federated run has used. Output goes to experiments/results/m66b_fresh.
+
+| Cell | Arms | What must hold for the manuscript's claims to stand |
+|---|---|---|
+| Env A, N=7, ring and fully-connected | AXIOM v2, independent DQN, single-agent DQN, MAPPO | AXIOM priority-slice SLA ≥ 90% pooled over both layouts, and each baseline ≤ 80%. AXIOM beats each baseline on priority SLA and on reward under both layouts. All 12 comparisons hold at Holm-adjusted p < 0.05. |
+| Env A, N=19, hex | same four arms | AXIOM priority-slice SLA ≥ 90%, and each baseline ≤ 75%. AXIOM beats each baseline on priority SLA and on reward. All 6 comparisons hold at Holm-adjusted p < 0.05. |
+| Env A, N=3, federated sigma 0 | FedAvg AXIOM vs centralised AXIOM v2 (m66_fresh/A_n3, same seeds) | No significant difference in reward, paired Wilcoxon p ≥ 0.05. The difference and its bootstrap CI are reported either way. |
+
+Every M66b check is reported whether it holds or fails.

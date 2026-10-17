@@ -558,7 +558,7 @@ Replication first proved its worth in this campaign, on the earliest simulator. 
 
 \subsection{Cluster-Size Scaling}
 \label{sec:results-m6}
-We grow the cluster in Env A from three gNBs to seven and nineteen under three layouts, fully-connected, ring, and hex-grid. Every gNB keeps its own shared 100-PRB budget and its own demand, so per-gNB load stays the same as the cluster grows. Each cell runs 15 seeds at seven gNBs and 30 at nineteen, where the earlier comparison had been underpowered. The independent DQN ignores the layout, so it gives identical results under all three layouts, which checks that the layout changes nothing else. The single-agent DQN also ignores the layout, yet its results vary between layouts in some seeds, because its training is not bit-reproducible. We test the per-layout gaps on reward and on priority-slice compliance, Holm-correcting the 18 comparisons at each size.
+We grow the cluster in Env A from three gNBs to seven and nineteen under three layouts, fully-connected, ring, and hex-grid. Every gNB keeps its own shared 100-PRB budget and its own demand, so per-gNB load stays the same as the cluster grows. Each cell runs 15 seeds at seven gNBs and 30 at nineteen, where the earlier comparison had been underpowered. The independent DQN ignores the layout, so it gives identical results under all three layouts, which checks that the layout changes nothing else. The single-agent DQN also ignores the layout, yet its results vary between layouts in some seeds, because its training is not bit-reproducible, for the reason Section~\ref{sec:results-verify} gives. We test the per-layout gaps on reward and on priority-slice compliance, Holm-correcting the 18 comparisons at each size.
 
 \begin{figure}[t]
 \centering

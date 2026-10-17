@@ -30,7 +30,7 @@ Machine-readable results: experiments/results/m66_v1v2.json (V1/V2), experiments
   - Every single-agent comparison keeps its direction.
   - Env A N=3: AXIOM's lead goes from +0.311 (Holm p 0.066, n.s.) to +0.241 (Holm p 0.039, significant).
   - Env B N=3 stays at p < 1e-7.
-- The manuscript did not previously mention this. Contrary to what the plan assumed, it is now disclosed in Section "Reproducibility and Fresh-Seed Verification".
+- The manuscript already said, in the scaling section, that the single-agent DQN is not bit-reproducible, but it gave no cause or size. The plan wrongly assumed this was fully stated. The new subsection "Reproducibility and Fresh-Seed Verification" now gives both, and the scaling sentence points to it.
 
 ## V2 fresh seeds 3000+ (26 predictions stated in advance, all hold)
 
