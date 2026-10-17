@@ -71,3 +71,23 @@ The archived summary JSONs and figures fig6 and fig11 were regenerated with the 
 
 - `run_cmd.sh` logs `exit=$?` after `$(date)`, so the logged exit codes are always 0. Completion was therefore verified by seed counts and by the absence of tracebacks.
 - Disk reached 97% during the campaign. Space was recovered losslessly by gzipping the M66 logs and the unused m6_pilot training logs (24 GB). Nothing was deleted except the transient rule-selection logs, as the plan intended.
+
+## M66b: further fresh seeds 3000-3009 (addendum 1), 8 of 11 criteria hold
+
+Campaign: 21 jobs, 20:59 to 23:47 on 2026-10-17. Analysis in experiments/results/m66b_analysis.json.
+
+- Env A N=19 hex: all 5 criteria hold.
+  - AXIOM priority SLA is 96.5% (1 collapse in 10).
+  - The independent DQN, single-agent DQN, and MAPPO reach 47.5%, 65.2%, and 63.0%.
+  - All 6 tests are at Holm p ≤ 0.012.
+- Federated sigma 0: holds. Centralised 12.389 vs federated 12.312, diff +0.077, CI [−1.03, 1.27], p 1.
+- Env A N=7, ring and fully-connected: 3 criteria fail.
+  - Holds: AXIOM pooled priority SLA is 96.7%, and AXIOM leads every baseline in all 12 comparisons by direction.
+  - Holds: MAPPO pooled priority SLA is 68.1%.
+  - Fails: the independent DQN reaches 80.9% and the single-agent DQN 80.6%, above the 80% bound. The main campaign had about 75-76%.
+  - Fails: all 12 at Holm p < 0.05.
+    - Ring: all 6 hold, Holm p ≤ 0.0313.
+    - Fully-connected: none holds, Holm p 0.12 to 0.25. Two weak AXIOM seeds, 3006 at 57.2% and 3000 at 76.9%, leave the leads of 12.5 to 25.3 points non-significant on 10 seeds.
+- No extra seeds were added after these results were seen. The failures are reported in the manuscript's verification subsection and in the conclusion.
+- The verifier now has 224 checks, including every M66b number quoted in the text, and all pass. It caught two of my own drafting errors before commit: "p ≤ 0.031", where the true value is 0.03125, and "12.6", where it is 12.548.
+- Pre-existing issue noticed: the abstract is 290 words, which is likely over the journal's limit.

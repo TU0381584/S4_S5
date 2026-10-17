@@ -632,6 +632,43 @@ def main():
     C.claim("fresh Env B N=7 MLP seeds won", "in 9 of 10 seeds at $p=0.006$", t_["wins"], "{:d}")
     C.claim("fresh Env B N=7 MLP over GAT p", "in 9 of 10 seeds at $p=0.006$", t_["p"], "{:.3f}")
 
+    # ---------------- M66b fresh seeds (addendum 1)
+    G = list(range(3000, 3010)); bl = ("independent_dqn", "single_agent_dqn", "mappo_tuned")
+    h19 = {k: seeds_of("m66b_fresh/A_n19_hex", k, G) for k in ("axiom2",) + bl}
+    C.claim("M66b N=19 hex AXIOM priority SLA", "AXIOM kept 96.5\\% priority-slice compliance against 47.5\\% to 65.2\\%", 100 * mean(h19["axiom2"], prio), "{:.1f}")
+    C.claim("M66b N=19 hex lowest baseline", "against 47.5\\% to 65.2\\% for the baselines", min(100 * mean(h19[k], prio) for k in bl), "{:.1f}")
+    C.claim("M66b N=19 hex highest baseline", "against 47.5\\% to 65.2\\% for the baselines", max(100 * mean(h19[k], prio) for k in bl), "{:.1f}")
+    t19 = {(k, m): paired(h19["axiom2"], h19[k], f) for k in bl for m, f in (("r", lambda r: r["reward"]), ("p", prio))}
+    h_ = holm({k: v["p"] for k, v in t19.items()})
+    C.note("M66b N=19 hex all six tests at Holm p<=0.012", all(t19[k]["diff"] > 0 and h_[k] <= 0.012 for k in t19), max(h_.values()))
+    fed = {}
+    for b in range(3000, 3010, 2):
+        fed.update(seeds_of(f"m66b_fresh/m3_s{b}", "fl_gat_ctde_sigma0.0", [b, b + 1]))
+    cen = seeds_of("m66_fresh/A_n3", "axiom2", G)
+    C.claim("M66b federated difference", "at $+0.077$ with 95\\% CI", paired(cen, fed)["diff"], "{:+.3f}")
+    ci_claim("M66b federated CI", "at $+0.077$ with 95\\% CI [$-$1.03, 1.27]", [cen[s]["reward"] - fed[s]["reward"] for s in G])
+    C.note("M66b federated not significant", paired(cen, fed)["p"] >= 0.05 and len(fed) == 10, paired(cen, fed)["p"])
+    n7 = {c_: {k: seeds_of(f"m66b_fresh/A_n7_{c_}", k, G) for k in ("axiom2",) + bl} for c_ in ("ring", "fully_connected")}
+    C.claim("M66b N=7 AXIOM pooled priority SLA", "AXIOM kept 96.7\\% priority-slice compliance and led every baseline",
+            100 * float(np.mean([prio(r) for c_ in n7 for r in n7[c_]["axiom2"].values()])), "{:.1f}")
+    t7 = {(c_, k, m): paired(n7[c_]["axiom2"], n7[c_][k], f) for c_ in n7 for k in bl for m, f in (("r", lambda r: r["reward"]), ("p", prio))}
+    h7 = holm({k: v["p"] for k, v in t7.items()})
+    C.note("M66b N=7 AXIOM leads every baseline under both layouts", all(v["diff"] > 0 for v in t7.values()), None)
+    C.note("M66b N=7 ring six tests at Holm p<=0.032", all(h7[k] <= 0.032 for k in t7 if k[0] == "ring"), max(h7[k] for k in t7 if k[0] == "ring"))
+    C.note("M66b N=7 fully-connected tests all above Holm 0.05", all(h7[k] > 0.05 for k in t7 if k[0] == "fully_connected"), None)
+    weak = sorted(100 * prio(r) for r in n7["fully_connected"]["axiom2"].values() if prio(r) < 0.9)
+    C.claim("M66b N=7 weak seed low", "two weak AXIOM seeds at 57.2\\% and 76.9\\%", weak[0] if len(weak) == 2 else None, "{:.1f}")
+    C.claim("M66b N=7 weak seed high", "two weak AXIOM seeds at 57.2\\% and 76.9\\%", weak[1] if len(weak) == 2 else None, "{:.1f}")
+    lead = [100 * t7[("fully_connected", k, "p")]["diff"] for k in bl]
+    C.claim("M66b N=7 fully-connected lead low", "leads of 12.5 to 25.3 points", min(lead), "{:.1f}")
+    C.claim("M66b N=7 fully-connected lead high", "leads of 12.5 to 25.3 points", max(lead), "{:.1f}")
+    pool = {k: 100 * float(np.mean([prio(r) for c_ in n7 for r in n7[c_][k].values()])) for k in bl}
+    C.claim("M66b N=7 independent DQN pooled", "reached 80.9\\% and 80.6\\% compliance", pool["independent_dqn"], "{:.1f}")
+    C.claim("M66b N=7 single-agent DQN pooled", "reached 80.9\\% and 80.6\\% compliance", pool["single_agent_dqn"], "{:.1f}")
+    mb = json.load(open(f"{ROOT}/m66b_analysis.json"))
+    C.note("M66b three of eleven checks failed", len(mb["criteria"]) == 11 and mb["n_fail"] == 3 and
+           "so three of the eleven checks in this run failed" in C.tex, None)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}

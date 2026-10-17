@@ -2123,6 +2123,154 @@
   "ok": true
  },
  {
+  "label": "M66b N=19 hex AXIOM priority SLA",
+  "snippet": "AXIOM kept 96.5\\% priority-slice compliance against 47.5\\% to 65.2\\%",
+  "computed": 96.45166666666667,
+  "formatted": "96.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=19 hex lowest baseline",
+  "snippet": "against 47.5\\% to 65.2\\% for the baselines",
+  "computed": 47.53166666666667,
+  "formatted": "47.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=19 hex highest baseline",
+  "snippet": "against 47.5\\% to 65.2\\% for the baselines",
+  "computed": 65.22833333333334,
+  "formatted": "65.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=19 hex all six tests at Holm p<=0.012",
+  "snippet": null,
+  "computed": 0.01171875,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66b federated difference",
+  "snippet": "at $+0.077$ with 95\\% CI",
+  "computed": 0.07709961993464454,
+  "formatted": "+0.077",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b federated CI",
+  "snippet": null,
+  "computed": [
+   -1.042,
+   1.266,
+   "at $+0.077$ with 95\\% CI [$-$1.03, 1.27]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66b federated not significant",
+  "snippet": null,
+  "computed": 1.0,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 AXIOM pooled priority SLA",
+  "snippet": "AXIOM kept 96.7\\% priority-slice compliance and led every baseline",
+  "computed": 96.70333333333335,
+  "formatted": "96.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 AXIOM leads every baseline under both layouts",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 ring six tests at Holm p<=0.032",
+  "snippet": null,
+  "computed": 0.03125,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 fully-connected tests all above Holm 0.05",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 weak seed low",
+  "snippet": "two weak AXIOM seeds at 57.2\\% and 76.9\\%",
+  "computed": 57.2,
+  "formatted": "57.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 weak seed high",
+  "snippet": "two weak AXIOM seeds at 57.2\\% and 76.9\\%",
+  "computed": 76.86666666666666,
+  "formatted": "76.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 fully-connected lead low",
+  "snippet": "leads of 12.5 to 25.3 points",
+  "computed": 12.548333333333334,
+  "formatted": "12.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 fully-connected lead high",
+  "snippet": "leads of 12.5 to 25.3 points",
+  "computed": 25.31,
+  "formatted": "25.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 independent DQN pooled",
+  "snippet": "reached 80.9\\% and 80.6\\% compliance",
+  "computed": 80.85833333333333,
+  "formatted": "80.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b N=7 single-agent DQN pooled",
+  "snippet": "reached 80.9\\% and 80.6\\% compliance",
+  "computed": 80.59083333333334,
+  "formatted": "80.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66b three of eleven checks failed",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -2149,9 +2297,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 206",
+  "label": "text quotes the final check count of 224",
   "snippet": null,
-  "computed": 206,
+  "computed": 224,
   "formatted": null,
   "in_tex": null,
   "ok": true
