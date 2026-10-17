@@ -1,0 +1,44 @@
+{
+ "908": {
+  "reward": 22.34525687179497,
+  "mmtc_blocks": 4046,
+  "blocks": 6012,
+  "train_seconds": 382.3
+ },
+ "909": {
+  "reward": 22.45393354034333,
+  "mmtc_blocks": 4574,
+  "blocks": 7556,
+  "train_seconds": 430.7
+ },
+ "910": {
+  "reward": 21.488627250959325,
+  "mmtc_blocks": 3843,
+  "blocks": 4993,
+  "train_seconds": 319.2
+ },
+ "911": {
+  "reward": 22.721085417488247,
+  "mmtc_blocks": 5041,
+  "blocks": 7077,
+  "train_seconds": 330.3
+ },
+ "1000": {
+  "reward": 23.44028234843,
+  "mmtc_blocks": 2284,
+  "blocks": 4699,
+  "train_seconds": 395.2
+ },
+ "1001": {
+  "reward": 22.969379816663082,
+  "mmtc_blocks": 4381,
+  "blocks": 7384,
+  "train_seconds": 401.8
+ },
+ "1002": {
+  "reward": 21.329135837340683,
+  "mmtc_blocks": 3462,
+  "blocks": 4600,
+  "train_seconds": 412.8
+ }
+}

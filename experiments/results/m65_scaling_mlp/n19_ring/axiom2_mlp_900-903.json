@@ -1,0 +1,26 @@
+{
+ "900": {
+  "reward": 87.20710758396568,
+  "mmtc_blocks": 13795,
+  "blocks": 13795,
+  "train_seconds": 853.1
+ },
+ "901": {
+  "reward": 89.71222353405975,
+  "mmtc_blocks": 21809,
+  "blocks": 21809,
+  "train_seconds": 722.3
+ },
+ "902": {
+  "reward": 90.5993516956503,
+  "mmtc_blocks": 21730,
+  "blocks": 21730,
+  "train_seconds": 750.9
+ },
+ "903": {
+  "reward": 83.9935149877576,
+  "mmtc_blocks": 5358,
+  "blocks": 5358,
+  "train_seconds": 784.3
+ }
+}

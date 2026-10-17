@@ -96,7 +96,7 @@ def main():
     ax3.set_title("(c) 7 gNBs by layout", loc="left", fontsize=9)
     ax3.grid(True, axis="y", lw=0.4, alpha=0.4)
     ax3.spines[["top", "right"]].set_visible(False)
-    ax3.legend(fontsize=5.8, frameon=False, loc="lower left", ncol=2)
+    ax3.legend(fontsize=5.8, frameon=False, loc="upper center", bbox_to_anchor=(0.5, -0.2), ncol=3)
     fig.tight_layout()
     fig.savefig(a.out + ".pdf", bbox_inches="tight")
     fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")

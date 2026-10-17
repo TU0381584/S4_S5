@@ -1,0 +1,32 @@
+{
+ "900": {
+  "reward": 25.97570066506146,
+  "mmtc_blocks": 4334,
+  "blocks": 6874,
+  "train_seconds": 667.1
+ },
+ "901": {
+  "reward": 24.67868499146735,
+  "mmtc_blocks": 324,
+  "blocks": 4567,
+  "train_seconds": 657.4
+ },
+ "902": {
+  "reward": 23.839217436776202,
+  "mmtc_blocks": 8100,
+  "blocks": 16063,
+  "train_seconds": 731.1
+ },
+ "903": {
+  "reward": 24.83430205920825,
+  "mmtc_blocks": 6661,
+  "blocks": 9912,
+  "train_seconds": 617.2
+ },
+ "904": {
+  "reward": 21.983584021849428,
+  "mmtc_blocks": 8,
+  "blocks": 1562,
+  "train_seconds": 622.6
+ }
+}

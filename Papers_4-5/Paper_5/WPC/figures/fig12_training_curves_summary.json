@@ -1,0 +1,68 @@
+{
+ "experiments/results/m64/n3_fully_connected": {
+  "axiom2": {
+   "n": 12,
+   "last20_mean": 8.37538661879742,
+   "first20_mean": -2.147208582482274
+  },
+  "single_agent_dqn": {
+   "n": 12,
+   "last20_mean": 7.578642586542794,
+   "first20_mean": -1.8884021390821324
+  },
+  "independent_dqn": {
+   "n": 12,
+   "last20_mean": 7.3947390596087486,
+   "first20_mean": -2.1904702551739943
+  },
+  "mappo_tuned": {
+   "n": 12,
+   "last20_mean": 6.389719077790716,
+   "first20_mean": 2.2499332164052297
+  }
+ },
+ "experiments/results/m64/n7_ring": {
+  "axiom2": {
+   "n": 12,
+   "last20_mean": 23.199063586125725,
+   "first20_mean": 6.409969010809824
+  },
+  "single_agent_dqn": {
+   "n": 12,
+   "last20_mean": 23.2686416424469,
+   "first20_mean": 6.20889241514157
+  },
+  "independent_dqn": {
+   "n": 12,
+   "last20_mean": 21.813294682618494,
+   "first20_mean": 6.318914175217058
+  },
+  "mappo_tuned": {
+   "n": 12,
+   "last20_mean": 15.977966637901224,
+   "first20_mean": 14.44981471999966
+  }
+ },
+ "experiments/results/m65_scaling/n19_ring": {
+  "axiom2": {
+   "n": 12,
+   "last20_mean": 85.24654782519602,
+   "first20_mean": 35.505931651375974
+  },
+  "single_agent_dqn": {
+   "n": 12,
+   "last20_mean": 73.53438548216104,
+   "first20_mean": 33.88887858149635
+  },
+  "independent_dqn": {
+   "n": 12,
+   "last20_mean": 70.96710854565221,
+   "first20_mean": 35.09459092801293
+  },
+  "mappo_tuned": {
+   "n": 12,
+   "last20_mean": 62.94884397299539,
+   "first20_mean": 52.99112929310017
+  }
+ }
+}

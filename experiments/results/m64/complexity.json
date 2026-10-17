@@ -1,0 +1,92 @@
+{
+ "3": {
+  "axiom2": {
+   "params_total": 7782,
+   "params_execution": 7782,
+   "ms_per_step": 1.04,
+   "requests_per_step": 9
+  },
+  "axiom2_mlp": {
+   "params_total": 3190,
+   "params_execution": 3190,
+   "ms_per_step": 0.773,
+   "requests_per_step": 9
+  },
+  "independent_dqn": {
+   "params_total": 55302,
+   "params_execution": 55302,
+   "ms_per_step": 0.588,
+   "requests_per_step": 9
+  },
+  "mappo": {
+   "params_total": 11139,
+   "params_execution": 5122,
+   "ms_per_step": 0.188,
+   "requests_per_step": 9
+  },
+  "single_agent_dqn": {
+   "params_total": 21250,
+   "params_execution": 21250
+  }
+ },
+ "7": {
+  "axiom2": {
+   "params_total": 7782,
+   "params_execution": 7782,
+   "ms_per_step": 1.976,
+   "requests_per_step": 21
+  },
+  "axiom2_mlp": {
+   "params_total": 3190,
+   "params_execution": 3190,
+   "ms_per_step": 1.692,
+   "requests_per_step": 21
+  },
+  "independent_dqn": {
+   "params_total": 129038,
+   "params_execution": 129038,
+   "ms_per_step": 1.383,
+   "requests_per_step": 21
+  },
+  "mappo": {
+   "params_total": 13443,
+   "params_execution": 5122,
+   "ms_per_step": 0.2,
+   "requests_per_step": 21
+  },
+  "single_agent_dqn": {
+   "params_total": 26370,
+   "params_execution": 26370
+  }
+ },
+ "19": {
+  "axiom2": {
+   "params_total": 7782,
+   "params_execution": 7782,
+   "ms_per_step": 4.791,
+   "requests_per_step": 57
+  },
+  "axiom2_mlp": {
+   "params_total": 3190,
+   "params_execution": 3190,
+   "ms_per_step": 4.457,
+   "requests_per_step": 57
+  },
+  "independent_dqn": {
+   "params_total": 350246,
+   "params_execution": 350246,
+   "ms_per_step": 3.727,
+   "requests_per_step": 57
+  },
+  "mappo": {
+   "params_total": 20355,
+   "params_execution": 5122,
+   "ms_per_step": 0.222,
+   "requests_per_step": 57
+  },
+  "single_agent_dqn": {
+   "params_total": 41730,
+   "params_execution": 41730
+  }
+ }
+}
