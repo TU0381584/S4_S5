@@ -1327,6 +1327,349 @@
   "ok": true
  },
  {
+  "label": "T3 heuristic CI",
+  "snippet": null,
+  "computed": [
+   12.772,
+   12.905,
+   "Oracle rule & 12.835 [12.77, 12.91] & 1.000 & 0/30 & 1.000 & 1.000 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T3 axiom2 CI",
+  "snippet": null,
+  "computed": [
+   12.484,
+   12.861,
+   "AXIOM & 12.698 [12.49, 12.86] & 0.992 & 0/30 & 0.998 & 0.979 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T3 axiom2_mlp CI",
+  "snippet": null,
+  "computed": [
+   12.459,
+   12.792,
+   "AXIOM, MLP encoder & 12.640 [12.46, 12.79] & 0.986 & 0/30 & 1.000 & 0.976 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T3 single_agent_dqn CI",
+  "snippet": null,
+  "computed": [
+   12.105,
+   12.626,
+   "Single-agent DQN & 12.387 [12.11, 12.63] & 0.990 & 0/30 & 0.994 & 0.941 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T3 independent_dqn CI",
+  "snippet": null,
+  "computed": [
+   11.106,
+   12.006,
+   "Independent DQN & 11.587 [11.11, 12.02] & 0.962 & 0/30 & 0.993 & 0.865 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T3 mappo_tuned CI",
+  "snippet": null,
+  "computed": [
+   9.271,
+   10.743,
+   "MAPPO & 10.013 [9.30, 10.73] & 0.707 & 2/30 & 0.978 & 0.576 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 rule_accept_all CI",
+  "snippet": null,
+  "computed": [
+   4.135,
+   4.594,
+   "Accept all & 4.356 [4.13, 4.60] & 0.446 & 0.265 & 0.955 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 rule_static CI",
+  "snippet": null,
+  "computed": [
+   6.0,
+   6.676,
+   "Shed all mMTC & 6.337 [6.00, 6.67] & 0.625 & 0.367 & 0.371 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 rule_local CI",
+  "snippet": null,
+  "computed": [
+   9.119,
+   9.394,
+   "Tuned local rule & 9.252 [9.12, 9.40] & 0.989 & 0.367 & 0.390 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 rule_neighbour CI",
+  "snippet": null,
+  "computed": [
+   8.934,
+   9.153,
+   "Tuned neighbour-aware rule & 9.041 [8.93, 9.15] & 0.988 & 0.283 & 0.901 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 axiom2 CI",
+  "snippet": null,
+  "computed": [
+   8.639,
+   9.032,
+   "AXIOM & 8.832 [8.64, 9.03] & 0.958 & 0.344 & 0.406 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 axiom2_mlp CI",
+  "snippet": null,
+  "computed": [
+   8.766,
+   9.131,
+   "AXIOM, MLP encoder & 8.948 [8.77, 9.13] & 0.974 & 0.337 & 0.452 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 single_agent_dqn CI",
+  "snippet": null,
+  "computed": [
+   7.196,
+   7.774,
+   "Single-agent DQN & 7.495 [7.20, 7.77] & 0.866 & 0.284 & 0.412 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 independent_dqn CI",
+  "snippet": null,
+  "computed": [
+   7.443,
+   8.131,
+   "Independent DQN & 7.794 [7.44, 8.13] & 0.910 & 0.270 & 0.441 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "T4 mappo_tuned CI",
+  "snippet": null,
+  "computed": [
+   6.505,
+   7.45,
+   "MAPPO & 6.968 [6.47, 7.45] & 0.797 & 0.289 & 0.579 \\\\"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": false
+ },
+ {
+  "label": "A3 vs indep CI",
+  "snippet": null,
+  "computed": [
+   0.611,
+   1.653,
+   "[0.60, 1.65]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "A3 vs MAPPO CI",
+  "snippet": null,
+  "computed": [
+   2.01,
+   3.354,
+   "[2.01, 3.35]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "A3 vs single CI",
+  "snippet": null,
+  "computed": [
+   -0.013,
+   0.645,
+   "[$-$0.01, 0.64]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "A3 vs MLP CI",
+  "snippet": null,
+  "computed": [
+   -0.168,
+   0.262,
+   "[$-$0.17, 0.26]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "federation cost CI",
+  "snippet": null,
+  "computed": [
+   -0.516,
+   1.497,
+   "[$-$0.54, 1.51]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "federation replication CI",
+  "snippet": null,
+  "computed": [
+   0.158,
+   1.955,
+   "[0.18, 1.96]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "N19 pooled CI",
+  "snippet": null,
+  "computed": [
+   95.141,
+   98.969,
+   "[95.2, 99.0]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": false
+ },
+ {
+  "label": "Env B N=3: AXIOM wins 24 to 29 of 30",
+  "snippet": null,
+  "computed": [
+   29,
+   27,
+   29,
+   26,
+   29,
+   24
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Env B N=7 ring: single-agent beats AXIOM on priority SLA at p_holm 0.011",
+  "snippet": null,
+  "computed": 0.010986328125,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Env B N=7: AXIOM's only significant learned leads are MAPPO reward on fully-connected and ring",
+  "snippet": null,
+  "computed": [
+   "fully_connected|mappo_tuned|reward",
+   "ring|mappo_tuned|reward"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Env A sensitivity: all six leads positive, exactly two significant",
+  "snippet": null,
+  "computed": [
+   [
+    "load102",
+    "single_agent_dqn",
+    true,
+    false
+   ],
+   [
+    "load102",
+    "independent_dqn",
+    true,
+    false
+   ],
+   [
+    "load107",
+    "single_agent_dqn",
+    true,
+    false
+   ],
+   [
+    "load107",
+    "independent_dqn",
+    true,
+    true
+   ],
+   [
+    "weights",
+    "single_agent_dqn",
+    true,
+    true
+   ],
+   [
+    "weights",
+    "independent_dqn",
+    true,
+    false
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,

@@ -56,8 +56,11 @@ def seed_metrics(path: str) -> dict:
 
 
 def boot_ci(x, n=10000):
+    # M66: a fresh RandomState(0) per call, so an interval no longer depends on
+    # how many intervals were computed earlier in the same process.
     x = np.asarray(x, float)
-    means = x[RNG.randint(0, len(x), (n, len(x)))].mean(axis=1)
+    rng = np.random.RandomState(0)
+    means = x[rng.randint(0, len(x), (n, len(x)))].mean(axis=1)
     return float(np.percentile(means, 2.5)), float(np.percentile(means, 97.5))
 
 

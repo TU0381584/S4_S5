@@ -435,6 +435,63 @@ def main():
            and [cx[str(n)]["single_agent_dqn"]["params_execution"] for n in (3, 7, 19)] == [21250, 26370, 41730], None)
     C.note("Table 5 AXIOM latency 1.04/1.98/4.79 ms", [round(cx[str(n)]["axiom2"]["ms_per_step"], 2) for n in (3, 7, 19)] == [1.04, 1.98, 4.79], None)
 
+    # ---------------- confidence intervals (own bootstrap, tolerance 0.03 for resampling noise)
+    rng = np.random.default_rng(12345)
+    def ci(vals):
+        v = np.asarray(vals)
+        bm = v[rng.integers(0, len(v), size=(10000, len(v)))].mean(axis=1)
+        return np.percentile(bm, 2.5), np.percentile(bm, 97.5)
+    def ci_claim(label, snippet, vals, tol=None):
+        lo, hi = ci(vals)
+        tol = tol if tol is not None else (0.03 if len(vals) >= 30 else 0.05)
+        m = re.search(r"\[\s*(-?\$?-?[0-9.]+)\$?\\?%?,\s*(-?[0-9.]+)\\?%?\]", snippet.replace("$-$", "-"))
+        okk = snippet in C.tex and m is not None and abs(float(m.group(1).replace("$", "")) - lo) <= tol and abs(float(m.group(2)) - hi) <= tol
+        C.note(label, okk, (round(lo, 3), round(hi, 3), snippet))
+    for arm, nm in names.items():
+        r = A[arm]; lo, hi = ci([x["reward"] for x in r.values()])
+        txt = [l for l in C.tex.splitlines() if l.startswith(nm + " & ") and "[" in l]
+        ci_claim(f"T3 {arm} CI", txt[0] if txt else "MISSING", [x["reward"] for x in r.values()])
+    for arm, nm in bnames.items():
+        txt = [l for l in C.tex.splitlines() if l.startswith(nm + " & ") and "[" in l and "&" in l]
+        txt = [t for t in txt if f"{mean(B[arm]):.3f}" in t]
+        ci_claim(f"T4 {arm} CI", txt[0] if txt else "MISSING", [x["reward"] for x in B[arm].values()])
+    d_ind = [A["axiom2"][s]["reward"] - A["independent_dqn"][s]["reward"] for s in S30]
+    ci_claim("A3 vs indep CI", "[0.60, 1.65]", d_ind)
+    d_map = [A["axiom2"][s]["reward"] - A["mappo_tuned"][s]["reward"] for s in S30]
+    ci_claim("A3 vs MAPPO CI", "[2.01, 3.35]", d_map)
+    d_sg = [A["axiom2"][s]["reward"] - A["single_agent_dqn"][s]["reward"] for s in S30]
+    ci_claim("A3 vs single CI", "[$-$0.01, 0.64]", d_sg)
+    d_mlp = [A["axiom2"][s]["reward"] - A["axiom2_mlp"][s]["reward"] for s in S30]
+    ci_claim("A3 vs MLP CI", "[$-$0.17, 0.26]", d_mlp)
+    d_fed = [cen[s]["reward"] - fed[s]["reward"] for s in S10]
+    ci_claim("federation cost CI", "[$-$0.54, 1.51]", d_fed)
+    cr = seeds_of("m65_reviewer/replication", "axiom2", REP); fr2 = seeds_of("m65_m3_replication", "fl_gat_ctde_sigma0.0", REP)
+    ci_claim("federation replication CI", "[0.18, 1.96]", [cr[s]["reward"] - fr2[s]["reward"] for s in REP])
+    D19 = {t: seeds_of(f"m65_scaling/n19_{t}", "axiom2", S30_19) for t in ("fully_connected", "ring", "hex")}
+    ci_claim("N19 pooled CI", "[95.2\\%, 99.0\\%]".replace("\\%", ""), [100 * prio(r) for t in D19 for r in D19[t].values()])
+    # win counts and bounds in the Env B text
+    wl = [paired(B["axiom2"], B[b], f)["wins"] for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for f in (lambda r: r["reward"], prio)]
+    C.note("Env B N=3: AXIOM wins 24 to 29 of 30", (min(wl), max(wl)) == (24, 29), wl)
+    fam7 = {}
+    for t in ("fully_connected", "ring", "hex"):
+        for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned", "rule_local", "rule_neighbour"):
+            for mname, f in (("reward", lambda r: r["reward"]), ("prio", prio)):
+                fam7[f"{t}|{b}|{mname}"] = paired(n7[t]["axiom2"], n7[t][b], f)
+    h7 = holm({k: v["p"] for k, v in fam7.items()})
+    C.note("Env B N=7 ring: single-agent beats AXIOM on priority SLA at p_holm 0.011", round(h7["ring|single_agent_dqn|prio"], 3) == 0.011
+           and fam7["ring|single_agent_dqn|prio"]["diff"] < 0, h7["ring|single_agent_dqn|prio"])
+    sig_learned = sorted(k for k, v in h7.items() if v < 0.05 and k.split("|")[1] in ("independent_dqn", "single_agent_dqn", "mappo_tuned") and fam7[k]["diff"] > 0)
+    C.note("Env B N=7: AXIOM's only significant learned leads are MAPPO reward on fully-connected and ring",
+           sig_learned == ["fully_connected|mappo_tuned|reward", "ring|mappo_tuned|reward"], sig_learned)
+    leads = []
+    for cond in ("load102", "load107", "weights"):
+        ax = seeds_of(f"m65_reviewer/{cond}", "axiom2", S10)
+        fam = {b: paired(ax, seeds_of(f"m63_reviewer/{cond}", b, S10)) for b in ("heuristic", "single_agent_dqn", "independent_dqn")}
+        hh = holm({k: v["p"] for k, v in fam.items()})
+        leads += [(cond, b, fam[b]["diff"] > 0, hh[b] < 0.05) for b in ("single_agent_dqn", "independent_dqn")]
+    C.note("Env A sensitivity: all six leads positive, exactly two significant",
+           all(x[2] for x in leads) and sum(x[3] for x in leads) == 2, leads)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}

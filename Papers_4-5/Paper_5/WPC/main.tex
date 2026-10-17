@@ -445,14 +445,14 @@ The headline is that AXIOM is the most reliable learned policy as the cluster gr
 \toprule
 Arm & Reward/step & Precision & Collapsed & URLLC & eMBB \\
 \midrule
-Oracle rule & 12.835 [12.77, 12.90] & 1.000 & 0/30 & 1.000 & 1.000 \\
+Oracle rule & 12.835 [12.77, 12.91] & 1.000 & 0/30 & 1.000 & 1.000 \\
 AXIOM & 12.698 [12.49, 12.86] & 0.992 & 0/30 & 0.998 & 0.979 \\
 AXIOM, MLP encoder & 12.640 [12.46, 12.79] & 0.986 & 0/30 & 1.000 & 0.976 \\
 Single-agent DQN & 12.387 [12.11, 12.63] & 0.990 & 0/30 & 0.994 & 0.941 \\
-\quad at LR $10^{-4}$ & 11.477 [10.62, 12.08] & 0.944 & 0/30 & 0.979 & 0.866 \\
-Independent DQN & 11.587 [11.12, 12.02] & 0.962 & 0/30 & 0.993 & 0.865 \\
-\quad at LR $10^{-4}$ & 11.119 [10.70, 11.50] & 0.878 & 0/30 & 0.985 & 0.794 \\
-MAPPO & 10.013 [9.27, 10.74] & 0.707 & 2/30 & 0.978 & 0.576 \\
+\quad at LR $10^{-4}$ & 11.477 [10.61, 12.09] & 0.944 & 0/30 & 0.979 & 0.866 \\
+Independent DQN & 11.587 [11.11, 12.02] & 0.962 & 0/30 & 0.993 & 0.865 \\
+\quad at LR $10^{-4}$ & 11.119 [10.73, 11.50] & 0.878 & 0/30 & 0.985 & 0.794 \\
+MAPPO & 10.013 [9.30, 10.73] & 0.707 & 2/30 & 0.978 & 0.576 \\
 \botrule
 \end{tabular}}
 \end{table}
@@ -469,7 +469,7 @@ b, Per-seed reward distribution for AXIOM and the two DQN baselines.}
 \subsection{Static Load, Three gNBs}
 \label{sec:results-m2}
 
-Table~\ref{tab:m2-results} and Fig.~\ref{fig:m2-results} report the thirty-seed campaign in Env A. AXIOM never collapses, 99.2\% of its blocks land on mMTC, and it keeps URLLC and eMBB at 99.8\% and 97.9\% SLA compliance. Its mean reward of 12.698 per step is 98.9\% of the oracle rule's 12.835, and the two tie exactly in 22 of the 30 seeds. AXIOM leads the independent DQN by $+1.110$ per step, with 95\% CI [0.61, 1.65], and MAPPO by $+2.685$, with 95\% CI [2.01, 3.37], both at Holm-adjusted $p\leq0.0002$. Its lead over the single-agent DQN, $+0.311$ with 95\% CI [$-$0.01, 0.65], does not survive correction on thirty seeds, at $p=0.066$. MAPPO trails both DQN baselines here, because it sheds eMBB as well as mMTC, which lets eMBB compliance fall to 57.6\%.
+Table~\ref{tab:m2-results} and Fig.~\ref{fig:m2-results} report the thirty-seed campaign in Env A. AXIOM never collapses, 99.2\% of its blocks land on mMTC, and it keeps URLLC and eMBB at 99.8\% and 97.9\% SLA compliance. Its mean reward of 12.698 per step is 98.9\% of the oracle rule's 12.835, and the two tie exactly in 22 of the 30 seeds. AXIOM leads the independent DQN by $+1.110$ per step, with 95\% CI [0.60, 1.65], and MAPPO by $+2.685$, with 95\% CI [2.01, 3.35], both at Holm-adjusted $p\leq0.0002$. Its lead over the single-agent DQN, $+0.311$ with 95\% CI [$-$0.01, 0.64], does not survive correction on thirty seeds, at $p=0.066$. MAPPO trails both DQN baselines here, because it sheds eMBB as well as mMTC, which lets eMBB compliance fall to 57.6\%.
 
 A disjoint replication on seeds 1000 to 1009 is stronger for AXIOM. There it leads the single-agent DQN, the independent DQN, and MAPPO by $+1.083$, $+0.799$, and $+3.806$ per step at Holm-adjusted $p\leq0.023$, while sitting only 0.018 below the oracle. Pooled over all 40 seeds, AXIOM leads the three baselines by $+0.504$, $+1.032$, and $+2.965$ at Holm-adjusted $p\leq0.002$, and falls 0.108 short of the oracle, a small gap that is significant at $p=0.034$. The original AXIOM, at learning rate $10^{-4}$, came slightly closer to the oracle in this environment, tying it in 39 of 40 seeds. The change to the current design therefore trades a little static-load accuracy for the ability to adapt that Section~\ref{sec:results-envb} shows.
 
@@ -477,7 +477,7 @@ A disjoint replication on seeds 1000 to 1009 is stronger for AXIOM. There it lea
 \label{sec:results-ablation}
 Three checks test where AXIOM's behaviour comes from. First, the learning rate matters, for AXIOM and its baselines alike. Every learned arm now trains at $10^{-3}$, and the DQN baselines lose reward when rerun at $10^{-4}$, falling to 11.477 and 11.119 per step. AXIOM depends on its rate even more in Env B. There the original AXIOM, at $10^{-4}$, earns only 6.496 per step on seeds 900 to 909, 2.37 below the current AXIOM in all ten seeds, and a rate of $3{\times}10^{-4}$ reaches 7.220. A rate of $3{\times}10^{-3}$ and an encoder twice as wide both stay within 0.19 of the current AXIOM, with no significant difference.
 
-Second, graph attention adds nothing measurable anywhere we tested it. In Env A the per-node MLP variant ties AXIOM at three gNBs, with a difference of $+0.058$ and 95\% CI [$-$0.16, 0.26], and at nineteen gNBs on the ring layout, $+0.31$ per step with 7 of 12 seeds tied. Env B's inter-cell coupling gives neighbour information real value, yet the pre-registered test H3 at seven gNBs even leans towards the MLP. The MLP keeps 1.12 and 0.95 more reward per step on the ring and hex layouts, winning 10 of 15 seeds in each, although neither difference survives Holm correction, at $p=0.061$ and $p=0.095$. AXIOM's gains therefore come from its shared encoder, per-slice heads, and joint training rather than from attention. One explanation is that a gNB's own queues already reflect most of what its neighbours do to it, so attending to them adds little. Following the pre-registration, the title of this paper therefore no longer names graph attention.
+Second, graph attention adds nothing measurable anywhere we tested it. In Env A the per-node MLP variant ties AXIOM at three gNBs, with a difference of $+0.058$ and 95\% CI [$-$0.17, 0.26], and at nineteen gNBs on the ring layout, $+0.31$ per step with 7 of 12 seeds tied. Env B's inter-cell coupling gives neighbour information real value, yet the pre-registered test H3 at seven gNBs even leans towards the MLP. The MLP keeps 1.12 and 0.95 more reward per step on the ring and hex layouts, winning 10 of 15 seeds in each, although neither difference survives Holm correction, at $p=0.061$ and $p=0.095$. AXIOM's gains therefore come from its shared encoder, per-slice heads, and joint training rather than from attention. One explanation is that a gNB's own queues already reflect most of what its neighbours do to it, so attending to them adds little. Following the pre-registration, the title of this paper therefore no longer names graph attention.
 
 Third, AXIOM's behaviour holds in Env A when the environment changes. Under the three conditions of Section~\ref{sec:setup}, namely load at 1.02 and 1.07 times the nominal shares and the changed slice weights, AXIOM stays within 0.13 of the oracle rule's reward with no significant difference. It keeps a positive lead over both DQN baselines under every condition, but at ten seeds only two of those six leads survive correction. They are its lead over the independent DQN at 1.07 times the load, $+1.073$ at $p=0.006$, and over the single-agent DQN under the changed weights, $+1.264$ at $p=0.041$.
 
@@ -502,16 +502,16 @@ compliance of the learned arms at seven gNBs by layout, 15 seeds per cell.}
 \toprule
 Arm & Reward/step & URLLC & eMBB & mMTC \\
 \midrule
-Accept all & 4.356 [4.13, 4.59] & 0.446 & 0.265 & 0.955 \\
-Shed all mMTC & 6.337 [6.01, 6.68] & 0.625 & 0.367 & 0.371 \\
+Accept all & 4.356 [4.13, 4.60] & 0.446 & 0.265 & 0.955 \\
+Shed all mMTC & 6.337 [6.00, 6.67] & 0.625 & 0.367 & 0.371 \\
 Tuned local rule & 9.252 [9.12, 9.40] & 0.989 & 0.367 & 0.390 \\
 Tuned neighbour-aware rule & 9.041 [8.93, 9.15] & 0.988 & 0.283 & 0.901 \\
 \midrule
 AXIOM & 8.832 [8.64, 9.03] & 0.958 & 0.344 & 0.406 \\
 AXIOM, MLP encoder & 8.948 [8.77, 9.13] & 0.974 & 0.337 & 0.452 \\
-Single-agent DQN & 7.495 [7.19, 7.78] & 0.866 & 0.284 & 0.412 \\
-Independent DQN & 7.794 [7.45, 8.12] & 0.910 & 0.270 & 0.441 \\
-MAPPO & 6.968 [6.48, 7.45] & 0.797 & 0.289 & 0.579 \\
+Single-agent DQN & 7.495 [7.20, 7.77] & 0.866 & 0.284 & 0.412 \\
+Independent DQN & 7.794 [7.44, 8.13] & 0.910 & 0.270 & 0.441 \\
+MAPPO & 6.968 [6.47, 7.45] & 0.797 & 0.289 & 0.579 \\
 \botrule
 \end{tabular}}
 \end{table}
@@ -535,7 +535,7 @@ versus DP noise multiplier $\sigma$, over the seeds that block.}
 \label{fig:m3-privacy}
 \end{figure}
 
-With federation switched on and no noise, mean reward per step on the ten shared seeds is 12.356 for centralised AXIOM and 11.929 for the federated variant. That is a difference of $+0.427$ with 95\% CI [$-$0.51, 1.51] and $p=0.65$, so federation shows no significant cost, although it is more variable, with five seeds losing and four gaining. The disjoint replication shows a larger cost of $+0.968$, with 95\% CI [0.19, 1.96], which falls just short of significance at $p=0.055$. FedProx on three seeds gives no consistent picture, with $\mu{=}0.01$ above FedAvg and $\mu$ of 0.1 and 1.0 below it. The DQN baselines are not federated, because averaging the independent learners' weights would turn them into a parameter-sharing learner that is no longer the ablation, and the single-agent DQN is one central controller with nothing to federate.
+With federation switched on and no noise, mean reward per step on the ten shared seeds is 12.356 for centralised AXIOM and 11.929 for the federated variant. That is a difference of $+0.427$ with 95\% CI [$-$0.54, 1.51] and $p=0.65$, so federation shows no significant cost, although it is more variable, with five seeds losing and four gaining. The disjoint replication shows a larger cost of $+0.968$, with 95\% CI [0.18, 1.96], which falls just short of significance at $p=0.055$. FedProx on three seeds gives no consistent picture, with $\mu{=}0.01$ above FedAvg and $\mu$ of 0.1 and 1.0 below it. The DQN baselines are not federated, because averaging the independent learners' weights would turn them into a parameter-sharing learner that is no longer the ablation, and the single-agent DQN is one central controller with nothing to federate.
 
 Adding DP-SGD noise to every step lowers reward by 0.77 to 1.25 per step against centralised AXIOM at every tested noise multiplier, from $\sigma{=}0.5$ to $\sigma{=}4$. It also lowers eMBB compliance to between 74.3\% and 83.0\%, and two and four of the ten seeds collapse at $\sigma$ of 2 and 4. None of these drops survives Holm correction at ten seeds, as Fig.~\ref{fig:m3-privacy}b reflects. The formal guarantee is weak at these settings. Each client takes 17{,}969 noisy steps, so Eq.~\eqref{eq:zcdp} gives $\varepsilon$ of about 146{,}000, 37{,}000, 9{,}600, and 2{,}600 at $\delta{=}10^{-5}$ for $\sigma$ of 0.5, 1, 2, and 4, far from the single-digit values that carry meaning. Per-step DP-SGD therefore delivers no meaningful guarantee here. A useful guarantee would need noise on the roughly 360 per-round model updates rather than on every step, which Section~\ref{sec:conclusion} lists as future work.
 

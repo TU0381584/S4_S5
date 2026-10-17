@@ -29,9 +29,9 @@ def draw_quadrant(ax):
     # y: Env A URLLC/eMBB SLA at 19 gNBs, pooled over 3 layouts x 30 seeds, 95% bootstrap CI (M65)
     arms = {
         "AXIOM": dict(x=98.9, xci=(97.3, 100.2), y=97.3, yspan=(95.2, 99.0), tx=91.0, ty=97.0, ha="right", va="center"),
-        "Single-agent DQN": dict(x=96.5, xci=(94.4, 98.4), y=65.3, yspan=(63.0, 67.1), tx=96.5, ty=76.0, ha="center", va="bottom"),
-        "Independent DQN": dict(x=90.3, xci=(86.6, 93.7), y=56.4, yspan=(54.0, 58.6), tx=90.3, ty=47.0, ha="center", va="top"),
-        "MAPPO": dict(x=78.0, xci=(72.3, 83.7), y=60.6, yspan=(58.6, 62.8), tx=78.0, ty=71.0, ha="center", va="bottom"),
+        "Single-agent DQN": dict(x=96.5, xci=(94.4, 98.4), y=65.3, yspan=(62.9, 67.1), tx=96.5, ty=76.0, ha="center", va="bottom"),
+        "Independent DQN": dict(x=90.3, xci=(86.6, 93.6), y=56.4, yspan=(54.1, 58.6), tx=90.3, ty=47.0, ha="center", va="top"),
+        "MAPPO": dict(x=78.0, xci=(72.4, 83.6), y=60.6, yspan=(58.6, 62.8), tx=78.0, ty=71.0, ha="center", va="bottom"),
     }
     ax.grid(True, linewidth=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
