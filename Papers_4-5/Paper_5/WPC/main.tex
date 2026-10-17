@@ -426,8 +426,8 @@ Parameters at execution & 7,782 at any size & 21,250 to 41,730 & 55,302 to 350,2
 Env A reward, 3 gNBs & 12.70, 98.9\% of oracle & 12.39 & 11.59 & 10.01 \\
 Env A priority SLA, 7 and 19 gNBs & 97.1\% and 97.3\% & 76.2\% and 65.3\% & 74.6\% and 56.4\% & 67.7\% and 60.6\% \\
 Collapse, Env A, 19 gNBs & 1/90 & 84/90 & 3/90 & 0/90 \\
-Env B reward, 3 gNBs & 8.83 & 7.50 & 7.79 & 6.97 \\
-Env B priority SLA, 7 gNBs & 35.1\% & 44.3\% & 40.0\% & 35.9\% \\
+Env B reward, 3 gNBs & 8.83 & 7.49 & 7.79 & 6.97 \\
+Env B priority SLA, 7 gNBs & 35.1\% & 44.3\% & 39.9\% & 35.9\% \\
 Federated, noise-free & No significant cost & Not applicable & Not applicable & Not applicable \\
 \botrule
 \end{tabular}}
@@ -552,7 +552,7 @@ c, Block precision under demand spikes.}
 \label{fig:m4-disruption}
 \end{figure}
 
-Fig.~\ref{fig:m4-disruption} plots the reward each policy keeps. Undisrupted, AXIOM earns 3.56 normalised reward, the single-agent DQN 3.65, and the independent DQN 3.32. Dropout and churn hurt every policy significantly at every severity, in 9 or 10 of 10 seeds at Holm-adjusted $p\leq0.041$. AXIOM's cost grows from 0.46 to 3.38 across the dropout windows and from 0.38 to 2.46 across the churn windows. A dropped gNB rejects every request, including URLLC and eMBB, so its penalties dominate the episode whatever the policy does. No gap between AXIOM and any baseline survives Holm correction under any disruption. Under the two longer churn windows AXIOM keeps less reward than the independent DQN, 1.88 and 1.10 against 2.29 and 1.72, though not significantly. Demand spikes leave AXIOM's decisions largely intact, with block precision at 0.98, against 1.00 for the single-agent DQN and about 0.95 for the independent DQN. A disjoint replication on seeds 1000 to 1009 reproduces this pattern, with every dropout and churn cost significant at $p\leq0.035$ and no significant gap between policies.
+Fig.~\ref{fig:m4-disruption} plots the reward each policy keeps. Undisrupted, AXIOM earns 3.56 normalised reward, the single-agent DQN 3.65, and the independent DQN 3.32. Dropout and churn hurt every policy significantly at every severity, in 9 or 10 of 10 seeds at Holm-adjusted $p\leq0.041$. AXIOM's cost grows from 0.46 to 3.37 across the dropout windows and from 0.38 to 2.46 across the churn windows. A dropped gNB rejects every request, including URLLC and eMBB, so its penalties dominate the episode whatever the policy does. No gap between AXIOM and any baseline survives Holm correction under any disruption. Under the two longer churn windows AXIOM keeps less reward than the independent DQN, 1.88 and 1.10 against 2.29 and 1.72, though not significantly. Demand spikes leave AXIOM's decisions largely intact, with block precision at 0.98, against 1.00 for the single-agent DQN and about 0.95 for the independent DQN. A disjoint replication on seeds 1000 to 1009 reproduces this pattern, with every dropout and churn cost significant at $p\leq0.035$ and no significant gap between policies.
 
 Replication first proved its worth in this campaign, on the earliest simulator. There, a ten-seed sample suggested that the independent DQN was immune to churn, since it never reads another agent's features, and a disjoint replication overturned that reading with a significant cost at every severity. In the shared-budget environment the primary sample already shows that churn hurts every policy, so the corrected reading holds.
 
