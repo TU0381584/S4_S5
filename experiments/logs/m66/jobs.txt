@@ -1,0 +1,50 @@
+FA19_axiom2_3000|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m66_fresh/A_n19_ring --seeds 3000 3001 3002 3003 3004
+FA19_axiom2_3005|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m66_fresh/A_n19_ring --seeds 3005 3006 3007 3008 3009
+FA19_axiom2_3010|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m66_fresh/A_n19_ring --seeds 3010 3011 3012 3013 3014
+FA19_indep_3000|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology ring --out-dir ../experiments/results/m66_fresh/A_n19_ring --seeds 3000 3001 3002 3003 3004
+FA19_indep_3005|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology ring --out-dir ../experiments/results/m66_fresh/A_n19_ring --seeds 3005 3006 3007 3008 3009
+FA19_indep_3010|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 19 --topology ring --out-dir ../experiments/results/m66_fresh/A_n19_ring --seeds 3010 3011 3012 3013 3014
+FA19_single_3000|../experiments/scripts/m64_run.py --arm single_agent_dqn --env A --n 19 --topology ring --out-dir ../experiments/results/m66_fresh/A_n19_ring --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014
+FA19_mappo_3000|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 19 --topology ring --out-dir ../experiments/results/m66_fresh/A_n19_ring --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014
+FB7_axiom2_3000|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3000 3001 3002 3003 3004
+FB7_axiom2_3005|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3005 3006 3007 3008 3009
+FB7_mlp_3000|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3000 3001 3002 3003 3004
+FB7_mlp_3005|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3005 3006 3007 3008 3009
+FB7_indep_3000|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3000 3001 3002 3003 3004
+FB7_indep_3005|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3005 3006 3007 3008 3009
+FB7_single_3000|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009
+FB7_mappo_3000|../experiments/scripts/m64_run.py --arm mappo_tuned --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009
+FB7_rule_static_3000|../experiments/scripts/m64_run.py --arm rule_static --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009
+FB7_rule_local_3000|../experiments/scripts/m64_run.py --arm rule_local --n 7 --topology ring --out-dir ../experiments/results/m66_fresh/B_n7_ring --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009
+FB3_axiom2_3000|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3000 3001 3002 3003 3004
+FB3_axiom2_3005|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3005 3006 3007 3008 3009
+FB3_axiom2_3010|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3010 3011 3012 3013 3014
+FB3_axiom2_3015|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3015 3016 3017 3018 3019
+FB3_indep_3000|../experiments/scripts/m64_run.py --arm independent_dqn --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009
+FB3_indep_3010|../experiments/scripts/m64_run.py --arm independent_dqn --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FB3_single_3000|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FB3_mappo_3000|../experiments/scripts/m64_run.py --arm mappo_tuned --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FB3_rule_static_3000|../experiments/scripts/m64_run.py --arm rule_static --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FB3_rule_accept_all_3000|../experiments/scripts/m64_run.py --arm rule_accept_all --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FB3_rule_local_3000|../experiments/scripts/m64_run.py --arm rule_local --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FB3_rule_neighbour_3000|../experiments/scripts/m64_run.py --arm rule_neighbour --n 3 --out-dir ../experiments/results/m66_fresh/B_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FA3_axiom2_3000|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3000 3001 3002 3003 3004
+FA3_axiom2_3005|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3005 3006 3007 3008 3009
+FA3_axiom2_3010|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3010 3011 3012 3013 3014
+FA3_axiom2_3015|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3015 3016 3017 3018 3019
+FA3_indep_3000|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009
+FA3_indep_3010|../experiments/scripts/m64_run.py --arm independent_dqn --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FA3_single_3000|../experiments/scripts/m64_run.py --arm single_agent_dqn --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FA3_mappo_3000|../experiments/scripts/m64_run.py --arm mappo_tuned --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+FA3_oracle_3000|../experiments/scripts/m64_run.py --arm rule_static --env A --n 3 --out-dir ../experiments/results/m66_fresh/A_n3 --seeds 3000 3001 3002 3003 3004 3005 3006 3007 3008 3009 3010 3011 3012 3013 3014 3015 3016 3017 3018 3019
+RB3_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m66_repro/B_n3 --seeds 900 901 902 903 904
+RB3_mappo_900|../experiments/scripts/m64_run.py --arm mappo_tuned --n 3 --out-dir ../experiments/results/m66_repro/B_n3 --seeds 900 901 902 903 904
+RB3_indep_900|../experiments/scripts/m64_run.py --arm independent_dqn --n 3 --out-dir ../experiments/results/m66_repro/B_n3 --seeds 900 901 902
+RB3_single_900|../experiments/scripts/m64_run.py --arm single_agent_dqn --n 3 --out-dir ../experiments/results/m66_repro/B_n3 --seeds 900 901 902
+RB3_rule_static_900|../experiments/scripts/m64_run.py --arm rule_static --n 3 --out-dir ../experiments/results/m66_repro/B_n3 --seeds 900 901 902 903 904 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929
+RB3_rule_local_900|../experiments/scripts/m64_run.py --arm rule_local --n 3 --out-dir ../experiments/results/m66_repro/B_n3 --seeds 900 901 902 903 904 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929
+RA3_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m66_repro/A_n3 --seeds 900 901 902 903 904
+RA19_axiom2_900|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m66_repro/A_n19_ring --seeds 900 901
+RB7_mlp_900|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology ring --out-dir ../experiments/results/m66_repro/B_n7_ring --seeds 900 901 902
+RM3_sigma0|../experiments/scripts/m62_shared_env.py m3_run_experiment --seeds 900 901 --train-episodes 300 --eval-episodes 50 --noise-multiplier 0.0 --tag fl_gat_ctde_sigma0.0 --out-dir ../experiments/results/m66_repro/m3
+RM4_dropout|../experiments/scripts/m62_shared_env.py m4_seed_campaign --seeds 900 901 902 903 904 905 906 907 908 909 --arms gat_ctde --kinds dropout --out-dir ../experiments/results/m66_repro/m4 --m2-campaign-dir ../experiments/results/m65_m2_view --m3-campaign-dir ../experiments/results/m65_m3
