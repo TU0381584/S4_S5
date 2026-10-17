@@ -55,3 +55,21 @@ M66 left two reported claims without a fresh-seed check: Env A scaling at seven 
 | Env A, N=3, federated sigma 0 | FedAvg AXIOM vs centralised AXIOM v2 (m66_fresh/A_n3, same seeds) | No significant difference in reward, paired Wilcoxon p ≥ 0.05. The difference and its bootstrap CI are reported either way. |
 
 Every M66b check is reported whether it holds or fails.
+
+## Addendum 2, M66c: remaining fresh-seed checks (committed 2026-10-18, after M66b and before any M66c run)
+
+M66c covers every reported claim that M66 and M66b left without a fresh-seed or properly seeded check. Output goes to experiments/results/m66c_fresh. Every check is reported whether it holds or fails, and nothing here replaces the M66b result for Env A at seven gNBs fully-connected, which stays reported as failed.
+
+Two facts were established before this addendum, from reruns of stored seeds only. First, under each Env A sensitivity condition the stored oracle equals the static shed-mMTC rule exactly on seeds 900-909, so rule_static is the oracle here. Second, the wrapper m66c_seeded_single.py, which seeds torch immediately before the single-agent DQN builds its network, gives identical results for seeds 900 and 901 in two separate processes.
+
+| ID | Cell | Seeds | Arms | What must hold |
+|---|---|---|---|---|
+| C1 | Env A, N=7, hex | 3000-3009 | AXIOM v2, independent DQN, single-agent DQN, MAPPO | AXIOM priority SLA ≥ 90%, each baseline ≤ 80%. AXIOM beats each baseline on reward and on priority SLA, all 6 at Holm-adjusted p < 0.05. |
+| C2 | Env A, N=19, fully-connected | 3000-3009 | same four | AXIOM priority SLA ≥ 90%, each baseline ≤ 75%. All 6 comparisons at Holm-adjusted p < 0.05. |
+| C3 | Env A, N=7, fully-connected, larger sample | 4000-4019 | same four | Same criteria as C1. This is a separate, larger replication of the cell that failed in M66b. It is reported alongside that failure, never in place of it. |
+| C4 | Env B, N=7, fully-connected and hex | 3000-3009 | AXIOM v2, AXIOM v2 MLP, independent DQN, single-agent DQN, MAPPO, rule_static, rule_local | Under each layout, rule_local's mean reward exceeds every learned arm's. AXIOM shows no significant advantage over the MLP encoder, on reward or priority SLA. AXIOM's reward is not significantly above the static rule's. |
+| C5 | Env A disruption, frozen fresh checkpoints | 3000-3009 | AXIOM v2, independent DQN, single-agent DQN (from M66 fresh A_n3), FedAvg AXIOM sigma 0 (from M66b) | Every dropout and churn cell lowers every arm's normalised reward, Holm-adjusted p < 0.05. No gap between AXIOM and any baseline in disruption cost survives Holm correction. AXIOM's block precision under spikes ≥ 0.95. |
+| C6 | Env A federated DP | 3000-3009 | sigma 0.5, 1, 2, 4 | Mean reward is below centralised AXIOM (M66 fresh A_n3) at every sigma. None of the four drops survives Holm correction. Each client takes 17,969 noisy steps, so the quoted epsilon values apply. |
+| C7 | Single-agent DQN properly seeded | Env A and Env B N=3, 900-929 and 1000-1009; Env A N=19 ring, the 30 reported seeds | single-agent DQN through m66c_seeded_single.py | Env B N=3: AXIOM still beats it at Holm-adjusted p < 0.05 within the reported three-baseline family. Env A N=19: AXIOM still beats it on priority SLA at p < 0.05. Env A N=3 comparisons and collapse counts are reported, not predicted. |
+| C8 | Env A sensitivity | 3000-3009 | AXIOM v2, rule_static, independent DQN, single-agent DQN under load102, load107, weights | In each condition, AXIOM is within 2% of the oracle's reward and not significantly different from it, and AXIOM's mean reward exceeds both DQN baselines'. |
+| C9 | Env B sensitivity, N=3 | 3000-3009 | original AXIOM, AXIOM v2 at LR 3e-4 and 3e-3, wide AXIOM v2, all against AXIOM v2 from M66 fresh B_n3 | The original AXIOM earns less than AXIOM v2 in at least 9 of 10 seeds, p < 0.05. LR 3e-3 and the wide encoder show no significant difference from AXIOM v2. |
