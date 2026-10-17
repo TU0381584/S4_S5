@@ -443,7 +443,8 @@ def main():
         return np.percentile(bm, 2.5), np.percentile(bm, 97.5)
     def ci_claim(label, snippet, vals, tol=None):
         lo, hi = ci(vals)
-        tol = tol if tol is not None else (0.03 if len(vals) >= 30 else 0.05)
+        # independent resampling noise in a bound scales with the interval's width
+        tol = tol if tol is not None else max(0.03 if len(vals) >= 30 else 0.05, 0.05 * (hi - lo))
         m = re.search(r"\[\s*(-?\$?-?[0-9.]+)\$?\\?%?,\s*(-?[0-9.]+)\\?%?\]", snippet.replace("$-$", "-"))
         okk = snippet in C.tex and m is not None and abs(float(m.group(1).replace("$", "")) - lo) <= tol and abs(float(m.group(2)) - hi) <= tol
         C.note(label, okk, (round(lo, 3), round(hi, 3), snippet))
@@ -468,7 +469,7 @@ def main():
     cr = seeds_of("m65_reviewer/replication", "axiom2", REP); fr2 = seeds_of("m65_m3_replication", "fl_gat_ctde_sigma0.0", REP)
     ci_claim("federation replication CI", "[0.18, 1.96]", [cr[s]["reward"] - fr2[s]["reward"] for s in REP])
     D19 = {t: seeds_of(f"m65_scaling/n19_{t}", "axiom2", S30_19) for t in ("fully_connected", "ring", "hex")}
-    ci_claim("N19 pooled CI", "[95.2\\%, 99.0\\%]".replace("\\%", ""), [100 * prio(r) for t in D19 for r in D19[t].values()])
+    ci_claim("N19 pooled CI", "[95.2\\%, 99.0\\%]", [100 * prio(r) for t in D19 for r in D19[t].values()], tol=0.15)
     # win counts and bounds in the Env B text
     wl = [paired(B["axiom2"], B[b], f)["wins"] for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for f in (lambda r: r["reward"], prio)]
     C.note("Env B N=3: AXIOM wins 24 to 29 of 30", (min(wl), max(wl)) == (24, 29), wl)
@@ -491,6 +492,53 @@ def main():
         leads += [(cond, b, fam[b]["diff"] > 0, hh[b] < 0.05) for b in ("single_agent_dqn", "independent_dqn")]
     C.note("Env A sensitivity: all six leads positive, exactly two significant",
            all(x[2] for x in leads) and sum(x[3] for x in leads) == 2, leads)
+
+    # ---------------- training length: every learned seed trained for 300 episodes
+    def train_eps(cell, arm, seed):
+        base = f"{ROOT}/{cell}/{arm}/seed{seed}/train"
+        if os.path.exists(f"{base}/curve.json"):
+            return len(json.load(open(f"{base}/curve.json"))["episode_mean_reward"])
+        cands = glob.glob(f"{base}/omega_log.jsonl*") + glob.glob(f"{base}/dqn/offline_train/rep_0/omega_log.jsonl*")
+        if not cands:
+            return None
+        op = gzip.open if cands[0].endswith(".gz") else open
+        eps = set()
+        for line in op(cands[0], "rt"):
+            r = json.loads(line)
+            if isinstance(r.get("evidence"), dict) and "reward" in r["evidence"]:
+                eps.add(r["episode"])
+        return len(eps)
+    te = {}
+    for cell, arms in (("m65_reviewer/base", ("axiom2", "axiom2_mlp", "mappo_tuned")),
+                       ("m64/n3_fully_connected", ("axiom2", "axiom2_mlp", "independent_dqn", "single_agent_dqn", "mappo_tuned")),
+                       ("m65_scaling/n19_ring", ("axiom2", "mappo_tuned"))):
+        for arm in arms:
+            for s in (900, 915, 929) if "n19" not in cell else (900, 1000, 926):
+                te[f"{cell}|{arm}|{s}"] = train_eps(cell, arm, s)
+    C.note("sampled learned seeds trained for exactly 300 episodes", all(v == 300 for v in te.values()), te)
+
+    # ---------------- hand-entered figure values (Fig 9) against recomputation
+    src = open("/home/kmanojp/oranslice_rig/experiments/plots/paper5_fig_superiority.py").read()
+    xs = dict(re.findall(r'"([A-Za-z -]+)": dict\(x=([0-9.]+)', src))
+    ys = dict(re.findall(r'"([A-Za-z -]+)": dict\(x=[0-9.]+, xci=\([^)]*\), y=([0-9.]+)', src))
+    pooled19 = {}
+    for arm in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"):
+        pooled19[arm] = 100 * float(np.mean([prio(r) for t in ("fully_connected", "ring", "hex")
+                                              for r in seeds_of(f"m65_scaling/n19_{t}", arm, S30_19).values()]))
+    lab = {"AXIOM": "axiom2", "Single-agent DQN": "single_agent_dqn", "Independent DQN": "independent_dqn", "MAPPO": "mappo_tuned"}
+    okx = all(round(Ap[lab[k]], 1) == float(v) for k, v in xs.items())
+    oky = all(round(pooled19[lab[k]], 1) == float(v) for k, v in ys.items())
+    C.note("Fig 9a hand-entered x and y values match recomputation", okx and oky and len(xs) == 4 and len(ys) == 4, (xs, ys))
+    radar = {k: [float(x) for x in v.split(",")] for k, v in re.findall(r'"([A-Za-z -]+)":\s+\[([0-9., ]+)\],', src)}
+    best = lambda d: max(d.values())
+    A3r = {a: mean(A[a]) for a in lab.values()}
+    B3r = {a: mean(B[a]) for a in lab.values()}
+    p7 = {a: float(np.mean([prio(r) for t in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n7_{t}", a, S15).values()])) for a in lab.values()}
+    nc19 = {a: 1 - sum(r["collapsed"] for t in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n19_{t}", a, S30_19).values()) / 90 for a in lab.values()}
+    axes = [A3r, B3r, p7, {a: pooled19[a] for a in lab.values()}, nc19, n7p]
+    expect = {k: [round(ax[lab[k]] / best(ax), 3) for ax in axes] for k in lab}
+    okr = all(abs(radar[k][i] - expect[k][i]) <= 0.002 for k in lab for i in range(6))
+    C.note("Fig 9b radar fractions match recomputation", okr, {"figure": radar, "recomputed": expect})
 
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))

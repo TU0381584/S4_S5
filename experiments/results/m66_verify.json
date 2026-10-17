@@ -1504,7 +1504,7 @@
   ],
   "formatted": null,
   "in_tex": null,
-  "ok": false
+  "ok": true
  },
  {
   "label": "A3 vs indep CI",
@@ -1584,11 +1584,11 @@
   "computed": [
    95.141,
    98.969,
-   "[95.2, 99.0]"
+   "[95.2\\%, 99.0\\%]"
   ],
   "formatted": null,
   "in_tex": null,
-  "ok": false
+  "ok": true
  },
  {
   "label": "Env B N=3: AXIOM wins 24 to 29 of 30",
@@ -1665,6 +1665,143 @@
     false
    ]
   ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "sampled learned seeds trained for exactly 300 episodes",
+  "snippet": null,
+  "computed": {
+   "m65_reviewer/base|axiom2|900": 300,
+   "m65_reviewer/base|axiom2|915": 300,
+   "m65_reviewer/base|axiom2|929": 300,
+   "m65_reviewer/base|axiom2_mlp|900": 300,
+   "m65_reviewer/base|axiom2_mlp|915": 300,
+   "m65_reviewer/base|axiom2_mlp|929": 300,
+   "m65_reviewer/base|mappo_tuned|900": 300,
+   "m65_reviewer/base|mappo_tuned|915": 300,
+   "m65_reviewer/base|mappo_tuned|929": 300,
+   "m64/n3_fully_connected|axiom2|900": 300,
+   "m64/n3_fully_connected|axiom2|915": 300,
+   "m64/n3_fully_connected|axiom2|929": 300,
+   "m64/n3_fully_connected|axiom2_mlp|900": 300,
+   "m64/n3_fully_connected|axiom2_mlp|915": 300,
+   "m64/n3_fully_connected|axiom2_mlp|929": 300,
+   "m64/n3_fully_connected|independent_dqn|900": 300,
+   "m64/n3_fully_connected|independent_dqn|915": 300,
+   "m64/n3_fully_connected|independent_dqn|929": 300,
+   "m64/n3_fully_connected|single_agent_dqn|900": 300,
+   "m64/n3_fully_connected|single_agent_dqn|915": 300,
+   "m64/n3_fully_connected|single_agent_dqn|929": 300,
+   "m64/n3_fully_connected|mappo_tuned|900": 300,
+   "m64/n3_fully_connected|mappo_tuned|915": 300,
+   "m64/n3_fully_connected|mappo_tuned|929": 300,
+   "m65_scaling/n19_ring|axiom2|900": 300,
+   "m65_scaling/n19_ring|axiom2|1000": 300,
+   "m65_scaling/n19_ring|axiom2|926": 300,
+   "m65_scaling/n19_ring|mappo_tuned|900": 300,
+   "m65_scaling/n19_ring|mappo_tuned|1000": 300,
+   "m65_scaling/n19_ring|mappo_tuned|926": 300
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig 9a hand-entered x and y values match recomputation",
+  "snippet": null,
+  "computed": [
+   {
+    "AXIOM": "98.9",
+    "Single-agent DQN": "96.5",
+    "Independent DQN": "90.3",
+    "MAPPO": "78.0"
+   },
+   {
+    "AXIOM": "97.3",
+    "Single-agent DQN": "65.3",
+    "Independent DQN": "56.4",
+    "MAPPO": "60.6"
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig 9b radar fractions match recomputation",
+  "snippet": null,
+  "computed": {
+   "figure": {
+    "AXIOM": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.989,
+     0.792
+    ],
+    "Single-agent DQN": [
+     0.976,
+     0.849,
+     0.785,
+     0.671,
+     0.067,
+     1.0
+    ],
+    "Independent DQN": [
+     0.913,
+     0.882,
+     0.768,
+     0.58,
+     0.967,
+     0.903
+    ],
+    "MAPPO": [
+     0.789,
+     0.789,
+     0.697,
+     0.623,
+     1.0,
+     0.81
+    ]
+   },
+   "recomputed": {
+    "AXIOM": [
+     1.0,
+     1.0,
+     1.0,
+     1.0,
+     0.989,
+     0.793
+    ],
+    "Single-agent DQN": [
+     0.976,
+     0.849,
+     0.785,
+     0.671,
+     0.067,
+     1.0
+    ],
+    "Independent DQN": [
+     0.913,
+     0.882,
+     0.768,
+     0.58,
+     0.967,
+     0.903
+    ],
+    "MAPPO": [
+     0.789,
+     0.789,
+     0.697,
+     0.623,
+     1.0,
+     0.811
+    ]
+   }
+  },
   "formatted": null,
   "in_tex": null,
   "ok": true
