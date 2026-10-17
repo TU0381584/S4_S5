@@ -35,9 +35,9 @@ def find_eval(cell, arm, seed):
     base = os.path.join(ROOT, cell, arm, f"seed{seed}", "eval")
     for sub in ("omega_log.jsonl", "dqn/offline_eval/rep_0/omega_log.jsonl",
                 "lb_only/offline_eval/rep_0/omega_log.jsonl"):
-        p = os.path.join(base, sub)
-        if os.path.exists(p):
-            return p
+        for p in (os.path.join(base, sub), os.path.join(base, sub) + ".gz"):
+            if os.path.exists(p):
+                return p
     return None
 
 
@@ -45,7 +45,7 @@ def read(path):
     """Return per-seed quantities straight from one evaluation log."""
     ep_rewards, ep_norm, ep_norm_all = {}, {}, {}
     blocks, mmtc, sla = 0, 0, {"urllc": [], "embb": [], "mmtc": []}
-    with open(path) as fh:
+    with (gzip.open(path, "rt") if path.endswith(".gz") else open(path)) as fh:
         for line in fh:
             rec = json.loads(line)
             ev = rec.get("evidence")
@@ -540,6 +540,98 @@ def main():
     okr = all(abs(radar[k][i] - expect[k][i]) <= 0.002 for k in lab for i in range(6))
     C.note("Fig 9b radar fractions match recomputation", okr, {"figure": radar, "recomputed": expect})
 
+    # ---------------- M66 verification subsection: V1 reruns and V2 fresh seeds
+    v1 = [("m66_repro/B_n3", "m64/n3_fully_connected", a_, range(900, 905 if a_ in ("axiom2", "mappo_tuned") else 903))
+          for a_ in ("axiom2", "mappo_tuned", "independent_dqn")]
+    v1 += [("m66_repro/B_n3", "m64/n3_fully_connected", a_, S30) for a_ in ("rule_static", "rule_local")]
+    v1 += [("m66_repro/A_n3", "m65_reviewer/base", "axiom2", range(900, 905)),
+           ("m66_repro/A_n19_ring", "m65_scaling/n19_ring", "axiom2", range(900, 902)),
+           ("m66_repro/B_n7_ring", "m64/n7_ring", "axiom2_mlp", range(900, 903))]
+    for fc, sc, arm, ss in v1:
+        x, y = seeds_of(fc, arm, ss), seeds_of(sc, arm, ss)
+        same = len(x) == len(y) == len(ss) and all(
+            x[s]["reward"] == y[s]["reward"] and x[s]["blocks"] == y[s]["blocks"] and x[s]["sla"] == y[s]["sla"] for s in ss)
+        C.note(f"V1 rerun {fc}/{arm} identical to stored on {len(ss)} seeds", same, None)
+    x, y = seeds_of("m66_repro/A_n3_oracle_equiv", "rule_static", S30), seeds_of("m65_n3_view", "heuristic", S30)
+    C.note("V1 static rule identical to stored Env A oracle on 30 seeds",
+           len(x) == 30 and all(x[s]["reward"] == y[s]["reward"] for s in S30), None)
+    for name, fc, sc in (("m3 sigma0", "m66_repro/m3", "m65_m3"), ("m4 dropout", "m66_repro/m4", "m65_m4")):
+        ok_, n_ = True, 0
+        for p in glob.glob(f"{ROOT}/{fc}/**/eval/omega_log.jsonl*", recursive=True):
+            rel = os.path.relpath(p, f"{ROOT}/{fc}").replace(".gz", "")
+            q = next((c_ for c_ in (f"{ROOT}/{sc}/{rel}", f"{ROOT}/{sc}/{rel}.gz") if os.path.exists(c_)), None)
+            n_ += 1
+            ok_ = ok_ and q is not None and read(p)["reward"] == read(q)["reward"] and read(p)["blocks"] == read(q)["blocks"]
+        C.note(f"V1 rerun {name} eval logs identical to stored ({n_} logs)", ok_ and n_ > 0, n_)
+    sa = [seeds_of(c_, "single_agent_dqn", [900])[900]["reward"] for c_ in
+          ("m66_repro/B_n3", "m66_repro/sa_nondet_h0a", "m66_repro/sa_nondet_h0b", "m66_repro/sa_nondet_rnda", "m66_repro/sa_nondet_rndb")]
+    C.claim("single-agent seed 900 rerun minimum", "earned 7.45 to 9.67 reward per step, against 8.74 stored", min(sa), "{:.2f}")
+    C.claim("single-agent seed 900 rerun maximum", "earned 7.45 to 9.67 reward per step, against 8.74 stored", max(sa), "{:.2f}")
+    C.claim("single-agent seed 900 stored", "against 8.74 stored", seeds_of("m64/n3_fully_connected", "single_agent_dqn", [900])[900]["reward"], "{:.2f}")
+    first = {900, 910, 920}
+    ax, sg = seeds_of("m65_n3_view", "axiom2", S30), seeds_of("m65_n3_view", "single_agent_dqn", S30)
+    keep = [s for s in S30 if s not in first]
+    C.claim("Env A lead over single-agent without unseeded-init seeds", "moves from $+0.311$ to $+0.241$ per step",
+            paired({s: ax[s] for s in keep}, {s: sg[s] for s in keep})["diff"], "{:+.3f}")
+    # Env A conclusion: lead over single-agent positive but not significant after Holm over the three baselines
+    exA = {k: paired({s: ax[s] for s in keep}, {s: v for s, v in seeds_of("m65_n3_view", k, S30).items() if s not in first})
+           for k in ("single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    hA = holm({k: v["p"] for k, v in exA.items()})
+    C.note("Env A N=3 every comparison keeps its direction without unseeded-init seeds",
+           all(exA[k]["diff"] > 0 for k in exA) and all(hA[k] < 0.05 for k in ("independent_dqn", "mappo_tuned")), hA)
+    C.claim("Env A N=3 single-agent Holm p without unseeded-init seeds", "passes the Holm correction, at $p=0.039$ against 0.066",
+            hA["single_agent_dqn"], "{:.3f}")
+    bx = {s: v for s, v in seeds_of("m64/n3_fully_connected", "axiom2", S30).items() if s not in first}
+    exB = {k: paired(bx, {s: v for s, v in seeds_of("m64/n3_fully_connected", k, S30).items() if s not in first})
+           for k in ("single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    hB = holm({k: v["p"] for k, v in exB.items()})
+    C.note("Env B N=3 single-agent conclusion unchanged without unseeded-init seeds",
+           exB["single_agent_dqn"]["diff"] > 0 and hB["single_agent_dqn"] < 0.0001, hB)
+    F20, F15, F10 = list(range(3000, 3020)), list(range(3000, 3015)), list(range(3000, 3010))
+    vv = json.load(open(f"{ROOT}/m66_v1v2.json"))["criteria"]
+    pred = [c_ for c_ in vv if c_["label"].startswith("V2") and "reported" not in c_["label"]]
+    C.claim("fresh-seed predictions stated in advance", "All 26 predictions stated in advance for these fresh seeds held", len(pred), "{:d}")
+    C.note("every fresh-seed prediction holds", all(c_["holds"] for c_ in pred), len(pred))
+    fa = {k: seeds_of("m66_fresh/A_n3", k, F20) for k in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned", "rule_static")}
+    C.claim("fresh Env A N=3 fraction of oracle", "reached 98.2\\% of the oracle reward",
+            100 * mean(fa["axiom2"]) / mean(fa["rule_static"]), "{:.1f}")
+    t_ = {k: paired(fa["axiom2"], fa[k]) for k in ("independent_dqn", "single_agent_dqn", "mappo_tuned")}
+    h_ = holm({k: v["p"] for k, v in t_.items()})
+    C.note("fresh Env A N=3 beats independent DQN and MAPPO at Holm p<=0.002",
+           all(t_[k]["diff"] > 0 and h_[k] <= 0.002 for k in ("independent_dqn", "mappo_tuned")), h_)
+    C.claim("fresh Env A N=3 single-agent seeds won", "won 11 of 20 seeds against the single-agent DQN", t_["single_agent_dqn"]["wins"], "{:d}")
+    C.claim("fresh Env A N=3 single-agent gap", "trailed it by 0.021 per step on average", -t_["single_agent_dqn"]["diff"], "{:.3f}")
+    C.claim("fresh Env A N=3 single-agent p", "per step on average, at $p=0.07$", t_["single_agent_dqn"]["p"], "{:.2f}")
+    f19 = {k: seeds_of("m66_fresh/A_n19_ring", k, F15) for k in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned")}
+    pr = {k: 100 * mean(v, prio) for k, v in f19.items()}
+    C.claim("fresh N=19 AXIOM priority SLA", "kept 95.6\\% priority-slice compliance", pr["axiom2"], "{:.1f}")
+    C.claim("fresh N=19 lowest baseline SLA", "against 47.8\\% to 65.5\\% for the baselines", min(pr[k] for k in pr if k != "axiom2"), "{:.1f}")
+    C.claim("fresh N=19 highest baseline SLA", "against 47.8\\% to 65.5\\% for the baselines", max(pr[k] for k in pr if k != "axiom2"), "{:.1f}")
+    hs = []
+    for f_ in (lambda r: r["reward"], prio):
+        t_ = {k: paired(f19["axiom2"], f19[k], f_) for k in ("independent_dqn", "single_agent_dqn", "mappo_tuned")}
+        h_ = holm({k: v["p"] for k, v in t_.items()})
+        hs += [t_[k]["diff"] > 0 and h_[k] <= 0.001 for k in t_]
+    C.note("fresh N=19 all six tests at Holm p<=0.001", len(hs) == 6 and all(hs), None)
+    fb = {k: seeds_of("m66_fresh/B_n3", k, F20) for k in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned",
+                                                          "rule_static", "rule_accept_all", "rule_local", "rule_neighbour")}
+    t_ = {k: paired(fb["axiom2"], fb[k]) for k in fb if k != "axiom2"}
+    h_ = holm({k: v["p"] for k, v in t_.items()})
+    C.note("fresh Env B N=3 beats static and accept-all in all 20 seeds",
+           all(t_[k]["wins"] == 20 for k in ("rule_static", "rule_accept_all")), None)
+    C.note("fresh Env B N=3 leads every learned baseline at Holm p<=0.0002",
+           all(t_[k]["diff"] > 0 and h_[k] <= 0.0002 for k in ("independent_dqn", "single_agent_dqn", "mappo_tuned")), h_)
+    C.claim("fresh Env B N=3 tuned local reward", "earning 9.175 against 8.782 per step", mean(fb["rule_local"]), "{:.3f}")
+    C.claim("fresh Env B N=3 AXIOM reward", "earning 9.175 against 8.782 per step", mean(fb["axiom2"]), "{:.3f}")
+    f7 = {k: seeds_of("m66_fresh/B_n7_ring", k, F10) for k in ("rule_local", "axiom2", "axiom2_mlp", "independent_dqn",
+                                                               "single_agent_dqn", "mappo_tuned")}
+    C.note("fresh Env B N=7 tuned local beats every learned policy at p<=0.004",
+           all(paired(f7["rule_local"], f7[k])["diff"] > 0 and paired(f7["rule_local"], f7[k])["p"] <= 0.004 for k in f7 if k != "rule_local"), None)
+    t_ = paired(f7["axiom2_mlp"], f7["axiom2"])
+    C.claim("fresh Env B N=7 MLP over GAT reward", "beat graph attention by 1.38 reward per step", t_["diff"], "{:.2f}")
+    C.claim("fresh Env B N=7 MLP seeds won", "in 9 of 10 seeds at $p=0.006$", t_["wins"], "{:d}")
+    C.claim("fresh Env B N=7 MLP over GAT p", "in 9 of 10 seeds at $p=0.006$", t_["p"], "{:.3f}")
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}
@@ -548,6 +640,8 @@ def main():
     C.note("every Env A/B evaluation log has 50 episodes",
            all(v is None or v["episodes"] == 50 for v in CACHE.values()), sorted({v["episodes"] for v in CACHE.values() if v}))
 
+    n_total = len(C.rows) + 1
+    C.note(f"text quotes the final check count of {n_total}", f"All {n_total} checks pass" in C.tex, n_total)
     rows = C.rows
     json.dump(rows, open(a.out, "w"), indent=1, default=str)
     fails = [r for r in rows if not r["ok"]]

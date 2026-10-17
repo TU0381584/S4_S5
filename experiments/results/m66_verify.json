@@ -1807,6 +1807,322 @@
   "ok": true
  },
  {
+  "label": "V1 rerun m66_repro/B_n3/axiom2 identical to stored on 5 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m66_repro/B_n3/mappo_tuned identical to stored on 5 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m66_repro/B_n3/independent_dqn identical to stored on 3 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m66_repro/B_n3/rule_static identical to stored on 30 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m66_repro/B_n3/rule_local identical to stored on 30 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m66_repro/A_n3/axiom2 identical to stored on 5 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m66_repro/A_n19_ring/axiom2 identical to stored on 2 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m66_repro/B_n7_ring/axiom2_mlp identical to stored on 3 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 static rule identical to stored Env A oracle on 30 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m3 sigma0 eval logs identical to stored (2 logs)",
+  "snippet": null,
+  "computed": 2,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "V1 rerun m4 dropout eval logs identical to stored (30 logs)",
+  "snippet": null,
+  "computed": 30,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "single-agent seed 900 rerun minimum",
+  "snippet": "earned 7.45 to 9.67 reward per step, against 8.74 stored",
+  "computed": 7.448484528914363,
+  "formatted": "7.45",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "single-agent seed 900 rerun maximum",
+  "snippet": "earned 7.45 to 9.67 reward per step, against 8.74 stored",
+  "computed": 9.66835436770257,
+  "formatted": "9.67",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "single-agent seed 900 stored",
+  "snippet": "against 8.74 stored",
+  "computed": 8.735317741910116,
+  "formatted": "8.74",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "Env A lead over single-agent without unseeded-init seeds",
+  "snippet": "moves from $+0.311$ to $+0.241$ per step",
+  "computed": 0.24107598423543874,
+  "formatted": "+0.241",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "Env A N=3 every comparison keeps its direction without unseeded-init seeds",
+  "snippet": null,
+  "computed": {
+   "mappo_tuned": 2.4894297919071932e-05,
+   "independent_dqn": 0.0002506375312805176,
+   "single_agent_dqn": 0.03863248475560448
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Env A N=3 single-agent Holm p without unseeded-init seeds",
+  "snippet": "passes the Holm correction, at $p=0.039$ against 0.066",
+  "computed": 0.03863248475560448,
+  "formatted": "0.039",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "Env B N=3 single-agent conclusion unchanged without unseeded-init seeds",
+  "snippet": null,
+  "computed": {
+   "mappo_tuned": 4.470348358154297e-08,
+   "single_agent_dqn": 8.940696716308594e-08,
+   "independent_dqn": 2.086162567138672e-07
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "fresh-seed predictions stated in advance",
+  "snippet": "All 26 predictions stated in advance for these fresh seeds held",
+  "computed": 26,
+  "formatted": "26",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "every fresh-seed prediction holds",
+  "snippet": null,
+  "computed": 26,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "fresh Env A N=3 fraction of oracle",
+  "snippet": "reached 98.2\\% of the oracle reward",
+  "computed": 98.21018649874294,
+  "formatted": "98.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh Env A N=3 beats independent DQN and MAPPO at Holm p<=0.002",
+  "snippet": null,
+  "computed": {
+   "mappo_tuned": 0.0003147125244140625,
+   "independent_dqn": 0.001415252685546875,
+   "single_agent_dqn": 0.07032573521121915
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "fresh Env A N=3 single-agent seeds won",
+  "snippet": "won 11 of 20 seeds against the single-agent DQN",
+  "computed": 11,
+  "formatted": "11",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh Env A N=3 single-agent gap",
+  "snippet": "trailed it by 0.021 per step on average",
+  "computed": 0.020622156053140106,
+  "formatted": "0.021",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh Env A N=3 single-agent p",
+  "snippet": "per step on average, at $p=0.07$",
+  "computed": 0.07032573521121915,
+  "formatted": "0.07",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh N=19 AXIOM priority SLA",
+  "snippet": "kept 95.6\\% priority-slice compliance",
+  "computed": 95.56888888888886,
+  "formatted": "95.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh N=19 lowest baseline SLA",
+  "snippet": "against 47.8\\% to 65.5\\% for the baselines",
+  "computed": 47.76222222222223,
+  "formatted": "47.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh N=19 highest baseline SLA",
+  "snippet": "against 47.8\\% to 65.5\\% for the baselines",
+  "computed": 65.53000000000002,
+  "formatted": "65.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh N=19 all six tests at Holm p<=0.001",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "fresh Env B N=3 beats static and accept-all in all 20 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "fresh Env B N=3 leads every learned baseline at Holm p<=0.0002",
+  "snippet": null,
+  "computed": {
+   "rule_static": 1.33514404296875e-05,
+   "rule_accept_all": 1.33514404296875e-05,
+   "rule_local": 2.86102294921875e-05,
+   "single_agent_dqn": 7.62939453125e-05,
+   "independent_dqn": 0.0001087188720703125,
+   "mappo_tuned": 0.0001087188720703125,
+   "rule_neighbour": 0.10539817810058594
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "fresh Env B N=3 tuned local reward",
+  "snippet": "earning 9.175 against 8.782 per step",
+  "computed": 9.175211115283512,
+  "formatted": "9.175",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh Env B N=3 AXIOM reward",
+  "snippet": "earning 9.175 against 8.782 per step",
+  "computed": 8.781507428729778,
+  "formatted": "8.782",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh Env B N=7 tuned local beats every learned policy at p<=0.004",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "fresh Env B N=7 MLP over GAT reward",
+  "snippet": "beat graph attention by 1.38 reward per step",
+  "computed": 1.381149460855213,
+  "formatted": "1.38",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh Env B N=7 MLP seeds won",
+  "snippet": "in 9 of 10 seeds at $p=0.006$",
+  "computed": 9,
+  "formatted": "9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "fresh Env B N=7 MLP over GAT p",
+  "snippet": "in 9 of 10 seeds at $p=0.006$",
+  "computed": 0.005859375,
+  "formatted": "0.006",
+  "in_tex": true,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -1828,6 +2144,14 @@
   "computed": [
    50
   ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "text quotes the final check count of 206",
+  "snippet": null,
+  "computed": 206,
   "formatted": null,
   "in_tex": null,
   "ok": true
