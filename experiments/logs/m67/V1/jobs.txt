@@ -1,0 +1,19 @@
+A3base_axiom2_7000|../experiments/scripts/m67_run.py --arm axiom2 --env A --condition base --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_base --seeds 7000 7001 7002 7003 7004
+A3base_axiom2_7005|../experiments/scripts/m67_run.py --arm axiom2 --env A --condition base --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_base --seeds 7005 7006 7007 7008 7009
+A3base_axiom2_7010|../experiments/scripts/m67_run.py --arm axiom2 --env A --condition base --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_base --seeds 7010 7011 7012 7013 7014
+A3base_axiom2_7015|../experiments/scripts/m67_run.py --arm axiom2 --env A --condition base --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_base --seeds 7015 7016 7017 7018 7019
+A3load102_axiom2_7000|../experiments/scripts/m67_run.py --arm axiom2 --env A --condition load102 --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_load102 --seeds 7000 7001 7002 7003 7004
+A3load102_axiom2_7005|../experiments/scripts/m67_run.py --arm axiom2 --env A --condition load102 --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_load102 --seeds 7005 7006 7007 7008 7009
+A3load102_axiom2_7010|../experiments/scripts/m67_run.py --arm axiom2 --env A --condition load102 --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_load102 --seeds 7010 7011 7012 7013 7014
+A3load102_axiom2_7015|../experiments/scripts/m67_run.py --arm axiom2 --env A --condition load102 --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_load102 --seeds 7015 7016 7017 7018 7019
+G7_axiom2_7000|../experiments/scripts/m67_run.py --arm axiom2 --env A --n 7 --topology ring --out-dir ../experiments/results/m67_dev/V1/G_A7_ring --seeds 7000 7001 7002 7003 7004
+G7_axiom2_7005|../experiments/scripts/m67_run.py --arm axiom2 --env A --n 7 --topology ring --out-dir ../experiments/results/m67_dev/V1/G_A7_ring --seeds 7005 7006 7007 7008 7009
+A3base_indep_7000|../experiments/scripts/m67_run.py --arm independent_dqn --env A --condition base --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_base --seeds 7000 7001 7002 7003 7004 7005 7006 7007 7008 7009
+A3base_indep_7010|../experiments/scripts/m67_run.py --arm independent_dqn --env A --condition base --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_base --seeds 7010 7011 7012 7013 7014 7015 7016 7017 7018 7019
+A3load102_indep_7000|../experiments/scripts/m67_run.py --arm independent_dqn --env A --condition load102 --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_load102 --seeds 7000 7001 7002 7003 7004 7005 7006 7007 7008 7009
+A3load102_indep_7010|../experiments/scripts/m67_run.py --arm independent_dqn --env A --condition load102 --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_load102 --seeds 7010 7011 7012 7013 7014 7015 7016 7017 7018 7019
+GB3_axiom2_7000|../experiments/scripts/m67_run.py --arm axiom2 --n 3 --out-dir ../experiments/results/m67_dev/V1/G_B3 --seeds 7000 7001 7002 7003 7004 7005 7006 7007 7008 7009
+A3base_single|../experiments/scripts/m67_run.py --arm single_agent_dqn --env A --condition base --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_base --seeds 7000 7001 7002 7003 7004 7005 7006 7007 7008 7009 7010 7011 7012 7013 7014 7015 7016 7017 7018 7019
+A3base_oracle|../experiments/scripts/m64_run.py --arm rule_static --env A --condition base --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_base --seeds 7000 7001 7002 7003 7004 7005 7006 7007 7008 7009 7010 7011 7012 7013 7014 7015 7016 7017 7018 7019
+A3load102_single|../experiments/scripts/m67_run.py --arm single_agent_dqn --env A --condition load102 --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_load102 --seeds 7000 7001 7002 7003 7004 7005 7006 7007 7008 7009 7010 7011 7012 7013 7014 7015 7016 7017 7018 7019
+A3load102_oracle|../experiments/scripts/m64_run.py --arm rule_static --env A --condition load102 --n 3 --out-dir ../experiments/results/m67_dev/V1/A3_load102 --seeds 7000 7001 7002 7003 7004 7005 7006 7007 7008 7009 7010 7011 7012 7013 7014 7015 7016 7017 7018 7019
