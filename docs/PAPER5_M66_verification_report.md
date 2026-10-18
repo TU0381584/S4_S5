@@ -91,3 +91,36 @@ Campaign: 21 jobs, 20:59 to 23:47 on 2026-10-17. Analysis in experiments/results
 - No extra seeds were added after these results were seen. The failures are reported in the manuscript's verification subsection and in the conclusion.
 - The verifier now has 224 checks, including every M66b number quoted in the text, and all pass. It caught two of my own drafting errors before commit: "p ≤ 0.031", where the true value is 0.03125, and "12.6", where it is 12.548.
 - Pre-existing issue noticed: the abstract is 290 words, which is likely over the journal's limit.
+
+## M66c: remaining fresh-seed and properly seeded checks (addendum 2), 43 of 48 criteria hold
+
+Campaign: 91 jobs, 04:44 to 14:13 on 2026-10-18. Analysis in experiments/results/m66c_analysis.json (`m66c_analysis.py`).
+
+Established before the run, from reruns of stored seeds:
+- Under each sensitivity condition, the stored Env A oracle equals rule_static exactly on seeds 900-909.
+- The seeded single-agent wrapper is deterministic across processes for seeds 900 and 901.
+
+| ID | Result |
+|---|---|
+| C1 Env A N=7 hex | AXIOM 99.0%, all 6 tests at Holm p ≤ 0.012. FAILS: independent DQN 80.9% and single-agent DQN 82.7% are above the 80% bound; MAPPO is at 68.1%. |
+| C2 Env A N=19 fully-connected | All hold. AXIOM 95.7%; baselines 47.5-65.2%; Holm p ≤ 0.012; single-agent collapses in 8 of 10. |
+| C3 Env A N=7 fully-connected, 20 seeds 4000-4019 | All 6 tests hold at Holm p ≤ 0.007; AXIOM 96.0%. FAILS: single-agent DQN at 83.3% (> 80%); independent DQN 76.2%, MAPPO 71.0%. The M66b ten-seed failure stays reported. |
+| C4 Env B N=7 fully-connected and hex | All hold. rule_local beats every learner (p ≤ 0.004). AXIOM vs static: +0.32 (p 0.81) and +0.06 (p 1). MLP above GAT: −1.40 (p 0.074) and −0.65 (p 0.28). |
+| C5 disruption | All hold. 21 dropout/churn costs at Holm p ≤ 0.041 (min hurt 8/10). No AXIOM gap survives Holm (24 gaps). AXIOM spike precision is 0.97. |
+| C6 DP | All hold. Drops of 0.65-1.31; Holm p = 1 for all; every client takes 17,969 noisy steps. |
+| C7 seeded single-agent DQN | See the breakdown below. |
+| C8 Env A sensitivity | load107 and weights hold (99.6%, 99.4% of the oracle). FAILS twice at load102: AXIOM is at 96.8% of the oracle (p 0.25, n.s.) and its mean is below the single-agent DQN's (12.551 vs 12.910). It ties the oracle in 6 of 10 seeds, and seeds 3002 and 3005 learned poorer policies (78%, 88% priority SLA). |
+| C9 Env B sensitivity | All hold. The original AXIOM is 2.19 lower in 10/10 seeds (p 0.002). LR 3e-3 (p 0.084) and wide (p 0.28) show no significant difference. LR 3e-4 is 1.00 lower (p 0.027), reported only. |
+
+C7 breakdown, single-agent DQN with its initialisation seeded:
+- Env B N=3: AXIOM leads by +1.320, Holm p 4e-8 (holds).
+- Env A N=19 ring: the seeded baseline collapses in 28 of 30 seeds and trails AXIOM by 32.3 points, p 3e-6 (holds).
+- Env A N=3, reported only: +0.254 (Holm p 0.018), replication +0.948 (p 0.006).
+- Env B N=3 replication, reported only: +0.469, n.s.
+
+Manuscript changes:
+- New M66c paragraphs in the verification subsection, plus a fresh-seed note on the single-agent comparison.
+- The conclusion lists the three exceptions: an unstable single-agent lead, baseline compliance up to 83% at N=7, and the 1.02 load condition.
+- Pointers added after the "within 0.13 of the oracle" sensitivity sentence and the N=7 baseline sentence.
+
+The verifier is at 259/259. Its strictness on p-value rounding is now uniform: values are compared at the printed precision.

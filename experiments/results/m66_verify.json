@@ -2271,6 +2271,298 @@
   "ok": true
  },
  {
+  "label": "M66c judged and failed counts quoted",
+  "snippet": null,
+  "computed": [
+   48,
+   5
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c C1 AXIOM prio",
+  "snippet": "AXIOM kept 99.0\\% and 95.7\\% priority-slice compliance",
+  "computed": 99.00666666666666,
+  "formatted": "99.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c C2 AXIOM prio",
+  "snippet": "AXIOM kept 99.0\\% and 95.7\\% priority-slice compliance",
+  "computed": 95.73666666666666,
+  "formatted": "95.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c C1 and C2 all tests Holm p<=0.012",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c C3 all tests Holm p<=0.007",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c N=7 DQN prio low",
+  "snippet": "DQNs kept 76.2\\% to 83.3\\% priority-slice compliance",
+  "computed": 76.15166666666669,
+  "formatted": "76.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c N=7 DQN prio high",
+  "snippet": "DQNs kept 76.2\\% to 83.3\\% priority-slice compliance",
+  "computed": 83.31,
+  "formatted": "83.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c N=7 DQN prio high, pointer",
+  "snippet": "the two DQN baselines reach up to 83.3\\%",
+  "computed": 83.31,
+  "formatted": "83.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c N=7 DQN prio high, conclusion",
+  "snippet": "baseline compliance of up to 83\\%",
+  "computed": 83.31,
+  "formatted": "83",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c three DQN cells above 80%",
+  "snippet": null,
+  "computed": [
+   80.85833333333333,
+   82.72166666666666,
+   76.15166666666669,
+   83.31
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c load102 fraction",
+  "snippet": "left it at 96.8\\% of the oracle reward",
+  "computed": 96.81853940070123,
+  "formatted": "96.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c load102 shortfall, conclusion",
+  "snippet": "left it 3.2\\% short of the oracle",
+  "computed": 3.1814605992987737,
+  "formatted": "3.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c load102 p",
+  "snippet": "a gap that is not significant at $p=0.25$",
+  "computed": 0.25,
+  "formatted": "0.25",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c load102 AXIOM",
+  "snippet": "at 12.551 against 12.910",
+  "computed": 12.55050954887683,
+  "formatted": "12.551",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c load102 single",
+  "snippet": "at 12.551 against 12.910",
+  "computed": 12.909932024527802,
+  "formatted": "12.910",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c load107 and weights within 0.6% of oracle",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c C4 tuned rule beats every learner at p<=0.004, AXIOM not above static",
+  "snippet": null,
+  "computed": 0.0039,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c C4 MLP earns more than GAT, not significantly",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c disruption costs significant at Holm p<=0.041",
+  "snippet": null,
+  "computed": 0.041015625,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c no disruption gap survives Holm",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c AXIOM spike precision",
+  "snippet": "AXIOM kept a spike block precision of 0.97",
+  "computed": 0.9683292823524275,
+  "formatted": "0.97",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c every spike precision rounds to 0.97",
+  "snippet": null,
+  "computed": [
+   0.9681742547261335,
+   0.96706732076963,
+   0.9697462715615192
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c DP drop low",
+  "snippet": "lowered reward by 0.65 to 1.31 per step",
+  "computed": 0.6473735023567597,
+  "formatted": "0.65",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c DP drop high",
+  "snippet": "lowered reward by 0.65 to 1.31 per step",
+  "computed": 1.3134364082627785,
+  "formatted": "1.31",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c DP none survives Holm",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c DP steps all 17,969",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c Env B original AXIOM gap",
+  "snippet": "in all ten seeds, by 2.19 per step",
+  "computed": 2.1861628069948145,
+  "formatted": "2.19",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c Env B original AXIOM loses all ten",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c LR 3e-3 and wide not significant",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66c seeded single A3 lead",
+  "snippet": "becomes $+0.254$ per step",
+  "computed": 0.25413014859633726,
+  "formatted": "+0.254",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c seeded single A3 Holm p",
+  "snippet": "per step at Holm-adjusted $p=0.018$",
+  "computed": 0.01767455609157178,
+  "formatted": "0.018",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c seeded single A3 replication",
+  "snippet": "and $+0.948$ on the replication seeds",
+  "computed": 0.9480041579421867,
+  "formatted": "+0.948",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c seeded single B3",
+  "snippet": "In Env B the lead stays at $+1.320$",
+  "computed": 1.3198167050449778,
+  "formatted": "+1.320",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c seeded single N=19 collapses",
+  "snippet": "collapses in 28 of 30 seeds",
+  "computed": 28,
+  "formatted": "28",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66c seeded single N=19 gap",
+  "snippet": "trails AXIOM by 32.3 points",
+  "computed": 32.30777777777779,
+  "formatted": "32.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -2297,9 +2589,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 224",
+  "label": "text quotes the final check count of 259",
   "snippet": null,
-  "computed": 224,
+  "computed": 259,
   "formatted": null,
   "in_tex": null,
   "ok": true

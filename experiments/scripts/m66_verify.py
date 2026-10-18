@@ -669,6 +669,62 @@ def main():
     C.note("M66b three of eleven checks failed", len(mb["criteria"]) == 11 and mb["n_fail"] == 3 and
            "so three of the eleven checks in this run failed" in C.tex, None)
 
+    # ---------------- M66c (addendum 2), values from m66c_analysis.json, itself built on this reader
+    mc = json.load(open(f"{ROOT}/m66c_analysis.json"))
+    C.note("M66c judged and failed counts quoted", mc["n_judged"] == 48 and mc["n_fail"] == 5 and "43 of its 48 checks held" in C.tex,
+           (mc["n_judged"], mc["n_fail"]))
+    c1, c2, c3 = mc["C1 Env A N=7 hex"], mc["C2 Env A N=19 fully-connected"], mc["C3 Env A N=7 fully-connected 20 seeds"]
+    C.claim("M66c C1 AXIOM prio", "AXIOM kept 99.0\\% and 95.7\\% priority-slice compliance", 100 * c1["summary"]["axiom2"]["prio"], "{:.1f}")
+    C.claim("M66c C2 AXIOM prio", "AXIOM kept 99.0\\% and 95.7\\% priority-slice compliance", 100 * c2["summary"]["axiom2"]["prio"], "{:.1f}")
+    C.note("M66c C1 and C2 all tests Holm p<=0.012", all(v["diff"] > 0 and v["p_holm"] <= 0.012 for c_ in (c1, c2) for v in c_["tests"].values()), None)
+    C.note("M66c C3 all tests Holm p<=0.007", all(v["diff"] > 0 and v["p_holm"] <= 0.007 for v in c3["tests"].values()), None)
+    vals = [100 * c_["summary"][a_]["prio"] for c_ in (c1, c3) for a_ in ("independent_dqn", "single_agent_dqn")]
+    C.claim("M66c N=7 DQN prio low", "DQNs kept 76.2\\% to 83.3\\% priority-slice compliance", min(vals), "{:.1f}")
+    C.claim("M66c N=7 DQN prio high", "DQNs kept 76.2\\% to 83.3\\% priority-slice compliance", max(vals), "{:.1f}")
+    C.claim("M66c N=7 DQN prio high, pointer", "the two DQN baselines reach up to 83.3\\%", max(vals), "{:.1f}")
+    C.claim("M66c N=7 DQN prio high, conclusion", "baseline compliance of up to 83\\%", max(vals), "{:.0f}")
+    C.note("M66c three DQN cells above 80%", sum(v > 80 for v in vals) == 3 and "above the 80\\% bound in three cells" in C.tex, vals)
+    c8 = mc["C8"]
+    s102 = c8["load102"]["summary"]
+    frac = 100 * s102["axiom2"]["reward"] / s102["rule_static"]["reward"]
+    C.claim("M66c load102 fraction", "left it at 96.8\\% of the oracle reward", frac, "{:.1f}")
+    C.claim("M66c load102 shortfall, conclusion", "left it 3.2\\% short of the oracle", 100 - frac, "{:.1f}")
+    C.claim("M66c load102 p", "a gap that is not significant at $p=0.25$", c8["load102"]["vs_oracle"]["p"], "{:.2f}")
+    C.claim("M66c load102 AXIOM", "at 12.551 against 12.910", s102["axiom2"]["reward"], "{:.3f}")
+    C.claim("M66c load102 single", "at 12.551 against 12.910", s102["single_agent_dqn"]["reward"], "{:.3f}")
+    C.note("M66c load107 and weights within 0.6% of oracle",
+           all(100 - 100 * c8[c_]["summary"]["axiom2"]["reward"] / c8[c_]["summary"]["rule_static"]["reward"] <= 0.6 for c_ in ("load107", "weights")), None)
+    crit_ = {c_["label"]: c_ for c_ in mc["criteria"]}
+    c4ok = all(crit_[k]["holds"] for k in crit_ if k.startswith("C4"))
+    p4 = max(float(re.search(r"p ([0-9.e-]+)", crit_[k]["detail"]).group(1)) for k in crit_ if k.startswith("C4") and "rule_local" in k)
+    C.note("M66c C4 tuned rule beats every learner at p<=0.004, AXIOM not above static", c4ok and p4 <= 0.004, p4)
+    C.note("M66c C4 MLP earns more than GAT, not significantly",
+           all(mc[f"C4 {t}"]["axiom_vs_mlp_reward"]["diff"] < 0 and mc[f"C4 {t}"]["axiom_vs_mlp_reward"]["p"] >= 0.05 for t in ("fully_connected", "hex")), None)
+    c5 = mc["C5"]
+    hol = [v["p_holm"] for k, v in c5["cells"].items() if "|spike|" not in k]
+    C.note("M66c disruption costs significant at Holm p<=0.041", all(v["cost"] > 0 for k, v in c5["cells"].items() if "|spike|" not in k)
+           and round(max(hol), 3) <= 0.041 and "significant at Holm-adjusted $p\\leq0.041$, no gap" in C.tex, max(hol))
+    C.note("M66c no disruption gap survives Holm", all(g["p_holm"] >= 0.05 for g in c5["gaps"].values()), None)
+    sp = [c5["cells"][f"gat_ctde|spike|{v}"]["precision"] for v in (1, 2, 3)]
+    C.claim("M66c AXIOM spike precision", "AXIOM kept a spike block precision of 0.97", float(np.mean(sp)), "{:.2f}")
+    C.note("M66c every spike precision rounds to 0.97", all(round(x, 2) == 0.97 for x in sp), sp)
+    c6 = mc["C6"]["tests"]
+    drops = [v["diff"] for v in c6.values()]
+    C.claim("M66c DP drop low", "lowered reward by 0.65 to 1.31 per step", min(drops), "{:.2f}")
+    C.claim("M66c DP drop high", "lowered reward by 0.65 to 1.31 per step", max(drops), "{:.2f}")
+    C.note("M66c DP none survives Holm", all(v["p_holm"] >= 0.05 for v in c6.values()), None)
+    C.note("M66c DP steps all 17,969", all(x == 17969 for v in mc["C6"]["steps"].values() for x in v), None)
+    C.claim("M66c Env B original AXIOM gap", "in all ten seeds, by 2.19 per step", mc["C9"]["axiom"]["diff"], "{:.2f}")
+    C.note("M66c Env B original AXIOM loses all ten", mc["C9"]["axiom"]["wins"] == 10, None)
+    C.note("M66c LR 3e-3 and wide not significant", all(mc["C9"][a_]["p"] >= 0.05 for a_ in ("axiom2_lr3e-3", "axiom2_wide")), None)
+    c7 = mc["C7"]
+    C.claim("M66c seeded single A3 lead", "becomes $+0.254$ per step", c7["A3"]["tests"]["single_seeded"]["diff"], "{:+.3f}")
+    C.claim("M66c seeded single A3 Holm p", "per step at Holm-adjusted $p=0.018$", c7["A3"]["tests"]["single_seeded"]["p_holm"], "{:.3f}")
+    C.claim("M66c seeded single A3 replication", "and $+0.948$ on the replication seeds", c7["A3rep"]["tests"]["single_seeded"]["diff"], "{:+.3f}")
+    C.claim("M66c seeded single B3", "In Env B the lead stays at $+1.320$", c7["B3"]["tests"]["single_seeded"]["diff"], "{:+.3f}")
+    C.claim("M66c seeded single N=19 collapses", "collapses in 28 of 30 seeds", c7["A19"]["seeded_collapsed"], "{:d}")
+    C.claim("M66c seeded single N=19 gap", "trails AXIOM by 32.3 points", 100 * c7["A19"]["prio_test"]["diff"], "{:.1f}")
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}
