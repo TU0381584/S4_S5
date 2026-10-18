@@ -62,3 +62,18 @@ This observation was made on reported samples, so it is a hypothesis, not a resu
 
 The result is reported whether or not it is decisive. If it is decisive, adopting the MLP encoder as AXIOM's encoder would be a design change. Every campaign that uses AXIOM would then need the MLP encoder before the manuscript changes. The paper would also have to disclose that the change was chosen after seeing these samples, and that only this confirmation is independent of that choice.
 
+
+### Amendment 1 result: not decisive
+
+Run 04:49 to 07:31 on 2026-10-19; analysis in experiments/results/m67_confirm_envB/analysis.json.
+
+- **AXIOM v2 MLP vs independent DQN:** holds in every layout. +1.97 / +2.97 / +2.79 for fully-connected / ring / hex, 9 or 10 of 10 seeds, Holm p ≤ 0.016.
+- **AXIOM v2 MLP vs seeded single-agent DQN:** fails in every layout. +1.39 / +0.92 / +1.29, 7 or 8 of 10 seeds, Holm p 0.32 / 0.32 / 0.32.
+- **AXIOM v2 with GAT, reported only:**
+  - vs independent DQN: +1.93 / +2.49 / +2.01, Holm p 0.078 / 0.068 / 0.035.
+  - vs single-agent DQN: +1.35 / +0.43 / +0.51, Holm p ≥ 0.32, with 5/5 splits on ring and hex.
+- **MLP minus GAT:** +0.04 / +0.48 / +0.78, none significant.
+
+Conclusion: the MLP encoder is not adopted. In Env B at seven gNBs, neither AXIOM encoder beats the single-agent DQN decisively on ten new seeds. Both lead it on average, by 0.4 to 1.4 per step.
+
+Development stops here. A larger sample in the hope of crossing the threshold would be optional stopping after a near miss. The only legitimate route is a new pre-registered study, run alongside this one and reported with it.

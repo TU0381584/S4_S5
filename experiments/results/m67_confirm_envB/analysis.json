@@ -1,0 +1,254 @@
+{
+ "axiom2_mlp": {
+  "summary": {
+   "fully_connected": {
+    "axiom2_mlp": {
+     "n": 10,
+     "reward": 24.810216620851115,
+     "prio": 0.4404
+    },
+    "single_agent_dqn": {
+     "n": 10,
+     "reward": 23.419864153795114,
+     "prio": 0.4159833333333333
+    },
+    "independent_dqn": {
+     "n": 10,
+     "reward": 22.839782875216564,
+     "prio": 0.4164
+    }
+   },
+   "ring": {
+    "axiom2_mlp": {
+     "n": 10,
+     "reward": 24.810392475826582,
+     "prio": 0.46930000000000005
+    },
+    "single_agent_dqn": {
+     "n": 10,
+     "reward": 23.89509732140212,
+     "prio": 0.45643333333333336
+    },
+    "independent_dqn": {
+     "n": 10,
+     "reward": 21.837614503422742,
+     "prio": 0.3745833333333333
+    }
+   },
+   "hex": {
+    "axiom2_mlp": {
+     "n": 10,
+     "reward": 25.277085185934666,
+     "prio": 0.5024
+    },
+    "single_agent_dqn": {
+     "n": 10,
+     "reward": 23.986456154054167,
+     "prio": 0.44514999999999993
+    },
+    "independent_dqn": {
+     "n": 10,
+     "reward": 22.48884611948787,
+     "prio": 0.40470000000000006
+    }
+   }
+  },
+  "tests": {
+   "fully_connected/single_agent_dqn": {
+    "n": 10,
+    "diff": 1.3903524670560032,
+    "wins": 8,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.10546875,
+    "p_holm": 0.31640625
+   },
+   "fully_connected/independent_dqn": {
+    "n": 10,
+    "diff": 1.9704337456345509,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "p_holm": 0.01171875
+   },
+   "ring/single_agent_dqn": {
+    "n": 10,
+    "diff": 0.9152951544244647,
+    "wins": 7,
+    "ties": 0,
+    "losses": 3,
+    "p": 0.322265625,
+    "p_holm": 0.322265625
+   },
+   "ring/independent_dqn": {
+    "n": 10,
+    "diff": 2.972777972403837,
+    "wins": 9,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00390625,
+    "p_holm": 0.015625
+   },
+   "hex/single_agent_dqn": {
+    "n": 10,
+    "diff": 1.2906290318804992,
+    "wins": 8,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.10546875,
+    "p_holm": 0.31640625
+   },
+   "hex/independent_dqn": {
+    "n": 10,
+    "diff": 2.7882390664467978,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "p_holm": 0.01171875
+   }
+  },
+  "complete": true,
+  "all_six_hold": false
+ },
+ "axiom2": {
+  "summary": {
+   "fully_connected": {
+    "axiom2": {
+     "n": 10,
+     "reward": 24.7670344831288,
+     "prio": 0.4298
+    },
+    "single_agent_dqn": {
+     "n": 10,
+     "reward": 23.419864153795114,
+     "prio": 0.4159833333333333
+    },
+    "independent_dqn": {
+     "n": 10,
+     "reward": 22.839782875216564,
+     "prio": 0.4164
+    }
+   },
+   "ring": {
+    "axiom2": {
+     "n": 10,
+     "reward": 24.326648950442273,
+     "prio": 0.40708333333333335
+    },
+    "single_agent_dqn": {
+     "n": 10,
+     "reward": 23.89509732140212,
+     "prio": 0.45643333333333336
+    },
+    "independent_dqn": {
+     "n": 10,
+     "reward": 21.837614503422742,
+     "prio": 0.3745833333333333
+    }
+   },
+   "hex": {
+    "axiom2": {
+     "n": 10,
+     "reward": 24.495516572059636,
+     "prio": 0.42313333333333325
+    },
+    "single_agent_dqn": {
+     "n": 10,
+     "reward": 23.986456154054167,
+     "prio": 0.44514999999999993
+    },
+    "independent_dqn": {
+     "n": 10,
+     "reward": 22.48884611948787,
+     "prio": 0.40470000000000006
+    }
+   }
+  },
+  "tests": {
+   "fully_connected/single_agent_dqn": {
+    "n": 10,
+    "diff": 1.3471703293336887,
+    "wins": 7,
+    "ties": 0,
+    "losses": 3,
+    "p": 0.10546875,
+    "p_holm": 0.31640625
+   },
+   "fully_connected/independent_dqn": {
+    "n": 10,
+    "diff": 1.9272516079122366,
+    "wins": 8,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.01953125,
+    "p_holm": 0.078125
+   },
+   "ring/single_agent_dqn": {
+    "n": 10,
+    "diff": 0.43155162904015826,
+    "wins": 5,
+    "ties": 0,
+    "losses": 5,
+    "p": 0.431640625,
+    "p_holm": 0.86328125
+   },
+   "ring/independent_dqn": {
+    "n": 10,
+    "diff": 2.48903444701953,
+    "wins": 8,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.013671875,
+    "p_holm": 0.068359375
+   },
+   "hex/single_agent_dqn": {
+    "n": 10,
+    "diff": 0.5090604180054626,
+    "wins": 5,
+    "ties": 0,
+    "losses": 5,
+    "p": 0.625,
+    "p_holm": 0.86328125
+   },
+   "hex/independent_dqn": {
+    "n": 10,
+    "diff": 2.006670452571761,
+    "wins": 9,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.005859375,
+    "p_holm": 0.03515625
+   }
+  },
+  "complete": true,
+  "all_six_hold": false
+ },
+ "mlp_minus_gat": {
+  "fully_connected": {
+   "n": 10,
+   "diff": 0.043182137722314454,
+   "wins": 4,
+   "ties": 1,
+   "losses": 5,
+   "p": 0.91015625
+  },
+  "ring": {
+   "n": 10,
+   "diff": 0.4837435253843065,
+   "wins": 6,
+   "ties": 0,
+   "losses": 4,
+   "p": 0.556640625
+  },
+  "hex": {
+   "n": 10,
+   "diff": 0.7815686138750365,
+   "wins": 7,
+   "ties": 0,
+   "losses": 3,
+   "p": 0.375
+  }
+ }
+}
