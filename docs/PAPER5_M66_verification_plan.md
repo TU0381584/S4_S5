@@ -73,3 +73,12 @@ Two facts were established before this addendum, from reruns of stored seeds onl
 | C7 | Single-agent DQN properly seeded | Env A and Env B N=3, 900-929 and 1000-1009; Env A N=19 ring, the 30 reported seeds | single-agent DQN through m66c_seeded_single.py | Env B N=3: AXIOM still beats it at Holm-adjusted p < 0.05 within the reported three-baseline family. Env A N=19: AXIOM still beats it on priority SLA at p < 0.05. Env A N=3 comparisons and collapse counts are reported, not predicted. |
 | C8 | Env A sensitivity | 3000-3009 | AXIOM v2, rule_static, independent DQN, single-agent DQN under load102, load107, weights | In each condition, AXIOM is within 2% of the oracle's reward and not significantly different from it, and AXIOM's mean reward exceeds both DQN baselines'. |
 | C9 | Env B sensitivity, N=3 | 3000-3009 | original AXIOM, AXIOM v2 at LR 3e-4 and 3e-3, wide AXIOM v2, all against AXIOM v2 from M66 fresh B_n3 | The original AXIOM earns less than AXIOM v2 in at least 9 of 10 seeds, p < 0.05. LR 3e-3 and the wide encoder show no significant difference from AXIOM v2. |
+
+## Addendum 3, M66d: larger samples for the two unstable results (committed 2026-10-18, after M66c and before any M66d run)
+
+Two results varied between samples: AXIOM's lead over the single-agent DQN in Env A at three gNBs, and the 1.02 load sensitivity condition, which failed in M66c. M66d reruns both on new seeds 4000 onwards, in larger samples. The single-agent DQN runs through m66c_seeded_single.py, so its initialisation is seeded. Both results are reported alongside the earlier ones and never replace them. Output goes to experiments/results/m66d_fresh.
+
+| ID | Cell | Seeds | Arms | What must hold |
+|---|---|---|---|---|
+| D1 | Env A, N=3 | 4000-4039 | AXIOM v2, seeded single-agent DQN, independent DQN, MAPPO, rule_static | AXIOM within 2% of the oracle's reward. AXIOM beats the independent DQN and MAPPO at Holm-adjusted p < 0.05 over the three-baseline family. The single-agent comparison is reported, not predicted. |
+| D2 | Env A, load 1.02 | 4000-4019 | AXIOM v2, seeded single-agent DQN, independent DQN, rule_static | AXIOM within 2% of the oracle and not significantly different from it. AXIOM's mean reward exceeds both DQN baselines'. |
