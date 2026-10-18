@@ -124,3 +124,28 @@ Manuscript changes:
 - Pointers added after the "within 0.13 of the oracle" sensitivity sentence and the N=7 baseline sentence.
 
 The verifier is at 259/259. Its strictness on p-value rounding is now uniform: values are compared at the printed precision.
+
+## M66d: larger samples for the two unstable results (addendum 3), 4 of 5 criteria hold
+
+Campaign: 23 jobs, 14:23 to 17:06 on 2026-10-18. Analysis in experiments/results/m66d_analysis.json.
+
+- **D1, Env A N=3, 40 new seeds 4000-4039:**
+  - AXIOM is at 98.1% of the oracle, with 27 ties.
+  - It beats the independent DQN (+0.704) and MAPPO (+2.414) at Holm p ≤ 1e-4.
+  - Reported, not predicted: against the seeded single-agent DQN it leads by +0.159, p 0.090, W/T/L 22/10/8.
+- **D2, load 1.02, 20 new seeds:**
+  - Holds: AXIOM is within 0.5% of the oracle (p 0.6, 14 ties), so the M66c shortfall was the two weak seeds.
+  - FAILS: the seeded single-agent DQN earns 12.978 against AXIOM's 12.945, so AXIOM does not lead it under this condition. The main-text sentence "keeps a positive lead over both DQN baselines under every condition" was restricted to "on these seeds", and the verification subsection states the fresh-seed result.
+
+Across every sample, AXIOM's lead over the single-agent DQN in Env A at three gNBs is small and unstable:
+
+| Sample | Lead | p |
+|---|---|---|
+| Stored main | +0.311 | Holm 0.066 |
+| Stored, unseeded-init seeds dropped | +0.241 | Holm 0.039 |
+| Seeded main | +0.254 | Holm 0.018 |
+| Replications | +1.08, +0.95 | |
+| Fresh 20 seeds | −0.021 | 0.07 |
+| Fresh 40 seeds | +0.159 | 0.09 |
+
+The paper now says this plainly. Verifier: 268/268.

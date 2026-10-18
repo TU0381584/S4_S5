@@ -1,0 +1,199 @@
+{
+ "D1": {
+  "summary": {
+   "axiom2": {
+    "n": 40,
+    "reward": 12.582329324551857,
+    "prio": 0.9792791666666666,
+    "urllc": 0.9970833333333331,
+    "embb": 0.9614750000000001,
+    "collapsed": 1
+   },
+   "single_agent_dqn": {
+    "n": 40,
+    "reward": 12.422917631008794,
+    "prio": 0.9702083333333335,
+    "urllc": 0.9963833333333334,
+    "embb": 0.9440333333333333,
+    "collapsed": 0
+   },
+   "independent_dqn": {
+    "n": 40,
+    "reward": 11.878537305081435,
+    "prio": 0.9539666666666667,
+    "urllc": 0.9922749999999999,
+    "embb": 0.9156583333333334,
+    "collapsed": 0
+   },
+   "mappo_tuned": {
+    "n": 40,
+    "reward": 10.168796712611444,
+    "prio": 0.7990541666666666,
+    "urllc": 0.97875,
+    "embb": 0.6193583333333332,
+    "collapsed": 0
+   },
+   "rule_static": {
+    "n": 40,
+    "reward": 12.831124699823917,
+    "prio": 0.9999458333333333,
+    "urllc": 0.9999166666666668,
+    "embb": 0.9999750000000001,
+    "collapsed": 0
+   }
+  },
+  "tests": {
+   "single_agent_dqn": {
+    "n": 40,
+    "diff": 0.15941169354306167,
+    "wins": 22,
+    "ties": 10,
+    "losses": 8,
+    "p": 0.08971783776750893,
+    "p_holm": 0.08971783776750893
+   },
+   "independent_dqn": {
+    "n": 40,
+    "diff": 0.7037920194704201,
+    "wins": 34,
+    "ties": 1,
+    "losses": 5,
+    "p": 4.888298750563231e-05,
+    "p_holm": 9.776597501126462e-05
+   },
+   "mappo_tuned": {
+    "n": 40,
+    "diff": 2.4135326119404104,
+    "wins": 37,
+    "ties": 1,
+    "losses": 2,
+    "p": 9.007883407421324e-07,
+    "p_holm": 2.702365022226397e-06
+   }
+  },
+  "oracle_gap": {
+   "n": 40,
+   "diff": -0.24879537527205983,
+   "wins": 1,
+   "ties": 27,
+   "losses": 12,
+   "p": 0.0037285953227358883
+  }
+ },
+ "D2": {
+  "summary": {
+   "axiom2": {
+    "n": 20,
+    "reward": 12.944580796475076,
+    "prio": 0.9947083333333333,
+    "urllc": 1.0,
+    "embb": 0.9894166666666667,
+    "collapsed": 0
+   },
+   "single_agent_dqn": {
+    "n": 20,
+    "reward": 12.977568545106076,
+    "prio": 0.9976083333333333,
+    "urllc": 0.9998333333333334,
+    "embb": 0.9953833333333332,
+    "collapsed": 1
+   },
+   "independent_dqn": {
+    "n": 20,
+    "reward": 12.372559962710792,
+    "prio": 0.9765166666666667,
+    "urllc": 0.9994166666666666,
+    "embb": 0.9536166666666667,
+    "collapsed": 1
+   },
+   "rule_static": {
+    "n": 20,
+    "reward": 13.003598560810989,
+    "prio": 1.0,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "collapsed": 0
+   }
+  },
+  "vs_oracle": {
+   "n": 20,
+   "diff": -0.059017764335911146,
+   "wins": 3,
+   "ties": 14,
+   "losses": 3,
+   "p": 0.6001794871405538
+  },
+  "vs_single": {
+   "n": 20,
+   "diff": -0.032987748630999916,
+   "wins": 11,
+   "ties": 4,
+   "losses": 5,
+   "p": 0.3010541816225988
+  },
+  "vs_indep": {
+   "n": 20,
+   "diff": 0.572020833764285,
+   "wins": 15,
+   "ties": 0,
+   "losses": 5,
+   "p": 0.0014324188232421875
+  },
+  "per_seed_axiom_prio": {
+   "4000": 1.0,
+   "4001": 1.0,
+   "4002": 0.9096666666666666,
+   "4003": 1.0,
+   "4004": 1.0,
+   "4005": 1.0,
+   "4006": 0.9896666666666667,
+   "4007": 1.0,
+   "4008": 0.9948333333333333,
+   "4009": 1.0,
+   "4010": 1.0,
+   "4011": 1.0,
+   "4012": 1.0,
+   "4013": 1.0,
+   "4014": 1.0,
+   "4015": 1.0,
+   "4016": 1.0,
+   "4017": 1.0,
+   "4018": 1.0,
+   "4019": 1.0
+  }
+ },
+ "criteria": [
+  {
+   "label": "D1 Env A N=3 AXIOM within 2% of oracle",
+   "holds": true,
+   "detail": "12.582 vs 12.831 = 98.1%, ties 27/40"
+  },
+  {
+   "label": "D1 AXIOM beats independent_dqn at Holm p<0.05",
+   "holds": true,
+   "detail": "diff +0.704, p_holm 9.78e-05, W/T/L 34/1/5"
+  },
+  {
+   "label": "D1 AXIOM beats mappo_tuned at Holm p<0.05",
+   "holds": true,
+   "detail": "diff +2.414, p_holm 2.7e-06, W/T/L 37/1/2"
+  },
+  {
+   "label": "D1 AXIOM vs seeded single-agent DQN",
+   "holds": null,
+   "detail": "n=40 diff +0.159, p 0.0897, p_holm 0.0897, W/T/L 22/10/8, single collapsed 0"
+  },
+  {
+   "label": "D2 load102 AXIOM within 2% of oracle and not significantly different",
+   "holds": true,
+   "detail": "12.945 vs 13.004 = 99.5%, p 0.6, ties 14/20"
+  },
+  {
+   "label": "D2 load102 AXIOM mean reward above both DQN baselines",
+   "holds": false,
+   "detail": "AXIOM 12.945, single 12.978, indep 12.373"
+  }
+ ],
+ "n_judged": 5,
+ "n_fail": 1
+}

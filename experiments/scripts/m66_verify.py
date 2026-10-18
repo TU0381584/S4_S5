@@ -725,6 +725,24 @@ def main():
     C.claim("M66c seeded single N=19 collapses", "collapses in 28 of 30 seeds", c7["A19"]["seeded_collapsed"], "{:d}")
     C.claim("M66c seeded single N=19 gap", "trails AXIOM by 32.3 points", 100 * c7["A19"]["prio_test"]["diff"], "{:.1f}")
 
+    # ---------------- M66d (addendum 3), recomputed here from the raw logs
+    S40, S20 = list(range(4000, 4040)), list(range(4000, 4020))
+    d1 = {k: seeds_of("m66d_fresh/D1_A_n3", k, S40) for k in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}
+    C.claim("M66d D1 fraction of oracle", "AXIOM reached 98.1\\% of the oracle, tying it in 27 seeds", 100 * mean(d1["axiom2"]) / mean(d1["rule_static"]), "{:.1f}")
+    C.claim("M66d D1 oracle ties", "tying it in 27 seeds", paired(d1["axiom2"], d1["rule_static"])["ties"], "{:d}")
+    t_ = {k: paired(d1["axiom2"], d1[k]) for k in ("single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    h_ = holm({k: v["p"] for k, v in t_.items()})
+    C.note("M66d D1 beats independent DQN and MAPPO at Holm p<=0.0001",
+           all(t_[k]["diff"] > 0 and h_[k] <= 0.0001 for k in ("independent_dqn", "mappo_tuned")), h_)
+    C.claim("M66d D1 single lead", "was only $+0.159$ per step", t_["single_agent_dqn"]["diff"], "{:+.3f}")
+    C.claim("M66d D1 single p", "per step, at $p=0.090$", t_["single_agent_dqn"]["p"], "{:.3f}")
+    d2 = {k: seeds_of("m66d_fresh/D2_load102", k, S20) for k in ("axiom2", "single_agent_dqn", "rule_static")}
+    C.note("M66d D2 within 0.5% of oracle", len(d2["axiom2"]) == 20 and 100 - 100 * mean(d2["axiom2"]) / mean(d2["rule_static"]) <= 0.5, None)
+    C.claim("M66d D2 single", "12.978 against 12.945 per step", mean(d2["single_agent_dqn"]), "{:.3f}")
+    C.claim("M66d D2 AXIOM", "12.978 against 12.945 per step", mean(d2["axiom2"]), "{:.3f}")
+    md = json.load(open(f"{ROOT}/m66d_analysis.json"))
+    C.note("M66d four of five checks held", md["n_judged"] == 5 and md["n_fail"] == 1 and "four of its five checks held" in C.tex, None)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}

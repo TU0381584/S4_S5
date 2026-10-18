@@ -2563,6 +2563,82 @@
   "ok": true
  },
  {
+  "label": "M66d D1 fraction of oracle",
+  "snippet": "AXIOM reached 98.1\\% of the oracle, tying it in 27 seeds",
+  "computed": 98.06100103387293,
+  "formatted": "98.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66d D1 oracle ties",
+  "snippet": "tying it in 27 seeds",
+  "computed": 27,
+  "formatted": "27",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66d D1 beats independent DQN and MAPPO at Holm p<=0.0001",
+  "snippet": null,
+  "computed": {
+   "mappo_tuned": 2.702365022226397e-06,
+   "independent_dqn": 9.776597501126462e-05,
+   "single_agent_dqn": 0.08971783776750893
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66d D1 single lead",
+  "snippet": "was only $+0.159$ per step",
+  "computed": 0.15941169354306167,
+  "formatted": "+0.159",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66d D1 single p",
+  "snippet": "per step, at $p=0.090$",
+  "computed": 0.08971783776750893,
+  "formatted": "0.090",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66d D2 within 0.5% of oracle",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M66d D2 single",
+  "snippet": "12.978 against 12.945 per step",
+  "computed": 12.977568545106076,
+  "formatted": "12.978",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66d D2 AXIOM",
+  "snippet": "12.978 against 12.945 per step",
+  "computed": 12.944580796475076,
+  "formatted": "12.945",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M66d four of five checks held",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -2589,9 +2665,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 259",
+  "label": "text quotes the final check count of 268",
   "snippet": null,
-  "computed": 259,
+  "computed": 268,
   "formatted": null,
   "in_tex": null,
   "ok": true
