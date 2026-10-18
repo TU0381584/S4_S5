@@ -1,0 +1,21 @@
+f_axiom2_mlp_8100|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology fully_connected --out-dir ../experiments/results/m67_confirm_envB/B_n7_fully_connected --seeds 8100 8101 8102 8103 8104
+f_axiom2_mlp_8105|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology fully_connected --out-dir ../experiments/results/m67_confirm_envB/B_n7_fully_connected --seeds 8105 8106 8107 8108 8109
+f_axiom2_8100|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology fully_connected --out-dir ../experiments/results/m67_confirm_envB/B_n7_fully_connected --seeds 8100 8101 8102 8103 8104
+f_axiom2_8105|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology fully_connected --out-dir ../experiments/results/m67_confirm_envB/B_n7_fully_connected --seeds 8105 8106 8107 8108 8109
+f_independent_dqn_8100|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology fully_connected --out-dir ../experiments/results/m67_confirm_envB/B_n7_fully_connected --seeds 8100 8101 8102 8103 8104
+f_independent_dqn_8105|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology fully_connected --out-dir ../experiments/results/m67_confirm_envB/B_n7_fully_connected --seeds 8105 8106 8107 8108 8109
+r_axiom2_mlp_8100|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology ring --out-dir ../experiments/results/m67_confirm_envB/B_n7_ring --seeds 8100 8101 8102 8103 8104
+r_axiom2_mlp_8105|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology ring --out-dir ../experiments/results/m67_confirm_envB/B_n7_ring --seeds 8105 8106 8107 8108 8109
+r_axiom2_8100|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology ring --out-dir ../experiments/results/m67_confirm_envB/B_n7_ring --seeds 8100 8101 8102 8103 8104
+r_axiom2_8105|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology ring --out-dir ../experiments/results/m67_confirm_envB/B_n7_ring --seeds 8105 8106 8107 8108 8109
+r_independent_dqn_8100|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology ring --out-dir ../experiments/results/m67_confirm_envB/B_n7_ring --seeds 8100 8101 8102 8103 8104
+r_independent_dqn_8105|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology ring --out-dir ../experiments/results/m67_confirm_envB/B_n7_ring --seeds 8105 8106 8107 8108 8109
+h_axiom2_mlp_8100|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m67_confirm_envB/B_n7_hex --seeds 8100 8101 8102 8103 8104
+h_axiom2_mlp_8105|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m67_confirm_envB/B_n7_hex --seeds 8105 8106 8107 8108 8109
+h_axiom2_8100|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m67_confirm_envB/B_n7_hex --seeds 8100 8101 8102 8103 8104
+h_axiom2_8105|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m67_confirm_envB/B_n7_hex --seeds 8105 8106 8107 8108 8109
+h_independent_dqn_8100|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology hex --out-dir ../experiments/results/m67_confirm_envB/B_n7_hex --seeds 8100 8101 8102 8103 8104
+h_independent_dqn_8105|../experiments/scripts/m64_run.py --arm independent_dqn --n 7 --topology hex --out-dir ../experiments/results/m67_confirm_envB/B_n7_hex --seeds 8105 8106 8107 8108 8109
+f_single|../experiments/scripts/m66c_seeded_single.py --arm single_agent_dqn --n 7 --topology fully_connected --out-dir ../experiments/results/m67_confirm_envB/B_n7_fully_connected --seeds 8100 8101 8102 8103 8104 8105 8106 8107 8108 8109
+r_single|../experiments/scripts/m66c_seeded_single.py --arm single_agent_dqn --n 7 --topology ring --out-dir ../experiments/results/m67_confirm_envB/B_n7_ring --seeds 8100 8101 8102 8103 8104 8105 8106 8107 8108 8109
+h_single|../experiments/scripts/m66c_seeded_single.py --arm single_agent_dqn --n 7 --topology hex --out-dir ../experiments/results/m67_confirm_envB/B_n7_hex --seeds 8100 8101 8102 8103 8104 8105 8106 8107 8108 8109

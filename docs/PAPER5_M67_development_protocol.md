@@ -35,4 +35,30 @@ The goal is to make AXIOM's training reliable enough that it beats both DQN base
 
 ## Variant log
 
-(filled in as development proceeds)
+**V1: validation-based checkpoint selection, all value-based arms.** Run 02:08 to 04:46 on 2026-10-19; analysis in experiments/results/m67_dev/V1/analysis.json. Target not met.
+
+- Primary cell, Env A N=3:
+  - AXIOM reaches 12.816 against the oracle's 12.815, so it is at the ceiling.
+  - Selection lifts the single-agent DQN almost as much, so AXIOM's lead falls from +0.350 with last checkpoints (p 0.036) to +0.046 (p 0.084, W/T/L 9/6/5).
+  - Against the independent DQN AXIOM leads by +0.646 (p 1e-4, 19/1/0).
+- Secondary cell, load 1.02: AXIOM leads the single-agent DQN by +0.067 (p 0.068) and the independent DQN by +0.211 (p 0.048).
+- Guard cells are unharmed: +0.277 in Env B N=3 and +0.072 in Env A N=7 ring, against last-checkpoint AXIOM v2 on the same runs.
+
+Decision: development in the Env A three-gNB cell stops under rule 8. AXIOM already matches the oracle there, and the single-agent DQN comes within 0.05 of it once its own checkpoints are selected. No legitimate AXIOM change can open a decisive gap. Variants used: 1 of 8.
+
+## Amendment 1 (committed 2026-10-19, after V1 and before any confirmatory run)
+
+Env B at seven gNBs has real headroom: the tuned local rule earns about 27.4 and the learners 22 to 25. The manuscript currently says AXIOM does no better than the DQN baselines there.
+
+Existing results show that AXIOM v2 with the per-node MLP encoder, already an arm in the paper (axiom2_mlp), beats both DQN baselines there more consistently than the graph-attention encoder.
+- On fresh seeds it beats the single-agent DQN at p ≤ 0.037 and the independent DQN at p ≤ 0.02 in all three layouts.
+- On the main sample it beats the independent DQN at p ≤ 0.007 in every layout, but not the single-agent DQN (p 0.12 to 0.45).
+
+This observation was made on reported samples, so it is a hypothesis, not a result. It is tested once on new seeds below. No V1 checkpoint selection is used, so every arm is trained exactly as in the manuscript, and the single-agent DQN uses the seeded wrapper.
+
+| Cell | Seeds | Arms | Decisive if |
+|---|---|---|---|
+| Env B, N=7, fully-connected, ring, hex | 8100-8109 | AXIOM v2 MLP, AXIOM v2 (GAT), seeded single-agent DQN, independent DQN | AXIOM v2 MLP beats the single-agent DQN and the independent DQN on reward under every layout, all 6 comparisons at Holm-adjusted p < 0.05. The same 6 comparisons for AXIOM v2 with GAT are reported, not predicted. |
+
+The result is reported whether or not it is decisive. If it is decisive, adopting the MLP encoder as AXIOM's encoder would be a design change. Every campaign that uses AXIOM would then need the MLP encoder before the manuscript changes. The paper would also have to disclose that the change was chosen after seeing these samples, and that only this confirmation is independent of that choice.
+

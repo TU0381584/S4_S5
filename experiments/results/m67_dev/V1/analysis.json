@@ -1,0 +1,120 @@
+{
+ "A3_base": {
+  "n": 20,
+  "axiom": 12.815908693567234,
+  "oracle": 12.815494352546917,
+  "axiom_oracle_ties": 10,
+  "single_agent_dqn": {
+   "n": 20,
+   "diff": 0.04585919675627661,
+   "wins": 9,
+   "ties": 6,
+   "losses": 5,
+   "p": 0.08428387967828298
+  },
+  "single_agent_dqn_ties_oracle": 11,
+  "single_agent_dqn_last": {
+   "n": 20,
+   "diff": 0.34962989365869773,
+   "wins": 11,
+   "ties": 6,
+   "losses": 3,
+   "p": 0.03546470751403722
+  },
+  "independent_dqn": {
+   "n": 20,
+   "diff": 0.646193090193848,
+   "wins": 19,
+   "ties": 1,
+   "losses": 0,
+   "p": 0.0001318338889828333
+  },
+  "independent_dqn_ties_oracle": 1,
+  "independent_dqn_last": {
+   "n": 20,
+   "diff": 0.7210782588088539,
+   "wins": 18,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.0007076263427734375
+  },
+  "axiom_selected_vs_last": {
+   "n": 20,
+   "diff": 0.19561425030946697,
+   "wins": 8,
+   "ties": 10,
+   "losses": 2,
+   "p": 0.05933611988090862
+  }
+ },
+ "A3_load102": {
+  "n": 20,
+  "axiom": 13.03950769820473,
+  "oracle": 12.962945792967014,
+  "axiom_oracle_ties": 7,
+  "single_agent_dqn": {
+   "n": 20,
+   "diff": 0.06700002624624543,
+   "wins": 13,
+   "ties": 3,
+   "losses": 4,
+   "p": 0.06837655952437323
+  },
+  "single_agent_dqn_ties_oracle": 5,
+  "single_agent_dqn_last": {
+   "n": 20,
+   "diff": 0.4623984927473151,
+   "wins": 15,
+   "ties": 1,
+   "losses": 4,
+   "p": 0.005491205694554839
+  },
+  "independent_dqn": {
+   "n": 20,
+   "diff": 0.21067880948743084,
+   "wins": 12,
+   "ties": 0,
+   "losses": 8,
+   "p": 0.04844093322753906
+  },
+  "independent_dqn_ties_oracle": 0,
+  "independent_dqn_last": {
+   "n": 20,
+   "diff": 0.5234102106944294,
+   "wins": 16,
+   "ties": 0,
+   "losses": 4,
+   "p": 0.0004825592041015625
+  },
+  "axiom_selected_vs_last": {
+   "n": 20,
+   "diff": 0.0400650652374428,
+   "wins": 9,
+   "ties": 8,
+   "losses": 3,
+   "p": 0.04986020375690694
+  }
+ },
+ "G_B3": {
+  "n": 10,
+  "diff": 0.276713122601184,
+  "wins": 3,
+  "ties": 6,
+  "losses": 1,
+  "p": 0.25
+ },
+ "G_A7_ring": {
+  "n": 10,
+  "diff": 0.07157447350079486,
+  "wins": 1,
+  "ties": 9,
+  "losses": 0,
+  "p": 1.0
+ },
+ "target_met": {
+  "A3_base": false,
+  "A3_load102": false,
+  "G_B3": true,
+  "G_A7_ring": true
+ }
+}
