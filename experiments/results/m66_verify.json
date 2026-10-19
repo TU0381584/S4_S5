@@ -2817,6 +2817,112 @@
   "ok": true
  },
  {
+  "label": "reframe: short LR sentence 2.37",
+  "snippet": "earns 2.37 less per step than the current design in all ten seeds",
+  "computed": 2.3662961173659824,
+  "formatted": "2.37",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: short LR sentence, ten of ten seeds",
+  "snippet": null,
+  "computed": {
+   "n": 10,
+   "diff": 2.3662961173659824,
+   "wins": 10,
+   "ties": 0,
+   "losses": 0,
+   "p": 0.001953125
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: DP drop low",
+  "snippet": "lowers reward by 0.77 to 1.25 per step",
+  "computed": 0.7698360495580115,
+  "formatted": "0.77",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: DP drop high",
+  "snippet": "lowers reward by 0.77 to 1.25 per step",
+  "computed": 1.2457069055659784,
+  "formatted": "1.25",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: no DP drop survives Holm",
+  "snippet": null,
+  "computed": {
+   "4.0": 0.625,
+   "0.5": 0.625,
+   "1.0": 0.625,
+   "2.0": 0.625
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: smallest DP epsilon about 2,600",
+  "snippet": "$\\varepsilon$ of about 2{,}600 or more",
+  "computed": 2600.0,
+  "formatted": "2600",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: AXIOM spike precision 0.98",
+  "snippet": "with block precision at 0.98, and Supplementary",
+  "computed": 0.9796397858262882,
+  "formatted": "0.98",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: every AXIOM spike precision rounds to 0.98",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: dropout and churn costs significant for every policy",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: live loss 0.000% in every sample at both loads",
+  "snippet": null,
+  "computed": [
+   62,
+   0.0
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: zero below-floor grants across more than 100,000 readings",
+  "snippet": null,
+  "computed": [
+   0,
+   107200
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -2843,9 +2949,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 284",
+  "label": "text quotes the final check count of 295",
   "snippet": null,
-  "computed": 284,
+  "computed": 295,
   "formatted": null,
   "in_tex": null,
   "ok": true

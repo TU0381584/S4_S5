@@ -813,6 +813,39 @@ def main():
            c7_["B3"]["tests"]["single_seeded"]["diff"] > 0 and c7_["B3"]["tests"]["single_seeded"]["p_holm"] < 0.0001
            and c7_["A19"]["prio_test"]["diff"] > 0 and c7_["A19"]["prio_test"]["p"] < 0.05, None)
 
+    # ---------------- shortened main text (2026-10-19): summary sentences that restate numbers whose full text moved to the supplement
+    lr_ = paired(seeds_of("m64/n3_fully_connected", "axiom2", S10), seeds_of("m64/n3_fully_connected", "axiom", S10))
+    C.claim("reframe: short LR sentence 2.37", "earns 2.37 less per step than the current design in all ten seeds", lr_["diff"], "{:.2f}")
+    C.note("reframe: short LR sentence, ten of ten seeds", lr_["wins"] == 10 and lr_["n"] == 10, lr_)
+    cen_ = seeds_of("m65_reviewer/base", "axiom2", S10)
+    dp_ = {sg: paired(cen_, seeds_of("m65_m3", f"fl_gat_ctde_sigma{sg}", S10)) for sg in ("0.5", "1.0", "2.0", "4.0")}
+    C.claim("reframe: DP drop low", "lowers reward by 0.77 to 1.25 per step", min(v["diff"] for v in dp_.values()), "{:.2f}")
+    C.claim("reframe: DP drop high", "lowers reward by 0.77 to 1.25 per step", max(v["diff"] for v in dp_.values()), "{:.2f}")
+    hdp_ = holm({k: v["p"] for k, v in dp_.items()})
+    C.note("reframe: no DP drop survives Holm", all(v >= 0.05 for v in hdp_.values()) and "no drop survives Holm correction at ten seeds" in C.main, hdp_)
+    eps_min = min(v[1] for v in eps.values()) if eps else None
+    C.claim("reframe: smallest DP epsilon about 2,600", "$\\varepsilon$ of about 2{,}600 or more", float(f"{eps_min:.2g}") if eps_min else None, "{:,.0f}".replace(",", "{,}") if False else "{:.0f}", tol=0.5)
+    m4s = json.load(open(f"{ROOT}/m65_m4/m4_summary.json"))["cells"]
+    C.claim("reframe: AXIOM spike precision 0.98", "with block precision at 0.98, and Supplementary", 
+            float(np.mean([m4s[f"gat_ctde|spike|{v}"]["precision_mean"] for v in (1, 2, 3)])), "{:.2f}")
+    C.note("reframe: every AXIOM spike precision rounds to 0.98",
+           all(round(m4s[f"gat_ctde|spike|{v}"]["precision_mean"], 2) == 0.98 for v in (1, 2, 3)), None)
+    C.note("reframe: dropout and churn costs significant for every policy",
+           all(c_["cost_mean"] > 0 and c_["p_holm"] is not None and c_["p_holm"] < 0.05 for k, c_ in m4s.items() if "|spike|" not in k), None)
+    live_loss = []
+    for f_ in ("result_full_3ue.json", "result_full_6ue.json"):
+        for smp in json.load(open(f"{ROOT}/m49b_1/{f_}"))["samples"]:
+            live_loss += [v for k, v in smp.items() if k.endswith("_loss_pct")]
+    C.note("reframe: live loss 0.000% in every sample at both loads", len(live_loss) > 0 and max(live_loss) == 0
+           and "with 0.000\\% loss at both loads" in C.main, (len(live_loss), max(live_loss) if live_loss else None))
+    readings, below = 0, 0
+    for g_ in ("m49b_2/gate_report.md", "m49b_3/gate_report.md"):
+        txt = open(f"{ROOT}/{g_}").read()
+        mm = re.search(r"(\d+) below-floor samples across\s+([\d,]+)\s+total", txt)
+        below += int(mm.group(1)); readings += int(mm.group(2).replace(",", ""))
+    C.note("reframe: zero below-floor grants across more than 100,000 readings", below == 0 and readings > 100000
+           and "zero below-floor grants across more than 100{,}000 readings" in C.main, (below, readings))
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}
