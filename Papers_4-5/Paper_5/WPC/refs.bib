@@ -1,11 +1,10 @@
 % Bibliography for the paper #5 draft. Two parts:
 %   1. Methodology citations (below): our own prior work, and the core
-%      methods (GAT, FedAvg, FedProx, DP-SGD, zCDP) the architecture and
-%      training regimen are built from. fedprox/zcdp page ranges were
-%      originally flagged VERIFY (could not be confirmed from a local
-%      source) and have since been confirmed against the publishers' own
-%      pages (proceedings.mlsys.org for fedprox; Springer's LNCS 9985
-%      chapter page, DOI 10.1007/978-3-662-53641-4_24, for zcdp).
+%      methods (DP-SGD, zCDP) the training regimen is built from. GAT, FedAvg
+%      and FedProx are cited through IEEE sources (end of file) so that every
+%      reference is IEEE Xplore, ACM or Scopus indexed. The zcdp page range is
+%      confirmed against Springer's LNCS 9985 chapter page,
+%      DOI 10.1007/978-3-662-53641-4_24.
 %   2. Literature-review citations (further below): 31 entries from the
 %      author's skeleton bibliography plus 7 specifically-named
 %      prior-art works, ALL individually verified against CrossRef's
@@ -35,29 +34,8 @@
   doi       = {10.1109/ICRAIE65839.2025.11239148}
 }
 
-@inproceedings{gat,
-  title     = {Graph Attention Networks},
-  author    = {Veli{\v{c}}kovi{\'c}, Petar and Cucurull, Guillem and Casanova, Arantxa and Romero, Adriana and Li{\`o}, Pietro and Bengio, Yoshua},
-  booktitle = {International Conference on Learning Representations (ICLR)},
-  year      = {2018}
-}
 
-@inproceedings{fedavg,
-  title     = {Communication-Efficient Learning of Deep Networks from Decentralized Data},
-  author    = {McMahan, Brendan and Moore, Eider and Ramage, Daniel and Hampson, Seth and y Arcas, Blaise Ag{\"u}era},
-  booktitle = {Proceedings of the 20th International Conference on Artificial Intelligence and Statistics (AISTATS)},
-  pages     = {1273--1282},
-  year      = {2017}
-}
 
-@inproceedings{fedprox,
-  title     = {Federated Optimization in Heterogeneous Networks},
-  author    = {Li, Tian and Sahu, Anit Kumar and Zaheer, Manzil and Sanjabi, Maziar and Talwalkar, Ameet and Smith, Virginia},
-  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},
-  volume    = {2},
-  pages     = {429--450},
-  year      = {2020}
-}
 
 @inproceedings{dpsgd,
   title     = {Deep Learning with Differential Privacy},
@@ -409,4 +387,37 @@
   pages   = {3223--3240},
   year    = {2025},
   doi     = {10.1109/TMC.2024.3505781}
+}
+
+% IEEE replacements for the ICLR (GAT), AISTATS (FedAvg) and MLSys (FedProx) originals, so that every
+% reference is IEEE Xplore, ACM or Scopus indexed; metadata verified against Crossref on 2026-10-19.
+@article{wu2021gnnsurvey,
+  author  = {Wu, Zonghan and Pan, Shirui and Chen, Fengwen and Long, Guodong and Zhang, Chengqi and Yu, Philip S.},
+  title   = {A Comprehensive Survey on Graph Neural Networks},
+  journal = {IEEE Transactions on Neural Networks and Learning Systems},
+  volume  = {32},
+  number  = {1},
+  pages   = {4--24},
+  year    = {2021},
+  doi     = {10.1109/TNNLS.2020.2978386}
+}
+@article{lim2020flmec,
+  author  = {Lim, Wei Yang Bryan and Luong, Nguyen Cong and Hoang, Dinh Thai and Jiao, Yutao and Liang, Ying-Chang and Yang, Qiang and Niyato, Dusit and Miao, Chunyan},
+  title   = {Federated Learning in Mobile Edge Networks: A Comprehensive Survey},
+  journal = {IEEE Communications Surveys \& Tutorials},
+  volume  = {22},
+  number  = {3},
+  pages   = {2031--2063},
+  year    = {2020},
+  doi     = {10.1109/COMST.2020.2986024}
+}
+@article{li2020flchallenges,
+  author  = {Li, Tian and Sahu, Anit Kumar and Talwalkar, Ameet and Smith, Virginia},
+  title   = {Federated Learning: Challenges, Methods, and Future Directions},
+  journal = {IEEE Signal Processing Magazine},
+  volume  = {37},
+  number  = {3},
+  pages   = {50--60},
+  year    = {2020},
+  doi     = {10.1109/MSP.2020.2975749}
 }
