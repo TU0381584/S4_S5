@@ -2923,6 +2923,122 @@
   "ok": true
  },
  {
+  "label": "reframe: map AXIOM URLLC gate",
+  "snippet": "at 1.00 and 0.97, while closing the mMTC gate to 0.08",
+  "computed": 0.9961940476190492,
+  "formatted": "1.00",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map AXIOM eMBB gate",
+  "snippet": "at 1.00 and 0.97, while closing the mMTC gate to 0.08",
+  "computed": 0.9690994778613197,
+  "formatted": "0.97",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map AXIOM mMTC gate",
+  "snippet": "while closing the mMTC gate to 0.08",
+  "computed": 0.07886764132553606,
+  "formatted": "0.08",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map AXIOM sheds mMTC and keeps priority open at every one of 19 gNBs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: map single-agent every gate open at 0.99",
+  "snippet": null,
+  "computed": [
+   0.9932,
+   0.9937,
+   0.9906
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: map independent mMTC gate",
+  "snippet": "the independent DQN closes the mMTC gate only to 0.92",
+  "computed": 0.9212816764132561,
+  "formatted": "0.92",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map MAPPO eMBB gate",
+  "snippet": "partly closes the eMBB gate, to 0.82",
+  "computed": 0.8224136591478685,
+  "formatted": "0.82",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map MAPPO mMTC gate",
+  "snippet": "while leaving mMTC open at 0.69",
+  "computed": 0.6899681286549711,
+  "formatted": "0.69",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map figure plots the recomputed per-gNB openness",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: trend AXIOM low",
+  "snippet": "stays between 97.1\\% and 98.9\\% from three to nineteen gNBs",
+  "computed": 97.07296296296296,
+  "formatted": "97.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: trend AXIOM high",
+  "snippet": "stays between 97.1\\% and 98.9\\% from three to nineteen gNBs",
+  "computed": 98.85555555555555,
+  "formatted": "98.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: trend every baseline falls from 3 to 19 gNBs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: trend gap at 19 gNBs",
+  "snippet": "grows to 32.0 points at nineteen gNBs",
+  "computed": 31.97481481481482,
+  "formatted": "32.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: trend figure plots the recomputed compliance",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -2949,9 +3065,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 295",
+  "label": "text quotes the final check count of 309",
   "snippet": null,
-  "computed": 295,
+  "computed": 309,
   "formatted": null,
   "in_tex": null,
   "ok": true

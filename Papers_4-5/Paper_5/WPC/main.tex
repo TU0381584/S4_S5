@@ -4,6 +4,7 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{xcolor}
+\usepackage{colortbl}
 \usepackage{algorithm}
 \usepackage{algorithmic}
 \usepackage{tikz}
@@ -358,7 +359,7 @@ The comparison rests on four quantities, the first being mean reward per step, t
 \centering
 \footnotesize
 {\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth} >{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.185\textwidth}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth} >{\columncolor{blue!7}\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.185\textwidth}@{}}
 \toprule
 Property & AXIOM & Single-agent DQN & Independent DQN & MAPPO \\
 \midrule
@@ -387,7 +388,7 @@ AXIOM's clearest advantage appears as the cluster grows. In Env A it keeps prior
 Arm & Reward/step & Precision & Collapsed & URLLC & eMBB \\
 \midrule
 Oracle rule & 12.835 [12.77, 12.91] & 1.000 & 0/30 & 1.000 & 1.000 \\
-AXIOM & 12.698 [12.49, 12.86] & 0.992 & 0/30 & 0.998 & 0.979 \\
+\rowcolor{blue!7}AXIOM & 12.698 [12.49, 12.86] & 0.992 & 0/30 & 0.998 & 0.979 \\
 AXIOM, MLP encoder & 12.640 [12.46, 12.79] & 0.986 & 0/30 & 1.000 & 0.976 \\
 Single-agent DQN & 12.387 [12.11, 12.63] & 0.990 & 0/30 & 0.994 & 0.941 \\
 \quad at LR $10^{-4}$ & 11.477 [10.61, 12.09] & 0.944 & 0/30 & 0.979 & 0.866 \\
@@ -420,16 +421,25 @@ We grow the cluster in Env A from three gNBs to seven and nineteen under three l
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=\columnwidth]{figures/fig6_m6_topology.pdf}
-\caption{Env A scaling. a, Collapse rate pooled over layouts, with collapsed over
-total cells. b, Mean URLLC and eMBB compliance at 19 gNBs by layout, 30 seeds
-per cell, per-seed points behind the mean and 95\% CI.}
+\includegraphics[width=\textwidth]{figures/fig6_scaling_trend.pdf}
+\caption{Env A as the cluster grows, all layouts pooled. a, Priority-slice compliance, mean and 95\% CI.
+b, Share of trained policies that collapse into accept-all. c, Parameters used at execution.}
 \label{fig:m6-topology}
+\end{figure}
+
+\begin{figure}[!t]
+\centering
+\includegraphics[width=\textwidth]{figures/fig13_gnb_map.pdf}
+\caption{Decision map of the 19-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true
+position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is.}
+\label{fig:gnb-map}
 \end{figure}
 
 At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\% and 94.4\%, against 91.4\% and 61.0\% for the single-agent DQN, 94.2\% and 55.0\% for the independent DQN, and 87.0\% and 48.4\% for MAPPO. On fresh seeds the two DQN baselines reach up to 83.3\%, as Section~\ref{sec:results-verify} reports. Under every layout it leads all three baselines on priority-slice compliance by 17.9 to 29.9 percentage points and on cluster reward by 3.40 to 7.07 per step. All 18 comparisons hold after Holm correction, at adjusted $p\leq0.011$.
 
-At nineteen gNBs the gaps widen, and they answer hypothesis H4. AXIOM keeps URLLC and eMBB at 99.4\% and 95.1\%, a pooled priority-slice compliance of 97.3\% with 95\% CI [95.2\%, 99.0\%]. The single-agent DQN, the independent DQN, and MAPPO keep 65.3\%, 56.4\%, and 60.6\%. Under every layout AXIOM leads every baseline by 31.0 to 42.1 percentage points of compliance and by 10.7 to 18.6 reward per step, winning 28 to 30 of 30 seeds. All 18 comparisons hold after Holm correction, at adjusted $p\leq0.0001$. Fig.~\ref{fig:m6-topology}a shows the single-agent DQN collapsing into accepting every request in 84 of its 90 cells, against 3 for the independent DQN, 1 for AXIOM, and none for MAPPO. The original AXIOM kept priority-slice compliance at only 79.1\% at this size, so the faster learning rate matters most at scale.
+At nineteen gNBs the gaps widen, and they answer hypothesis H4. AXIOM keeps URLLC and eMBB at 99.4\% and 95.1\%, a pooled priority-slice compliance of 97.3\% with 95\% CI [95.2\%, 99.0\%]. The single-agent DQN, the independent DQN, and MAPPO keep 65.3\%, 56.4\%, and 60.6\%. Under every layout AXIOM leads every baseline by 31.0 to 42.1 percentage points of compliance and by 10.7 to 18.6 reward per step, winning 28 to 30 of 30 seeds. All 18 comparisons hold after Holm correction, at adjusted $p\leq0.0001$. Fig.~\ref{fig:m6-topology}b shows the single-agent DQN collapsing into accepting every request in 84 of its 90 cells, against 3 for the independent DQN, 1 for AXIOM, and none for MAPPO. The original AXIOM kept priority-slice compliance at only 79.1\% at this size, so the faster learning rate matters most at scale.
+
+Fig.~\ref{fig:m6-topology}a traces the same result across sizes. AXIOM's priority-slice compliance stays between 97.1\% and 98.9\% from three to nineteen gNBs while every baseline falls, so its lead over the best baseline grows to 32.0 points at nineteen gNBs, with a parameter count that does not change. Fig.~\ref{fig:gnb-map} shows where that gap comes from, gNB by gNB, in the nineteen-gNB hex cluster. A gNB's admission gate for a slice is the PRB-ratio ceiling that its accept and reject decisions move between the slice's floor and cap, and we average its openness over every evaluation step of all 30 seeds. AXIOM keeps the URLLC and eMBB gates open at every gNB, at 1.00 and 0.97, while closing the mMTC gate to 0.08, so it sheds the right slice everywhere in the cluster. The single-agent DQN leaves every gate open at 0.99, the independent DQN closes the mMTC gate only to 0.92, and MAPPO partly closes the eMBB gate, to 0.82, while leaving mMTC open at 0.69.
 
 
 \begin{figure}[t]
@@ -477,7 +487,7 @@ Shed all mMTC & 6.337 [6.00, 6.67] & 0.625 & 0.367 & 0.371 \\
 Tuned local rule & 9.252 [9.12, 9.40] & 0.989 & 0.367 & 0.390 \\
 Tuned neighbour-aware rule & 9.041 [8.93, 9.15] & 0.988 & 0.283 & 0.901 \\
 \midrule
-AXIOM & 8.832 [8.64, 9.03] & 0.958 & 0.344 & 0.406 \\
+\rowcolor{blue!7}AXIOM & 8.832 [8.64, 9.03] & 0.958 & 0.344 & 0.406 \\
 AXIOM, MLP encoder & 8.948 [8.77, 9.13] & 0.974 & 0.337 & 0.452 \\
 Single-agent DQN & 7.495 [7.20, 7.77] & 0.866 & 0.284 & 0.412 \\
 Independent DQN & 7.794 [7.44, 8.13] & 0.910 & 0.270 & 0.441 \\
@@ -518,7 +528,7 @@ We inject three mid-episode disruptions, gNB dropout, demand spikes, and agent c
 \toprule
 Policy & Parameters, 3/7/19 gNBs & ms per step, 3/7/19 gNBs & Training s, 3/19 gNBs \\
 \midrule
-AXIOM & 7,782 / 7,782 / 7,782 & 1.04 / 1.98 / 4.79 & 624 / 892 \\
+\rowcolor{blue!7}AXIOM & 7,782 / 7,782 / 7,782 & 1.04 / 1.98 / 4.79 & 624 / 892 \\
 AXIOM, MLP encoder & 3,190 / 3,190 / 3,190 & 0.77 / 1.69 / 4.46 & 503 / -- \\
 Single-agent DQN & 21,250 / 26,370 / 41,730 & 0.55 / 1.30 / 3.58 & 85 / 202 \\
 Independent DQN & 55,302 / 129,038 / 350,246 & 0.59 / 1.38 / 3.73 & 181 / 1054 \\
@@ -535,7 +545,7 @@ We checked the results in three ways, with every pass criterion fixed before the
 
 Second, four further runs retrained every arm on fresh seeds, 10 to 40 per cell, and 81 of their 90 pre-stated checks held. At seven and nineteen gNBs in Env A AXIOM kept 93.4\% to 100\% priority-slice compliance and beat every baseline under every layout, at Holm-adjusted $p\leq0.032$ in all but one ten-seed cell, which a twenty-seed rerun then confirmed at $p\leq0.007$. In Env B at three gNBs it again beat the static rule and every learned baseline at Holm-adjusted $p\leq0.0002$, the tuned rules again beat every learned policy, and the disruption, federation, and privacy results held as reported. The Supplementary Material reports every number from these runs.
 
-The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set. AXIOM's small lead over the single-agent DQN in Env A at three gNBs did not recur, at $-0.021$ and $+0.159$ per step on 20 and 40 new seeds, and at 1.02 times the load that baseline matched AXIOM. Two weak AXIOM seeds also left one ten-seed load sample 3.2\% short of the oracle, a gap that a twenty-seed rerun did not reproduce. Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes from the raw logs the numbers in every results table and the key results sentences, and all 295 of its checks pass.
+The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set. AXIOM's small lead over the single-agent DQN in Env A at three gNBs did not recur, at $-0.021$ and $+0.159$ per step on 20 and 40 new seeds, and at 1.02 times the load that baseline matched AXIOM. Two weak AXIOM seeds also left one ten-seed load sample 3.2\% short of the oracle, a gap that a twenty-seed rerun did not reproduce. Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes from the raw logs the numbers in every results table and the key results sentences, and all 309 of its checks pass.
 
 \subsection{Live Deployment}
 \label{sec:results-m8}

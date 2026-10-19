@@ -179,4 +179,16 @@ c, Env A at 19 gNBs on the ring layout.}
 
 Fig.~\ref{fig:curves} shows how the four learned policies train. MAPPO rises fastest in the first few episodes but plateaus lowest in every cell, ending at 6.4, 16.0, and 62.9 in the three panels. The value-based arms rise more slowly but further. At nineteen gNBs AXIOM keeps improving to about 85 per step over the last 20 training episodes, while the two DQN baselines settle near 71 and 74.
 
+
+Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results that the main paper pools over layouts.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig6_m6_topology.pdf}
+\caption{Env A scaling. a, Collapse rate pooled over layouts, with collapsed over
+total cells. b, Mean URLLC and eMBB compliance at 19 gNBs by layout, 30 seeds
+per cell, per-seed points behind the mean and 95\% CI.}
+\label{fig:s-layouts}
+\end{figure}
+
 \end{document}

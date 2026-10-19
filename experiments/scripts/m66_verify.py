@@ -454,10 +454,12 @@ def main():
         C.note(label, okk, (round(lo, 3), round(hi, 3), snippet))
     for arm, nm in names.items():
         r = A[arm]; lo, hi = ci([x["reward"] for x in r.values()])
-        txt = [l for l in C.tex.splitlines() if l.startswith(nm + " & ") and "[" in l]
+        txt = [re.sub(r"^\\rowcolor\{[^}]*\}", "", l) for l in C.tex.splitlines()]   # table rows may carry a highlight
+        txt = [l for l in txt if l.startswith(nm + " & ") and "[" in l]
         ci_claim(f"T3 {arm} CI", txt[0] if txt else "MISSING", [x["reward"] for x in r.values()])
     for arm, nm in bnames.items():
-        txt = [l for l in C.tex.splitlines() if l.startswith(nm + " & ") and "[" in l and "&" in l]
+        txt = [re.sub(r"^\\rowcolor\{[^}]*\}", "", l) for l in C.tex.splitlines()]
+        txt = [l for l in txt if l.startswith(nm + " & ") and "[" in l and "&" in l]
         txt = [t for t in txt if f"{mean(B[arm]):.3f}" in t]
         ci_claim(f"T4 {arm} CI", txt[0] if txt else "MISSING", [x["reward"] for x in B[arm].values()])
     d_ind = [A["axiom2"][s]["reward"] - A["independent_dqn"][s]["reward"] for s in S30]
@@ -845,6 +847,58 @@ def main():
         below += int(mm.group(1)); readings += int(mm.group(2).replace(",", ""))
     C.note("reframe: zero below-floor grants across more than 100,000 readings", below == 0 and readings > 100000
            and "zero below-floor grants across more than 100{,}000 readings" in C.main, (below, readings))
+
+    # ---------------- visual-emphasis figures (2026-10-19): scaling trend and 19-gNB decision map
+    def gate_open(path, n=19):
+        fc = {"urllc": (5, 33), "embb": (10, 66), "mmtc": (5, 11)}
+        acc, cnt = np.zeros((n, 3)), 0
+        with (gzip.open(path, "rt") if path.endswith(".gz") else open(path)) as fh:
+            for line in fh:
+                ev = json.loads(line).get("evidence")
+                if not isinstance(ev, dict) or ev.get("rollup") or "ceilings" not in ev:
+                    continue
+                for key, c in ev["ceilings"].items():
+                    g, sl = key.split(":")
+                    lo, hi = fc[sl]
+                    acc[int(g.split("-")[1]), ("urllc", "embb", "mmtc").index(sl)] += (c["max_ratio"] - lo) / (hi - lo)
+                cnt += 1
+        return acc / cnt
+    gm = {}
+    for arm in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"):
+        mats = [gate_open(p_) for s_ in S30_19 if (p_ := find_eval("m65_scaling/n19_hex", arm, s_))]
+        gm[arm] = (len(mats), np.mean(mats, axis=0))
+    ax_ = gm["axiom2"][1]
+    C.claim("reframe: map AXIOM URLLC gate", "at 1.00 and 0.97, while closing the mMTC gate to 0.08", float(ax_[:, 0].mean()), "{:.2f}")
+    C.claim("reframe: map AXIOM eMBB gate", "at 1.00 and 0.97, while closing the mMTC gate to 0.08", float(ax_[:, 1].mean()), "{:.2f}")
+    C.claim("reframe: map AXIOM mMTC gate", "while closing the mMTC gate to 0.08", float(ax_[:, 2].mean()), "{:.2f}")
+    C.note("reframe: map AXIOM sheds mMTC and keeps priority open at every one of 19 gNBs",
+           gm["axiom2"][0] == 30 and ax_[:, 2].max() < 0.1 and ax_[:, 0].min() > 0.95 and ax_[:, 1].min() > 0.95, None)
+    sg_ = gm["single_agent_dqn"][1]
+    C.note("reframe: map single-agent every gate open at 0.99", all(round(float(sg_[:, j].mean()), 2) == 0.99 for j in range(3))
+           and "The single-agent DQN leaves every gate open at 0.99" in C.main, sg_.mean(axis=0).round(4).tolist())
+    C.claim("reframe: map independent mMTC gate", "the independent DQN closes the mMTC gate only to 0.92", float(gm["independent_dqn"][1][:, 2].mean()), "{:.2f}")
+    C.claim("reframe: map MAPPO eMBB gate", "partly closes the eMBB gate, to 0.82", float(gm["mappo_tuned"][1][:, 1].mean()), "{:.2f}")
+    C.claim("reframe: map MAPPO mMTC gate", "while leaving mMTC open at 0.69", float(gm["mappo_tuned"][1][:, 2].mean()), "{:.2f}")
+    figmap = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig13_gnb_map_summary.json"))
+    C.note("reframe: map figure plots the recomputed per-gNB openness",
+           all(np.allclose(np.array(figmap["arms"][a_]["openness_per_gnb"]), gm[a_][1], atol=1e-3) for a_ in gm), None)
+    def pooled(n_, arm):
+        if n_ == 3:
+            return list(seeds_of("m65_n3_view", arm, S30).values())
+        ss = S15 if n_ == 7 else S30_19
+        return [r for t in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n{n_}_{t}", arm, ss).values()]
+    tr = {(n_, a_): 100 * float(np.mean([prio(r) for r in pooled(n_, a_)])) for n_ in (3, 7, 19)
+          for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    axs_ = [tr[(n_, "axiom2")] for n_ in (3, 7, 19)]
+    C.claim("reframe: trend AXIOM low", "stays between 97.1\\% and 98.9\\% from three to nineteen gNBs", min(axs_), "{:.1f}")
+    C.claim("reframe: trend AXIOM high", "stays between 97.1\\% and 98.9\\% from three to nineteen gNBs", max(axs_), "{:.1f}")
+    C.note("reframe: trend every baseline falls from 3 to 19 gNBs",
+           all(tr[(3, a_)] > tr[(7, a_)] > tr[(19, a_)] for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")), None)
+    gap_ = tr[(19, "axiom2")] - max(tr[(19, a_)] for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
+    C.claim("reframe: trend gap at 19 gNBs", "grows to 32.0 points at nineteen gNBs", gap_, "{:.1f}")
+    figtr = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig6_scaling_trend_summary.json"))
+    C.note("reframe: trend figure plots the recomputed compliance",
+           all(abs(figtr["arms"][a_][str(n_)]["prio_mean"] - tr[(n_, a_)]) < 1e-6 for (n_, a_) in tr), None)
 
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
