@@ -1,0 +1,50 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\title{Supplementary Material for AXIOM, Correctness-Aware Multi-Agent Slice Admission Control with Federated Training}
+\author{Manoj Prasad Kunasegran, Wai Leong Pang, Swee King Phang}
+\date{}
+\begin{document}
+\maketitle
+
+\section*{S1. Overview}
+This supplement gives the full results of the verification runs that the main paper summarises in its section on reproducibility and fresh-seed verification. Every pass criterion was fixed in a pre-registration committed before the run it judged, and every check is reported whether it held or failed.
+
+\section*{S2. Reruns on the original seeds}
+We reran eleven reported cells on their original seeds in fresh processes. AXIOM in both environments and at nineteen gNBs, its MLP variant, MAPPO, the independent DQN, the tuned rules, federated training, and the dropout cell all reproduced their stored per-seed results exactly. The rule we rely on as the Env A oracle also matched the stored oracle exactly on all 30 seeds.
+
+The single-agent DQN is the one exception to exact reproduction. Its training code builds the network before it sets the seed, so the first seed in each batch of runs starts from an unseeded initialisation, while later seeds in the batch reproduce exactly. Five reruns of one such seed earned 7.45 to 9.67 reward per step, against 8.74 stored. Dropping the affected seeds leaves every comparison with this baseline in the same direction. The one change is in Env A at three gNBs, where AXIOM's lead moves from $+0.311$ to $+0.241$ per step but now passes the Holm correction, at $p=0.039$ against 0.066.
+
+\section*{S3. First fresh-seed run}
+We retrained every arm on fresh seeds from 3000 onwards, never used before, with 20 seeds at three gNBs, 15 in Env A at nineteen gNBs, and 10 in Env B at seven gNBs. All 26 predictions stated in advance for these fresh seeds held. In Env A at three gNBs AXIOM reached 98.2\% of the oracle reward and beat the independent DQN and MAPPO at Holm-adjusted $p\leq0.002$. At nineteen gNBs it kept 95.6\% priority-slice compliance against 47.8\% to 65.5\% for the baselines, winning all six tests at Holm-adjusted $p\leq0.001$.
+
+In Env B at three gNBs AXIOM beat the static and accept-all rules in all 20 seeds and led every learned baseline at Holm-adjusted $p\leq0.0002$. The tuned local rule again beat AXIOM, earning 9.175 against 8.782 per step, and at seven gNBs it beat every learned policy at $p\leq0.004$. Two fresh-seed results are less favourable to AXIOM than the main campaigns. In Env A at three gNBs AXIOM won 11 of 20 seeds against the single-agent DQN but trailed it by 0.021 per step on average, at $p=0.07$, so the pooled 40-seed lead over that baseline does not carry over to new seeds.
+
+In Env B at seven gNBs the per-node MLP encoder beat graph attention by 1.38 reward per step, in 9 of 10 seeds at $p=0.006$, which strengthens the finding that attention adds nothing.
+
+\section*{S4. Second fresh-seed run}
+The second fresh-seed run, also specified in advance, covered Env A at seven gNBs under the ring and fully-connected layouts, at nineteen gNBs under the hex layout, and federated training, each on ten seeds. At nineteen gNBs AXIOM kept 96.5\% priority-slice compliance against 47.5\% to 65.2\% for the baselines, winning all six tests at Holm-adjusted $p\leq0.012$. Federation again showed no significant cost, at $+0.077$ with 95\% CI [$-$1.03, 1.27].
+
+Seven gNBs gave the weakest result among all the fresh-seed checks. AXIOM kept 96.7\% priority-slice compliance and led every baseline under both layouts, and all six ring comparisons held at Holm-adjusted $p\leq0.032$. Under the fully-connected layout, however, two weak AXIOM seeds at 57.2\% and 76.9\% compliance left its leads of 12.5 to 25.3 points short of significance after Holm correction over the twelve tests. The independent and single-agent DQNs also reached 80.9\% and 80.6\% compliance, above the 80\% bound we had set, so three of the eleven checks in this run failed.
+
+\section*{S5. Third fresh-seed run}
+The third fresh-seed run, again specified in advance, covered every remaining claim, and 43 of its 48 checks held. At seven gNBs under the hex layout and at nineteen gNBs under the fully-connected layout, AXIOM kept 99.0\% and 95.7\% priority-slice compliance and beat every baseline in all six tests at Holm-adjusted $p\leq0.012$. A separate twenty-seed rerun of the seven-gNB fully-connected layout, reported alongside the failed ten-seed check rather than in its place, also held all six tests at Holm-adjusted $p\leq0.007$.
+
+Three of the five failed checks concern the baselines rather than AXIOM. On fresh seeds at seven gNBs the independent and single-agent DQNs kept 76.2\% to 83.3\% priority-slice compliance, above the 80\% bound in three cells, so the baseline range of 56\% to 76\% holds only for the main campaign. The other two failures come from the load sensitivity study. At 1.02 times the nominal load two weak AXIOM seeds left it at 96.8\% of the oracle reward, a gap that is not significant at $p=0.25$, and below the single-agent DQN's mean, at 12.551 against 12.910. Under the 1.07 load and the changed weights AXIOM stayed within 0.6\% of the oracle.
+
+In Env B at seven gNBs under the fully-connected and hex layouts, the tuned local rule again beat every learned policy at $p\leq0.004$, AXIOM was not significantly better than the static rule, and the MLP encoder again earned more than graph attention, though not significantly. Under disruption every dropout and churn cost was significant at Holm-adjusted $p\leq0.041$, no gap between AXIOM and a baseline survived correction, and AXIOM kept a spike block precision of 0.97. Per-step DP noise lowered reward by 0.65 to 1.31 per step with no drop surviving correction, and every client took the same 17{,}969 noisy steps, so the quoted $\varepsilon$ values apply unchanged. In the Env B sensitivity study the original AXIOM again earned less than the current design in all ten seeds, by 2.19 per step, while the higher learning rate and the wider encoder made no significant difference.
+
+Finally, we reran the single-agent DQN with its initialisation seeded, through a wrapper that leaves the framework untouched, and in a two-seed test it then reproduced exactly across processes. AXIOM's lead over it in Env A at three gNBs becomes $+0.254$ per step at Holm-adjusted $p=0.018$, and $+0.948$ on the replication seeds. In Env B the lead stays at $+1.320$, and at nineteen gNBs the seeded baseline collapses in 28 of 30 seeds and trails AXIOM by 32.3 points of priority-slice compliance. Across these samples AXIOM's lead over the single-agent DQN in Env A at three gNBs is therefore small and unstable, significant in some samples and absent in the fresh ones.
+
+\section*{S6. Fourth fresh-seed run}
+The last fresh-seed run, specified in advance, enlarged the two unstable samples, and four of its five checks held. On 40 new seeds in Env A at three gNBs AXIOM reached 98.1\% of the oracle, tying it in 27 seeds, and beat the independent DQN and MAPPO at Holm-adjusted $p\leq0.0001$. Its lead over the seeded single-agent DQN was only $+0.159$ per step, at $p=0.090$. On 20 new seeds at 1.02 times the load AXIOM came within 0.5\% of the oracle, but the seeded single-agent DQN again earned slightly more, 12.978 against 12.945 per step. On fresh seeds AXIOM therefore does not lead the single-agent DQN under this condition, contrary to the main sensitivity sample.
+
+\section*{S7. Independent recomputation}
+A script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputed from the raw logs the numbers in every results table and the key results sentences, including those of this supplement. All of its checks pass after we corrected the three rounding errors it found, as the main paper reports, and every quoted confidence interval matches a fresh bootstrap.
+
+\section*{S8. Summary}
+Reruns on fresh seeds confirmed the main findings of the paper. The exceptions are a small and unstable lead over the single-agent DQN in Env A at three gNBs and baseline compliance of up to 83\% at seven gNBs. In one ten-seed load sample two weak AXIOM seeds also left it 3.2\% short of the oracle, a gap that a twenty-seed rerun did not reproduce.
+
+\end{document}

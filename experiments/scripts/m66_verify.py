@@ -117,14 +117,16 @@ def mean(rows, f=lambda r: r["reward"]):
 
 # ------------------------------------------------------------------ claims
 class Checker:
-    def __init__(self, tex):
-        self.tex = tex
+    def __init__(self, tex, main_tex=None):
+        self.tex = tex                      # main paper plus supplementary material
+        self.main = main_tex if main_tex is not None else tex
         self.rows = []
 
     def claim(self, label, snippet, value, fmt, tol=None):
         """snippet must appear in the tex; value formatted with fmt must equal the quoted text,
         or lie within tol of the number parsed from the snippet when tol is given."""
-        present = snippet in self.tex
+        # claims about the reframed main text must be found in the main paper itself
+        present = snippet in (self.main if label.startswith("reframe:") else self.tex)
         quoted = fmt.format(value) if value is not None else None
         if tol is None:
             ok = present and quoted is not None and quoted in snippet
@@ -141,10 +143,12 @@ class Checker:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--tex", required=True)
+    ap.add_argument("--supp", help="supplementary .tex whose sentences also count as quoted text")
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
-    tex = open(a.tex).read()
-    C = Checker(tex)
+    main_tex = open(a.tex).read()
+    tex = main_tex + ("\n" + open(a.supp).read() if a.supp else "")
+    C = Checker(tex, main_tex)
 
     # ---------------- Env A, N=3 (Table 3)
     A = {arm: seeds_of("m65_reviewer/base", arm, S30) for arm in ("axiom2", "axiom2_mlp", "mappo_tuned")}
@@ -743,6 +747,72 @@ def main():
     md = json.load(open(f"{ROOT}/m66d_analysis.json"))
     C.note("M66d four of five checks held", md["n_judged"] == 5 and md["n_fail"] == 1 and "four of its five checks held" in C.tex, None)
 
+    # ---------------- reframed text (2026-10-19): condensed verification subsection, abstract, contributions, conclusion
+    v12 = json.load(open(f"{ROOT}/m66_v1v2.json"))["criteria"]
+    n_pred = sum(1 for c_ in v12 if c_["label"].startswith("V2") and "reported" not in c_["label"])
+    f_pred = sum(1 for c_ in v12 if c_["label"].startswith("V2") and "reported" not in c_["label"] and not c_["holds"])
+    tot = n_pred + 11 + json.load(open(f"{ROOT}/m66c_analysis.json"))["n_judged"] + json.load(open(f"{ROOT}/m66d_analysis.json"))["n_judged"]
+    bad = f_pred + json.load(open(f"{ROOT}/m66b_analysis.json"))["n_fail"] + json.load(open(f"{ROOT}/m66c_analysis.json"))["n_fail"] \
+        + json.load(open(f"{ROOT}/m66d_analysis.json"))["n_fail"]
+    C.claim("reframe: pre-stated fresh-seed checks total", "81 of their 90 pre-stated checks held", tot, "{:d}")
+    C.claim("reframe: pre-stated fresh-seed checks held", "81 of their 90 pre-stated checks held", tot - bad, "{:d}")
+    C.claim("reframe: failed checks", "The nine checks that failed", bad, "{:d}" if bad != 9 else "nine")
+    G10, G15 = list(range(3000, 3010)), list(range(3000, 3015))
+    fresh_cells = [("m66_fresh/A_n19_ring", G15), ("m66b_fresh/A_n7_ring", G10), ("m66b_fresh/A_n7_fully_connected", G10),
+                   ("m66b_fresh/A_n19_hex", G10), ("m66c_fresh/C1_A_n7_hex", G10), ("m66c_fresh/C2_A_n19_fc", G10),
+                   ("m66c_fresh/C3_A_n7_fc", list(range(4000, 4020)))]
+    ap_ = [100 * mean(seeds_of(c_, "axiom2", ss), prio) for c_, ss in fresh_cells]
+    C.claim("reframe: fresh AXIOM scaling compliance low", "AXIOM kept 93.4\\% to 100\\% priority-slice compliance", min(ap_), "{:.1f}")
+    C.claim("reframe: fresh AXIOM scaling compliance high", "AXIOM kept 93.4\\% to 100\\% priority-slice compliance", max(ap_), "{:.0f}")
+    cell_h = {}
+    for c_, ss in fresh_cells:
+        ax_ = seeds_of(c_, "axiom2", ss)
+        tt = {(b, m): paired(ax_, seeds_of(c_, b, ss), f) for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned")
+              for m, f in (("r", lambda r: r["reward"]), ("p", prio))}
+        hh = holm({k: v["p"] for k, v in tt.items()})
+        cell_h[c_] = (all(v["diff"] > 0 for v in tt.values()), max(hh.values()))
+    C.note("reframe: AXIOM leads every baseline in every fresh scaling cell", all(v[0] for v in cell_h.values()), cell_h)
+    m66b_fam = json.load(open(f"{ROOT}/m66b_analysis.json"))["Env A N=7"]["tests"]
+    ring_max = max(v["p_holm"] for k, v in m66b_fam.items() if k.startswith("A_n7_ring"))
+    others = [cell_h[c_][1] for c_ in cell_h if "A_n7" not in c_ or "C1" in c_ or "C3" in c_] + [ring_max]
+    C.note("reframe: all fresh scaling cells but one at Holm p<=0.032", round(max(others), 3) <= 0.032 and
+           max(v["p_holm"] for k, v in m66b_fam.items() if k.startswith("A_n7_fully")) > 0.05, (others, ring_max))
+    C.note("reframe: twenty-seed rerun at Holm p<=0.007", round(cell_h["m66c_fresh/C3_A_n7_fc"][1], 3) <= 0.007, cell_h["m66c_fresh/C3_A_n7_fc"])
+    fb_ = {k: seeds_of("m66_fresh/B_n3", k, list(range(3000, 3020))) for k in ("axiom2", "independent_dqn", "single_agent_dqn",
+           "mappo_tuned", "rule_static", "rule_accept_all", "rule_local", "rule_neighbour")}
+    tb_ = {k: paired(fb_["axiom2"], fb_[k]) for k in fb_ if k != "axiom2"}
+    hb_ = holm({k: v["p"] for k, v in tb_.items()})
+    C.note("reframe: fresh Env B N=3 beats static and every learner at Holm p<=0.0002",
+           all(tb_[k]["diff"] > 0 and hb_[k] <= 0.0002 for k in ("rule_static", "independent_dqn", "single_agent_dqn", "mappo_tuned")), hb_)
+    mcc = json.load(open(f"{ROOT}/m66c_analysis.json"))
+    dq = [100 * mcc[c_]["summary"][a_]["prio"] for c_ in ("C1 Env A N=7 hex", "C3 Env A N=7 fully-connected 20 seeds")
+          for a_ in ("independent_dqn", "single_agent_dqn")]
+    m66b_s = json.load(open(f"{ROOT}/m66b_analysis.json"))["Env A N=7"]["pooled_prio"]
+    dq += [100 * m66b_s[a_] for a_ in ("independent_dqn", "single_agent_dqn")]
+    C.claim("reframe: fresh N=7 DQN compliance max", "reached up to 83.3\\% compliance at seven gNBs", max(dq), "{:.1f}")
+    allbase = [v for v in dq]
+    for c_, ss in fresh_cells:
+        allbase += [100 * mean(seeds_of(c_, b, ss), prio) for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned")]
+    S15_ = list(range(900, 912)) + [1000, 1001, 1002]
+    for t_ in ("fully_connected", "ring", "hex"):
+        for n_, ss in ((7, S15_), (19, S30_19)):
+            allbase += [100 * mean(seeds_of(f"m65_scaling/n{n_}_{t_}", b, ss), prio) for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned")]
+    C.note("reframe: every baseline below 84% at 7 and 19 gNBs in every sample", max(allbase) < 84 and
+           "while every baseline stays below 84\\%" in C.tex and "stay below 84\\%" in C.tex, round(max(allbase), 2))
+    a3f = paired(seeds_of("m66_fresh/A_n3", "axiom2", list(range(3000, 3020))), seeds_of("m66_fresh/A_n3", "single_agent_dqn", list(range(3000, 3020))))
+    a3d = paired(seeds_of("m66d_fresh/D1_A_n3", "axiom2", list(range(4000, 4040))), seeds_of("m66d_fresh/D1_A_n3", "single_agent_dqn", list(range(4000, 4040))))
+    C.claim("reframe: fresh 20-seed single-agent gap", "at $-0.021$ and $+0.159$ per step", a3f["diff"], "{:+.3f}".replace("+", "") if a3f["diff"] < 0 else "{:+.3f}")
+    C.claim("reframe: fresh 40-seed single-agent gap", "at $-0.021$ and $+0.159$ per step", a3d["diff"], "{:+.3f}")
+    s102_ = mcc["C8"]["load102"]["summary"]
+    C.claim("reframe: ten-seed load sample shortfall", "3.2\\% short of the oracle", 100 - 100 * s102_["axiom2"]["reward"] / s102_["rule_static"]["reward"], "{:.1f}")
+    d2_ = {k: seeds_of("m66d_fresh/D2_load102", k, list(range(4000, 4020))) for k in ("axiom2", "single_agent_dqn", "rule_static")}
+    C.note("reframe: twenty-seed load rerun within 0.5% and single-agent matches",
+           100 - 100 * mean(d2_["axiom2"]) / mean(d2_["rule_static"]) <= 0.5 and mean(d2_["single_agent_dqn"]) >= mean(d2_["axiom2"]), None)
+    c7_ = mcc["C7"]
+    C.note("reframe: seeded single-agent leaves Env B and N=19 leads unchanged",
+           c7_["B3"]["tests"]["single_seeded"]["diff"] > 0 and c7_["B3"]["tests"]["single_seeded"]["p_holm"] < 0.0001
+           and c7_["A19"]["prio_test"]["diff"] > 0 and c7_["A19"]["prio_test"]["p"] < 0.05, None)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}
@@ -752,7 +822,7 @@ def main():
            all(v is None or v["episodes"] == 50 for v in CACHE.values()), sorted({v["episodes"] for v in CACHE.values() if v}))
 
     n_total = len(C.rows) + 1
-    C.note(f"text quotes the final check count of {n_total}", f"All {n_total} checks pass" in C.tex, n_total)
+    C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)
     rows = C.rows
     json.dump(rows, open(a.out, "w"), indent=1, default=str)
     fails = [r for r in rows if not r["ok"]]

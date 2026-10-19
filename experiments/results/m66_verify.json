@@ -2639,6 +2639,184 @@
   "ok": true
  },
  {
+  "label": "reframe: pre-stated fresh-seed checks total",
+  "snippet": "81 of their 90 pre-stated checks held",
+  "computed": 90,
+  "formatted": "90",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: pre-stated fresh-seed checks held",
+  "snippet": "81 of their 90 pre-stated checks held",
+  "computed": 81,
+  "formatted": "81",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: failed checks",
+  "snippet": "The nine checks that failed",
+  "computed": 9,
+  "formatted": "nine",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: fresh AXIOM scaling compliance low",
+  "snippet": "AXIOM kept 93.4\\% to 100\\% priority-slice compliance",
+  "computed": 93.40666666666667,
+  "formatted": "93.4",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: fresh AXIOM scaling compliance high",
+  "snippet": "AXIOM kept 93.4\\% to 100\\% priority-slice compliance",
+  "computed": 100.0,
+  "formatted": "100",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: AXIOM leads every baseline in every fresh scaling cell",
+  "snippet": null,
+  "computed": {
+   "m66_fresh/A_n19_ring": [
+    true,
+    0.001963079505043337
+   ],
+   "m66b_fresh/A_n7_ring": [
+    true,
+    0.01171875
+   ],
+   "m66b_fresh/A_n7_fully_connected": [
+    true,
+    0.251953125
+   ],
+   "m66b_fresh/A_n19_hex": [
+    true,
+    0.01171875
+   ],
+   "m66c_fresh/C1_A_n7_hex": [
+    true,
+    0.01171875
+   ],
+   "m66c_fresh/C2_A_n19_fc": [
+    true,
+    0.01171875
+   ],
+   "m66c_fresh/C3_A_n7_fc": [
+    true,
+    0.006571684733465842
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: all fresh scaling cells but one at Holm p<=0.032",
+  "snippet": null,
+  "computed": [
+   [
+    0.001963079505043337,
+    0.01171875,
+    0.01171875,
+    0.01171875,
+    0.006571684733465842,
+    0.03125
+   ],
+   0.03125
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: twenty-seed rerun at Holm p<=0.007",
+  "snippet": null,
+  "computed": [
+   true,
+   0.006571684733465842
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: fresh Env B N=3 beats static and every learner at Holm p<=0.0002",
+  "snippet": null,
+  "computed": {
+   "rule_static": 1.33514404296875e-05,
+   "rule_accept_all": 1.33514404296875e-05,
+   "rule_local": 2.86102294921875e-05,
+   "single_agent_dqn": 7.62939453125e-05,
+   "independent_dqn": 0.0001087188720703125,
+   "mappo_tuned": 0.0001087188720703125,
+   "rule_neighbour": 0.10539817810058594
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: fresh N=7 DQN compliance max",
+  "snippet": "reached up to 83.3\\% compliance at seven gNBs",
+  "computed": 83.31,
+  "formatted": "83.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: every baseline below 84% at 7 and 19 gNBs in every sample",
+  "snippet": null,
+  "computed": 83.31,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: fresh 20-seed single-agent gap",
+  "snippet": "at $-0.021$ and $+0.159$ per step",
+  "computed": -0.020622156053140106,
+  "formatted": "-0.021",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: fresh 40-seed single-agent gap",
+  "snippet": "at $-0.021$ and $+0.159$ per step",
+  "computed": 0.15941169354306167,
+  "formatted": "+0.159",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: ten-seed load sample shortfall",
+  "snippet": "3.2\\% short of the oracle",
+  "computed": 3.1814605992987737,
+  "formatted": "3.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: twenty-seed load rerun within 0.5% and single-agent matches",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: seeded single-agent leaves Env B and N=19 leads unchanged",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -2665,9 +2843,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 268",
+  "label": "text quotes the final check count of 284",
   "snippet": null,
-  "computed": 268,
+  "computed": 284,
   "formatted": null,
   "in_tex": null,
   "ok": true

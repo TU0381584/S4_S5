@@ -149,3 +149,12 @@ Across every sample, AXIOM's lead over the single-agent DQN in Env A at three gN
 | Fresh 40 seeds | +0.159 | 0.09 |
 
 The paper now says this plainly. Verifier: 268/268.
+
+## Reframing and supplementary material (2026-10-19)
+
+The manuscript was reframed around AXIOM's clearest advantages:
+- The abstract is now 247 words.
+- Contributions, the headline paragraph, and the conclusion lead with the strengths.
+- The verification subsection is condensed to three paragraphs, with its full detail moved verbatim into Papers_4-5/Paper_5/WPC/supplementary.tex.
+
+No check was removed. The verifier reads both files (`--tex main.tex --supp supplementary.tex`), and claims about the reframed main text must be found in main.tex itself. 284/284 checks pass.
