@@ -2878,7 +2878,7 @@
  },
  {
   "label": "reframe: AXIOM spike precision 0.98",
-  "snippet": "with block precision at 0.98, and Supplementary",
+  "snippet": "with block precision at 0.98, and Section S12",
   "computed": 0.9796397858262882,
   "formatted": "0.98",
   "in_tex": true,

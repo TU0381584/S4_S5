@@ -51,7 +51,7 @@
 
 \author[1]{\fnm{Swee King} \sur{Phang}}\nomail
 
-\affil[1]{\orgdiv{School of Engineering}, \orgname{Taylor's University}, \orgaddress{\city{Subang Jaya}, \country{Malaysia}}}
+\affil[1]{\orgdiv{School of Engineering}, \orgname{Taylor's University}, \orgaddress{\city{Subang Jaya}, \postcode{47500}, \state{Selangor}, \country{Malaysia}}}
 
 \abstract{Fifth generation (5G) network slicing must admit heterogeneous service requests across many cooperating base stations under strict per-slice guarantees. This paper presents AXIOM, a multi-agent slice admission controller built on one shared cluster encoder that feeds a small decision head per slice. We evaluate it under a pre-registered protocol in two simulators, one with static load and a harder one with time-varying load and inter-cell coupling, against single-agent and independent deep Q-networks (DQNs), multi-agent proximal policy optimisation (MAPPO), and tuned threshold rules. AXIOM's advantage over the baselines grows with the size of the cluster. At 7 and 19 gNodeBs (gNBs) it keeps Ultra-Reliable Low-Latency Communication (URLLC) and enhanced Mobile Broadband (eMBB) Service Level Agreement (SLA) compliance near 97\%, while every baseline stays below 84\%, with 7,782 parameters at any cluster size. At three gNBs it reaches 98.9\% of an oracle rule's reward under static load, and under coupling it beats the static rule by 39\% and leads every learned baseline. Training AXIOM in federated form adds no significant cost in reward. The gains have clear bounds, since a three-parameter rule tuned with domain knowledge outperforms every learned policy under coupling, a single DQN over the joint state can match AXIOM in some settings, and graph attention adds nothing over a per-node encoder. Independent recomputation and pre-stated checks on fresh seeds confirm the main findings. A live OpenAirInterface (OAI) testbed validates the control path on an Open Radio Access Network (O-RAN) stack, while AXIOM itself is evaluated offline.}
 
@@ -135,8 +135,8 @@ Network slicing virtualises the physical radio access network (RAN) to serve het
 \end{tikzpicture}%
 }
 \caption{Conceptual system view. A cluster of gNBs, coordinated by the shared
-AXIOM encoder and backhauled to a 5G core, serves UEs across three slices.
-AXIOM is evaluated offline; the live rig runs one gNB.}
+AXIOM encoder and backhauled to a 5G core, serves user equipments (UEs) across three slices.
+AXIOM is evaluated offline; the live rig runs one gNB}
 \label{fig:sysview}
 \end{figure}
 
@@ -156,7 +156,7 @@ Our prior systematic review~\cite{ref:access} screened 6{,}286 records down to 6
 
 Studies from the review's core sample show the state of each pillar. For admission control, Ojijo et al.~\cite{ojijo2024sac} admit slice requests with a sequential twin actor-critic over a multi-dimensional state space and a distributed action space, and Tao et al.~\cite{tao2025dtac} use a digital twin to accelerate online deep reinforcement learning for admission. For multi-agent control, Doanis and Spyropoulos~\cite{doanis2024madqn} make multi-agent DQNs sample-efficient for multi-domain inter-slice orchestration, Li et al.~\cite{li2026scalablemarl} propose a scalable multi-agent framework for dynamic RAN slicing, and ICE-CREAM~\cite{phyu2025icecream} coordinates fully cooperative decentralised agents for energy-efficient RAN slicing. For graph representation, Hao et al.~\cite{hao2024hybridtask} combine a graph neural network with meta-learning to make bandwidth allocation scalable and transferable. For federation, Amiri et al.~\cite{amiri2024vnf} split virtual network functions in O-RAN slicing with federated deep reinforcement learning, and Ming et al.~\cite{ming2024fedslice} apply federated deep reinforcement learning to prediction-based slice mobility. Closest to our evaluation concern, Tsampazi et al.~\cite{tsampazi2025pandora} design and evaluate many deep reinforcement learning agents for O-RAN in an automated pipeline, a systematic comparison that our trivial-policy and independent-seed checks extend.
 
-AXIOM also sits inside the broader O-RAN effort to run learned control loops as applications over standard interfaces. Polese et al.~\cite{polese2023oran} survey that architecture and its open problems, while ColO-RAN~\cite{polese2023coloran} and Tsampazi et al.~\cite{tsampazi2023xapps} train and compare deep reinforcement learning controllers for slicing on large experimental platforms. Learned slice admission predates O-RAN, from market-driven admission of slice requests~\cite{bega2020market} to reinforcement learning for RAN slicing~\cite{raza2019slicing}. For cooperating agents, value factorisation such as QMIX~\cite{rashid2020qmix} and centralised-critic policy gradients such as MAPPO~\cite{yu2022mappo} are the standard training schemes, and we compare against MAPPO directly. Constrained multi-agent learning has also been applied to Open RAN slicing at scale~\cite{zangooei2024flexible}, and Khani et al.~\cite{khani2024sacsurvey} survey deep reinforcement learning for slice admission in cloud RAN. Within this journal, recent work applies actor-critic learning to joint resource allocation in RAN slicing~\cite{kulkarni2024actor}, double deep Q-networks to next-generation networks~\cite{kamal2026ddqn}, and delay-aware slice allocation to cloud RAN~\cite{alqahtani2025dynamic}. Other work in the journal applies federated learning to 6G slice resource allocation~\cite{krishnamoorthy2026federated} and multi-agent reinforcement learning to device-to-device relay selection~\cite{sirma2025relay}. None of these evaluates against a trivial-policy check or replicates its headline result on an independent seed sample. AXIOM instead shares one graph encoder across agents and trains every pending request as its own temporal-difference sample, for the reason Section~\ref{sec:methodology-perslice} gives.
+AXIOM also sits inside the broader O-RAN effort to run learned control loops as applications over standard interfaces. Polese et al.~\cite{polese2023oran} survey that architecture and its open problems, while ColO-RAN~\cite{polese2023coloran} and Tsampazi et al.~\cite{tsampazi2023xapps} train and compare deep reinforcement learning controllers for slicing on large experimental platforms. Learned slice admission predates O-RAN, from market-driven admission of slice requests~\cite{bega2020market} to reinforcement learning for RAN slicing~\cite{raza2019slicing}. For cooperating agents, value factorisation such as QMIX~\cite{rashid2020qmix} and centralised-critic policy gradients such as MAPPO~\cite{yu2022mappo} are the standard training schemes, and we compare against MAPPO directly. Constrained multi-agent learning has also been applied to Open RAN slicing at scale~\cite{zangooei2024flexible}, and Khani et al.~\cite{khani2024sacsurvey} survey deep reinforcement learning for slice admission in cloud RAN. Within this journal, recent work applies actor-critic learning to joint resource allocation in RAN slicing~\cite{kulkarni2024actor}, double deep Q-networks to next-generation networks~\cite{kamal2026ddqn}, and delay-aware slice allocation to cloud RAN~\cite{alqahtani2025dynamic}. Other work in the journal applies federated learning to 6G slice resource allocation~\cite{krishnamoorthy2026federated} and multi-agent reinforcement learning to device-to-device relay selection~\cite{sirma2025relay}. None of these evaluates against a trivial-policy check or replicates its headline result on an independent seed sample. AXIOM instead shares one graph encoder across agents and trains every pending request as its own temporal-difference (TD) sample, for the reason Section~\ref{sec:methodology-perslice} gives.
 
 Several recent works come close on a single axis of this problem. Shao et al.~\cite{shao2021gatmarl} motivate our GAT encoder choice by showing that graph attention strengthens inter-agent cooperation over plain DQN and Advantage Actor-Critic (A2C) baselines. Ahmadi et al.~\cite{ahmadi2024generalizable} study topology generalisation through graph attention, which complements but does not answer the fixed-topology evaluation-integrity question we ask in Section~\ref{sec:results-m6}. Sulaiman et al.~\cite{sulaiman2023coordinated} are the closest prior art to our joint slicing-and-admission-control problem. None of these three checks whether its reward-optimal policy could be mistaken for a degenerate one, and none replicates a headline result on an independent seed sample.
 
@@ -166,7 +166,7 @@ Rather than adding a new point in the GAT, MARL, and FL design space, this paper
 
 \section{System Model and Problem Formulation}
 \label{sec:system-model}
-Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller is evaluated offline in two shared-budget simulation environments, Env A and Env B. Evaluation safeguards and a pre-registered analysis then check every reported result. The deployment pipeline is then checked on a live single-gNB testbed, which Supplementary Section S9 describes.
+Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller is evaluated offline in two shared-budget simulation environments, Env A and Env B. Evaluation safeguards and a pre-registered analysis then check every reported result. The deployment pipeline is then checked on a live single-gNB testbed, which Section S9 of Online Resource 1 describes.
 
 \begin{figure}[b]
 \centering
@@ -203,7 +203,7 @@ Fig.~\ref{fig:overview} provides an overview of the system. The AXIOM controller
 }
 \caption{Overview of the research. An AXIOM controller is evaluated
 across four offline campaigns in two shared-budget environments, every result
-checked by evaluation safeguards, with the deployment pipeline checked on a live single-gNB testbed.}
+checked by evaluation safeguards, with the deployment pipeline checked on a live single-gNB testbed}
 \label{fig:overview}
 \end{figure}
 
@@ -214,10 +214,10 @@ The step reward follows our prior single-gNB formulation. It has a per-slice ser
 \begin{equation}
 \label{eq:reward}
 r_t = \sum_{k}\!\big(\omega_k R_k\, n_k - \lambda_k\,\mathbf{1}[v_k]\big)
-      \;-\; \kappa\, C_t \lVert a_t \rVert_1
+      \;-\; \kappa\, C_t \lVert \mathbf{a}_t \rVert_1
       \;-\; \beta\,(1 - F_t),
 \end{equation}
-where $\lVert a_t \rVert_1$ is the total admitted this step, $C_t$ the cluster-mean congestion level, $\kappa$ the congestion coefficient, $F_t\!\in\![0,1]$ the min-over-max PRB-utilisation fairness ratio, and $\beta$ the load-balance weight. The violation flag $v_k$ follows from a continuous SLA margin $m_k$. The correctness-aware metrics of Section~\ref{sec:collapse} also build on this margin. We take it as the worse of the queue and loss channels,
+where $\lVert \mathbf{a}_t \rVert_1$ is the total admitted this step, $C_t$ the cluster-mean congestion level, $\kappa$ the congestion coefficient, $F_t\!\in\![0,1]$ the min-over-max PRB-utilisation fairness ratio, and $\beta$ the load-balance weight. The violation flag $v_k$ follows from a continuous SLA margin $m_k$. The correctness-aware metrics of Section~\ref{sec:collapse} also build on this margin. We take it as the worse of the queue and loss channels,
 \begin{equation}
 \label{eq:margin}
 m_k = \min\!\Big(1 - \tilde q_k,\; 1 - \tfrac{\ell_k}{\ell_k^{\max}}\Big),
@@ -240,38 +240,38 @@ AXIOM differs from its two DQN baselines in exactly what each policy sees and sh
 the fully-connected 3-gNB topology produces one embedding per node,
 consumed at execution time by per-slice Q-heads using only that node's
 row. b, The federated variant, each gNB a client synchronised by
-periodic FedAvg with an optional DP-SGD clip-and-noise step.}
+periodic FedAvg with an optional DP-SGD clip-and-noise step}
 \label{fig:architecture}
 \end{figure}
 
 \subsection{Shared Encoder, Decentralised Q-Heads}
 \label{sec:methodology-perslice}
-Fig.~\ref{fig:architecture}a shows the architecture. At every control step, each gNB forms its own per-slice feature row $x_i$. The three features are PRB-used-ratio, congestion-level, and queue-length-norm. These rows stack into a joint node-feature matrix $X \in \mathbb{R}^{N\times d}$ over the $N$ gNB nodes, with $d$ features each. A two-layer, $H{=}4$-head GAT~\cite{wu2021gnnsurvey} produces one embedding per gNB. Each head $h$ decomposes additive attention rather than scoring a concatenation. It uses a learned source vector $a_s^{h}$ and destination vector $a_d^{h}$, applied to the shared linear projection $W^{h}$. Here $\phi$ is the leaky rectifier of slope $0.2$, and $\mathcal{N}_i$ is the set of neighbours of node $i$ under the adjacency mask,
+Fig.~\ref{fig:architecture}a shows the architecture. At every control step, each gNB forms its own per-slice feature row $\mathbf{x}_i$. The three features are PRB-used-ratio, congestion-level, and queue-length-norm. These rows stack into a joint node-feature matrix $\mathbf{X} \in \mathbb{R}^{N\times d}$ over the $N$ gNB nodes, with $d$ features each. A two-layer, $H{=}4$-head GAT~\cite{wu2021gnnsurvey} produces one embedding per gNB. Each head $h$ decomposes additive attention rather than scoring a concatenation. It uses a learned source vector $\mathbf{a}_s^{h}$ and destination vector $\mathbf{a}_d^{h}$, applied to the shared linear projection $\mathbf{W}^{h}$. Here $\phi$ is the leaky rectifier of slope $0.2$, and $\mathcal{N}_i$ is the set of neighbours of node $i$ under the adjacency mask,
 \begin{equation}
 \label{eq:gat}
-\varepsilon_{ij}^{h}=\phi\!\big(a_s^{h\top} W^{h} x_i + a_d^{h\top} W^{h} x_j\big),
+\varepsilon_{ij}^{h}=\phi\!\big(\mathbf{a}_s^{h\top} \mathbf{W}^{h} \mathbf{x}_i + \mathbf{a}_d^{h\top} \mathbf{W}^{h} \mathbf{x}_j\big),
 \qquad
 \alpha_{ij}^{h}=\frac{\exp\varepsilon_{ij}^{h}}{\sum_{l\in\mathcal{N}_i}\exp\varepsilon_{il}^{h}}.
 \end{equation}
-Here $\varepsilon_{ij}^{h}$ is the unnormalised attention score from node $i$ to neighbour $j$ in head $h$, and $\alpha_{ij}^{h}$ is its normalisation over $i$'s neighbours, with $l$ ranging over $\mathcal{N}_i$. Hidden layers concatenate the $H$ heads under an ELU nonlinearity, while the final layer averages them. A per-layer normalisation operator $\mathrm{LN}(\cdot)$ then rescales each node's embedding to zero mean and unit variance, and produces the final per-gNB embedding $z_i$,
+Here $\varepsilon_{ij}^{h}$ is the unnormalised attention score from node $i$ to neighbour $j$ in head $h$, and $\alpha_{ij}^{h}$ is its normalisation over $i$'s neighbours, with $l$ ranging over $\mathcal{N}_i$. Hidden layers concatenate the $H$ heads under an exponential linear unit (ELU) nonlinearity, while the final layer averages them. A per-layer normalisation operator $\mathrm{LN}(\cdot)$ then rescales each node's embedding to zero mean and unit variance, and produces the final per-gNB embedding $\mathbf{z}_i$,
 \begin{equation}
 \label{eq:gat-agg}
-z_i=\mathrm{LN}\!\Big(\tfrac{1}{H}\textstyle\sum_{h=1}^{H}\sum_{j\in\mathcal{N}_i}\alpha_{ij}^{h}\,W^{h} x_j\Big).
+\mathbf{z}_i=\mathrm{LN}\!\Big(\tfrac{1}{H}\textstyle\sum_{h=1}^{H}\sum_{j\in\mathcal{N}_i}\alpha_{ij}^{h}\,\mathbf{W}^{h} \mathbf{x}_j\Big).
 \end{equation}
-Centralisation comes from this encoder, whose parameters every agent's loss updates jointly, so it sees the full cluster state during training. Decentralised execution comes next, since at action-selection time each agent consumes only its own embedding row $z_i$ to decide its own pending requests.
+Centralisation comes from this encoder, whose parameters every agent's loss updates jointly, so it sees the full cluster state during training. Decentralised execution comes next, since at action-selection time each agent consumes only its own embedding row $\mathbf{z}_i$ to decide its own pending requests.
 
 \begin{algorithm}[!t]
 \caption{AXIOM: centralised training, decentralised execution}
 \label{alg:gat-ctde}
 \begin{algorithmic}[1]
-\REQUIRE encoder $f_\theta$, per-slice Q-heads $\{Q_{\phi_k}\}$, targets $f_{\theta^-},\{Q_{\phi_k^-}\}$, buffer $\mathcal{D}$, adjacency $A$, discount $\gamma$, sync period $C$
-\FOR{each step $t$, observing joint node features $X_t$}
-  \STATE $E_t \gets f_\theta(X_t, A)$ \COMMENT{centralised, one row per gNB}
-  \STATE for each pending request at gNB $i$, slice $k$, pick $a \gets \arg\max_a Q_{\phi_k}([E_t[i], X_t[i]])[a]$, $\epsilon$-greedy \COMMENT{decentralised, own row only}
-  \STATE step env, store $(X_t, X_{t+1}, \{(i,k,a)\}, r_t, \text{done})$ in $\mathcal{D}$
+\REQUIRE encoder $f_\theta$, per-slice Q-heads $\{Q_{\phi_k}\}$, targets $f_{\theta^-},\{Q_{\phi_k^-}\}$, buffer $\mathcal{D}$, adjacency $\mathbf{A}$, discount $\gamma$, sync period $C$
+\FOR{each step $t$, observing joint node features $\mathbf{X}_t$}
+  \STATE $\mathbf{E}_t \gets f_\theta(\mathbf{X}_t, \mathbf{A})$ \COMMENT{centralised, one row per gNB}
+  \STATE for each pending request at gNB $i$, slice $k$, pick $a \gets \arg\max_a Q_{\phi_k}([\mathbf{E}_t[i], \mathbf{X}_t[i]])[a]$, $\epsilon$-greedy \COMMENT{decentralised, own row only}
+  \STATE step env, store $(\mathbf{X}_t, \mathbf{X}_{t+1}, \{(i,k,a)\}, r_t, \text{done})$ in $\mathcal{D}$
   \IF{$|\mathcal{D}| \geq$ warmup}
-    \STATE sample minibatch $B$; $E_B \gets f_\theta(X_B,A)$, $E'_B \gets f_{\theta^-}(X'_B,A)$
-    \STATE per request, $y \gets r + \gamma(1{-}\text{done})\max_{a'} Q_{\phi_k^-}(E'_B[i])[a']$
+    \STATE sample minibatch $B$; $\mathbf{E}_B \gets f_\theta(\mathbf{X}_B,\mathbf{A})$, $\mathbf{E}'_B \gets f_{\theta^-}(\mathbf{X}'_B,\mathbf{A})$
+    \STATE per request, $y \gets r + \gamma(1{-}\text{done})\max_{a'} Q_{\phi_k^-}(\mathbf{E}'_B[i])[a']$
     \STATE $\mathcal{L} \gets$ mean per-request Huber loss, never summed per step; update $\theta,\{\phi_k\}$, clip grad-norm 1.0
   \ENDIF
   \STATE every $C$ episodes, $\theta^-\gets\theta$, $\phi_k^-\gets\phi_k$
@@ -279,19 +279,19 @@ Centralisation comes from this encoder, whose parameters every agent's loss upda
 \end{algorithmic}
 \end{algorithm}
 
-The \texttt{LayerNorm} and the per-slice heads are deliberate design choices. With a single shared Q-head, all three slices update the same parameters, and URLLC's large priority weight produces gradients that swamp mMTC's much smaller signal, a standard shared-parameter class imbalance. One small multi-layer perceptron (MLP) per slice, selected by the context one-hot, gives each slice its own parameters, and the \texttt{LayerNorm} stops an embedding from encoding congestion through its magnitude alone. That normalisation also hides the absolute queue and congestion levels on which a state-dependent admission rule depends, so each node's raw features are concatenated onto its normalised embedding before the Q-heads, $Q_{\phi_k}([z_i, x_i])$, and below we write $z_i$ for that concatenation. This skip connection, together with a learning rate of $10^{-3}$ in place of the earlier $10^{-4}$, is the only change from the original AXIOM design. Both were chosen on pilot seeds of the time-varying environment of Section~\ref{sec:system-model}, where the earlier AXIOM learned only the static shedding rule, and both were fixed before any reported seed was run. A seed here is one independent random initialisation of network weights and environment stream, and we report every seed rather than a single best run.
+The \texttt{LayerNorm} and the per-slice heads are deliberate design choices. With a single shared Q-head, all three slices update the same parameters, and URLLC's large priority weight produces gradients that swamp mMTC's much smaller signal, a standard shared-parameter class imbalance. One small multi-layer perceptron (MLP) per slice, selected by the context one-hot, gives each slice its own parameters, and the \texttt{LayerNorm} stops an embedding from encoding congestion through its magnitude alone. That normalisation also hides the absolute queue and congestion levels on which a state-dependent admission rule depends, so each node's raw features are concatenated onto its normalised embedding before the Q-heads, $Q_{\phi_k}([\mathbf{z}_i, \mathbf{x}_i])$, and below we write $\mathbf{z}_i$ for that concatenation. This skip connection, together with a learning rate of $10^{-3}$ in place of the earlier $10^{-4}$, is the only change from the original AXIOM design. Both were chosen on pilot seeds of the time-varying environment of Section~\ref{sec:system-model}, where the earlier AXIOM learned only the static shedding rule, and both were fixed before any reported seed was run. A seed here is one independent random initialisation of network weights and environment stream, and we report every seed rather than a single best run.
 
-Algorithm~\ref{alg:gat-ctde} states the training loop, where the encoder updates from every request in a sampled minibatch regardless of gNB or slice. This is centralised training, while action selection at rollout time consults only the acting agent's own embedding row, which is decentralised execution. Every pending request at gNB $i$, slice $k$ is its own temporal-difference sample, and we never sum requests across a step before the loss. For a request with immediate reward $r$, next-state embedding $z_i'$, and candidate next action $a'$, the bootstrapped target $y$ at discount $\gamma$ and the minibatch loss are
+Algorithm~\ref{alg:gat-ctde} states the training loop, where the encoder updates from every request in a sampled minibatch regardless of gNB or slice. This is centralised training, while action selection at rollout time consults only the acting agent's own embedding row, which is decentralised execution. Every pending request at gNB $i$, slice $k$ is its own temporal-difference sample, and we never sum requests across a step before the loss. For a request with immediate reward $r$, next-state embedding $\mathbf{z}_i'$, and candidate next action $a'$, the bootstrapped target $y$ at discount $\gamma$ and the minibatch loss are
 \begin{equation}
 \label{eq:td}
-y = r + \gamma\,(1-d)\max_{a'} Q_{\phi_k^-}\!\big(z_i'\big)[a'],
+y = r + \gamma\,(1-d)\max_{a'} Q_{\phi_k^-}\!\big(\mathbf{z}_i'\big)[a'],
 \qquad
-\mathcal{L} = \frac{1}{|B|}\sum_{(i,k,a)\in B}\ell_\delta\!\Big(Q_{\phi_k}(z_i)[a]-y\Big),
+\mathcal{L} = \frac{1}{|B|}\sum_{(i,k,a)\in B}\ell_\delta\!\Big(Q_{\phi_k}(\mathbf{z}_i)[a]-y\Big),
 \end{equation}
 where $Q_{\phi_k}$ is slice $k$'s online Q-head, $Q_{\phi_k^-}$ its target copy, $d$ the episode-done flag, and $B$ the sampled minibatch of requests. We use the Huber loss $\ell_\delta$ in place of squared error, which keeps the deeper encoder stable under long bootstraps. An earlier variant passed each gNB's summed per-request values through a QMIX-style monotonic mixer~\cite{rashid2020qmix}. Because the number of pending requests changes from step to step, that mixed target changed scale with the request count, and the mean training loss diverged, rising from about 76 over the first fifth of training steps to about 409 over the last fifth. Treating each request as its own sample removes that dependence.
 
 \subsection{Federated Training with Differential Privacy}
-Fig.~\ref{fig:architecture}b shows the federated variant. In this variant, each gNB becomes a federated-learning client. It holds a private copy of the same network and trains only on its own requests. Transitions are partitioned by owning agent, so no client sees another's raw admission data. Each client's GAT encoder still consumes the full joint node-feature snapshot. Every $R$ local steps, the server averages all clients' online weights by FedAvg~\cite{lim2020flmec} and broadcasts the result back. We also implement FedProx~\cite{li2020flchallenges}, which adds a proximal term that pulls local weights toward the last broadcast global model. We sweep it at $\mu \in \{0.01, 0.1, 1.0\}$ on three seeds. FedProx gives no consistent improvement over FedAvg, as Section~\ref{sec:results-m3} reports, so we keep FedAvg.
+Fig.~\ref{fig:architecture}b shows the federated variant. In this variant, each gNB becomes a federated-learning client. It holds a private copy of the same network and trains only on its own requests. Transitions are partitioned by owning agent, so no client sees another's raw admission data. Each client's GAT encoder still consumes the full joint node-feature snapshot. Every $R$ local steps, the server averages all clients' online weights by federated averaging (FedAvg)~\cite{lim2020flmec} and broadcasts the result back. We also implement FedProx~\cite{li2020flchallenges}, which adds a proximal term that pulls local weights toward the last broadcast global model. We sweep it at $\mu \in \{0.01, 0.1, 1.0\}$ on three seeds. FedProx gives no consistent improvement over FedAvg, as Section~\ref{sec:results-m3} reports, so we keep FedAvg.
 
 Differential privacy (DP) bounds how much any one client's training data can change what the shared model reveals. We apply it as a differentially private stochastic gradient descent (DP-SGD) step~\cite{dpsgd}. Each client clips its minibatch gradient to a fixed norm $C_{\text{dp}}$ and, when privacy is enabled, adds Gaussian noise of standard deviation $\sigma C_{\text{dp}}$ before its optimiser step. The clip applies to the whole minibatch gradient rather than to each example, so changing any of the client's data in one step moves the clipped gradient by at most $2C_{\text{dp}}$, and the guarantee covers the client's whole step batch. We account for it with zero-concentrated differential privacy (zCDP)~\cite{zcdp}, where $\varepsilon$ and $\delta$ are the standard privacy-loss and failure-probability parameters. Composing the Gaussian mechanism over the $m$ noisy steps a client takes gives
 \begin{equation}
@@ -307,13 +307,13 @@ Every campaign uses 300 training and 50 evaluation episodes per seed, and each s
 
 Rules need no learning, and accept-all simply admits every request. The oracle rule of Env A sheds mMTC whenever its gNB's congestion level reaches a threshold $\tau$, chosen on training streams only, and the selected value is $\tau{=}0$, so the rule sheds every mMTC request. In Env B we add two tuned rule families, each chosen on training streams over a grid of thresholds and evaluated on the held-out streams. The local family sheds mMTC on the gNB's own congestion or priority-slice queue and sheds eMBB on its URLLC queue, while the neighbour-aware family also reads the mean congestion of the gNB's neighbours. Two further arms isolate AXIOM's components, namely the DQN baselines at the lower learning rate of $10^{-4}$, and an AXIOM variant whose graph encoder is replaced by a per-node MLP of the same width that ignores the adjacency.
 
-All learned arms share the discount factor $\gamma=0.95$, the training budget, and the exploration schedule, and AXIOM and the DQN baselines train at learning rate $10^{-3}$. Supplementary Section S10 lists every hyperparameter and the design of the two sensitivity studies, which change the load and the slice weights in Env A and the learning rate and encoder width in Env B.
+All learned arms share the discount factor $\gamma=0.95$, the training budget, and the exploration schedule, and AXIOM and the DQN baselines train at learning rate $10^{-3}$. Section S10 of Online Resource 1 lists every hyperparameter and the design of the two sensitivity studies, which change the load and the slice weights in Env A and the learning rate and encoder width in Env B.
 
 All confidence intervals (CIs) are 95\% bootstrap percentile intervals over 10{,}000 resamples. Paired comparisons use the Wilcoxon signed-rank test, and each family of comparisons against AXIOM is Holm-corrected for multiple testing.
 
 The settings, seeds, and hypotheses of the final campaign were fixed in a dated pre-registration, committed before any reported seed was run. It includes the change to AXIOM's learning rate and skip connection and the constants of Env B, both chosen on pilot seeds 2000 to 2009. It states four hypotheses, all fixed before any result. H1 is that AXIOM beats both trivial rules in Env B. H2 covers how AXIOM compares with every learned baseline and tuned rule in Env B. H3 asks whether graph attention beats the per-node encoder in Env B at seven gNBs. H4 covers how AXIOM compares with every baseline at nineteen gNBs in Env A, over 30 seeds per layout.
 
-A pre-registered validation screen checks every trained checkpoint of every learned arm on its own training stream before evaluation, and every seed is reported whether or not it passes, with the screen's criteria in Supplementary Section S10.
+A pre-registered validation screen checks every trained checkpoint of every learned arm on its own training stream before evaluation, and every seed is reported whether or not it passes, with the screen's criteria in Section S10 of Online Resource 1.
 
 \subsection{Evaluation Safeguards}
 \label{sec:collapse}
@@ -327,7 +327,7 @@ The second is a correctness-aware set of metrics, computed from data every run a
 The third is a reproduction-versus-replication discipline, in which we recompute every headline comparison on an independent, disjoint seed sample and report both. It caught queue backlog that carried over between episodes, and every result in this paper comes from the corrected simulator, which empties all queues at the start of each episode.
 
 \begin{table}[t]
-\caption{Evaluation failures this paper's safeguards caught during the work, none of which a standard pipeline would have surfaced.}
+\caption{Evaluation failures this paper's safeguards caught during the work, none of which a standard pipeline would have surfaced}
 \label{tab:safeguards}
 \centering
 \footnotesize
@@ -338,7 +338,7 @@ Failure & Missed by & Caught by & Outcome \\
 \midrule
 Inert simulator (\S\ref{sec:system-model}) & Learned-policy metrics & Accept-all baseline & Shared-budget rerun \\
 No-op scored as fine & All-slice compliance & Precision, per-slice SLA & Collapse made visible \\
-Repro. gap (Suppl. S12) & Single-sample claim & Repro-vs-replication & Churn claim retracted \\
+Repro. gap (Online Resource 1) & Single-sample claim & Repro-vs-replication & Churn claim retracted \\
 Backlog carry-over (\S\ref{sec:collapse}) & Per-seed means & Replication, step traces & Episode reset, rerun \\
 Static AXIOM in Env B (\S\ref{sec:methodology-perslice}) & Env A results & Env B pilot seeds & Faster learning rate, skip \\
 Screen miscalibrated (\S\ref{sec:setup}) & Env A screen design & Pilot screen check & Pre-registered amendment \\
@@ -354,7 +354,7 @@ We compare AXIOM with three learned baselines and a family of rules in two envir
 The comparison rests on four quantities, the first being mean reward per step, the objective the policies train on, so higher is better. Block precision is the share of a policy's rejections that land on mMTC. Per-slice SLA compliance shows whether a policy's shedding actually protects URLLC and eMBB, and we summarise it as priority-slice compliance, the mean of the two. Collapse names a failure mode in which a trained policy stops discriminating and simply accepts every request. Table~\ref{tab:compare} sets out how the four learned policies stand, and the subsections that follow give the evidence.
 
 \begin{table}[b]
-\caption{How the four learned policies compare. Env A has static load, Env B time-varying load with inter-cell coupling. Priority SLA is the mean of URLLC and eMBB compliance.}
+\caption{How the four learned policies compare. Env A has static load, Env B time-varying load with inter-cell coupling. Priority SLA is the mean of URLLC and eMBB compliance}
 \label{tab:compare}
 \centering
 \footnotesize
@@ -378,7 +378,7 @@ Federated, noise-free & No significant cost & Not applicable & Not applicable & 
 AXIOM's clearest advantage appears as the cluster grows. In Env A it keeps priority-slice compliance near 97\% at seven and nineteen gNBs while every baseline falls to between 56\% and 76\%, with a parameter count that does not grow with the cluster. It also leads every learned baseline in Env B at three gNBs. Its advantage has limits, since a tuned threshold rule beats every learned policy in Env B and the single-agent DQN keeps pace with AXIOM in Env A at three gNBs and in Env B at seven.
 
 \begin{table}[t]
-\caption{Env A, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance.}
+\caption{Env A, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance, and LR is the learning rate}
 \label{tab:m2-results}
 \centering
 \footnotesize
@@ -404,7 +404,7 @@ MAPPO & 10.013 [9.30, 10.73] & 0.707 & 2/30 & 0.978 & 0.576 \\
 \includegraphics[width=\textwidth]{figures/fig3_m2_results.pdf}
 \caption{Env A, three gNBs, per-seed evidence. a, Paired per-seed mean reward
 per step of AXIOM versus single-agent DQN, coloured by win, tie, or loss.
-b, Per-seed reward distribution for AXIOM and the two DQN baselines.}
+b, Per-seed reward distribution for AXIOM and the two DQN baselines}
 \label{fig:m2-results}
 \end{figure}
 
@@ -423,7 +423,7 @@ We grow the cluster in Env A from three gNBs to seven and nineteen under three l
 \centering
 \includegraphics[width=\textwidth]{figures/fig6_scaling_trend.pdf}
 \caption{Env A as the cluster grows, all layouts pooled. a, Priority-slice compliance, mean and 95\% CI.
-b, Share of trained policies that collapse into accept-all. c, Parameters used at execution.}
+b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}
 \label{fig:m6-topology}
 \end{figure}
 
@@ -431,7 +431,7 @@ b, Share of trained policies that collapse into accept-all. c, Parameters used a
 \centering
 \includegraphics[width=\textwidth]{figures/fig13_gnb_map.pdf}
 \caption{Decision map of the 19-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true
-position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is.}
+position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}
 \label{fig:gnb-map}
 \end{figure}
 
@@ -447,7 +447,7 @@ Fig.~\ref{fig:m6-topology}a traces the same result across sizes. AXIOM's priorit
 \includegraphics[width=\textwidth]{figures/fig10_axiom_superiority.pdf}
 \caption{AXIOM against the three learned baselines. a, Env A reward at three gNBs
 as a share of the oracle rule against compliance at 19 gNBs, with 95\% CIs.
-b, Six measured axes, each as a fraction of the best learned policy on it.}
+b, Six measured axes, each as a fraction of the best learned policy on it}
 \label{fig:quadrant}
 \end{figure}
 
@@ -455,7 +455,7 @@ Fig.~\ref{fig:quadrant}a places the four learned policies on one map of accuracy
 
 \subsection{Ablations and Sensitivity}
 \label{sec:results-ablation}
-Three checks test where AXIOM's behaviour comes from. First, the learning rate matters for AXIOM and its baselines alike. In Env B the original AXIOM, at $10^{-4}$, earns 2.37 less per step than the current design in all ten seeds, while a faster rate or a wider encoder changes nothing significant, and Supplementary Section S12 gives the full study.
+Three checks test where AXIOM's behaviour comes from. First, the learning rate matters for AXIOM and its baselines alike. In Env B the original AXIOM, at $10^{-4}$, earns 2.37 less per step than the current design in all ten seeds, while a faster rate or a wider encoder changes nothing significant, and Section S12 of Online Resource 1 gives the full study.
 
 Second, graph attention adds nothing measurable anywhere we tested it. In Env A the per-node MLP variant ties AXIOM at three gNBs, with a difference of $+0.058$ and 95\% CI [$-$0.17, 0.26], and at nineteen gNBs on the ring layout, $+0.31$ per step with 7 of 12 seeds tied. Env B's inter-cell coupling gives neighbour information real value, yet the pre-registered test H3 at seven gNBs even leans towards the MLP. The MLP keeps 1.12 and 0.95 more reward per step on the ring and hex layouts, winning 10 of 15 seeds in each, although neither difference survives Holm correction, at $p=0.061$ and $p=0.095$. AXIOM's gains therefore come from its shared encoder, per-slice heads, and joint training rather than from attention. One explanation is that a gNB's own queues already reflect most of what its neighbours do to it, so attending to them adds little. Following the pre-registration, the title of this paper therefore no longer names graph attention.
 
@@ -468,12 +468,12 @@ Third, AXIOM's behaviour holds in Env A when the environment changes. Under thre
 \includegraphics[width=\textwidth]{figures/fig11_envB.pdf}
 \caption{Env B. a, Reward at three gNBs, 30 seeds, per-seed points behind the mean
 and 95\% CI. b, URLLC and eMBB compliance at three gNBs. c, Priority-slice
-compliance of the learned arms at seven gNBs by layout, 15 seeds per cell.}
+compliance of the learned arms at seven gNBs by layout, 15 seeds per cell}
 \label{fig:envb}
 \end{figure}
 
 \begin{table}[b]
-\caption{Env B, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Rules above the line, learned policies below it.}
+\caption{Env B, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Rules above the line, learned policies below it}
 \label{tab:envb}
 \centering
 \footnotesize
@@ -509,17 +509,17 @@ At seven gNBs every learned policy falls further behind. The tuned rules earn 26
 
 With federation switched on and no noise, mean reward per step on the ten shared seeds is 12.356 for centralised AXIOM and 11.929 for the federated variant. That is a difference of $+0.427$ with 95\% CI [$-$0.54, 1.51] and $p=0.65$, so federation shows no significant cost, although it is more variable, with five seeds losing and four gaining. The disjoint replication shows a larger cost of $+0.968$, with 95\% CI [0.18, 1.96], which falls just short of significance at $p=0.055$.
 
-Adding DP-SGD noise to every step lowers reward by 0.77 to 1.25 per step, and no drop survives Holm correction at ten seeds. The formal guarantee is weak at these settings, with $\varepsilon$ of about 2{,}600 or more, so per-step DP-SGD delivers no meaningful guarantee here, and Supplementary Section S12 reports the privacy analysis in full.
+Adding DP-SGD noise to every step lowers reward by 0.77 to 1.25 per step, and no drop survives Holm correction at ten seeds. The formal guarantee is weak at these settings, with $\varepsilon$ of about 2{,}600 or more, so per-step DP-SGD delivers no meaningful guarantee here, and Section S12 of Online Resource 1 reports the privacy analysis in full.
 
 \subsection{Disruption}
 \label{sec:results-m4}
-We inject three mid-episode disruptions, gNB dropout, demand spikes, and agent churn, into every policy's frozen Env A checkpoint without retraining. Dropout and churn hurt every policy significantly at every severity, and no gap between AXIOM and any baseline survives Holm correction under any disruption. Demand spikes leave AXIOM's decisions largely intact, with block precision at 0.98, and Supplementary Section S12 gives the protocol and every result.
+We inject three mid-episode disruptions, gNB dropout, demand spikes, and agent churn, into every policy's frozen Env A checkpoint without retraining. Dropout and churn hurt every policy significantly at every severity, and no gap between AXIOM and any baseline survives Holm correction under any disruption. Demand spikes leave AXIOM's decisions largely intact, with block precision at 0.98, and Section S12 of Online Resource 1 gives the protocol and every result.
 
 \subsection{Model Complexity}
 \label{sec:results-complexity}
 
 \begin{table}[b]
-\caption{Model complexity. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed.}
+\caption{Model complexity. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed}
 \label{tab:complexity}
 \centering
 \footnotesize
@@ -543,13 +543,13 @@ Table~\ref{tab:complexity} sets out the cost. AXIOM's shared encoder keeps its p
 \label{sec:results-verify}
 We checked the results in three ways, with every pass criterion fixed before the run it judged. First, rerunning eleven reported cells on their original seeds in fresh processes reproduced every stored per-seed result exactly, with one exception. The single-agent DQN's training code builds its network before setting the seed, so the first seed of each batch starts from an unseeded initialisation. Rerunning this baseline with its initialisation seeded leaves AXIOM's leads in Env B and at nineteen gNBs unchanged.
 
-Second, four further runs retrained every arm on fresh seeds, 10 to 40 per cell, and 81 of their 90 pre-stated checks held. At seven and nineteen gNBs in Env A AXIOM kept 93.4\% to 100\% priority-slice compliance and beat every baseline under every layout, at Holm-adjusted $p\leq0.032$ in all but one ten-seed cell, which a twenty-seed rerun then confirmed at $p\leq0.007$. In Env B at three gNBs it again beat the static rule and every learned baseline at Holm-adjusted $p\leq0.0002$, the tuned rules again beat every learned policy, and the disruption, federation, and privacy results held as reported. The Supplementary Material reports every number from these runs.
+Second, four further runs retrained every arm on fresh seeds, 10 to 40 per cell, and 81 of their 90 pre-stated checks held. At seven and nineteen gNBs in Env A AXIOM kept 93.4\% to 100\% priority-slice compliance and beat every baseline under every layout, at Holm-adjusted $p\leq0.032$ in all but one ten-seed cell, which a twenty-seed rerun then confirmed at $p\leq0.007$. In Env B at three gNBs it again beat the static rule and every learned baseline at Holm-adjusted $p\leq0.0002$, the tuned rules again beat every learned policy, and the disruption, federation, and privacy results held as reported. Online Resource 1 reports every number from these runs.
 
 The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set. AXIOM's small lead over the single-agent DQN in Env A at three gNBs did not recur, at $-0.021$ and $+0.159$ per step on 20 and 40 new seeds, and at 1.02 times the load that baseline matched AXIOM. Two weak AXIOM seeds also left one ten-seed load sample 3.2\% short of the oracle, a gap that a twenty-seed rerun did not reproduce. Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes from the raw logs the numbers in every results table and the key results sentences, and all 309 of its checks pass.
 
 \subsection{Live Deployment}
 \label{sec:results-m8}
-We also checked the deployment path that AXIOM would use on a real single-gNB OAI testbed, running an offline-trained single-agent DQN checkpoint through the real E2 control loop with real UEs and per-slice UDP traffic. The pipeline worked end to end, with 0.000\% loss at both loads and zero below-floor grants across more than 100{,}000 readings after a scheduler-configuration fix. AXIOM itself is evaluated offline, since our two-gNB live attempt did not sustain traffic, and Supplementary Section S9 gives the testbed and every live result.
+We also checked the deployment path that AXIOM would use on a real single-gNB OAI testbed, running an offline-trained single-agent DQN checkpoint through the real E2 control loop with real UEs and per-slice User Datagram Protocol (UDP) traffic. The pipeline worked end to end, with 0.000\% loss at both loads and zero below-floor grants across more than 100{,}000 readings after a scheduler-configuration fix. AXIOM itself is evaluated offline, since our two-gNB live attempt did not sustain traffic, and Section S9 of Online Resource 1 gives the testbed and every live result.
 
 \section{Conclusion}
 \label{sec:conclusion}
@@ -563,12 +563,15 @@ Future work targets the gaps that this paper leaves open. The first is a live mu
 
 \backmatter
 
+\bmhead{Supplementary information}
+Online Resource 1 is a PDF that gives the full verification results, the live testbed check, additional setup details, and additional results.
+
 \bmhead{Acknowledgements}
 This work was supported by the Fundamental Research Grant Scheme
 (FRGS) of the Ministry of Higher Education (MOHE), Malaysia, under
 grant FRGS/1/2024/ICT06/TAYLOR/02/1.
 
-\section*{Declarations}
+\section*{Statements and Declarations}
 
 \noindent The following statements should be understood to apply to
 this manuscript unless otherwise indicated.
@@ -581,7 +584,7 @@ this manuscript unless otherwise indicated.
 \item \textbf{Data availability:} The experiment logs, checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request.
 \item \textbf{Materials availability:} Not applicable, since this study involves no physical or biological materials.
 \item \textbf{Code availability:} The framework and experiment scripts used to produce this paper's results, including the reproducibility manifest and analysis scripts used to independently re-derive every table and figure in this paper, are available from the corresponding author on reasonable request.
-\item \textbf{Author contribution:} M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
+\item \textbf{Author contributions:} M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
 \end{itemize}
 
 \bibliography{refs}

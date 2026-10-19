@@ -149,7 +149,8 @@ def main() -> None:
     ax2.legend(handles2, labels2, loc="lower left", bbox_to_anchor=(0.01, 0.01), ncol=2, columnspacing=0.8,
                frameon=False, fontsize=6, handlelength=1.3)
 
-    fig.suptitle("Centralised campaign, per-seed reward evidence, 30 seeds per arm", y=1.02, fontsize=9)
+    # WPC: no titles inside figure files; the manuscript caption carries this.
+    # fig.suptitle("Centralised campaign, per-seed reward evidence, 30 seeds per arm", y=1.02, fontsize=9)
     fig.subplots_adjust(bottom=0.14, wspace=0.32)
 
     out_path = Path(args.out)
