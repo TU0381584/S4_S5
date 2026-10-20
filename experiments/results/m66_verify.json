@@ -3155,6 +3155,221 @@
   "ok": true
  },
  {
+  "label": "reframe: M70 rule low",
+  "snippet": "keeps 99.96\\% to 99.99\\% at every size",
+  "computed": 99.96277777777777,
+  "formatted": "99.96",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 rule high",
+  "snippet": "keeps 99.96\\% to 99.99\\% at every size",
+  "computed": 99.98944444444446,
+  "formatted": "99.99",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 AXIOM within 3 points of the rule at every size",
+  "snippet": null,
+  "computed": {
+   "3": 1.13,
+   "7": 2.91,
+   "19": 2.71
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 other learners at least 24 points short at 7 and 19 gNBs",
+  "snippet": null,
+  "computed": 23.75,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: abstract says only a known static rule does better",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 shared head collapses",
+  "snippet": "it collapses in 9 of 15 seeds",
+  "computed": 9,
+  "formatted": "9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 shared head compliance",
+  "snippet": "keeps only 65.9\\% priority-slice compliance",
+  "computed": 65.89666666666666,
+  "formatted": "65.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 AXIOM same seeds compliance",
+  "snippet": "against AXIOM's 96.8\\% on the same seeds",
+  "computed": 96.82333333333332,
+  "formatted": "96.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 shared head loses every seed at Holm p<0.001",
+  "snippet": null,
+  "computed": {
+   "('A19', 'r')": 0.0003662109375,
+   "('A19', 'p')": 0.0003662109375,
+   "('B3', 'p')": 0.17962883412837982,
+   "('B3', 'r')": 0.2883047182112932,
+   "('A3', 'p')": 1.0,
+   "('A3', 'r')": 1.0
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 joint target never significantly different",
+  "snippet": null,
+  "computed": {
+   "('B3', 'r')": 0.2559102326631546,
+   "('A3', 'p')": 0.33944577430914497,
+   "('A19', 'r')": 0.4352377201621827,
+   "('A19', 'p')": 0.4352377201621827,
+   "('B3', 'p')": 0.739050660169088,
+   "('A3', 'r')": 0.916511907863894
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 joint target trends better on reward in every cell",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 joint target Env A N=3 reward",
+  "snippet": "reaching 12.831 reward per step",
+  "computed": 12.831251182343498,
+  "formatted": "12.831",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 joint target N=19 compliance",
+  "snippet": "and 99.96\\% priority-slice compliance at nineteen",
+  "computed": 99.96444444444444,
+  "formatted": "99.96",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 MAPPO reported A3",
+  "snippet": "MAPPO rises from 10.013 to 11.448",
+  "computed": 10.013059772248168,
+  "formatted": "10.013",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 MAPPO grid A3",
+  "snippet": "MAPPO rises from 10.013 to 11.448",
+  "computed": 11.44773865321981,
+  "formatted": "11.448",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 MAPPO reported N=19 ring",
+  "snippet": "from 60.6\\% to 69.6\\% priority-slice compliance",
+  "computed": 60.63222222222222,
+  "formatted": "60.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 MAPPO grid N=19 ring",
+  "snippet": "from 60.6\\% to 69.6\\% priority-slice compliance",
+  "computed": 69.58055555555556,
+  "formatted": "69.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 MAPPO lead low",
+  "snippet": "by 1.25 to 16.18 reward per step",
+  "computed": 1.2498315133186586,
+  "formatted": "1.25",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 MAPPO lead high",
+  "snippet": "by 1.25 to 16.18 reward per step",
+  "computed": 16.180573286280755,
+  "formatted": "16.18",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 MAPPO all four at Holm p<0.001",
+  "snippet": null,
+  "computed": {
+   "('B3', 'r')": 1.4156103134155273e-07,
+   "('A19', 'r')": 1.5965479573842217e-05,
+   "('A19', 'p')": 2.1618128496480016e-05,
+   "('A3', 'r')": 0.0006921738104795526
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 MAPPO Env B N=7",
+  "snippet": "and by 2.42 in Env B at seven gNBs",
+  "computed": 2.4178213030688687,
+  "formatted": "2.42",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 seeded single N=7",
+  "snippet": "keeps 80.3\\% and 63.9\\% priority-slice compliance",
+  "computed": 80.30555555555557,
+  "formatted": "80.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 seeded single N=19",
+  "snippet": "keeps 80.3\\% and 63.9\\% priority-slice compliance",
+  "computed": 63.94333333333333,
+  "formatted": "63.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M70 seeded single beaten under every layout at Holm p<=0.035",
+  "snippet": null,
+  "computed": 0.03462953426462118,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -3181,9 +3396,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 323",
+  "label": "text quotes the final check count of 347",
   "snippet": null,
-  "computed": 323,
+  "computed": 347,
   "formatted": null,
   "in_tex": null,
   "ok": true

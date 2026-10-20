@@ -800,7 +800,7 @@ def main():
         for n_, ss in ((7, S15_), (19, S30_19)):
             allbase += [100 * mean(seeds_of(f"m65_scaling/n{n_}_{t_}", b, ss), prio) for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned")]
     C.note("reframe: every baseline below 84% at 7 and 19 gNBs in every sample", max(allbase) < 84 and
-           "while every baseline stays below 84\\%" in C.tex and "stay below 84\\%" in C.tex, round(max(allbase), 2))
+           "while every learned baseline stays below 84\\%" in C.tex and "stay below 84\\%" in C.tex, round(max(allbase), 2))
     a3f = paired(seeds_of("m66_fresh/A_n3", "axiom2", list(range(3000, 3020))), seeds_of("m66_fresh/A_n3", "single_agent_dqn", list(range(3000, 3020))))
     a3d = paired(seeds_of("m66d_fresh/D1_A_n3", "axiom2", list(range(4000, 4040))), seeds_of("m66d_fresh/D1_A_n3", "single_agent_dqn", list(range(4000, 4040))))
     C.claim("reframe: fresh 20-seed single-agent gap", "at $-0.021$ and $+0.159$ per step", a3f["diff"], "{:+.3f}".replace("+", "") if a3f["diff"] < 0 else "{:+.3f}")
@@ -957,6 +957,86 @@ def main():
     C.note("reframe: parameter table demand constants", re.search(r"^LOAD_FACTOR = 1\.05\b", sbt_, re.M) is not None
            and re.search(r"^OFFERED_VOLATILITY = 0\.005\b", sbt_, re.M) is not None
            and re.search(r"^LOAD_MULTIPLIER_RANGE = \(0\.9, 1\.0\)", sbt_, re.M) is not None, None)
+
+    # ---------------- M70 referee-response runs (2026-10-21), recomputed here from the raw logs
+    LAY_ = ("fully_connected", "ring", "hex")
+    rule_ = {3: 100 * mean(seeds_of("m65_n3_view", "heuristic", S30), prio)}
+    for n_, ss_ in ((7, S15), (19, S30_19)):
+        rows_ = [r for t_ in LAY_ for r in seeds_of(f"m70/R1/A_n{n_}_{t_}", "rule_static", ss_).values()]
+        rule_[n_] = 100 * float(np.mean([prio(r) for r in rows_]))
+    C.claim("reframe: M70 rule low", "keeps 99.96\\% to 99.99\\% at every size", min(rule_.values()), "{:.2f}")
+    C.claim("reframe: M70 rule high", "keeps 99.96\\% to 99.99\\% at every size", max(rule_.values()), "{:.2f}")
+    def pooled_(n_, arm):
+        if n_ == 3:
+            return list(seeds_of("m65_n3_view", arm, S30).values())
+        ss_ = S15 if n_ == 7 else S30_19
+        return [r for t_ in LAY_ for r in seeds_of(f"m65_scaling/n{n_}_{t_}", arm, ss_).values()]
+    axp_ = {n_: 100 * float(np.mean([prio(r) for r in pooled_(n_, "axiom2")])) for n_ in (3, 7, 19)}
+    C.note("reframe: M70 AXIOM within 3 points of the rule at every size", all(rule_[n_] - axp_[n_] < 3 for n_ in (3, 7, 19))
+           and "AXIOM comes within 3 points of it" in C.main, {n_: round(rule_[n_] - axp_[n_], 2) for n_ in (3, 7, 19)})
+    short_ = min(rule_[n_] - 100 * float(np.mean([prio(r) for r in pooled_(n_, a_)])) for n_ in (7, 19)
+                 for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
+    C.note("reframe: M70 other learners at least 24 points short at 7 and 19 gNBs", short_ >= 23.5
+           and "falls at least 24 points short" in C.main, round(short_, 2))
+    C.note("reframe: abstract says only a known static rule does better", "only a known static rule does better" in C.main
+           and all(rule_[n_] > axp_[n_] for n_ in (7, 19)), None)
+    ABL_ = list(range(900, 912)) + [1000, 1001, 1002]
+    abl_cells_ = {"A3": ("m65_n3_view", "A_n3", S30), "B3": ("m64/n3_fully_connected", "B_n3", S30), "A19": ("m65_scaling/n19_ring", "A_n19_ring", ABL_)}
+    def abl_(v_):
+        tt_ = {}
+        for k_, (c_, d_, ss_) in abl_cells_.items():
+            ax_, va_ = seeds_of(c_, "axiom2", ss_), seeds_of(f"m70/R4_{v_}/{d_}", "axiom2", ss_)
+            for m_, f_ in (("r", lambda r: r["reward"]), ("p", prio)):
+                tt_[(k_, m_)] = paired(ax_, va_, f_)
+        hh_ = holm({k: v["p"] for k, v in tt_.items()})
+        return tt_, hh_
+    tsh_, hsh_ = abl_("sharedhead")
+    sh19_ = seeds_of("m70/R4_sharedhead/A_n19_ring", "axiom2", ABL_)
+    ax19_ = seeds_of("m65_scaling/n19_ring", "axiom2", ABL_)
+    C.claim("reframe: M70 shared head collapses", "it collapses in 9 of 15 seeds", sum(r["collapsed"] for r in sh19_.values()), "{:d}")
+    C.claim("reframe: M70 shared head compliance", "keeps only 65.9\\% priority-slice compliance", 100 * mean(sh19_, prio), "{:.1f}")
+    C.claim("reframe: M70 AXIOM same seeds compliance", "against AXIOM's 96.8\\% on the same seeds", 100 * mean(ax19_, prio), "{:.1f}")
+    C.note("reframe: M70 shared head loses every seed at Holm p<0.001", all(tsh_[("A19", m_)]["wins"] == 15 and hsh_[("A19", m_)] < 0.001 for m_ in "rp")
+           and all(hsh_[(k_, m_)] >= 0.05 for k_ in ("A3", "B3") for m_ in "rp"), {str(k): v for k, v in hsh_.items()})
+    tvd_, hvd_ = abl_("vdn")
+    C.note("reframe: M70 joint target never significantly different", all(v >= 0.05 for v in hvd_.values())
+           and "is never significantly different and trends slightly better" in C.main, {str(k): v for k, v in hvd_.items()})
+    C.note("reframe: M70 joint target trends better on reward in every cell", all(tvd_[(k_, "r")]["diff"] < 0 for k_ in abl_cells_), None)
+    C.claim("reframe: M70 joint target Env A N=3 reward", "reaching 12.831 reward per step", mean(seeds_of("m70/R4_vdn/A_n3", "axiom2", S30)), "{:.3f}")
+    C.claim("reframe: M70 joint target N=19 compliance", "and 99.96\\% priority-slice compliance at nineteen", 100 * mean(seeds_of("m70/R4_vdn/A_n19_ring", "axiom2", ABL_), prio), "{:.2f}")
+    mp_cells_ = {"A3": ("m65_n3_view", "m70/R3_confirm/A_n3", S30), "A19": ("m65_scaling/n19_ring", "m70/R3_confirm/A_n19_ring", S30_19),
+                 "B3": ("m64/n3_fully_connected", "m70/R3_confirm/B_n3", S30)}
+    mpd_ = {k_: (seeds_of(a_, "axiom2", ss_), seeds_of(b_, "mappo", ss_)) for k_, (a_, b_, ss_) in mp_cells_.items()}
+    C.claim("reframe: M70 MAPPO reported A3", "MAPPO rises from 10.013 to 11.448", mean(seeds_of("m65_n3_view", "mappo_tuned", S30)), "{:.3f}")
+    C.claim("reframe: M70 MAPPO grid A3", "MAPPO rises from 10.013 to 11.448", mean(mpd_["A3"][1]), "{:.3f}")
+    C.claim("reframe: M70 MAPPO reported N=19 ring", "from 60.6\\% to 69.6\\% priority-slice compliance", 100 * mean(seeds_of("m65_scaling/n19_ring", "mappo_tuned", S30_19), prio), "{:.1f}")
+    C.claim("reframe: M70 MAPPO grid N=19 ring", "from 60.6\\% to 69.6\\% priority-slice compliance", 100 * mean(mpd_["A19"][1], prio), "{:.1f}")
+    tm_ = {("A3", "r"): paired(*mpd_["A3"]), ("A19", "r"): paired(*mpd_["A19"]), ("A19", "p"): paired(*mpd_["A19"], prio), ("B3", "r"): paired(*mpd_["B3"])}
+    hm_ = holm({k: v["p"] for k, v in tm_.items()})
+    rd_ = [tm_[k]["diff"] for k in tm_ if k[1] == "r"]
+    C.claim("reframe: M70 MAPPO lead low", "by 1.25 to 16.18 reward per step", min(rd_), "{:.2f}")
+    C.claim("reframe: M70 MAPPO lead high", "by 1.25 to 16.18 reward per step", max(rd_), "{:.2f}")
+    C.note("reframe: M70 MAPPO all four at Holm p<0.001", all(v["diff"] > 0 for v in tm_.values()) and max(hm_.values()) < 0.001, {str(k): v for k, v in hm_.items()})
+    C.claim("reframe: M70 MAPPO Env B N=7", "and by 2.42 in Env B at seven gNBs",
+            paired(seeds_of("m64/n7_ring", "axiom2", S15), seeds_of("m70/R3_confirm/B_n7_ring", "mappo", S15))["diff"], "{:.2f}")
+    sg7_ = 100 * float(np.mean([prio(r) for t_ in LAY_ for r in seeds_of(f"m70/R2/A_n7_{t_}", "single_agent_dqn", S15).values()]))
+    sg19_rows_ = [r for t_, d_ in (("fully_connected", "m70/R2/A_n19_fully_connected"), ("ring", "m66c_fresh/C7_A_n19_ring"), ("hex", "m70/R2/A_n19_hex"))
+                  for r in seeds_of(d_, "single_agent_dqn", S30_19).values()]
+    C.claim("reframe: M70 seeded single N=7", "keeps 80.3\\% and 63.9\\% priority-slice compliance", sg7_, "{:.1f}")
+    C.claim("reframe: M70 seeded single N=19", "keeps 80.3\\% and 63.9\\% priority-slice compliance", 100 * float(np.mean([prio(r) for r in sg19_rows_])), "{:.1f}")
+    hmax_ = 0.0
+    for n_, ss_ in ((7, S15), (19, S30_19)):
+        tt_ = {}
+        for t_ in LAY_:
+            sd_ = "m66c_fresh/C7_A_n19_ring" if (n_ == 19 and t_ == "ring") else f"m70/R2/A_n{n_}_{t_}"
+            sg_, ax_ = seeds_of(sd_, "single_agent_dqn", ss_), seeds_of(f"m65_scaling/n{n_}_{t_}", "axiom2", ss_)
+            for m_, f_ in (("r", lambda r: r["reward"]), ("p", prio)):
+                tt_[(t_, m_)] = paired(ax_, sg_, f_)
+        hh_ = holm({k: v["p"] for k, v in tt_.items()})
+        assert all(v["diff"] > 0 for v in tt_.values())
+        hmax_ = max(hmax_, max(hh_.values()))
+    C.note("reframe: M70 seeded single beaten under every layout at Holm p<=0.035", round(hmax_, 3) <= 0.035
+           and "under every layout at Holm-adjusted $p\\leq0.035$" in C.main, hmax_)
 
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))

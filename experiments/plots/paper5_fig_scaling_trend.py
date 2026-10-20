@@ -36,6 +36,13 @@ COMPLEXITY_KEY = {"axiom2": "axiom2", "single_agent_dqn": "single_agent_dqn",
 LAYOUTS = ("fully_connected", "ring", "hex")
 
 
+def rule_cells(n):
+    if n == 3:
+        return list(seeds_of("m65_n3_view", "heuristic", S30).values())
+    seeds = S15 if n == 7 else S30_19
+    return [r for t in LAYOUTS for r in seeds_of(f"m70/R1/A_n{n}_{t}", "rule_static", seeds).values()]
+
+
 def cells(n, arm):
     if n == 3:
         return list(seeds_of("m65_n3_view", arm, S30).values())
@@ -59,6 +66,12 @@ def main():
             summ[arm][n] = {"n_cells": len(rows), "prio_mean": float(np.mean(v)), "prio_ci": [lo, hi],
                             "collapsed": int(sum(r["collapsed"] for r in rows)),
                             "params": comp[str(n)][COMPLEXITY_KEY[arm]]["params_execution"]}
+    summ["rule"] = {}
+    for n in sizes:
+        rows = rule_cells(n)
+        v = [100 * prio(r) for r in rows]
+        summ["rule"][n] = {"n_cells": len(rows), "prio_mean": float(np.mean(v)), "prio_ci": list(boot_ci(v)),
+                           "collapsed": int(sum(r["collapsed"] for r in rows))}
     fig, axs = plt.subplots(1, 3, figsize=(10.4, 3.25), gridspec_kw={"width_ratios": [1.35, 1, 1]})
     xs = np.arange(len(sizes))
     for arm in ARMS:
@@ -73,9 +86,12 @@ def main():
         axs[0].fill_between(xs, lo, hi, color=st["color"], alpha=0.18 if emph else 0.08, lw=0)
         axs[1].plot(xs, [100 * summ[arm][n]["collapsed"] / summ[arm][n]["n_cells"] for n in sizes], **kw)
         axs[2].plot(xs, [summ[arm][n]["params"] for n in sizes], **kw)
+    rk = dict(color="#5b5a52", ls="--", marker="v", lw=1.3, ms=5, alpha=0.9, zorder=4, label="Static rule, shed all mMTC")
+    axs[0].plot(xs, [summ["rule"][n]["prio_mean"] for n in sizes], **rk)
+    axs[1].plot(xs, [100 * summ["rule"][n]["collapsed"] / summ["rule"][n]["n_cells"] for n in sizes], **rk)
     for i, n in enumerate(sizes):
         v = summ["axiom2"][n]["prio_mean"]
-        axs[0].annotate(f"{v:.1f}%", (i, v), textcoords="offset points", xytext=(0, 8), ha="center",
+        axs[0].annotate(f"{v:.1f}%", (i, v), textcoords="offset points", xytext=(0, -14), ha="center",
                         fontsize=8, color=M2_ARM_STYLE["axiom2"]["color"], fontweight="bold")
     gap19 = summ["axiom2"][19]["prio_mean"] - max(summ[b][19]["prio_mean"] for b in ARMS[1:])
     axs[0].annotate("", xy=(2.18, summ["axiom2"][19]["prio_mean"]),
@@ -102,6 +118,7 @@ def main():
     fig.savefig(a.out + ".pdf", bbox_inches="tight")
     fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")
     json.dump({"gap19_points": gap19, "arms": summ}, open(a.out + "_summary.json", "w"), indent=1)
+    print("rule", {n: (round(summ["rule"][n]["prio_mean"], 2), summ["rule"][n]["collapsed"], summ["rule"][n]["n_cells"]) for n in sizes})
     for arm in ARMS:
         print(arm, {n: (round(summ[arm][n]["prio_mean"], 1), summ[arm][n]["collapsed"], summ[arm][n]["n_cells"], summ[arm][n]["params"]) for n in sizes})
     print("gap at 19:", round(gap19, 1))

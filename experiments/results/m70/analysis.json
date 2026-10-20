@@ -1,0 +1,588 @@
+{
+ "R1": {
+  "7/fully_connected": {
+   "n": 15,
+   "prio": 99.98,
+   "reward": 32.11395915283231
+  },
+  "7/ring": {
+   "n": 15,
+   "prio": 99.98,
+   "reward": 32.11395915283231
+  },
+  "7/hex": {
+   "n": 15,
+   "prio": 99.98,
+   "reward": 32.11395915283231
+  },
+  "19/fully_connected": {
+   "n": 30,
+   "prio": 99.96277777777777,
+   "reward": 90.25656350096122
+  },
+  "19/ring": {
+   "n": 30,
+   "prio": 99.96277777777777,
+   "reward": 90.25656350096122
+  },
+  "19/hex": {
+   "n": 30,
+   "prio": 99.96277777777777,
+   "reward": 90.25656350096122
+  }
+ },
+ "R2": {
+  "A7/fully_connected": {
+   "seeded_single_prio": 80.30555555555556,
+   "seeded_single_collapsed": 2,
+   "n": 15
+  },
+  "A7/ring": {
+   "seeded_single_prio": 80.30555555555556,
+   "seeded_single_collapsed": 2,
+   "n": 15
+  },
+  "A7/hex": {
+   "seeded_single_prio": 80.30555555555556,
+   "seeded_single_collapsed": 2,
+   "n": 15
+  },
+  "A7_tests": {
+   "fully_connected/reward": {
+    "n": 15,
+    "diff": 2.4258231869356246,
+    "wins": 12,
+    "ties": 1,
+    "losses": 2,
+    "p": 0.011007912955186742,
+    "p_holm": 0.03462953426462118
+   },
+   "fully_connected/prio": {
+    "n": 15,
+    "diff": 0.1656888888888889,
+    "wins": 11,
+    "ties": 2,
+    "losses": 2,
+    "p": 0.007132413699395206,
+    "p_holm": 0.03462953426462118
+   },
+   "ring/reward": {
+    "n": 15,
+    "diff": 2.6814443214760475,
+    "wins": 12,
+    "ties": 1,
+    "losses": 2,
+    "p": 0.006318521553682498,
+    "p_holm": 0.03462953426462118
+   },
+   "ring/prio": {
+    "n": 15,
+    "diff": 0.17307777777777777,
+    "wins": 11,
+    "ties": 2,
+    "losses": 2,
+    "p": 0.0057715890441035304,
+    "p_holm": 0.03462953426462118
+   },
+   "hex/reward": {
+    "n": 15,
+    "diff": 2.4648321568185336,
+    "wins": 12,
+    "ties": 1,
+    "losses": 2,
+    "p": 0.011007912955186742,
+    "p_holm": 0.03462953426462118
+   },
+   "hex/prio": {
+    "n": 15,
+    "diff": 0.16425555555555557,
+    "wins": 10,
+    "ties": 3,
+    "losses": 2,
+    "p": 0.009632975772588674,
+    "p_holm": 0.03462953426462118
+   }
+  },
+  "A19/fully_connected": {
+   "seeded_single_prio": 63.94333333333333,
+   "seeded_single_collapsed": 28,
+   "n": 30
+  },
+  "A19/ring": {
+   "seeded_single_prio": 63.94333333333333,
+   "seeded_single_collapsed": 28,
+   "n": 30
+  },
+  "A19/hex": {
+   "seeded_single_prio": 63.94333333333333,
+   "seeded_single_collapsed": 28,
+   "n": 30
+  },
+  "A19_tests": {
+   "fully_connected/reward": {
+    "n": 30,
+    "diff": 12.0533090170808,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "p_holm": 2.2351741790771484e-08
+   },
+   "fully_connected/prio": {
+    "n": 30,
+    "diff": 0.3453666666666668,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "p_holm": 2.2351741790771484e-08
+   },
+   "ring/reward": {
+    "n": 30,
+    "diff": 10.92570254422995,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 1.30385160446167e-08,
+    "p_holm": 5.21540641784668e-08
+   },
+   "ring/prio": {
+    "n": 30,
+    "diff": 0.32307777777777785,
+    "wins": 29,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.5630832507250074e-06,
+    "p_holm": 7.689249752175022e-06
+   },
+   "hex/reward": {
+    "n": 30,
+    "diff": 11.435613152687646,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "p_holm": 7.689249752175022e-06
+   },
+   "hex/prio": {
+    "n": 30,
+    "diff": 0.33077222222222225,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "p_holm": 7.689249752175022e-06
+   }
+  },
+  "B7/fully_connected": {
+   "reward": {
+    "n": 15,
+    "diff": -0.35573743794009377,
+    "wins": 6,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.67877197265625
+   },
+   "prio": {
+    "n": 15,
+    "diff": -0.08692222222222222,
+    "wins": 6,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.0301513671875
+   }
+  },
+  "B7/ring": {
+   "reward": {
+    "n": 15,
+    "diff": 0.35592530325415933,
+    "wins": 9,
+    "ties": 0,
+    "losses": 6,
+    "p": 0.25238037109375
+   },
+   "prio": {
+    "n": 15,
+    "diff": -0.07407777777777781,
+    "wins": 6,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.083251953125
+   }
+  },
+  "B7/hex": {
+   "reward": {
+    "n": 15,
+    "diff": -0.02533821761021855,
+    "wins": 5,
+    "ties": 0,
+    "losses": 10,
+    "p": 0.803955078125
+   },
+   "prio": {
+    "n": 15,
+    "diff": -0.0787111111111111,
+    "wins": 6,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.02557373046875
+   }
+  }
+ },
+ "R3": {
+  "selection": {
+   "A": {
+    "cfg": "lr1e-3_ep4_mb256_te900",
+    "lr": "1e-3",
+    "ep": 4,
+    "mb": 256,
+    "te": 900,
+    "n": 5,
+    "mean": 12.564630632422663
+   },
+   "B": {
+    "cfg": "lr1e-3_ep10_mb64_te300",
+    "lr": "1e-3",
+    "ep": 10,
+    "mb": 64,
+    "te": 300,
+    "n": 5,
+    "mean": 7.6922131380571885
+   }
+  },
+  "tests": {
+   "A3/reward": {
+    "n": 30,
+    "diff": 1.2498315133186586,
+    "wins": 18,
+    "ties": 8,
+    "losses": 4,
+    "p": 0.0006921738104795526,
+    "p_holm": 0.0006921738104795526
+   },
+   "A19/reward": {
+    "n": 30,
+    "diff": 16.180573286280755,
+    "wins": 27,
+    "ties": 1,
+    "losses": 2,
+    "p": 5.321826524614072e-06,
+    "p_holm": 1.5965479573842217e-05
+   },
+   "A19/prio": {
+    "n": 30,
+    "diff": 0.26670555555555553,
+    "wins": 27,
+    "ties": 1,
+    "losses": 2,
+    "p": 1.0809064248240008e-05,
+    "p_holm": 2.1618128496480016e-05
+   },
+   "B3/reward": {
+    "n": 30,
+    "diff": 1.8633768606728818,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.5390257835388184e-08,
+    "p_holm": 1.4156103134155273e-07
+   }
+  },
+  "A3_summary": {
+   "axiom": 12.697570166538469,
+   "mappo_best": 11.44773865321981,
+   "mappo_reported": 10.013059772248168,
+   "n_best": 30,
+   "mappo_best_prio": 88.38944444444444,
+   "mappo_best_collapsed": 9
+  },
+  "A19_summary": {
+   "axiom": 88.65137762172948,
+   "mappo_best": 72.47080433544872,
+   "mappo_reported": 71.22419398205894,
+   "n_best": 30,
+   "mappo_best_prio": 69.58055555555556,
+   "mappo_best_collapsed": 2
+  },
+  "B3_summary": {
+   "axiom": 8.831805335946738,
+   "mappo_best": 6.968428475273854,
+   "mappo_reported": 6.968428475273854,
+   "n_best": 30,
+   "mappo_best_prio": 54.26500000000001,
+   "mappo_best_collapsed": 0
+  },
+  "B7_summary": {
+   "axiom": 23.496374635391838,
+   "mappo_best": 21.078553332322976,
+   "mappo_reported": 21.078553332322976,
+   "n_best": 15,
+   "mappo_best_prio": 33.45111111111112,
+   "mappo_best_collapsed": 0
+  },
+  "B7_test": {
+   "n": 15,
+   "diff": 2.4178213030688687,
+   "wins": 13,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.0008544921875
+  }
+ },
+ "R4": {
+  "sharedhead": {
+   "tests": {
+    "A3/reward": {
+     "n": 30,
+     "diff": -0.010692909835000701,
+     "wins": 9,
+     "ties": 15,
+     "losses": 6,
+     "p": 0.5321298884166212,
+     "p_holm": 1.0
+    },
+    "A3/prio": {
+     "n": 30,
+     "diff": 0.00030000000000001136,
+     "wins": 8,
+     "ties": 18,
+     "losses": 4,
+     "p": 0.5302845968336095,
+     "p_holm": 1.0
+    },
+    "B3/reward": {
+     "n": 30,
+     "diff": 0.3721959919797637,
+     "wins": 19,
+     "ties": 0,
+     "losses": 11,
+     "p": 0.09610157273709774,
+     "p_holm": 0.2883047182112932
+    },
+    "B3/prio": {
+     "n": 30,
+     "diff": 0.0262,
+     "wins": 20,
+     "ties": 0,
+     "losses": 10,
+     "p": 0.044907208532094955,
+     "p_holm": 0.17962883412837982
+    },
+    "A19/reward": {
+     "n": 15,
+     "diff": 9.890329889984283,
+     "wins": 15,
+     "ties": 0,
+     "losses": 0,
+     "p": 6.103515625e-05,
+     "p_holm": 0.0003662109375
+    },
+    "A19/prio": {
+     "n": 15,
+     "diff": 0.3092666666666667,
+     "wins": 15,
+     "ties": 0,
+     "losses": 0,
+     "p": 6.103515625e-05,
+     "p_holm": 0.0003662109375
+    }
+   },
+   "summary": {
+    "A3": {
+     "axiom": 12.697570166538469,
+     "variant": 12.708263076373472,
+     "variant_prio": 98.82555555555555,
+     "axiom_prio": 98.85555555555555,
+     "variant_collapsed": 0,
+     "n": 30
+    },
+    "B3": {
+     "axiom": 8.831805335946738,
+     "variant": 8.459609343966973,
+     "variant_prio": 62.47388888888889,
+     "axiom_prio": 65.0938888888889,
+     "variant_collapsed": 0,
+     "n": 30
+    },
+    "A19": {
+     "axiom": 89.08248734989424,
+     "variant": 79.19215745990995,
+     "variant_prio": 65.89666666666666,
+     "axiom_prio": 96.82333333333332,
+     "variant_collapsed": 9,
+     "n": 15
+    }
+   },
+   "axiom_better": [
+    "A19/reward",
+    "A19/prio"
+   ],
+   "axiom_worse": []
+  },
+  "vdn": {
+   "tests": {
+    "A3/reward": {
+     "n": 30,
+     "diff": -0.13368101580502892,
+     "wins": 9,
+     "ties": 17,
+     "losses": 4,
+     "p": 0.916511907863894,
+     "p_holm": 0.916511907863894
+    },
+    "A3/prio": {
+     "n": 30,
+     "diff": -0.011338888888888883,
+     "wins": 0,
+     "ties": 26,
+     "losses": 4,
+     "p": 0.06788915486182899,
+     "p_holm": 0.33944577430914497
+    },
+    "B3/reward": {
+     "n": 30,
+     "diff": -0.22329706802797553,
+     "wins": 9,
+     "ties": 0,
+     "losses": 21,
+     "p": 0.0426517054438591,
+     "p_holm": 0.2559102326631546
+    },
+    "B3/prio": {
+     "n": 30,
+     "diff": -0.007338888888888872,
+     "wins": 13,
+     "ties": 1,
+     "losses": 16,
+     "p": 0.369525330084544,
+     "p_holm": 0.739050660169088
+    },
+    "A19/reward": {
+     "n": 15,
+     "diff": -1.2747361166734228,
+     "wins": 0,
+     "ties": 12,
+     "losses": 3,
+     "p": 0.10880943004054568,
+     "p_holm": 0.4352377201621827
+    },
+    "A19/prio": {
+     "n": 15,
+     "diff": -0.0314111111111111,
+     "wins": 0,
+     "ties": 12,
+     "losses": 3,
+     "p": 0.10880943004054568,
+     "p_holm": 0.4352377201621827
+    }
+   },
+   "summary": {
+    "A3": {
+     "axiom": 12.697570166538469,
+     "variant": 12.831251182343498,
+     "variant_prio": 99.98944444444446,
+     "axiom_prio": 98.85555555555555,
+     "variant_collapsed": 0,
+     "n": 30
+    },
+    "B3": {
+     "axiom": 8.831805335946738,
+     "variant": 9.055102403974711,
+     "variant_prio": 65.82777777777778,
+     "axiom_prio": 65.0938888888889,
+     "variant_collapsed": 0,
+     "n": 30
+    },
+    "A19": {
+     "axiom": 89.08248734989424,
+     "variant": 90.35722346656763,
+     "variant_prio": 99.96444444444444,
+     "axiom_prio": 96.82333333333332,
+     "variant_collapsed": 0,
+     "n": 15
+    }
+   },
+   "axiom_better": [],
+   "axiom_worse": []
+  }
+ },
+ "criteria": [
+  {
+   "label": "R1 rule priority SLA >= 99% at N=7 fully_connected",
+   "holds": true,
+   "detail": "99.98% on 15 seeds"
+  },
+  {
+   "label": "R1 rule priority SLA >= 99% at N=7 ring",
+   "holds": true,
+   "detail": "99.98% on 15 seeds"
+  },
+  {
+   "label": "R1 rule priority SLA >= 99% at N=7 hex",
+   "holds": true,
+   "detail": "99.98% on 15 seeds"
+  },
+  {
+   "label": "R1 rule priority SLA >= 99% at N=19 fully_connected",
+   "holds": true,
+   "detail": "99.96% on 30 seeds"
+  },
+  {
+   "label": "R1 rule priority SLA >= 99% at N=19 ring",
+   "holds": true,
+   "detail": "99.96% on 30 seeds"
+  },
+  {
+   "label": "R1 rule priority SLA >= 99% at N=19 hex",
+   "holds": true,
+   "detail": "99.96% on 30 seeds"
+  },
+  {
+   "label": "R2 Env A N=7: AXIOM beats seeded single-agent DQN, all 6 at Holm p<0.05",
+   "holds": true,
+   "detail": "max p_holm 0.0346, min diff +0.1643"
+  },
+  {
+   "label": "R2 Env A N=19: AXIOM beats seeded single-agent DQN, all 6 at Holm p<0.05",
+   "holds": true,
+   "detail": "max p_holm 7.69e-06, min diff +0.3231"
+  },
+  {
+   "label": "R2 Env B N=7 fully_connected: AXIOM vs seeded single-agent DQN",
+   "holds": null,
+   "detail": "reward diff -0.3557, W/T/L 6/0/9, p 0.679, p_holm nan (n=15); prio diff -0.0869, W/T/L 6/0/9, p 0.0302, p_holm nan (n=15)"
+  },
+  {
+   "label": "R2 Env B N=7 ring: AXIOM vs seeded single-agent DQN",
+   "holds": null,
+   "detail": "reward diff +0.3559, W/T/L 9/0/6, p 0.252, p_holm nan (n=15); prio diff -0.0741, W/T/L 6/0/9, p 0.0833, p_holm nan (n=15)"
+  },
+  {
+   "label": "R2 Env B N=7 hex: AXIOM vs seeded single-agent DQN",
+   "holds": null,
+   "detail": "reward diff -0.0253, W/T/L 5/0/10, p 0.804, p_holm nan (n=15); prio diff -0.0787, W/T/L 6/0/9, p 0.0256, p_holm nan (n=15)"
+  },
+  {
+   "label": "R3 AXIOM beats the grid-selected MAPPO, all 4 at Holm p<0.05",
+   "holds": true,
+   "detail": "A3/reward diff +1.2498, W/T/L 18/8/4, p 0.000692, p_holm 0.000692 (n=30); A19/reward diff +16.1806, W/T/L 27/1/2, p 5.32e-06, p_holm 1.6e-05 (n=30); A19/prio diff +0.2667, W/T/L 27/1/2, p 1.08e-05, p_holm 2.16e-05 (n=30); B3/reward diff +1.8634, W/T/L 29/0/1, p 3.54e-08, p_holm 1.42e-07 (n=30)"
+  },
+  {
+   "label": "R3 Env B N=7 ring: AXIOM vs grid-selected MAPPO",
+   "holds": null,
+   "detail": "diff +2.4178, W/T/L 13/0/2, p 0.000854, p_holm nan (n=15)"
+  },
+  {
+   "label": "R4 per-slice heads supported (AXIOM better in >=1 cell, worse in none)",
+   "holds": true,
+   "detail": "better ['A19/reward', 'A19/prio'], worse []; A3/reward diff -0.0107, W/T/L 9/15/6, p 0.532, p_holm 1 (n=30); A3/prio diff +0.0003, W/T/L 8/18/4, p 0.53, p_holm 1 (n=30); B3/reward diff +0.3722, W/T/L 19/0/11, p 0.0961, p_holm 0.288 (n=30); B3/prio diff +0.0262, W/T/L 20/0/10, p 0.0449, p_holm 0.18 (n=30); A19/reward diff +9.8903, W/T/L 15/0/0, p 6.1e-05, p_holm 0.000366 (n=15); A19/prio diff +0.3093, W/T/L 15/0/0, p 6.1e-05, p_holm 0.000366 (n=15)"
+  },
+  {
+   "label": "R4 per-request TD samples supported (AXIOM better in >=1 cell, worse in none)",
+   "holds": false,
+   "detail": "better [], worse []; A3/reward diff -0.1337, W/T/L 9/17/4, p 0.917, p_holm 0.917 (n=30); A3/prio diff -0.0113, W/T/L 0/26/4, p 0.0679, p_holm 0.339 (n=30); B3/reward diff -0.2233, W/T/L 9/0/21, p 0.0427, p_holm 0.256 (n=30); B3/prio diff -0.0073, W/T/L 13/1/16, p 0.37, p_holm 0.739 (n=30); A19/reward diff -1.2747, W/T/L 0/12/3, p 0.109, p_holm 0.435 (n=15); A19/prio diff -0.0314, W/T/L 0/12/3, p 0.109, p_holm 0.435 (n=15)"
+  }
+ ],
+ "n_judged": 11,
+ "n_fail": 1
+}

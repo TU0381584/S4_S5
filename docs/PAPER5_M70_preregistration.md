@@ -35,3 +35,19 @@ The paper attributes AXIOM's behaviour to two choices that were never ablated in
 - Cells: Env A N=3 (seeds 900-929), Env B N=3 (seeds 900-929), Env A N=19 ring (seeds 900-911 and 1000-1002). Each variant is compared with the stored AXIOM v2 results on the same seeds, which reproduce exactly (M66 V1).
 - Tests: paired Wilcoxon on reward and on priority-slice compliance, Holm over the 6 tests per variant.
 - A design choice counts as supported if AXIOM is significantly better than the variant in at least one cell and significantly worse in none. Otherwise the manuscript's design rationale is reworded to match the result.
+
+## Results (campaign 19:34 on 2026-10-20 to 03:01 on 2026-10-21; analysis in experiments/results/m70/analysis.json)
+
+10 of 11 criteria hold; 4 rows were reported only.
+
+- **R1 holds in all 6 cells.** The static rule keeps 99.98% priority-slice compliance at N=7 and 99.96% at N=19 under every layout, against 99.99% at N=3. It is now drawn in Fig. 5a.
+- **R2 holds at both sizes.**
+  - Env A: AXIOM beats the seeded single-agent DQN in all 6 tests at N=7 (Holm p ≤ 0.035) and at N=19 (Holm p ≤ 8e-6). Seeded, the baseline keeps 80.3% at N=7 and 63.9% at N=19, collapsing in 28 of 30 seeds at N=19.
+  - Env B N=7, reported only: the seeded single-agent DQN leads AXIOM on priority-slice compliance by 7 to 9 points (raw p 0.026 to 0.083); reward differences are not significant.
+- **R3 holds.**
+  - Selection: the grid kept the reported setting in Env B (actor LR 1e-3, 10 epochs, minibatch 64, 300 episodes) and selected actor LR 1e-3, 4 epochs, minibatch 256, 900 episodes in Env A.
+  - AXIOM beats the selected MAPPO by +1.25 (Env A N=3), +16.18 and +26.7 points priority (N=19 ring), and +1.86 (Env B N=3), all at Holm p < 0.001.
+  - Env B N=7 ring, reported only: +2.42, raw p 0.0009.
+- **R4 is split.**
+  - Per-slice heads are supported. The shared head ties at N=3, but at N=19 it collapses in 9 of 15 seeds (65.9% against 96.8%; Holm p 0.0004).
+  - Per-request TD samples are not supported. The joint VDN-style target is never significantly different and trends better in every cell (12.831 in Env A N=3, 9.055 in Env B N=3, 99.96% at N=19). The manuscript's rationale was reworded accordingly. The VDN variant is reported as a lead for future work and not adopted, since it was found after the reported campaigns.
