@@ -94,7 +94,7 @@ def main() -> None:
     _w_stat, w_p = stats.wilcoxon(gat, single)
     ax1.text(0.5, 0.02,
               f"mean $\\Delta$=+{diff.mean():.3f} [{lo:.2f}, {hi:.2f}]\n" +
-              (f"Wilcoxon $p$={w_p:.4f}" if w_p >= 1e-4 else "Wilcoxon $p$<0.0001"),
+              (f"Wilcoxon $p$={w_p:.4f}, unadjusted" if w_p >= 1e-4 else "Wilcoxon $p$<0.0001, unadjusted"),
               transform=ax1.transAxes, ha="center", va="bottom", fontsize=6.5,
               bbox=dict(boxstyle="round,pad=0.3", facecolor="#fcfcfb", edgecolor="#c3c2b7", linewidth=0.6))
 

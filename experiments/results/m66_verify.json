@@ -3039,6 +3039,122 @@
   "ok": true
  },
  {
+  "label": "reframe: oracle exceeded count",
+  "snippet": "exceeded it in 28 of 450 seed-level evaluations",
+  "computed": 28,
+  "formatted": "28",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: oracle evaluations total",
+  "snippet": "exceeded it in 28 of 450 seed-level evaluations",
+  "computed": 450,
+  "formatted": "450",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: oracle exceeded by at most",
+  "snippet": "by at most 0.40 reward per step",
+  "computed": 0.4001404290071182,
+  "formatted": "0.40",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: pooled federation has 30 seeds",
+  "snippet": null,
+  "computed": 30,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: pooled federation cost",
+  "snippet": "the cost is $+0.491$ per step with 95\\% CI",
+  "computed": 0.4906664430838218,
+  "formatted": "+0.491",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "pooled federation CI",
+  "snippet": null,
+  "computed": [
+   -0.08,
+   1.076,
+   "the cost is $+0.491$ per step with 95\\% CI [$-$0.08, 1.09]"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: pooled federation p",
+  "snippet": "1.09] and $p=0.14$, so federation",
+  "computed": 0.14277775326005962,
+  "formatted": "0.14",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: pooled federation in Table 2",
+  "snippet": "Cost $+0.49$ [$-$0.08, 1.09]",
+  "computed": 0.4906664430838218,
+  "formatted": "+0.49",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: no Env B policy keeps eMBB above 37%",
+  "snippet": null,
+  "computed": 36.73,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: Env B peak demand exceeds the budget by up to 23.5%",
+  "snippet": null,
+  "computed": 1.2349999999999999,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: parameter table matches the N=3 config",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: N=7 config has N requests per step and at most 4N pending",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: N=19 config has N requests per step and at most 4N pending",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: parameter table demand constants",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -3065,9 +3181,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 309",
+  "label": "text quotes the final check count of 323",
   "snippet": null,
-  "computed": 309,
+  "computed": 323,
   "formatted": null,
   "in_tex": null,
   "ok": true

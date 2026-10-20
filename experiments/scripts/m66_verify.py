@@ -900,6 +900,64 @@ def main():
     C.note("reframe: trend figure plots the recomputed compliance",
            all(abs(figtr["arms"][a_][str(n_)]["prio_mean"] - tr[(n_, a_)]) < 1e-6 for (n_, a_) in tr), None)
 
+    # ---------------- third-review text fixes (2026-10-20): oracle wording, pooled federation, Env B ceiling, parameter table
+    samples_ = [("m65_n3_view", "heuristic", S30), ("m65_rep_view", "heuristic", REP), ("m66_fresh/A_n3", "rule_static", list(range(3000, 3020))),
+                ("m66d_fresh/D1_A_n3", "rule_static", list(range(4000, 4040))), ("m66c_fresh/C8_load102", "rule_static", list(range(3000, 3010))),
+                ("m66c_fresh/C8_load107", "rule_static", list(range(3000, 3010))), ("m66c_fresh/C8_weights", "rule_static", list(range(3000, 3010))),
+                ("m66d_fresh/D2_load102", "rule_static", list(range(4000, 4020)))]
+    ex_n, ex_tot, ex_max = 0, 0, 0.0
+    for c_, o_, ss_ in samples_:
+        O_ = seeds_of(c_, o_, ss_)
+        for a_ in ("axiom2", "single_agent_dqn", "independent_dqn"):
+            A_ = seeds_of(c_, a_, ss_)
+            for s_ in ss_:
+                if s_ in A_ and s_ in O_:
+                    ex_tot += 1
+                    e_ = A_[s_]["reward"] - O_[s_]["reward"]
+                    if e_ > 1e-9:
+                        ex_n += 1; ex_max = max(ex_max, e_)
+    C.claim("reframe: oracle exceeded count", "exceeded it in 28 of 450 seed-level evaluations", ex_n, "{:d}")
+    C.claim("reframe: oracle evaluations total", "exceeded it in 28 of 450 seed-level evaluations", ex_tot, "{:d}")
+    C.claim("reframe: oracle exceeded by at most", "by at most 0.40 reward per step", ex_max, "{:.2f}")
+    fd_ = []
+    for cen_, fc_, ss_ in (("m65_reviewer/base", "m65_m3", S10), ("m65_reviewer/replication", "m65_m3_replication", REP)):
+        a_, b_ = seeds_of(cen_, "axiom2", ss_), seeds_of(fc_, "fl_gat_ctde_sigma0.0", ss_)
+        fd_ += [a_[s_]["reward"] - b_[s_]["reward"] for s_ in ss_]
+    a_, b_ = seeds_of("m66_fresh/A_n3", "axiom2", list(range(3000, 3010))), {}
+    for k_ in range(3000, 3010, 2):
+        b_.update(seeds_of(f"m66b_fresh/m3_s{k_}", "fl_gat_ctde_sigma0.0", [k_, k_ + 1]))
+    fd_ += [a_[s_]["reward"] - b_[s_]["reward"] for s_ in range(3000, 3010)]
+    C.note("reframe: pooled federation has 30 seeds", len(fd_) == 30, len(fd_))
+    C.claim("reframe: pooled federation cost", "the cost is $+0.491$ per step with 95\\% CI", float(np.mean(fd_)), "{:+.3f}")
+    ci_claim("pooled federation CI", "the cost is $+0.491$ per step with 95\\% CI [$-$0.08, 1.09]", fd_)
+    C.claim("reframe: pooled federation p", "1.09] and $p=0.14$, so federation", float(wilcoxon(np.array(fd_)).pvalue), "{:.2f}")
+    C.claim("reframe: pooled federation in Table 2", "Cost $+0.49$ [$-$0.08, 1.09]", float(np.mean(fd_)), "{:+.2f}")
+    eb_ = max(100 * mean(seeds_of("m64/n3_fully_connected", a_, S30), lambda x: x["sla"]["embb"]) for a_ in
+              ("rule_accept_all", "rule_static", "rule_local", "rule_neighbour", "axiom2", "axiom2_mlp", "single_agent_dqn", "independent_dqn", "mappo_tuned"))
+    C.note("reframe: no Env B policy keeps eMBB above 37%", eb_ < 37 and "keeps eMBB compliance above 37\\% in Env B" in C.main, round(eb_, 2))
+    C.note("reframe: Env B peak demand exceeds the budget by up to 23.5%", abs(0.95 * 1.3 - 1.235) < 1e-9 and "by up to 23.5\\%" in C.main, 0.95 * 1.3)
+    import yaml
+    cfg_ = yaml.safe_load(open("/home/kmanojp/oranslice_rig/framework/qoe_oran_framework/configs/saclb_offline_dqn.yaml"))
+    sl_ = {x["slice_id"]: x for x in cfg_["slices"]}
+    C.note("reframe: parameter table matches the N=3 config",
+           cfg_["B"] == 100 and cfg_["episode"]["steps_per_episode"] == 60 and cfg_["episode"]["step_seconds"] == 5.0
+           and cfg_["reward"]["congestion_coeff"] == 1.5 and cfg_["reward"]["lb_coeff"] == 1.0
+           and [sl_[k]["priority_weight"] for k in ("urllc", "embb", "mmtc")] == [12.0, 3.5, 0.3]
+           and [sl_[k]["violation_penalty"] for k in ("urllc", "embb", "mmtc")] == [10.0, 5.0, 2.5]
+           and all(sl_[k]["accept_reward"] == 1.0 for k in sl_)
+           and [(sl_[k]["nominal_ratio"], sl_[k]["min_ratio_floor"], sl_[k]["max_ratio_cap"]) for k in ("urllc", "embb", "mmtc")] == [(30, 5, 33), (60, 10, 66), (10, 5, 11)]
+           and [(sl_[k]["latency_budget_ms"], sl_[k]["loss_budget_pct"]) for k in ("urllc", "embb", "mmtc")] == [(15, 0.8), (45, 2.0), (65, 3.5)]
+           and cfg_["arrivals"]["synthetic_arrivals_per_step"] == 3 and cfg_["arrivals"]["max_pending_per_step"] == 12
+           and cfg_["arrivals"]["ceiling_step_ratio"] == 5, None)
+    for n_ in (7, 19):
+        c7_ = yaml.safe_load(open(f"/home/kmanojp/oranslice_rig/framework/qoe_oran_framework/configs/saclb_offline_dqn_n{n_}.yaml"))
+        C.note(f"reframe: N={n_} config has N requests per step and at most 4N pending",
+               c7_["arrivals"]["synthetic_arrivals_per_step"] == n_ and c7_["arrivals"]["max_pending_per_step"] == 4 * n_, None)
+    sbt_ = open("/home/kmanojp/oranslice_rig/experiments/scripts/shared_budget_kpm_source.py").read()   # read, not imported
+    C.note("reframe: parameter table demand constants", re.search(r"^LOAD_FACTOR = 1\.05\b", sbt_, re.M) is not None
+           and re.search(r"^OFFERED_VOLATILITY = 0\.005\b", sbt_, re.M) is not None
+           and re.search(r"^LOAD_MULTIPLIER_RANGE = \(0\.9, 1\.0\)", sbt_, re.M) is not None, None)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}
