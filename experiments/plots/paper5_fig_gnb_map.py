@@ -92,8 +92,8 @@ def main():
     n = 19
     coords = hex_cluster_coords(n)
     summary = {"cell": a.cell, "seeds": S30_19, "arms": {}}
-    fig = plt.figure(figsize=(7.4, 8.4))
-    gs = fig.add_gridspec(3, 2, height_ratios=[1, 1, 0.34], hspace=0.28, wspace=0.16)
+    fig = plt.figure(figsize=(7.4, 2.75))
+    gs = fig.add_gridspec(2, 4, height_ratios=[1, 0.27], hspace=0.06, wspace=0.08)
     for idx, (arm, label) in enumerate(ARMS):
         mats = [gate_openness(p, n) for s in S30_19 if (p := find_eval(a.cell, arm, s))]
         op = np.mean(mats, axis=0)
@@ -106,35 +106,35 @@ def main():
                                 "correctness_per_gnb": corr.round(4).tolist(),
                                 "mean_openness": dict(zip(SLICES, op.mean(axis=0).round(4).tolist())),
                                 "priority_sla_pct": round(p_sla, 2), "collapsed_seeds": coll, "n_eval_seeds": len(rows)}
-        ax = fig.add_subplot(gs[idx // 2, idx % 2])
-        draw_cluster(ax, coords, corr)
+        ax = fig.add_subplot(gs[0, idx])
+        draw_cluster(ax, coords, corr, lw=0.4)
         emph = arm == "axiom2"
         col = "#1f5fae" if emph else "#333333"
-        ax.set_title(label, fontsize=10.5 if emph else 10, fontweight="bold" if emph else "normal", color=col, pad=15)
-        ax.text(0.5, 1.012, f"Priority-slice SLA {p_sla:.1f}%   |   {coll}/{len(rows)} seeds collapsed",
-                transform=ax.transAxes, ha="center", va="bottom", fontsize=7.6,
+        ax.set_title(label, fontsize=9.5 if emph else 9, fontweight="bold" if emph else "normal", color=col, pad=19)
+        ax.text(0.5, 1.01, f"Priority SLA {p_sla:.1f}%\n{coll}/{len(rows)} seeds collapsed",
+                transform=ax.transAxes, ha="center", va="bottom", fontsize=7.2, linespacing=1.15,
                 fontweight="bold" if emph else "normal", color=col)
         if emph:
             ax.axis("on")
             ax.set_xticks([]); ax.set_yticks([])
             for sp in ax.spines.values():
-                sp.set_edgecolor("#1f5fae"); sp.set_linewidth(2.2)
-    # key: one large hexagon with its three slice rhombi labelled outside it
-    kax = fig.add_subplot(gs[2, 0])
-    draw_cluster(kax, [(0, 0)], np.array([[1.0, 1.0, 1.0]]), r=1.0, lw=1.2)
-    for (x0, y0, x1, y1, txt, ha) in ((0, 0.55, -1.25, 0.95, "URLLC gate,\ncorrect if open", "right"),
-                                      (-0.45, -0.3, -1.25, -0.75, "eMBB gate,\ncorrect if open", "right"),
-                                      (0.45, -0.3, 1.25, -0.75, "mMTC gate,\ncorrect if shed", "left")):
-        kax.annotate(txt, xy=(x0, y0), xytext=(x1, y1), fontsize=7.5, ha=ha, va="center",
-                     arrowprops=dict(arrowstyle="-", color="#555555", lw=0.7))
-    kax.text(1.25, 0.65, "One gNB", fontsize=8, fontweight="bold", ha="left", va="center")
-    kax.set_xlim(-3.4, 3.6); kax.set_ylim(-1.3, 1.3)
-    cax = fig.add_subplot(gs[2, 1])
+                sp.set_edgecolor("#1f5fae"); sp.set_linewidth(1.8)
+    # key: one hexagon with its three slice rhombi labelled beside it
+    kax = fig.add_subplot(gs[1, 0:2])
+    draw_cluster(kax, [(0, 0)], np.array([[1.0, 1.0, 1.0]]), r=1.0, lw=1.0)
+    for (x0, y0, x1, y1, txt, ha) in ((0, 0.55, -1.5, 0.7, "URLLC gate, correct if open", "right"),
+                                      (-0.45, -0.3, -1.5, -0.7, "eMBB gate, correct if open", "right"),
+                                      (0.45, -0.3, 1.5, -0.7, "mMTC gate, correct if shed", "left")):
+        kax.annotate(txt, xy=(x0, y0), xytext=(x1, y1), fontsize=7, ha=ha, va="center",
+                     arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6))
+    kax.text(1.5, 0.7, "One gNB", fontsize=7.5, fontweight="bold", ha="left", va="center")
+    kax.set_xlim(-9.5, 9.5); kax.set_ylim(-1.15, 1.15)
+    cax = fig.add_subplot(gs[1, 2:4])
     pos = cax.get_position()
-    cax.set_position([pos.x0 + 0.04, pos.y0 + pos.height * 0.5, pos.width - 0.08, 0.02])
+    cax.set_position([pos.x0 + 0.05, pos.y0 + pos.height * 0.55, pos.width - 0.1, pos.height * 0.22])
     cb = fig.colorbar(plt.cm.ScalarMappable(cmap=CMAP, norm=plt.Normalize(0, 1)), cax=cax, orientation="horizontal")
-    cb.set_ticks([0, 0.5, 1]); cb.set_ticklabels(["wrong", "partial", "correct"]); cb.ax.tick_params(labelsize=7.5)
-    cb.set_label("Gate correctness, mean over 30 seeds\nand every evaluation step", fontsize=7.5)
+    cb.set_ticks([0, 0.5, 1]); cb.set_ticklabels(["wrong", "partial", "correct"]); cb.ax.tick_params(labelsize=7, length=2)
+    cb.set_label("Gate correctness, mean over 30 seeds and every evaluation step", fontsize=7)
     fig.savefig(a.out + ".pdf", bbox_inches="tight")
     fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")
     json.dump(summary, open(a.out + "_summary.json", "w"), indent=1)

@@ -1713,10 +1713,10 @@
   "snippet": null,
   "computed": [
    {
-    "AXIOM": "98.9",
-    "Single-agent DQN": "96.5",
-    "Independent DQN": "90.3",
-    "MAPPO": "78.0"
+    "AXIOM": "12.698",
+    "Single-agent DQN": "12.387",
+    "Independent DQN": "11.587",
+    "MAPPO": "10.013"
    },
    {
     "AXIOM": "97.3",
@@ -2166,8 +2166,8 @@
   "label": "M66b federated CI",
   "snippet": null,
   "computed": [
-   -1.042,
-   1.266,
+   -1.021,
+   1.279,
    "at $+0.077$ with 95\\% CI [$-$1.03, 1.27]"
   ],
   "formatted": null,
@@ -3082,8 +3082,8 @@
   "label": "pooled federation CI",
   "snippet": null,
   "computed": [
-   -0.08,
-   1.076,
+   -0.098,
+   1.111,
    "the cost is $+0.491$ per step with 95\\% CI [$-$0.08, 1.09]"
   ],
   "formatted": null,

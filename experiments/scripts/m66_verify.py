@@ -532,7 +532,10 @@ def main():
         pooled19[arm] = 100 * float(np.mean([prio(r) for t in ("fully_connected", "ring", "hex")
                                               for r in seeds_of(f"m65_scaling/n19_{t}", arm, S30_19).values()]))
     lab = {"AXIOM": "axiom2", "Single-agent DQN": "single_agent_dqn", "Independent DQN": "independent_dqn", "MAPPO": "mappo_tuned"}
-    okx = all(round(Ap[lab[k]], 1) == float(v) for k, v in xs.items())
+    # x is Env A reward per step at 3 gNBs with its 95% bootstrap CI (absolute since M73; it was % of the oracle)
+    xcis = {k: tuple(float(x) for x in v.split(",")) for k, v in re.findall(r'"([A-Za-z -]+)": dict\(x=[0-9.]+, xci=\(([^)]*)\)', src)}
+    okx = all(round(mean(A[lab[k]]), 3) == float(v) for k, v in xs.items()) and len(xcis) == 4 and \
+        all(np.allclose(ci([r["reward"] for r in A[lab[k]].values()]), v, atol=0.03) for k, v in xcis.items())
     oky = all(round(pooled19[lab[k]], 1) == float(v) for k, v in ys.items())
     C.note("Fig 9a hand-entered x and y values match recomputation", okx and oky and len(xs) == 4 and len(ys) == 4, (xs, ys))
     radar = {k: [float(x) for x in v.split(",")] for k, v in re.findall(r'"([A-Za-z -]+)":\s+\[([0-9., ]+)\],', src)}

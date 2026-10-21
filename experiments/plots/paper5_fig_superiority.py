@@ -25,13 +25,13 @@ M = {"AXIOM": "o", "Single-agent DQN": "s", "Independent DQN": "^", "MAPPO": "D"
 
 
 def draw_quadrant(ax):
-    # x: Env A mean reward at 3 gNBs as % of the oracle rule (12.835), CI = reward CI / oracle mean (M65, 30 seeds)
+    # x: Env A mean reward per step at 3 gNBs, 95% bootstrap CI (M65, 30 seeds; m65_n3_view)
     # y: Env A URLLC/eMBB SLA at 19 gNBs, pooled over 3 layouts x 30 seeds, 95% bootstrap CI (M65)
     arms = {
-        "AXIOM": dict(x=98.9, xci=(97.3, 100.2), y=97.3, yspan=(95.2, 99.0), tx=91.0, ty=97.0, ha="right", va="center"),
-        "Single-agent DQN": dict(x=96.5, xci=(94.4, 98.4), y=65.3, yspan=(62.9, 67.1), tx=96.5, ty=76.0, ha="center", va="bottom"),
-        "Independent DQN": dict(x=90.3, xci=(86.6, 93.6), y=56.4, yspan=(54.1, 58.6), tx=90.3, ty=47.0, ha="center", va="top"),
-        "MAPPO": dict(x=78.0, xci=(72.4, 83.6), y=60.6, yspan=(58.6, 62.8), tx=78.0, ty=71.0, ha="center", va="bottom"),
+        "AXIOM": dict(x=12.698, xci=(12.490, 12.861), y=97.3, yspan=(95.2, 99.0), tx=11.68, ty=97.0, ha="right", va="center"),
+        "Single-agent DQN": dict(x=12.387, xci=(12.115, 12.630), y=65.3, yspan=(62.9, 67.1), tx=12.387, ty=76.0, ha="center", va="bottom"),
+        "Independent DQN": dict(x=11.587, xci=(11.112, 12.020), y=56.4, yspan=(54.1, 58.6), tx=11.587, ty=47.0, ha="center", va="top"),
+        "MAPPO": dict(x=10.013, xci=(9.298, 10.727), y=60.6, yspan=(58.6, 62.8), tx=10.013, ty=71.0, ha="center", va="bottom"),
     }
     ax.grid(True, linewidth=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
@@ -41,15 +41,15 @@ def draw_quadrant(ax):
         ax.errorbar(a["x"], a["y"], xerr=xerr, yerr=yerr, fmt=M[name], color=C[name],
                     markersize=10, markeredgecolor="white", markeredgewidth=0.8,
                     elinewidth=1.1, capsize=3.5, capthick=1.0, zorder=5)
-        lab = f"{name}\n{a['x']:.1f}%, {a['y']:.1f}%"
+        lab = f"{name}\n{a['x']:.2f}, {a['y']:.1f}%"
         ax.annotate(lab, (a["x"], a["y"]), xytext=(a["tx"], a["ty"]),
                     ha=a["ha"], va=a["va"], fontsize=7.5, color=C[name], fontweight="bold",
                     linespacing=1.2, zorder=6,
                     arrowprops=dict(arrowstyle="-", color=C[name], lw=0.7, shrinkA=2, shrinkB=8, alpha=0.7))
-    ax.set_xlim(70, 102)
+    ax.set_xlim(9.0, 13.1)
     ax.set_ylim(40, 102)
-    ax.set_xticks([70, 75, 80, 85, 90, 95, 100])
-    ax.set_xlabel("Env A reward at 3 gNBs, % of oracle rule")
+    ax.set_xticks([9, 10, 11, 12, 13])
+    ax.set_xlabel("Env A reward per step at 3 gNBs")
     ax.set_ylabel("Env A URLLC and eMBB SLA at 19 gNBs (%)")
     ax.set_title("(a) Accuracy against scale, Env A", fontweight="bold")
 

@@ -474,7 +474,7 @@ We grow the cluster in Env A from three gNBs to seven and nineteen under three l
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig6_scaling_trend.pdf}
-\caption{Env A as the cluster grows, all layouts pooled. a, Priority-slice compliance, mean and 95\% CI, with the static rule dashed.
+\caption{Env A as the cluster grows, all layouts pooled. a, Priority-slice compliance, mean and 95\% CI.
 b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}
 \label{fig:m6-topology}
 \end{figure}
@@ -497,13 +497,13 @@ Fig.~\ref{fig:m6-topology}a traces the same result across sizes. AXIOM's priorit
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig10_axiom_superiority.pdf}
-\caption{AXIOM against the three learned baselines. a, Env A reward at three gNBs
-as a share of the oracle rule against compliance at 19 gNBs, with 95\% CIs.
+\caption{AXIOM against the three learned baselines. a, Env A reward per step at three gNBs
+against compliance at 19 gNBs, with 95\% CIs.
 b, Six measured axes, each as a fraction of the best learned policy on it}
 \label{fig:quadrant}
 \end{figure}
 
-Fig.~\ref{fig:quadrant}a places the four learned policies on one map of accuracy at three gNBs against priority-slice protection at nineteen, in Env A. AXIOM sits highest on both axes, at 98.9\% of the oracle reward and 97.3\% compliance. The single-agent DQN reaches 96.5\% and 65.3\%, the independent DQN 90.3\% and 56.4\%, and MAPPO 78.0\% and 60.6\%. The radar in Fig.~\ref{fig:quadrant}b adds Env B reward at three gNBs, collapse resistance, and Env B compliance at seven gNBs. AXIOM leads on five of the six axes shown. The exception is Env B compliance at seven gNBs, where the single-agent DQN leads.
+Fig.~\ref{fig:quadrant}a places the four learned policies on one map of accuracy at three gNBs against priority-slice protection at nineteen, in Env A. AXIOM sits highest on both axes, at 12.70 reward per step and 97.3\% compliance. The single-agent DQN reaches 12.39 and 65.3\%, the independent DQN 11.59 and 56.4\%, and MAPPO 10.01 and 60.6\%. AXIOM's reward is 98.9\% of the oracle rule's 12.835. The radar in Fig.~\ref{fig:quadrant}b adds Env B reward at three gNBs, collapse resistance, and Env B compliance at seven gNBs. AXIOM leads on five of the six axes shown. The exception is Env B compliance at seven gNBs, where the single-agent DQN leads.
 
 \subsection{Ablations and Sensitivity}
 \label{sec:results-ablation}
@@ -521,10 +521,9 @@ The comparison also holds when the baselines are made stronger. A grid of 24 MAP
 \label{sec:results-envb}
 \begin{figure}[t]
 \centering
-\includegraphics[width=\textwidth]{figures/fig11_envB.pdf}
-\caption{Env B. a, Reward at three gNBs, 30 seeds, per-seed points behind the mean
-and 95\% CI. b, URLLC and eMBB compliance at three gNBs. c, Priority-slice
-compliance of the learned arms at seven gNBs by layout, 15 seeds per cell}
+\includegraphics[width=0.82\textwidth]{figures/fig11_envB.pdf}
+\caption{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed
+points behind the mean and 95\% CI}
 \label{fig:envb}
 \end{figure}
 
@@ -552,7 +551,7 @@ MAPPO & 6.968 [6.47, 7.45] & 0.797 & 0.289 & 0.579 \\
 \end{tabular}}
 \end{table}
 
-Env B tests the case a static benchmark cannot, where no fixed rule is optimal. Table~\ref{tab:envb} and Fig.~\ref{fig:envb} report the thirty-seed campaign at three gNBs and fifteen seeds per layout at seven. First, adapting to the load pays off clearly. Shedding every mMTC request, the optimum of Env A, now leaves URLLC compliance at 62.5\%. AXIOM beats that rule by $+2.495$ reward per step and accept-all by $+4.476$, winning all 30 seeds against each at Holm-adjusted $p<0.0001$, as hypothesis H1 predicted. AXIOM keeps URLLC at 95.8\% by shedding eMBB as well as mMTC when URLLC queues build.
+Env B tests the case a static benchmark cannot, where no fixed rule is optimal. Table~\ref{tab:envb} and Fig.~\ref{fig:envb} report the thirty-seed campaign at three gNBs, and fifteen seeds per layout run at seven. First, adapting to the load pays off clearly. Shedding every mMTC request, the optimum of Env A, now leaves URLLC compliance at 62.5\%. AXIOM beats that rule by $+2.495$ reward per step and accept-all by $+4.476$, winning all 30 seeds against each at Holm-adjusted $p<0.0001$, as hypothesis H1 predicted. AXIOM keeps URLLC at 95.8\% by shedding eMBB as well as mMTC when URLLC queues build.
 
 Second, among learned policies AXIOM leads at three gNBs. It beats the independent DQN, the single-agent DQN, and MAPPO by $+1.038$, $+1.337$, and $+1.863$ reward per step and also on priority-slice compliance, winning 24 to 29 of 30 seeds, all at Holm-adjusted $p<0.0001$. The disjoint ten-seed replication points the same way, with AXIOM winning 7 or 8 of 10 seeds against each, but no lead survives correction there.
 
