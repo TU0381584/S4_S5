@@ -1,0 +1,25 @@
+{
+ "2004": {
+  "tuned": {
+   "reward": 8.92077321772544,
+   "urllc": 0.982,
+   "embb": 0.307,
+   "prio": 0.6445,
+   "blocks": 4741
+  },
+  "best_in_hindsight": {
+   "rule": {
+    "tau_c": 0.0,
+    "tau_q": null,
+    "tau_e": 0.2
+   },
+   "reward": 8.92077321772544,
+   "urllc": 0.982,
+   "embb": 0.307,
+   "prio": 0.6445,
+   "blocks": 4741
+  },
+  "max_embb_any_rule": 0.307,
+  "n_rules": 95
+ }
+}
