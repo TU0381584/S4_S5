@@ -44,3 +44,23 @@ The paper names longer training as a route towards the tuned rule.
 
 - Runs: AXIOM v2 trained for 900 episodes instead of 300 in Env B N=3 (seeds 900-919) and Env B N=7 ring (seeds 900-911).
 - Comparisons: the stored 300-episode AXIOM and the tuned rule on the same seeds. Reported without prediction.
+
+## Results (campaign 12:35 to 19:42 on 2026-10-21; analysis in experiments/results/m72/analysis.json)
+
+3 of 4 judged criteria hold; 14 rows were reported only.
+
+- **B primary holds.** Under load 1.10, 1.15 and 1.20, AXIOM beats the nominally tuned rule by +0.46, +0.43 and +0.35. It wins 23, 23 and 21 of 25 seeds, at Holm p ≤ 0.0002.
+  - Nominal reproduces the stored results exactly.
+  - Reported:
+    - Load 0.80: −0.28, p 0.44.
+    - Load 1.05: +0.30, p 0.017.
+    - Coupling 0.30: −0.31, p 0.28.
+    - Amplitude 0.50: +0.18, p 0.045.
+    - N=7 ring: −3.84 at nominal, +1.86 at load 1.10, +3.14 at load 1.20.
+    - Rule re-tuned on the shifted streams: AXIOM −0.16 (p 0.14) at 1.10, −0.12 (p 0.14) at 1.15, −0.62 (p 2e-5) at 1.20.
+- **A is split.**
+  - Headroom holds: the hindsight-best rule earns 0.14% more than the tuned rule on 15 seeds.
+  - The eMBB bound fails narrowly: the per-seed best-eMBB rule averages 37.7%, above the stated 37%. The manuscript sentence now quotes 37.7%.
+- **C verdict: "equivalent".** No Holm-significant difference over the 8 tests. VDN is ahead in Env A N=3, Env B N=3 and Env A N=19 ring, and behind in Env B N=7 ring. AXIOM is not replaced.
+- **D (reported).** 900-episode AXIOM gains +0.33 (p 0.008) in Env B N=3 and +2.92 (p 0.0005) in Env B N=7 ring. Its gaps to the tuned rule fall to 0.08 (p 0.35) and 0.96 (p 0.064).
+- **Stream note.** The C training streams (9000-9019) coincide with the evaluation streams of M66d seeds 4000-4019. No model is evaluated on a stream it trained on.

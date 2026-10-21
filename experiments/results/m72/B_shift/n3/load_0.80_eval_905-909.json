@@ -1,0 +1,124 @@
+{
+ "rule": {
+  "tau_c": 0.0,
+  "tau_q": null,
+  "tau_e": 0.2
+ },
+ "results": {
+  "905": {
+   "axiom2": {
+    "reward": 14.223458058377553,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3430
+   },
+   "rule_local": {
+    "reward": 14.230966537558675,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3429
+   },
+   "rule_static": {
+    "reward": 14.2367254821654,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3408
+   }
+  },
+  "906": {
+   "axiom2": {
+    "reward": 13.361856455799977,
+    "urllc": 1.0,
+    "embb": 0.915,
+    "prio": 0.9575,
+    "blocks": 3845
+   },
+   "rule_local": {
+    "reward": 13.984641312047993,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3547
+   },
+   "rule_static": {
+    "reward": 14.01325903399426,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3501
+   }
+  },
+  "907": {
+   "axiom2": {
+    "reward": 14.003501291756088,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3537
+   },
+   "rule_local": {
+    "reward": 13.989228515923296,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3558
+   },
+   "rule_static": {
+    "reward": 14.004935282587121,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3535
+   }
+  },
+  "908": {
+   "axiom2": {
+    "reward": 14.289940390963606,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 2091
+   },
+   "rule_local": {
+    "reward": 14.136256444733958,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3411
+   },
+   "rule_static": {
+    "reward": 14.138962200782268,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3407
+   }
+  },
+  "909": {
+   "axiom2": {
+    "reward": 14.047974994755116,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 3545
+   },
+   "rule_local": {
+    "reward": 14.0387854440204,
+    "urllc": 1.0,
+    "embb": 0.9990000000000001,
+    "prio": 0.9995,
+    "blocks": 3551
+   },
+   "rule_static": {
+    "reward": 14.043205230428676,
+    "urllc": 1.0,
+    "embb": 0.9966666666666667,
+    "prio": 0.9983333333333333,
+    "blocks": 3527
+   }
+  }
+ }
+}

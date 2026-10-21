@@ -1,0 +1,527 @@
+{
+ "C": {
+  "tests": {
+   "A3/reward": {
+    "n": 20,
+    "diff": 0.06879559376650554,
+    "wins": 11,
+    "ties": 8,
+    "losses": 1,
+    "p": 0.012063323418854825,
+    "p_holm": 0.08444326393198377
+   },
+   "A3/prio": {
+    "n": 20,
+    "diff": 0.002649999999999997,
+    "wins": 3,
+    "ties": 17,
+    "losses": 0,
+    "p": 0.10880943004054568,
+    "p_holm": 0.5440471502027284
+   },
+   "B3/reward": {
+    "n": 20,
+    "diff": 0.3601224951854833,
+    "wins": 14,
+    "ties": 0,
+    "losses": 6,
+    "p": 0.009435653686523438,
+    "p_holm": 0.0754852294921875
+   },
+   "B3/prio": {
+    "n": 20,
+    "diff": 0.018408333333333332,
+    "wins": 14,
+    "ties": 0,
+    "losses": 6,
+    "p": 0.06458380762705931,
+    "p_holm": 0.3875028457623559
+   },
+   "A19/reward": {
+    "n": 10,
+    "diff": 0.6997284574814188,
+    "wins": 1,
+    "ties": 9,
+    "losses": 0,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   "A19/prio": {
+    "n": 10,
+    "diff": 0.03593333333333333,
+    "wins": 1,
+    "ties": 9,
+    "losses": 0,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   "B7/reward": {
+    "n": 10,
+    "diff": -0.4990907076509785,
+    "wins": 3,
+    "ties": 1,
+    "losses": 6,
+    "p": 0.30078125,
+    "p_holm": 0.90234375
+   },
+   "B7/prio": {
+    "n": 10,
+    "diff": -0.0991,
+    "wins": 3,
+    "ties": 2,
+    "losses": 5,
+    "p": 0.109375,
+    "p_holm": 0.5440471502027284
+   }
+  },
+  "summary": {
+   "A3": {
+    "n": [
+     20,
+     20
+    ],
+    "axiom": 12.791218766720453,
+    "vdn": 12.86001436048696,
+    "axiom_prio": 99.71333333333334,
+    "vdn_prio": 99.97833333333332,
+    "axiom_collapsed": 0,
+    "vdn_collapsed": 0
+   },
+   "B3": {
+    "n": [
+     20,
+     20
+    ],
+    "axiom": 8.72344300614475,
+    "vdn": 9.08356550133023,
+    "axiom_prio": 63.78666666666668,
+    "vdn_prio": 65.62750000000001,
+    "axiom_collapsed": 0,
+    "vdn_collapsed": 0
+   },
+   "A19": {
+    "n": [
+     10,
+     10
+    ],
+    "axiom": 89.6433387584593,
+    "vdn": 90.34306721594072,
+    "axiom_prio": 96.33666666666667,
+    "vdn_prio": 99.93,
+    "axiom_collapsed": 0,
+    "vdn_collapsed": 0
+   },
+   "B7": {
+    "n": [
+     10,
+     10
+    ],
+    "axiom": 24.339487177727545,
+    "vdn": 23.84039647007657,
+    "axiom_prio": 44.17833333333333,
+    "vdn_prio": 34.26833333333333,
+    "axiom_collapsed": 0,
+    "vdn_collapsed": 0
+   }
+  },
+  "verdict": "equivalent"
+ },
+ "B": {
+  "tests": {
+   "load_0.80": {
+    "n": 25,
+    "diff": -0.27921482926039315,
+    "wins": 12,
+    "ties": 0,
+    "losses": 13,
+    "p": 0.4418373703956604,
+    "prio": {
+     "n": 25,
+     "diff": -0.02047333333333333,
+     "wins": 5,
+     "ties": 12,
+     "losses": 8,
+     "p": 0.0933924072038353
+    },
+    "means": {
+     "axiom2": 13.775638876402745,
+     "rule_local": 14.054853705663136,
+     "rule_static": 14.074004081095275
+    }
+   },
+   "load_1.05": {
+    "n": 25,
+    "diff": 0.2987073297786892,
+    "wins": 21,
+    "ties": 0,
+    "losses": 4,
+    "p": 0.017312347888946533,
+    "prio": {
+     "n": 25,
+     "diff": 0.0076800000000000115,
+     "wins": 16,
+     "ties": 0,
+     "losses": 9,
+     "p": 0.19081425666809082
+    },
+    "means": {
+     "axiom2": 4.482064711107802,
+     "rule_local": 4.183357381329113,
+     "rule_static": 2.069926053801126
+    }
+   },
+   "load_1.10": {
+    "n": 25,
+    "diff": 0.4579227494591433,
+    "wins": 23,
+    "ties": 0,
+    "losses": 2,
+    "p": 8.803606033325195e-05,
+    "prio": {
+     "n": 25,
+     "diff": 0.017606666666666673,
+     "wins": 21,
+     "ties": 0,
+     "losses": 4,
+     "p": 0.0027848482131958008
+    },
+    "means": {
+     "axiom2": 2.082360067449809,
+     "rule_local": 1.6244373179906655,
+     "rule_static": 1.0741464990829892
+    },
+    "p_holm": 0.0001760721206665039
+   },
+   "load_1.15": {
+    "n": 25,
+    "diff": 0.430786223708374,
+    "wins": 23,
+    "ties": 0,
+    "losses": 2,
+    "p": 1.0073184967041016e-05,
+    "prio": {
+     "n": 25,
+     "diff": 0.016206666666666664,
+     "wins": 22,
+     "ties": 0,
+     "losses": 3,
+     "p": 0.0004925778147609229
+    },
+    "means": {
+     "axiom2": 0.378400918759133,
+     "rule_local": -0.05238530494924097,
+     "rule_static": 0.39179255934257656
+    },
+    "p_holm": 3.0219554901123047e-05
+   },
+   "load_1.20": {
+    "n": 25,
+    "diff": 0.35427552004125945,
+    "wins": 21,
+    "ties": 0,
+    "losses": 4,
+    "p": 8.803606033325195e-05,
+    "prio": {
+     "n": 25,
+     "diff": 0.010826666666666668,
+     "wins": 22,
+     "ties": 0,
+     "losses": 3,
+     "p": 0.0004025307452340256
+    },
+    "means": {
+     "axiom2": -0.7137027931246471,
+     "rule_local": -1.0679783131659066,
+     "rule_static": -0.09386141943573395
+    },
+    "p_holm": 0.0001760721206665039
+   },
+   "coupling_0.30": {
+    "n": 25,
+    "diff": -0.30959194435396525,
+    "wins": 11,
+    "ties": 0,
+    "losses": 14,
+    "p": 0.2751842737197876,
+    "prio": {
+     "n": 25,
+     "diff": -0.022093333333333316,
+     "wins": 11,
+     "ties": 0,
+     "losses": 14,
+     "p": 0.1250878767710085
+    },
+    "means": {
+     "axiom2": 6.456639544270514,
+     "rule_local": 6.766231488624477,
+     "rule_static": 2.4864460068263803
+    }
+   },
+   "amplitude_0.50": {
+    "n": 25,
+    "diff": 0.18434477846658054,
+    "wins": 18,
+    "ties": 0,
+    "losses": 7,
+    "p": 0.04512268304824829,
+    "prio": {
+     "n": 25,
+     "diff": 0.00876,
+     "wins": 18,
+     "ties": 0,
+     "losses": 7,
+     "p": 0.056071801350468894
+    },
+    "means": {
+     "axiom2": 6.015494527781167,
+     "rule_local": 5.831149749314588,
+     "rule_static": 3.7309964895749483
+    }
+   },
+   "nominal": {
+    "n": 25,
+    "diff": -0.41523982277717364,
+    "wins": 7,
+    "ties": 0,
+    "losses": 18,
+    "p": 0.00016230344772338867,
+    "prio": {
+     "n": 25,
+     "diff": -0.026113333333333322,
+     "wins": 6,
+     "ties": 0,
+     "losses": 19,
+     "p": 0.0009118914604187012
+    },
+    "means": {
+     "axiom2": 8.846011026591118,
+     "rule_local": 9.261250849368292,
+     "rule_static": 6.32959752730911
+    }
+   },
+   "n7_load_1.20": {
+    "n": 15,
+    "diff": 3.1363923809498457,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.00030517578125
+   },
+   "n7_nominal": {
+    "n": 15,
+    "diff": -3.8398469560189636,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05
+   },
+   "n7_load_1.10": {
+    "n": 15,
+    "diff": 1.8638390598956571,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00030517578125
+   }
+  },
+  "retuned": {
+   "load_1.10": {
+    "selected": {
+     "tau_c": 1.01,
+     "tau_q": null,
+     "tau_e": 0.05
+    },
+    "test": {
+     "n": 25,
+     "diff": -0.16263789087570862,
+     "wins": 10,
+     "ties": 0,
+     "losses": 15,
+     "p": 0.14091521501541138
+    },
+    "retuned_mean": 2.2449979583255173
+   },
+   "load_1.15": {
+    "selected": {
+     "tau_c": 1.01,
+     "tau_q": null,
+     "tau_e": 0.05
+    },
+    "test": {
+     "n": 25,
+     "diff": -0.12085988546559272,
+     "wins": 9,
+     "ties": 0,
+     "losses": 16,
+     "p": 0.14091521501541138
+    },
+    "retuned_mean": 0.4992608042247258
+   },
+   "load_1.20": {
+    "selected": {
+     "tau_c": 0.0,
+     "tau_q": null,
+     "tau_e": null
+    },
+    "test": {
+     "n": 25,
+     "diff": -0.6198413736889133,
+     "wins": 5,
+     "ties": 0,
+     "losses": 20,
+     "p": 2.2113323211669922e-05
+    },
+    "retuned_mean": -0.09386141943573395
+   }
+  }
+ },
+ "A": {
+  "n": 15,
+  "tuned": 9.234046227204544,
+  "hindsight_best": 9.24697228084992,
+  "headroom_pct": 0.13998255290616524,
+  "max_embb_any_seed": 0.48200000000000004,
+  "mean_of_per_seed_max_embb": 0.3768444444444444,
+  "tuned_is_best_count": 12
+ },
+ "D": {
+  "B3": {
+   "long": 9.17341284250442,
+   "short": 8.841392548796708,
+   "rule": 9.248942047036628,
+   "long_vs_short": {
+    "n": 20,
+    "diff": 0.3320202937077131,
+    "wins": 15,
+    "ties": 0,
+    "losses": 5,
+    "p": 0.00830841064453125
+   },
+   "long_vs_rule": {
+    "n": 20,
+    "diff": -0.07552920453220731,
+    "wins": 9,
+    "ties": 0,
+    "losses": 11,
+    "p": 0.34881019592285156
+   },
+   "long_prio": 66.64916666666667
+  },
+  "B7": {
+   "long": 26.350296301749164,
+   "short": 23.434759707072825,
+   "rule": 27.30535599917943,
+   "long_vs_short": {
+    "n": 12,
+    "diff": 2.9155365946763374,
+    "wins": 12,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.00048828125
+   },
+   "long_vs_rule": {
+    "n": 12,
+    "diff": -0.9550596974302703,
+    "wins": 5,
+    "ties": 0,
+    "losses": 7,
+    "p": 0.06396484375
+   },
+   "long_prio": 55.08472222222224
+  }
+ },
+ "criteria": [
+  {
+   "label": "C VDN verdict (reported as stated in the plan)",
+   "holds": null,
+   "detail": "equivalent; better [], worse []"
+  },
+  {
+   "label": "B nominal reproduces the stored results exactly",
+   "holds": true,
+   "detail": "25 seeds"
+  },
+  {
+   "label": "B primary: AXIOM beats the nominally tuned rule under load 1.10, 1.15, 1.20 at Holm p<0.05",
+   "holds": true,
+   "detail": "load_1.10 diff +0.4579, W/T/L 23/0/2, p 8.8e-05, p_holm 0.000176 (n=25); load_1.15 diff +0.4308, W/T/L 23/0/2, p 1.01e-05, p_holm 3.02e-05 (n=25); load_1.20 diff +0.3543, W/T/L 21/0/4, p 8.8e-05, p_holm 0.000176 (n=25)"
+  },
+  {
+   "label": "B reported load_0.80",
+   "holds": null,
+   "detail": "reward diff -0.2792, W/T/L 12/0/13, p 0.442 (n=25); prio diff -0.0205, W/T/L 5/12/8, p 0.0934 (n=25)"
+  },
+  {
+   "label": "B reported load_1.05",
+   "holds": null,
+   "detail": "reward diff +0.2987, W/T/L 21/0/4, p 0.0173 (n=25); prio diff +0.0077, W/T/L 16/0/9, p 0.191 (n=25)"
+  },
+  {
+   "label": "B reported coupling_0.30",
+   "holds": null,
+   "detail": "reward diff -0.3096, W/T/L 11/0/14, p 0.275 (n=25); prio diff -0.0221, W/T/L 11/0/14, p 0.125 (n=25)"
+  },
+  {
+   "label": "B reported amplitude_0.50",
+   "holds": null,
+   "detail": "reward diff +0.1843, W/T/L 18/0/7, p 0.0451 (n=25); prio diff +0.0088, W/T/L 18/0/7, p 0.0561 (n=25)"
+  },
+  {
+   "label": "B reported nominal",
+   "holds": null,
+   "detail": "reward diff -0.4152, W/T/L 7/0/18, p 0.000162 (n=25); prio diff -0.0261, W/T/L 6/0/19, p 0.000912 (n=25)"
+  },
+  {
+   "label": "B reported load_1.10: AXIOM vs rule re-tuned on shifted streams",
+   "holds": null,
+   "detail": "diff -0.1626, W/T/L 10/0/15, p 0.141 (n=25); selected {'tau_c': 1.01, 'tau_q': None, 'tau_e': 0.05}"
+  },
+  {
+   "label": "B reported load_1.15: AXIOM vs rule re-tuned on shifted streams",
+   "holds": null,
+   "detail": "diff -0.1209, W/T/L 9/0/16, p 0.141 (n=25); selected {'tau_c': 1.01, 'tau_q': None, 'tau_e': 0.05}"
+  },
+  {
+   "label": "B reported load_1.20: AXIOM vs rule re-tuned on shifted streams",
+   "holds": null,
+   "detail": "diff -0.6198, W/T/L 5/0/20, p 2.21e-05 (n=25); selected {'tau_c': 0.0, 'tau_q': None, 'tau_e': None}"
+  },
+  {
+   "label": "B reported N=7 ring load_1.20: AXIOM vs nominally tuned rule",
+   "holds": null,
+   "detail": "diff +3.1364, W/T/L 13/0/2, p 0.000305 (n=15)"
+  },
+  {
+   "label": "B reported N=7 ring nominal: AXIOM vs nominally tuned rule",
+   "holds": null,
+   "detail": "diff -3.8398, W/T/L 0/0/15, p 6.1e-05 (n=15)"
+  },
+  {
+   "label": "B reported N=7 ring load_1.10: AXIOM vs nominally tuned rule",
+   "holds": null,
+   "detail": "diff +1.8638, W/T/L 14/0/1, p 0.000305 (n=15)"
+  },
+  {
+   "label": "A hindsight-best within 1% of the tuned rule",
+   "holds": true,
+   "detail": "tuned 9.234, hindsight 9.247, headroom 0.14% on 15 seeds"
+  },
+  {
+   "label": "A no rule keeps mean eMBB above 37%",
+   "holds": false,
+   "detail": "mean of per-seed max eMBB 0.377, single-seed max 0.482"
+  },
+  {
+   "label": "D B3: AXIOM 900 episodes vs 300 episodes and vs tuned rule",
+   "holds": null,
+   "detail": "long 9.17341284250442, short 8.841, rule 9.249; vs short diff +0.3320, W/T/L 15/0/5, p 0.00831 (n=20); vs rule diff -0.0755, W/T/L 9/0/11, p 0.349 (n=20)"
+  },
+  {
+   "label": "D B7: AXIOM 900 episodes vs 300 episodes and vs tuned rule",
+   "holds": null,
+   "detail": "long 26.350296301749164, short 23.435, rule 27.305; vs short diff +2.9155, W/T/L 12/0/0, p 0.000488 (n=12); vs rule diff -0.9551, W/T/L 5/0/7, p 0.064 (n=12)"
+  }
+ ],
+ "n_judged": 4,
+ "n_fail": 1
+}

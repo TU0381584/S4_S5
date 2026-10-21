@@ -1038,6 +1038,78 @@ def main():
     C.note("reframe: M70 seeded single beaten under every layout at Holm p<=0.035", round(hmax_, 3) <= 0.035
            and "under every layout at Holm-adjusted $p\\leq0.035$" in C.main, hmax_)
 
+    # ---------------- M72 confirmatory follow-ups (2026-10-21), shift results read from the raw evaluation logs
+    def _log(path_):
+        for c_ in (path_, path_ + ".gz"):
+            if os.path.exists(c_):
+                return read(c_)
+        return None
+    def shift_rows(n_dir_, sh_, arm_, ss_):
+        out_ = {}
+        for s_ in ss_:
+            base_ = f"{ROOT}/m72/B_shift/{n_dir_}/{sh_}/{arm_}/seed{s_}"
+            r_ = _log(f"{base_}/omega_log.jsonl") if arm_ == "axiom2" else _log(f"{base_}/lb_only/offline_eval/rep_0/omega_log.jsonl")
+            if r_ is not None:
+                out_[s_] = r_
+        return out_
+    SB_ = list(range(905, 930))
+    sh_t_ = {sh_: paired(shift_rows("n3", sh_, "axiom2", SB_), shift_rows("n3", sh_, "rule_local", SB_))
+             for sh_ in ("nominal", "load_0.80", "load_1.10", "load_1.15", "load_1.20", "coupling_0.30")}
+    nom_ax_, nom_rl_ = shift_rows("n3", "nominal", "axiom2", SB_), shift_rows("n3", "nominal", "rule_local", SB_)
+    st_ax_, st_rl_ = seeds_of("m64/n3_fully_connected", "axiom2", SB_), seeds_of("m64/n3_fully_connected", "rule_local", SB_)
+    C.note("reframe: M72 shift setup reproduces the stored results under nominal load", len(nom_ax_) == 25 and
+           all(nom_ax_[s_]["reward"] == st_ax_[s_]["reward"] and nom_rl_[s_]["reward"] == st_rl_[s_]["reward"] for s_ in SB_), None)
+    prim_ = ("load_1.10", "load_1.15", "load_1.20")
+    hs_ = holm({k: sh_t_[k]["p"] for k in prim_})
+    C.claim("reframe: M72 overload lead 1.10", "rule by 0.46, 0.43, and 0.35 reward per step", sh_t_["load_1.10"]["diff"], "{:.2f}")
+    C.claim("reframe: M72 overload lead 1.15", "rule by 0.46, 0.43, and 0.35 reward per step", sh_t_["load_1.15"]["diff"], "{:.2f}")
+    C.claim("reframe: M72 overload lead 1.20", "rule by 0.46, 0.43, and 0.35 reward per step", sh_t_["load_1.20"]["diff"], "{:.2f}")
+    C.note("reframe: M72 overload wins 21 to 23 of 25 at Holm p<=0.0002", sorted({sh_t_[k]["wins"] for k in prim_}) == [21, 23]
+           and all(sh_t_[k]["n"] == 25 for k in prim_) and round(max(hs_.values()), 4) <= 0.0002, hs_)
+    C.note("reframe: M72 lighter load and stronger coupling leave a non-significant rule lead",
+           all(sh_t_[k]["diff"] < 0 and sh_t_[k]["p"] >= 0.05 for k in ("load_0.80", "coupling_0.30")), None)
+    S7S_ = S15
+    n7_ = {sh_: paired(shift_rows("n7_ring", sh_, "axiom2", S7S_), shift_rows("n7_ring", sh_, "rule_local", S7S_)) for sh_ in ("nominal", "load_1.10", "load_1.20")}
+    C.claim("reframe: M72 N=7 nominal deficit", "from a deficit of 3.84 under nominal load", -n7_["nominal"]["diff"], "{:.2f}")
+    C.claim("reframe: M72 N=7 lead 1.10", "to leads of 1.86 and 3.14 at 1.10", n7_["load_1.10"]["diff"], "{:.2f}")
+    C.claim("reframe: M72 N=7 lead 1.20", "to leads of 1.86 and 3.14 at 1.10", n7_["load_1.20"]["diff"], "{:.2f}")
+    rt_ = {sh_: paired(shift_rows("n3", sh_, "axiom2", SB_), shift_rows("n3", sh_, "rule_retuned", SB_)) for sh_ in prim_}
+    C.note("reframe: M72 re-tuned rule draws level at 1.10 and 1.15", all(rt_[k]["p"] >= 0.05 for k in ("load_1.10", "load_1.15")), None)
+    C.claim("reframe: M72 re-tuned rule beats AXIOM at 1.20", "and beats it by 0.62 at 1.20", -rt_["load_1.20"]["diff"], "{:.2f}")
+    C.note("reframe: M72 re-tuned rule lead at 1.20 significant", rt_["load_1.20"]["diff"] < 0 and rt_["load_1.20"]["p"] < 0.05, rt_["load_1.20"]["p"])
+    dl_ = {}
+    for k_, cell_, st_, ss_ in (("B3", "B_n3", "m64/n3_fully_connected", list(range(900, 920))), ("B7", "B_n7_ring", "m64/n7_ring", list(range(900, 912)))):
+        lg_ = seeds_of(f"m72/D_long/{cell_}", "axiom2", ss_)
+        dl_[k_] = (paired(lg_, seeds_of(st_, "axiom2", ss_)), paired(lg_, seeds_of(st_, "rule_local", ss_)), len(lg_))
+    C.claim("reframe: M72 longer training gain N=3", "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven", dl_["B3"][0]["diff"], "{:.2f}")
+    C.claim("reframe: M72 longer training gain N=7", "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven", dl_["B7"][0]["diff"], "{:.2f}")
+    C.note("reframe: M72 longer training seeds 20 and 12", dl_["B3"][2] == 20 and dl_["B7"][2] == 12 and "on 20 and 12 seeds" in C.main, None)
+    C.claim("reframe: M72 remaining gap N=3", "The remaining gaps to the tuned rule, 0.08 and 0.96 per step", -dl_["B3"][1]["diff"], "{:.2f}")
+    C.claim("reframe: M72 remaining gap N=7", "The remaining gaps to the tuned rule, 0.08 and 0.96 per step", -dl_["B7"][1]["diff"], "{:.2f}")
+    C.claim("reframe: M72 remaining gap p N=3", "at $p=0.35$ and $p=0.064$", dl_["B3"][1]["p"], "{:.2f}")
+    C.claim("reframe: M72 remaining gap p N=7", "at $p=0.35$ and $p=0.064$", dl_["B7"][1]["p"], "{:.3f}")
+    hd_ = {}
+    for f_ in glob.glob(f"{ROOT}/m72/A_hindsight/hindsight_*.json"):
+        hd_.update(json.load(open(f_)))
+    C.note("reframe: M72 hindsight covers 15 seeds of 95 rules", len(hd_) == 15 and all(v["n_rules"] == 95 for v in hd_.values()), len(hd_))
+    C.claim("reframe: M72 hindsight max eMBB", "reaches only 37.7\\% on average", 100 * float(np.mean([v["max_embb_any_rule"] for v in hd_.values()])), "{:.1f}")
+    tb_ = float(np.mean([v["tuned"]["reward"] for v in hd_.values()])); bb_ = float(np.mean([v["best_in_hindsight"]["reward"] for v in hd_.values()]))
+    C.claim("reframe: M72 hindsight headroom", "earns only 0.14\\% more than the tuned rule", 100 * (bb_ - tb_) / tb_, "{:.2f}")
+    vc_ = {"A3": ("A_n3", list(range(9000, 9020))), "B3": ("B_n3", list(range(9000, 9020))), "A19": ("A_n19_ring", list(range(9000, 9010))), "B7": ("B_n7_ring", list(range(9000, 9010)))}
+    vt_, nseed_ = {}, 0
+    for k_, (d_, ss_) in vc_.items():
+        vd_, ax_ = seeds_of(f"m72/C_vdn/{d_}", "axiom2", ss_), seeds_of(f"m72/C_axiom2/{d_}", "axiom2", ss_)
+        nseed_ += min(len(vd_), len(ax_))
+        for m_, f_ in (("r", lambda r: r["reward"]), ("p", prio)):
+            vt_[(k_, m_)] = paired(vd_, ax_, f_)
+    hv_ = holm({k: v["p"] for k, v in vt_.items()})
+    C.note("reframe: M72 VDN 60 fresh seeds, never significantly different", nseed_ == 60 and all(v >= 0.05 for v in hv_.values())
+           and "on 60 fresh seeds across four cells" in C.main, {str(k): v for k, v in hv_.items()})
+    C.note("reframe: M72 VDN ahead in three cells, behind in Env B at seven gNBs",
+           [k_ for k_ in vc_ if vt_[(k_, "r")]["diff"] > 0] == ["A3", "B3", "A19"] and vt_[("B7", "r")]["diff"] < 0, None)
+    C.note("reframe: M72 VDN test streams disjoint within the experiment",
+           not (set(range(9000, 9020)) & {5000 + s_ for s_ in range(9000, 9020)}), None)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}

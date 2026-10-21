@@ -3370,6 +3370,219 @@
   "ok": true
  },
  {
+  "label": "reframe: M72 shift setup reproduces the stored results under nominal load",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 overload lead 1.10",
+  "snippet": "rule by 0.46, 0.43, and 0.35 reward per step",
+  "computed": 0.4579227494591433,
+  "formatted": "0.46",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 overload lead 1.15",
+  "snippet": "rule by 0.46, 0.43, and 0.35 reward per step",
+  "computed": 0.430786223708374,
+  "formatted": "0.43",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 overload lead 1.20",
+  "snippet": "rule by 0.46, 0.43, and 0.35 reward per step",
+  "computed": 0.35427552004125945,
+  "formatted": "0.35",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 overload wins 21 to 23 of 25 at Holm p<=0.0002",
+  "snippet": null,
+  "computed": {
+   "load_1.15": 3.0219554901123047e-05,
+   "load_1.10": 0.0001760721206665039,
+   "load_1.20": 0.0001760721206665039
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 lighter load and stronger coupling leave a non-significant rule lead",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 N=7 nominal deficit",
+  "snippet": "from a deficit of 3.84 under nominal load",
+  "computed": 3.8398469560189636,
+  "formatted": "3.84",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 N=7 lead 1.10",
+  "snippet": "to leads of 1.86 and 3.14 at 1.10",
+  "computed": 1.8638390598956571,
+  "formatted": "1.86",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 N=7 lead 1.20",
+  "snippet": "to leads of 1.86 and 3.14 at 1.10",
+  "computed": 3.1363923809498457,
+  "formatted": "3.14",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 re-tuned rule draws level at 1.10 and 1.15",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 re-tuned rule beats AXIOM at 1.20",
+  "snippet": "and beats it by 0.62 at 1.20",
+  "computed": 0.6198413736889133,
+  "formatted": "0.62",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 re-tuned rule lead at 1.20 significant",
+  "snippet": null,
+  "computed": 2.2113323211669922e-05,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 longer training gain N=3",
+  "snippet": "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven",
+  "computed": 0.3320202937077131,
+  "formatted": "0.33",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 longer training gain N=7",
+  "snippet": "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven",
+  "computed": 2.9155365946763374,
+  "formatted": "2.92",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 longer training seeds 20 and 12",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 remaining gap N=3",
+  "snippet": "The remaining gaps to the tuned rule, 0.08 and 0.96 per step",
+  "computed": 0.07552920453220731,
+  "formatted": "0.08",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 remaining gap N=7",
+  "snippet": "The remaining gaps to the tuned rule, 0.08 and 0.96 per step",
+  "computed": 0.9550596974302703,
+  "formatted": "0.96",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 remaining gap p N=3",
+  "snippet": "at $p=0.35$ and $p=0.064$",
+  "computed": 0.34881019592285156,
+  "formatted": "0.35",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 remaining gap p N=7",
+  "snippet": "at $p=0.35$ and $p=0.064$",
+  "computed": 0.06396484375,
+  "formatted": "0.064",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 hindsight covers 15 seeds of 95 rules",
+  "snippet": null,
+  "computed": 15,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 hindsight max eMBB",
+  "snippet": "reaches only 37.7\\% on average",
+  "computed": 37.684444444444445,
+  "formatted": "37.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 hindsight headroom",
+  "snippet": "earns only 0.14\\% more than the tuned rule",
+  "computed": 0.13998255290616524,
+  "formatted": "0.14",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 VDN 60 fresh seeds, never significantly different",
+  "snippet": null,
+  "computed": {
+   "('B3', 'r')": 0.0754852294921875,
+   "('A3', 'r')": 0.08444326393198377,
+   "('B3', 'p')": 0.3875028457623559,
+   "('A3', 'p')": 0.5440471502027284,
+   "('B7', 'p')": 0.5440471502027284,
+   "('B7', 'r')": 0.90234375,
+   "('A19', 'r')": 1.0,
+   "('A19', 'p')": 1.0
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 VDN ahead in three cells, behind in Env B at seven gNBs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M72 VDN test streams disjoint within the experiment",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -3396,9 +3609,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 347",
+  "label": "text quotes the final check count of 372",
   "snippet": null,
-  "computed": 347,
+  "computed": 372,
   "formatted": null,
   "in_tex": null,
   "ok": true
