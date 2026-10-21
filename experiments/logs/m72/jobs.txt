@@ -1,0 +1,92 @@
+C_A19_axiom2_9000||../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m72/C_axiom2/A_n19_ring --seeds 9000 9001 9002 9003 9004
+C_A19_vdn_9000|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m72/C_vdn/A_n19_ring --seeds 9000 9001 9002 9003 9004
+C_A19_axiom2_9005||../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m72/C_axiom2/A_n19_ring --seeds 9005 9006 9007 9008 9009
+C_A19_vdn_9005|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m72/C_vdn/A_n19_ring --seeds 9005 9006 9007 9008 9009
+D_B3_900||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --train-episodes 900 --out-dir ../experiments/results/m72/D_long/B_n3 --seeds 900 901 902 903 904
+D_B3_905||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --train-episodes 900 --out-dir ../experiments/results/m72/D_long/B_n3 --seeds 905 906 907 908 909
+D_B3_910||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --train-episodes 900 --out-dir ../experiments/results/m72/D_long/B_n3 --seeds 910 911 912 913 914
+D_B3_915||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --train-episodes 900 --out-dir ../experiments/results/m72/D_long/B_n3 --seeds 915 916 917 918 919
+D_B7_900||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 7 --topology ring --train-episodes 900 --out-dir ../experiments/results/m72/D_long/B_n7_ring --seeds 900 901 902 903
+D_B7_904||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 7 --topology ring --train-episodes 900 --out-dir ../experiments/results/m72/D_long/B_n7_ring --seeds 904 905 906 907
+D_B7_908||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 7 --topology ring --train-episodes 900 --out-dir ../experiments/results/m72/D_long/B_n7_ring --seeds 908 909 910 911
+C_B7_axiom2_9000||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m72/C_axiom2/B_n7_ring --seeds 9000 9001 9002 9003 9004
+C_B7_vdn_9000|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m72/C_vdn/B_n7_ring --seeds 9000 9001 9002 9003 9004
+C_B7_axiom2_9005||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m72/C_axiom2/B_n7_ring --seeds 9005 9006 9007 9008 9009
+C_B7_vdn_9005|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m72/C_vdn/B_n7_ring --seeds 9005 9006 9007 9008 9009
+A_hind_900||../experiments/scripts/m71_probe.py hindsight --seeds 900 --out ../experiments/results/m72/A_hindsight
+A_hind_901||../experiments/scripts/m71_probe.py hindsight --seeds 901 --out ../experiments/results/m72/A_hindsight
+A_hind_902||../experiments/scripts/m71_probe.py hindsight --seeds 902 --out ../experiments/results/m72/A_hindsight
+A_hind_903||../experiments/scripts/m71_probe.py hindsight --seeds 903 --out ../experiments/results/m72/A_hindsight
+A_hind_904||../experiments/scripts/m71_probe.py hindsight --seeds 904 --out ../experiments/results/m72/A_hindsight
+A_hind_905||../experiments/scripts/m71_probe.py hindsight --seeds 905 --out ../experiments/results/m72/A_hindsight
+A_hind_906||../experiments/scripts/m71_probe.py hindsight --seeds 906 --out ../experiments/results/m72/A_hindsight
+A_hind_907||../experiments/scripts/m71_probe.py hindsight --seeds 907 --out ../experiments/results/m72/A_hindsight
+A_hind_908||../experiments/scripts/m71_probe.py hindsight --seeds 908 --out ../experiments/results/m72/A_hindsight
+A_hind_909||../experiments/scripts/m71_probe.py hindsight --seeds 909 --out ../experiments/results/m72/A_hindsight
+A_hind_910||../experiments/scripts/m71_probe.py hindsight --seeds 910 --out ../experiments/results/m72/A_hindsight
+A_hind_911||../experiments/scripts/m71_probe.py hindsight --seeds 911 --out ../experiments/results/m72/A_hindsight
+A_hind_912||../experiments/scripts/m71_probe.py hindsight --seeds 912 --out ../experiments/results/m72/A_hindsight
+A_hind_913||../experiments/scripts/m71_probe.py hindsight --seeds 913 --out ../experiments/results/m72/A_hindsight
+A_hind_914||../experiments/scripts/m71_probe.py hindsight --seeds 914 --out ../experiments/results/m72/A_hindsight
+C_A3_axiom2_9000||../experiments/scripts/m70_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m72/C_axiom2/A_n3 --seeds 9000 9001 9002 9003 9004
+C_A3_vdn_9000|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m72/C_vdn/A_n3 --seeds 9000 9001 9002 9003 9004
+C_A3_axiom2_9005||../experiments/scripts/m70_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m72/C_axiom2/A_n3 --seeds 9005 9006 9007 9008 9009
+C_A3_vdn_9005|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m72/C_vdn/A_n3 --seeds 9005 9006 9007 9008 9009
+C_A3_axiom2_9010||../experiments/scripts/m70_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m72/C_axiom2/A_n3 --seeds 9010 9011 9012 9013 9014
+C_A3_vdn_9010|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m72/C_vdn/A_n3 --seeds 9010 9011 9012 9013 9014
+C_A3_axiom2_9015||../experiments/scripts/m70_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m72/C_axiom2/A_n3 --seeds 9015 9016 9017 9018 9019
+C_A3_vdn_9015|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m72/C_vdn/A_n3 --seeds 9015 9016 9017 9018 9019
+C_B3_axiom2_9000||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --out-dir ../experiments/results/m72/C_axiom2/B_n3 --seeds 9000 9001 9002 9003 9004
+C_B3_vdn_9000|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --out-dir ../experiments/results/m72/C_vdn/B_n3 --seeds 9000 9001 9002 9003 9004
+C_B3_axiom2_9005||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --out-dir ../experiments/results/m72/C_axiom2/B_n3 --seeds 9005 9006 9007 9008 9009
+C_B3_vdn_9005|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --out-dir ../experiments/results/m72/C_vdn/B_n3 --seeds 9005 9006 9007 9008 9009
+C_B3_axiom2_9010||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --out-dir ../experiments/results/m72/C_axiom2/B_n3 --seeds 9010 9011 9012 9013 9014
+C_B3_vdn_9010|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --out-dir ../experiments/results/m72/C_vdn/B_n3 --seeds 9010 9011 9012 9013 9014
+C_B3_axiom2_9015||../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --out-dir ../experiments/results/m72/C_axiom2/B_n3 --seeds 9015 9016 9017 9018 9019
+C_B3_vdn_9015|M70_VARIANT=vdn|../experiments/scripts/m70_run.py --arm axiom2 --env B --n 3 --out-dir ../experiments/results/m72/C_vdn/B_n3 --seeds 9015 9016 9017 9018 9019
+B_nominal_905||../experiments/scripts/m72_shift.py eval --shift nominal --seeds 905 906 907 908 909 --out ../experiments/results/m72/B_shift/n3
+B_nominal_910||../experiments/scripts/m72_shift.py eval --shift nominal --seeds 910 911 912 913 914 --out ../experiments/results/m72/B_shift/n3
+B_nominal_915||../experiments/scripts/m72_shift.py eval --shift nominal --seeds 915 916 917 918 919 --out ../experiments/results/m72/B_shift/n3
+B_nominal_920||../experiments/scripts/m72_shift.py eval --shift nominal --seeds 920 921 922 923 924 --out ../experiments/results/m72/B_shift/n3
+B_nominal_925||../experiments/scripts/m72_shift.py eval --shift nominal --seeds 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_load_0.80_905||../experiments/scripts/m72_shift.py eval --shift load_0.80 --seeds 905 906 907 908 909 --out ../experiments/results/m72/B_shift/n3
+B_load_0.80_910||../experiments/scripts/m72_shift.py eval --shift load_0.80 --seeds 910 911 912 913 914 --out ../experiments/results/m72/B_shift/n3
+B_load_0.80_915||../experiments/scripts/m72_shift.py eval --shift load_0.80 --seeds 915 916 917 918 919 --out ../experiments/results/m72/B_shift/n3
+B_load_0.80_920||../experiments/scripts/m72_shift.py eval --shift load_0.80 --seeds 920 921 922 923 924 --out ../experiments/results/m72/B_shift/n3
+B_load_0.80_925||../experiments/scripts/m72_shift.py eval --shift load_0.80 --seeds 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_load_1.05_905||../experiments/scripts/m72_shift.py eval --shift load_1.05 --seeds 905 906 907 908 909 --out ../experiments/results/m72/B_shift/n3
+B_load_1.05_910||../experiments/scripts/m72_shift.py eval --shift load_1.05 --seeds 910 911 912 913 914 --out ../experiments/results/m72/B_shift/n3
+B_load_1.05_915||../experiments/scripts/m72_shift.py eval --shift load_1.05 --seeds 915 916 917 918 919 --out ../experiments/results/m72/B_shift/n3
+B_load_1.05_920||../experiments/scripts/m72_shift.py eval --shift load_1.05 --seeds 920 921 922 923 924 --out ../experiments/results/m72/B_shift/n3
+B_load_1.05_925||../experiments/scripts/m72_shift.py eval --shift load_1.05 --seeds 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_load_1.10_905||../experiments/scripts/m72_shift.py eval --shift load_1.10 --seeds 905 906 907 908 909 --out ../experiments/results/m72/B_shift/n3
+B_load_1.10_910||../experiments/scripts/m72_shift.py eval --shift load_1.10 --seeds 910 911 912 913 914 --out ../experiments/results/m72/B_shift/n3
+B_load_1.10_915||../experiments/scripts/m72_shift.py eval --shift load_1.10 --seeds 915 916 917 918 919 --out ../experiments/results/m72/B_shift/n3
+B_load_1.10_920||../experiments/scripts/m72_shift.py eval --shift load_1.10 --seeds 920 921 922 923 924 --out ../experiments/results/m72/B_shift/n3
+B_load_1.10_925||../experiments/scripts/m72_shift.py eval --shift load_1.10 --seeds 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_load_1.15_905||../experiments/scripts/m72_shift.py eval --shift load_1.15 --seeds 905 906 907 908 909 --out ../experiments/results/m72/B_shift/n3
+B_load_1.15_910||../experiments/scripts/m72_shift.py eval --shift load_1.15 --seeds 910 911 912 913 914 --out ../experiments/results/m72/B_shift/n3
+B_load_1.15_915||../experiments/scripts/m72_shift.py eval --shift load_1.15 --seeds 915 916 917 918 919 --out ../experiments/results/m72/B_shift/n3
+B_load_1.15_920||../experiments/scripts/m72_shift.py eval --shift load_1.15 --seeds 920 921 922 923 924 --out ../experiments/results/m72/B_shift/n3
+B_load_1.15_925||../experiments/scripts/m72_shift.py eval --shift load_1.15 --seeds 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_load_1.20_905||../experiments/scripts/m72_shift.py eval --shift load_1.20 --seeds 905 906 907 908 909 --out ../experiments/results/m72/B_shift/n3
+B_load_1.20_910||../experiments/scripts/m72_shift.py eval --shift load_1.20 --seeds 910 911 912 913 914 --out ../experiments/results/m72/B_shift/n3
+B_load_1.20_915||../experiments/scripts/m72_shift.py eval --shift load_1.20 --seeds 915 916 917 918 919 --out ../experiments/results/m72/B_shift/n3
+B_load_1.20_920||../experiments/scripts/m72_shift.py eval --shift load_1.20 --seeds 920 921 922 923 924 --out ../experiments/results/m72/B_shift/n3
+B_load_1.20_925||../experiments/scripts/m72_shift.py eval --shift load_1.20 --seeds 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_coupling_0.30_905||../experiments/scripts/m72_shift.py eval --shift coupling_0.30 --seeds 905 906 907 908 909 --out ../experiments/results/m72/B_shift/n3
+B_coupling_0.30_910||../experiments/scripts/m72_shift.py eval --shift coupling_0.30 --seeds 910 911 912 913 914 --out ../experiments/results/m72/B_shift/n3
+B_coupling_0.30_915||../experiments/scripts/m72_shift.py eval --shift coupling_0.30 --seeds 915 916 917 918 919 --out ../experiments/results/m72/B_shift/n3
+B_coupling_0.30_920||../experiments/scripts/m72_shift.py eval --shift coupling_0.30 --seeds 920 921 922 923 924 --out ../experiments/results/m72/B_shift/n3
+B_coupling_0.30_925||../experiments/scripts/m72_shift.py eval --shift coupling_0.30 --seeds 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_amplitude_0.50_905||../experiments/scripts/m72_shift.py eval --shift amplitude_0.50 --seeds 905 906 907 908 909 --out ../experiments/results/m72/B_shift/n3
+B_amplitude_0.50_910||../experiments/scripts/m72_shift.py eval --shift amplitude_0.50 --seeds 910 911 912 913 914 --out ../experiments/results/m72/B_shift/n3
+B_amplitude_0.50_915||../experiments/scripts/m72_shift.py eval --shift amplitude_0.50 --seeds 915 916 917 918 919 --out ../experiments/results/m72/B_shift/n3
+B_amplitude_0.50_920||../experiments/scripts/m72_shift.py eval --shift amplitude_0.50 --seeds 920 921 922 923 924 --out ../experiments/results/m72/B_shift/n3
+B_amplitude_0.50_925||../experiments/scripts/m72_shift.py eval --shift amplitude_0.50 --seeds 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B7_nominal||../experiments/scripts/m72_shift.py eval --n 7 --topology ring --cell m64/n7_ring --shift nominal --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002 --out ../experiments/results/m72/B_shift/n7_ring
+B7_load_1.10||../experiments/scripts/m72_shift.py eval --n 7 --topology ring --cell m64/n7_ring --shift load_1.10 --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002 --out ../experiments/results/m72/B_shift/n7_ring
+B7_load_1.20||../experiments/scripts/m72_shift.py eval --n 7 --topology ring --cell m64/n7_ring --shift load_1.20 --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002 --out ../experiments/results/m72/B_shift/n7_ring
+B_retune_load_1.10||../experiments/scripts/m72_shift.py retune --shift load_1.10 --select-seeds 905 906 907 908 909 910 911 912 913 914 --seeds 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_retune_load_1.15||../experiments/scripts/m72_shift.py retune --shift load_1.15 --select-seeds 905 906 907 908 909 910 911 912 913 914 --seeds 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
+B_retune_load_1.20||../experiments/scripts/m72_shift.py retune --shift load_1.20 --select-seeds 905 906 907 908 909 910 911 912 913 914 --seeds 905 906 907 908 909 910 911 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926 927 928 929 --out ../experiments/results/m72/B_shift/n3
