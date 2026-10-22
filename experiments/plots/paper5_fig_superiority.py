@@ -1,7 +1,7 @@
 """Fig: AXIOM superiority, two panels side by side.
 (a) quality-versus-robustness quadrant, (b) capability radar.
 
-Every value is a number already reported in the WPC manuscript (M63 rerun). The radar
+Every value is a number reported in the WPC manuscript, recomputed from the logs by m66_verify.py. The radar
 normalises each axis as a fraction of the best policy on that axis, so a
 baseline reads 0 only where it genuinely has no such capability, namely the
 topology and privacy axes. Colours/markers match the other result figures.
@@ -26,12 +26,13 @@ M = {"AXIOM": "o", "Single-agent DQN": "s", "Independent DQN": "^", "MAPPO": "D"
 
 def draw_quadrant(ax):
     # x: Env A mean reward per step at 3 gNBs, 95% bootstrap CI (M65, 30 seeds; m65_n3_view)
-    # y: Env A URLLC/eMBB SLA at 19 gNBs, pooled over 3 layouts x 30 seeds, 95% bootstrap CI (M65)
+    # y: Env A URLLC/eMBB SLA at 37 gNBs (M73), AXIOM pooled over hex 30 + ring 15 + fully-connected 15 runs,
+    #    layout-independent baselines over the 30 hex seeds, 95% bootstrap CI
     arms = {
-        "AXIOM": dict(x=12.698, xci=(12.490, 12.861), y=97.3, yspan=(95.2, 99.0), tx=11.68, ty=97.0, ha="right", va="center"),
-        "Single-agent DQN": dict(x=12.387, xci=(12.115, 12.630), y=65.3, yspan=(62.9, 67.1), tx=12.387, ty=76.0, ha="center", va="bottom"),
-        "Independent DQN": dict(x=11.587, xci=(11.112, 12.020), y=56.4, yspan=(54.1, 58.6), tx=11.587, ty=47.0, ha="center", va="top"),
-        "MAPPO": dict(x=10.013, xci=(9.298, 10.727), y=60.6, yspan=(58.6, 62.8), tx=10.013, ty=71.0, ha="center", va="bottom"),
+        "AXIOM": dict(x=12.698, xci=(12.490, 12.861), y=93.7, yspan=(89.8, 97.2), tx=11.68, ty=93.4, ha="right", va="center"),
+        "Single-agent DQN": dict(x=12.387, xci=(12.115, 12.630), y=58.7, yspan=(53.5, 62.4), tx=12.387, ty=72.0, ha="center", va="bottom"),
+        "Independent DQN": dict(x=11.587, xci=(11.112, 12.020), y=32.1, yspan=(25.6, 39.0), tx=11.587, ty=21.0, ha="center", va="top"),
+        "MAPPO": dict(x=10.013, xci=(9.298, 10.727), y=56.7, yspan=(51.2, 62.4), tx=10.013, ty=70.0, ha="center", va="bottom"),
     }
     ax.grid(True, linewidth=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
@@ -47,23 +48,22 @@ def draw_quadrant(ax):
                     linespacing=1.2, zorder=6,
                     arrowprops=dict(arrowstyle="-", color=C[name], lw=0.7, shrinkA=2, shrinkB=8, alpha=0.7))
     ax.set_xlim(9.0, 13.1)
-    ax.set_ylim(40, 102)
+    ax.set_ylim(10, 102)
     ax.set_xticks([9, 10, 11, 12, 13])
     ax.set_xlabel("Env A reward per step at 3 gNBs")
-    ax.set_ylabel("Env A URLLC and eMBB SLA at 19 gNBs (%)")
+    ax.set_ylabel("Env A URLLC and eMBB SLA at 37 gNBs (%)")
     ax.set_title("(a) Accuracy against scale, Env A", fontweight="bold")
 
 
 def draw_radar(ax):
-    # all six axes measured (M63); each value is the policy's score divided by the best score on that axis
-    # six measured axes (M64/M65); each value is the arm's score over the best learned arm's score
-    labels = ["Env A reward\n3 gNBs", "Env B reward\n3 gNBs", "Env A priority\nSLA 7 gNBs", "Env A priority\nSLA 19 gNBs",
-              "No collapse\n19 gNBs", "Env B priority\nSLA 7 gNBs"]
+    # six measured axes (M64/M65/M73); each value is the arm's score over the best learned arm's score
+    labels = ["Env A reward\n3 gNBs", "Env B reward\n3 gNBs", "Env A priority\nSLA 7 gNBs", "Env A priority\nSLA 37 gNBs",
+              "No collapse\n37 gNBs", "Env B priority\nSLA 7 gNBs"]
     vals = {
-        "AXIOM":            [1.000, 1.000, 1.000, 1.000, 0.989, 0.792],
-        "Single-agent DQN": [0.976, 0.849, 0.785, 0.671, 0.067, 1.000],
-        "Independent DQN":  [0.913, 0.882, 0.768, 0.580, 0.967, 0.903],
-        "MAPPO":            [0.789, 0.789, 0.697, 0.623, 1.000, 0.810],
+        "AXIOM":            [1.000, 1.000, 1.000, 1.000, 0.900, 0.792],
+        "Single-agent DQN": [0.976, 0.849, 0.785, 0.626, 0.133, 1.000],
+        "Independent DQN":  [0.913, 0.882, 0.768, 0.343, 0.900, 0.903],
+        "MAPPO":            [0.789, 0.789, 0.697, 0.605, 1.000, 0.810],
     }
     N = len(labels)
     ang = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
@@ -90,7 +90,7 @@ def draw_radar(ax):
                 markersize=ms, zorder=zbase[name])
         ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.05, zorder=2)
     # raw AXIOM values, placed just inside each vertex so they clear the axis labels
-    raw = ["12.70", "8.83", "97%", "97%", "99%", "35%"]
+    raw = ["12.70", "8.83", "97%", "94%", "90%", "35%"]
     for a_i, r_i, txt in zip(ang[:-1], vals["AXIOM"], raw):
         ax.text(a_i + 0.2, max(min(r_i, 1.0) - 0.13, 0.13), txt, color=C["AXIOM"], fontsize=6.8,
                 fontweight="bold", ha="center", va="center", zorder=7)

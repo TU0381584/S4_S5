@@ -1,0 +1,186 @@
+d_ax_900|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 900
+d_ax_901|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 901
+d_ax_902|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 902
+d_ax_903|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 903
+d_ax_904|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 904
+d_ax_905|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 905
+d_ax_906|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 906
+d_ax_907|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 907
+d_ax_908|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 908
+d_ax_909|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 909
+d_ax_910|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 910
+d_ax_911|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 911
+d_ax_1000|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1000
+d_ax_1001|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1001
+d_ax_1002|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1002
+d_ind_900|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 900
+d_ind_901|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 901
+d_ind_902|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 902
+d_ind_903|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 903
+d_ind_904|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 904
+d_ind_905|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 905
+d_ind_906|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 906
+d_ind_907|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 907
+d_ind_908|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 908
+d_ind_909|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 909
+d_ind_910|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 910
+d_ind_911|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 911
+d_ind_1000|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1000
+d_ind_1001|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1001
+d_ind_1002|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1002
+cg_ind_37_1e-4_16_2000|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2000
+cg_ind_37_1e-4_16_2001|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2001
+cg_ind_37_1e-4_16_2002|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2002
+cg_ind_37_1e-4_16_2003|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2003
+cg_ind_37_1e-4_16_2004|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2004
+cg_ind_37_1e-4_64_2000|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2000
+cg_ind_37_1e-4_64_2001|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2001
+cg_ind_37_1e-4_64_2002|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2002
+cg_ind_37_1e-4_64_2003|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2003
+cg_ind_37_1e-4_64_2004|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2004
+cg_ind_37_3e-4_16_2000|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2000
+cg_ind_37_3e-4_16_2001|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2001
+cg_ind_37_3e-4_16_2002|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2002
+cg_ind_37_3e-4_16_2003|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2003
+cg_ind_37_3e-4_16_2004|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2004
+cg_ind_37_3e-4_64_2000|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2000
+cg_ind_37_3e-4_64_2001|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2001
+cg_ind_37_3e-4_64_2002|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2002
+cg_ind_37_3e-4_64_2003|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2003
+cg_ind_37_3e-4_64_2004|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2004
+cg_ind_37_1e-3_16_2000|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2000
+cg_ind_37_1e-3_16_2001|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2001
+cg_ind_37_1e-3_16_2002|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2002
+cg_ind_37_1e-3_16_2003|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2003
+cg_ind_37_1e-3_16_2004|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2004
+cg_ind_37_1e-3_64_2000|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2000
+cg_ind_37_1e-3_64_2001|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2001
+cg_ind_37_1e-3_64_2002|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2002
+cg_ind_37_1e-3_64_2003|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2003
+cg_ind_37_1e-3_64_2004|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2004
+cg_ind_19_1e-4_16_2000|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2000
+cg_ind_19_1e-4_16_2001|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2001
+cg_ind_19_1e-4_16_2002|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2002
+cg_ind_19_1e-4_16_2003|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2003
+cg_ind_19_1e-4_16_2004|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2004
+cg_ind_19_1e-4_64_2000|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2000
+cg_ind_19_1e-4_64_2001|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2001
+cg_ind_19_1e-4_64_2002|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2002
+cg_ind_19_1e-4_64_2003|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2003
+cg_ind_19_1e-4_64_2004|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2004
+cg_ind_19_3e-4_16_2000|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2000
+cg_ind_19_3e-4_16_2001|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2001
+cg_ind_19_3e-4_16_2002|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2002
+cg_ind_19_3e-4_16_2003|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2003
+cg_ind_19_3e-4_16_2004|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2004
+cg_ind_19_3e-4_64_2000|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2000
+cg_ind_19_3e-4_64_2001|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2001
+cg_ind_19_3e-4_64_2002|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2002
+cg_ind_19_3e-4_64_2003|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2003
+cg_ind_19_3e-4_64_2004|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2004
+cg_ind_19_1e-3_16_2000|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2000
+cg_ind_19_1e-3_16_2001|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2001
+cg_ind_19_1e-3_16_2002|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2002
+cg_ind_19_1e-3_16_2003|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2003
+cg_ind_19_1e-3_16_2004|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2004
+cg_ind_19_1e-3_64_2000|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2000
+cg_ind_19_1e-3_64_2001|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2001
+cg_ind_19_1e-3_64_2002|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2002
+cg_ind_19_1e-3_64_2003|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2003
+cg_ind_19_1e-3_64_2004|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2004
+d_mp_900|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 900
+d_mp_901|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 901
+d_mp_902|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 902
+d_mp_903|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 903
+d_mp_904|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 904
+d_mp_905|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 905
+d_mp_906|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 906
+d_mp_907|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 907
+d_mp_908|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 908
+d_mp_909|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 909
+d_mp_910|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 910
+d_mp_911|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 911
+d_mp_1000|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1000
+d_mp_1001|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1001
+d_mp_1002|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1002
+d_sa_900|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 900
+d_sa_901|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 901
+d_sa_902|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 902
+d_sa_903|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 903
+d_sa_904|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 904
+d_sa_905|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 905
+d_sa_906|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 906
+d_sa_907|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 907
+d_sa_908|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 908
+d_sa_909|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 909
+d_sa_910|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 910
+d_sa_911|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 911
+d_sa_1000|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1000
+d_sa_1001|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1001
+d_sa_1002|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 1002
+cg_sa_37_1e-4_16_2000|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2000
+cg_sa_37_1e-4_16_2001|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2001
+cg_sa_37_1e-4_16_2002|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2002
+cg_sa_37_1e-4_16_2003|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2003
+cg_sa_37_1e-4_16_2004|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b16 --seeds 2004
+cg_sa_37_1e-4_64_2000|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2000
+cg_sa_37_1e-4_64_2001|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2001
+cg_sa_37_1e-4_64_2002|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2002
+cg_sa_37_1e-4_64_2003|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2003
+cg_sa_37_1e-4_64_2004|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-4_b64 --seeds 2004
+cg_sa_37_3e-4_16_2000|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2000
+cg_sa_37_3e-4_16_2001|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2001
+cg_sa_37_3e-4_16_2002|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2002
+cg_sa_37_3e-4_16_2003|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2003
+cg_sa_37_3e-4_16_2004|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b16 --seeds 2004
+cg_sa_37_3e-4_64_2000|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2000
+cg_sa_37_3e-4_64_2001|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2001
+cg_sa_37_3e-4_64_2002|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2002
+cg_sa_37_3e-4_64_2003|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2003
+cg_sa_37_3e-4_64_2004|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr3e-4_b64 --seeds 2004
+cg_sa_37_1e-3_16_2000|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2000
+cg_sa_37_1e-3_16_2001|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2001
+cg_sa_37_1e-3_16_2002|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2002
+cg_sa_37_1e-3_16_2003|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2003
+cg_sa_37_1e-3_16_2004|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b16 --seeds 2004
+cg_sa_37_1e-3_64_2000|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2000
+cg_sa_37_1e-3_64_2001|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2001
+cg_sa_37_1e-3_64_2002|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2002
+cg_sa_37_1e-3_64_2003|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2003
+cg_sa_37_1e-3_64_2004|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m75/C_grid/n37/lr1e-3_b64 --seeds 2004
+cg_sa_19_1e-4_16_2000|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2000
+cg_sa_19_1e-4_16_2001|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2001
+cg_sa_19_1e-4_16_2002|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2002
+cg_sa_19_1e-4_16_2003|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2003
+cg_sa_19_1e-4_16_2004|M75_LR=1e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b16 --seeds 2004
+cg_sa_19_1e-4_64_2000|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2000
+cg_sa_19_1e-4_64_2001|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2001
+cg_sa_19_1e-4_64_2002|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2002
+cg_sa_19_1e-4_64_2003|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2003
+cg_sa_19_1e-4_64_2004|M75_LR=1e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-4_b64 --seeds 2004
+cg_sa_19_3e-4_16_2000|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2000
+cg_sa_19_3e-4_16_2001|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2001
+cg_sa_19_3e-4_16_2002|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2002
+cg_sa_19_3e-4_16_2003|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2003
+cg_sa_19_3e-4_16_2004|M75_LR=3e-4 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b16 --seeds 2004
+cg_sa_19_3e-4_64_2000|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2000
+cg_sa_19_3e-4_64_2001|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2001
+cg_sa_19_3e-4_64_2002|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2002
+cg_sa_19_3e-4_64_2003|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2003
+cg_sa_19_3e-4_64_2004|M75_LR=3e-4 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr3e-4_b64 --seeds 2004
+cg_sa_19_1e-3_16_2000|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2000
+cg_sa_19_1e-3_16_2001|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2001
+cg_sa_19_1e-3_16_2002|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2002
+cg_sa_19_1e-3_16_2003|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2003
+cg_sa_19_1e-3_16_2004|M75_LR=1e-3 M75_BATCH=16|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b16 --seeds 2004
+cg_sa_19_1e-3_64_2000|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2000
+cg_sa_19_1e-3_64_2001|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2001
+cg_sa_19_1e-3_64_2002|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2002
+cg_sa_19_1e-3_64_2003|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2003
+cg_sa_19_1e-3_64_2004|M75_LR=1e-3 M75_BATCH=64|../experiments/scripts/m75_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m75/C_grid/n19/lr1e-3_b64 --seeds 2004
+d_rule_static|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm rule_static --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+d_rule_accept_all|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm rule_accept_all --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+d_rule_local_transfer|M75_PERGNB=1|../experiments/scripts/m75_run.py --arm rule_local_transfer --env B --n 19 --topology hex --out-dir ../experiments/results/m75/D_envB_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+b_aa_7||../experiments/scripts/m75_run.py --arm rule_accept_all --env A --n 7 --topology hex --out-dir ../experiments/results/m75/B_acceptall/n7 --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+b_aa_19||../experiments/scripts/m75_run.py --arm rule_accept_all --env A --n 19 --topology hex --out-dir ../experiments/results/m75/B_acceptall/n19 --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926
+b_aa_37||../experiments/scripts/m75_run.py --arm rule_accept_all --env A --n 37 --topology hex --out-dir ../experiments/results/m75/B_acceptall/n37 --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926

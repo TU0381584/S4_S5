@@ -116,7 +116,7 @@ def main():
     axs[0].set_ylabel("Priority-slice SLA compliance, %")
     axs[0].set_ylim(20 if 37 in sizes else 40, 104)
     axs[0].set_title("(a) Compliance as the cluster grows", loc="left", fontsize=9.5)
-    axs[1].set_ylabel("Collapsed policies, % of cells")
+    axs[1].set_ylabel("Collapsed policies, % of runs")
     axs[1].set_title("(b) Collapse into accept-all", loc="left", fontsize=9.5)
     axs[2].set_ylabel("Parameters at execution")
     axs[2].set_yscale("log")

@@ -6,7 +6,7 @@
 \usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}
-\title{Online Resource 1\\[4pt]\large Supplementary material for the article ``AXIOM: Correctness-Aware Multi-Agent Slice Admission Control with Federated Training''\\[2pt]\normalsize Wireless Personal Communications}
+\title{Online Resource 1\\[4pt]\large Supplementary material for the article ``AXIOM: Scalable Multi-Agent Slice Admission Control under Verified Evaluation''\\[2pt]\normalsize Wireless Personal Communications}
 \author{Manoj Prasad Kunasegran, Wai Leong Pang, Swee King Phang\\[4pt]
 \small Corresponding author: Wai Leong Pang, School of Engineering, Taylor's University,\\
 \small 47500 Subang Jaya, Selangor, Malaysia, \texttt{waileong.pang@taylors.edu.my}}
@@ -67,7 +67,7 @@ Reruns on fresh seeds confirmed the main findings of the paper. The exceptions a
   at (2.01,5.6)
   {Core network\\[2pt]
    Open5GS, Docker Compose\\
-   17 containers (AMF/SMF$\times$3/\\UPF$\times$3/AUSF/UDM/UDR/\\PCF/BSF/NSSF/NRF/SCP)\\
+   17 containers (AMF/SMF$\times$3/\\UPF$\times$3/AUSF/\\UDM/UDR/PCF/BSF/\\NSSF/NRF/SCP)\\
    MongoDB};
 \node[block, text width=4.2cm, minimum height=2.0cm] (ran)
   at (7.03,5.6)
@@ -138,7 +138,7 @@ The third is a reproduction-versus-replication discipline, in which we recompute
 \section*{S12. Additional results}
 The original AXIOM, at learning rate $10^{-4}$, came slightly closer to the oracle in this environment, tying it in 39 of 40 seeds. The change to the current design therefore trades a little static-load accuracy for the ability to adapt that the time-varying environment rewards.
 
-Three checks test where AXIOM's behaviour comes from. First, the learning rate matters, for AXIOM and its baselines alike. Every learned arm now trains at $10^{-3}$, and the DQN baselines lose reward when rerun at $10^{-4}$, falling to 11.477 and 11.119 per step. AXIOM depends on its rate even more in Env B. There the original AXIOM, at $10^{-4}$, earns only 6.496 per step on seeds 900 to 909, 2.37 below the current AXIOM in all ten seeds, and a rate of $3{\times}10^{-4}$ reaches 7.220. A rate of $3{\times}10^{-3}$ and an encoder twice as wide both stay within 0.19 of the current AXIOM, with no significant difference.
+Three checks test where AXIOM's behaviour comes from. First, the learning rate matters, for AXIOM and its baselines alike. Every learned arm now trains at $10^{-3}$, and the DQN baselines lose reward when rerun at $10^{-4}$, falling to 11.477 and 11.119 per step. AXIOM depends on its rate even more in Env B. There the original AXIOM, at $10^{-4}$, earns only 6.496 per step on seeds 900 to 909, 2.37 below the current AXIOM in all ten seeds, and a rate of $3{\times}10^{-4}$ reaches 7.220. A rate of $3{\times}10^{-3}$ and an encoder twice as wide both stay within 0.19 of the current AXIOM, with no significant difference. At nineteen gNBs in Env A the original AXIOM kept priority-slice compliance at only 79.1\%, so the faster learning rate matters most at scale.
 
 \begin{figure}[t]
 \centering
@@ -195,7 +195,7 @@ per cell, per-seed points behind the mean and 95\% CI.}
 
 
 \section*{S13. Analysis-plan commits and development notes}
-Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, the thirty-seven-gNB extension in Section S15 as 85e6781, and its fresh-seed replication as ab76311. The original AXIOM kept priority-slice compliance at only 79.1\% at this size, so the faster learning rate matters most at scale.
+Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, and 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, the thirty-seven-gNB extension in Section S15 as 85e6781, and its fresh-seed replication as ab76311.
 
 
 \section*{S14. Shifted load, longer training, and the joint target on fresh seeds}

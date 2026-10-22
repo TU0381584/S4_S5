@@ -294,7 +294,7 @@ def main():
             C.claim("N19 AXIOM pooled", "compliance of 97.3\\% with 95\\% CI", 100 * pooled["axiom2"], "{:.1f}")
             C.claim("N19 baselines", "keep 65.3\\%, 56.4\\%, and 60.6\\%", 100 * pooled["single_agent_dqn"], "{:.1f}")
             C.note("N19 indep and MAPPO pooled 56.4 and 60.6", round(100 * pooled["independent_dqn"], 1) == 56.4 and round(100 * pooled["mappo_tuned"], 1) == 60.6, pooled)
-            C.claim("N19 single collapse", "in 84 of its 90 cells", coll["single_agent_dqn"], "{}")
+            C.claim("N19 single collapse", "in 84 of its 90 runs", coll["single_agent_dqn"], "{}")
             C.note("N19 collapse counts 3, 1, 0", (coll["independent_dqn"], coll["axiom2"], coll["mappo_tuned"]) == (3, 1, 0), coll)
         else:
             C.note("N7 AXIOM URLLC/eMBB 99.8/94.4", round(100 * float(np.mean([r['sla']['urllc'] for t in D for r in D[t]['axiom2'].values()])), 1) == 99.8
@@ -536,7 +536,12 @@ def main():
     xcis = {k: tuple(float(x) for x in v.split(",")) for k, v in re.findall(r'"([A-Za-z -]+)": dict\(x=[0-9.]+, xci=\(([^)]*)\)', src)}
     okx = all(round(mean(A[lab[k]]), 3) == float(v) for k, v in xs.items()) and len(xcis) == 4 and \
         all(np.allclose(ci([r["reward"] for r in A[lab[k]].values()]), v, atol=0.03) for k, v in xcis.items())
-    oky = all(round(pooled19[lab[k]], 1) == float(v) for k, v in ys.items())
+    # since M73 the y axis and two radar axes use 37 gNBs (AXIOM over hex 30 + ring 15 + fully-connected 15, baselines over hex 30)
+    rows37 = {a: ([r for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for r in seeds_of(f"m73/A_n37_{t}", a, ss).values()]
+                  if a == "axiom2" else list(seeds_of("m73/A_n37_hex", a, S30_19).values())) for a in lab.values()}
+    pooled37 = {a: 100 * float(np.mean([prio(r) for r in v])) for a, v in rows37.items()}
+    nc37 = {a: 1 - sum(r["collapsed"] for r in v) / len(v) for a, v in rows37.items()}
+    oky = all(round(pooled37[lab[k]], 1) == float(v) for k, v in ys.items())
     C.note("Fig 9a hand-entered x and y values match recomputation", okx and oky and len(xs) == 4 and len(ys) == 4, (xs, ys))
     radar = {k: [float(x) for x in v.split(",")] for k, v in re.findall(r'"([A-Za-z -]+)":\s+\[([0-9., ]+)\],', src)}
     best = lambda d: max(d.values())
@@ -544,7 +549,7 @@ def main():
     B3r = {a: mean(B[a]) for a in lab.values()}
     p7 = {a: float(np.mean([prio(r) for t in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n7_{t}", a, S15).values()])) for a in lab.values()}
     nc19 = {a: 1 - sum(r["collapsed"] for t in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n19_{t}", a, S30_19).values()) / 90 for a in lab.values()}
-    axes = [A3r, B3r, p7, {a: pooled19[a] for a in lab.values()}, nc19, n7p]
+    axes = [A3r, B3r, p7, pooled37, nc37, n7p]
     expect = {k: [round(ax[lab[k]] / best(ax), 3) for ax in axes] for k in lab}
     okr = all(abs(radar[k][i] - expect[k][i]) <= 0.002 for k in lab for i in range(6))
     C.note("Fig 9b radar fractions match recomputation", okr, {"figure": radar, "recomputed": expect})
