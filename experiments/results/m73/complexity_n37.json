@@ -1,0 +1,36 @@
+{
+ "37": {
+  "axiom2": {
+   "params_execution": 7782,
+   "ms_per_step": 9.895,
+   "requests_per_step": 111
+  },
+  "axiom2_mlp": {
+   "params_execution": 3190,
+   "ms_per_step": 9.439,
+   "requests_per_step": 111
+  },
+  "independent_dqn": {
+   "params_execution": 682058,
+   "ms_per_step": 8.08,
+   "requests_per_step": 111
+  },
+  "mappo": {
+   "params_execution": 5122,
+   "ms_per_step": 0.266,
+   "requests_per_step": 111
+  },
+  "mappo_total": {
+   "params_execution": 30723
+  },
+  "single_agent_dqn": {
+   "params_execution": 64770
+  }
+ },
+ "single_agent_ms_per_step": {
+  "3": 0.615,
+  "7": 1.419,
+  "19": 3.948,
+  "37": 8.024
+ }
+}

@@ -1,0 +1,335 @@
+{
+ "mappo_grid_tests": {
+  "prio": {
+   "n": 15,
+   "diff": 29.196666666666662,
+   "wins": 13,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.0008544921875
+  },
+  "reward": {
+   "n": 15,
+   "diff": 23.230492172847004,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05
+  }
+ },
+ "P1": {
+  "hex/single_agent_dqn/prio": {
+   "n": 30,
+   "diff": 34.92333333333333,
+   "wins": 26,
+   "ties": 3,
+   "losses": 1,
+   "p": 7.03341409095573e-06,
+   "p_holm": 1.1368858324742612e-05
+  },
+  "hex/single_agent_dqn/reward": {
+   "n": 30,
+   "diff": 29.506940165592457,
+   "wins": 27,
+   "ties": 3,
+   "losses": 0,
+   "p": 5.606116527496013e-06,
+   "p_holm": 1.1368858324742612e-05
+  },
+  "hex/independent_dqn/prio": {
+   "n": 30,
+   "diff": 61.452222222222204,
+   "wins": 28,
+   "ties": 2,
+   "losses": 0,
+   "p": 3.789619441580871e-06,
+   "p_holm": 1.1368858324742612e-05
+  },
+  "hex/independent_dqn/reward": {
+   "n": 30,
+   "diff": 25.857733253399196,
+   "wins": 29,
+   "ties": 1,
+   "losses": 0,
+   "p": 2.5630832507250074e-06,
+   "p_holm": 1.025233300290003e-05
+  },
+  "hex/mappo_tuned/prio": {
+   "n": 30,
+   "diff": 36.90888888888889,
+   "wins": 28,
+   "ties": 0,
+   "losses": 2,
+   "p": 8.009374141693115e-08,
+   "p_holm": 4.0046870708465576e-07
+  },
+  "hex/mappo_tuned/reward": {
+   "n": 30,
+   "diff": 28.953186921994703,
+   "wins": 29,
+   "ties": 0,
+   "losses": 1,
+   "p": 5.587935447692871e-09,
+   "p_holm": 3.3527612686157227e-08
+  }
+ },
+ "P2": {
+  "ring/single_agent_dqn/prio": {
+   "n": 15,
+   "diff": 32.026666666666664,
+   "wins": 13,
+   "ties": 2,
+   "losses": 0,
+   "p": 0.0014737808438751421,
+   "p_holm": 0.006125117710344329
+  },
+  "ring/single_agent_dqn/reward": {
+   "n": 15,
+   "diff": 18.26791840698576,
+   "wins": 13,
+   "ties": 2,
+   "losses": 0,
+   "p": 0.0014737808438751421,
+   "p_holm": 0.006125117710344329
+  },
+  "ring/independent_dqn/prio": {
+   "n": 15,
+   "diff": 66.54111111111112,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05,
+   "p_holm": 0.000732421875
+  },
+  "ring/independent_dqn/reward": {
+   "n": 15,
+   "diff": 26.603216115204205,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05,
+   "p_holm": 0.000732421875
+  },
+  "ring/mappo_tuned/prio": {
+   "n": 15,
+   "diff": 34.269999999999996,
+   "wins": 13,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.00152587890625,
+   "p_holm": 0.006125117710344329
+  },
+  "ring/mappo_tuned/reward": {
+   "n": 15,
+   "diff": 24.721188301264547,
+   "wins": 13,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.0006103515625,
+   "p_holm": 0.0042724609375
+  },
+  "fully_connected/single_agent_dqn/prio": {
+   "n": 15,
+   "diff": 33.29,
+   "wins": 13,
+   "ties": 1,
+   "losses": 1,
+   "p": 0.0012250235420688657,
+   "p_holm": 0.006125117710344329
+  },
+  "fully_connected/single_agent_dqn/reward": {
+   "n": 15,
+   "diff": 19.20068111684549,
+   "wins": 13,
+   "ties": 1,
+   "losses": 1,
+   "p": 0.0012250235420688657,
+   "p_holm": 0.006125117710344329
+  },
+  "fully_connected/independent_dqn/prio": {
+   "n": 15,
+   "diff": 67.80444444444444,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05,
+   "p_holm": 0.000732421875
+  },
+  "fully_connected/independent_dqn/reward": {
+   "n": 15,
+   "diff": 27.53597882506393,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05,
+   "p_holm": 0.000732421875
+  },
+  "fully_connected/mappo_tuned/prio": {
+   "n": 15,
+   "diff": 35.53333333333333,
+   "wins": 13,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.0008544921875,
+   "p_holm": 0.005126953125
+  },
+  "fully_connected/mappo_tuned/reward": {
+   "n": 15,
+   "diff": 25.65395101112427,
+   "wins": 14,
+   "ties": 0,
+   "losses": 1,
+   "p": 0.00030517578125,
+   "p_holm": 0.00244140625
+  }
+ },
+ "summary": {
+  "axiom2": {
+   "n": 60,
+   "prio": 93.69,
+   "prio_ci": [
+    89.78715972222224,
+    97.15975
+   ],
+   "collapsed": 6,
+   "reward_by_layout": {
+    "hex": 174.20439838757596,
+    "ring": 173.50730471747315,
+    "fully_connected": 174.44006742733288
+   },
+   "prio_by_layout": {
+    "hex": 93.58500000000001,
+    "ring": 93.16333333333333,
+    "fully_connected": 94.42666666666668
+   },
+   "urllc": 96.71444444444445,
+   "embb": 90.66555555555556
+  },
+  "single_agent_dqn": {
+   "n": 30,
+   "prio": 58.66166666666667,
+   "prio_ci": [
+    53.50330555555555,
+    62.422805555555556
+   ],
+   "reward": 144.69745822198357,
+   "collapsed": 26,
+   "urllc": 73.25555555555556,
+   "embb": 44.067777777777785
+  },
+  "independent_dqn": {
+   "n": 30,
+   "prio": 32.132777777777775,
+   "prio_ci": [
+    25.61548611111111,
+    39.00451388888889
+   ],
+   "reward": 148.3466651341768,
+   "collapsed": 3,
+   "urllc": 38.574444444444445,
+   "embb": 25.691111111111116
+  },
+  "mappo_tuned": {
+   "n": 30,
+   "prio": 56.676111111111105,
+   "prio_ci": [
+    51.2305,
+    62.39169444444445
+   ],
+   "reward": 145.25121146558132,
+   "collapsed": 0,
+   "urllc": 67.75333333333334,
+   "embb": 45.59888888888889
+  },
+  "rule_static": {
+   "n": 30,
+   "prio": 99.97666666666666,
+   "prio_ci": [
+    99.95111111111113,
+    99.99722222222222
+   ],
+   "reward": 177.57627322080356,
+   "collapsed": 0,
+   "urllc": 99.97555555555554,
+   "embb": 99.97777777777777
+  },
+  "mappo_grid": {
+   "n": 15,
+   "prio": 65.5988888888889,
+   "reward": 151.9001818966213,
+   "collapsed": 0
+  }
+ },
+ "train_seconds_median": {
+  "hex/mappo_tuned": 495.35,
+  "hex/independent_dqn": 2087.7,
+  "hex/axiom2": 1328.3000000000002,
+  "hex/single_agent_dqn": 357.55,
+  "ring/axiom2": 1182.4,
+  "fully_connected/axiom2": 1134.8
+ },
+ "criteria": [
+  {
+   "label": "P1 hex: AXIOM beats every baseline on priority SLA and reward, Holm over 6, p<0.05",
+   "holds": true,
+   "detail": "hex/single_agent_dqn/prio diff +34.9233, W/T/L 26/3/1, p 7.03e-06, p_holm 1.14e-05 (n=30); hex/single_agent_dqn/reward diff +29.5069, W/T/L 27/3/0, p 5.61e-06, p_holm 1.14e-05 (n=30); hex/independent_dqn/prio diff +61.4522, W/T/L 28/2/0, p 3.79e-06, p_holm 1.14e-05 (n=30); hex/independent_dqn/reward diff +25.8577, W/T/L 29/1/0, p 2.56e-06, p_holm 1.03e-05 (n=30); hex/mappo_tuned/prio diff +36.9089, W/T/L 28/0/2, p 8.01e-08, p_holm 4e-07 (n=30); hex/mappo_tuned/reward diff +28.9532, W/T/L 29/0/1, p 5.59e-09, p_holm 3.35e-08 (n=30)"
+  },
+  {
+   "label": "P2 ring and fully-connected: the same 6 comparisons per layout, Holm over 12, p<0.05",
+   "holds": true,
+   "detail": "ring/single_agent_dqn/prio diff +32.0267, W/T/L 13/2/0, p 0.00147, p_holm 0.00613 (n=15); ring/single_agent_dqn/reward diff +18.2679, W/T/L 13/2/0, p 0.00147, p_holm 0.00613 (n=15); ring/independent_dqn/prio diff +66.5411, W/T/L 15/0/0, p 6.1e-05, p_holm 0.000732 (n=15); ring/independent_dqn/reward diff +26.6032, W/T/L 15/0/0, p 6.1e-05, p_holm 0.000732 (n=15); ring/mappo_tuned/prio diff +34.2700, W/T/L 13/0/2, p 0.00153, p_holm 0.00613 (n=15); ring/mappo_tuned/reward diff +24.7212, W/T/L 13/0/2, p 0.00061, p_holm 0.00427 (n=15); fully_connected/single_agent_dqn/prio diff +33.2900, W/T/L 13/1/1, p 0.00123, p_holm 0.00613 (n=15); fully_connected/single_agent_dqn/reward diff +19.2007, W/T/L 13/1/1, p 0.00123, p_holm 0.00613 (n=15); fully_connected/independent_dqn/prio diff +67.8044, W/T/L 15/0/0, p 6.1e-05, p_holm 0.000732 (n=15); fully_connected/independent_dqn/reward diff +27.5360, W/T/L 15/0/0, p 6.1e-05, p_holm 0.000732 (n=15); fully_connected/mappo_tuned/prio diff +35.5333, W/T/L 13/0/2, p 0.000854, p_holm 0.00513 (n=15); fully_connected/mappo_tuned/reward diff +25.6540, W/T/L 14/0/1, p 0.000305, p_holm 0.00244 (n=15)"
+  },
+  {
+   "label": "P3 AXIOM pooled priority-slice compliance at least 90%",
+   "holds": true,
+   "detail": "93.69% [89.79, 97.16] over 60 runs"
+  },
+  {
+   "label": "P4 AXIOM collapses in at most 10% of runs",
+   "holds": true,
+   "detail": "6 of 60"
+  },
+  {
+   "label": "Reported: AXIOM lead over the best baseline on pooled priority SLA at 37 gNBs",
+   "holds": null,
+   "detail": "+35.03 points (32.0 at 19 gNBs)"
+  },
+  {
+   "label": "Reported: single_agent_dqn at 37 gNBs",
+   "holds": null,
+   "detail": "priority SLA 58.66% (URLLC 73.3, eMBB 44.1), reward 144.697, collapsed 26 of 30"
+  },
+  {
+   "label": "Reported: independent_dqn at 37 gNBs",
+   "holds": null,
+   "detail": "priority SLA 32.13% (URLLC 38.6, eMBB 25.7), reward 148.347, collapsed 3 of 30"
+  },
+  {
+   "label": "Reported: mappo_tuned at 37 gNBs",
+   "holds": null,
+   "detail": "priority SLA 56.68% (URLLC 67.8, eMBB 45.6), reward 145.251, collapsed 0 of 30"
+  },
+  {
+   "label": "Reported: rule_static at 37 gNBs",
+   "holds": null,
+   "detail": "priority SLA 99.98% (URLLC 100.0, eMBB 100.0), reward 177.576, collapsed 0 of 30"
+  },
+  {
+   "label": "Reported: AXIOM by layout",
+   "holds": null,
+   "detail": "hex reward 174.204, priority SLA 93.59%; ring reward 173.507, priority SLA 93.16%; fully_connected reward 174.440, priority SLA 94.43%"
+  },
+  {
+   "label": "Reported: AXIOM vs grid-selected MAPPO (900 episodes), hex 15 seeds",
+   "holds": null,
+   "detail": "MAPPO priority SLA 65.60%, reward 151.900; AXIOM minus MAPPO priority diff +29.1967, W/T/L 13/0/2, p 0.000854 (n=15); reward diff +23.2305, W/T/L 15/0/0, p 6.1e-05 (n=15)"
+  },
+  {
+   "label": "Reported: median training seconds per seed",
+   "holds": null,
+   "detail": "{\"hex/mappo_tuned\": 495.35, \"hex/independent_dqn\": 2087.7, \"hex/axiom2\": 1328.3000000000002, \"hex/single_agent_dqn\": 357.55, \"ring/axiom2\": 1182.4, \"fully_connected/axiom2\": 1134.8}"
+  }
+ ],
+ "n_judged": 4,
+ "n_fail": 0
+}

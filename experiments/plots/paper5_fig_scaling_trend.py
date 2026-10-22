@@ -114,7 +114,7 @@ def main():
     axs[0].text(xg + 0.06, (summ["axiom2"][big]["prio_mean"] + max(summ[b][big]["prio_mean"] for b in ARMS[1:])) / 2,
                 f"{gap:+.0f}\npoints", fontsize=8, color="#1f5fae", va="center", fontweight="bold")
     axs[0].set_ylabel("Priority-slice SLA compliance, %")
-    axs[0].set_ylim(40, 104)
+    axs[0].set_ylim(20 if 37 in sizes else 40, 104)
     axs[0].set_title("(a) Compliance as the cluster grows", loc="left", fontsize=9.5)
     axs[1].set_ylabel("Collapsed policies, % of cells")
     axs[1].set_title("(b) Collapse into accept-all", loc="left", fontsize=9.5)

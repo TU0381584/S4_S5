@@ -1113,6 +1113,86 @@ def main():
     C.note("reframe: M72 VDN test streams disjoint within the experiment",
            not (set(range(9000, 9020)) & {5000 + s_ for s_ in range(9000, 9020)}), None)
 
+    # ---------------- M73: thirty-seven gNBs (docs/PAPER5_M73_preregistration.md), recomputed from the logs
+    L37_ = {"hex": S30_19, "ring": S15, "fully_connected": S15}
+    ax37_ = {t_: seeds_of(f"m73/A_n37_{t_}", "axiom2", ss_) for t_, ss_ in L37_.items()}
+    axr_ = [r for d_ in ax37_.values() for r in d_.values()]
+    b37_ = {b_: seeds_of("m73/A_n37_hex", b_, S30_19) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}
+    C.note("reframe: M73 complete, 60 AXIOM runs and 30 seeds per baseline", len(axr_) == 60 and all(len(v_) == 30 for v_ in b37_.values()), len(axr_))
+    p37_ = [100 * prio(r) for r in axr_]
+    C.claim("reframe: M73 AXIOM pooled priority SLA", "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]", float(np.mean(p37_)), "{:.1f}")
+    lo_, hi_ = ci(p37_)
+    C.claim("reframe: M73 AXIOM CI low", "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]", lo_, "", tol=0.15)
+    C.claim("reframe: M73 AXIOM CI high", "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]", hi_, "", tol=0.15)
+    C.claim("reframe: M73 AXIOM URLLC", "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%", 100 * float(np.mean([r["sla"]["urllc"] for r in axr_])), "{:.1f}")
+    C.claim("reframe: M73 AXIOM eMBB", "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%", 100 * float(np.mean([r["sla"]["embb"] for r in axr_])), "{:.1f}")
+    bp_ = {b_: 100 * mean(v_, prio) for b_, v_ in b37_.items()}
+    for b_, q_ in (("single_agent_dqn", "58.7"), ("mappo_tuned", "56.7"), ("independent_dqn", "32.1")):
+        C.claim(f"reframe: M73 {b_} priority SLA", "The single-agent DQN, MAPPO, and the independent DQN keep 58.7\\%, 56.7\\%, and 32.1\\%.", bp_[b_], "{:.1f}")
+        C.claim(f"reframe: M73 table {b_}", f"{q_}\\%", bp_[b_], "{:.1f}")
+    C.claim("reframe: M73 table AXIOM", "97.1, 97.3, 93.7\\%", float(np.mean(p37_)), "{:.1f}")
+    gap37_ = float(np.mean(p37_)) - max(bp_[b_] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
+    C.claim("reframe: M73 lead over best baseline", "the lead reaches 35.0 points", gap37_, "{:.1f}")
+    C.claim("reframe: M73 rule gap", "within 6.3 at thirty-seven", bp_["rule_static"] - float(np.mean(p37_)), "{:.1f}")
+    C.note("reframe: M73 static rule inside the quoted 99.96 to 99.99 range", 99.955 <= bp_["rule_static"] < 99.995, round(bp_["rule_static"], 3))
+    C.note("reframe: M73 every baseline falls again from 19 to 37 gNBs", all(bp_[b_] < tr[(19, b_)] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
+           and "At thirty-seven gNBs every baseline falls again" in C.main, None)
+    t37_ = {}
+    for t_, ss_ in L37_.items():
+        for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"):
+            t37_[(t_, b_, "p")] = paired(ax37_[t_], b37_[b_], lambda r: 100 * prio(r))
+            t37_[(t_, b_, "r")] = paired(ax37_[t_], b37_[b_])
+    h1_ = holm({k: v["p"] for k, v in t37_.items() if k[0] == "hex"})
+    h2_ = holm({k: v["p"] for k, v in t37_.items() if k[0] != "hex"})
+    hh_ = {**h1_, **h2_}
+    C.note("reframe: M73 all 18 comparisons hold, AXIOM ahead, Holm-adjusted p<0.01",
+           len(hh_) == 18 and all(t37_[k]["diff"] > 0 and hh_[k] < 0.01 for k in t37_) and "all 18 comparisons hold after Holm correction within their pre-registered families" in C.main,
+           {str(k): round(v, 5) for k, v in hh_.items()})
+    dp_ = [v["diff"] for k, v in t37_.items() if k[2] == "p"]; dr_ = [v["diff"] for k, v in t37_.items() if k[2] == "r"]
+    C.claim("reframe: M73 compliance lead low", "by 32.0 to 67.8 percentage points of compliance", min(dp_), "{:.1f}")
+    C.claim("reframe: M73 compliance lead high", "by 32.0 to 67.8 percentage points of compliance", max(dp_), "{:.1f}")
+    C.claim("reframe: M73 reward lead low", "by 18.3 to 29.5 reward per step", min(dr_), "{:.1f}")
+    C.claim("reframe: M73 reward lead high", "by 18.3 to 29.5 reward per step", max(dr_), "{:.1f}")
+    C.claim("reframe: M73 AXIOM collapses", "AXIOM collapses in 6 of its 60 runs", sum(r["collapsed"] for r in axr_), "{:d}")
+    C.claim("reframe: M73 single-agent collapses", "against 26 of 30 for the single-agent DQN", sum(r["collapsed"] for r in b37_["single_agent_dqn"].values()), "{:d}")
+    cp_ = [100 * prio(r) for r in axr_ if r["collapsed"]]
+    C.note("reframe: M73 collapsed AXIOM runs keep 59% to 65%", round(min(cp_)) == 59 and round(max(cp_)) == 65
+           and "Even its collapsed runs keep 59\\% to 65\\%" in C.main, [round(x, 2) for x in cp_])
+    C.note("reframe: M73 table collapse counts", [sum(r["collapsed"] for r in b37_[b_].values()) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")] == [26, 3, 0]
+           and "1/90 and 6/60 & 84/90 and 26/30 & 3/90 and 3/30 & 0/90 and 0/30" in C.main, None)
+    cx37_ = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
+    C.note("reframe: M73 parameter counts at 37 gNBs", cx37_["axiom2"]["params_execution"] == 7782 and cx37_["single_agent_dqn"]["params_execution"] == 64770
+           and cx37_["independent_dqn"]["params_execution"] == 682058 and "21,250 to 64,770 & 55,302 to 682,058" in C.main, cx37_)
+    mg_ = seeds_of("m73/A_n37_hex_mappo_grid", "mappo", S15)
+    axh15_ = seeds_of("m73/A_n37_hex", "axiom2", S15)
+    tg_p_, tg_r_ = paired(axh15_, mg_, lambda r: 100 * prio(r)), paired(axh15_, mg_)
+    C.claim("reframe: M73 grid MAPPO compliance", "the selected MAPPO keeps 65.6\\% priority-slice compliance", 100 * mean(mg_, prio), "{:.1f}")
+    C.claim("reframe: M73 grid MAPPO compliance gap", "AXIOM beats it by 29.2 points and 23.23 reward per step on 15 seeds", tg_p_["diff"], "{:.1f}")
+    C.claim("reframe: M73 grid MAPPO reward gap", "AXIOM beats it by 29.2 points and 23.23 reward per step on 15 seeds", tg_r_["diff"], "{:.2f}")
+    C.note("reframe: M73 grid MAPPO 15 seeds, both p<0.001, 13 and 15 wins", len(mg_) == 15 and tg_p_["p"] < 0.001 and tg_r_["p"] < 0.001
+           and tg_p_["wins"] == 13 and tg_r_["wins"] == 15 and sum(r["collapsed"] for r in mg_.values()) == 0, (tg_p_, tg_r_))
+    C.claim("M73 grid MAPPO reward", "It keeps 65.6\\% priority-slice compliance and 151.90 reward per step", mean(mg_), "{:.2f}")
+    for t_, lab_ in (("hex", "AXIOM, hex & 30"), ("ring", "AXIOM, ring & 15"), ("fully_connected", "AXIOM, fully-connected & 15")):
+        d_ = ax37_[t_]
+        row_ = (f"{lab_} & {100 * mean(d_, lambda r: r['sla']['urllc']):.1f}\\% & {100 * mean(d_, lambda r: r['sla']['embb']):.1f}\\% & "
+                f"{100 * mean(d_, prio):.1f}\\% & {mean(d_):.2f} & {sum(r['collapsed'] for r in d_.values())} \\\\")
+        C.note(f"M73 supplement table row {t_}", row_ in C.tex, row_)
+    for b_, lab_ in (("single_agent_dqn", "Single-agent DQN"), ("independent_dqn", "Independent DQN"), ("mappo_tuned", "MAPPO")):
+        d_ = b37_[b_]
+        row_ = (f"{lab_} & 30 & {100 * mean(d_, lambda r: r['sla']['urllc']):.1f}\\% & {100 * mean(d_, lambda r: r['sla']['embb']):.1f}\\% & "
+                f"{100 * mean(d_, prio):.1f}\\% & {mean(d_):.2f} & {sum(r['collapsed'] for r in d_.values())} \\\\")
+        C.note(f"M73 supplement table row {b_}", row_ in C.tex, row_)
+    cxt_ = json.load(open(f"{ROOT}/m73/complexity_n37.json"))
+    C.note("reframe: M73 latency at 37 gNBs in the complexity table",
+           all(f"{cxt_['37'][k_]['ms_per_step']:.2f}" in C.main for k_ in ("axiom2", "axiom2_mlp", "independent_dqn", "mappo"))
+           and "1.04 / 1.98 / 4.79 / 9.89" in C.main and "1.0 to 9.9 ms per control step" in C.main, cxt_["37"])
+    sa_ = cxt_["single_agent_ms_per_step"]
+    C.note("reframe: single-agent latency row matches its measurement", " / ".join(f"{sa_[k_]:.2f}" for k_ in ("3", "7", "19", "37")) in C.main, sa_)
+    figtr37_ = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig6_scaling_trend_summary.json"))
+    C.note("reframe: trend figure plots the recomputed 37-gNB compliance",
+           abs(figtr37_["arms"]["axiom2"]["37"]["prio_mean"] - float(np.mean(p37_))) < 1e-6
+           and all(abs(figtr37_["arms"][b_]["37"]["prio_mean"] - bp_[b_]) < 1e-6 for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")), None)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}

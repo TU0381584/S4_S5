@@ -3583,6 +3583,436 @@
   "ok": true
  },
  {
+  "label": "reframe: M73 complete, 60 AXIOM runs and 30 seeds per baseline",
+  "snippet": null,
+  "computed": 60,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 AXIOM pooled priority SLA",
+  "snippet": "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]",
+  "computed": 93.69,
+  "formatted": "93.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 AXIOM CI low",
+  "snippet": "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]",
+  "computed": 89.93275694444445,
+  "formatted": "",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 AXIOM CI high",
+  "snippet": "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]",
+  "computed": 97.12196527777778,
+  "formatted": "",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 AXIOM URLLC",
+  "snippet": "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%",
+  "computed": 96.71444444444445,
+  "formatted": "96.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 AXIOM eMBB",
+  "snippet": "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%",
+  "computed": 90.66555555555556,
+  "formatted": "90.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 single_agent_dqn priority SLA",
+  "snippet": "The single-agent DQN, MAPPO, and the independent DQN keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "computed": 58.66166666666667,
+  "formatted": "58.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 table single_agent_dqn",
+  "snippet": "58.7\\%",
+  "computed": 58.66166666666667,
+  "formatted": "58.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 mappo_tuned priority SLA",
+  "snippet": "The single-agent DQN, MAPPO, and the independent DQN keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "computed": 56.676111111111105,
+  "formatted": "56.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 table mappo_tuned",
+  "snippet": "56.7\\%",
+  "computed": 56.676111111111105,
+  "formatted": "56.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 independent_dqn priority SLA",
+  "snippet": "The single-agent DQN, MAPPO, and the independent DQN keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "computed": 32.13277777777777,
+  "formatted": "32.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 table independent_dqn",
+  "snippet": "32.1\\%",
+  "computed": 32.13277777777777,
+  "formatted": "32.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 table AXIOM",
+  "snippet": "97.1, 97.3, 93.7\\%",
+  "computed": 93.69,
+  "formatted": "93.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 lead over best baseline",
+  "snippet": "the lead reaches 35.0 points",
+  "computed": 35.02833333333333,
+  "formatted": "35.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 rule gap",
+  "snippet": "within 6.3 at thirty-seven",
+  "computed": 6.286666666666662,
+  "formatted": "6.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 static rule inside the quoted 99.96 to 99.99 range",
+  "snippet": null,
+  "computed": 99.977,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 every baseline falls again from 19 to 37 gNBs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 all 18 comparisons hold, AXIOM ahead, Holm-adjusted p<0.01",
+  "snippet": null,
+  "computed": {
+   "('hex', 'mappo_tuned', 'r')": 0.0,
+   "('hex', 'mappo_tuned', 'p')": 0.0,
+   "('hex', 'independent_dqn', 'r')": 1e-05,
+   "('hex', 'independent_dqn', 'p')": 1e-05,
+   "('hex', 'single_agent_dqn', 'r')": 1e-05,
+   "('hex', 'single_agent_dqn', 'p')": 1e-05,
+   "('ring', 'independent_dqn', 'p')": 0.00073,
+   "('ring', 'independent_dqn', 'r')": 0.00073,
+   "('fully_connected', 'independent_dqn', 'p')": 0.00073,
+   "('fully_connected', 'independent_dqn', 'r')": 0.00073,
+   "('fully_connected', 'mappo_tuned', 'r')": 0.00244,
+   "('ring', 'mappo_tuned', 'r')": 0.00427,
+   "('fully_connected', 'mappo_tuned', 'p')": 0.00513,
+   "('fully_connected', 'single_agent_dqn', 'p')": 0.00613,
+   "('fully_connected', 'single_agent_dqn', 'r')": 0.00613,
+   "('ring', 'single_agent_dqn', 'p')": 0.00613,
+   "('ring', 'single_agent_dqn', 'r')": 0.00613,
+   "('ring', 'mappo_tuned', 'p')": 0.00613
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 compliance lead low",
+  "snippet": "by 32.0 to 67.8 percentage points of compliance",
+  "computed": 32.026666666666664,
+  "formatted": "32.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 compliance lead high",
+  "snippet": "by 32.0 to 67.8 percentage points of compliance",
+  "computed": 67.80444444444444,
+  "formatted": "67.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 reward lead low",
+  "snippet": "by 18.3 to 29.5 reward per step",
+  "computed": 18.26791840698576,
+  "formatted": "18.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 reward lead high",
+  "snippet": "by 18.3 to 29.5 reward per step",
+  "computed": 29.506940165592457,
+  "formatted": "29.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 AXIOM collapses",
+  "snippet": "AXIOM collapses in 6 of its 60 runs",
+  "computed": 6,
+  "formatted": "6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 single-agent collapses",
+  "snippet": "against 26 of 30 for the single-agent DQN",
+  "computed": 26,
+  "formatted": "26",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 collapsed AXIOM runs keep 59% to 65%",
+  "snippet": null,
+  "computed": [
+   65.32,
+   60.38,
+   60.53,
+   62.63,
+   59.4,
+   60.5
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 table collapse counts",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 parameter counts at 37 gNBs",
+  "snippet": null,
+  "computed": {
+   "axiom2": {
+    "params_execution": 7782,
+    "ms_per_step": 9.895,
+    "requests_per_step": 111
+   },
+   "axiom2_mlp": {
+    "params_execution": 3190,
+    "ms_per_step": 9.439,
+    "requests_per_step": 111
+   },
+   "independent_dqn": {
+    "params_execution": 682058,
+    "ms_per_step": 8.08,
+    "requests_per_step": 111
+   },
+   "mappo": {
+    "params_execution": 5122,
+    "ms_per_step": 0.266,
+    "requests_per_step": 111
+   },
+   "mappo_total": {
+    "params_execution": 30723
+   },
+   "single_agent_dqn": {
+    "params_execution": 64770
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 grid MAPPO compliance",
+  "snippet": "the selected MAPPO keeps 65.6\\% priority-slice compliance",
+  "computed": 65.5988888888889,
+  "formatted": "65.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 grid MAPPO compliance gap",
+  "snippet": "AXIOM beats it by 29.2 points and 23.23 reward per step on 15 seeds",
+  "computed": 29.196666666666662,
+  "formatted": "29.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 grid MAPPO reward gap",
+  "snippet": "AXIOM beats it by 29.2 points and 23.23 reward per step on 15 seeds",
+  "computed": 23.230492172847004,
+  "formatted": "23.23",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 grid MAPPO 15 seeds, both p<0.001, 13 and 15 wins",
+  "snippet": null,
+  "computed": [
+   {
+    "n": 15,
+    "diff": 29.196666666666662,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.0008544921875
+   },
+   {
+    "n": 15,
+    "diff": 23.230492172847004,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M73 grid MAPPO reward",
+  "snippet": "It keeps 65.6\\% priority-slice compliance and 151.90 reward per step",
+  "computed": 151.9001818966213,
+  "formatted": "151.90",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M73 supplement table row hex",
+  "snippet": null,
+  "computed": "AXIOM, hex & 30 & 97.4\\% & 89.8\\% & 93.6\\% & 174.20 & 3 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M73 supplement table row ring",
+  "snippet": null,
+  "computed": "AXIOM, ring & 15 & 93.7\\% & 92.6\\% & 93.2\\% & 173.51 & 2 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M73 supplement table row fully_connected",
+  "snippet": null,
+  "computed": "AXIOM, fully-connected & 15 & 98.4\\% & 90.4\\% & 94.4\\% & 174.44 & 1 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M73 supplement table row single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 30 & 73.3\\% & 44.1\\% & 58.7\\% & 144.70 & 26 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M73 supplement table row independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 30 & 38.6\\% & 25.7\\% & 32.1\\% & 148.35 & 3 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M73 supplement table row mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 30 & 67.8\\% & 45.6\\% & 56.7\\% & 145.25 & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M73 latency at 37 gNBs in the complexity table",
+  "snippet": null,
+  "computed": {
+   "axiom2": {
+    "params_execution": 7782,
+    "ms_per_step": 9.895,
+    "requests_per_step": 111
+   },
+   "axiom2_mlp": {
+    "params_execution": 3190,
+    "ms_per_step": 9.439,
+    "requests_per_step": 111
+   },
+   "independent_dqn": {
+    "params_execution": 682058,
+    "ms_per_step": 8.08,
+    "requests_per_step": 111
+   },
+   "mappo": {
+    "params_execution": 5122,
+    "ms_per_step": 0.266,
+    "requests_per_step": 111
+   },
+   "mappo_total": {
+    "params_execution": 30723
+   },
+   "single_agent_dqn": {
+    "params_execution": 64770
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: single-agent latency row matches its measurement",
+  "snippet": null,
+  "computed": {
+   "3": 0.615,
+   "7": 1.419,
+   "19": 3.948,
+   "37": 8.024
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: trend figure plots the recomputed 37-gNB compliance",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -3609,9 +4039,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 372",
+  "label": "text quotes the final check count of 413",
   "snippet": null,
-  "computed": 372,
+  "computed": 413,
   "formatted": null,
   "in_tex": null,
   "ok": true

@@ -1,0 +1,167 @@
+s1_ax_hex_900||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 900
+s1_ax_hex_901||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 901
+s1_ax_hex_902||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 902
+s1_ax_hex_903||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 903
+s1_ax_hex_904||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 904
+s1_ax_hex_905||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 905
+s1_ax_hex_906||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 906
+s1_ax_hex_907||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 907
+s1_ax_hex_908||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 908
+s1_ax_hex_909||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 909
+s1_ax_hex_910||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 910
+s1_ax_hex_911||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 911
+s1_ax_hex_1000||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1000
+s1_ax_hex_1001||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1001
+s1_ax_hex_1002||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1002
+s1_ind_900||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 900
+s1_ind_901||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 901
+s1_ind_902||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 902
+s1_ind_903||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 903
+s1_ind_904||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 904
+s1_ind_905||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 905
+s1_ind_906||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 906
+s1_ind_907||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 907
+s1_ind_908||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 908
+s1_ind_909||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 909
+s1_ind_910||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 910
+s1_ind_911||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 911
+s1_ind_1000||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1000
+s1_ind_1001||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1001
+s1_ind_1002||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1002
+s1_mp_900||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 900
+s1_mp_901||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 901
+s1_mp_902||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 902
+s1_mp_903||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 903
+s1_mp_904||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 904
+s1_mp_905||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 905
+s1_mp_906||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 906
+s1_mp_907||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 907
+s1_mp_908||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 908
+s1_mp_909||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 909
+s1_mp_910||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 910
+s1_mp_911||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 911
+s1_mp_1000||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1000
+s1_mp_1001||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1001
+s1_mp_1002||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1002
+s1_sa_900||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 900
+s1_sa_901||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 901
+s1_sa_902||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 902
+s1_sa_903||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 903
+s1_sa_904||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 904
+s1_sa_905||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 905
+s1_sa_906||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 906
+s1_sa_907||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 907
+s1_sa_908||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 908
+s1_sa_909||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 909
+s1_sa_910||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 910
+s1_sa_911||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 911
+s1_sa_1000||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1000
+s1_sa_1001||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1001
+s1_sa_1002||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 1002
+s1_rule||../experiments/scripts/m73_run.py --arm rule_static --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+s2_ax_hex_912||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 912
+s2_ax_hex_913||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 913
+s2_ax_hex_914||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 914
+s2_ax_hex_915||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 915
+s2_ax_hex_916||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 916
+s2_ax_hex_917||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 917
+s2_ax_hex_918||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 918
+s2_ax_hex_919||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 919
+s2_ax_hex_920||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 920
+s2_ax_hex_921||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 921
+s2_ax_hex_922||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 922
+s2_ax_hex_923||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 923
+s2_ax_hex_924||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 924
+s2_ax_hex_925||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 925
+s2_ax_hex_926||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 926
+s2_ind_912||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 912
+s2_ind_913||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 913
+s2_ind_914||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 914
+s2_ind_915||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 915
+s2_ind_916||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 916
+s2_ind_917||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 917
+s2_ind_918||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 918
+s2_ind_919||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 919
+s2_ind_920||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 920
+s2_ind_921||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 921
+s2_ind_922||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 922
+s2_ind_923||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 923
+s2_ind_924||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 924
+s2_ind_925||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 925
+s2_ind_926||../experiments/scripts/m73_run.py --arm independent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 926
+s2_mp_912||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 912
+s2_mp_913||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 913
+s2_mp_914||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 914
+s2_mp_915||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 915
+s2_mp_916||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 916
+s2_mp_917||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 917
+s2_mp_918||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 918
+s2_mp_919||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 919
+s2_mp_920||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 920
+s2_mp_921||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 921
+s2_mp_922||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 922
+s2_mp_923||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 923
+s2_mp_924||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 924
+s2_mp_925||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 925
+s2_mp_926||../experiments/scripts/m73_run.py --arm mappo_tuned --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 926
+s2_sa_912||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 912
+s2_sa_913||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 913
+s2_sa_914||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 914
+s2_sa_915||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 915
+s2_sa_916||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 916
+s2_sa_917||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 917
+s2_sa_918||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 918
+s2_sa_919||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 919
+s2_sa_920||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 920
+s2_sa_921||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 921
+s2_sa_922||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 922
+s2_sa_923||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 923
+s2_sa_924||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 924
+s2_sa_925||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 925
+s2_sa_926||../experiments/scripts/m73_run.py --arm single_agent_dqn --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 926
+s2_rule||../experiments/scripts/m73_run.py --arm rule_static --env A --n 37 --topology hex --out-dir ../experiments/results/m73/A_n37_hex --seeds 912 913 914 915 916 917 918 919 920 921 922 923 924 925 926
+s2_ax_ring_900||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 900
+s2_ax_ring_901||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 901
+s2_ax_ring_902||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 902
+s2_ax_ring_903||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 903
+s2_ax_ring_904||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 904
+s2_ax_ring_905||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 905
+s2_ax_ring_906||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 906
+s2_ax_ring_907||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 907
+s2_ax_ring_908||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 908
+s2_ax_ring_909||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 909
+s2_ax_ring_910||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 910
+s2_ax_ring_911||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 911
+s2_ax_ring_1000||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 1000
+s2_ax_ring_1001||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 1001
+s2_ax_ring_1002||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology ring --out-dir ../experiments/results/m73/A_n37_ring --seeds 1002
+s2_ax_fully_connected_900||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 900
+s2_ax_fully_connected_901||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 901
+s2_ax_fully_connected_902||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 902
+s2_ax_fully_connected_903||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 903
+s2_ax_fully_connected_904||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 904
+s2_ax_fully_connected_905||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 905
+s2_ax_fully_connected_906||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 906
+s2_ax_fully_connected_907||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 907
+s2_ax_fully_connected_908||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 908
+s2_ax_fully_connected_909||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 909
+s2_ax_fully_connected_910||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 910
+s2_ax_fully_connected_911||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 911
+s2_ax_fully_connected_1000||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 1000
+s2_ax_fully_connected_1001||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 1001
+s2_ax_fully_connected_1002||../experiments/scripts/m73_run.py --arm axiom2 --env A --n 37 --topology fully_connected --out-dir ../experiments/results/m73/A_n37_fully_connected --seeds 1002
+s3_mpg_900|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 900
+s3_mpg_901|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 901
+s3_mpg_902|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 902
+s3_mpg_903|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 903
+s3_mpg_904|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 904
+s3_mpg_905|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 905
+s3_mpg_906|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 906
+s3_mpg_907|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 907
+s3_mpg_908|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 908
+s3_mpg_909|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 909
+s3_mpg_910|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 910
+s3_mpg_911|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 911
+s3_mpg_1000|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 1000
+s3_mpg_1001|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 1001
+s3_mpg_1002|M70_MAPPO=1e-3,4,256|../experiments/scripts/m73_run.py --arm mappo --env A --n 37 --topology hex --train-episodes 900 --out-dir ../experiments/results/m73/A_n37_hex_mappo_grid --seeds 1002

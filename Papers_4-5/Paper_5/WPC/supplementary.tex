@@ -195,7 +195,7 @@ per cell, per-seed points behind the mean and 95\% CI.}
 
 
 \section*{S13. Analysis-plan commits and development notes}
-Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, and 08b6f6d for the referee-response runs. The original AXIOM kept priority-slice compliance at only 79.1\% at this size, so the faster learning rate matters most at scale.
+Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, and the thirty-seven-gNB extension in Section S15 as 85e6781. The original AXIOM kept priority-slice compliance at only 79.1\% at this size, so the faster learning rate matters most at scale.
 
 
 \section*{S14. Shifted load, longer training, and the joint target on fresh seeds}
@@ -219,5 +219,28 @@ load swing 0.50 & 6.015 & 5.831 & +0.184 & 18/7 & 0.045 \\
 \end{table}
 
 The rule re-tuned on shifted training streams selected different thresholds at every shift, and against it AXIOM trails by 0.16 and 0.12 per step at 1.10 and 1.15 times the load, which is not significant, and by 0.62 at 1.20 times the load. The joint-target variant of AXIOM, trained from scratch beside AXIOM on fresh seeds 9000 onwards, was never significantly different from it after Holm correction over the eight tests. Its reward was 12.860 against 12.791 in Env A with three gNBs, 9.084 against 8.723 in Env B with three gNBs, 90.34 against 89.64 in Env A with nineteen gNBs, and 23.84 against 24.34 in Env B with seven gNBs. With 900 training episodes instead of 300, AXIOM earned 9.173 against 8.841 on 20 seeds in Env B with three gNBs, where the tuned rule earns 9.249. With seven gNBs on the ring layout it earned 26.35 against 23.43 on 12 seeds, where the tuned rule earns 27.31. The training streams of these fresh seeds coincide with the evaluation streams of seeds 4000 to 4019 in the 40-seed run, which is harmless because no model is evaluated on a stream it was trained on.
+
+\section*{S15. Thirty-seven gNBs}
+This section gives the setup and detail of the thirty-seven-gNB extension, whose plan was committed before any of its runs as commit 85e6781. The configuration is built from the nineteen-gNB one exactly as the seven- and nineteen-gNB configurations were built from three. Only the list of gNBs, each with 100 PRBs, the arrivals per step, now 37, and the cap on pending requests, now 148, change. Every slice, reward, and episode parameter is unchanged, and no hyperparameter was tuned for this size. Each gNB sees 1.15 pending requests per step on average, the same as at three, seven, and nineteen gNBs, and the pending cap binds in only 1 of 3{,}000 evaluation steps. The simulation framework defines the hex layout only for seven and nineteen cells, so a wrapper extends it to the third ring with the framework's own construction. It reproduces the seven- and nineteen-cell layouts exactly and gives the 90 edges of a three-ring hex grid. A ten-episode pilot on seed 2000 was used only to size the campaign.
+
+AXIOM ran 30 seeds on the hex layout and 15 on each of the ring and fully-connected layouts. In Env A the simulator, the three baselines, and the static rule never read the layout, so each ran once on the 30 hex seeds and is paired with AXIOM under every layout. The single-agent DQN's network initialisation is seeded in these runs, and Table~\ref{tab:s-n37} lists every arm.
+
+\begin{table}[h]
+\caption{Env A with thirty-seven gNBs. Priority-slice compliance is the mean of URLLC and eMBB compliance, and collapse counts policies that accept every request}
+\label{tab:s-n37}
+\centering
+\begin{tabular}{lcccccc}
+Policy & Runs & URLLC & eMBB & Priority SLA & Reward & Collapsed \\
+AXIOM, hex & 30 & 97.4\% & 89.8\% & 93.6\% & 174.20 & 3 \\
+AXIOM, ring & 15 & 93.7\% & 92.6\% & 93.2\% & 173.51 & 2 \\
+AXIOM, fully-connected & 15 & 98.4\% & 90.4\% & 94.4\% & 174.44 & 1 \\
+Single-agent DQN & 30 & 73.3\% & 44.1\% & 58.7\% & 144.70 & 26 \\
+Independent DQN & 30 & 38.6\% & 25.7\% & 32.1\% & 148.35 & 3 \\
+MAPPO & 30 & 67.8\% & 45.6\% & 56.7\% & 145.25 & 0 \\
+Static rule & 30 & 100.0\% & 100.0\% & 99.98\% & 177.58 & 0 \\
+\end{tabular}
+\end{table}
+
+AXIOM's six collapsed runs are seeds 918, 919, and 924 on the hex layout, 901 and 1001 on the ring, and 902 on the fully-connected layout. They keep 59\% to 65\% priority-slice compliance, while its other runs keep 96.9\% to 98.1\% on average under each layout. AXIOM's parameter count stays at 7,782, against 64,770 for the single-agent DQN and 682,058 for the independent DQN. MAPPO with the configuration that the main paper's 24-configuration grid selected for Env A, trained for 900 episodes, three times every other arm's budget, ran on hex seeds 900 to 911 and 1000 to 1002 as a check the plan reported without predicting. It keeps 65.6\% priority-slice compliance and 151.90 reward per step and never collapses. AXIOM beats it by 29.2 points, winning 13 of 15 seeds at $p<0.001$, and by 23.23 reward per step, winning all 15.
 
 \end{document}

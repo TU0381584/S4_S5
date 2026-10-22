@@ -28,3 +28,15 @@ Tests are paired Wilcoxon signed-rank tests on per-seed reward per step and on p
 - The static rule's priority-slice compliance at 37 gNBs.
 - Collapse counts, training time per seed and parameters at execution for every arm.
 - MAPPO with the configuration the M70 grid selected for Env A (actor LR 1e-3, 4 epochs, minibatch 256, 900 training episodes, three times every other arm's budget) against AXIOM on hex seeds 900-911 and 1000-1002, if time allows.
+
+## Results (campaign 04:16 to 12:36 on 2026-10-22; analysis in experiments/results/m73/analysis.json)
+
+All 167 jobs exited cleanly. 4 of 4 predictions hold; 8 rows were reported only.
+
+- **P1 holds.** On the 30 hex seeds AXIOM beats the single-agent DQN, the independent DQN and MAPPO by 34.9, 61.5 and 36.9 points of priority-slice compliance and by 29.5, 25.9 and 29.0 reward per step, winning 26 to 29 of 30 seeds, all at Holm p ≤ 1.1e-5.
+- **P2 holds.** Under the ring and fully-connected layouts the leads are 32.0 to 67.8 points and 18.3 to 27.5 reward per step, all 12 at Holm p ≤ 0.0061.
+- **P3 holds.** Pooled AXIOM compliance is 93.69% [89.79, 97.16] over 60 runs (URLLC 96.7%, eMBB 90.7%), down from 97.3% at 19 gNBs.
+- **P4 holds at the bound.** AXIOM collapses in 6 of 60 runs (hex 918, 919, 924; ring 901, 1001; fully-connected 902), against 1 of 90 at 19 gNBs. Collapsed runs keep 59% to 65%; the others average 96.9% to 98.1% per layout.
+- Reported: baselines keep 58.7% (single-agent DQN, 26 of 30 collapsed), 56.7% (MAPPO) and 32.1% (independent DQN); the lead over the best baseline is 35.0 points (32.0 at 19). The static rule keeps 99.98%. The grid-selected MAPPO (900 episodes) keeps 65.6% on 15 hex seeds; AXIOM beats it by 29.2 points (13/15, p 0.00085) and 23.23 reward per step (15/15, p 6.1e-5).
+- Load check: 1.151 to 1.152 pending requests per gNB per step, as at 3, 7 and 19 gNBs; the pending cap binds in 1 of 3,000 steps.
+- Complexity at 37 gNBs (complexity_n37.json, idle machine): AXIOM 7,782 parameters and 9.89 ms per step. Re-running m64_complexity.py reproduced the stored 3/7/19 latencies within 5%. The single-agent DQN latency, absent from m64/complexity.json, was measured with the same workload at all four sizes (0.61/1.42/3.95/8.02 ms), and the manuscript's earlier 0.55/1.30/3.58, which no committed script produces, was replaced by it.
