@@ -1212,6 +1212,40 @@ def main():
            abs(figtr37_["arms"]["axiom2"]["37"]["prio_mean"] - float(np.mean(p37_))) < 1e-6
            and all(abs(figtr37_["arms"][b_]["37"]["prio_mean"] - bp_[b_]) < 1e-6 for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")), None)
 
+    # ---------------- M74: fresh-seed replication at thirty-seven gNBs (docs/PAPER5_M74_preregistration.md)
+    S74_ = list(range(6100, 6120))
+    f74_ = {k_: seeds_of("m74/A_n37_hex", k_, S74_) for k_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}
+    C.note("reframe: M74 complete, 20 seeds per arm", all(len(v_) == 20 for v_ in f74_.values()), {k_: len(v_) for k_, v_ in f74_.items()})
+    C.claim("reframe: M74 AXIOM priority SLA", "There AXIOM keeps 95.1\\% priority-slice compliance", 100 * mean(f74_["axiom2"], prio), "{:.1f}")
+    for b_ in ("mappo_tuned", "single_agent_dqn", "independent_dqn"):
+        C.claim(f"reframe: M74 {b_} priority SLA", "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, the single-agent DQN, and the independent DQN", 100 * mean(f74_[b_], prio), "{:.1f}")
+    t74_ = {}
+    for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"):
+        t74_[(b_, "p")] = paired(f74_["axiom2"], f74_[b_], lambda r: 100 * prio(r))
+        t74_[(b_, "r")] = paired(f74_["axiom2"], f74_[b_])
+    h74_ = holm({k_: v_["p"] for k_, v_ in t74_.items()})
+    C.note("reframe: M74 AXIOM beats every baseline on compliance and reward at Holm p<0.001",
+           all(t74_[k_]["diff"] > 0 and h74_[k_] < 0.001 for k_ in t74_) and "on compliance and on reward at Holm-adjusted $p<0.001$" in C.main,
+           {str(k_): round(v_, 6) for k_, v_ in h74_.items()})
+    C.claim("reframe: M74 AXIOM collapses", "It collapses in 1 of the 20 seeds, against 18 for the single-agent DQN", sum(r["collapsed"] for r in f74_["axiom2"].values()), "{:d}")
+    C.claim("reframe: M74 single-agent collapses", "It collapses in 1 of the 20 seeds, against 18 for the single-agent DQN", sum(r["collapsed"] for r in f74_["single_agent_dqn"].values()), "{:d}")
+    C.note("M74 seeds and their streams unused before", not ({s_ for s_ in S74_} | {5000 + s_ for s_ in S74_}) &
+           (set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020)) | set(range(4000, 4040)) | set(range(7000, 7020))
+            | set(range(8100, 8110)) | set(range(9000, 9020)) | {5000 + x_ for x_ in set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010))
+            | set(range(3000, 3020)) | set(range(4000, 4040)) | set(range(7000, 7020)) | set(range(8100, 8110)) | set(range(9000, 9020))}), None)
+    for k_, lab_ in (("axiom2", "AXIOM"), ("single_agent_dqn", "Single-agent DQN"), ("independent_dqn", "Independent DQN"), ("mappo_tuned", "MAPPO")):
+        d_ = f74_[k_]
+        row_ = (f"{lab_} & 20 & {100 * mean(d_, lambda r: r['sla']['urllc']):.1f}\\% & {100 * mean(d_, lambda r: r['sla']['embb']):.1f}\\% & "
+                f"{100 * mean(d_, prio):.1f}\\% & {mean(d_):.2f} & {sum(r['collapsed'] for r in d_.values())} \\\\")
+        C.note(f"M74 supplement table row {k_}", row_ in C.tex, row_)
+    dd_ = {b_: (t74_[(b_, "p")]["diff"], t74_[(b_, "r")]["diff"]) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    C.note("M74 supplement leads 37.7/61.0/36.5 points and 35.46/25.62/30.63 reward",
+           [round(dd_[b_][0], 1) for b_ in dd_] == [37.7, 61.0, 36.5] and [round(dd_[b_][1], 2) for b_ in dd_] == [35.46, 25.62, 30.63]
+           and "by 37.7, 61.0, and 36.5 points of priority-slice compliance and by 35.46, 25.62, and 30.63 reward per step" in C.tex, dd_)
+    pool_ = list(seeds_of("m73/A_n37_hex", "axiom2", S30_19).values()) + list(f74_["axiom2"].values())
+    C.claim("M74 pooled 50 hex seeds", "AXIOM keeps 94.2\\% priority-slice compliance over 50 seeds and collapses in 4 of them", 100 * float(np.mean([prio(r) for r in pool_])), "{:.1f}")
+    C.note("M74 pooled collapse count 4 of 50", len(pool_) == 50 and sum(r["collapsed"] for r in pool_) == 4, None)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}

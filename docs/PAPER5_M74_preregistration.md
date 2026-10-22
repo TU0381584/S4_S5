@@ -22,3 +22,12 @@ Paired Wilcoxon signed-rank tests on per-seed priority-slice compliance and rewa
 - AXIOM's lead over the best baseline, next to the 35.0 points of M73.
 - Each arm's URLLC and eMBB compliance, reward and collapse count, and the static rule's compliance.
 - Pooled over M73's 30 hex seeds and these 20, AXIOM's compliance and collapse rate.
+
+## Results (campaign 13:15 to 18:33 on 2026-10-22; analysis in experiments/results/m74/analysis.json)
+
+All 81 jobs exited cleanly. 3 of 3 predictions hold; 7 rows were reported only.
+
+- **F1 holds.** AXIOM beats the single-agent DQN, the independent DQN and MAPPO by 37.7, 61.0 and 36.5 points of priority-slice compliance and by 35.46, 25.62 and 30.63 reward per step, winning 18 to 19 of 20 seeds in every comparison, all at Holm p ≤ 0.0004.
+- **F2 holds.** AXIOM keeps 95.09% [89.38, 99.97] (URLLC 95.4%, eMBB 94.7%).
+- **F3 holds.** AXIOM collapses in 1 of 20 seeds (6110).
+- Reported: MAPPO 58.5%, single-agent DQN 57.4% (18 of 20 collapsed), independent DQN 34.1% (2 of 20); lead over the best baseline 36.5 points (35.0 in M73). Static rule 99.97%. Pooled with M73's 30 hex seeds, AXIOM keeps 94.2% over 50 seeds and collapses in 4.
