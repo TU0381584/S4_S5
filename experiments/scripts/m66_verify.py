@@ -882,9 +882,28 @@ def main():
     C.claim("reframe: map independent mMTC gate", "the independent DQN closes the mMTC gate only to 0.92", float(gm["independent_dqn"][1][:, 2].mean()), "{:.2f}")
     C.claim("reframe: map MAPPO eMBB gate", "partly closes the eMBB gate, to 0.82", float(gm["mappo_tuned"][1][:, 1].mean()), "{:.2f}")
     C.claim("reframe: map MAPPO mMTC gate", "while leaving mMTC open at 0.69", float(gm["mappo_tuned"][1][:, 2].mean()), "{:.2f}")
+    # since M73 the figure shows the 37-gNB hex cluster; the 19-gNB numbers above stay in the text as a comparison
+    gm37 = {}
+    for arm in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"):
+        mats = [gate_open(p_, 37) for s_ in S30_19 if (p_ := find_eval("m73/A_n37_hex", arm, s_))]
+        gm37[arm] = (len(mats), np.mean(mats, axis=0))
+    a37_ = gm37["axiom2"][1]
+    C.claim("reframe: map37 AXIOM URLLC gate", "at 1.00 and 0.98, while closing the mMTC gate to 0.16", float(a37_[:, 0].mean()), "{:.2f}")
+    C.claim("reframe: map37 AXIOM eMBB gate", "at 1.00 and 0.98, while closing the mMTC gate to 0.16", float(a37_[:, 1].mean()), "{:.2f}")
+    C.claim("reframe: map37 AXIOM mMTC gate", "while closing the mMTC gate to 0.16, a mean that includes its three collapsed seeds", float(a37_[:, 2].mean()), "{:.2f}")
+    C.note("reframe: map37 AXIOM's mean includes three collapsed hex seeds and every gNB keeps priority open, mMTC below 0.2",
+           gm37["axiom2"][0] == 30 and sum(r["collapsed"] for r in seeds_of("m73/A_n37_hex", "axiom2", S30_19).values()) == 3
+           and a37_[:, 2].max() < 0.2 and a37_[:, 0].min() > 0.95 and a37_[:, 1].min() > 0.95, None)
+    s37_ = gm37["single_agent_dqn"][1].mean(axis=0)
+    C.note("reframe: map37 single-agent every gate open at 0.93 to 0.95", round(float(s37_.min()), 2) == 0.93 and round(float(s37_.max()), 2) == 0.95
+           and "The single-agent DQN leaves every gate open at 0.93 to 0.95" in C.main, s37_.round(4).tolist())
+    C.claim("reframe: map37 independent mMTC gate", "the independent DQN closes the mMTC gate only to 0.94", float(gm37["independent_dqn"][1][:, 2].mean()), "{:.2f}")
+    C.claim("reframe: map37 MAPPO eMBB gate", "partly closes the eMBB gate, to 0.80", float(gm37["mappo_tuned"][1][:, 1].mean()), "{:.2f}")
+    C.claim("reframe: map37 MAPPO mMTC gate", "while leaving mMTC open at 0.51", float(gm37["mappo_tuned"][1][:, 2].mean()), "{:.2f}")
     figmap = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig13_gnb_map_summary.json"))
     C.note("reframe: map figure plots the recomputed per-gNB openness",
-           all(np.allclose(np.array(figmap["arms"][a_]["openness_per_gnb"]), gm[a_][1], atol=1e-3) for a_ in gm), None)
+           figmap.get("n_gnbs") == 37 and "Decision map of the 37-gNB hex cluster" in C.main
+           and all(np.allclose(np.array(figmap["arms"][a_]["openness_per_gnb"]), gm37[a_][1], atol=1e-3) for a_ in gm37), None)
     def pooled(n_, arm):
         if n_ == 3:
             return list(seeds_of("m65_n3_view", arm, S30).values())

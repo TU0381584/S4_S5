@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Multi-gNB decision map: what each learned policy does at every gNB of the
-19-gNB hex cluster in Env A.
+19-gNB hex cluster in Env A, or of the 37-gNB cluster (M73) with --n 37.
 
 Each hexagon is one gNB, placed at its true axial position in the simulator's
 hex layout (qoe_oran_framework.marl.topology.hex_cluster_coords). It is split
@@ -15,6 +15,10 @@ correctness is the openness for URLLC and eMBB and one minus it for mMTC.
 Every plotted number is written to <out>_summary.json.
 
 Usage: paper5_fig_gnb_map.py --cell m65_scaling/n19_hex --out Papers_4-5/Paper_5/WPC/figures/fig13_gnb_map
+       paper5_fig_gnb_map.py --n 37 --cell m73/A_n37_hex --out Papers_4-5/Paper_5/WPC/figures/fig13_gnb_map
+At 37 gNBs the hex layout comes from m73_run.py's extension of the framework's
+ring walk, and every arm, including the layout-independent baselines, is read
+from the M73 hex cell.
 """
 import argparse
 import gzip
@@ -35,7 +39,7 @@ from m66_verify import S30_19, find_eval, prio, seeds_of  # noqa: E402
 from qoe_oran_framework.marl.topology import hex_cluster_coords  # noqa: E402
 
 SLICES = ("urllc", "embb", "mmtc")
-FLOOR_CAP = {"urllc": (5, 33), "embb": (10, 66), "mmtc": (5, 11)}   # saclb_offline_dqn_n19.yaml
+FLOOR_CAP = {"urllc": (5, 33), "embb": (10, 66), "mmtc": (5, 11)}   # saclb_offline_dqn_n19.yaml and _n37.yaml
 ARMS = [("axiom2", "AXIOM (proposed)"), ("single_agent_dqn", "Single-agent DQN"),
         ("independent_dqn", "Independent DQN"), ("mappo_tuned", "MAPPO")]
 CMAP = plt.get_cmap("RdYlBu")
@@ -88,10 +92,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--cell", default="m65_scaling/n19_hex")
     ap.add_argument("--out", required=True)
+    ap.add_argument("--n", type=int, default=19, choices=[19, 37])
     a = ap.parse_args()
-    n = 19
-    coords = hex_cluster_coords(n)
-    summary = {"cell": a.cell, "seeds": S30_19, "arms": {}}
+    n = a.n
+    if n == 37:
+        import m73_run
+        m73_run.install()
+        coords = m73_run.hex_cluster_coords(37)
+    else:
+        coords = hex_cluster_coords(n)
+    summary = {"cell": a.cell, "n_gnbs": n, "seeds": S30_19, "arms": {}}
     fig = plt.figure(figsize=(7.4, 2.75))
     gs = fig.add_gridspec(2, 4, height_ratios=[1, 0.27], hspace=0.06, wspace=0.08)
     for idx, (arm, label) in enumerate(ARMS):

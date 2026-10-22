@@ -2991,6 +2991,74 @@
   "ok": true
  },
  {
+  "label": "reframe: map37 AXIOM URLLC gate",
+  "snippet": "at 1.00 and 0.98, while closing the mMTC gate to 0.16",
+  "computed": 0.9961849420849439,
+  "formatted": "1.00",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map37 AXIOM eMBB gate",
+  "snippet": "at 1.00 and 0.98, while closing the mMTC gate to 0.16",
+  "computed": 0.9828322072072069,
+  "formatted": "0.98",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map37 AXIOM mMTC gate",
+  "snippet": "while closing the mMTC gate to 0.16, a mean that includes its three collapsed seeds",
+  "computed": 0.1572764264264265,
+  "formatted": "0.16",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map37 AXIOM's mean includes three collapsed hex seeds and every gNB keeps priority open, mMTC below 0.2",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: map37 single-agent every gate open at 0.93 to 0.95",
+  "snippet": null,
+  "computed": [
+   0.9397,
+   0.9486,
+   0.9334
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: map37 independent mMTC gate",
+  "snippet": "the independent DQN closes the mMTC gate only to 0.94",
+  "computed": 0.9374577577577585,
+  "formatted": "0.94",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map37 MAPPO eMBB gate",
+  "snippet": "partly closes the eMBB gate, to 0.80",
+  "computed": 0.8042615561990549,
+  "formatted": "0.80",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: map37 MAPPO mMTC gate",
+  "snippet": "while leaving mMTC open at 0.51",
+  "computed": 0.5133066066066067,
+  "formatted": "0.51",
+  "in_tex": true,
+  "ok": true
+ },
+ {
   "label": "reframe: map figure plots the recomputed per-gNB openness",
   "snippet": null,
   "computed": null,
@@ -4039,11 +4107,11 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 413",
+  "label": "text quotes the final check count of 421",
   "snippet": null,
-  "computed": 413,
+  "computed": 421,
   "formatted": null,
   "in_tex": null,
-  "ok": true
+  "ok": false
  }
 ]
