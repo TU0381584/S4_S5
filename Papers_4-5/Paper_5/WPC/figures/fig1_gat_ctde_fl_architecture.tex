@@ -32,7 +32,7 @@
 \draw[thick, gray] (n1) -- (n3);
 \draw[thick, gray] (n2) -- (n3);
 
-\node[encoder, below=0.5cm of n3] (gat) {Shared GAT encoder\\\footnotesize (2-layer, 4-head, LayerNorm)};
+\node[encoder, below=0.5cm of n3] (gat) {Shared encoder\\\footnotesize GAT (2 layers, 4 heads) or per-node MLP\\\footnotesize LayerNorm output $\mathbf{z}_i$};
 \draw[arrow] (n1.south) .. controls +(0,-0.6) and +(-0.6,0.5) .. (gat.west);
 \draw[arrow] (n2.south) .. controls +(0,-0.6) and +(0.6,0.5) .. (gat.east);
 \draw[arrow] (n3.south) -- (gat.north);
@@ -46,7 +46,9 @@
 \node[draw, dashed, rounded corners, fit=(q1)(q2)(q3), inner sep=4pt,
       label={[font=\scriptsize, fill=white, inner sep=1.5pt]below:per-slice Q-heads, separate parameters}] (qbox) {};
 
-\node[below=0.55cm of qbox, font=\scriptsize, align=center] (action) {accept / reject};
+\node[below=0.55cm of qbox, font=\scriptsize, align=center] (action) {accept / reject each pending request};
+% raw-feature skip into the heads: Q_k([z_i, x_i])
+\draw[dashedarrow, gray!70!black] (n1.west) .. controls +(-2.3,-0.2) and +(-1.6,0.1) .. node[pos=0.5, left, font=\scriptsize, align=right, text=black] {raw features\\$\mathbf{x}_i$ (skip)} (qbox.west);
 \draw[arrow] (qbox.south) -- (action.north);
 
 % ===== Right half: federated training loop =====
@@ -67,7 +69,7 @@
 \node[font=\scriptsize, align=center] at (5.05,1.5) {clip + DP\\noise};
 \node[font=\scriptsize] at (7.35,1.55) {broadcast};
 
-\node[below=0.4cm of server, font=\scriptsize, align=center] {every $R$ local steps};
+\node[below=0.4cm of server, font=\scriptsize, align=center] {every $N_{\mathrm{loc}}$ local steps};
 
 \end{tikzpicture}
 \end{document}

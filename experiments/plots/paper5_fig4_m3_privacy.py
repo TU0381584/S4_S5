@@ -173,7 +173,6 @@ def main() -> None:
     ax2.set_ylim(-0.05, 1.08)
     ax2.set_title("(b) Privacy-utility (per-seed spread shown)")
 
-    fig.suptitle("Federated AXIOM, federation and noise costs per seed", y=1.02, fontsize=9)
     fig.subplots_adjust(bottom=0.28, wspace=0.32)
 
     out_path = Path(args.out)

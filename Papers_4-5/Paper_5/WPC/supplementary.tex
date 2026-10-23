@@ -4,6 +4,10 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{algorithm}
+\usepackage{algorithmic}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}
 \title{Online Resource 1\\[4pt]\large Supplementary material for the article ``AXIOM: Scalable Multi-Agent Slice Admission Control under Verified Evaluation''\\[2pt]\normalsize Wireless Personal Communications}
@@ -122,6 +126,97 @@ This section reports what the real OAI testbed of Fig.~\ref{fig:testbed} can and
 A capacity probe at a deliberately wide-open ceiling showed all three slices serving essentially 100\% of offered demand with 0.000\% loss at both loads. The frozen checkpoint's decision logic runs correctly end to end, through the real E2 control loop, with real accept and reject decisions, and its signature low-priority-only blocking of mMTC reappears at both loads, which shows that the deployment pipeline works end to end. Because the rig never actually runs short of capacity, the same pattern is equally consistent with the policy's trained priority bias, so we claim admission-control behaviour under contention only in the offline shared-budget environment, not live. Two integrity issues surfaced and were fixed during these checks. A scheduler-configuration error had turned the per-slice PRB-ratio ranges into raw grants below the gNB scheduler's hard five-PRB floor, which we fixed at the root, after which direct instrumentation confirmed zero below-floor grants across more than 100{,}000 readings. A separate unit mismatch in the live SLA-margin diagnostic was corrected by converting backlog into a queueing-delay estimate, using Little's law, against each slice's own latency budget.
 
 \section*{S10. Additional setup details}
+Fig.~\ref{fig:overview} gives an overview of the research, Table~\ref{tab:params} lists the simulation and training parameters shared by both environments, and Algorithm~\ref{alg:gat-ctde} states AXIOM's training loop.
+
+\begin{figure}[!htbp]
+\centering
+\resizebox{0.98\textwidth}{!}{%
+\begin{tikzpicture}[
+  base/.style={draw, semithick, rounded corners, align=center, font=\footnotesize, inner sep=4pt},
+  pblk/.style={base, fill=blue!8,   draw=blue!55!black},
+  ablk/.style={base, fill=orange!14, draw=orange!75!black},
+  cblk/.style={base, fill=green!10,  draw=green!50!black},
+  sblk/.style={base, fill=violet!12, draw=violet!60!black},
+  lblk/.style={base, fill=teal!14,   draw=teal!60!black},
+  grp/.style={draw=green!50!black, semithick, rounded corners, dashed, inner sep=0pt},
+  ar/.style={-{Latex[length=2.3mm]}, thick}
+]
+\node[pblk, text width=14cm] (prob) at (8,7.4)
+  {Problem\quad coordinated slice admission across an $N$-gNB cluster, URLLC / eMBB / mMTC under per-slice SLAs, action is a per-slice PRB-ratio ceiling};
+\node[ablk, text width=15cm] (arch) at (8,6.0)
+  {AXIOM controller\\[1pt] 2-layer, 4-head graph-attention encoder over the gNB graph, then per-slice Q-heads; centralised training, decentralised execution; per-request Huber TD, $\gamma{=}0.95$};
+\node[grp, fit={(0.3,3.3) (15.7,5.0)}] (grp) {};
+\node[font=\scriptsize, anchor=north west, text=green!45!black] at (0.45,4.93) {Offline shared-budget environments: Env A static load, Env B time-varying load with inter-cell coupling};
+\node[cblk, text width=3.3cm] (c1) at (2.35,3.95) {Centralised $N{=}3$\\[1pt] Env A and B, 30 seeds};
+\node[cblk, text width=3.3cm] (c2) at (6.25,3.95) {Federated + DP\\[1pt] FedAvg/FedProx, DP-SGD $\sigma$};
+\node[cblk, text width=3.3cm] (c3) at (10.1,3.95) {Disruption\\[1pt] dropout/spike/churn};
+\node[cblk, text width=3.3cm] (c4) at (13.95,3.95) {Scaling $N\!\in\!\{7,19,37\}$\\[1pt] ring/hex/full-mesh};
+\node[sblk, text width=15cm] (safe) at (8,2.3)
+  {Evaluation safeguards\quad trivial-policy check; reward, precision, per-slice SLA; replication; pre-registration};
+\node[lblk, text width=14cm] (live) at (8,0.9)
+  {Live single-gNB OAI pipeline check, rfsim\quad 18{,}562-parameter DQN checkpoint, AXIOM evaluated offline};
+\draw[ar] (prob) -- (arch);
+\draw[ar] (arch) -- (grp.north);
+\draw[ar] (grp.south) -- (safe);
+\draw[ar] (safe) -- (live);
+\end{tikzpicture}%
+}
+\caption{Overview of the research. An AXIOM controller is evaluated
+across four offline campaigns in two shared-budget environments, every result
+checked by evaluation safeguards, with the deployment pipeline checked on a live single-gNB testbed}
+\label{fig:overview}
+\end{figure}
+
+\begin{table}[!htbp]
+\caption{Simulation and training parameters, shared by both environments unless stated}
+\label{tab:params}
+\centering
+\footnotesize
+{\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.36\textwidth} >{\raggedright\arraybackslash}p{0.58\textwidth}@{}}
+\toprule
+Parameter & Value \\
+\midrule
+PRB budget per gNB, $B$ & 100 \\
+Nominal share, floor, cap, in PRB ratio & URLLC 30, 5, 33; eMBB 60, 10, 66; mMTC 10, 5, 11 \\
+Priority weight $\omega_k$ & URLLC 12.0, eMBB 3.5, mMTC 0.3 \\
+Per-accept reward $R_k$ & 1.0 for every slice \\
+Violation penalty $\lambda_k$ & URLLC 10.0, eMBB 5.0, mMTC 2.5 \\
+Latency and loss budgets & URLLC 15 ms, 0.8\%; eMBB 45 ms, 2.0\%; mMTC 65 ms, 3.5\% \\
+Congestion coefficient $\kappa$, load-balance weight $\beta$ & 1.5, 1.0 \\
+Episode & 60 steps of 5 s; queues emptied at each episode start \\
+Requests per step & $N$, each with a uniformly random slice and gNB; at most $4N$ pending \\
+Offered demand per slice & 105\% of nominal share, per-step noise $0.005B$, per-gNB multiplier in $[0.9, 1.0]$ \\
+Env B load and coupling & $0.95\,(1+0.3\sin(2\pi(s+\psi_i)/60))$, $B_i(t)=B\,(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1))$ \\
+Admission gate step & 5 PRB-ratio points per accept or reject \\
+Training and evaluation & 300 and 50 episodes per seed, held-out evaluation stream \\
+Value-based learners & Adam, learning rate $10^{-3}$, $\gamma=0.95$, $\epsilon$ from 1.0 to 0.05 at $\times0.985$ per episode, replay 10,000, minibatch 16, warm-up 32, target sync every 10 episodes \\
+AXIOM network & Two-layer, four-head GAT, hidden and output 16, raw-feature skip, per-slice Q-heads of hidden 32, Huber loss, gradient clip 1.0 \\
+DQN baselines & Two hidden layers of 128, squared-error loss \\
+MAPPO & Actor and critic learning rate $10^{-3}$, 10 epochs, minibatch 64, clip 0.2, entropy 0.01, GAE $\lambda=0.95$ \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
+\begin{algorithm}[!htbp]
+\caption{AXIOM: centralised training, decentralised execution}
+\label{alg:gat-ctde}
+\begin{algorithmic}[1]
+\REQUIRE encoder $f_\theta$, per-slice Q-heads $\{Q_{\phi_k}\}$, targets $f_{\theta^-},\{Q_{\phi_k^-}\}$, buffer $\mathcal{D}$, adjacency $\mathbf{A}$, discount $\gamma$, sync period $T_{\mathrm{s}}$
+\FOR{each step $t$, observing joint node features $\mathbf{X}_t$}
+  \STATE $\mathbf{E}_t \gets f_\theta(\mathbf{X}_t, \mathbf{A})$ \COMMENT{centralised, one row per gNB}
+  \STATE for each pending request at gNB $i$, slice $k$, pick $a \gets \arg\max_a Q_{\phi_k}([\mathbf{E}_t[i], \mathbf{X}_t[i]])[a]$, $\epsilon$-greedy \COMMENT{decentralised, own row only}
+  \STATE step env, store $(\mathbf{X}_t, \mathbf{X}_{t+1}, \{(i,k,a)\}, r_t, \text{done})$ in $\mathcal{D}$
+  \IF{$|\mathcal{D}| \geq$ warmup}
+    \STATE sample minibatch $\mathcal{M}$; $\mathbf{E}_{\mathcal{M}} \gets f_\theta(\mathbf{X}_{\mathcal{M}},\mathbf{A})$, $\mathbf{E}'_{\mathcal{M}} \gets f_{\theta^-}(\mathbf{X}'_{\mathcal{M}},\mathbf{A})$
+    \STATE per request, $y \gets r + \gamma(1{-}\text{done})\max_{a'} Q_{\phi_k^-}(\mathbf{E}'_{\mathcal{M}}[i])[a']$
+    \STATE $\mathcal{L} \gets$ mean per-request Huber loss, never summed per step; update $\theta,\{\phi_k\}$, clip grad-norm 1.0
+  \ENDIF
+  \STATE every $T_{\mathrm{s}}$ episodes, $\theta^-\gets\theta$, $\phi_k^-\gets\phi_k$
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
 All learned arms share the discount factor $\gamma=0.95$ and the training budget. The value-based arms also share the Adam optimiser, an epsilon schedule decaying from $1.0$ to $0.05$ at a per-episode factor of $0.985$, and target synchronisation every 10 episodes. AXIOM and the DQN baselines train at learning rate $10^{-3}$. The GAT encoder uses hidden and output dimension 16, feeding per-slice Q-heads of hidden dimension 32. A sensitivity study repeats the learned arms and the oracle rule in Env A on 10 seeds under three changed conditions. Two change the load, to 102\% and 107\% of the nominal shares, and the third lowers eMBB's priority weight from 3.5 to 2.5 and raises mMTC's from 0.3 to 0.6. A second study repeats AXIOM in Env B on 10 seeds with learning rates of $3{\times}10^{-4}$ and $3{\times}10^{-3}$ and with an encoder twice as wide.
 
 The federated campaign runs in Env A on seeds 900 to 909, with a five-level noise sweep $\sigma \in \{0, 0.5, 1, 2, 4\}$ and a replication on seeds 1000 to 1009. Each federated round runs 50 local steps under FedAvg with a gradient-clip norm of $1.0$.
@@ -225,14 +320,12 @@ c, Env A at 19 gNBs on the ring layout.}
 Fig.~\ref{fig:curves} shows how the four learned policies train. MAPPO rises fastest in the first few episodes but plateaus lowest in every cell, ending at 6.4, 16.0, and 62.9 in the three panels. The value-based arms rise more slowly but further. At nineteen gNBs AXIOM keeps improving to about 85 per step over the last 20 training episodes, while the two DQN baselines settle near 71 and 74.
 
 
-Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results that the main paper pools over layouts.
+Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results at nineteen and thirty-seven gNBs that the main paper pools over layouts.
 
 \begin{figure}[h]
 \centering
-\includegraphics[width=\columnwidth]{figures/fig6_m6_topology.pdf}
-\caption{Env A scaling. a, Collapse rate pooled over layouts, with collapsed over
-total cells. b, Mean URLLC and eMBB compliance at 19 gNBs by layout, 30 seeds
-per cell, per-seed points behind the mean and 95\% CI.}
+\includegraphics[width=\textwidth]{figures/fig14_layouts.pdf}
+\caption{Env A priority-slice compliance by layout, per-seed points behind the mean and 95\% CI. a, Nineteen gNBs, 30 seeds per cell. b, Thirty-seven gNBs, where the baselines never read the layout and ran once, on the hex seeds}
 \label{fig:s-layouts}
 \end{figure}
 
