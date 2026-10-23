@@ -2,7 +2,7 @@
 """Recompute every 95% bootstrap CI quoted in the manuscript with the
 order-independent boot_ci (fresh RandomState(0) per interval), and print the
 text each should read. --apply rewrites main.tex where a printed value differs."""
-import argparse, re, sys
+import argparse, os, re, sys
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 from m62_analysis import boot_ci, eval_log, seed_metrics
 R = "/home/kmanojp/oranslice_rig/experiments/results"
@@ -28,10 +28,10 @@ for arm, r in B.items():
 def dci(a, b, seeds, label, key):
     d = [a[s]["reward"] - b[s]["reward"] for s in seeds]
     out.append((key, fmt(*boot_ci(d)), label))
-dci(A["axiom2"], A["independent_dqn"], S30, "A3 vs indep", "$+1.110$ per step, with 95\\% CI ")
-dci(A["axiom2"], A["mappo_tuned"], S30, "A3 vs MAPPO", "$+2.685$, with 95\\% CI ")
-dci(A["axiom2"], A["single_agent_dqn"], S30, "A3 vs single", "$+0.311$ with 95\\% CI ")
-dci(A["axiom2"], A["axiom2_mlp"], S30, "A3 vs MLP", "$+0.058$ and 95\\% CI ")
+dci(A["axiom2"], A["independent_dqn"], S30, "A3 vs indep", "1.110 more reward per step than the independent DQN, with 95\\% CI ")
+dci(A["axiom2"], A["mappo_tuned"], S30, "A3 vs MAPPO", "and 2.685 more than MAPPO, with 95\\% CI ")
+dci(A["axiom2"], A["single_agent_dqn"], S30, "A3 vs single", "single-agent DQN, 0.311 with 95\\% CI ")
+dci(A["axiom2"], A["axiom2_mlp"], S30, "A3 vs MLP", "earning 0.058 more reward per step with 95\\% CI ")
 cen = rows("m65_reviewer/base", "axiom2", S10); fed = rows("m65_m3", "fl_gat_ctde_sigma0.0", S10)
 dci(cen, fed, S10, "federation", "$+0.427$ with 95\\% CI ")
 cr = rows("m65_reviewer/replication", "axiom2", REP); fr = rows("m65_m3_replication", "fl_gat_ctde_sigma0.0", REP)
@@ -42,9 +42,17 @@ out.append(("97.3\\% with 95\\% CI ", f"[{lo:.1f}\\%, {hi:.1f}\\%]", "N19 pooled
 ap = argparse.ArgumentParser(); ap.add_argument("--tex"); ap.add_argument("--apply", action="store_true"); a = ap.parse_args()
 tex = open(a.tex).read() if a.tex else ""
 changes = 0
+# CIs moved to Online Resource 1 are looked up there too (read only; --apply edits main.tex alone)
+supp_path = os.path.join(os.path.dirname(a.tex), "supplementary.tex") if a.tex else ""
+supp = open(supp_path).read() if supp_path and os.path.exists(supp_path) else ""
 for key, ci, label in out:
     # find the CI that follows the key in the tex
     m = re.search(re.escape(key) + r"(\[[^\]]*\])", tex) if key.endswith("[") is False else re.search(re.escape(key[:-1]) + r"(\[[^\]]*\])", tex)
+    if m is None and supp:
+        ms = re.search(re.escape(key) + r"(\[[^\]]*\])", supp)
+        if ms:
+            print(f"{label:28s} text={ms.group(1)} recomputed={ci} {'same' if ms.group(1) == ci else 'DIFF'} (supplementary)")
+            continue
     cur = m.group(1) if m else None
     status = "same" if cur == ci else "DIFF"
     print(f"{label:28s} text={cur} recomputed={ci} {status}")
