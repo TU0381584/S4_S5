@@ -1402,6 +1402,106 @@ def main():
     C.claim("reframe: Env B 19 gNBs AXIOM over MAPPO percent", "and 36\\% more at nineteen gNBs, 80.28 against 59.07", 100 * (a19_ / m19_ - 1), "{:.0f}")
     C.claim("reframe: AXIOM slowest decision share of control period", "AXIOM's slowest decision takes 0.2\\% of the 5 s control period", 100 * cxa_["axiom2"]["ms_per_step"] / 5000, "{:.1f}")
 
+    # ---------------- M76 (docs/PAPER5_M76_preregistration.md), recomputed from the logs and per-gNB records
+    def pg76_(cell_, arm_, s_, sub_="eval/"):
+        m_ = json.load(open(f"{ROOT}/{cell_}/{arm_}/seed{s_}/{sub_}per_gnb_sla.json"))["mean_compliance"]
+        return 100 * 0.5 * (m_["urllc"] + m_["embb"])
+    def pvd_(a_, b_):
+        cm_ = sorted(set(a_) & set(b_)); dd_ = np.array([a_[x_] - b_[x_] for x_ in cm_])
+        return {"n": len(dd_), "diff": float(dd_.mean()), "wins": int((dd_ > 0).sum()), "ties": int((dd_ == 0).sum()), "losses": int((dd_ < 0).sum()),
+                "p": float(wilcoxon(dd_).pvalue) if np.any(dd_ != 0) else 1.0}
+    # d: VDN
+    vc_ = {"A3": ("m76/d_vdn/A_n3", "m65_n3_view", S30), "B3": ("m76/d_vdn/B_n3", "m64/n3_fully_connected", S30), "A19": ("m76/d_vdn/A_n19_hex", "m65_scaling/n19_hex", S30_19)}
+    vr_ = {k_: (seeds_of(c_, "vdn", ss_), seeds_of(ac_, "axiom2", ss_), seeds_of(ac_, "independent_dqn", ss_)) for k_, (c_, ac_, ss_) in vc_.items()}
+    C.note("reframe: M76 VDN complete, 30 seeds per cell", all(len(v_[0]) == 30 for v_ in vr_.values()), {k_: len(v_[0]) for k_, v_ in vr_.items()})
+    C.note("reframe: M76 VDN ties AXIOM at three gNBs", all(round(mean(vr_[k_][0]), 3) == q_[0] and round(mean(vr_[k_][1]), 3) == q_[1] for k_, q_ in (("A3", (12.664, 12.698)), ("B3", (8.552, 8.832))))
+           and "at 12.664 against 12.698 reward per step in Env A and 8.552 against 8.832 in Env B" in C.main, None)
+    dv_ = {("A3", "r"): paired(vr_["A3"][1], vr_["A3"][0]), ("B3", "r"): paired(vr_["B3"][1], vr_["B3"][0]),
+           ("A19", "r"): paired(vr_["A19"][1], vr_["A19"][0]), ("A19", "p"): paired(vr_["A19"][1], vr_["A19"][0], lambda r: 100 * prio(r))}
+    hv76_ = holm({k_: v_["p"] for k_, v_ in dv_.items()})
+    C.note("reframe: M76 VDN three-gNB margins not significant after Holm", hv76_[("A3", "r")] >= 0.05 and hv76_[("B3", "r")] >= 0.05, {str(k_): v_ for k_, v_ in hv76_.items()})
+    C.claim("reframe: M76 VDN 19-gNB compliance", "but at nineteen gNBs it keeps 83.4\\% priority-slice compliance", 100 * mean(vr_["A19"][0], prio), "{:.1f}")
+    C.claim("reframe: M76 AXIOM over VDN compliance at 19", "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step", dv_[("A19", "p")]["diff"], "{:.1f}")
+    C.claim("reframe: M76 AXIOM over VDN reward at 19", "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step", dv_[("A19", "r")]["diff"], "{:.2f}")
+    C.note("reframe: M76 VDN 19-gNB wins 27 to 28 of 30 at Holm p<0.001", sorted([dv_[("A19", "p")]["wins"], dv_[("A19", "r")]["wins"]]) == [27, 28]
+           and hv76_[("A19", "p")] < 0.001 and hv76_[("A19", "r")] < 0.001 and "winning 27 to 28 of 30 seeds at Holm-adjusted $p<0.001$" in C.main, None)
+    C.claim("reframe: conclusion VDN gap", "fell 13.6 percentage points behind at nineteen", dv_[("A19", "p")]["diff"], "{:.1f}")
+    for k_, l_ in (("A3", "Env A, 3 gNBs"), ("B3", "Env B, 3 gNBs"), ("A19", "Env A, 19 gNBs, hex")):
+        v_, ax_, ind_ = vr_[k_]
+        row_ = (f"{l_} & {mean(v_):.3f} & {mean(ax_):.3f} & {mean(ind_):.3f} & {100 * mean(v_, prio):.1f}\\% & {100 * mean(ax_, prio):.1f}\\% & {100 * mean(ind_, prio):.1f}\\% \\\\")
+        C.note(f"M76 S17 VDN row {k_}", row_ in C.tex, row_)
+    # e: oversubscription
+    e76_ = {L_: {a_: seeds_of(f"m76/e_load{L_}_n19_hex", a_, S15) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_accept_all")} for L_ in ("1.10", "1.20")}
+    te76_ = {(L_, b_): paired(e76_[L_]["axiom2"], e76_[L_][b_], lambda r: 100 * prio(r)) for L_ in e76_ for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    he76_ = holm({k_: v_["p"] for k_, v_ in te76_.items()})
+    C.claim("reframe: M76 AXIOM compliance at 110% load", "AXIOM keeps 63.4\\% and 21.7\\% priority-slice compliance", 100 * mean(e76_["1.10"]["axiom2"], prio), "{:.1f}")
+    C.claim("reframe: M76 AXIOM compliance at 120% load", "AXIOM keeps 63.4\\% and 21.7\\% priority-slice compliance", 100 * mean(e76_["1.20"]["axiom2"], prio), "{:.1f}")
+    for L_, lo_, hi_ in (("1.10", "24.3", "34.0"), ("1.20", "2.5", "6.4")):
+        dl_ = [te76_[(L_, b_)]["diff"] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
+        C.note(f"reframe: M76 oversubscription margins at {L_}", f"{min(dl_):.1f}" == lo_ and f"{max(dl_):.1f}" == hi_
+               and "24.3 to 34.0 and 2.5 to 6.4 percentage points more than every learned baseline, at Holm-adjusted $p\\leq0.006$" in C.main, dl_)
+    C.note("reframe: M76 oversubscription Holm p<=0.006, AXIOM ahead", all(te76_[k_]["diff"] > 0 and he76_[k_] <= 0.006 for k_ in te76_), {str(k_): v_ for k_, v_ in he76_.items()})
+    for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_accept_all"):
+        x_, y_ = e76_["1.10"][a_], e76_["1.20"][a_]
+        lb_ = {"axiom2": "AXIOM", "single_agent_dqn": "Single-agent DQN", "independent_dqn": "Independent DQN", "mappo_tuned": "MAPPO", "rule_static": "Static rule", "rule_accept_all": "Accept all"}[a_]
+        row_ = (f"{lb_} & {mean(x_):.2f} & {100 * mean(x_, prio):.1f}\\% & {sum(r['collapsed'] for r in x_.values())} & "
+                f"{mean(y_):.2f} & {100 * mean(y_, prio):.1f}\\% & {sum(r['collapsed'] for r in y_.values())} \\\\")
+        C.note(f"M76 S17 oversubscription row {a_}", row_ in C.tex, row_)
+    # b1: load shift at 19 gNBs, from the raw logs
+    def b1log_(sh_, arm_, s_):
+        b_ = f"{ROOT}/m76/b1_shift_n19/{sh_}/{arm_}/seed{s_}/" + ("" if arm_ == "axiom2" else "lb_only/offline_eval/rep_0/")
+        return read(b_ + "omega_log.jsonl" if os.path.exists(b_ + "omega_log.jsonl") else b_ + "omega_log.jsonl.gz")
+    b176_ = {sh_: {a_: {s_: b1log_(sh_, a_, s_) for s_ in S15} for a_ in ("axiom2", "rule_local_transfer", "rule_static")} for sh_ in ("nominal", "load_1.10", "load_1.15", "load_1.20")}
+    C.note("M76 b1 nominal reproduces M75 D exactly", all(b176_["nominal"][a_][s_]["reward"] == seeds_of("m75/D_envB_n19_hex", a_, S15)[s_]["reward"] for a_ in b176_["nominal"] for s_ in S15), None)
+    tb1_ = {sh_: paired(b176_[sh_]["axiom2"], b176_[sh_]["rule_local_transfer"]) for sh_ in ("load_1.10", "load_1.15", "load_1.20")}
+    hb1_ = holm({k_: v_["p"] for k_, v_ in tb1_.items()})
+    C.note("reframe: M76 overload at 19 gNBs, margins 6.23/7.55/8.67, 14 of 15, Holm p<0.001",
+           [round(tb1_[k_]["diff"], 2) for k_ in ("load_1.10", "load_1.15", "load_1.20")] == [6.23, 7.55, 8.67] and all(v_["wins"] == 14 for v_ in tb1_.values())
+           and all(v_ < 0.001 for v_ in hb1_.values()) and "AXIOM earns 6.23, 7.55, and 8.67 more reward per step than that rule, winning 14 of 15 seeds at each level at Holm-adjusted $p<0.001$" in C.main, {k_: round(v_["diff"], 3) for k_, v_ in tb1_.items()})
+    st_ = [paired(b176_[sh_]["rule_static"], b176_[sh_]["axiom2"])["diff"] for sh_ in ("load_1.10", "load_1.15", "load_1.20")]
+    same_b1_ = [sum(b176_[sh_]["axiom2"][s_]["reward"] == b176_[sh_]["rule_static"][s_]["reward"] and b176_[sh_]["axiom2"][s_]["blocks"] == b176_[sh_]["rule_static"][s_]["blocks"] for s_ in S15) for sh_ in ("load_1.10", "load_1.15", "load_1.20")]
+    C.note("reframe: M76 static rule 1.8 to 2.0 above AXIOM, identical decisions in 9 to 11 seeds", f"{min(st_):.1f}" == "1.8" and f"{max(st_):.1f}" == "2.0" and min(same_b1_) == 9 and max(same_b1_) == 11
+           and "the static rule earns 1.8 to 2.0 more reward than AXIOM, which makes the static rule's decisions in 9 to 11 of the 15 seeds" in C.main, (st_, same_b1_))
+    pg1_ = {sh_: {a_: {s_: pg76_("m76/b1_shift_n19/" + sh_, a_, s_, "") for s_ in S15} for a_ in ("axiom2", "rule_local_transfer", "rule_static")} for sh_ in b176_}
+    C.note("reframe: M76 tuned rule keeps more per-gNB compliance under overload", all(np.mean(list(pg1_[sh_]["rule_local_transfer"].values())) > np.mean(list(pg1_[sh_]["axiom2"].values())) for sh_ in ("load_1.10", "load_1.15", "load_1.20")), None)
+    for sh_, l_ in (("nominal", "Nominal"), ("load_1.10", "110\\%"), ("load_1.15", "115\\%"), ("load_1.20", "120\\%")):
+        m_ = {a_: (mean(b176_[sh_][a_]), float(np.mean(list(pg1_[sh_][a_].values())))) for a_ in b176_[sh_]}
+        row_ = (f"{l_} & {m_['axiom2'][0]:.2f} & {m_['rule_local_transfer'][0]:.2f} & {m_['rule_static'][0]:.2f} & {m_['axiom2'][1]:.1f}\\% & "
+                f"{m_['rule_local_transfer'][1]:.1f}\\% & {m_['rule_static'][1]:.1f}\\% \\\\")
+        C.note(f"M76 S17 shift row {sh_}", row_ in C.tex, row_)
+    # b2: uneven per-gNB load
+    H2c_ = "m76/b2_hetero_n7_ring"
+    hb_ = {a_: seeds_of(H2c_, a_, S15) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_accept_all", "rule_local_transfer", "rule_local")}
+    t_tr_ = paired(hb_["axiom2"], hb_["rule_local_transfer"]); t_st_ = paired(hb_["rule_static"], hb_["axiom2"]); t_rt_ = paired(hb_["axiom2"], hb_["rule_local"])
+    C.claim("reframe: M76 uneven load AXIOM vs nominal rule", "earning 0.36 more reward per step at $p=0.23$", t_tr_["diff"], "{:.2f}")
+    C.note("reframe: M76 uneven load not significant, ties re-tuned rule", round(t_tr_["p"], 2) == 0.23 and t_rt_["p"] > 0.05, (t_tr_, t_rt_))
+    C.note("reframe: M76 uneven load static rule 0.27 more at p=0.028", f"{t_st_['diff']:.2f}" == "0.27" and f"{t_st_['p']:.3f}" == "0.028"
+           and "while the static rule earns 0.27 more at $p=0.028$" in C.main, t_st_)
+    lb2_ = [paired(hb_["axiom2"], hb_[b_]) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
+    C.note("reframe: M76 uneven load AXIOM beats learned baselines 1.18 to 4.28, p<=0.005", f"{min(t['diff'] for t in lb2_):.2f}" == "1.18" and f"{max(t['diff'] for t in lb2_):.2f}" == "4.28"
+           and all(t["p"] <= 0.005 for t in lb2_) and "by 1.18 to 4.28 reward per step at unadjusted $p\\leq0.005$" in C.main, lb2_)
+    C.note("reframe: M76 uneven load 27% more than MAPPO, every seed", round(100 * (mean(hb_["axiom2"]) / mean(hb_["mappo_tuned"]) - 1)) == 27 and lb2_[2]["wins"] == 15
+           and "Under uneven per-gNB load at seven gNBs it earns 27\\% more and wins every seed" in C.main, None)
+    # c: per-gNB penalty
+    Cc_ = "m76/c_pergnb_n19_hex"
+    cg_ = {a_: {s_: pg76_(Cc_, a_, s_) for s_ in S15} for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_accept_all", "rule_local_transfer")}
+    old_ = {s_: pg76_("m75/D_envB_n19_hex", "axiom2", s_) for s_ in S15}
+    c1_ = pvd_(cg_["axiom2"], old_)
+    C.claim("reframe: M76 per-gNB penalty AXIOM compliance", "at 79.2\\% against 77.3\\% with $p=0.65$", float(np.mean(list(cg_["axiom2"].values()))), "{:.1f}")
+    C.claim("reframe: M76 original-reward AXIOM compliance", "at 79.2\\% against 77.3\\% with $p=0.65$", float(np.mean(list(old_.values()))), "{:.1f}")
+    C.note("reframe: M76 per-gNB penalty change not significant, p=0.65", f"{c1_['p']:.2f}" == "0.65", c1_)
+    C.note("reframe: M76 per-gNB penalty AXIOM does not beat the static rule", pvd_(cg_["axiom2"], cg_["rule_static"])["p"] >= 0.05, None)
+    lc_ = [pvd_(cg_["axiom2"], cg_[b_]) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
+    C.note("reframe: M76 per-gNB penalty baselines 13.7 to 18.5 points below AXIOM in every seed", f"{min(t['diff'] for t in lc_):.1f}" == "13.7" and f"{max(t['diff'] for t in lc_):.1f}" == "18.5"
+           and all(t["wins"] == 15 for t in lc_) and "kept 13.7 to 18.5 percentage points less per-gNB compliance than AXIOM, in every seed" in C.main, lc_)
+    lab76_ = {"axiom2": "AXIOM", "single_agent_dqn": "Single-agent DQN", "independent_dqn": "Independent DQN", "mappo_tuned": "MAPPO", "rule_static": "Static rule",
+              "rule_accept_all": "Accept all", "rule_local_transfer": "Tuned rule, carried over", "rule_local": "Tuned rule, re-tuned"}
+    for cell_, arms_ in ((H2c_, list(hb_)), (Cc_, list(cg_))):
+        for a_ in arms_:
+            d_ = seeds_of(cell_, a_, S15)
+            row_ = f"{lab76_[a_]} & {mean(d_):.2f} & {float(np.mean([pg76_(cell_, a_, s_) for s_ in S15])):.1f}\\% & {sum(r['collapsed'] for r in d_.values())} \\\\"
+            C.note(f"M76 S17 row {cell_.split('/')[-1]} {a_}", row_ in C.tex, row_)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}

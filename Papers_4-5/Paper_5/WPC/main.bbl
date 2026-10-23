@@ -116,11 +116,6 @@ Kunasegran MP, Pang WL, Phang SK (2026) Comprehensive review of optimization
   techniques for user-centric distributed network slicing in {5G} networks.
   IEEE Access 14:114630--114648. \doi{10.1109/ACCESS.2026.3716911}
 
-\bibitem[{Li et~al.(2020)Li, Sahu, Talwalkar, and Smith}]{li2020flchallenges}
-Li T, Sahu AK, Talwalkar A, et~al (2020) Federated learning: Challenges,
-  methods, and future directions. IEEE Signal Processing Magazine 37(3):50--60.
-  \doi{10.1109/MSP.2020.2975749}
-
 \bibitem[{Li et~al.(2026)Li, Wang, Min, Wang, and Wang}]{li2026scalablemarl}
 Li Y, Wang H, Min G, et~al (2026) A flexible and scalable multi-agent learning
   framework for dynamic {RAN} slicing in {6G} native-{AI} networks. IEEE
@@ -208,6 +203,13 @@ Sirma M, Kavak A, Inner AB (2025) Optimizing relay selection in {D2D}
 Sulaiman M, Moayyedi A, Ahmadi M, et~al (2023) Coordinated slicing and
   admission control using multi-agent deep reinforcement learning. IEEE Trans
   Netw Service Manag 20(2):1110--1124. \doi{10.1109/TNSM.2022.3222589}
+
+\bibitem[{Sunehag et~al.(2018)Sunehag, Lever, Gruslys, Czarnecki, Zambaldi,
+  Jaderberg, Lanctot, Sonnerat, Leibo, Tuyls, and Graepel}]{sunehag2018vdn}
+Sunehag P, Lever G, Gruslys A, et~al (2018) Value-decomposition networks for
+  cooperative multi-agent learning based on team reward. In: Proceedings of the
+  17th International Conference on Autonomous Agents and MultiAgent Systems
+  (AAMAS), pp 2085--2087, \doi{10.65109/jsrc7365}
 
 \bibitem[{Tao et~al.(2025)Tao, Xu, and You}]{tao2025dtac}
 Tao Z, Xu W, You X (2025) Digital twin-accelerated online deep reinforcement

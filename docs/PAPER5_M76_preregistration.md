@@ -34,3 +34,13 @@ Checked before this commit: m76_shift.py under nominal load reproduces the store
 - Mean offered demand at 1.10 and 1.20 times each slice's nominal share (reported Env A uses 1.05). At 1.10 the URLLC and eMBB demand sits at their PRB caps; at 1.20 it exceeds them, so no policy can keep those slices' SLAs throughout. Arms: AXIOM, single-agent DQN (seeded), independent DQN, MAPPO, rule_static, rule_accept_all, all retrained under each load. Seeds 900-911, 1000-1002.
 - E1. AXIOM beats each learned baseline on priority-slice compliance at both loads, Holm over 6, adjusted p < 0.05.
 - Reported: reward, the static rule and accept-all at each load.
+
+## Results (campaign 14:17 on 2026-10-23 to 00:51 on 2026-10-24; analysis in experiments/results/m76/analysis.json)
+
+All 353 jobs exited cleanly. 2 of 6 predictions hold; B2, C1, C2 and D1 fail. Every result is reported in the manuscript and in S17 of Online Resource 1.
+
+- **B1 holds.** At 19 gNBs under 110/115/120% load AXIOM earns 6.23, 7.55 and 8.67 more reward per step than the carried-over tuned rule, 14 of 15 seeds each, Holm p = 0.0004. But the tuned rule keeps 12 to 15 points more per-gNB compliance (it sheds eMBB), and the static rule earns 1.8 to 2.0 more reward than AXIOM, which makes the static rule's decisions in 9 to 11 of 15 seeds. Nominal reproduces M75 D exactly.
+- **B2 fails.** Uneven per-gNB load (U[0.75,1.25], 7 gNBs ring): AXIOM +0.36 over the nominally tuned rule (9/15, p 0.23); ties the re-tuned rule (+0.05); the static rule earns 0.27 more (p 0.028); both tuned rules keep about 8 points more per-gNB compliance. AXIOM beats every learned baseline (+1.18 single-agent, +1.58 independent, +4.28 MAPPO, 27% more than MAPPO, all p <= 0.005).
+- **C1 and C2 fail.** With a per-gNB SLA penalty AXIOM keeps 79.2% per-gNB compliance against 77.3% under the original reward (p 0.65) and does not beat the static rule (79.9%). Every learned baseline falls 13.7 to 18.5 points below AXIOM in every seed under that reward.
+- **D1 fails.** VDN ties AXIOM at three gNBs (Env A 12.664 vs 12.698, Holm p 0.15; Env B 8.552 vs 8.832, Holm p 0.056). At 19 gNBs hex AXIOM keeps 13.6 points more compliance (97.0% vs 83.4%) and 2.73 more reward, Holm p <= 0.0003. VDN beats the independent DQN in every cell.
+- **E1 holds.** At 110% and 120% load (19 gNBs hex) AXIOM keeps 63.4% and 21.7% priority compliance, 24.3 to 34.0 and 2.5 to 6.4 points above every learned baseline, Holm p <= 0.0052. The static rule keeps 65.5% and 21.9%.

@@ -4760,6 +4760,566 @@
   "ok": true
  },
  {
+  "label": "reframe: M76 VDN complete, 30 seeds per cell",
+  "snippet": null,
+  "computed": {
+   "A3": 30,
+   "B3": 30,
+   "A19": 30
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 VDN ties AXIOM at three gNBs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 VDN three-gNB margins not significant after Holm",
+  "snippet": null,
+  "computed": {
+   "('A19', 'p')": 0.00020109540081018779,
+   "('A19', 'r')": 0.00023731961846351624,
+   "('B3', 'r')": 0.05548287555575371,
+   "('A3', 'r')": 0.14458247203258678
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 VDN 19-gNB compliance",
+  "snippet": "but at nineteen gNBs it keeps 83.4\\% priority-slice compliance",
+  "computed": 83.38611111111109,
+  "formatted": "83.4",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 AXIOM over VDN compliance at 19",
+  "snippet": "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step",
+  "computed": 13.634444444444444,
+  "formatted": "13.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 AXIOM over VDN reward at 19",
+  "snippet": "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step",
+  "computed": 2.7332078451255564,
+  "formatted": "2.73",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 VDN 19-gNB wins 27 to 28 of 30 at Holm p<0.001",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: conclusion VDN gap",
+  "snippet": "fell 13.6 percentage points behind at nineteen",
+  "computed": 13.634444444444444,
+  "formatted": "13.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 VDN row A3",
+  "snippet": null,
+  "computed": "Env A, 3 gNBs & 12.664 & 12.698 & 11.587 & 99.0\\% & 98.9\\% & 92.9\\% \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 VDN row B3",
+  "snippet": null,
+  "computed": "Env B, 3 gNBs & 8.552 & 8.832 & 7.794 & 62.5\\% & 65.1\\% & 59.0\\% \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 VDN row A19",
+  "snippet": null,
+  "computed": "Env A, 19 gNBs, hex & 86.428 & 89.161 & 76.388 & 83.4\\% & 97.0\\% & 56.4\\% \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 AXIOM compliance at 110% load",
+  "snippet": "AXIOM keeps 63.4\\% and 21.7\\% priority-slice compliance",
+  "computed": 63.40666666666668,
+  "formatted": "63.4",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 AXIOM compliance at 120% load",
+  "snippet": "AXIOM keeps 63.4\\% and 21.7\\% priority-slice compliance",
+  "computed": 21.693333333333335,
+  "formatted": "21.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 oversubscription margins at 1.10",
+  "snippet": null,
+  "computed": [
+   29.09666666666667,
+   33.95,
+   24.27555555555556
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 oversubscription margins at 1.20",
+  "snippet": null,
+  "computed": [
+   4.613333333333332,
+   6.384444444444444,
+   2.507777777777778
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 oversubscription Holm p<=0.006, AXIOM ahead",
+  "snippet": null,
+  "computed": {
+   "('1.10', 'single_agent_dqn')": 0.0003662109375,
+   "('1.10', 'independent_dqn')": 0.0003662109375,
+   "('1.20', 'single_agent_dqn')": 0.0003662109375,
+   "('1.20', 'independent_dqn')": 0.0003662109375,
+   "('1.10', 'mappo_tuned')": 0.0003662109375,
+   "('1.20', 'mappo_tuned')": 0.005213241256099401
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 oversubscription row axiom2",
+  "snippet": null,
+  "computed": "AXIOM & 84.58 & 63.4\\% & 0 & 77.44 & 21.7\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 oversubscription row single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 72.81 & 34.3\\% & 15 & 65.75 & 17.1\\% & 14 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 oversubscription row independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 71.36 & 29.5\\% & 0 & 68.88 & 15.3\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 oversubscription row mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 63.72 & 39.1\\% & 0 & 61.50 & 19.2\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 oversubscription row rule_static",
+  "snippet": null,
+  "computed": "Static rule & 85.40 & 65.5\\% & 0 & 77.93 & 21.9\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 oversubscription row rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all & 72.81 & 34.3\\% & 15 & 69.25 & 17.6\\% & 15 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 b1 nominal reproduces M75 D exactly",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 overload at 19 gNBs, margins 6.23/7.55/8.67, 14 of 15, Holm p<0.001",
+  "snippet": null,
+  "computed": {
+   "load_1.10": 6.226,
+   "load_1.15": 7.549,
+   "load_1.20": 8.667
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 static rule 1.8 to 2.0 above AXIOM, identical decisions in 9 to 11 seeds",
+  "snippet": null,
+  "computed": [
+   [
+    1.826580558881458,
+    1.9078310616677043,
+    1.9607893685242952
+   ],
+   [
+    9,
+    10,
+    11
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 tuned rule keeps more per-gNB compliance under overload",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 shift row nominal",
+  "snippet": null,
+  "computed": "Nominal & 80.28 & 84.09 & 81.59 & 77.3\\% & 84.5\\% & 79.9\\% \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 shift row load_1.10",
+  "snippet": null,
+  "computed": "110\\% & 77.01 & 70.79 & 78.84 & 41.6\\% & 56.7\\% & 41.6\\% \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 shift row load_1.15",
+  "snippet": null,
+  "computed": "115\\% & 76.59 & 69.04 & 78.50 & 33.4\\% & 46.7\\% & 33.1\\% \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 shift row load_1.20",
+  "snippet": null,
+  "computed": "120\\% & 76.30 & 67.64 & 78.27 & 26.8\\% & 38.5\\% & 26.4\\% \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 uneven load AXIOM vs nominal rule",
+  "snippet": "earning 0.36 more reward per step at $p=0.23$",
+  "computed": 0.36040938503474795,
+  "formatted": "0.36",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 uneven load not significant, ties re-tuned rule",
+  "snippet": null,
+  "computed": [
+   {
+    "n": 15,
+    "diff": 0.36040938503474795,
+    "wins": 9,
+    "ties": 0,
+    "losses": 6,
+    "p": 0.22930908203125
+   },
+   {
+    "n": 15,
+    "diff": 0.05467497615704791,
+    "wins": 8,
+    "ties": 0,
+    "losses": 7,
+    "p": 1.0
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 uneven load static rule 0.27 more at p=0.028",
+  "snippet": null,
+  "computed": {
+   "n": 15,
+   "diff": 0.271596037097431,
+   "wins": 6,
+   "ties": 8,
+   "losses": 1,
+   "p": 0.027991815485665747
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 uneven load AXIOM beats learned baselines 1.18 to 4.28, p<=0.005",
+  "snippet": null,
+  "computed": [
+   {
+    "n": 15,
+    "diff": 1.1842008284997805,
+    "wins": 12,
+    "ties": 0,
+    "losses": 3,
+    "p": 0.0042724609375
+   },
+   {
+    "n": 15,
+    "diff": 1.5759760848926965,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05
+   },
+   {
+    "n": 15,
+    "diff": 4.275202509698402,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 uneven load 27% more than MAPPO, every seed",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 per-gNB penalty AXIOM compliance",
+  "snippet": "at 79.2\\% against 77.3\\% with $p=0.65$",
+  "computed": 79.15865497076022,
+  "formatted": "79.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 original-reward AXIOM compliance",
+  "snippet": "at 79.2\\% against 77.3\\% with $p=0.65$",
+  "computed": 77.3076023391813,
+  "formatted": "77.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 per-gNB penalty change not significant, p=0.65",
+  "snippet": null,
+  "computed": {
+   "n": 15,
+   "diff": 1.8510526315789477,
+   "wins": 7,
+   "ties": 2,
+   "losses": 6,
+   "p": 0.6496440323317323
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 per-gNB penalty AXIOM does not beat the static rule",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M76 per-gNB penalty baselines 13.7 to 18.5 points below AXIOM in every seed",
+  "snippet": null,
+  "computed": [
+   {
+    "n": 15,
+    "diff": 13.671520467836258,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05
+   },
+   {
+    "n": 15,
+    "diff": 15.311578947368425,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05
+   },
+   {
+    "n": 15,
+    "diff": 18.50894736842105,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row b2_hetero_n7_ring axiom2",
+  "snippet": null,
+  "computed": "AXIOM & 20.22 & 63.4\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row b2_hetero_n7_ring single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 19.04 & 62.3\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row b2_hetero_n7_ring independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 18.65 & 61.0\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row b2_hetero_n7_ring mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 15.95 & 59.0\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row b2_hetero_n7_ring rule_static",
+  "snippet": null,
+  "computed": "Static rule & 20.49 & 64.0\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row b2_hetero_n7_ring rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all & 18.03 & 56.9\\% & 15 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row b2_hetero_n7_ring rule_local_transfer",
+  "snippet": null,
+  "computed": "Tuned rule, carried over & 19.86 & 71.6\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row b2_hetero_n7_ring rule_local",
+  "snippet": null,
+  "computed": "Tuned rule, re-tuned & 20.17 & 71.8\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row c_pergnb_n19_hex axiom2",
+  "snippet": null,
+  "computed": "AXIOM & 23.48 & 79.2\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row c_pergnb_n19_hex single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & -8.69 & 65.5\\% & 10 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row c_pergnb_n19_hex independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & -20.59 & 63.8\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row c_pergnb_n19_hex mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & -45.64 & 60.6\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row c_pergnb_n19_hex rule_static",
+  "snippet": null,
+  "computed": "Static rule & 23.59 & 79.9\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row c_pergnb_n19_hex rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all & -0.28 & 66.4\\% & 15 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M76 S17 row c_pergnb_n19_hex rule_local_transfer",
+  "snippet": null,
+  "computed": "Tuned rule, carried over & 39.41 & 84.5\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -4786,9 +5346,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 494",
+  "label": "text quotes the final check count of 549",
   "snippet": null,
-  "computed": 494,
+  "computed": 549,
   "formatted": null,
   "in_tex": null,
   "ok": true

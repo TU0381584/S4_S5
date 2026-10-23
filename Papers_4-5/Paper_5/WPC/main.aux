@@ -64,7 +64,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shared Encoder, Decentralised Q-Heads}{7}{subsection.4.1}\protected@file@percent }
 \newlabel{sec:methodology-perslice}{{4.1}{7}{Shared Encoder, Decentralised Q-Heads}{subsection.4.1}{}}
 \newlabel{eq:td}{{3}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
-\citation{lim2020flmec,li2020flchallenges}
+\citation{lim2020flmec}
 \citation{dpsgd}
 \citation{zcdp}
 \citation{yu2022mappo}
@@ -93,30 +93,33 @@
 \newlabel{fig:m6-topology}{{4}{12}{Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, mean and 95\% CI. b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}{figure.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}}{13}{figure.5}\protected@file@percent }
 \newlabel{fig:gnb-map}{{5}{13}{Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}{figure.5}{}}
+\citation{sunehag2018vdn}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces AXIOM against the three learned baselines. a, Env A reward per step at three gNBs against compliance at 37 gNBs, with 95\% CIs. b, Six measured axes, each as a fraction of the best learned policy on it}}{15}{figure.6}\protected@file@percent }
 \newlabel{fig:quadrant}{{6}{15}{AXIOM against the three learned baselines. a, Env A reward per step at three gNBs against compliance at 37 gNBs, with 95\% CIs. b, Six measured axes, each as a fraction of the best learned policy on it}{figure.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ablations and Sensitivity}{15}{subsection.5.3}\protected@file@percent }
 \newlabel{sec:results-ablation}{{5.3}{15}{Ablations and Sensitivity}{subsection.5.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}}{16}{figure.7}\protected@file@percent }
-\newlabel{fig:envb}{{7}{16}{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}{figure.7}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Time-Varying Load with Inter-Cell Coupling}{16}{subsection.5.4}\protected@file@percent }
 \newlabel{sec:results-envb}{{5.4}{16}{Time-Varying Load with Inter-Cell Coupling}{subsection.5.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}}{17}{figure.7}\protected@file@percent }
+\newlabel{fig:envb}{{7}{17}{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}{figure.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Env B, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Rules above the line, learned policies below it}}{17}{table.6}\protected@file@percent }
 \newlabel{tab:envb}{{6}{17}{Env B, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Rules above the line, learned policies below it}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Model Complexity}{18}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:results-complexity}{{5.5}{18}{Model Complexity}{subsection.5.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}}{18}{table.7}\protected@file@percent }
-\newlabel{tab:complexity}{{7}{18}{Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Model Complexity}{19}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:results-complexity}{{5.5}{19}{Model Complexity}{subsection.5.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reproducibility and Fresh-Seed Verification}{19}{subsection.5.6}\protected@file@percent }
 \newlabel{sec:results-verify}{{5.6}{19}{Reproducibility and Fresh-Seed Verification}{subsection.5.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Federation, Privacy, Disruption, and Live Deployment}{19}{subsection.5.7}\protected@file@percent }
-\newlabel{sec:results-m3}{{5.7}{19}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
-\newlabel{sec:results-m4}{{5.7}{19}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
-\newlabel{sec:results-m8}{{5.7}{19}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{20}{section.6}\protected@file@percent }
-\newlabel{sec:conclusion}{{6}{20}{Conclusion}{section.6}{}}
-\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{21}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{21}{section*.3}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}}{19}{table.7}\protected@file@percent }
+\newlabel{tab:complexity}{{7}{19}{Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}{table.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Federation, Privacy, Disruption, and Live Deployment}{20}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:results-m3}{{5.7}{20}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
+\newlabel{sec:results-m4}{{5.7}{20}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
+\newlabel{sec:results-m8}{{5.7}{20}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Limitations}{21}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{21}{Discussion and Limitations}{section.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{21}{section.7}\protected@file@percent }
+\newlabel{sec:conclusion}{{7}{21}{Conclusion}{section.7}{}}
+\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{22}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{22}{section*.3}\protected@file@percent }
 \bibdata{refs}
 \bibcite{dpsgd}{{1}{2016}{{Abadi et~al.}}{{Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar, and Zhang}}}
 \bibcite{ahmadi2024generalizable}{{2}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
@@ -136,21 +139,21 @@
 \bibcite{mecon-paper1}{{16}{2025{}}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
 \bibcite{icraie-paper2}{{17}{2025{}}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
 \bibcite{ref:access}{{18}{2026}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
-\bibcite{li2020flchallenges}{{19}{2020}{{Li et~al.}}{{Li, Sahu, Talwalkar, and Smith}}}
-\bibcite{li2026scalablemarl}{{20}{2026}{{Li et~al.}}{{Li, Wang, Min, Wang, and Wang}}}
-\bibcite{lim2020flmec}{{21}{2020}{{Lim et~al.}}{{Lim, Luong, Hoang, Jiao, Liang, Yang, Niyato, and Miao}}}
-\bibcite{ming2024fedslice}{{22}{2024}{{Ming et~al.}}{{Ming, Yu, and Taleb}}}
-\bibcite{mohajer2026pronto}{{23}{2026}{{Mohajer et~al.}}{{Mohajer, Mirzaei, Darabi, and Fernando}}}
-\bibcite{ojijo2024sac}{{24}{2024}{{Ojijo et~al.}}{{Ojijo, Ramotsoela, and Oginga}}}
-\bibcite{phyu2025icecream}{{25}{2025}{{Phyu et~al.}}{{Phyu, Naboulsi, and Stanica}}}
-\bibcite{polese2023coloran}{{26}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
-\bibcite{polese2023oran}{{27}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
-\bibcite{qasim2025tgnnfl}{{28}{2025}{{Qasim et~al.}}{{Qasim, Imran, Akram, {Ahmad Bilal}, and {Jaleed Khan}}}}
-\bibcite{rashid2020qmix}{{29}{2020}{{Rashid et~al.}}{{Rashid, Samvelyan, Schroeder~de Witt, Farquhar, Foerster, and Whiteson}}}
-\bibcite{raza2019slicing}{{30}{2019}{{Raza et~al.}}{{Raza, Natalino, {\"O}hlen, Wosinska, and Monti}}}
-\bibcite{shao2021gatmarl}{{31}{2021}{{Shao et~al.}}{{Shao, Li, Hu, Wu, Zhao, and Zhang}}}
-\bibcite{sirma2025relay}{{32}{2025}{{Sirma et~al.}}{{Sirma, Kavak, and Inner}}}
-\bibcite{sulaiman2023coordinated}{{33}{2023}{{Sulaiman et~al.}}{{Sulaiman, Moayyedi, Ahmadi, Salahuddin, Boutaba, and Saleh}}}
+\bibcite{li2026scalablemarl}{{19}{2026}{{Li et~al.}}{{Li, Wang, Min, Wang, and Wang}}}
+\bibcite{lim2020flmec}{{20}{2020}{{Lim et~al.}}{{Lim, Luong, Hoang, Jiao, Liang, Yang, Niyato, and Miao}}}
+\bibcite{ming2024fedslice}{{21}{2024}{{Ming et~al.}}{{Ming, Yu, and Taleb}}}
+\bibcite{mohajer2026pronto}{{22}{2026}{{Mohajer et~al.}}{{Mohajer, Mirzaei, Darabi, and Fernando}}}
+\bibcite{ojijo2024sac}{{23}{2024}{{Ojijo et~al.}}{{Ojijo, Ramotsoela, and Oginga}}}
+\bibcite{phyu2025icecream}{{24}{2025}{{Phyu et~al.}}{{Phyu, Naboulsi, and Stanica}}}
+\bibcite{polese2023coloran}{{25}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
+\bibcite{polese2023oran}{{26}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
+\bibcite{qasim2025tgnnfl}{{27}{2025}{{Qasim et~al.}}{{Qasim, Imran, Akram, {Ahmad Bilal}, and {Jaleed Khan}}}}
+\bibcite{rashid2020qmix}{{28}{2020}{{Rashid et~al.}}{{Rashid, Samvelyan, Schroeder~de Witt, Farquhar, Foerster, and Whiteson}}}
+\bibcite{raza2019slicing}{{29}{2019}{{Raza et~al.}}{{Raza, Natalino, {\"O}hlen, Wosinska, and Monti}}}
+\bibcite{shao2021gatmarl}{{30}{2021}{{Shao et~al.}}{{Shao, Li, Hu, Wu, Zhao, and Zhang}}}
+\bibcite{sirma2025relay}{{31}{2025}{{Sirma et~al.}}{{Sirma, Kavak, and Inner}}}
+\bibcite{sulaiman2023coordinated}{{32}{2023}{{Sulaiman et~al.}}{{Sulaiman, Moayyedi, Ahmadi, Salahuddin, Boutaba, and Saleh}}}
+\bibcite{sunehag2018vdn}{{33}{2018}{{Sunehag et~al.}}{{Sunehag, Lever, Gruslys, Czarnecki, Zambaldi, Jaderberg, Lanctot, Sonnerat, Leibo, Tuyls, and Graepel}}}
 \bibcite{tao2025dtac}{{34}{2025}{{Tao et~al.}}{{Tao, Xu, and You}}}
 \bibcite{tashman2026adversarial}{{35}{2026}{{Tashman and Cherkaoui}}{{}}}
 \bibcite{tsampazi2023xapps}{{36}{2023}{{Tsampazi et~al.}}{{Tsampazi, D'Oro, Polese, Bonati, Poitau, Healy, and Melodia}}}
@@ -160,4 +163,4 @@
 \bibcite{yu2022mappo}{{40}{2022}{{Yu et~al.}}{{Yu, Velu, Vinitsky, Gao, Wang, Bayen, and Wu}}}
 \bibcite{zangooei2024flexible}{{41}{2024}{{Zangooei et~al.}}{{Zangooei, Golkarifard, Rouili, Saha, and Boutaba}}}
 \bibcite{zhang2022federatedoran}{{42}{2022}{{Zhang et~al.}}{{Zhang, Zhou, and Erol-Kantarci}}}
-\gdef \@abspage@last{26}
+\gdef \@abspage@last{27}

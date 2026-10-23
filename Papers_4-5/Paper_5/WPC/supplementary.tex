@@ -238,7 +238,7 @@ per cell, per-seed points behind the mean and 95\% CI.}
 
 
 \section*{S13. Analysis-plan commits and development notes}
-Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, and 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, the thirty-seven-gNB extension in Section S15 as 85e6781, its fresh-seed replication as ab76311, and the runs in Section S16 as d251490. Two development stages are also disclosed here, although neither changed a reported result. A protocol committed before any of its runs, M67, tried to make AXIOM's training reliable enough to beat both DQN baselines decisively in Env A at three gNBs. Selecting checkpoints on validation episodes brought AXIOM to the oracle but brought the single-agent DQN within 0.05 of it too, so that variant was dropped after the first of eight permitted attempts. A single test of the per-node MLP encoder on ten new seeds in Env B at seven gNBs then led the single-agent DQN by 0.4 to 1.4 per step without a significant result, so AXIOM's encoder was not changed. Separately, exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S14, and probes on pilot seeds 2000 to 2004 the hindsight bound of the main paper's Env B results, before the pre-registered runs that the paper reports.
+Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, and 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, the thirty-seven-gNB extension in Section S15 as 85e6781, its fresh-seed replication as ab76311, the runs in Section S16 as d251490, and those in Section S17 as c1f8cd2. Two development stages are also disclosed here, although neither changed a reported result. A protocol committed before any of its runs, M67, tried to make AXIOM's training reliable enough to beat both DQN baselines decisively in Env A at three gNBs. Selecting checkpoints on validation episodes brought AXIOM to the oracle but brought the single-agent DQN within 0.05 of it too, so that variant was dropped after the first of eight permitted attempts. A single test of the per-node MLP encoder on ten new seeds in Env B at seven gNBs then led the single-agent DQN by 0.4 to 1.4 per step without a significant result, so AXIOM's encoder was not changed. Separately, exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S14, and probes on pilot seeds 2000 to 2004 the hindsight bound of the main paper's Env B results, before the pre-registered runs that the paper reports.
 
 
 \section*{S14. Shifted load, longer training, and the joint target on fresh seeds}
@@ -340,6 +340,90 @@ MAPPO & 59.07 & 71.8\% & 20.8\% & 0 \\
 Static rule & 81.59 & 79.9\% & 23.0\% & 0 \\
 Accept all & 74.77 & 66.4\% & 18.0\% & 15 \\
 Tuned local rule, carried over & 84.09 & 84.5\% & 55.7\% & 0 \\
+\end{tabular}
+\end{table}
+
+\section*{S17. Fifth-review runs}
+This section lists every arm of the runs that answer the fifth internal review, whose plan was committed before any of them as commit c1f8cd2. Four of its six predictions failed, and every result is reported. VDN keeps the independent DQN's per-gNB networks, optimiser, exploration, and target schedule, but trains them on one joint target per step, regressing the sum of the step's chosen values on the reward plus the summed next-step maxima. It was not tuned. The per-gNB penalty charges the violation penalty of each slice once for every gNB that violates it, instead of once for the cluster, for every arm in training and evaluation. Under uneven load each gNB's load multiplier is drawn between 75\% and 125\% per seed, and the rule re-tuned on those training streams sheds eMBB once the URLLC queue passes 0.05 rather than 0.2.
+
+\begin{table}[!htbp]
+\caption{VDN against AXIOM and the independent DQN, abbreviated Indep., reward per step and priority-slice compliance, 30 seeds per cell}
+\label{tab:s-vdn}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccc}
+Cell & VDN & AXIOM & Indep. DQN & VDN SLA & AXIOM SLA & Indep. SLA \\
+Env A, 3 gNBs & 12.664 & 12.698 & 11.587 & 99.0\% & 98.9\% & 92.9\% \\
+Env B, 3 gNBs & 8.552 & 8.832 & 7.794 & 62.5\% & 65.1\% & 59.0\% \\
+Env A, 19 gNBs, hex & 86.428 & 89.161 & 76.388 & 83.4\% & 97.0\% & 56.4\% \\
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\caption{Env A with nineteen gNBs on the hex layout under higher offered load, 15 seeds. SLA is priority-slice compliance}
+\label{tab:s-oversub}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccc}
+Policy & Reward, 110\% & SLA, 110\% & Collapsed & Reward, 120\% & SLA, 120\% & Collapsed \\
+AXIOM & 84.58 & 63.4\% & 0 & 77.44 & 21.7\% & 0 \\
+Single-agent DQN & 72.81 & 34.3\% & 15 & 65.75 & 17.1\% & 14 \\
+Independent DQN & 71.36 & 29.5\% & 0 & 68.88 & 15.3\% & 0 \\
+MAPPO & 63.72 & 39.1\% & 0 & 61.50 & 19.2\% & 0 \\
+Static rule & 85.40 & 65.5\% & 0 & 77.93 & 21.9\% & 0 \\
+Accept all & 72.81 & 34.3\% & 15 & 69.25 & 17.6\% & 15 \\
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\caption{Env B with nineteen gNBs under raised load, 15 checkpoints, neither retrained nor re-tuned. Reward per step and per-gNB priority-slice compliance}
+\label{tab:s-shift19}
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{lcccccc}
+Load & AXIOM & Tuned rule & Static rule & AXIOM SLA & Tuned SLA & Static SLA \\
+Nominal & 80.28 & 84.09 & 81.59 & 77.3\% & 84.5\% & 79.9\% \\
+110\% & 77.01 & 70.79 & 78.84 & 41.6\% & 56.7\% & 41.6\% \\
+115\% & 76.59 & 69.04 & 78.50 & 33.4\% & 46.7\% & 33.1\% \\
+120\% & 76.30 & 67.64 & 78.27 & 26.8\% & 38.5\% & 26.4\% \\
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\caption{Env B with seven gNBs on the ring layout under uneven per-gNB load, 15 seeds. SLA is per-gNB priority-slice compliance}
+\label{tab:s-hetero}
+\centering
+\small
+\begin{tabular}{lccc}
+Policy & Reward & SLA & Collapsed \\
+AXIOM & 20.22 & 63.4\% & 0 \\
+Single-agent DQN & 19.04 & 62.3\% & 0 \\
+Independent DQN & 18.65 & 61.0\% & 0 \\
+MAPPO & 15.95 & 59.0\% & 0 \\
+Static rule & 20.49 & 64.0\% & 0 \\
+Accept all & 18.03 & 56.9\% & 15 \\
+Tuned rule, carried over & 19.86 & 71.6\% & 0 \\
+Tuned rule, re-tuned & 20.17 & 71.8\% & 0 \\
+\end{tabular}
+\end{table}
+
+\begin{table}[!htbp]
+\caption{Env B with nineteen gNBs on the hex layout with the per-gNB SLA penalty, 15 seeds. Reward is under that penalty, and SLA is per-gNB priority-slice compliance}
+\label{tab:s-pergnbpen}
+\centering
+\small
+\begin{tabular}{lccc}
+Policy & Reward & SLA & Collapsed \\
+AXIOM & 23.48 & 79.2\% & 0 \\
+Single-agent DQN & -8.69 & 65.5\% & 10 \\
+Independent DQN & -20.59 & 63.8\% & 0 \\
+MAPPO & -45.64 & 60.6\% & 0 \\
+Static rule & 23.59 & 79.9\% & 0 \\
+Accept all & -0.28 & 66.4\% & 15 \\
+Tuned rule, carried over & 39.41 & 84.5\% & 0 \\
 \end{tabular}
 \end{table}
 
