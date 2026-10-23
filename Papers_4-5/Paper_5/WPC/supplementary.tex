@@ -128,6 +128,8 @@ The federated campaign runs in Env A on seeds 900 to 909, with a five-level nois
 
 A validation screen checks every trained checkpoint of every learned arm before evaluation. Each checkpoint plays five greedy episodes on its own training stream, never on the held-out stream, and fails the screen if it blocks no request or if fewer than 90\% of its blocks target mMTC. We report every seed whether or not it passes, and separately report a two-seed deployment protocol that trains a pair of seeds and deploys the first one to pass. The same screen applies to every learned arm, so it gives AXIOM no advantage the baselines lack. In Env B the reward-optimal policy sheds eMBB as well as mMTC, so the 90\% criterion would fail good policies there. A pre-registration amendment, recorded before any result was read, therefore makes the no-blocking criterion the primary screen in Env B.
 
+An AI assistant, Anthropic's Claude, was used to help write the analysis and plotting scripts and to edit the manuscript text. The authors made all research decisions and take full responsibility for the content of this paper.
+
 \section*{S11. Evaluation safeguard details}
 This shared-budget design replaces an earlier simulator that served each slice independently at about a quarter of the budget, where accepting every request was harmless. The main paper's evaluation safeguards show how a trivial accept-all baseline exposed that, and verifies that shedding mMTC is both the reward-optimal and the SLA-protecting behaviour in the current design.
 
