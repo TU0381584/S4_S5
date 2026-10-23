@@ -193,25 +193,25 @@
  },
  {
   "label": "A3 vs indep diff",
-  "snippet": "independent DQN by $+1.110$",
+  "snippet": "1.110 more reward per step than the independent DQN",
   "computed": 1.1101800222827332,
-  "formatted": "+1.110",
+  "formatted": "1.110",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "A3 vs mappo diff",
-  "snippet": "MAPPO by $+2.685$",
+  "snippet": "and 2.685 more than MAPPO",
   "computed": 2.684510394290301,
-  "formatted": "+2.685",
+  "formatted": "2.685",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "A3 vs single diff",
-  "snippet": "$+0.311$ with 95\\% CI",
+  "snippet": "single-agent DQN, 0.311 with 95\\% CI",
   "computed": 0.31102970085825493,
-  "formatted": "+0.311",
+  "formatted": "0.311",
   "in_tex": true,
   "ok": true
  },
@@ -252,33 +252,33 @@
  },
  {
   "label": "A3 MLP diff",
-  "snippet": "a difference of $+0.058$",
+  "snippet": "earning 0.058 more reward per step with 95\\% CI",
   "computed": 0.05754008404107231,
-  "formatted": "+0.058",
+  "formatted": "0.058",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "Arep vs single_agent_dqn",
-  "snippet": "$+1.083$",
+  "snippet": "There it earns 1.083, 0.799, and 3.806 more reward per step",
   "computed": 1.0831703100728443,
-  "formatted": "+1.083",
+  "formatted": "1.083",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "Arep vs independent_dqn",
-  "snippet": "$+0.799$",
+  "snippet": "There it earns 1.083, 0.799, and 3.806 more reward per step",
   "computed": 0.7985537879681402,
-  "formatted": "+0.799",
+  "formatted": "0.799",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "Arep vs mappo_tuned",
-  "snippet": "$+3.806$",
+  "snippet": "There it earns 1.083, 0.799, and 3.806 more reward per step",
   "computed": 3.8059237501865,
-  "formatted": "+3.806",
+  "formatted": "3.806",
   "in_tex": true,
   "ok": true
  },
@@ -304,25 +304,25 @@
  },
  {
   "label": "pooled40 vs single_agent_dqn",
-  "snippet": "$+0.504$",
+  "snippet": "its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step",
   "computed": 0.5040648531619023,
-  "formatted": "+0.504",
+  "formatted": "0.504",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "pooled40 vs independent_dqn",
-  "snippet": "$+1.032$",
+  "snippet": "its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step",
   "computed": 1.032273463704085,
-  "formatted": "+1.032",
+  "formatted": "1.032",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "pooled40 vs mappo_tuned",
-  "snippet": "$+2.965$",
+  "snippet": "its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step",
   "computed": 2.9648637332643504,
-  "formatted": "+2.965",
+  "formatted": "2.965",
   "in_tex": true,
   "ok": true
  },
@@ -401,17 +401,17 @@
  },
  {
   "label": "sens load107 vs indep",
-  "snippet": "$+1.073$ at $p=0.006$",
+  "snippet": "1.073 reward per step at $p=0.006$",
   "computed": 1.0731185540775667,
-  "formatted": "+1.073",
+  "formatted": "1.073",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "sens weights vs single",
-  "snippet": "$+1.264$ at $p=0.041$",
+  "snippet": "1.264 at $p=0.041$",
   "computed": 1.2640881889206748,
-  "formatted": "+1.264",
+  "formatted": "1.264",
   "in_tex": true,
   "ok": true
  },
@@ -585,17 +585,17 @@
  },
  {
   "label": "H1 static",
-  "snippet": "that rule by $+2.495$",
+  "snippet": "AXIOM earns 2.495 more reward per step than that rule",
   "computed": 2.495073558592738,
-  "formatted": "+2.495",
+  "formatted": "2.495",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H1 accept-all",
-  "snippet": "accept-all by $+4.476$",
+  "snippet": "and 4.476 more than accept-all",
   "computed": 4.475507966138972,
-  "formatted": "+4.476",
+  "formatted": "4.476",
   "in_tex": true,
   "ok": true
  },
@@ -628,25 +628,25 @@
  },
  {
   "label": "H2 n3 vs independent_dqn",
-  "snippet": "$+1.038$",
+  "snippet": "It earns 1.038, 1.337, and 1.863 more reward per step",
   "computed": 1.03802758760822,
-  "formatted": "+1.038",
+  "formatted": "1.038",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H2 n3 vs single_agent_dqn",
-  "snippet": "$+1.337$",
+  "snippet": "It earns 1.038, 1.337, and 1.863 more reward per step",
   "computed": 1.3369261586250398,
-  "formatted": "+1.337",
+  "formatted": "1.337",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H2 n3 vs mappo_tuned",
-  "snippet": "$+1.863$",
+  "snippet": "It earns 1.038, 1.337, and 1.863 more reward per step",
   "computed": 1.8633768606728818,
-  "formatted": "+1.863",
+  "formatted": "1.863",
   "in_tex": true,
   "ok": true
  },
@@ -2778,7 +2778,7 @@
  },
  {
   "label": "reframe: fresh 20-seed single-agent gap",
-  "snippet": "at $-0.021$ and $+0.159$ per step",
+  "snippet": "at margins of $-0.021$ and $0.159$ reward per step",
   "computed": -0.020622156053140106,
   "formatted": "-0.021",
   "in_tex": true,
@@ -2786,9 +2786,9 @@
  },
  {
   "label": "reframe: fresh 40-seed single-agent gap",
-  "snippet": "at $-0.021$ and $+0.159$ per step",
+  "snippet": "at margins of $-0.021$ and $0.159$ reward per step",
   "computed": 0.15941169354306167,
-  "formatted": "+0.159",
+  "formatted": "0.159",
   "in_tex": true,
   "ok": true
  },
@@ -3447,7 +3447,7 @@
  },
  {
   "label": "reframe: M72 overload lead 1.10",
-  "snippet": "rule by 0.46, 0.43, and 0.35 reward per step",
+  "snippet": "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
   "computed": 0.4579227494591433,
   "formatted": "0.46",
   "in_tex": true,
@@ -3455,7 +3455,7 @@
  },
  {
   "label": "reframe: M72 overload lead 1.15",
-  "snippet": "rule by 0.46, 0.43, and 0.35 reward per step",
+  "snippet": "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
   "computed": 0.430786223708374,
   "formatted": "0.43",
   "in_tex": true,
@@ -3463,7 +3463,7 @@
  },
  {
   "label": "reframe: M72 overload lead 1.20",
-  "snippet": "rule by 0.46, 0.43, and 0.35 reward per step",
+  "snippet": "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
   "computed": 0.35427552004125945,
   "formatted": "0.35",
   "in_tex": true,
@@ -3491,7 +3491,7 @@
  },
  {
   "label": "reframe: M72 N=7 nominal deficit",
-  "snippet": "from a deficit of 3.84 under nominal load",
+  "snippet": "AXIOM trails the rule by 3.84 reward per step under nominal load",
   "computed": 3.8398469560189636,
   "formatted": "3.84",
   "in_tex": true,
@@ -3499,7 +3499,7 @@
  },
  {
   "label": "reframe: M72 N=7 lead 1.10",
-  "snippet": "to leads of 1.86 and 3.14 at 1.10",
+  "snippet": "but leads it by 1.86 and 3.14 at 110\\% and 120\\% load",
   "computed": 1.8638390598956571,
   "formatted": "1.86",
   "in_tex": true,
@@ -3507,7 +3507,7 @@
  },
  {
   "label": "reframe: M72 N=7 lead 1.20",
-  "snippet": "to leads of 1.86 and 3.14 at 1.10",
+  "snippet": "but leads it by 1.86 and 3.14 at 110\\% and 120\\% load",
   "computed": 3.1363923809498457,
   "formatted": "3.14",
   "in_tex": true,
@@ -3523,7 +3523,7 @@
  },
  {
   "label": "reframe: M72 re-tuned rule beats AXIOM at 1.20",
-  "snippet": "and beats it by 0.62 at 1.20",
+  "snippet": "and beats it by 0.62 reward per step at 120\\%",
   "computed": 0.6198413736889133,
   "formatted": "0.62",
   "in_tex": true,
@@ -3815,7 +3815,7 @@
  },
  {
   "label": "reframe: M73 compliance lead low",
-  "snippet": "by 32.0 to 67.8 percentage points of compliance",
+  "snippet": "AXIOM keeps 32.0 to 67.8 percentage points more compliance",
   "computed": 32.026666666666664,
   "formatted": "32.0",
   "in_tex": true,
@@ -3823,7 +3823,7 @@
  },
  {
   "label": "reframe: M73 compliance lead high",
-  "snippet": "by 32.0 to 67.8 percentage points of compliance",
+  "snippet": "AXIOM keeps 32.0 to 67.8 percentage points more compliance",
   "computed": 67.80444444444444,
   "formatted": "67.8",
   "in_tex": true,
@@ -3831,7 +3831,7 @@
  },
  {
   "label": "reframe: M73 reward lead low",
-  "snippet": "by 18.3 to 29.5 reward per step",
+  "snippet": "and earns 18.3 to 29.5 more reward per step",
   "computed": 18.26791840698576,
   "formatted": "18.3",
   "in_tex": true,
@@ -3839,7 +3839,7 @@
  },
  {
   "label": "reframe: M73 reward lead high",
-  "snippet": "by 18.3 to 29.5 reward per step",
+  "snippet": "and earns 18.3 to 29.5 more reward per step",
   "computed": 29.506940165592457,
   "formatted": "29.5",
   "in_tex": true,
@@ -3929,7 +3929,7 @@
  },
  {
   "label": "reframe: M73 grid MAPPO compliance gap",
-  "snippet": "AXIOM beats it by 29.2 points and 23.23 reward per step on 15 seeds",
+  "snippet": "AXIOM keeps 29.2 percentage points more compliance and earns 23.23 more reward per step on 15 seeds",
   "computed": 29.196666666666662,
   "formatted": "29.2",
   "in_tex": true,
@@ -3937,7 +3937,7 @@
  },
  {
   "label": "reframe: M73 grid MAPPO reward gap",
-  "snippet": "AXIOM beats it by 29.2 points and 23.23 reward per step on 15 seeds",
+  "snippet": "AXIOM keeps 29.2 percentage points more compliance and earns 23.23 more reward per step on 15 seeds",
   "computed": 23.230492172847004,
   "formatted": "23.23",
   "in_tex": true,
@@ -4400,7 +4400,7 @@
  },
  {
   "label": "reframe: M75 D reward lead low",
-  "snippet": "on reward by 5.54 to 21.22 per step",
+  "snippet": "AXIOM earns 5.54 to 21.22 more reward per step than every learned baseline",
   "computed": 5.541640468166502,
   "formatted": "5.54",
   "in_tex": true,
@@ -4408,7 +4408,7 @@
  },
  {
   "label": "reframe: M75 D reward lead high",
-  "snippet": "on reward by 5.54 to 21.22 per step",
+  "snippet": "AXIOM earns 5.54 to 21.22 more reward per step than every learned baseline",
   "computed": 21.21517649223007,
   "formatted": "21.22",
   "in_tex": true,
@@ -4416,7 +4416,7 @@
  },
  {
   "label": "reframe: M75 D per-gNB lead low",
-  "snippet": "on per-gNB priority-slice compliance by 5.5 to 10.9 points",
+  "snippet": "keeps 5.5 to 10.9 percentage points more per-gNB priority-slice compliance",
   "computed": 5.477953216374274,
   "formatted": "5.5",
   "in_tex": true,
@@ -4424,7 +4424,7 @@
  },
  {
   "label": "reframe: M75 D per-gNB lead high",
-  "snippet": "on per-gNB priority-slice compliance by 5.5 to 10.9 points",
+  "snippet": "keeps 5.5 to 10.9 percentage points more per-gNB priority-slice compliance",
   "computed": 10.930116959064328,
   "formatted": "10.9",
   "in_tex": true,
@@ -4698,6 +4698,68 @@
   "ok": true
  },
  {
+  "label": "reframe: MAPPO cost numbers at 37 gNBs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: MAPPO and AXIOM median training seconds at 37 gNBs",
+  "snippet": null,
+  "computed": [
+   495.35,
+   1182.4
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: Env B 3 gNBs AXIOM over MAPPO percent",
+  "snippet": "AXIOM earns 27\\% more reward per step than MAPPO at three gNBs, 8.83 against 6.97",
+  "computed": 26.740273897977463,
+  "formatted": "27",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: Env B 7 gNBs AXIOM over MAPPO 7 to 15 percent, significant on two layouts after Holm",
+  "snippet": null,
+  "computed": {
+   "rel": [
+    15.160903762729184,
+    11.470527720520774,
+    7.2457758130659355
+   ],
+   "p_holm": {
+    "fully_connected": 0.0322265625,
+    "ring": 0.0145263671875,
+    "hex": 0.574951171875
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: Env B 19 gNBs AXIOM over MAPPO percent",
+  "snippet": "and 36\\% more at nineteen gNBs, 80.28 against 59.07",
+  "computed": 35.91822054686071,
+  "formatted": "36",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: AXIOM slowest decision share of control period",
+  "snippet": "AXIOM's slowest decision takes 0.2\\% of the 5 s control period",
+  "computed": 0.1979,
+  "formatted": "0.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -4724,9 +4786,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 488",
+  "label": "text quotes the final check count of 494",
   "snippet": null,
-  "computed": 488,
+  "computed": 494,
   "formatted": null,
   "in_tex": null,
   "ok": true
