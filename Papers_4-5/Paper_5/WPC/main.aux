@@ -26,10 +26,10 @@
 \citation{tsampazi2023xapps}
 \citation{bega2020market}
 \citation{raza2019slicing}
+\citation{khani2024sacsurvey}
 \citation{rashid2020qmix}
 \citation{yu2022mappo}
 \citation{zangooei2024flexible}
-\citation{khani2024sacsurvey}
 \citation{kulkarni2024actor}
 \citation{kamal2026ddqn}
 \citation{alqahtani2025dynamic}
@@ -53,83 +53,81 @@
 \newlabel{tab:related}{{1}{5}{Closest prior work, as described in each paper's title and abstract}{table.1}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{5}{section.3}\protected@file@percent }
 \newlabel{sec:system-model}{{3}{5}{System Model and Problem Formulation}{section.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the research. An AXIOM controller is evaluated across four offline campaigns in two shared-budget environments, every result checked by evaluation safeguards, with the deployment pipeline checked on a live single-gNB testbed}}{5}{figure.2}\protected@file@percent }
+\newlabel{fig:overview}{{2}{5}{Overview of the research. An AXIOM controller is evaluated across four offline campaigns in two shared-budget environments, every result checked by evaluation safeguards, with the deployment pipeline checked on a live single-gNB testbed}{figure.2}{}}
 \newlabel{eq:reward}{{1}{6}{System Model and Problem Formulation}{equation.3.1}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Overview of the research. An AXIOM controller is evaluated across four offline campaigns in two shared-budget environments, every result checked by evaluation safeguards, with the deployment pipeline checked on a live single-gNB testbed}}{6}{figure.2}\protected@file@percent }
-\newlabel{fig:overview}{{2}{6}{Overview of the research. An AXIOM controller is evaluated across four offline campaigns in two shared-budget environments, every result checked by evaluation safeguards, with the deployment pipeline checked on a live single-gNB testbed}{figure.2}{}}
-\newlabel{eq:margin}{{2}{7}{System Model and Problem Formulation}{equation.3.2}{}}
+\newlabel{eq:margin}{{2}{6}{System Model and Problem Formulation}{equation.3.2}{}}
+\citation{wu2021gnnsurvey}
 \@writefile{toc}{\contentsline {section}{\numberline {4}The AXIOM Architecture}{7}{section.4}\protected@file@percent }
 \newlabel{sec:methodology}{{4}{7}{The AXIOM Architecture}{section.4}{}}
-\citation{wu2021gnnsurvey}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shared Encoder, Decentralised Q-Heads}{7}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:methodology-perslice}{{4.1}{7}{Shared Encoder, Decentralised Q-Heads}{subsection.4.1}{}}
+\newlabel{eq:gat}{{3}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces AXIOM architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step}}{8}{figure.3}\protected@file@percent }
 \newlabel{fig:architecture}{{3}{8}{AXIOM architecture. a, A shared graph-attention encoder over the fully-connected 3-gNB topology produces one embedding per node, consumed at execution time by per-slice Q-heads using only that node's row. b, The federated variant, each gNB a client synchronised by periodic FedAvg with an optional DP-SGD clip-and-noise step}{figure.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shared Encoder, Decentralised Q-Heads}{8}{subsection.4.1}\protected@file@percent }
-\newlabel{sec:methodology-perslice}{{4.1}{8}{Shared Encoder, Decentralised Q-Heads}{subsection.4.1}{}}
-\newlabel{eq:gat}{{3}{8}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
 \newlabel{eq:gat-agg}{{4}{8}{Shared Encoder, Decentralised Q-Heads}{equation.4.4}{}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces AXIOM: centralised training, decentralised execution}}{9}{algorithm.1}\protected@file@percent }
-\newlabel{alg:gat-ctde}{{1}{9}{Shared Encoder, Decentralised Q-Heads}{algorithm.1}{}}
 \citation{rashid2020qmix}
 \citation{lim2020flmec}
 \citation{li2020flchallenges}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces AXIOM: centralised training, decentralised execution}}{9}{algorithm.1}\protected@file@percent }
+\newlabel{alg:gat-ctde}{{1}{9}{Shared Encoder, Decentralised Q-Heads}{algorithm.1}{}}
+\newlabel{eq:td}{{5}{9}{Shared Encoder, Decentralised Q-Heads}{equation.4.5}{}}
 \citation{dpsgd}
 \citation{zcdp}
-\newlabel{eq:td}{{5}{10}{Shared Encoder, Decentralised Q-Heads}{equation.4.5}{}}
+\citation{yu2022mappo}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Federated Training with Differential Privacy}{10}{subsection.4.2}\protected@file@percent }
 \newlabel{eq:zcdp}{{6}{10}{Federated Training with Differential Privacy}{equation.4.6}{}}
-\citation{yu2022mappo}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Setup}{11}{subsection.4.3}\protected@file@percent }
-\newlabel{sec:setup}{{4.3}{11}{Experimental Setup}{subsection.4.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Simulation and training parameters, shared by both environments unless stated}}{12}{table.2}\protected@file@percent }
-\newlabel{tab:params}{{2}{12}{Simulation and training parameters, shared by both environments unless stated}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Setup}{10}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:setup}{{4.3}{10}{Experimental Setup}{subsection.4.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Simulation and training parameters, shared by both environments unless stated}}{11}{table.2}\protected@file@percent }
+\newlabel{tab:params}{{2}{11}{Simulation and training parameters, shared by both environments unless stated}{table.2}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Safeguards}{12}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:collapse}{{4.4}{12}{Evaluation Safeguards}{subsection.4.4}{}}
+\newlabel{sec:correctness-metrics}{{4.4}{12}{Evaluation Safeguards}{subsection.4.4}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Evaluation failures this paper's safeguards caught during the work}}{13}{table.3}\protected@file@percent }
 \newlabel{tab:safeguards}{{3}{13}{Evaluation failures this paper's safeguards caught during the work}{table.3}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Evaluation Safeguards}{13}{subsection.4.4}\protected@file@percent }
-\newlabel{sec:collapse}{{4.4}{13}{Evaluation Safeguards}{subsection.4.4}{}}
-\newlabel{sec:correctness-metrics}{{4.4}{13}{Evaluation Safeguards}{subsection.4.4}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Results}{13}{section.5}\protected@file@percent }
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces How the four learned policies compare. Env A has static load, Env B time-varying load with inter-cell coupling. Priority SLA is the mean of URLLC and eMBB compliance}}{13}{table.4}\protected@file@percent }
+\newlabel{tab:compare}{{4}{13}{How the four learned policies compare. Env A has static load, Env B time-varying load with inter-cell coupling. Priority SLA is the mean of URLLC and eMBB compliance}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Env A, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance, and LR is the learning rate}}{14}{table.5}\protected@file@percent }
+\newlabel{tab:m2-results}{{5}{14}{Env A, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance, and LR is the learning rate}{table.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}Static Load, Three gNBs}{14}{subsection.5.1}\protected@file@percent }
 \newlabel{sec:results-m2}{{5.1}{14}{Static Load, Three gNBs}{subsection.5.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces How the four learned policies compare. Env A has static load, Env B time-varying load with inter-cell coupling. Priority SLA is the mean of URLLC and eMBB compliance}}{14}{table.4}\protected@file@percent }
-\newlabel{tab:compare}{{4}{14}{How the four learned policies compare. Env A has static load, Env B time-varying load with inter-cell coupling. Priority SLA is the mean of URLLC and eMBB compliance}{table.4}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Env A, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance, and LR is the learning rate}}{15}{table.5}\protected@file@percent }
-\newlabel{tab:m2-results}{{5}{15}{Env A, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance, and LR is the learning rate}{table.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Env A, three gNBs, per-seed evidence. a, Paired per-seed mean reward per step of AXIOM versus single-agent DQN, coloured by win, tie, or loss. b, Per-seed reward distribution for AXIOM and the two DQN baselines}}{14}{figure.4}\protected@file@percent }
+\newlabel{fig:m2-results}{{4}{14}{Env A, three gNBs, per-seed evidence. a, Paired per-seed mean reward per step of AXIOM versus single-agent DQN, coloured by win, tie, or loss. b, Per-seed reward distribution for AXIOM and the two DQN baselines}{figure.4}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, mean and 95\% CI. b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}}{15}{figure.5}\protected@file@percent }
+\newlabel{fig:m6-topology}{{5}{15}{Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, mean and 95\% CI. b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}{figure.5}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Cluster-Size Scaling}{15}{subsection.5.2}\protected@file@percent }
 \newlabel{sec:results-m6}{{5.2}{15}{Cluster-Size Scaling}{subsection.5.2}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Env A, three gNBs, per-seed evidence. a, Paired per-seed mean reward per step of AXIOM versus single-agent DQN, coloured by win, tie, or loss. b, Per-seed reward distribution for AXIOM and the two DQN baselines}}{15}{figure.4}\protected@file@percent }
-\newlabel{fig:m2-results}{{4}{15}{Env A, three gNBs, per-seed evidence. a, Paired per-seed mean reward per step of AXIOM versus single-agent DQN, coloured by win, tie, or loss. b, Per-seed reward distribution for AXIOM and the two DQN baselines}{figure.4}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, mean and 95\% CI. b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}}{16}{figure.5}\protected@file@percent }
-\newlabel{fig:m6-topology}{{5}{16}{Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, mean and 95\% CI. b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}{figure.5}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}}{16}{figure.6}\protected@file@percent }
 \newlabel{fig:gnb-map}{{6}{16}{Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}{figure.6}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces AXIOM against the three learned baselines. a, Env A reward per step at three gNBs against compliance at 37 gNBs, with 95\% CIs. b, Six measured axes, each as a fraction of the best learned policy on it}}{18}{figure.7}\protected@file@percent }
 \newlabel{fig:quadrant}{{7}{18}{AXIOM against the three learned baselines. a, Env A reward per step at three gNBs against compliance at 37 gNBs, with 95\% CIs. b, Six measured axes, each as a fraction of the best learned policy on it}{figure.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ablations and Sensitivity}{19}{subsection.5.3}\protected@file@percent }
-\newlabel{sec:results-ablation}{{5.3}{19}{Ablations and Sensitivity}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Ablations and Sensitivity}{18}{subsection.5.3}\protected@file@percent }
+\newlabel{sec:results-ablation}{{5.3}{18}{Ablations and Sensitivity}{subsection.5.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Time-Varying Load with Inter-Cell Coupling}{19}{subsection.5.4}\protected@file@percent }
+\newlabel{sec:results-envb}{{5.4}{19}{Time-Varying Load with Inter-Cell Coupling}{subsection.5.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}}{20}{figure.8}\protected@file@percent }
 \newlabel{fig:envb}{{8}{20}{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}{figure.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Time-Varying Load with Inter-Cell Coupling}{20}{subsection.5.4}\protected@file@percent }
-\newlabel{sec:results-envb}{{5.4}{20}{Time-Varying Load with Inter-Cell Coupling}{subsection.5.4}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Env B, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Rules above the line, learned policies below it}}{20}{table.6}\protected@file@percent }
 \newlabel{tab:envb}{{6}{20}{Env B, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Rules above the line, learned policies below it}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Federated Training and DP}{22}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:results-m3}{{5.5}{22}{Federated Training and DP}{subsection.5.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Disruption}{22}{subsection.5.6}\protected@file@percent }
-\newlabel{sec:results-m4}{{5.6}{22}{Disruption}{subsection.5.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Model Complexity}{22}{subsection.5.7}\protected@file@percent }
-\newlabel{sec:results-complexity}{{5.7}{22}{Model Complexity}{subsection.5.7}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Reproducibility and Fresh-Seed Verification}{23}{subsection.5.8}\protected@file@percent }
-\newlabel{sec:results-verify}{{5.8}{23}{Reproducibility and Fresh-Seed Verification}{subsection.5.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.9}Live Deployment}{23}{subsection.5.9}\protected@file@percent }
-\newlabel{sec:results-m8}{{5.9}{23}{Live Deployment}{subsection.5.9}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}}{23}{table.7}\protected@file@percent }
-\newlabel{tab:complexity}{{7}{23}{Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}{table.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{24}{section.6}\protected@file@percent }
-\newlabel{sec:conclusion}{{6}{24}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Model Complexity}{21}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:results-complexity}{{5.5}{21}{Model Complexity}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reproducibility and Fresh-Seed Verification}{22}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:results-verify}{{5.6}{22}{Reproducibility and Fresh-Seed Verification}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Federation, Privacy, Disruption, and Live Deployment}{22}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:results-m3}{{5.7}{22}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
+\newlabel{sec:results-m4}{{5.7}{22}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
+\newlabel{sec:results-m8}{{5.7}{22}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}}{22}{table.7}\protected@file@percent }
+\newlabel{tab:complexity}{{7}{22}{Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}{table.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{23}{section.6}\protected@file@percent }
+\newlabel{sec:conclusion}{{6}{23}{Conclusion}{section.6}{}}
+\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{24}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{24}{section*.3}\protected@file@percent }
 \bibdata{refs}
 \bibcite{dpsgd}{{1}{2016}{{Abadi et~al.}}{{Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar, and Zhang}}}
 \bibcite{ahmadi2024generalizable}{{2}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
-\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{25}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{25}{section*.3}\protected@file@percent }
 \bibcite{alqahtani2025dynamic}{{3}{2025}{{AlQahtani}}{{}}}
 \bibcite{amiri2024vnf}{{4}{2024}{{Amiri et~al.}}{{Amiri, Wang, Shojafar, and Tafazolli}}}
 \bibcite{bega2020market}{{5}{2020}{{Bega et~al.}}{{Bega, Gramaglia, Banchs, Sciancalepore, and Costa-P{\'e}rez}}}
@@ -170,4 +168,4 @@
 \bibcite{yu2022mappo}{{40}{2022}{{Yu et~al.}}{{Yu, Velu, Vinitsky, Gao, Wang, Bayen, and Wu}}}
 \bibcite{zangooei2024flexible}{{41}{2024}{{Zangooei et~al.}}{{Zangooei, Golkarifard, Rouili, Saha, and Boutaba}}}
 \bibcite{zhang2022federatedoran}{{42}{2022}{{Zhang et~al.}}{{Zhang, Zhou, and Erol-Kantarci}}}
-\gdef \@abspage@last{30}
+\gdef \@abspage@last{29}

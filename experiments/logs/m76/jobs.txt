@@ -1,0 +1,353 @@
+b2_rule_retune|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm rule_local --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+c_ax_900|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 900
+c_ax_901|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 901
+c_ax_902|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 902
+c_ax_903|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 903
+c_ax_904|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 904
+c_ax_905|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 905
+c_ax_906|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 906
+c_ax_907|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 907
+c_ax_908|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 908
+c_ax_909|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 909
+c_ax_910|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 910
+c_ax_911|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 911
+c_ax_1000|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1000
+c_ax_1001|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1001
+c_ax_1002|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1002
+c_ind_900|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 900
+c_ind_901|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 901
+c_ind_902|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 902
+c_ind_903|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 903
+c_ind_904|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 904
+c_ind_905|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 905
+c_ind_906|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 906
+c_ind_907|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 907
+c_ind_908|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 908
+c_ind_909|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 909
+c_ind_910|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 910
+c_ind_911|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 911
+c_ind_1000|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1000
+c_ind_1001|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1001
+c_ind_1002|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1002
+e_1.10_axiom2_900|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 900
+e_1.10_axiom2_901|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 901
+e_1.10_axiom2_902|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 902
+e_1.10_axiom2_903|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 903
+e_1.10_axiom2_904|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 904
+e_1.10_axiom2_905|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 905
+e_1.10_axiom2_906|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 906
+e_1.10_axiom2_907|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 907
+e_1.10_axiom2_908|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 908
+e_1.10_axiom2_909|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 909
+e_1.10_axiom2_910|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 910
+e_1.10_axiom2_911|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 911
+e_1.10_axiom2_1000|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1000
+e_1.10_axiom2_1001|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1001
+e_1.10_axiom2_1002|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1002
+e_1.10_independent_dqn_900|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 900
+e_1.10_independent_dqn_901|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 901
+e_1.10_independent_dqn_902|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 902
+e_1.10_independent_dqn_903|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 903
+e_1.10_independent_dqn_904|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 904
+e_1.10_independent_dqn_905|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 905
+e_1.10_independent_dqn_906|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 906
+e_1.10_independent_dqn_907|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 907
+e_1.10_independent_dqn_908|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 908
+e_1.10_independent_dqn_909|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 909
+e_1.10_independent_dqn_910|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 910
+e_1.10_independent_dqn_911|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 911
+e_1.10_independent_dqn_1000|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1000
+e_1.10_independent_dqn_1001|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1001
+e_1.10_independent_dqn_1002|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1002
+e_1.20_axiom2_900|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 900
+e_1.20_axiom2_901|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 901
+e_1.20_axiom2_902|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 902
+e_1.20_axiom2_903|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 903
+e_1.20_axiom2_904|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 904
+e_1.20_axiom2_905|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 905
+e_1.20_axiom2_906|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 906
+e_1.20_axiom2_907|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 907
+e_1.20_axiom2_908|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 908
+e_1.20_axiom2_909|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 909
+e_1.20_axiom2_910|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 910
+e_1.20_axiom2_911|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 911
+e_1.20_axiom2_1000|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1000
+e_1.20_axiom2_1001|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1001
+e_1.20_axiom2_1002|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm axiom2 --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1002
+e_1.20_independent_dqn_900|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 900
+e_1.20_independent_dqn_901|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 901
+e_1.20_independent_dqn_902|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 902
+e_1.20_independent_dqn_903|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 903
+e_1.20_independent_dqn_904|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 904
+e_1.20_independent_dqn_905|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 905
+e_1.20_independent_dqn_906|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 906
+e_1.20_independent_dqn_907|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 907
+e_1.20_independent_dqn_908|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 908
+e_1.20_independent_dqn_909|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 909
+e_1.20_independent_dqn_910|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 910
+e_1.20_independent_dqn_911|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 911
+e_1.20_independent_dqn_1000|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1000
+e_1.20_independent_dqn_1001|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1001
+e_1.20_independent_dqn_1002|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm independent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1002
+d_A19_900||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 900
+d_A19_901||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 901
+d_A19_902||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 902
+d_A19_903||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 903
+d_A19_904||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 904
+d_A19_905||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 905
+d_A19_906||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 906
+d_A19_907||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 907
+d_A19_908||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 908
+d_A19_909||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 909
+d_A19_910||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 910
+d_A19_911||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 911
+d_A19_1000||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 1000
+d_A19_1001||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 1001
+d_A19_1002||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 1002
+d_A19_912||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 912
+d_A19_913||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 913
+d_A19_914||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 914
+d_A19_915||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 915
+d_A19_916||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 916
+d_A19_917||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 917
+d_A19_918||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 918
+d_A19_919||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 919
+d_A19_920||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 920
+d_A19_921||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 921
+d_A19_922||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 922
+d_A19_923||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 923
+d_A19_924||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 924
+d_A19_925||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 925
+d_A19_926||../experiments/scripts/m76_run.py --arm vdn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/d_vdn/A_n19_hex --seeds 926
+b2_axiom2_900|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 900
+b2_axiom2_901|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 901
+b2_axiom2_902|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 902
+b2_axiom2_903|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 903
+b2_axiom2_904|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 904
+b2_axiom2_905|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 905
+b2_axiom2_906|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 906
+b2_axiom2_907|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 907
+b2_axiom2_908|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 908
+b2_axiom2_909|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 909
+b2_axiom2_910|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 910
+b2_axiom2_911|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 911
+b2_axiom2_1000|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1000
+b2_axiom2_1001|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1001
+b2_axiom2_1002|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm axiom2 --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1002
+b2_independent_dqn_900|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 900
+b2_independent_dqn_901|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 901
+b2_independent_dqn_902|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 902
+b2_independent_dqn_903|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 903
+b2_independent_dqn_904|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 904
+b2_independent_dqn_905|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 905
+b2_independent_dqn_906|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 906
+b2_independent_dqn_907|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 907
+b2_independent_dqn_908|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 908
+b2_independent_dqn_909|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 909
+b2_independent_dqn_910|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 910
+b2_independent_dqn_911|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 911
+b2_independent_dqn_1000|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1000
+b2_independent_dqn_1001|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1001
+b2_independent_dqn_1002|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm independent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1002
+b2_mappo_tuned_900|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 900
+b2_mappo_tuned_901|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 901
+b2_mappo_tuned_902|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 902
+b2_mappo_tuned_903|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 903
+b2_mappo_tuned_904|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 904
+b2_mappo_tuned_905|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 905
+b2_mappo_tuned_906|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 906
+b2_mappo_tuned_907|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 907
+b2_mappo_tuned_908|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 908
+b2_mappo_tuned_909|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 909
+b2_mappo_tuned_910|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 910
+b2_mappo_tuned_911|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 911
+b2_mappo_tuned_1000|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1000
+b2_mappo_tuned_1001|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1001
+b2_mappo_tuned_1002|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1002
+b2_single_agent_dqn_900|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 900
+b2_single_agent_dqn_901|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 901
+b2_single_agent_dqn_902|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 902
+b2_single_agent_dqn_903|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 903
+b2_single_agent_dqn_904|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 904
+b2_single_agent_dqn_905|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 905
+b2_single_agent_dqn_906|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 906
+b2_single_agent_dqn_907|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 907
+b2_single_agent_dqn_908|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 908
+b2_single_agent_dqn_909|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 909
+b2_single_agent_dqn_910|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 910
+b2_single_agent_dqn_911|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 911
+b2_single_agent_dqn_1000|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1000
+b2_single_agent_dqn_1001|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1001
+b2_single_agent_dqn_1002|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 1002
+c_mappo_tuned_900|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 900
+c_mappo_tuned_901|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 901
+c_mappo_tuned_902|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 902
+c_mappo_tuned_903|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 903
+c_mappo_tuned_904|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 904
+c_mappo_tuned_905|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 905
+c_mappo_tuned_906|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 906
+c_mappo_tuned_907|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 907
+c_mappo_tuned_908|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 908
+c_mappo_tuned_909|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 909
+c_mappo_tuned_910|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 910
+c_mappo_tuned_911|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 911
+c_mappo_tuned_1000|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1000
+c_mappo_tuned_1001|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1001
+c_mappo_tuned_1002|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm mappo_tuned --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1002
+c_single_agent_dqn_900|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 900
+c_single_agent_dqn_901|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 901
+c_single_agent_dqn_902|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 902
+c_single_agent_dqn_903|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 903
+c_single_agent_dqn_904|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 904
+c_single_agent_dqn_905|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 905
+c_single_agent_dqn_906|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 906
+c_single_agent_dqn_907|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 907
+c_single_agent_dqn_908|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 908
+c_single_agent_dqn_909|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 909
+c_single_agent_dqn_910|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 910
+c_single_agent_dqn_911|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 911
+c_single_agent_dqn_1000|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1000
+c_single_agent_dqn_1001|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1001
+c_single_agent_dqn_1002|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm single_agent_dqn --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 1002
+e_1.10_mappo_tuned_900|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 900
+e_1.10_mappo_tuned_901|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 901
+e_1.10_mappo_tuned_902|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 902
+e_1.10_mappo_tuned_903|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 903
+e_1.10_mappo_tuned_904|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 904
+e_1.10_mappo_tuned_905|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 905
+e_1.10_mappo_tuned_906|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 906
+e_1.10_mappo_tuned_907|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 907
+e_1.10_mappo_tuned_908|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 908
+e_1.10_mappo_tuned_909|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 909
+e_1.10_mappo_tuned_910|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 910
+e_1.10_mappo_tuned_911|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 911
+e_1.10_mappo_tuned_1000|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1000
+e_1.10_mappo_tuned_1001|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1001
+e_1.10_mappo_tuned_1002|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1002
+e_1.10_single_agent_dqn_900|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 900
+e_1.10_single_agent_dqn_901|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 901
+e_1.10_single_agent_dqn_902|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 902
+e_1.10_single_agent_dqn_903|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 903
+e_1.10_single_agent_dqn_904|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 904
+e_1.10_single_agent_dqn_905|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 905
+e_1.10_single_agent_dqn_906|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 906
+e_1.10_single_agent_dqn_907|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 907
+e_1.10_single_agent_dqn_908|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 908
+e_1.10_single_agent_dqn_909|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 909
+e_1.10_single_agent_dqn_910|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 910
+e_1.10_single_agent_dqn_911|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 911
+e_1.10_single_agent_dqn_1000|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1000
+e_1.10_single_agent_dqn_1001|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1001
+e_1.10_single_agent_dqn_1002|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 1002
+e_1.20_mappo_tuned_900|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 900
+e_1.20_mappo_tuned_901|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 901
+e_1.20_mappo_tuned_902|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 902
+e_1.20_mappo_tuned_903|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 903
+e_1.20_mappo_tuned_904|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 904
+e_1.20_mappo_tuned_905|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 905
+e_1.20_mappo_tuned_906|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 906
+e_1.20_mappo_tuned_907|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 907
+e_1.20_mappo_tuned_908|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 908
+e_1.20_mappo_tuned_909|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 909
+e_1.20_mappo_tuned_910|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 910
+e_1.20_mappo_tuned_911|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 911
+e_1.20_mappo_tuned_1000|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1000
+e_1.20_mappo_tuned_1001|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1001
+e_1.20_mappo_tuned_1002|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm mappo_tuned --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1002
+e_1.20_single_agent_dqn_900|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 900
+e_1.20_single_agent_dqn_901|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 901
+e_1.20_single_agent_dqn_902|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 902
+e_1.20_single_agent_dqn_903|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 903
+e_1.20_single_agent_dqn_904|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 904
+e_1.20_single_agent_dqn_905|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 905
+e_1.20_single_agent_dqn_906|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 906
+e_1.20_single_agent_dqn_907|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 907
+e_1.20_single_agent_dqn_908|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 908
+e_1.20_single_agent_dqn_909|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 909
+e_1.20_single_agent_dqn_910|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 910
+e_1.20_single_agent_dqn_911|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 911
+e_1.20_single_agent_dqn_1000|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1000
+e_1.20_single_agent_dqn_1001|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1001
+e_1.20_single_agent_dqn_1002|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm single_agent_dqn --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 1002
+b1_nominal_900||../experiments/scripts/m76_shift.py --shift nominal --seeds 900 901 902 903 904 --out ../experiments/results/m76/b1_shift_n19
+b1_nominal_905||../experiments/scripts/m76_shift.py --shift nominal --seeds 905 906 907 908 909 --out ../experiments/results/m76/b1_shift_n19
+b1_nominal_910||../experiments/scripts/m76_shift.py --shift nominal --seeds 910 911 1000 1001 1002 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.10_900||../experiments/scripts/m76_shift.py --shift load_1.10 --seeds 900 901 902 903 904 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.10_905||../experiments/scripts/m76_shift.py --shift load_1.10 --seeds 905 906 907 908 909 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.10_910||../experiments/scripts/m76_shift.py --shift load_1.10 --seeds 910 911 1000 1001 1002 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.15_900||../experiments/scripts/m76_shift.py --shift load_1.15 --seeds 900 901 902 903 904 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.15_905||../experiments/scripts/m76_shift.py --shift load_1.15 --seeds 905 906 907 908 909 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.15_910||../experiments/scripts/m76_shift.py --shift load_1.15 --seeds 910 911 1000 1001 1002 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.20_900||../experiments/scripts/m76_shift.py --shift load_1.20 --seeds 900 901 902 903 904 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.20_905||../experiments/scripts/m76_shift.py --shift load_1.20 --seeds 905 906 907 908 909 --out ../experiments/results/m76/b1_shift_n19
+b1_load_1.20_910||../experiments/scripts/m76_shift.py --shift load_1.20 --seeds 910 911 1000 1001 1002 --out ../experiments/results/m76/b1_shift_n19
+d_A3_900||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 900
+d_A3_901||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 901
+d_A3_902||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 902
+d_A3_903||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 903
+d_A3_904||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 904
+d_A3_905||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 905
+d_A3_906||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 906
+d_A3_907||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 907
+d_A3_908||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 908
+d_A3_909||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 909
+d_A3_910||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 910
+d_A3_911||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 911
+d_A3_912||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 912
+d_A3_913||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 913
+d_A3_914||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 914
+d_A3_915||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 915
+d_A3_916||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 916
+d_A3_917||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 917
+d_A3_918||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 918
+d_A3_919||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 919
+d_A3_920||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 920
+d_A3_921||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 921
+d_A3_922||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 922
+d_A3_923||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 923
+d_A3_924||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 924
+d_A3_925||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 925
+d_A3_926||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 926
+d_A3_927||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 927
+d_A3_928||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 928
+d_A3_929||../experiments/scripts/m76_run.py --arm vdn --env A --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/A_n3 --seeds 929
+d_B3_900||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 900
+d_B3_901||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 901
+d_B3_902||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 902
+d_B3_903||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 903
+d_B3_904||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 904
+d_B3_905||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 905
+d_B3_906||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 906
+d_B3_907||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 907
+d_B3_908||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 908
+d_B3_909||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 909
+d_B3_910||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 910
+d_B3_911||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 911
+d_B3_912||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 912
+d_B3_913||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 913
+d_B3_914||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 914
+d_B3_915||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 915
+d_B3_916||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 916
+d_B3_917||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 917
+d_B3_918||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 918
+d_B3_919||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 919
+d_B3_920||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 920
+d_B3_921||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 921
+d_B3_922||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 922
+d_B3_923||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 923
+d_B3_924||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 924
+d_B3_925||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 925
+d_B3_926||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 926
+d_B3_927||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 927
+d_B3_928||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 928
+d_B3_929||../experiments/scripts/m76_run.py --arm vdn --env B --n 3 --topology fully_connected --out-dir ../experiments/results/m76/d_vdn/B_n3 --seeds 929
+b2_rule_static|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm rule_static --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+c_rule_static|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm rule_static --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+b2_rule_accept_all|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm rule_accept_all --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+c_rule_accept_all|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm rule_accept_all --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+b2_rule_local_transfer|M75_PERGNB=1 M76_HETERO=0.75,1.25|../experiments/scripts/m76_run.py --arm rule_local_transfer --env B --n 7 --topology ring --out-dir ../experiments/results/m76/b2_hetero_n7_ring --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+c_rule_local_transfer|M75_PERGNB=1 M76_REWARD=pergnb|../experiments/scripts/m76_run.py --arm rule_local_transfer --env B --n 19 --topology hex --out-dir ../experiments/results/m76/c_pergnb_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+e_1.10_rule_static|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm rule_static --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+e_1.10_rule_accept_all|M76_LOAD=1.10|../experiments/scripts/m76_run.py --arm rule_accept_all --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.10_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+e_1.20_rule_static|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm rule_static --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
+e_1.20_rule_accept_all|M76_LOAD=1.20|../experiments/scripts/m76_run.py --arm rule_accept_all --env A --n 19 --topology hex --out-dir ../experiments/results/m76/e_load1.20_n19_hex --seeds 900 901 902 903 904 905 906 907 908 909 910 911 1000 1001 1002
