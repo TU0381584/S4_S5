@@ -1,0 +1,523 @@
+{
+ "B": {
+  "7": {
+   "n": 15,
+   "accept_all_prio": 70.85999999999999,
+   "accept_all_reward": 26.878612994949886,
+   "arms": {
+    "axiom2": {
+     "prio": 97.07296296296295,
+     "prio_noncollapsed": 97.07296296296295,
+     "n": 45,
+     "collapsed": 0
+    },
+    "single_agent_dqn": {
+     "prio": 76.23296296296299,
+     "prio_noncollapsed": 76.35151515151517,
+     "n": 45,
+     "collapsed": 1
+    },
+    "independent_dqn": {
+     "prio": 74.58888888888889,
+     "prio_noncollapsed": 74.58888888888889,
+     "n": 45,
+     "collapsed": 0
+    },
+    "mappo_tuned": {
+     "prio": 67.67666666666666,
+     "prio_noncollapsed": 67.67666666666666,
+     "n": 45,
+     "collapsed": 0
+    }
+   }
+  },
+  "19": {
+   "n": 30,
+   "accept_all_prio": 67.0788888888889,
+   "accept_all_reward": 78.5524602499424,
+   "arms": {
+    "axiom2": {
+     "prio": 97.25055555555555,
+     "prio_noncollapsed": 97.62659176029962,
+     "n": 90,
+     "collapsed": 1
+    },
+    "single_agent_dqn": {
+     "prio": 65.27574074074074,
+     "prio_noncollapsed": 40.03333333333334,
+     "n": 90,
+     "collapsed": 84
+    },
+    "independent_dqn": {
+     "prio": 56.358333333333334,
+     "prio_noncollapsed": 55.9155172413793,
+     "n": 90,
+     "collapsed": 3
+    },
+    "mappo_tuned": {
+     "prio": 60.63222222222222,
+     "prio_noncollapsed": 60.63222222222222,
+     "n": 90,
+     "collapsed": 0
+    }
+   }
+  },
+  "37": {
+   "n": 30,
+   "accept_all_prio": 61.94388888888889,
+   "accept_all_reward": 156.21581591158082,
+   "arms": {
+    "axiom2": {
+     "prio": 93.69,
+     "prio_noncollapsed": 97.27098765432099,
+     "n": 60,
+     "collapsed": 6
+    },
+    "single_agent_dqn": {
+     "prio": 58.66166666666667,
+     "prio_noncollapsed": 35.92916666666667,
+     "n": 30,
+     "collapsed": 26
+    },
+    "independent_dqn": {
+     "prio": 32.132777777777775,
+     "prio_noncollapsed": 29.08333333333333,
+     "n": 30,
+     "collapsed": 3
+    },
+    "mappo_tuned": {
+     "prio": 56.676111111111105,
+     "prio_noncollapsed": 56.676111111111105,
+     "n": 30,
+     "collapsed": 0
+    }
+   }
+  }
+ },
+ "C": {
+  "tests": {
+   "19/single_agent_dqn/prio": {
+    "n": 30,
+    "diff": 29.941666666666663,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "p_holm": 1.5378499504350043e-05
+   },
+   "19/single_agent_dqn/reward": {
+    "n": 30,
+    "diff": 10.608827980244792,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "p_holm": 1.5378499504350043e-05
+   },
+   "19/independent_dqn/prio": {
+    "n": 30,
+    "diff": 37.92722222222222,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "p_holm": 1.4901161193847656e-08
+   },
+   "19/independent_dqn/reward": {
+    "n": 30,
+    "diff": 12.092792029834774,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "p_holm": 1.4901161193847656e-08
+   },
+   "37/single_agent_dqn/prio": {
+    "n": 30,
+    "diff": 34.92333333333333,
+    "wins": 26,
+    "ties": 3,
+    "losses": 1,
+    "p": 7.03341409095573e-06,
+    "p_holm": 1.5378499504350043e-05
+   },
+   "37/single_agent_dqn/reward": {
+    "n": 30,
+    "diff": 29.506940165592457,
+    "wins": 27,
+    "ties": 3,
+    "losses": 0,
+    "p": 5.606116527496013e-06,
+    "p_holm": 1.5378499504350043e-05
+   },
+   "37/independent_dqn/prio": {
+    "n": 30,
+    "diff": 48.06166666666665,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "p_holm": 1.5378499504350043e-05
+   },
+   "37/independent_dqn/reward": {
+    "n": 30,
+    "diff": 23.786877070869668,
+    "wins": 29,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.5630832507250074e-06,
+    "p_holm": 1.5378499504350043e-05
+   }
+  },
+  "rows": {
+   "single_agent_dqn|19": {
+    "selected": "1e-4,16",
+    "is_current": false,
+    "cell": "m75/C_confirm/n19",
+    "n": 30,
+    "prio": 67.0788888888889,
+    "reward": 78.5524602499424,
+    "collapsed": 30
+   },
+   "independent_dqn|19": {
+    "selected": "3e-4,64",
+    "is_current": false,
+    "cell": "m75/C_confirm/n19",
+    "n": 30,
+    "prio": 59.09333333333333,
+    "reward": 77.0684962003524,
+    "collapsed": 11
+   },
+   "single_agent_dqn|37": {
+    "selected": "1e-3,16",
+    "is_current": true,
+    "cell": "m73/A_n37_hex",
+    "n": 30,
+    "prio": 58.66166666666667,
+    "reward": 144.69745822198357,
+    "collapsed": 26
+   },
+   "independent_dqn|37": {
+    "selected": "1e-4,64",
+    "is_current": false,
+    "cell": "m75/C_confirm/n37",
+    "n": 30,
+    "prio": 45.52333333333334,
+    "reward": 150.41752131670634,
+    "collapsed": 18
+   }
+  }
+ },
+ "D": {
+  "D1": {
+   "single_agent_dqn/reward": {
+    "n": 15,
+    "diff": 5.541640468166502,
+    "wins": 14,
+    "ties": 1,
+    "losses": 0,
+    "p": 0.0009815397525216685,
+    "p_holm": 0.0029446192575650057
+   },
+   "single_agent_dqn/pergnb": {
+    "n": 15,
+    "diff": 10.930116959064328,
+    "wins": 13,
+    "ties": 1,
+    "losses": 1,
+    "p": 0.0012250235420688657,
+    "p_holm": 0.0029446192575650057
+   },
+   "independent_dqn/reward": {
+    "n": 15,
+    "diff": 9.077787245092088,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "p_holm": 0.0003662109375
+   },
+   "independent_dqn/pergnb": {
+    "n": 15,
+    "diff": 10.481461988304092,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00018310546875,
+    "p_holm": 0.000732421875
+   },
+   "mappo_tuned/reward": {
+    "n": 15,
+    "diff": 21.21517649223007,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "p_holm": 0.0003662109375
+   },
+   "mappo_tuned/pergnb": {
+    "n": 15,
+    "diff": 5.477953216374271,
+    "wins": 11,
+    "ties": 0,
+    "losses": 4,
+    "p": 0.012451171875,
+    "p_holm": 0.012451171875
+   }
+  },
+  "D2": {
+   "rule_static": {
+    "n": 15,
+    "diff": -1.3081758141530306,
+    "wins": 0,
+    "ties": 9,
+    "losses": 6,
+    "p": 0.027707849358079864,
+    "p_holm": 0.027707849358079864
+   },
+   "rule_accept_all": {
+    "n": 15,
+    "diff": 5.5128430606992085,
+    "wins": 14,
+    "ties": 1,
+    "losses": 0,
+    "p": 0.0009815397525216685,
+    "p_holm": 0.001963079505043337
+   }
+  },
+  "vs_transfer": {
+   "reward": {
+    "n": 15,
+    "diff": -3.8141086518388345,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05
+   },
+   "pergnb": {
+    "n": 15,
+    "diff": -7.22959064327485,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05
+   }
+  },
+  "summary": {
+   "axiom2": {
+    "n": 15,
+    "reward": 80.28039790138011,
+    "pergnb_prio": 77.3076023391813,
+    "pergnb_ci": [
+     74.26457309941522,
+     79.88235087719298
+    ],
+    "cluster_prio": 24.74666666666667,
+    "collapsed": 1
+   },
+   "single_agent_dqn": {
+    "n": 15,
+    "reward": 74.73875743321359,
+    "pergnb_prio": 66.37748538011695,
+    "pergnb_ci": [
+     65.49970467836255,
+     67.28837865497077
+    ],
+    "cluster_prio": 18.00222222222222,
+    "collapsed": 14
+   },
+   "independent_dqn": {
+    "n": 15,
+    "reward": 71.20261065628802,
+    "pergnb_prio": 66.82614035087718,
+    "pergnb_ci": [
+     65.76746052631579,
+     67.85688011695906
+    ],
+    "cluster_prio": 16.70333333333333,
+    "collapsed": 0
+   },
+   "mappo_tuned": {
+    "n": 15,
+    "reward": 59.06522140915002,
+    "pergnb_prio": 71.82964912280703,
+    "pergnb_ci": [
+     69.61554970760233,
+     74.20335380116957
+    ],
+    "cluster_prio": 20.8,
+    "collapsed": 0
+   },
+   "rule_static": {
+    "n": 15,
+    "reward": 81.58857371553314,
+    "pergnb_prio": 79.87286549707603,
+    "pergnb_ci": [
+     79.00484941520469,
+     80.77102631578947
+    ],
+    "cluster_prio": 22.989999999999995,
+    "collapsed": 0
+   },
+   "rule_accept_all": {
+    "n": 15,
+    "reward": 74.7675548406809,
+    "pergnb_prio": 66.3814619883041,
+    "pergnb_ci": [
+     65.50477485380118,
+     67.28901900584795
+    ],
+    "cluster_prio": 18.00222222222222,
+    "collapsed": 15
+   },
+   "rule_local_transfer": {
+    "n": 15,
+    "reward": 84.09450655321893,
+    "pergnb_prio": 84.53719298245615,
+    "pergnb_ci": [
+     84.04137573099416,
+     85.0600628654971
+    ],
+    "cluster_prio": 55.705555555555556,
+    "collapsed": 0
+   }
+  }
+ },
+ "E": {
+  "hex_axiom2": {
+   "n": 30,
+   "fails": 4,
+   "collapsed_and_failed": 3,
+   "collapsed": 3
+  },
+  "ring_axiom2": {
+   "n": 15,
+   "fails": 2,
+   "collapsed_and_failed": 2,
+   "collapsed": 2
+  },
+  "fully_connected_axiom2": {
+   "n": 15,
+   "fails": 2,
+   "collapsed_and_failed": 1,
+   "collapsed": 1
+  },
+  "hex_single_agent_dqn": {
+   "n": 30,
+   "fails": 29,
+   "collapsed_and_failed": 25,
+   "collapsed": 26
+  },
+  "hex_independent_dqn": {
+   "n": 30,
+   "fails": 27,
+   "collapsed_and_failed": 3,
+   "collapsed": 3
+  },
+  "hex_mappo_tuned": {
+   "n": 30,
+   "fails": 27,
+   "collapsed_and_failed": 0,
+   "collapsed": 0
+  }
+ },
+ "criteria": [
+  {
+   "label": "B reported: accept-all at 7 gNBs",
+   "holds": null,
+   "detail": "priority SLA 70.86%, reward 26.879 (15 seeds); arms below it on mean: ['mappo_tuned']; axiom2 97.1% (non-collapsed 97.1%); single_agent_dqn 76.2% (non-collapsed 76.4%); independent_dqn 74.6% (non-collapsed 74.6%); mappo_tuned 67.7% (non-collapsed 67.7%)"
+  },
+  {
+   "label": "B reported: accept-all at 19 gNBs",
+   "holds": null,
+   "detail": "priority SLA 67.08%, reward 78.552 (30 seeds); arms below it on mean: ['single_agent_dqn', 'independent_dqn', 'mappo_tuned']; axiom2 97.3% (non-collapsed 97.6%); single_agent_dqn 65.3% (non-collapsed 40.0%); independent_dqn 56.4% (non-collapsed 55.9%); mappo_tuned 60.6% (non-collapsed 60.6%)"
+  },
+  {
+   "label": "B reported: accept-all at 37 gNBs",
+   "holds": null,
+   "detail": "priority SLA 61.94%, reward 156.216 (30 seeds); arms below it on mean: ['single_agent_dqn', 'independent_dqn', 'mappo_tuned']; axiom2 93.7% (non-collapsed 97.3%); single_agent_dqn 58.7% (non-collapsed 35.9%); independent_dqn 32.1% (non-collapsed 29.1%); mappo_tuned 56.7% (non-collapsed 56.7%)"
+  },
+  {
+   "label": "C1 AXIOM beats each tuned DQN baseline on priority SLA and reward at 19 and 37 gNBs, Holm over 8, p<0.05",
+   "holds": true,
+   "detail": "19/single_agent_dqn/prio diff +29.9417, W/T/L 28/1/1, p 2.85e-06, p_holm 1.54e-05 (n=30); 19/single_agent_dqn/reward diff +10.6088, W/T/L 28/1/1, p 2.85e-06, p_holm 1.54e-05 (n=30); 19/independent_dqn/prio diff +37.9272, W/T/L 30/0/0, p 1.86e-09, p_holm 1.49e-08 (n=30); 19/independent_dqn/reward diff +12.0928, W/T/L 30/0/0, p 1.86e-09, p_holm 1.49e-08 (n=30); 37/single_agent_dqn/prio diff +34.9233, W/T/L 26/3/1, p 7.03e-06, p_holm 1.54e-05 (n=30); 37/single_agent_dqn/reward diff +29.5069, W/T/L 27/3/0, p 5.61e-06, p_holm 1.54e-05 (n=30); 37/independent_dqn/prio diff +48.0617, W/T/L 28/1/1, p 2.85e-06, p_holm 1.54e-05 (n=30); 37/independent_dqn/reward diff +23.7869, W/T/L 29/1/0, p 2.56e-06, p_holm 1.54e-05 (n=30)"
+  },
+  {
+   "label": "C reported: tuned single_agent_dqn|19",
+   "holds": null,
+   "detail": "selected lr,batch 1e-4,16 (current: False), priority SLA 67.08%, reward 78.552, collapsed 30 of 30; grid {\"1e-4,16\": 78.322, \"1e-4,64\": 78.142, \"3e-4,16\": 78.321, \"3e-4,64\": 77.035, \"1e-3,16\": 78.321, \"1e-3,64\": 78.321}"
+  },
+  {
+   "label": "C reported: tuned independent_dqn|19",
+   "holds": null,
+   "detail": "selected lr,batch 3e-4,64 (current: False), priority SLA 59.09%, reward 77.068, collapsed 11 of 30; grid {\"1e-4,16\": 73.034, \"1e-4,64\": 77.958, \"3e-4,16\": 76.583, \"3e-4,64\": 78.067, \"1e-3,16\": 76.171, \"1e-3,64\": 75.694}"
+  },
+  {
+   "label": "C reported: tuned single_agent_dqn|37",
+   "holds": null,
+   "detail": "selected lr,batch 1e-3,16 (current: True), priority SLA 58.66%, reward 144.697, collapsed 26 of 30; grid {\"1e-4,16\": 156.304, \"1e-4,64\": 156.304, \"3e-4,16\": 151.547, \"3e-4,64\": 156.304, \"1e-3,16\": 156.304, \"1e-3,64\": 156.304}"
+  },
+  {
+   "label": "C reported: tuned independent_dqn|37",
+   "holds": null,
+   "detail": "selected lr,batch 1e-4,64 (current: False), priority SLA 45.52%, reward 150.418, collapsed 18 of 30; grid {\"1e-4,16\": 144.535, \"1e-4,64\": 154.023, \"3e-4,16\": 151.796, \"3e-4,64\": 153.336, \"1e-3,16\": 149.713, \"1e-3,64\": 148.278}"
+  },
+  {
+   "label": "D1 AXIOM beats every learned baseline on reward and per-gNB priority SLA (Env B, 19 gNBs), Holm over 6, p<0.05",
+   "holds": true,
+   "detail": "single_agent_dqn/reward diff +5.5416, W/T/L 14/1/0, p 0.000982, p_holm 0.00294 (n=15); single_agent_dqn/pergnb diff +10.9301, W/T/L 13/1/1, p 0.00123, p_holm 0.00294 (n=15); independent_dqn/reward diff +9.0778, W/T/L 15/0/0, p 6.1e-05, p_holm 0.000366 (n=15); independent_dqn/pergnb diff +10.4815, W/T/L 14/0/1, p 0.000183, p_holm 0.000732 (n=15); mappo_tuned/reward diff +21.2152, W/T/L 15/0/0, p 6.1e-05, p_holm 0.000366 (n=15); mappo_tuned/pergnb diff +5.4780, W/T/L 11/0/4, p 0.0125, p_holm 0.0125 (n=15)"
+  },
+  {
+   "label": "D2 AXIOM beats rule_static and rule_accept_all on reward, Holm over 2, p<0.05",
+   "holds": false,
+   "detail": "rule_static diff -1.3082, W/T/L 0/9/6, p 0.0277, p_holm 0.0277 (n=15); rule_accept_all diff +5.5128, W/T/L 14/1/0, p 0.000982, p_holm 0.00196 (n=15)"
+  },
+  {
+   "label": "D reported: AXIOM vs the transferred tuned rule",
+   "holds": null,
+   "detail": "reward diff -3.8141, W/T/L 0/0/15, p 6.1e-05 (n=15); pergnb diff -7.2296, W/T/L 0/0/15, p 6.1e-05 (n=15)"
+  },
+  {
+   "label": "D reported: axiom2",
+   "holds": null,
+   "detail": "reward 80.280, per-gNB priority SLA 77.31%, cluster-level priority SLA 24.75%, collapsed 1 of 15"
+  },
+  {
+   "label": "D reported: single_agent_dqn",
+   "holds": null,
+   "detail": "reward 74.739, per-gNB priority SLA 66.38%, cluster-level priority SLA 18.00%, collapsed 14 of 15"
+  },
+  {
+   "label": "D reported: independent_dqn",
+   "holds": null,
+   "detail": "reward 71.203, per-gNB priority SLA 66.83%, cluster-level priority SLA 16.70%, collapsed 0 of 15"
+  },
+  {
+   "label": "D reported: mappo_tuned",
+   "holds": null,
+   "detail": "reward 59.065, per-gNB priority SLA 71.83%, cluster-level priority SLA 20.80%, collapsed 0 of 15"
+  },
+  {
+   "label": "D reported: rule_static",
+   "holds": null,
+   "detail": "reward 81.589, per-gNB priority SLA 79.87%, cluster-level priority SLA 22.99%, collapsed 0 of 15"
+  },
+  {
+   "label": "D reported: rule_accept_all",
+   "holds": null,
+   "detail": "reward 74.768, per-gNB priority SLA 66.38%, cluster-level priority SLA 18.00%, collapsed 15 of 15"
+  },
+  {
+   "label": "D reported: rule_local_transfer",
+   "holds": null,
+   "detail": "reward 84.095, per-gNB priority SLA 84.54%, cluster-level priority SLA 55.71%, collapsed 0 of 15"
+  },
+  {
+   "label": "E reported: validation screen at 37 gNBs",
+   "holds": null,
+   "detail": "{\"hex_axiom2\": {\"n\": 30, \"fails\": 4, \"collapsed_and_failed\": 3, \"collapsed\": 3}, \"ring_axiom2\": {\"n\": 15, \"fails\": 2, \"collapsed_and_failed\": 2, \"collapsed\": 2}, \"fully_connected_axiom2\": {\"n\": 15, \"fails\": 2, \"collapsed_and_failed\": 1, \"collapsed\": 1}, \"hex_single_agent_dqn\": {\"n\": 30, \"fails\": 29, \"collapsed_and_failed\": 25, \"collapsed\": 26}, \"hex_independent_dqn\": {\"n\": 30, \"fails\": 27, \"collapsed_and_failed\": 3, \"collapsed\": 3}, \"hex_mappo_tuned\": {\"n\": 30, \"fails\": 27, \"collapsed_and_failed\": 0, \"collapsed\": 0}}"
+  }
+ ],
+ "n_judged": 3,
+ "n_fail": 1
+}

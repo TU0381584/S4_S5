@@ -168,7 +168,7 @@ Fig.~\ref{fig:m4-disruption} plots the reward each policy keeps. Undisrupted, AX
 
 Replication first proved its worth in this campaign, on the earliest simulator. There, a ten-seed sample suggested that the independent DQN was immune to churn, since it never reads another agent's features, and a disjoint replication overturned that reading with a significant cost at every severity. In the shared-budget environment the primary sample already shows that churn hurts every policy, so the corrected reading holds.
 
-The pre-registered validation screen rarely rejects AXIOM in Env A. It fails 1 of 30 seeds at three gNBs, 1 of 45 at seven, and 5 of 90 at nineteen, including the one seed that collapses. The screen fails 89 of the single-agent DQN's 90 seeds at nineteen gNBs. It also fails many MAPPO seeds, because MAPPO also blocks eMBB, so the 90\% criterion flags it. In Env B no learned policy collapsed at any size.
+The pre-registered validation screen rarely rejects AXIOM in Env A. It fails 1 of 30 seeds at three gNBs, 1 of 45 at seven, and 5 of 90 at nineteen, including the one seed that collapses. At thirty-seven gNBs it fails 8 of AXIOM's 60 checkpoints, including all six that collapse, against 29, 27, and 27 of 30 for the single-agent DQN, the independent DQN, and MAPPO. The screen fails 89 of the single-agent DQN's 90 seeds at nineteen gNBs. It also fails many MAPPO seeds, because MAPPO also blocks eMBB, so the 90\% criterion flags it. In Env B no learned policy collapsed at any size.
 
 \begin{figure}[t]
 \centering
@@ -195,7 +195,7 @@ per cell, per-seed points behind the mean and 95\% CI.}
 
 
 \section*{S13. Analysis-plan commits and development notes}
-Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, and 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, the thirty-seven-gNB extension in Section S15 as 85e6781, and its fresh-seed replication as ab76311.
+Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, and 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, the thirty-seven-gNB extension in Section S15 as 85e6781, its fresh-seed replication as ab76311, and the runs in Section S16 as d251490.
 
 
 \section*{S14. Shifted load, longer training, and the joint target on fresh seeds}
@@ -256,6 +256,47 @@ Single-agent DQN & 20 & 71.6\% & 43.1\% & 57.4\% & 139.20 & 18 \\
 Independent DQN & 20 & 42.0\% & 26.1\% & 34.1\% & 149.04 & 2 \\
 MAPPO & 20 & 70.1\% & 47.0\% & 58.5\% & 144.04 & 0 \\
 Static rule & 20 & 100.0\% & 100.0\% & 99.97\% & 177.68 & 0 \\
+\end{tabular}
+\end{table}
+
+\section*{S16. Accept-all at scale, tuned DQN baselines, and Env B at nineteen gNBs}
+This section reports the runs that answer the fourth internal review, whose plan was committed before any of them as commit d251490.
+
+Accepting every request is the floor that any admission controller should clear. In Env A it keeps 70.9\%, 67.1\%, and 61.9\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs, with reward 26.88, 78.55, and 156.22 per step. At seven gNBs only MAPPO, at 67.7\%, falls below it. At nineteen and thirty-seven gNBs every baseline does, and the single-agent DQN's runs that do not collapse keep only 40.0\% and 35.9\%, the independent DQN's 55.9\% and 29.1\%. AXIOM keeps 97.1\%, 97.3\%, and 93.7\% at the same three sizes.
+
+The DQN baselines were tuned on pilot seeds 2000 to 2004 over learning rates $10^{-4}$, $3{\times}10^{-4}$, and $10^{-3}$ and minibatches of 16 and 64, keeping 300 training episodes, and each was retrained on the 30 hex seeds wherever a new setting won. Table~\ref{tab:s-tuned} lists the selections and the results. Several single-agent settings tie on the pilot seeds because they collapse into accept-all there, and at nineteen gNBs the selected setting won by 0.001 reward per step. It then accepts every request in all 30 evaluation seeds and matches accept-all exactly. AXIOM beats each tuned baseline on compliance and reward in every cell, winning 26 to 30 of 30 seeds at Holm-adjusted $p<0.001$.
+
+\begin{table}[!htbp]
+\caption{DQN baselines tuned on pilot seeds, Env A, 30 hex seeds. LR is the learning rate, batch the minibatch size, and Before the priority-slice compliance before tuning}
+\label{tab:s-tuned}
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{lcccccc}
+Baseline & gNBs & LR, batch & Priority SLA & Before & Reward & Collapsed \\
+Single-agent DQN & 19 & $10^{-4}$, 16 & 67.1\% & 65.3\% & 78.55 & 30 \\
+Independent DQN & 19 & $3{\times}10^{-4}$, 64 & 59.1\% & 56.4\% & 77.07 & 11 \\
+Single-agent DQN & 37 & $10^{-3}$, 16, unchanged & 58.7\% & 58.7\% & 144.70 & 26 \\
+Independent DQN & 37 & $10^{-4}$, 64 & 45.5\% & 32.1\% & 150.42 & 18 \\
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:s-envb19} lists Env B at nineteen gNBs on the hex layout, over seeds 900 to 911 and 1000 to 1002. Per-gNB compliance counts a slice as compliant at a gNB and step when that gNB meets the slice's SLA under the framework's own per-gNB test, which the cluster-level metric ORs over all gNBs. Recording it left every logged quantity unchanged, which an Env B rule evaluation at three gNBs confirmed exactly. The training reward is unchanged, and its violation penalty also ORs over gNBs. AXIOM makes exactly the static rule's decisions in 9 of the 15 seeds, and in 5 of the other 6 it also blocks only mMTC.
+
+\begin{table}[!htbp]
+\caption{Env B with nineteen gNBs, 15 seeds, hex layout. SLA columns give priority-slice compliance, the mean of URLLC and eMBB compliance, per gNB and at cluster level}
+\label{tab:s-envb19}
+\centering
+\small
+\begin{tabular}{lcccc}
+Policy & Reward & Per-gNB SLA & Cluster SLA & Collapsed \\
+AXIOM & 80.28 & 77.3\% & 24.7\% & 1 \\
+Single-agent DQN & 74.74 & 66.4\% & 18.0\% & 14 \\
+Independent DQN & 71.20 & 66.8\% & 16.7\% & 0 \\
+MAPPO & 59.07 & 71.8\% & 20.8\% & 0 \\
+Static rule & 81.59 & 79.9\% & 23.0\% & 0 \\
+Accept all & 74.77 & 66.4\% & 18.0\% & 15 \\
+Tuned local rule, carried over & 84.09 & 84.5\% & 55.7\% & 0 \\
 \end{tabular}
 \end{table}
 

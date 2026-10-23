@@ -4235,6 +4235,469 @@
   "ok": true
  },
  {
+  "label": "reframe: M75 accept-all priority SLA at 7 gNBs",
+  "snippet": "It keeps 70.9\\%, 67.1\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
+  "computed": 70.86000000000001,
+  "formatted": "70.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 accept-all priority SLA at 19 gNBs",
+  "snippet": "It keeps 70.9\\%, 67.1\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
+  "computed": 67.0788888888889,
+  "formatted": "67.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 accept-all priority SLA at 37 gNBs",
+  "snippet": "It keeps 70.9\\%, 67.1\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
+  "computed": 61.943888888888885,
+  "formatted": "61.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M75 accept-all reward at 7 gNBs",
+  "snippet": "with reward 26.88, 78.55, and 156.22 per step",
+  "computed": 26.878612994949886,
+  "formatted": "26.88",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M75 accept-all reward at 19 gNBs",
+  "snippet": "with reward 26.88, 78.55, and 156.22 per step",
+  "computed": 78.5524602499424,
+  "formatted": "78.55",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M75 accept-all reward at 37 gNBs",
+  "snippet": "with reward 26.88, 78.55, and 156.22 per step",
+  "computed": 156.21581591158082,
+  "formatted": "156.22",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 every baseline below accept-all at 19 and 37 gNBs, only MAPPO at 7",
+  "snippet": null,
+  "computed": {
+   "(7, 'axiom2')": 97.07,
+   "(7, 'single_agent_dqn')": 76.23,
+   "(7, 'independent_dqn')": 74.59,
+   "(7, 'mappo_tuned')": 67.68,
+   "(19, 'axiom2')": 97.25,
+   "(19, 'single_agent_dqn')": 65.28,
+   "(19, 'independent_dqn')": 56.36,
+   "(19, 'mappo_tuned')": 60.63,
+   "(37, 'axiom2')": 93.69,
+   "(37, 'single_agent_dqn')": 58.66,
+   "(37, 'independent_dqn')": 32.13,
+   "(37, 'mappo_tuned')": 56.68
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 non-collapsed single-agent at 37",
+  "snippet": "those runs of the single-agent and independent DQNs keep only 35.9\\% and 29.1\\%",
+  "computed": 35.92916666666666,
+  "formatted": "35.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 non-collapsed independent at 37",
+  "snippet": "those runs of the single-agent and independent DQNs keep only 35.9\\% and 29.1\\%",
+  "computed": 29.08333333333333,
+  "formatted": "29.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M75 non-collapsed single-agent at 19",
+  "snippet": "runs that do not collapse keep only 40.0\\% and 35.9\\%",
+  "computed": 40.03333333333334,
+  "formatted": "40.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M75 non-collapsed independent at 19",
+  "snippet": "the independent DQN's 55.9\\% and 29.1\\%",
+  "computed": 55.915517241379305,
+  "formatted": "55.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M75 MAPPO below accept-all at 7",
+  "snippet": "only MAPPO, at 67.7\\%, falls below it",
+  "computed": 67.67666666666668,
+  "formatted": "67.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 AXIOM above floor low",
+  "snippet": "AXIOM stays 26 to 32 points above the floor",
+  "computed": 26.212962962962948,
+  "formatted": "26",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 AXIOM above floor high",
+  "snippet": "AXIOM stays 26 to 32 points above the floor",
+  "computed": 31.746111111111112,
+  "formatted": "32",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D complete, 15 seeds per arm with per-gNB records",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D cluster compliance low",
+  "snippet": "at 16.7\\% to 24.7\\% for every learned policy",
+  "computed": 16.70333333333333,
+  "formatted": "16.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D cluster compliance high",
+  "snippet": "at 16.7\\% to 24.7\\% for every learned policy",
+  "computed": 24.74666666666667,
+  "formatted": "24.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D1 AXIOM leads every learned baseline, Holm p<=0.013",
+  "snippet": null,
+  "computed": {
+   "('independent_dqn', 'r')": 0.00037,
+   "('mappo_tuned', 'r')": 0.00037,
+   "('independent_dqn', 'g')": 0.00073,
+   "('single_agent_dqn', 'r')": 0.00294,
+   "('single_agent_dqn', 'g')": 0.00294,
+   "('mappo_tuned', 'g')": 0.01245
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D reward lead low",
+  "snippet": "on reward by 5.54 to 21.22 per step",
+  "computed": 5.541640468166502,
+  "formatted": "5.54",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D reward lead high",
+  "snippet": "on reward by 5.54 to 21.22 per step",
+  "computed": 21.21517649223007,
+  "formatted": "21.22",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D per-gNB lead low",
+  "snippet": "on per-gNB priority-slice compliance by 5.5 to 10.9 points",
+  "computed": 5.477953216374274,
+  "formatted": "5.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D per-gNB lead high",
+  "snippet": "on per-gNB priority-slice compliance by 5.5 to 10.9 points",
+  "computed": 10.930116959064328,
+  "formatted": "10.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D AXIOM per-gNB",
+  "snippet": "keeping 77.3\\%",
+  "computed": 77.3076023391813,
+  "formatted": "77.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D static rule margin",
+  "snippet": "the static rule, which earns 1.31 more per step",
+  "computed": 1.3081758141530306,
+  "formatted": "1.31",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D identical to static rule",
+  "snippet": "in 9 of the 15 seeds it makes exactly the static rule's decisions",
+  "computed": 9,
+  "formatted": "9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D tuned rule margin",
+  "snippet": "earns 3.81 more than AXIOM and keeps 84.5\\%",
+  "computed": 3.8141086518388345,
+  "formatted": "3.81",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D tuned rule per-gNB",
+  "snippet": "earns 3.81 more than AXIOM and keeps 84.5\\%",
+  "computed": 84.53719298245615,
+  "formatted": "84.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 D tuned rule wins every seed",
+  "snippet": null,
+  "computed": {
+   "n": 15,
+   "diff": -3.8141086518388345,
+   "wins": 0,
+   "ties": 0,
+   "losses": 15,
+   "p": 6.103515625e-05
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 comparison-table Env B 19-gNB rewards",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 table row axiom2",
+  "snippet": null,
+  "computed": "AXIOM & 80.28 & 77.3\\% & 24.7\\% & 1 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 table row single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 74.74 & 66.4\\% & 18.0\\% & 14 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 table row independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 71.20 & 66.8\\% & 16.7\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 table row mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 59.07 & 71.8\\% & 20.8\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 table row rule_static",
+  "snippet": null,
+  "computed": "Static rule & 81.59 & 79.9\\% & 23.0\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 table row rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all & 74.77 & 66.4\\% & 18.0\\% & 15 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 table row rule_local_transfer",
+  "snippet": null,
+  "computed": "Tuned local rule, carried over & 84.09 & 84.5\\% & 55.7\\% & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 E screen at 37 gNBs: AXIOM 8 of 60 incl. all six collapses; baselines 29, 27, 27 of 30",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 C AXIOM beats every tuned baseline, Holm p<0.001",
+  "snippet": null,
+  "computed": {
+   "(19, 'independent_dqn', 'p')": 0.0,
+   "(19, 'independent_dqn', 'r')": 0.0,
+   "(37, 'independent_dqn', 'r')": 1.54e-05,
+   "(19, 'single_agent_dqn', 'p')": 1.54e-05,
+   "(19, 'single_agent_dqn', 'r')": 1.54e-05,
+   "(37, 'independent_dqn', 'p')": 1.54e-05,
+   "(37, 'single_agent_dqn', 'r')": 1.54e-05,
+   "(37, 'single_agent_dqn', 'p')": 1.54e-05
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 C lead low",
+  "snippet": "by 29.9 to 48.1 points",
+  "computed": 29.941666666666663,
+  "formatted": "29.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 C lead high",
+  "snippet": "by 29.9 to 48.1 points",
+  "computed": 48.06166666666665,
+  "formatted": "48.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 C new settings in three of four cells",
+  "snippet": null,
+  "computed": {
+   "single_agent_dqn|19": "1e-4,16",
+   "single_agent_dqn|37": "1e-3,16",
+   "independent_dqn|19": "3e-4,64",
+   "independent_dqn|37": "1e-4,64"
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 C tuned independent at 19",
+  "snippet": "rises from 56.4\\% to 59.1\\% at nineteen gNBs",
+  "computed": 59.09333333333334,
+  "formatted": "59.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 C tuned independent at 37",
+  "snippet": "and from 32.1\\% to 45.5\\% at thirty-seven",
+  "computed": 45.52333333333334,
+  "formatted": "45.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 C tuned single-agent at 19 accepts everything and matches accept-all exactly",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M75 C no tuned baseline exceeds accept-all",
+  "snippet": null,
+  "computed": {
+   "(19, 'single_agent_dqn')": 67.079,
+   "(19, 'independent_dqn')": 59.093,
+   "(37, 'single_agent_dqn')": 58.662,
+   "(37, 'independent_dqn')": 45.523
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 C supplement: wins 26 to 30 of 30",
+  "snippet": null,
+  "computed": [
+   28,
+   28,
+   30,
+   30,
+   26,
+   27,
+   28,
+   29
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 C supplement: single-agent 19-gNB selection margin 0.001",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 tuned row 19 single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 19 & $10^{-4}$, 16 & 67.1\\% & 65.3\\% & 78.55 & 30 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 tuned row 19 independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 19 & $3{\\times}10^{-4}$, 64 & 59.1\\% & 56.4\\% & 77.07 & 11 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 tuned row 37 single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 37 & $10^{-3}$, 16, unchanged & 58.7\\% & 58.7\\% & 144.70 & 26 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M75 S16 tuned row 37 independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 37 & $10^{-4}$, 64 & 45.5\\% & 32.1\\% & 150.42 & 18 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -4261,9 +4724,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 437",
+  "label": "text quotes the final check count of 488",
   "snippet": null,
-  "computed": 437,
+  "computed": 488,
   "formatted": null,
   "in_tex": null,
   "ok": true

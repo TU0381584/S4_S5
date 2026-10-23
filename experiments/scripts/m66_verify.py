@@ -1251,6 +1251,125 @@ def main():
     C.claim("M74 pooled 50 hex seeds", "AXIOM keeps 94.2\\% priority-slice compliance over 50 seeds and collapses in 4 of them", 100 * float(np.mean([prio(r) for r in pool_])), "{:.1f}")
     C.note("M74 pooled collapse count 4 of 50", len(pool_) == 50 and sum(r["collapsed"] for r in pool_) == 4, None)
 
+    # ---------------- M75 B, D, E (docs/PAPER5_M75_preregistration.md)
+    aa_ = {n_: seeds_of(f"m75/B_acceptall/n{n_}", "rule_accept_all", S15 if n_ == 7 else S30_19) for n_ in (7, 19, 37)}
+    aap_ = {n_: 100 * mean(v_, prio) for n_, v_ in aa_.items()}
+    for n_, q_ in ((7, "70.9"), (19, "67.1"), (37, "61.9")):
+        C.claim(f"reframe: M75 accept-all priority SLA at {n_} gNBs", "It keeps 70.9\\%, 67.1\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs", aap_[n_], "{:.1f}")
+    for n_, q_ in ((7, "26.88"), (19, "78.55"), (37, "156.22")):
+        C.claim(f"M75 accept-all reward at {n_} gNBs", "with reward 26.88, 78.55, and 156.22 per step", mean(aa_[n_]), "{:.2f}")
+    def lr_rows(n_, a_):
+        if n_ == 37:
+            if a_ == "axiom2":
+                return [r for t_, ss_ in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for r in seeds_of(f"m73/A_n37_{t_}", a_, ss_).values()]
+            return list(seeds_of("m73/A_n37_hex", a_, S30_19).values())
+        return [r for t_ in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n{n_}_{t_}", a_, S15 if n_ == 7 else S30_19).values()]
+    lp_ = {(n_, a_): 100 * float(np.mean([prio(r) for r in lr_rows(n_, a_)])) for n_ in (7, 19, 37) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    lnc_ = {(n_, a_): 100 * float(np.mean([prio(r) for r in lr_rows(n_, a_) if not r["collapsed"]])) for n_ in (19, 37) for a_ in ("single_agent_dqn", "independent_dqn")}
+    C.note("reframe: M75 every baseline below accept-all at 19 and 37 gNBs, only MAPPO at 7",
+           all(lp_[(n_, a_)] < aap_[n_] for n_ in (19, 37) for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
+           and [a_ for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned") if lp_[(7, a_)] < aap_[7]] == ["mappo_tuned"]
+           and "at nineteen and thirty-seven gNBs every baseline falls below it on average" in C.main, {str(k_): round(v_, 2) for k_, v_ in lp_.items()})
+    C.claim("reframe: M75 non-collapsed single-agent at 37", "those runs of the single-agent and independent DQNs keep only 35.9\\% and 29.1\\%", lnc_[(37, "single_agent_dqn")], "{:.1f}")
+    C.claim("reframe: M75 non-collapsed independent at 37", "those runs of the single-agent and independent DQNs keep only 35.9\\% and 29.1\\%", lnc_[(37, "independent_dqn")], "{:.1f}")
+    C.claim("M75 non-collapsed single-agent at 19", "runs that do not collapse keep only 40.0\\% and 35.9\\%", lnc_[(19, "single_agent_dqn")], "{:.1f}")
+    C.claim("M75 non-collapsed independent at 19", "the independent DQN's 55.9\\% and 29.1\\%", lnc_[(19, "independent_dqn")], "{:.1f}")
+    C.claim("M75 MAPPO below accept-all at 7", "only MAPPO, at 67.7\\%, falls below it", lp_[(7, "mappo_tuned")], "{:.1f}")
+    gp_ = [lp_[(n_, "axiom2")] - aap_[n_] for n_ in (7, 19, 37)]
+    C.claim("reframe: M75 AXIOM above floor low", "AXIOM stays 26 to 32 points above the floor", min(gp_), "{:.0f}")
+    C.claim("reframe: M75 AXIOM above floor high", "AXIOM stays 26 to 32 points above the floor", max(gp_), "{:.0f}")
+    D75_ = "m75/D_envB_n19_hex"
+    d75_ = {a_: seeds_of(D75_, a_, S15) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_accept_all", "rule_local_transfer")}
+    def pg_(a_, s_):
+        m_ = json.load(open(f"{ROOT}/{D75_}/{a_}/seed{s_}/eval/per_gnb_sla.json"))
+        assert m_["steps"] == 3000 and len(m_["gnbs"]) == 19
+        return 100 * 0.5 * (float(np.mean(m_["per_gnb_compliance"]["urllc"])) + float(np.mean(m_["per_gnb_compliance"]["embb"])))
+    pgv_ = {a_: {s_: pg_(a_, s_) for s_ in v_} for a_, v_ in d75_.items()}
+    C.note("reframe: M75 D complete, 15 seeds per arm with per-gNB records", all(len(v_) == 15 for v_ in d75_.values()) and all(len(v_) == 15 for v_ in pgv_.values()), None)
+    cl_ = {a_: 100 * mean(d75_[a_], prio) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    C.claim("reframe: M75 D cluster compliance low", "at 16.7\\% to 24.7\\% for every learned policy", min(cl_.values()), "{:.1f}")
+    C.claim("reframe: M75 D cluster compliance high", "at 16.7\\% to 24.7\\% for every learned policy", max(cl_.values()), "{:.1f}")
+    td_ = {}
+    for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"):
+        td_[(b_, "r")] = paired(d75_["axiom2"], d75_[b_])
+        common_ = sorted(pgv_["axiom2"])
+        dd_ = np.array([pgv_["axiom2"][s_] - pgv_[b_][s_] for s_ in common_])
+        td_[(b_, "g")] = {"diff": float(dd_.mean()), "p": float(wilcoxon(dd_).pvalue)}
+    hd_ = holm({k_: v_["p"] for k_, v_ in td_.items()})
+    C.note("reframe: M75 D1 AXIOM leads every learned baseline, Holm p<=0.013", all(td_[k_]["diff"] > 0 and hd_[k_] <= 0.013 for k_ in td_)
+           and "at Holm-adjusted $p\\leq0.013$, keeping 77.3\\%" in C.main, {str(k_): round(v_, 5) for k_, v_ in hd_.items()})
+    rr_ = [td_[(b_, "r")]["diff"] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
+    gg_ = [td_[(b_, "g")]["diff"] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
+    C.claim("reframe: M75 D reward lead low", "on reward by 5.54 to 21.22 per step", min(rr_), "{:.2f}")
+    C.claim("reframe: M75 D reward lead high", "on reward by 5.54 to 21.22 per step", max(rr_), "{:.2f}")
+    C.claim("reframe: M75 D per-gNB lead low", "on per-gNB priority-slice compliance by 5.5 to 10.9 points", min(gg_), "{:.1f}")
+    C.claim("reframe: M75 D per-gNB lead high", "on per-gNB priority-slice compliance by 5.5 to 10.9 points", max(gg_), "{:.1f}")
+    C.claim("reframe: M75 D AXIOM per-gNB", "keeping 77.3\\%", float(np.mean(list(pgv_["axiom2"].values()))), "{:.1f}")
+    ts_ = paired(d75_["axiom2"], d75_["rule_static"])
+    C.claim("reframe: M75 D static rule margin", "the static rule, which earns 1.31 more per step", -ts_["diff"], "{:.2f}")
+    same_ = sum(d75_["axiom2"][s_]["reward"] == d75_["rule_static"][s_]["reward"] and d75_["axiom2"][s_]["blocks"] == d75_["rule_static"][s_]["blocks"]
+                and d75_["axiom2"][s_]["sla"] == d75_["rule_static"][s_]["sla"] for s_ in S15)
+    C.claim("reframe: M75 D identical to static rule", "in 9 of the 15 seeds it makes exactly the static rule's decisions", same_, "{:d}")
+    tt_ = paired(d75_["axiom2"], d75_["rule_local_transfer"])
+    C.claim("reframe: M75 D tuned rule margin", "earns 3.81 more than AXIOM and keeps 84.5\\%", -tt_["diff"], "{:.2f}")
+    C.claim("reframe: M75 D tuned rule per-gNB", "earns 3.81 more than AXIOM and keeps 84.5\\%", float(np.mean(list(pgv_["rule_local_transfer"].values()))), "{:.1f}")
+    C.note("reframe: M75 D tuned rule wins every seed", tt_["losses"] == 15, tt_)
+    C.note("reframe: M75 comparison-table Env B 19-gNB rewards", [round(mean(d75_[a_]), 2) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned")]
+           == [80.28, 74.74, 71.20, 59.07] and "8.83 and 80.28 & 7.49 and 74.74 & 7.79 and 71.20 & 6.97 and 59.07" in C.main, None)
+    lab75_ = {"axiom2": "AXIOM", "single_agent_dqn": "Single-agent DQN", "independent_dqn": "Independent DQN", "mappo_tuned": "MAPPO",
+              "rule_static": "Static rule", "rule_accept_all": "Accept all", "rule_local_transfer": "Tuned local rule, carried over"}
+    for a_, l_ in lab75_.items():
+        row_ = (f"{l_} & {mean(d75_[a_]):.2f} & {float(np.mean(list(pgv_[a_].values()))):.1f}\\% & {100 * mean(d75_[a_], prio):.1f}\\% & "
+                f"{sum(r['collapsed'] for r in d75_[a_].values())} \\\\")
+        C.note(f"M75 S16 table row {a_}", row_ in C.tex, row_)
+    sc_ = {f_: json.load(open(f"{ROOT}/m75/E_screen/{f_}.json")) for f_ in ("hex_axiom2", "ring_axiom2", "fully_connected_axiom2", "hex_single_agent_dqn", "hex_independent_dqn", "hex_mappo_tuned")}
+    axf_ = sum(r["fails"] for f_ in ("hex_axiom2", "ring_axiom2", "fully_connected_axiom2") for r in sc_[f_])
+    axc_ = [r for f_ in ("hex_axiom2", "ring_axiom2", "fully_connected_axiom2") for r in sc_[f_] if r["eval_collapsed"]]
+    C.note("M75 E screen at 37 gNBs: AXIOM 8 of 60 incl. all six collapses; baselines 29, 27, 27 of 30",
+           axf_ == 8 and len(axc_) == 6 and all(r["fails"] for r in axc_) and [sum(r["fails"] for r in sc_[f_]) for f_ in ("hex_single_agent_dqn", "hex_independent_dqn", "hex_mappo_tuned")] == [29, 27, 27]
+           and "it fails 8 of AXIOM's 60 checkpoints, including all six that collapse, against 29, 27, and 27 of 30" in C.tex, None)
+
+    # ---------------- M75 C: DQN baselines tuned at 19 and 37 gNBs
+    sel75_ = json.load(open(f"{ROOT}/m75/C_selection.json"))
+    tc_, tcr_ = {}, {}
+    for n_ in (19, 37):
+        axc_ = seeds_of("m65_scaling/n19_hex" if n_ == 19 else "m73/A_n37_hex", "axiom2", S30_19)
+        for a_ in ("single_agent_dqn", "independent_dqn"):
+            sv_ = sel75_[f"{a_}|{n_}"]
+            cell_ = ("m65_scaling/n19_hex" if n_ == 19 else "m73/A_n37_hex") if sv_["is_current"] else f"m75/C_confirm/n{n_}"
+            b_ = seeds_of(cell_, a_, S30_19)
+            tcr_[(n_, a_)] = b_
+            tc_[(n_, a_, "p")] = paired(axc_, b_, lambda r: 100 * prio(r))
+            tc_[(n_, a_, "r")] = paired(axc_, b_)
+    hc_ = holm({k_: v_["p"] for k_, v_ in tc_.items()})
+    C.note("reframe: M75 C AXIOM beats every tuned baseline, Holm p<0.001", len(tc_) == 8 and all(tc_[k_]["diff"] > 0 and hc_[k_] < 0.001 for k_ in tc_)
+           and "AXIOM beats each of them on compliance and on reward at Holm-adjusted $p<0.001$" in C.main, {str(k_): round(v_, 7) for k_, v_ in hc_.items()})
+    cp_ = [v_["diff"] for k_, v_ in tc_.items() if k_[2] == "p"]
+    C.claim("reframe: M75 C lead low", "by 29.9 to 48.1 points", min(cp_), "{:.1f}")
+    C.claim("reframe: M75 C lead high", "by 29.9 to 48.1 points", max(cp_), "{:.1f}")
+    C.note("reframe: M75 C new settings in three of four cells", sum(not v_["is_current"] for v_ in sel75_.values()) == 3
+           and "selected new settings in three of the four cells" in C.main, {k_: v_["selected"] for k_, v_ in sel75_.items()})
+    tp_ = {k_: 100 * mean(v_, prio) for k_, v_ in tcr_.items()}
+    C.claim("reframe: M75 C tuned independent at 19", "rises from 56.4\\% to 59.1\\% at nineteen gNBs", tp_[(19, "independent_dqn")], "{:.1f}")
+    C.claim("reframe: M75 C tuned independent at 37", "and from 32.1\\% to 45.5\\% at thirty-seven", tp_[(37, "independent_dqn")], "{:.1f}")
+    sa19_, aa19_ = tcr_[(19, "single_agent_dqn")], seeds_of("m75/B_acceptall/n19", "rule_accept_all", S30_19)
+    C.note("reframe: M75 C tuned single-agent at 19 accepts everything and matches accept-all exactly",
+           all(r["collapsed"] for r in sa19_.values()) and len(sa19_) == 30
+           and all(sa19_[s_]["reward"] == aa19_[s_]["reward"] and sa19_[s_]["sla"] == aa19_[s_]["sla"] for s_ in S30_19), None)
+    C.note("reframe: M75 C no tuned baseline exceeds accept-all",
+           all(tp_[(n_, a_)] <= aap_[n_] + 1e-9 for (n_, a_) in tp_) and "No tuned baseline exceeds the accept-all floor" in C.main, {str(k_): round(v_, 3) for k_, v_ in tp_.items()})
+    wc_ = [v_["wins"] for v_ in tc_.values()]
+    C.note("M75 C supplement: wins 26 to 30 of 30", min(wc_) == 26 and max(wc_) == 30 and "winning 26 to 30 of 30 seeds at Holm-adjusted $p<0.001$" in C.tex, wc_)
+    pc_ = sel75_["single_agent_dqn|19"]["grid"]
+    C.note("M75 C supplement: single-agent 19-gNB selection margin 0.001", round(pc_["1e-4,16"]["reward"] - pc_["1e-3,16"]["reward"], 3) == 0.001
+           and "the selected setting won by 0.001 reward per step" in C.tex, None)
+    for (n_, a_), l_, cfg_ in (((19, "single_agent_dqn"), "Single-agent DQN & 19", "$10^{-4}$, 16"), ((19, "independent_dqn"), "Independent DQN & 19", "$3{\\times}10^{-4}$, 64"),
+                               ((37, "single_agent_dqn"), "Single-agent DQN & 37", "$10^{-3}$, 16, unchanged"), ((37, "independent_dqn"), "Independent DQN & 37", "$10^{-4}$, 64")):
+        b0_ = seeds_of("m65_scaling/n19_hex" if n_ == 19 else "m73/A_n37_hex", a_, S30_19)
+        row_ = (f"{l_} & {cfg_} & {tp_[(n_, a_)]:.1f}\\% & {100 * mean(b0_, prio):.1f}\\% & {mean(tcr_[(n_, a_)]):.2f} & "
+                f"{sum(r['collapsed'] for r in tcr_[(n_, a_)].values())} \\\\")
+        C.note(f"M75 S16 tuned row {n_} {a_}", row_ in C.tex, row_)
+
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))
     eval_streams = {5000 + s for s in train_streams}
