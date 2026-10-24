@@ -2923,7 +2923,7 @@
   "ok": true
  },
  {
-  "label": "reframe: map AXIOM URLLC gate",
+  "label": "map AXIOM URLLC gate",
   "snippet": "at 1.00 and 0.97, while closing the mMTC gate to 0.08",
   "computed": 0.9961940476190492,
   "formatted": "1.00",
@@ -2931,7 +2931,7 @@
   "ok": true
  },
  {
-  "label": "reframe: map AXIOM eMBB gate",
+  "label": "map AXIOM eMBB gate",
   "snippet": "at 1.00 and 0.97, while closing the mMTC gate to 0.08",
   "computed": 0.9690994778613197,
   "formatted": "0.97",
@@ -2939,7 +2939,7 @@
   "ok": true
  },
  {
-  "label": "reframe: map AXIOM mMTC gate",
+  "label": "map AXIOM mMTC gate",
   "snippet": "while closing the mMTC gate to 0.08",
   "computed": 0.07886764132553606,
   "formatted": "0.08",
@@ -2967,7 +2967,7 @@
   "ok": true
  },
  {
-  "label": "reframe: map independent mMTC gate",
+  "label": "map independent mMTC gate",
   "snippet": "the independent DQN closes the mMTC gate only to 0.92",
   "computed": 0.9212816764132561,
   "formatted": "0.92",
@@ -2975,7 +2975,7 @@
   "ok": true
  },
  {
-  "label": "reframe: map MAPPO eMBB gate",
+  "label": "map MAPPO eMBB gate",
   "snippet": "partly closes the eMBB gate, to 0.82",
   "computed": 0.8224136591478685,
   "formatted": "0.82",
@@ -2983,7 +2983,7 @@
   "ok": true
  },
  {
-  "label": "reframe: map MAPPO mMTC gate",
+  "label": "map MAPPO mMTC gate",
   "snippet": "while leaving mMTC open at 0.69",
   "computed": 0.6899681286549711,
   "formatted": "0.69",
@@ -3175,7 +3175,7 @@
   "ok": true
  },
  {
-  "label": "reframe: no Env B policy keeps eMBB above 37%",
+  "label": "no Env B policy keeps eMBB above 37%",
   "snippet": null,
   "computed": 36.73,
   "formatted": null,
@@ -3538,7 +3538,7 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 longer training gain N=3",
+  "label": "M72 longer training gain N=3",
   "snippet": "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven",
   "computed": 0.3320202937077131,
   "formatted": "0.33",
@@ -3546,7 +3546,7 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 longer training gain N=7",
+  "label": "M72 longer training gain N=7",
   "snippet": "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven",
   "computed": 2.9155365946763374,
   "formatted": "2.92",
@@ -3562,7 +3562,7 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 remaining gap N=3",
+  "label": "M72 remaining gap N=3",
   "snippet": "The remaining gaps to the tuned rule, 0.08 and 0.96 per step",
   "computed": 0.07552920453220731,
   "formatted": "0.08",
@@ -3570,7 +3570,7 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 remaining gap N=7",
+  "label": "M72 remaining gap N=7",
   "snippet": "The remaining gaps to the tuned rule, 0.08 and 0.96 per step",
   "computed": 0.9550596974302703,
   "formatted": "0.96",
@@ -3578,7 +3578,7 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 remaining gap p N=3",
+  "label": "M72 remaining gap p N=3",
   "snippet": "at $p=0.35$ and $p=0.064$",
   "computed": 0.34881019592285156,
   "formatted": "0.35",
@@ -3586,7 +3586,7 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 remaining gap p N=7",
+  "label": "M72 remaining gap p N=7",
   "snippet": "at $p=0.35$ and $p=0.064$",
   "computed": 0.06396484375,
   "formatted": "0.064",
@@ -3602,7 +3602,7 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 hindsight max eMBB",
+  "label": "M72 hindsight max eMBB",
   "snippet": "reaches only 37.7\\% on average",
   "computed": 37.684444444444445,
   "formatted": "37.7",
@@ -3610,7 +3610,7 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 hindsight headroom",
+  "label": "M72 hindsight headroom",
   "snippet": "earns only 0.14\\% more than the tuned rule",
   "computed": 0.13998255290616524,
   "formatted": "0.14",
@@ -4825,8 +4825,8 @@
   "ok": true
  },
  {
-  "label": "reframe: conclusion VDN gap",
-  "snippet": "fell 13.6 percentage points behind at nineteen",
+  "label": "reframe: VDN gap at nineteen gNBs",
+  "snippet": "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step",
   "computed": 13.634444444444444,
   "formatted": "13.6",
   "in_tex": true,
@@ -5320,6 +5320,336 @@
   "ok": true
  },
  {
+  "label": "reframe: M77 every checkable re-run reproduces its stored log",
+  "snippet": null,
+  "computed": {
+   "runs": 675,
+   "unchecked": 60
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 AXIOM URLLC served at 37",
+  "snippet": "AXIOM serves 99.8\\% of the offered URLLC demand and 99.0\\% of the eMBB demand",
+  "computed": 99.79064546939206,
+  "formatted": "99.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 AXIOM eMBB served at 37",
+  "snippet": "AXIOM serves 99.8\\% of the offered URLLC demand and 99.0\\% of the eMBB demand",
+  "computed": 98.98475436342268,
+  "formatted": "99.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 baseline urllc served range at 37",
+  "snippet": null,
+  "computed": [
+   94.20558378955673,
+   97.70567245728576,
+   96.35278551179236
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 baseline embb served range at 37",
+  "snippet": null,
+  "computed": [
+   95.19890922266084,
+   97.47277628322308,
+   85.65523818475911
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 AXIOM URLLC delay at 37",
+  "snippet": "Its URLLC delay is 0.08 control periods with a 95th percentile of 0.42",
+  "computed": 0.08225048043321402,
+  "formatted": "0.08",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 AXIOM URLLC p95 at 37",
+  "snippet": "Its URLLC delay is 0.08 control periods with a 95th percentile of 0.42",
+  "computed": 0.42346168354293856,
+  "formatted": "0.42",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 baseline URLLC delay 0.58 to 3.61, p95 5.2 to 16.9 at 37",
+  "snippet": null,
+  "computed": [
+   [
+    3.613076012087381,
+    0.759536963416552,
+    0.5772132706460222
+   ],
+   [
+    16.870781226952918,
+    5.234998581515702,
+    5.382185081607504
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 static rule URLLC delay at 37",
+  "snippet": "and the static rule reaches 0.03",
+  "computed": 0.03037465368956921,
+  "formatted": "0.03",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 AXIOM URLLC delay Env B 19",
+  "snippet": "AXIOM's URLLC delay of 1.35 control periods is below every learned baseline's 2.17 to 2.66",
+  "computed": 1.3494046206595054,
+  "formatted": "1.35",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 Env B 19 baseline URLLC delay 2.17 to 2.66",
+  "snippet": null,
+  "computed": [
+   2.2553107233424057,
+   2.1668346560092866,
+   2.6570306012106313
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: M77 tuned rule URLLC delay Env B 19",
+  "snippet": "while the tuned rule's is lower still, at 0.51",
+  "computed": 0.5066895321992131,
+  "formatted": "0.51",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n3 rule_static",
+  "snippet": null,
+  "computed": "Static rule & 99.8\\% & 99.9\\% & 0.10 & 0.59 & 0.05 & 0.31 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n3 independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 99.4\\% & 98.5\\% & 0.23 & 1.11 & 0.43 & 6.24 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n3 rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all, unchecked & 97.5\\% & 97.6\\% & 0.80 & 3.01 & 0.76 & 2.65 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n3 mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 98.4\\% & 90.5\\% & 0.38 & 3.31 & 3.81 & 19.67 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n3 single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 99.5\\% & 99.4\\% & 0.20 & 0.96 & 0.18 & 0.83 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n3 axiom2",
+  "snippet": null,
+  "computed": "AXIOM & 99.8\\% & 99.7\\% & 0.11 & 0.66 & 0.11 & 0.47 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n37_hex mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 96.4\\% & 85.7\\% & 0.58 & 5.38 & 6.28 & 35.70 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n37_hex axiom2",
+  "snippet": null,
+  "computed": "AXIOM & 99.8\\% & 99.0\\% & 0.08 & 0.42 & 0.34 & 1.12 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n37_hex single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 94.2\\% & 95.2\\% & 3.61 & 16.87 & 2.09 & 14.28 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n37_hex rule_static",
+  "snippet": null,
+  "computed": "Static rule & 100.0\\% & 100.0\\% & 0.03 & 0.17 & 0.02 & 0.09 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n37_hex independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 97.7\\% & 97.5\\% & 0.76 & 5.23 & 0.72 & 5.49 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row A_n37_hex rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all, unchecked & 98.7\\% & 98.8\\% & 0.43 & 2.14 & 0.38 & 1.83 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n3 rule_static",
+  "snippet": null,
+  "computed": "Static rule & 96.0\\% & 96.1\\% & 1.59 & 5.25 & 1.57 & 5.11 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n3 independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 98.6\\% & 82.7\\% & 0.66 & 2.81 & 4.73 & 49.34 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n3 rule_local_cell",
+  "snippet": null,
+  "computed": "Tuned rule & 99.0\\% & 84.8\\% & 0.58 & 1.96 & 3.57 & 38.55 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n3 rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all & 92.8\\% & 92.9\\% & 2.59 & 7.72 & 2.58 & 7.59 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n3 mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 97.2\\% & 83.5\\% & 1.10 & 4.00 & 4.57 & 43.82 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n3 single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 98.2\\% & 82.1\\% & 0.75 & 3.15 & 5.73 & 49.79 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n3 axiom2",
+  "snippet": null,
+  "computed": "AXIOM & 98.4\\% & 88.5\\% & 0.65 & 2.32 & 3.18 & 19.28 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n19_hex axiom2",
+  "snippet": null,
+  "computed": "AXIOM & 96.6\\% & 92.6\\% & 1.35 & 4.67 & 3.41 & 16.01 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n19_hex single_agent_dqn",
+  "snippet": null,
+  "computed": "Single-agent DQN & 93.8\\% & 93.9\\% & 2.26 & 6.99 & 2.24 & 6.82 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n19_hex rule_static",
+  "snippet": null,
+  "computed": "Static rule & 96.8\\% & 96.9\\% & 1.33 & 4.65 & 1.32 & 4.50 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n19_hex mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 89.2\\% & 88.3\\% & 2.66 & 33.84 & 2.58 & 28.13 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n19_hex independent_dqn",
+  "snippet": null,
+  "computed": "Independent DQN & 94.1\\% & 86.1\\% & 2.17 & 9.71 & 4.17 & 72.77 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n19_hex rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all & 93.8\\% & 93.9\\% & 2.25 & 6.97 & 2.24 & 6.82 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M77 S18 row B_n19_hex rule_local_transfer",
+  "snippet": null,
+  "computed": "Tuned rule, carried & 99.1\\% & 87.9\\% & 0.51 & 1.77 & 2.78 & 25.40 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "evaluation streams disjoint from every training and selection stream",
   "snippet": null,
   "computed": null,
@@ -5346,9 +5676,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 549",
+  "label": "text quotes the final check count of 587",
   "snippet": null,
-  "computed": 549,
+  "computed": 587,
   "formatted": null,
   "in_tex": null,
   "ok": true

@@ -12,6 +12,7 @@
 \citation{ref:access}
 \citation{ojijo2024sac}
 \citation{tao2025dtac}
+\citation{li2025oacr2}
 \citation{doanis2024madqn}
 \citation{li2026scalablemarl}
 \citation{phyu2025icecream}
@@ -47,13 +48,14 @@
 \citation{tashman2026adversarial,fatehi2026attentionmarl}
 \citation{zhang2022federatedoran}
 \citation{yasin2025dpfl}
-\citation{mohajer2026pronto,bouroudi2025gnnmarl,qasim2025tgnnfl,gong2026femaddpg}
+\citation{mohajer2026pronto,bouroudi2025gnnmarl,gong2026femaddpg}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Closest prior work, as described in each paper's title and abstract}}{4}{table.1}\protected@file@percent }
 \newlabel{tab:related}{{1}{4}{Closest prior work, as described in each paper's title and abstract}{table.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{5}{section.3}\protected@file@percent }
-\newlabel{sec:system-model}{{3}{5}{System Model and Problem Formulation}{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{4}{section.3}\protected@file@percent }
+\newlabel{sec:system-model}{{3}{4}{System Model and Problem Formulation}{section.3}{}}
 \newlabel{eq:reward}{{1}{5}{System Model and Problem Formulation}{equation.3.1}{}}
 \newlabel{eq:margin}{{2}{5}{System Model and Problem Formulation}{equation.3.2}{}}
+\newlabel{eq:objective}{{3}{5}{System Model and Problem Formulation}{equation.3.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces AXIOM architecture. a, A shared encoder, graph attention or a per-node MLP, produces one embedding per gNB, and per-slice Q-heads read that gNB's embedding and raw features. b, The federated variant, each gNB a client synchronised by periodic FedAvg with optional DP-SGD noise}}{6}{figure.2}\protected@file@percent }
 \newlabel{fig:architecture}{{2}{6}{AXIOM architecture. a, A shared encoder, graph attention or a per-node MLP, produces one embedding per gNB, and per-slice Q-heads read that gNB's embedding and raw features. b, The federated variant, each gNB a client synchronised by periodic FedAvg with optional DP-SGD noise}{figure.2}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4}The AXIOM Architecture}{6}{section.4}\protected@file@percent }
@@ -64,7 +66,7 @@
 \citation{dpsgd}
 \citation{zcdp}
 \citation{yu2022mappo}
-\newlabel{eq:td}{{3}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.3}{}}
+\newlabel{eq:td}{{4}{7}{Shared Encoder, Decentralised Q-Heads}{equation.4.4}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Federated Training with Differential Privacy}{7}{subsection.4.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Experimental Setup}{7}{subsection.4.3}\protected@file@percent }
 \newlabel{sec:setup}{{4.3}{7}{Experimental Setup}{subsection.4.3}{}}
@@ -97,27 +99,29 @@
 \newlabel{fig:envb}{{6}{15}{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}{figure.6}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Env B, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Rules above the line, learned policies below it}}{15}{table.5}\protected@file@percent }
 \newlabel{tab:envb}{{5}{15}{Env B, three gNBs, 30 seeds per arm, 95\% bootstrap CIs. Rules above the line, learned policies below it}{table.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Model Complexity}{17}{subsection.5.5}\protected@file@percent }
-\newlabel{sec:results-complexity}{{5.5}{17}{Model Complexity}{subsection.5.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Reproducibility and Fresh-Seed Verification}{17}{subsection.5.6}\protected@file@percent }
-\newlabel{sec:results-verify}{{5.6}{17}{Reproducibility and Fresh-Seed Verification}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Throughput and Delay}{16}{subsection.5.5}\protected@file@percent }
+\newlabel{sec:results-kpi}{{5.5}{16}{Throughput and Delay}{subsection.5.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.6}Model Complexity}{17}{subsection.5.6}\protected@file@percent }
+\newlabel{sec:results-complexity}{{5.6}{17}{Model Complexity}{subsection.5.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Reproducibility and Fresh-Seed Verification}{17}{subsection.5.7}\protected@file@percent }
+\newlabel{sec:results-verify}{{5.7}{17}{Reproducibility and Fresh-Seed Verification}{subsection.5.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}}{17}{table.6}\protected@file@percent }
 \newlabel{tab:complexity}{{6}{17}{Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.7}Federation, Privacy, Disruption, and Live Deployment}{18}{subsection.5.7}\protected@file@percent }
-\newlabel{sec:results-m3}{{5.7}{18}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
-\newlabel{sec:results-m4}{{5.7}{18}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
-\newlabel{sec:results-m8}{{5.7}{18}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Limitations}{19}{section.6}\protected@file@percent }
-\newlabel{sec:discussion}{{6}{19}{Discussion and Limitations}{section.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.8}Federation, Privacy, Disruption, and Live Deployment}{18}{subsection.5.8}\protected@file@percent }
+\newlabel{sec:results-m3}{{5.8}{18}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.8}{}}
+\newlabel{sec:results-m4}{{5.8}{18}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.8}{}}
+\newlabel{sec:results-m8}{{5.8}{18}{Federation, Privacy, Disruption, and Live Deployment}{subsection.5.8}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Discussion and Limitations}{18}{section.6}\protected@file@percent }
+\newlabel{sec:discussion}{{6}{18}{Discussion and Limitations}{section.6}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {7}Conclusion}{19}{section.7}\protected@file@percent }
 \newlabel{sec:conclusion}{{7}{19}{Conclusion}{section.7}{}}
 \@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{19}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{19}{section*.3}\protected@file@percent }
 \bibdata{refs}
 \bibcite{dpsgd}{{1}{2016}{{Abadi et~al.}}{{Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar, and Zhang}}}
 \bibcite{ahmadi2024generalizable}{{2}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
 \bibcite{alqahtani2025dynamic}{{3}{2025}{{AlQahtani}}{{}}}
 \bibcite{amiri2024vnf}{{4}{2024}{{Amiri et~al.}}{{Amiri, Wang, Shojafar, and Tafazolli}}}
-\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{20}{section*.3}\protected@file@percent }
 \bibcite{bega2020market}{{5}{2020}{{Bega et~al.}}{{Bega, Gramaglia, Banchs, Sciancalepore, and Costa-P{\'e}rez}}}
 \bibcite{bouroudi2025gnnmarl}{{6}{2025}{{Bouroudi et~al.}}{{Bouroudi, Outtagarts, and Hadjadj-Aoul}}}
 \bibcite{zcdp}{{7}{2016}{{Bun and Steinke}}{{}}}
@@ -132,15 +136,15 @@
 \bibcite{mecon-paper1}{{16}{2025{}}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
 \bibcite{icraie-paper2}{{17}{2025{}}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
 \bibcite{ref:access}{{18}{2026}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
-\bibcite{li2026scalablemarl}{{19}{2026}{{Li et~al.}}{{Li, Wang, Min, Wang, and Wang}}}
-\bibcite{lim2020flmec}{{20}{2020}{{Lim et~al.}}{{Lim, Luong, Hoang, Jiao, Liang, Yang, Niyato, and Miao}}}
-\bibcite{ming2024fedslice}{{21}{2024}{{Ming et~al.}}{{Ming, Yu, and Taleb}}}
-\bibcite{mohajer2026pronto}{{22}{2026}{{Mohajer et~al.}}{{Mohajer, Mirzaei, Darabi, and Fernando}}}
-\bibcite{ojijo2024sac}{{23}{2024}{{Ojijo et~al.}}{{Ojijo, Ramotsoela, and Oginga}}}
-\bibcite{phyu2025icecream}{{24}{2025}{{Phyu et~al.}}{{Phyu, Naboulsi, and Stanica}}}
-\bibcite{polese2023coloran}{{25}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
-\bibcite{polese2023oran}{{26}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
-\bibcite{qasim2025tgnnfl}{{27}{2025}{{Qasim et~al.}}{{Qasim, Imran, Akram, {Ahmad Bilal}, and {Jaleed Khan}}}}
+\bibcite{li2025oacr2}{{19}{2025}{{Li et~al.}}{{Li, Hao, Yang, and Zhao}}}
+\bibcite{li2026scalablemarl}{{20}{2026}{{Li et~al.}}{{Li, Wang, Min, Wang, and Wang}}}
+\bibcite{lim2020flmec}{{21}{2020}{{Lim et~al.}}{{Lim, Luong, Hoang, Jiao, Liang, Yang, Niyato, and Miao}}}
+\bibcite{ming2024fedslice}{{22}{2024}{{Ming et~al.}}{{Ming, Yu, and Taleb}}}
+\bibcite{mohajer2026pronto}{{23}{2026}{{Mohajer et~al.}}{{Mohajer, Mirzaei, Darabi, and Fernando}}}
+\bibcite{ojijo2024sac}{{24}{2024}{{Ojijo et~al.}}{{Ojijo, Ramotsoela, and Oginga}}}
+\bibcite{phyu2025icecream}{{25}{2025}{{Phyu et~al.}}{{Phyu, Naboulsi, and Stanica}}}
+\bibcite{polese2023coloran}{{26}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
+\bibcite{polese2023oran}{{27}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
 \bibcite{rashid2020qmix}{{28}{2020}{{Rashid et~al.}}{{Rashid, Samvelyan, Schroeder~de Witt, Farquhar, Foerster, and Whiteson}}}
 \bibcite{raza2019slicing}{{29}{2019}{{Raza et~al.}}{{Raza, Natalino, {\"O}hlen, Wosinska, and Monti}}}
 \bibcite{shao2021gatmarl}{{30}{2021}{{Shao et~al.}}{{Shao, Li, Hu, Wu, Zhao, and Zhang}}}

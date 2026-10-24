@@ -854,7 +854,7 @@ def main():
         mm = re.search(r"(\d+) below-floor samples across\s+([\d,]+)\s+total", txt)
         below += int(mm.group(1)); readings += int(mm.group(2).replace(",", ""))
     C.note("reframe: zero below-floor grants across more than 100,000 readings", below == 0 and readings > 100000
-           and "zero below-floor grants across more than 100{,}000 readings" in C.main, (below, readings))
+           and "zero below-floor grants across more than 100{,}000 readings" in C.tex, (below, readings))
 
     # ---------------- visual-emphasis figures (2026-10-19): scaling trend and 19-gNB decision map
     def gate_open(path, n=19):
@@ -876,17 +876,17 @@ def main():
         mats = [gate_open(p_) for s_ in S30_19 if (p_ := find_eval("m65_scaling/n19_hex", arm, s_))]
         gm[arm] = (len(mats), np.mean(mats, axis=0))
     ax_ = gm["axiom2"][1]
-    C.claim("reframe: map AXIOM URLLC gate", "at 1.00 and 0.97, while closing the mMTC gate to 0.08", float(ax_[:, 0].mean()), "{:.2f}")
-    C.claim("reframe: map AXIOM eMBB gate", "at 1.00 and 0.97, while closing the mMTC gate to 0.08", float(ax_[:, 1].mean()), "{:.2f}")
-    C.claim("reframe: map AXIOM mMTC gate", "while closing the mMTC gate to 0.08", float(ax_[:, 2].mean()), "{:.2f}")
+    C.claim("map AXIOM URLLC gate", "at 1.00 and 0.97, while closing the mMTC gate to 0.08", float(ax_[:, 0].mean()), "{:.2f}")
+    C.claim("map AXIOM eMBB gate", "at 1.00 and 0.97, while closing the mMTC gate to 0.08", float(ax_[:, 1].mean()), "{:.2f}")
+    C.claim("map AXIOM mMTC gate", "while closing the mMTC gate to 0.08", float(ax_[:, 2].mean()), "{:.2f}")
     C.note("reframe: map AXIOM sheds mMTC and keeps priority open at every one of 19 gNBs",
            gm["axiom2"][0] == 30 and ax_[:, 2].max() < 0.1 and ax_[:, 0].min() > 0.95 and ax_[:, 1].min() > 0.95, None)
     sg_ = gm["single_agent_dqn"][1]
     C.note("reframe: map single-agent every gate open at 0.99", all(round(float(sg_[:, j].mean()), 2) == 0.99 for j in range(3))
-           and "The single-agent DQN leaves every gate open at 0.99" in C.main, sg_.mean(axis=0).round(4).tolist())
-    C.claim("reframe: map independent mMTC gate", "the independent DQN closes the mMTC gate only to 0.92", float(gm["independent_dqn"][1][:, 2].mean()), "{:.2f}")
-    C.claim("reframe: map MAPPO eMBB gate", "partly closes the eMBB gate, to 0.82", float(gm["mappo_tuned"][1][:, 1].mean()), "{:.2f}")
-    C.claim("reframe: map MAPPO mMTC gate", "while leaving mMTC open at 0.69", float(gm["mappo_tuned"][1][:, 2].mean()), "{:.2f}")
+           and "The single-agent DQN leaves every gate open at 0.99" in C.tex, sg_.mean(axis=0).round(4).tolist())
+    C.claim("map independent mMTC gate", "the independent DQN closes the mMTC gate only to 0.92", float(gm["independent_dqn"][1][:, 2].mean()), "{:.2f}")
+    C.claim("map MAPPO eMBB gate", "partly closes the eMBB gate, to 0.82", float(gm["mappo_tuned"][1][:, 1].mean()), "{:.2f}")
+    C.claim("map MAPPO mMTC gate", "while leaving mMTC open at 0.69", float(gm["mappo_tuned"][1][:, 2].mean()), "{:.2f}")
     # since M73 the figure shows the 37-gNB hex cluster; the 19-gNB numbers above stay in the text as a comparison
     gm37 = {}
     for arm in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"):
@@ -961,8 +961,8 @@ def main():
     C.claim("reframe: pooled federation in Table 2", "Cost $+0.49$ [$-$0.08, 1.09]", float(np.mean(fd_)), "{:+.2f}")
     eb_ = max(100 * mean(seeds_of("m64/n3_fully_connected", a_, S30), lambda x: x["sla"]["embb"]) for a_ in
               ("rule_accept_all", "rule_static", "rule_local", "rule_neighbour", "axiom2", "axiom2_mlp", "single_agent_dqn", "independent_dqn", "mappo_tuned"))
-    C.note("reframe: no Env B policy keeps eMBB above 37%", eb_ < 37 and "keeps eMBB compliance above 37\\% in Env B" in C.main, round(eb_, 2))
-    C.note("reframe: Env B peak demand exceeds the budget by up to 23.5%", abs(0.95 * 1.3 - 1.235) < 1e-9 and "by up to 23.5\\%" in C.main, 0.95 * 1.3)
+    C.note("no Env B policy keeps eMBB above 37%", eb_ < 37 and "keeps eMBB compliance above 37\\% in Env B" in C.tex, round(eb_, 2))
+    C.note("reframe: Env B peak demand exceeds the budget by up to 23.5%", abs(0.95 * 1.3 - 1.235) < 1e-9 and "by up to 23.5\\%" in C.tex, 0.95 * 1.3)
     import yaml
     cfg_ = yaml.safe_load(open("/home/kmanojp/oranslice_rig/framework/qoe_oran_framework/configs/saclb_offline_dqn.yaml"))
     sl_ = {x["slice_id"]: x for x in cfg_["slices"]}
@@ -1108,20 +1108,20 @@ def main():
     for k_, cell_, st_, ss_ in (("B3", "B_n3", "m64/n3_fully_connected", list(range(900, 920))), ("B7", "B_n7_ring", "m64/n7_ring", list(range(900, 912)))):
         lg_ = seeds_of(f"m72/D_long/{cell_}", "axiom2", ss_)
         dl_[k_] = (paired(lg_, seeds_of(st_, "axiom2", ss_)), paired(lg_, seeds_of(st_, "rule_local", ss_)), len(lg_))
-    C.claim("reframe: M72 longer training gain N=3", "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven", dl_["B3"][0]["diff"], "{:.2f}")
-    C.claim("reframe: M72 longer training gain N=7", "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven", dl_["B7"][0]["diff"], "{:.2f}")
-    C.note("reframe: M72 longer training seeds 20 and 12", dl_["B3"][2] == 20 and dl_["B7"][2] == 12 and "on 20 and 12 seeds" in C.main, None)
-    C.claim("reframe: M72 remaining gap N=3", "The remaining gaps to the tuned rule, 0.08 and 0.96 per step", -dl_["B3"][1]["diff"], "{:.2f}")
-    C.claim("reframe: M72 remaining gap N=7", "The remaining gaps to the tuned rule, 0.08 and 0.96 per step", -dl_["B7"][1]["diff"], "{:.2f}")
-    C.claim("reframe: M72 remaining gap p N=3", "at $p=0.35$ and $p=0.064$", dl_["B3"][1]["p"], "{:.2f}")
-    C.claim("reframe: M72 remaining gap p N=7", "at $p=0.35$ and $p=0.064$", dl_["B7"][1]["p"], "{:.3f}")
+    C.claim("M72 longer training gain N=3", "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven", dl_["B3"][0]["diff"], "{:.2f}")
+    C.claim("M72 longer training gain N=7", "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven", dl_["B7"][0]["diff"], "{:.2f}")
+    C.note("reframe: M72 longer training seeds 20 and 12", dl_["B3"][2] == 20 and dl_["B7"][2] == 12 and "on 20 and 12 seeds" in C.tex, None)
+    C.claim("M72 remaining gap N=3", "The remaining gaps to the tuned rule, 0.08 and 0.96 per step", -dl_["B3"][1]["diff"], "{:.2f}")
+    C.claim("M72 remaining gap N=7", "The remaining gaps to the tuned rule, 0.08 and 0.96 per step", -dl_["B7"][1]["diff"], "{:.2f}")
+    C.claim("M72 remaining gap p N=3", "at $p=0.35$ and $p=0.064$", dl_["B3"][1]["p"], "{:.2f}")
+    C.claim("M72 remaining gap p N=7", "at $p=0.35$ and $p=0.064$", dl_["B7"][1]["p"], "{:.3f}")
     hd_ = {}
     for f_ in glob.glob(f"{ROOT}/m72/A_hindsight/hindsight_*.json"):
         hd_.update(json.load(open(f_)))
     C.note("reframe: M72 hindsight covers 15 seeds of 95 rules", len(hd_) == 15 and all(v["n_rules"] == 95 for v in hd_.values()), len(hd_))
-    C.claim("reframe: M72 hindsight max eMBB", "reaches only 37.7\\% on average", 100 * float(np.mean([v["max_embb_any_rule"] for v in hd_.values()])), "{:.1f}")
+    C.claim("M72 hindsight max eMBB", "reaches only 37.7\\% on average", 100 * float(np.mean([v["max_embb_any_rule"] for v in hd_.values()])), "{:.1f}")
     tb_ = float(np.mean([v["tuned"]["reward"] for v in hd_.values()])); bb_ = float(np.mean([v["best_in_hindsight"]["reward"] for v in hd_.values()]))
-    C.claim("reframe: M72 hindsight headroom", "earns only 0.14\\% more than the tuned rule", 100 * (bb_ - tb_) / tb_, "{:.2f}")
+    C.claim("M72 hindsight headroom", "earns only 0.14\\% more than the tuned rule", 100 * (bb_ - tb_) / tb_, "{:.2f}")
     vc_ = {"A3": ("A_n3", list(range(9000, 9020))), "B3": ("B_n3", list(range(9000, 9020))), "A19": ("A_n19_ring", list(range(9000, 9010))), "B7": ("B_n7_ring", list(range(9000, 9010)))}
     vt_, nseed_ = {}, 0
     for k_, (d_, ss_) in vc_.items():
@@ -1425,7 +1425,7 @@ def main():
     C.claim("reframe: M76 AXIOM over VDN reward at 19", "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step", dv_[("A19", "r")]["diff"], "{:.2f}")
     C.note("reframe: M76 VDN 19-gNB wins 27 to 28 of 30 at Holm p<0.001", sorted([dv_[("A19", "p")]["wins"], dv_[("A19", "r")]["wins"]]) == [27, 28]
            and hv76_[("A19", "p")] < 0.001 and hv76_[("A19", "r")] < 0.001 and "winning 27 to 28 of 30 seeds at Holm-adjusted $p<0.001$" in C.main, None)
-    C.claim("reframe: conclusion VDN gap", "fell 13.6 percentage points behind at nineteen", dv_[("A19", "p")]["diff"], "{:.1f}")
+    C.claim("reframe: VDN gap at nineteen gNBs", "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step", dv_[("A19", "p")]["diff"], "{:.1f}")
     for k_, l_ in (("A3", "Env A, 3 gNBs"), ("B3", "Env B, 3 gNBs"), ("A19", "Env A, 19 gNBs, hex")):
         v_, ax_, ind_ = vr_[k_]
         row_ = (f"{l_} & {mean(v_):.3f} & {mean(ax_):.3f} & {mean(ind_):.3f} & {100 * mean(v_, prio):.1f}\\% & {100 * mean(ax_, prio):.1f}\\% & {100 * mean(ind_, prio):.1f}\\% \\\\")
@@ -1501,6 +1501,47 @@ def main():
             d_ = seeds_of(cell_, a_, S15)
             row_ = f"{lab76_[a_]} & {mean(d_):.2f} & {float(np.mean([pg76_(cell_, a_, s_) for s_ in S15])):.1f}\\% & {sum(r['collapsed'] for r in d_.values())} \\\\"
             C.note(f"M76 S17 row {cell_.split('/')[-1]} {a_}", row_ in C.tex, row_)
+
+    # ---------------- M77 throughput and backlog delay (docs/PAPER5_M77_plan.md), aggregated here from the per-run files
+    def m77_(cell_):
+        runs_ = {}
+        for f_ in glob.glob(f"{ROOT}/m77/{cell_}/*_*.json"):
+            a_ = os.path.basename(f_).rsplit("_", 1)[0]
+            for s_, r_ in json.load(open(f_)).items():
+                runs_.setdefault(a_, {})[int(s_)] = r_
+        return runs_
+    k77_ = {c_: m77_(c_) for c_ in ("A_n3", "A_n37_hex", "B_n3", "B_n19_hex")}
+    allr_ = [r for c_ in k77_.values() for a_ in c_.values() for r in a_.values()]
+    C.note("reframe: M77 every checkable re-run reproduces its stored log", len(allr_) > 0 and not any(r["reproduces_stored"] is False for r in allr_)
+           and "which reproduced every stored log that could be checked" in C.main, {"runs": len(allr_), "unchecked": sum(r["reproduces_stored"] is None for r in allr_)})
+    def km_(c_, a_, sl_, f_):
+        return float(np.mean([r["kpi"][sl_][f_] for r in k77_[c_][a_].values() if r["kpi"][sl_][f_] is not None]))
+    B77_ = ("single_agent_dqn", "independent_dqn", "mappo_tuned")
+    C.claim("reframe: M77 AXIOM URLLC served at 37", "AXIOM serves 99.8\\% of the offered URLLC demand and 99.0\\% of the eMBB demand", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
+    C.claim("reframe: M77 AXIOM eMBB served at 37", "AXIOM serves 99.8\\% of the offered URLLC demand and 99.0\\% of the eMBB demand", 100 * km_("A_n37_hex", "axiom2", "embb", "served_over_offered"), "{:.1f}")
+    for sl_, lo_, hi_ in (("urllc", "94.2", "97.7"), ("embb", "85.7", "97.5")):
+        v_ = [100 * km_("A_n37_hex", b_, sl_, "served_over_offered") for b_ in B77_]
+        C.note(f"reframe: M77 baseline {sl_} served range at 37", f"{min(v_):.1f}" == lo_ and f"{max(v_):.1f}" == hi_
+               and "against 94.2\\% to 97.7\\% and 85.7\\% to 97.5\\% for the learned baselines" in C.main, v_)
+    C.claim("reframe: M77 AXIOM URLLC delay at 37", "Its URLLC delay is 0.08 control periods with a 95th percentile of 0.42", km_("A_n37_hex", "axiom2", "urllc", "delay_steps"), "{:.2f}")
+    C.claim("reframe: M77 AXIOM URLLC p95 at 37", "Its URLLC delay is 0.08 control periods with a 95th percentile of 0.42", km_("A_n37_hex", "axiom2", "urllc", "delay_steps_p95"), "{:.2f}")
+    dl_ = [km_("A_n37_hex", b_, "urllc", "delay_steps") for b_ in B77_]; dp_ = [km_("A_n37_hex", b_, "urllc", "delay_steps_p95") for b_ in B77_]
+    C.note("reframe: M77 baseline URLLC delay 0.58 to 3.61, p95 5.2 to 16.9 at 37", f"{min(dl_):.2f}" == "0.58" and f"{max(dl_):.2f}" == "3.61" and f"{min(dp_):.1f}" == "5.2" and f"{max(dp_):.1f}" == "16.9"
+           and "the baselines reach 0.58 to 3.61 with 95th percentiles of 5.2 to 16.9" in C.main, (dl_, dp_))
+    C.claim("reframe: M77 static rule URLLC delay at 37", "and the static rule reaches 0.03", km_("A_n37_hex", "rule_static", "urllc", "delay_steps"), "{:.2f}")
+    C.claim("reframe: M77 AXIOM URLLC delay Env B 19", "AXIOM's URLLC delay of 1.35 control periods is below every learned baseline's 2.17 to 2.66", km_("B_n19_hex", "axiom2", "urllc", "delay_steps"), "{:.2f}")
+    d19_ = [km_("B_n19_hex", b_, "urllc", "delay_steps") for b_ in B77_]
+    C.note("reframe: M77 Env B 19 baseline URLLC delay 2.17 to 2.66", f"{min(d19_):.2f}" == "2.17" and f"{max(d19_):.2f}" == "2.66"
+           and "below every learned baseline's 2.17 to 2.66" in C.main, d19_)
+    C.claim("reframe: M77 tuned rule URLLC delay Env B 19", "while the tuned rule's is lower still, at 0.51", km_("B_n19_hex", "rule_local_transfer", "urllc", "delay_steps"), "{:.2f}")
+    lab77_ = {"axiom2": "AXIOM", "single_agent_dqn": "Single-agent DQN", "independent_dqn": "Independent DQN", "mappo_tuned": "MAPPO", "rule_static": "Static rule",
+              "rule_local_cell": "Tuned rule", "rule_local_transfer": "Tuned rule, carried", "rule_accept_all": "Accept all"}
+    for c_, d_ in k77_.items():
+        for a_, rr_ in d_.items():
+            tag_ = ", unchecked" if any(r["reproduces_stored"] is None for r in rr_.values()) else ""
+            row_ = (f"{lab77_[a_]}{tag_} & {100 * km_(c_, a_, 'urllc', 'served_over_offered'):.1f}\\% & {100 * km_(c_, a_, 'embb', 'served_over_offered'):.1f}\\% & "
+                    f"{km_(c_, a_, 'urllc', 'delay_steps'):.2f} & {km_(c_, a_, 'urllc', 'delay_steps_p95'):.2f} & {km_(c_, a_, 'embb', 'delay_steps'):.2f} & {km_(c_, a_, 'embb', 'delay_steps_p95'):.2f} \\\\")
+            C.note(f"M77 S18 row {c_} {a_}", row_ in C.tex, row_)
 
     # ---------------- integrity: stream disjointness
     train_streams = set(S30) | set(REP) | set(S30_19) | set(range(2000, 2010)) | set(range(3000, 3020))

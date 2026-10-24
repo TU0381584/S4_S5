@@ -259,6 +259,8 @@ The first is a trivial-policy check, in which we evaluate the simplest rules the
 The third is a reproduction-versus-replication discipline, in which we recompute every headline comparison on an independent, disjoint seed sample and report both. Reproduction re-runs the same seeds, whereas replication draws fresh ones, so only replication can catch a result that is an artifact of one seed sample. It caught one such artifact in this work. A weaker replication led us to inspect step-level traces, which showed that queue backlog carried over between episodes. With only about half a PRB of headroom once mMTC is shed, a backlog built by one early transient never drained, so a single bad episode spoiled every later one for every policy, the oracle rule included. Every result in this paper comes from the corrected simulator, which empties all queues at the start of each episode.
 
 \section*{S12. Additional results}
+In the decision map of the main paper's nineteen-gNB hex cluster, which has the same layout as its thirty-seven-gNB map, AXIOM keeps the URLLC and eMBB gates at 1.00 and 0.97, while closing the mMTC gate to 0.08. The single-agent DQN leaves every gate open at 0.99, the independent DQN closes the mMTC gate only to 0.92, and MAPPO partly closes the eMBB gate, to 0.82, while leaving mMTC open at 0.69.
+
 A disjoint replication on seeds 1000 to 1009 is stronger for AXIOM. There it earns 1.083, 0.799, and 3.806 more reward per step than the single-agent DQN, the independent DQN, and MAPPO, at Holm-adjusted $p\leq0.023$, while sitting only 0.018 below the oracle. Pooled over all 40 seeds, its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step, at Holm-adjusted $p\leq0.002$, and falls 0.108 short of the oracle, a small gap that is significant at $p=0.034$. Fresh seeds in Sections S3 to S6 do not reproduce the lead over the single-agent DQN, however.
 
 Third, AXIOM's behaviour holds in Env A when the environment changes. Under three changed conditions, namely load at 102\% and 107\% of the nominal shares and the changed slice weights, AXIOM stays within 0.13 of the oracle rule's reward with no significant difference. On fresh seeds the gap at 102\% load was larger in a ten-seed sample but not in a twenty-seed one, as Section S5 reports. On these seeds it keeps a positive lead over both DQN baselines under every condition, but at ten seeds only two of those six leads survive correction. They are its margin over the independent DQN at 107\% load, 1.073 reward per step at $p=0.006$, and over the single-agent DQN under the changed weights, 1.264 at $p=0.041$.
@@ -331,10 +333,12 @@ Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results 
 
 
 \section*{S13. Analysis-plan commits and development notes}
-Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, and 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, the thirty-seven-gNB extension in Section S15 as 85e6781, its fresh-seed replication as ab76311, the runs in Section S16 as d251490, and those in Section S17 as c1f8cd2. Two development stages are also disclosed here, although neither changed a reported result. A protocol committed before any of its runs, M67, tried to make AXIOM's training reliable enough to beat both DQN baselines decisively in Env A at three gNBs. Selecting checkpoints on validation episodes brought AXIOM to the oracle but brought the single-agent DQN within 0.05 of it too, so that variant was dropped after the first of eight permitted attempts. A single test of the per-node MLP encoder on ten new seeds in Env B at seven gNBs then led the single-agent DQN by 0.4 to 1.4 per step without a significant result, so AXIOM's encoder was not changed. Separately, exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S14, and probes on pilot seeds 2000 to 2004 the hindsight bound of the main paper's Env B results, before the pre-registered runs that the paper reports.
+Each analysis plan was committed to the project's version-control history before the runs it governs. The commits are cfc6c15 for the main pre-registration, with its screen amendment in 97fce09 and 3c8cbef, c94cf9b for the verification plan, 883219e, 19ba2b2, and 43a67f9 for its three fresh-seed addenda, and 08b6f6d for the referee-response runs. The follow-up in Section S14 was committed as a4b9856, the thirty-seven-gNB extension in Section S15 as 85e6781, its fresh-seed replication as ab76311, the runs in Section S16 as d251490, those in Section S17 as c1f8cd2, and the measurements in Section S18 as e0184c8. Two development stages are also disclosed here, although neither changed a reported result. A protocol committed before any of its runs, M67, tried to make AXIOM's training reliable enough to beat both DQN baselines decisively in Env A at three gNBs. Selecting checkpoints on validation episodes brought AXIOM to the oracle but brought the single-agent DQN within 0.05 of it too, so that variant was dropped after the first of eight permitted attempts. A single test of the per-node MLP encoder on ten new seeds in Env B at seven gNBs then led the single-agent DQN by 0.4 to 1.4 per step without a significant result, so AXIOM's encoder was not changed. Separately, exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S14, and probes on pilot seeds 2000 to 2004 the hindsight bound of the main paper's Env B results, before the pre-registered runs that the paper reports.
 
 
 \section*{S14. Shifted load, longer training, and the joint target on fresh seeds}
+No policy we tested keeps eMBB compliance above 37\% in Env B, because demand at the load peaks exceeds the budget by up to 23.5\% and a slice counts as compliant only when every gNB meets it. On 15 seeds, even the rule with the highest eMBB compliance among all 95 rules of the local family, chosen in hindsight on each evaluation stream, reaches only 37.7\% on average. The best rule by reward in hindsight earns only 0.14\% more than the tuned rule. Longer training also narrows the gap under nominal conditions. With three times the training budget AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven, on 20 and 12 seeds. The remaining gaps to the tuned rule, 0.08 and 0.96 per step, are no longer significant, at $p=0.35$ and $p=0.064$.
+
 This section reports the confirmatory follow-up to the third internal review, whose plan was committed before any run as commit a4b9856. The checkpoints and rules used here were trained and tuned under nominal Env B conditions and were neither retrained nor re-tuned. Table~\ref{tab:s-shift} lists every shift on 25 checkpoints, seeds 905 to 929, which the exploratory probe that suggested the effect did not use. Under nominal conditions this setup reproduces the stored results exactly.
 
 \begin{table}[h]
@@ -517,6 +521,50 @@ MAPPO & -45.64 & 60.6\% & 0 \\
 Static rule & 23.59 & 79.9\% & 0 \\
 Accept all & -0.28 & 66.4\% & 15 \\
 Tuned rule, carried over & 39.41 & 84.5\% & 0 \\
+\end{tabular}
+\end{table}
+
+\section*{S18. Throughput and delay}
+The evaluation logs record decisions, rewards, and SLA flags but not the PRBs served or the backlog, so the usual evaluation of every stored checkpoint and rule was re-run with a recorder on the simulator's per-step output, under the plan committed as e0184c8. Every re-run whose stored log could be compared reproduced it exactly in reward, blocks, and SLA compliance, and accept-all in Env A, which has no stored log at these seeds, is marked unchecked. Throughput is the share of offered demand that is served. The delay is the mean backlog divided by the mean served PRBs, in control periods of 5 s, with the 95th percentile taken over steps and gNBs. It is a queueing proxy from the fluid model, not packet latency.
+
+\begin{table}[!htbp]
+\caption{Served share of offered demand and backlog delay in control periods, mean and 95th percentile, per slice}
+\label{tab:s-kpi}
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{lcccccc}
+Policy & URLLC served & eMBB served & URLLC delay & p95 & eMBB delay & p95 \\
+\multicolumn{7}{l}{Env A, three gNBs} \\
+AXIOM & 99.8\% & 99.7\% & 0.11 & 0.66 & 0.11 & 0.47 \\
+Single-agent DQN & 99.5\% & 99.4\% & 0.20 & 0.96 & 0.18 & 0.83 \\
+Independent DQN & 99.4\% & 98.5\% & 0.23 & 1.11 & 0.43 & 6.24 \\
+MAPPO & 98.4\% & 90.5\% & 0.38 & 3.31 & 3.81 & 19.67 \\
+Static rule & 99.8\% & 99.9\% & 0.10 & 0.59 & 0.05 & 0.31 \\
+Accept all, unchecked & 97.5\% & 97.6\% & 0.80 & 3.01 & 0.76 & 2.65 \\
+\multicolumn{7}{l}{Env A, thirty-seven gNBs, hex} \\
+AXIOM & 99.8\% & 99.0\% & 0.08 & 0.42 & 0.34 & 1.12 \\
+Single-agent DQN & 94.2\% & 95.2\% & 3.61 & 16.87 & 2.09 & 14.28 \\
+Independent DQN & 97.7\% & 97.5\% & 0.76 & 5.23 & 0.72 & 5.49 \\
+MAPPO & 96.4\% & 85.7\% & 0.58 & 5.38 & 6.28 & 35.70 \\
+Static rule & 100.0\% & 100.0\% & 0.03 & 0.17 & 0.02 & 0.09 \\
+Accept all, unchecked & 98.7\% & 98.8\% & 0.43 & 2.14 & 0.38 & 1.83 \\
+\multicolumn{7}{l}{Env B, three gNBs} \\
+AXIOM & 98.4\% & 88.5\% & 0.65 & 2.32 & 3.18 & 19.28 \\
+Single-agent DQN & 98.2\% & 82.1\% & 0.75 & 3.15 & 5.73 & 49.79 \\
+Independent DQN & 98.6\% & 82.7\% & 0.66 & 2.81 & 4.73 & 49.34 \\
+MAPPO & 97.2\% & 83.5\% & 1.10 & 4.00 & 4.57 & 43.82 \\
+Static rule & 96.0\% & 96.1\% & 1.59 & 5.25 & 1.57 & 5.11 \\
+Tuned rule & 99.0\% & 84.8\% & 0.58 & 1.96 & 3.57 & 38.55 \\
+Accept all & 92.8\% & 92.9\% & 2.59 & 7.72 & 2.58 & 7.59 \\
+\multicolumn{7}{l}{Env B, nineteen gNBs, hex} \\
+AXIOM & 96.6\% & 92.6\% & 1.35 & 4.67 & 3.41 & 16.01 \\
+Single-agent DQN & 93.8\% & 93.9\% & 2.26 & 6.99 & 2.24 & 6.82 \\
+Independent DQN & 94.1\% & 86.1\% & 2.17 & 9.71 & 4.17 & 72.77 \\
+MAPPO & 89.2\% & 88.3\% & 2.66 & 33.84 & 2.58 & 28.13 \\
+Static rule & 96.8\% & 96.9\% & 1.33 & 4.65 & 1.32 & 4.50 \\
+Tuned rule, carried & 99.1\% & 87.9\% & 0.51 & 1.77 & 2.78 & 25.40 \\
+Accept all & 93.8\% & 93.9\% & 2.25 & 6.97 & 2.24 & 6.82 \\
 \end{tabular}
 \end{table}
 

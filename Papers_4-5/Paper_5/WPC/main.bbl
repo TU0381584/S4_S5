@@ -116,6 +116,12 @@ Kunasegran MP, Pang WL, Phang SK (2026) Comprehensive review of optimization
   techniques for user-centric distributed network slicing in {5G} networks.
   IEEE Access 14:114630--114648. \doi{10.1109/ACCESS.2026.3716911}
 
+\bibitem[{Li et~al.(2025)Li, Hao, Yang, and Zhao}]{li2025oacr2}
+Li F, Hao Y, Yang S, et~al (2025) {OACR$^{2}$}: Online admission control and
+  resource reservation for {5G} slice networks with deep reinforcement
+  learning. IEEE Transactions on Mobile Computing 24(8):7360--7376.
+  \doi{10.1109/TMC.2025.3548767}
+
 \bibitem[{Li et~al.(2026)Li, Wang, Min, Wang, and Wang}]{li2026scalablemarl}
 Li Y, Wang H, Min G, et~al (2026) A flexible and scalable multi-agent learning
   framework for dynamic {RAN} slicing in {6G} native-{AI} networks. IEEE
@@ -166,13 +172,6 @@ Polese M, Bonati L, D'Oro S, et~al (2023{\natexlab{b}}) Understanding {O-RAN}:
   Architecture, interfaces, algorithms, security, and research challenges. IEEE
   Communications Surveys \& Tutorials 25(2):1376--1411.
   \doi{10.1109/COMST.2023.3239220}
-
-\bibitem[{Qasim et~al.(2025)Qasim, Imran, Akram, {Ahmad Bilal}, and {Jaleed
-  Khan}}]{qasim2025tgnnfl}
-Qasim M, Imran M, Akram F, et~al (2025) Transformer and graph neural
-  network-based federated learning for cellular traffic prediction with
-  sustainability analysis. IEEE Access 13:159649--159666.
-  \doi{10.1109/ACCESS.2025.3605380}
 
 \bibitem[{Rashid et~al.(2020)Rashid, Samvelyan, Schroeder~de Witt, Farquhar,
   Foerster, and Whiteson}]{rashid2020qmix}
