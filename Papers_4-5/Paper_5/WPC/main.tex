@@ -82,7 +82,7 @@ Network slicing virtualises the radio access network (RAN) to serve Ultra-Reliab
   gedge/.style={dashed, thick, draw=orange!75!black}
 ]
 % --- 5G Core (cloud-like ellipse) with a small server-rack glyph ---
-\node[core] (core) at (7.5,6.75) {\\[2pt]5G Core\\[2pt]{\scriptsize Open5GS, AMF / SMF / UPF}};
+\node[core] (core) at (7.5,6.75) {\\[2pt]{\sffamily\footnotesize\bfseries 5G Core}\\[1pt]{\sffamily\footnotesize Open5GS, AMF / SMF / UPF}};
 \begin{scope}[shift={(7.5,7.3)}]
   \foreach \yy in {0,0.14}{
     \draw[thick,gray!55!black,fill=gray!18,rounded corners=0.4pt] (-0.24,\yy) rectangle (0.24,\yy+0.1);
@@ -97,11 +97,11 @@ Network slicing virtualises the radio access network (RAN) to serve Ultra-Reliab
 }
 \draw[gedge] (g1) -- (g2);
 \draw[gedge] (g2) -- (g3);
-\draw[gedge] (g1) to[bend right=20] (g3);
+\draw[gedge] (g1) to[bend right=9] (g3);
 \node[draw=orange!75!black, dashed, thick, rounded corners, inner sep=3pt,
       fit={(0.7,2.3) (14.3,4.6)}] (clu) {};
-\node[font=\sffamily\footnotesize, text=orange!55!black, fill=white, inner sep=1.5pt]
-      at (3.3,2.3) {AXIOM cluster graph};
+\node[font=\sffamily\footnotesize, text=orange!55!black, inner sep=1.5pt]
+      at (0.7,4.85) [anchor=south west] {AXIOM cluster graph};
 \draw[ar] (core.south) -- (7.5,4.62) node[pos=0.5, right=1pt, font=\sffamily\footnotesize, fill=white, inner sep=1pt] {N2 / N3};
 % --- slice bands with icons + short labels ---
 \node[band, fill=red!14,   draw=red!60!black]   (s1) at (2.5,1.05) {};

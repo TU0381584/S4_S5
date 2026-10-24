@@ -106,7 +106,12 @@ def main() -> None:
         Line2D([0], [0], color=STATUS_COLORS["critical"], linestyle="--", linewidth=1.4,
                label=f"AXIOM lower ({n_lose})"),
     ]
-    ax1.legend(handles=legend_handles, loc="lower right", bbox_to_anchor=(1.0, 0.2), frameon=False, handlelength=1.6, fontsize=8)
+    # keep the per-seed lines in the upper part of the axes, so the summary box and the legend
+    # sit in an empty band below every line and no line crosses their text
+    lo_d, hi_d = min(single.min(), gat.min()), max(single.max(), gat.max())
+    ax1.set_ylim(lo_d - 1.15 * (hi_d - lo_d), hi_d + 0.06 * (hi_d - lo_d))
+    ax1.legend(handles=legend_handles, loc="lower center", bbox_to_anchor=(0.5, 0.18), frameon=True, framealpha=1.0,
+               facecolor="white", edgecolor="#c3c2b7", handlelength=1.6, fontsize=8, borderpad=0.3, labelspacing=0.25)
 
     # ---- (b) per-seed reward strip, all 3 arms, gat_ctde split by collapse status ----
     rng = np.random.RandomState(0)

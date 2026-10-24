@@ -105,8 +105,9 @@ def main():
         if n != big:
             continue
         v = summ["axiom2"][n]["prio_mean"]
-        axs[0].annotate(f"{v:.1f}%", (i, v), textcoords="offset points", xytext=(-4, 6), ha="right",
-                        fontsize=8, color=M2_ARM_STYLE["axiom2"]["color"], fontweight="bold")
+        # below the AXIOM band and above every baseline, so no line or band crosses the label
+        axs[0].text(i - 0.12, 82.0, f"{v:.1f}%", ha="right", va="center",
+                    fontsize=8, color=M2_ARM_STYLE["axiom2"]["color"], fontweight="bold")
     gap19 = summ["axiom2"][19]["prio_mean"] - max(summ[b][19]["prio_mean"] for b in ARMS[1:])
     gap = summ["axiom2"][big]["prio_mean"] - max(summ[b][big]["prio_mean"] for b in ARMS[1:])
     xg = len(sizes) - 1 + 0.2

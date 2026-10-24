@@ -64,53 +64,42 @@ Reruns on fresh seeds confirmed the main findings of the paper. The exceptions a
 \resizebox{\textwidth}{!}{%
 \begin{tikzpicture}[
   block/.style={draw, thick, rounded corners, align=center, fill=gray!8,
-                font=\footnotesize, inner sep=6pt},
+                font=\footnotesize, inner sep=5pt, text width=3.7cm},
   arr/.style={-{Latex[length=2.5mm]}, thick},
-  lbl/.style={font=\footnotesize, fill=white, inner sep=1pt}
+  lbl/.style={font=\footnotesize, inner sep=1pt}
 ]
-\node[block, text width=3.6cm, minimum height=2.0cm] (core)
-  at (2.01,5.6)
+\node[block, anchor=north] (core) at (0,0)
   {Core network\\[2pt]
    Open5GS, Docker Compose\\
-   17 containers (AMF/SMF$\times$3/\\UPF$\times$3/AUSF/\\UDM/UDR/PCF/BSF/\\NSSF/NRF/SCP)\\
+   17 containers (AMF, SMF$\times$3, UPF$\times$3, AUSF, UDM, UDR, PCF, BSF, NSSF, NRF, SCP)\\
    MongoDB};
-\node[block, text width=4.2cm, minimum height=2.0cm] (ran)
-  at (7.03,5.6)
+\node[block, anchor=north west] (ran) at ($(core.north east)+(2.2,0)$)
   {RAN\\[2pt]
    OAI gNB (ORANSlice fork)\\
    rfsim software radio\\
    no SDR/RF hardware\\
    n78, 106 PRB, $\mu{=}1$, TDD-SA};
-\node[block, text width=3.6cm, minimum height=2.0cm] (ues)
-  at (12.05,5.6)
+\node[block, anchor=north west] (ues) at ($(ran.north east)+(2.2,0)$)
   {UEs + traffic\\[2pt]
-   Up to 6 native\\
-   \texttt{nr-uesoftmodem} UEs\\
-   (netns-isolated)\\
-   eMBB/URLLC/mMTC,\\
-   iperf3 UDP flows};
-\node[block, text width=5.6cm, minimum height=2.3cm] (ctrl)
-  at (7.03,3.0)
+   Up to 6 native \texttt{nr-uesoftmodem} UEs, netns-isolated\\
+   eMBB/URLLC/mMTC iperf3 UDP flows};
+\node[block, anchor=north east, text width=4.6cm] (ctrl) at ($(ran.south east)+(0,-1.3)$)
   {Control loop (RIC-free)\\[2pt]
-   UDP E2 agent (ports 6600/6655)\\
-   xApp/orchestrator: \texttt{slicing\_control\_m}\\
-   -- per-slice (min,max) PRB-ratio\\
-   ceiling; \texttt{omega\_log}};
-\node[block, text width=3.6cm, minimum height=2.3cm] (policy)
-  at (12.75,3.0)
+   UDP E2 agent, ports 6600/6655\\
+   xApp/orchestrator \texttt{slicing\_control\_m}\\
+   per-slice (min, max) PRB-ratio ceiling\\
+   \texttt{omega\_log}};
+\node[block, anchor=north] (policy) at (ues.south |- ctrl.north)
   {Policy\\[2pt]
-   Single-agent DQN\\
-   checkpoint\\
-   (seed 900)\\
+   Single-agent DQN checkpoint, seed 900\\
    18{,}562 parameters\\
    CPU inference};
-\draw[arr] (core.east) -- (ran.west) node[lbl, midway, above] {N2/N3};
-\draw[arr] (ran.east) -- (ues.west) node[lbl, midway, above] {Uu / rfsim};
-\draw[arr] (7.03,4.6) -- (7.03,4.15) node[lbl, midway, right] {E2 (UDP)};
-\draw[arr] (ctrl.east) -- (policy.west) node[lbl, midway, above] {state / action};
-\node[draw, thick, dashed, rounded corners, inner sep=0pt,
-      fit={(-0.3,1.55) (15.06,6.9)}] {};
-\node[font=\footnotesize, anchor=south west] at (-0.3,7.0)
+\draw[arr] ($(core.north east)+(0,-0.9)$) -- ($(ran.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {N2/N3};
+\draw[arr] ($(ran.north east)+(0,-0.9)$) -- ($(ues.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {Uu / rfsim};
+\draw[arr] (ran.south) -- (ran.south |- ctrl.north) node[lbl, midway, right=3pt] {E2 (UDP)};
+\draw[arr] ($(ctrl.north east)+(0,-0.9)$) -- ($(policy.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {state / action};
+\node[draw, thick, dashed, rounded corners, inner sep=7pt, fit=(core)(ran)(ues)(ctrl)(policy)] (host) {};
+\node[font=\footnotesize, anchor=south west, inner sep=2pt] at ($(host.north west)+(0,0.05)$)
   {Single commodity host, CPU-only, no GPU, no SDR/RF hardware};
 \end{tikzpicture}%
 }
@@ -137,25 +126,25 @@ Fig.~\ref{fig:overview} gives an overview of the research, Table~\ref{tab:params
   base/.style={draw, semithick, rounded corners, align=center, font=\footnotesize, inner sep=4pt},
   pblk/.style={base, fill=blue!8,   draw=blue!55!black},
   ablk/.style={base, fill=orange!14, draw=orange!75!black},
-  cblk/.style={base, fill=green!10,  draw=green!50!black},
+  cblk/.style={base, fill=green!10,  draw=green!50!black, text width=3.25cm, anchor=north},
   sblk/.style={base, fill=violet!12, draw=violet!60!black},
   lblk/.style={base, fill=teal!14,   draw=teal!60!black},
-  grp/.style={draw=green!50!black, semithick, rounded corners, dashed, inner sep=0pt},
   ar/.style={-{Latex[length=2.3mm]}, thick}
 ]
 \node[pblk, text width=14cm] (prob) at (8,7.4)
   {Problem\quad coordinated slice admission across an $N$-gNB cluster, URLLC / eMBB / mMTC under per-slice SLAs, action is a per-slice PRB-ratio ceiling};
-\node[ablk, text width=15cm] (arch) at (8,6.0)
+\node[ablk, text width=15cm, below=0.45cm of prob] (arch)
   {AXIOM controller\\[1pt] 2-layer, 4-head graph-attention encoder over the gNB graph, then per-slice Q-heads; centralised training, decentralised execution; per-request Huber TD, $\gamma{=}0.95$};
-\node[grp, fit={(0.3,3.3) (15.7,5.0)}] (grp) {};
-\node[font=\footnotesize, anchor=north west, text=green!45!black] at (0.45,4.93) {Offline shared-budget environments: Env A static load, Env B time-varying load with inter-cell coupling};
-\node[cblk, text width=3.3cm] (c1) at (2.35,3.95) {Centralised $N{=}3$\\[1pt] Env A and B, 30 seeds};
-\node[cblk, text width=3.3cm] (c2) at (6.25,3.95) {Federated + DP\\[1pt] FedAvg/FedProx, DP-SGD $\sigma$};
-\node[cblk, text width=3.3cm] (c3) at (10.1,3.95) {Disruption\\[1pt] dropout/spike/churn};
-\node[cblk, text width=3.3cm] (c4) at (13.95,3.95) {Scaling $N\!\in\!\{7,19,37\}$\\[1pt] ring/hex/fully-connected};
-\node[sblk, text width=15cm] (safe) at (8,2.3)
+\node[font=\footnotesize, text=green!45!black, anchor=north] (glab) at ($(arch.south)+(0,-0.55)$)
+  {Offline shared-budget environments: Env A static load, Env B time-varying load with inter-cell coupling};
+\node[cblk] (c1) at ($(glab.south)+(-5.85,-0.15)$) {Centralised $N{=}3$\\[1pt] Env A and B, 30 seeds};
+\node[cblk] (c2) at ($(glab.south)+(-1.95,-0.15)$) {Federated + DP\\[1pt] FedAvg/FedProx, DP-SGD $\sigma$};
+\node[cblk] (c3) at ($(glab.south)+(1.95,-0.15)$) {Disruption\\[1pt] dropout/spike/churn};
+\node[cblk] (c4) at ($(glab.south)+(5.85,-0.15)$) {Scaling $N\!\in\!\{7,19,37\}$\\[1pt] ring/hex/fully-connected};
+\node[draw=green!50!black, semithick, rounded corners, dashed, inner sep=5pt, fit=(glab)(c1)(c2)(c3)(c4)] (grp) {};
+\node[sblk, text width=15cm, below=0.45cm of grp] (safe)
   {Evaluation safeguards\quad trivial-policy check; reward, precision, per-slice SLA; replication; pre-registration};
-\node[lblk, text width=14cm] (live) at (8,0.9)
+\node[lblk, text width=14cm, below=0.45cm of safe] (live)
   {Live single-gNB OAI pipeline check, rfsim\quad 18{,}562-parameter DQN checkpoint, AXIOM evaluated offline};
 \draw[ar] (prob) -- (arch);
 \draw[ar] (arch) -- (grp.north);

@@ -48,7 +48,8 @@
 
 \node[below=0.35cm of qlab, font=\sffamily\small, align=center] (action) {accept / reject each pending request};
 % raw-feature skip into the heads: Q_k([z_i, x_i])
-\draw[dashedarrow, gray!70!black] (n1.west) .. controls +(-1.5,-0.2) and +(-1.2,0.1) .. node[pos=0.55, left, font=\sffamily\small, align=right, text=black] {raw\\features\\$\mathbf{x}_i$, skip} (qbox.west);
+\draw[dashedarrow, gray!70!black] (n1.west) .. controls +(-1.0,-0.4) and +(-0.7,0.7) .. (qbox.west);
+\node[anchor=east, font=\sffamily\small, align=right] at (-3.05,0.3) {raw\\features\\$\mathbf{x}_i$, skip};
 \draw[arrow] (qlab.south) -- (action.north);
 
 % ===== Right half: federated training loop =====
@@ -67,7 +68,7 @@
 \draw[dashedarrow] (server.west) .. controls +(-0.7,0.2) and +(-0.4,-0.7) .. (c1.west);
 \draw[dashedarrow] (server.east) .. controls +(0.7,0.2) and +(0.4,-0.7) .. (c3.east);
 \node[font=\sffamily\small, align=center] at (5.55,1.3) {clip +\\DP noise};
-\node[font=\sffamily\small] at (8.75,0.2) {broadcast};
+\node[font=\sffamily\small] at (9.05,-0.2) {broadcast};
 
 \node[below=0.35cm of server, font=\sffamily\small, align=center] {every $N_{\mathrm{loc}}$ local steps};
 

@@ -106,8 +106,11 @@ def main() -> None:
     ax1.plot([0, 1], [mean_c, mean_f], color="#0b0b0b", linewidth=2.2, marker="D",
               markersize=6, zorder=5, label="Mean")
 
-    ymin, ymax = ax1.get_ylim()
-    ax1.set_ylim(ymin - 0.34 * (ymax - ymin), ymax)
+    # keep the per-seed lines in the upper part of the axes, so the summary box and the legend
+    # sit in an empty band below every line and no line crosses their text
+    allv = np.concatenate([centralized_rewards, fl_no_dp_rewards])
+    lo_d, hi_d = float(allv.min()), float(allv.max())
+    ax1.set_ylim(lo_d - 1.15 * (hi_d - lo_d), hi_d + 0.06 * (hi_d - lo_d))
     ax1.set_xlim(-0.25, 1.25)
     ax1.set_xticks([0, 1])
     ax1.set_xticklabels(["Centralised\n(AXIOM)", "Federated\n(no DP)"])
@@ -131,7 +134,8 @@ def main() -> None:
         Line2D([0], [0], color=STATUS_COLORS["good"], linestyle="-", linewidth=1.4,
                label=f"Federation helps reward ({n_help})"),
     ]
-    ax1.legend(handles=legend_handles, loc="lower left", bbox_to_anchor=(0.0, 0.2), frameon=False, handlelength=1.6, fontsize=8)
+    ax1.legend(handles=legend_handles, loc="lower center", bbox_to_anchor=(0.5, 0.18), frameon=True, framealpha=1.0,
+               facecolor="white", edgecolor="#c3c2b7", handlelength=1.6, fontsize=8, borderpad=0.3, labelspacing=0.25)
 
     # ---- (b) block_precision vs sigma, evenly-spaced categorical x, per-seed
     # jitter, n annotations (sigma is not spaced evenly -- 0/0.5/1/2/4 -- so a
