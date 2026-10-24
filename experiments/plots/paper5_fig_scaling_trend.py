@@ -29,7 +29,7 @@ sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
 from m62_analysis import boot_ci  # noqa: E402
 from m66_verify import ROOT, S15, S30, S30_19, prio, seeds_of  # noqa: E402
-from paper5_common import M2_ARM_STYLE  # noqa: E402
+from paper5_common import M2_ARM_STYLE, MAIN_WIDTH_IN, panel  # noqa: E402
 
 ARMS = ["axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"]
 LABEL = {"axiom2": "AXIOM (proposed)", "single_agent_dqn": "DQN-SA",
@@ -87,12 +87,12 @@ def main():
         summ["rule"][n] = {"n_cells": len(rows), "prio_mean": float(np.mean(v)), "prio_ci": list(boot_ci(v)),
                            "collapsed": int(sum(r["collapsed"] for r in rows))}
     big = sizes[-1]
-    fig, axs = plt.subplots(1, 3, figsize=(10.4, 3.25), gridspec_kw={"width_ratios": [1.35, 1, 1]})
+    fig, axs = plt.subplots(1, 3, figsize=(MAIN_WIDTH_IN, 2.55), gridspec_kw={"width_ratios": [1.3, 1, 1]})
     xs = np.arange(len(sizes))
     for arm in ARMS:
         st = M2_ARM_STYLE[arm]
         emph = arm == "axiom2"
-        kw = dict(color=st["color"], marker=st["marker"], lw=2.8 if emph else 1.3, ms=8 if emph else 5,
+        kw = dict(color=st["color"], marker=st["marker"], lw=1.8 if emph else 0.9, ms=4.5 if emph else 3,
                   alpha=1.0 if emph else 0.75, zorder=5 if emph else 3, label=LABEL[arm])
         m = [summ[arm][n]["prio_mean"] for n in sizes]
         lo = [summ[arm][n]["prio_ci"][0] for n in sizes]
@@ -102,33 +102,37 @@ def main():
         axs[1].plot(xs, [100 * summ[arm][n]["collapsed"] / summ[arm][n]["n_cells"] for n in sizes], **kw)
         axs[2].plot(xs, [summ[arm][n]["params"] for n in sizes], **kw)
     for i, n in enumerate(sizes):
+        if n != big:
+            continue
         v = summ["axiom2"][n]["prio_mean"]
-        axs[0].annotate(f"{v:.1f}%", (i, v), textcoords="offset points", xytext=(0, -14), ha="center",
+        axs[0].annotate(f"{v:.1f}%", (i, v), textcoords="offset points", xytext=(-4, 6), ha="right",
                         fontsize=8, color=M2_ARM_STYLE["axiom2"]["color"], fontweight="bold")
     gap19 = summ["axiom2"][19]["prio_mean"] - max(summ[b][19]["prio_mean"] for b in ARMS[1:])
     gap = summ["axiom2"][big]["prio_mean"] - max(summ[b][big]["prio_mean"] for b in ARMS[1:])
-    xg = len(sizes) - 1 + 0.18
+    xg = len(sizes) - 1 + 0.2
     axs[0].annotate("", xy=(xg, summ["axiom2"][big]["prio_mean"]),
                     xytext=(xg, max(summ[b][big]["prio_mean"] for b in ARMS[1:])),
-                    arrowprops=dict(arrowstyle="<->", color="#1f5fae", lw=1.3))
-    axs[0].text(xg + 0.06, (summ["axiom2"][big]["prio_mean"] + max(summ[b][big]["prio_mean"] for b in ARMS[1:])) / 2,
+                    arrowprops=dict(arrowstyle="<->", color="#1f5fae", lw=1.0))
+    axs[0].text(xg + 0.05, (summ["axiom2"][big]["prio_mean"] + max(summ[b][big]["prio_mean"] for b in ARMS[1:])) / 2,
                 f"{gap:+.0f}\npoints", fontsize=8, color="#1f5fae", va="center", fontweight="bold")
-    axs[0].set_ylabel("Priority-slice SLA compliance, %")
+    axs[0].set_ylabel("Priority-slice SLA, %")
     axs[0].set_ylim(20 if 37 in sizes else 40, 104)
-    axs[0].set_title("(a) Compliance as the cluster grows", loc="left", fontsize=9.5)
-    axs[1].set_ylabel("Collapsed policies, % of runs")
-    axs[1].set_title("(b) Collapse into accept-all", loc="left", fontsize=9.5)
+    panel(axs[0], "a")
+    axs[1].set_ylabel("Collapsed runs, %")
+    panel(axs[1], "b")
     axs[2].set_ylabel("Parameters at execution")
     axs[2].set_yscale("log")
-    axs[2].set_title("(c) Model size", loc="left", fontsize=9.5)
+    panel(axs[2], "c")
     for ax in axs:
         ax.set_xticks(xs)
-        ax.set_xticklabels([f"{n} gNBs" for n in sizes])
-        ax.set_xlim(-0.3, len(sizes) - 0.45)
+        ax.set_xticklabels([str(n) for n in sizes])
+        ax.set_xlabel("gNBs")
+        ax.set_xlim(-0.3, len(sizes) - 0.45 + (0.35 if ax is axs[0] else 0))
         ax.grid(True, axis="y", lw=0.4, alpha=0.4)
         ax.spines[["top", "right"]].set_visible(False)
-    axs[0].legend(fontsize=7.5, frameon=False, loc="lower left")
-    fig.tight_layout()
+    h_, l_ = axs[0].get_legend_handles_labels()
+    fig.legend(h_, l_, loc="lower center", ncol=4, fontsize=8, frameon=False, handlelength=1.6, bbox_to_anchor=(0.5, -0.01))
+    fig.tight_layout(w_pad=0.6, rect=(0, 0.08, 1, 1))
     fig.savefig(a.out + ".pdf", bbox_inches="tight")
     fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")
     json.dump({"gap19_points": gap19, f"gap{big}_points": gap, "arms": summ}, open(a.out + "_summary.json", "w"), indent=1)

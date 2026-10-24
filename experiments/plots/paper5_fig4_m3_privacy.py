@@ -38,7 +38,7 @@ from scipy import stats
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 from m2_correctness_metrics import per_seed_metrics  # noqa: E402
-from paper5_common import M3_STYLE, STATUS_COLORS, bootstrap_ci  # noqa: E402
+from paper5_common import M3_STYLE, STATUS_COLORS, bootstrap_ci, SUPP_WIDTH_IN, panel  # noqa: E402
 
 
 def main() -> None:
@@ -84,7 +84,7 @@ def main() -> None:
         reward_by_sigma[sigma] = rewards
         precision_by_sigma[sigma] = precisions
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.16, 3.05))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(SUPP_WIDTH_IN, 3.05))
 
     # ---- (a) paired slope: centralized -> federated/no-DP, per seed ----
     diff_c_minus_f = centralized_rewards - fl_no_dp_rewards
@@ -112,7 +112,7 @@ def main() -> None:
     ax1.set_xticks([0, 1])
     ax1.set_xticklabels(["Centralised\n(AXIOM)", "Federated\n(no DP)"])
     ax1.set_ylabel("Mean reward per step")
-    ax1.set_title(f"(a) Federation cost, per seed (n={len(seeds)})")
+    panel(ax1, "a")
 
     diff_mean = diff_c_minus_f.mean()
     lo, hi = bootstrap_ci(diff_c_minus_f)
@@ -120,7 +120,7 @@ def main() -> None:
     ax1.text(0.5, 0.02,
               f"mean $\\Delta$={diff_mean:+.3f} [{lo:.2f}, {hi:.2f}]\n"
               f"Wilcoxon $p$={w_p:.4f}",
-              transform=ax1.transAxes, ha="center", va="bottom", fontsize=6.5,
+              transform=ax1.transAxes, ha="center", va="bottom", fontsize=8,
               bbox=dict(boxstyle="round,pad=0.3", facecolor="#fcfcfb", edgecolor="#c3c2b7", linewidth=0.6))
 
     legend_handles = [
@@ -131,7 +131,7 @@ def main() -> None:
         Line2D([0], [0], color=STATUS_COLORS["good"], linestyle="-", linewidth=1.4,
                label=f"Federation helps reward ({n_help})"),
     ]
-    ax1.legend(handles=legend_handles, loc="lower left", bbox_to_anchor=(0.0, 0.2), frameon=False, handlelength=1.6, fontsize=6)
+    ax1.legend(handles=legend_handles, loc="lower left", bbox_to_anchor=(0.0, 0.2), frameon=False, handlelength=1.6, fontsize=8)
 
     # ---- (b) block_precision vs sigma, evenly-spaced categorical x, per-seed
     # jitter, n annotations (sigma is not spaced evenly -- 0/0.5/1/2/4 -- so a
@@ -162,7 +162,7 @@ def main() -> None:
     ax2.errorbar(x_cat, prec_means, yerr=[prec_los, prec_his], color=style["color"],
                  marker=style["marker"], markersize=5.5, linewidth=1.6, capsize=3, zorder=4)
     for xi, n in zip(x_cat, n_seeds):
-        ax2.annotate(f"n={n}", (xi, -0.17), ha="center", va="top", fontsize=7,
+        ax2.annotate(f"n={n}", (xi, -0.17), ha="center", va="top", fontsize=8,
                      color="#333333", fontweight="bold", annotation_clip=False)
 
     ax2.set_xlim(-0.5, len(sigma_vals) - 0.5)
@@ -171,7 +171,7 @@ def main() -> None:
     ax2.set_xlabel("DP noise multiplier $\\sigma$", labelpad=14)
     ax2.set_ylabel("Block precision\n(fraction targeting mMTC)")
     ax2.set_ylim(-0.05, 1.08)
-    ax2.set_title("(b) Privacy-utility (per-seed spread shown)")
+    panel(ax2, "b")
 
     fig.subplots_adjust(bottom=0.28, wspace=0.32)
 

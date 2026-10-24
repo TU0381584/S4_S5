@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from paper5_common import M2_ARM_STYLE  # noqa: E402
+from paper5_common import M2_ARM_STYLE, SUPP_WIDTH_IN, panel  # noqa: E402
 
 ARMS = [("axiom2", "AXIOM", "#2a78d6", "-"), ("single_agent_dqn", "DQN-SA", "#1baf7a", "--"),
         ("independent_dqn", "DQN-I", "#eb6834", "-."), ("mappo_tuned", "MAPPO", "#7a4fd0", ":")]
@@ -63,7 +63,7 @@ def main():
     ap.add_argument("--seeds", type=int, nargs="+", required=True)
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
-    fig, axes = plt.subplots(1, len(a.cell), figsize=(3.6 * len(a.cell), 2.6), squeeze=False)
+    fig, axes = plt.subplots(1, len(a.cell), figsize=(SUPP_WIDTH_IN, 2.35), squeeze=False)
     summary = {}
     rng = np.random.RandomState(0)
     for ax, (cell, title) in zip(axes[0], a.cell):
@@ -77,17 +77,18 @@ def main():
             boots = np.stack([M[rng.randint(0, len(M), len(M))].mean(0) for _ in range(500)])
             lo, hi = np.percentile(boots, [2.5, 97.5], axis=0)
             x = np.arange(1, L + 1)
-            ax.plot(x, smooth(mean, SMOOTH), color=col, ls=ls, lw=1.4, label=f"{label} (n={len(M)})")
+            ax.plot(x, smooth(mean, SMOOTH), color=col, ls=ls, lw=1.1, label=label)
             ax.fill_between(x, smooth(lo, SMOOTH), smooth(hi, SMOOTH), color=col, alpha=0.15, lw=0)
             summary.setdefault(cell, {})[arm] = {"n": len(M), "last20_mean": float(mean[-20:].mean()),
                                                  "first20_mean": float(mean[:20].mean())}
-        ax.set_title(title, loc="left", fontsize=9)
+        panel(ax, title.split(")")[0].strip("( "))
         ax.set_xlabel("Training episode")
         ax.grid(True, lw=0.4, alpha=0.4)
         ax.spines[["top", "right"]].set_visible(False)
     axes[0][0].set_ylabel("Mean reward per step")
-    axes[0][0].legend(fontsize=6.5, frameon=False, loc="lower right")
-    fig.tight_layout()
+    h_, l_ = axes[0][0].get_legend_handles_labels()
+    fig.legend(h_, l_, loc="lower center", ncol=len(l_), fontsize=8, frameon=False, bbox_to_anchor=(0.5, -0.01))
+    fig.tight_layout(rect=(0, 0.08, 1, 1))
     fig.savefig(a.out + ".pdf", bbox_inches="tight")
     fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")
     json.dump(summary, open(a.out + "_summary.json", "w"), indent=1)

@@ -858,7 +858,7 @@ def main():
         for smp in json.load(open(f"{ROOT}/m49b_1/{f_}"))["samples"]:
             live_loss += [v for k, v in smp.items() if k.endswith("_loss_pct")]
     C.note("reframe: live loss 0.000% in every sample at both loads", len(live_loss) > 0 and max(live_loss) == 0
-           and "with 0.000\\% loss at both loads" in C.main, (len(live_loss), max(live_loss) if live_loss else None))
+           and "with 0.000\\% loss at one and at two UEs per slice" in C.main, (len(live_loss), max(live_loss) if live_loss else None))
     readings, below = 0, 0
     for g_ in ("m49b_2/gate_report.md", "m49b_3/gate_report.md"):
         txt = open(f"{ROOT}/{g_}").read()
@@ -1099,9 +1099,9 @@ def main():
            all(nom_ax_[s_]["reward"] == st_ax_[s_]["reward"] and nom_rl_[s_]["reward"] == st_rl_[s_]["reward"] for s_ in SB_), None)
     prim_ = ("load_1.10", "load_1.15", "load_1.20")
     hs_ = holm({k: sh_t_[k]["p"] for k in prim_})
-    C.claim("reframe: M72 overload lead 1.10", "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule", sh_t_["load_1.10"]["diff"], "{:.2f}")
-    C.claim("reframe: M72 overload lead 1.15", "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule", sh_t_["load_1.15"]["diff"], "{:.2f}")
-    C.claim("reframe: M72 overload lead 1.20", "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule", sh_t_["load_1.20"]["diff"], "{:.2f}")
+    C.claim("reframe: M72 overload lead 1.10", "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule", sh_t_["load_1.10"]["diff"], "{:.2f}")
+    C.claim("reframe: M72 overload lead 1.15", "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule", sh_t_["load_1.15"]["diff"], "{:.2f}")
+    C.claim("reframe: M72 overload lead 1.20", "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule", sh_t_["load_1.20"]["diff"], "{:.2f}")
     C.note("reframe: M72 overload wins 21 to 23 of 25 at Holm p<=0.0002", sorted({sh_t_[k]["wins"] for k in prim_}) == [21, 23]
            and all(sh_t_[k]["n"] == 25 for k in prim_) and round(max(hs_.values()), 4) <= 0.0002, hs_)
     C.note("reframe: M72 lighter load and stronger coupling leave a non-significant rule lead",

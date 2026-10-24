@@ -19,11 +19,11 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 from m62_analysis import boot_ci, eval_log, seed_metrics  # noqa: E402
-from paper5_common import M2_ARM_STYLE, RULE_STYLE  # noqa: E402,F401
+from paper5_common import M2_ARM_STYLE, MAIN_WIDTH_IN, RULE_STYLE  # noqa: E402,F401
 
 N3_ARMS = ["single_agent_dqn", "independent_dqn", "mappo_tuned", "axiom2"]
 SHORT = {"single_agent_dqn": "DQN-SA", "independent_dqn": "DQN-I",
-         "mappo_tuned": "MAPPO", "axiom2_mlp": "AXIOM,\nMLP encoder", "axiom2": "AXIOM\n(proposed)"}
+         "mappo_tuned": "MAPPO", "axiom2": "AXIOM\n(proposed)"}
 
 
 def style(arm):
@@ -41,7 +41,7 @@ def main():
     a = ap.parse_args()
     S30 = list(range(900, 930))
     d3 = load(f"{a.root}/n3_fully_connected", N3_ARMS, S30)
-    fig, ax = plt.subplots(figsize=(5.4, 3.3))
+    fig, ax = plt.subplots(figsize=(0.72 * MAIN_WIDTH_IN, 2.45))
     rng = np.random.RandomState(0)
     summ = {"n3": {}}
     for i, arm in enumerate(N3_ARMS):
@@ -53,9 +53,9 @@ def main():
         emph = arm == "axiom2"
         if emph:
             ax.axvspan(i - 0.42, i + 0.42, color=st["color"], alpha=0.08, lw=0)
-        ax.scatter(i + rng.uniform(-0.16, 0.16, len(r)), r, s=11, color=st["color"], alpha=0.35, lw=0)
+        ax.scatter(i + rng.uniform(-0.16, 0.16, len(r)), r, s=6, color=st["color"], alpha=0.35, lw=0)
         ax.errorbar(i, m, yerr=[[m - lo], [hi - m]], fmt=st["marker"], color=st["color"],
-                    ms=9 if emph else 7, capsize=4, lw=1.6 if emph else 1.3, mec="white" if emph else st["color"], zorder=5)
+                    ms=6.5 if emph else 5, capsize=3, lw=1.3 if emph else 1.0, mec="white" if emph else st["color"], zorder=5)
         ax.text(i + 0.24, m, f"{m:.2f}", fontsize=8.5, va="center", ha="left", color=st["color"],
                 fontweight="bold" if emph else "normal")
         summ["n3"][arm] = {"n": len(rows), "reward": m, "ci": [lo, hi],
@@ -66,7 +66,7 @@ def main():
     ax.set_xticklabels([SHORT[x] for x in N3_ARMS], fontsize=8.5)
     ax.get_xticklabels()[-1].set_fontweight("bold")
     ax.set_xlim(-0.55, len(N3_ARMS) - 0.35)
-    ax.set_ylabel("Mean reward per step, 3 gNBs", fontsize=9)
+    ax.set_ylabel("Reward per step, 3 gNBs", fontsize=8.5)
     ax.tick_params(axis="y", labelsize=8.5)
     ax.grid(True, axis="y", lw=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)

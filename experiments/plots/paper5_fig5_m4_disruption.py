@@ -35,7 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 from m4_correctness_metrics import baseline_eval_path, disrupted_eval_path, per_seed_metrics_normalized  # noqa: E402
 from m2_correctness_metrics import per_seed_metrics  # noqa: E402
-from paper5_common import M4_ARM_ORDER, M4_ARM_STYLE, bootstrap_ci  # noqa: E402
+from paper5_common import M4_ARM_ORDER, M4_ARM_STYLE, SUPP_WIDTH_IN, bootstrap_ci, panel  # noqa: E402
 
 
 def main() -> None:
@@ -123,60 +123,60 @@ def main() -> None:
     churn = cost_series("churn", churn_arms)
     spike_precision = precision_series("spike", M4_ARM_ORDER)
 
-    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(9.2, 2.7))
+    fig, (ax1, ax2, ax3) = plt.subplots(1, 3, figsize=(SUPP_WIDTH_IN, 2.3))
     x = np.array([1, 2, 3])
     xl = np.array([0, 1, 2, 3]) if args.level else x
     sev_ticks = ["None", "10%", "30%", "60%"] if args.level else ["10%", "30%", "60%"]
-    ylab = "Normalised reward kept\n(higher is better)" if args.level else "Normalised reward cost\n(baseline $-$ disrupted)"
+    ylab = "Normalised reward kept" if args.level else "Normalised reward cost\n(baseline $-$ disrupted)"
 
     for arm in M4_ARM_ORDER:
         style = M4_ARM_STYLE[arm]
         means, los, his = dropout[arm]
         ax1.errorbar(xl, means, yerr=[los, his], color=style["color"], marker=style["marker"],
-                     markersize=5, linewidth=1.4, capsize=3, label=style["label"])
+                     markersize=3.5, linewidth=1.0, capsize=2, label=style["label"])
     ax1.set_xticks(xl)
     ax1.set_xticklabels(sev_ticks)
-    ax1.set_xlabel("Dropout window (% of episode)")
+    ax1.set_xlabel("Dropout window, % of episode")
     ax1.set_ylabel(ylab)
-    ax1.set_title("(a)" if args.no_titles else "(a) gNB dropout", loc="left")
+    panel(ax1, "a") if args.no_titles else ax1.set_title("(a) gNB dropout", loc="left")
     ax1.axhline(0, color="#c3c2b7", linewidth=0.6, zorder=0)
 
     for arm in churn_arms:
         style = M4_ARM_STYLE[arm]
         means, los, his = churn[arm]
         ax2.errorbar(xl, means, yerr=[los, his], color=style["color"], marker=style["marker"],
-                     markersize=5, linewidth=1.4, capsize=3, label=style["label"])
+                     markersize=3.5, linewidth=1.0, capsize=2, label=style["label"])
     ax2.set_xticks(xl)
     ax2.set_xticklabels(sev_ticks)
-    ax2.set_xlabel("Churn window (% of episode)")
+    ax2.set_xlabel("Churn window, % of episode")
     ax2.set_ylabel(ylab)
-    ax2.set_title("(b)" if args.no_titles else "(b) Agent churn", loc="left")
+    panel(ax2, "b") if args.no_titles else ax2.set_title("(b) Agent churn", loc="left")
     ax2.axhline(0, color="#c3c2b7", linewidth=0.6, zorder=0)
 
     for arm in M4_ARM_ORDER:
         style = M4_ARM_STYLE[arm]
         means, los, his = spike_precision[arm]
         ax3.errorbar(x, means, yerr=[los, his], color=style["color"], marker=style["marker"],
-                     markersize=5, linewidth=1.4, capsize=3, label=style["label"])
+                     markersize=3.5, linewidth=1.0, capsize=2, label=style["label"])
     ax3.set_xticks(x)
     ax3.set_xticklabels(["2x", "4x", "8x"])
     ax3.set_xlabel("Spike multiplier")
-    ax3.set_ylabel("Block precision\n(fraction targeting mMTC)")
+    ax3.set_ylabel("Block precision")
     ax3.set_ylim(-0.05, 1.08)
-    ax3.set_title("(c)" if args.no_titles else "(c) Demand spike", loc="left")
+    panel(ax3, "c") if args.no_titles else ax3.set_title("(c) Demand spike", loc="left")
 
     handles, labels = ax1.get_legend_handles_labels()
-    fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, -0.16), ncol=4, frameon=False)
+    fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, 0.0), ncol=4, frameon=False, fontsize=8)
 
     if not args.no_titles:
         fig.suptitle("Reward kept under disruption, 10 seeds per arm" if args.level
                      else "Disruption cost versus severity, 10 seeds per arm", y=1.05, fontsize=9)
-    fig.subplots_adjust(bottom=0.05, wspace=0.45)
+    fig.tight_layout(rect=(0, 0.09, 1, 1), w_pad=0.8)
 
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_path.with_suffix(".pdf"), bbox_inches="tight")
-    fig.savefig(out_path.with_suffix(".png"), bbox_inches="tight")
+    fig.savefig(out_path.with_suffix(".png"), dpi=200, bbox_inches="tight")
     print(f"[paper5:fig5] wrote {out_path}.pdf / .png")
     for panel_name, series in [("dropout", dropout), ("churn", churn)]:
         for arm, (means, los, his) in series.items():

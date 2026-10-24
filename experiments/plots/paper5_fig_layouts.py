@@ -24,7 +24,7 @@ sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
 from m62_analysis import boot_ci  # noqa: E402
 from m66_verify import S15, S30_19, prio, seeds_of  # noqa: E402
-from paper5_common import M2_ARM_STYLE  # noqa: E402
+from paper5_common import M2_ARM_STYLE, SUPP_WIDTH_IN, panel  # noqa: E402
 
 ARMS = ["axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"]
 LAYOUTS = ["fully_connected", "ring", "hex"]
@@ -43,7 +43,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
-    fig, axs = plt.subplots(1, 2, figsize=(8.2, 3.0), sharey=True)
+    fig, axs = plt.subplots(1, 2, figsize=(SUPP_WIDTH_IN, 2.5), sharey=True)
     rng = np.random.RandomState(0)
     summ = {}
     w = 0.18
@@ -57,19 +57,19 @@ def main():
                 x0 = xi + (i - 1.5) * w
                 lo, hi = boot_ci(v)
                 m = float(np.mean(v))
-                ax.scatter(x0 + rng.uniform(-0.04, 0.04, len(v)), v, s=7, color=st["color"], alpha=0.3, lw=0)
-                ax.errorbar(x0, m, yerr=[[m - lo], [hi - m]], fmt=st["marker"], color=st["color"], ms=6 if arm == "axiom2" else 5,
-                            capsize=2.5, lw=1.2, label=st["label"].replace(" (proposed)", "") if (xi == 2 and n == 19) else None)
+                ax.scatter(x0 + rng.uniform(-0.04, 0.04, len(v)), v, s=4, color=st["color"], alpha=0.3, lw=0)
+                ax.errorbar(x0, m, yerr=[[m - lo], [hi - m]], fmt=st["marker"], color=st["color"], ms=4.5 if arm == "axiom2" else 3.5,
+                            capsize=2, lw=1.0, label=st["label"].replace(" (proposed)", "") if (xi == 2 and n == 19) else None)
                 summ.setdefault(str(n), {}).setdefault(arm, {})[t] = {"n": len(v), "mean": m, "ci": [lo, hi]}
         ax.set_xticks(range(3))
         ax.set_xticklabels([LAB[t] for t in LAYOUTS], fontsize=8)
-        ax.set_title(f"({'a' if n == 19 else 'b'}) {n} gNBs", loc="left", fontsize=9)
+        panel(ax, "a" if n == 19 else "b")
         ax.grid(True, axis="y", lw=0.4, alpha=0.4)
         ax.spines[["top", "right"]].set_visible(False)
-    axs[0].set_ylabel("Priority-slice SLA compliance, %", fontsize=8.5)
+    axs[0].set_ylabel("Priority-slice SLA, %", fontsize=8)
     axs[0].set_ylim(-3, 103)
-    fig.legend(loc="lower center", ncol=4, frameon=False, fontsize=7.5, bbox_to_anchor=(0.5, -0.06))
-    fig.tight_layout(rect=(0, 0.05, 1, 1))
+    fig.legend(loc="lower center", ncol=4, frameon=False, fontsize=8, bbox_to_anchor=(0.5, 0.0))
+    fig.tight_layout(rect=(0, 0.09, 1, 1))
     fig.savefig(a.out + ".pdf", bbox_inches="tight")
     fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")
     json.dump(summ, open(a.out + "_summary.json", "w"), indent=1)

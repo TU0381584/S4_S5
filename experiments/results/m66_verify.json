@@ -3518,7 +3518,7 @@
  },
  {
   "label": "reframe: M72 overload lead 1.10",
-  "snippet": "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
+  "snippet": "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
   "computed": 0.4579227494591433,
   "formatted": "0.46",
   "in_tex": true,
@@ -3526,7 +3526,7 @@
  },
  {
   "label": "reframe: M72 overload lead 1.15",
-  "snippet": "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
+  "snippet": "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
   "computed": 0.430786223708374,
   "formatted": "0.43",
   "in_tex": true,
@@ -3534,7 +3534,7 @@
  },
  {
   "label": "reframe: M72 overload lead 1.20",
-  "snippet": "it earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
+  "snippet": "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
   "computed": 0.35427552004125945,
   "formatted": "0.35",
   "in_tex": true,

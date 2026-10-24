@@ -32,9 +32,9 @@ mpl.rcParams.update({
     "font.size": 8,
     "axes.titlesize": 9,
     "axes.labelsize": 8,
-    "xtick.labelsize": 7,
-    "ytick.labelsize": 7,
-    "legend.fontsize": 6.5,
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8,
+    "legend.fontsize": 8,
     "lines.linewidth": 1.2,
     "lines.markersize": 5,
     "axes.linewidth": 0.6,
@@ -47,6 +47,17 @@ mpl.rcParams.update({
     "ps.fonttype": 42,
     "savefig.bbox": "tight",
 })
+
+# Printed widths for WPC (sn-jnl text block 372 pt) and Online Resource 1 (A4, 2.5 cm margins).
+# Figures are drawn at these widths so every label prints at 8 pt or more, as Springer asks.
+MAIN_WIDTH_IN = 372.0 / 72.27
+SUPP_WIDTH_IN = 453.5 / 72.27
+
+
+def panel(ax, letter, **kw):
+    """Bare bold panel letter, the Springer convention; the caption carries the description."""
+    ax.set_title(letter, loc="left", fontsize=9, fontweight="bold", **kw)
+
 
 M2_ARM_ORDER: List[str] = ["gat_ctde", "independent_dqn", "single_agent_dqn"]
 M2_ARM_STYLE: Dict[str, dict] = {

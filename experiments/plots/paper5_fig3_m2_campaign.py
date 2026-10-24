@@ -36,7 +36,7 @@ from scipy import stats
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 from m2_correctness_metrics import per_seed_metrics  # noqa: E402
-from paper5_common import M2_ARM_STYLE, STATUS_COLORS, bootstrap_ci, eval_omega_path, load_m2_campaign  # noqa: E402
+from paper5_common import M2_ARM_STYLE, STATUS_COLORS, bootstrap_ci, eval_omega_path, load_m2_campaign, SUPP_WIDTH_IN, panel  # noqa: E402
 
 
 def main() -> None:
@@ -60,7 +60,7 @@ def main() -> None:
         reward_by_arm[arm] = np.array(rewards)
         blocks_by_arm[arm] = np.array(blocks)
 
-    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(7.16, 2.5))
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(SUPP_WIDTH_IN, 2.5))
 
     # ---- (a) paired slope: single_agent_dqn -> gat_ctde, per seed ----
     single = reward_by_arm["single_agent_dqn"]
@@ -88,14 +88,14 @@ def main() -> None:
     ax1.set_xticks([0, 1])
     ax1.set_xticklabels(["DQN-SA", "AXIOM\n(proposed)"])
     ax1.set_ylabel("Mean reward per step")
-    ax1.set_title(f"(a) Paired per-seed comparison (n={len(single)})")
+    panel(ax1, "a")
 
     lo, hi = bootstrap_ci(diff)
     _w_stat, w_p = stats.wilcoxon(gat, single)
     ax1.text(0.5, 0.02,
               f"mean $\\Delta$=+{diff.mean():.3f} [{lo:.2f}, {hi:.2f}]\n" +
               (f"Wilcoxon $p$={w_p:.4f}, unadjusted" if w_p >= 1e-4 else "Wilcoxon $p$<0.0001, unadjusted"),
-              transform=ax1.transAxes, ha="center", va="bottom", fontsize=6.5,
+              transform=ax1.transAxes, ha="center", va="bottom", fontsize=8,
               bbox=dict(boxstyle="round,pad=0.3", facecolor="#fcfcfb", edgecolor="#c3c2b7", linewidth=0.6))
 
     legend_handles = [
@@ -106,7 +106,7 @@ def main() -> None:
         Line2D([0], [0], color=STATUS_COLORS["critical"], linestyle="--", linewidth=1.4,
                label=f"AXIOM lower ({n_lose})"),
     ]
-    ax1.legend(handles=legend_handles, loc="lower right", bbox_to_anchor=(1.0, 0.2), frameon=False, handlelength=1.6, fontsize=6.5)
+    ax1.legend(handles=legend_handles, loc="lower right", bbox_to_anchor=(1.0, 0.2), frameon=False, handlelength=1.6, fontsize=8)
 
     # ---- (b) per-seed reward strip, all 3 arms, gat_ctde split by collapse status ----
     rng = np.random.RandomState(0)
@@ -139,7 +139,7 @@ def main() -> None:
     ax2.set_xticks([0, 1, 2])
     ax2.set_xticklabels(["AXIOM", "DQN-I", "DQN-SA"])
     ax2.set_ylabel("Mean reward per step")
-    ax2.set_title(f"(b) Per-seed distribution (n={len(all_seeds)}/arm)")
+    panel(ax2, "b")
 
     handles2, labels2 = ax2.get_legend_handles_labels()
     handles2.append(Line2D([0], [0], marker="D", color="#0b0b0b", linestyle="none",
@@ -147,7 +147,7 @@ def main() -> None:
     labels2.append("Mean $\\pm$ 95% CI")
     ymin, ymax = ax2.get_ylim(); ax2.set_ylim(ymin - 0.45 * (ymax - ymin), ymax)
     ax2.legend(handles2, labels2, loc="lower left", bbox_to_anchor=(0.01, 0.01), ncol=2, columnspacing=0.8,
-               frameon=False, fontsize=6, handlelength=1.3)
+               frameon=False, fontsize=8, handlelength=1.3)
 
     # WPC: no titles inside figure files; the manuscript caption carries this.
     # fig.suptitle("Centralised campaign, per-seed reward evidence, 30 seeds per arm", y=1.02, fontsize=9)
