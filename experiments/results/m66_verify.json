@@ -5973,9 +5973,447 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 622",
+  "label": "M78 Table 5 LR 1e-4 row single_agent_dqn_lr1e4",
   "snippet": null,
-  "computed": 622,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 Table 5 LR 1e-4 row independent_dqn_lr1e4",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 complexity latency row independent_dqn",
+  "snippet": null,
+  "computed": "0.59 / 1.38 / 3.73 / 8.08",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 complexity latency row mappo",
+  "snippet": null,
+  "computed": "0.19 / 0.20 / 0.22 / 0.27",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 Env A 7 gNBs AXIOM URLLC and eMBB",
+  "snippet": null,
+  "computed": [
+   99.75333333333334,
+   94.39259259259258
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 Env A 19 gNBs AXIOM URLLC and eMBB",
+  "snippet": null,
+  "computed": [
+   99.39037037037036,
+   95.11074074074075
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 Env B 3 gNBs seed wins 24 to 29",
+  "snippet": null,
+  "computed": [
+   29,
+   27,
+   29,
+   26,
+   29,
+   24
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 Env B replication 7 or 8 of 10, nothing survives",
+  "snippet": null,
+  "computed": 0.22265625,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 carried-over tuned rule wins every seed at 19 gNBs",
+  "snippet": null,
+  "computed": {
+   "n": 15,
+   "diff": 3.8141086518388345,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 Env B collapses: none at 3 and 7 gNBs; DQN-SA 14 and AXIOM 1 of 15 at 19",
+  "snippet": null,
+  "computed": {
+   "m64/n3_fully_connected": {
+    "axiom2": 0,
+    "independent_dqn": 0,
+    "single_agent_dqn": 0,
+    "mappo_tuned": 0
+   },
+   "m64/n7_fully_connected": {
+    "axiom2": 0,
+    "independent_dqn": 0,
+    "single_agent_dqn": 0,
+    "mappo_tuned": 0
+   },
+   "m64/n7_ring": {
+    "axiom2": 0,
+    "independent_dqn": 0,
+    "single_agent_dqn": 0,
+    "mappo_tuned": 0
+   },
+   "m64/n7_hex": {
+    "axiom2": 0,
+    "independent_dqn": 0,
+    "single_agent_dqn": 0,
+    "mappo_tuned": 0
+   },
+   "m75/D_envB_n19_hex": {
+    "axiom2": 1,
+    "independent_dqn": 0,
+    "single_agent_dqn": 14,
+    "mappo_tuned": 0
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 MAPPO never collapses at 37 gNBs but does at 3",
+  "snippet": null,
+  "computed": 0,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 Env A mean demand 95% to 105% of budget",
+  "snippet": null,
+  "computed": [
+   1.05,
+   0.9,
+   1.0
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 Env B demand swings 60% to 124% of budget",
+  "snippet": null,
+  "computed": [
+   0.95,
+   0.3
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 at 120% load priority demand exceeds the caps at most gNBs",
+  "snippet": null,
+  "computed": 0.9166666666666666,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 table row load_0.80",
+  "snippet": null,
+  "computed": "80\\% load & 13.776 & 14.055 & $-$0.279 & 12/13 & ",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 table row nominal",
+  "snippet": null,
+  "computed": "nominal & 8.846 & 9.261 & $-$0.415 & 7/18 & ",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 table row load_1.05",
+  "snippet": null,
+  "computed": "105\\% load & 4.482 & 4.183 & +0.299 & 21/4 & ",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 table row load_1.10",
+  "snippet": null,
+  "computed": "110\\% load & 2.082 & 1.624 & +0.458 & 23/2 & ",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 table row load_1.15",
+  "snippet": null,
+  "computed": "115\\% load & 0.378 & $-$0.052 & +0.431 & 23/2 & ",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 table row load_1.20",
+  "snippet": null,
+  "computed": "120\\% load & $-$0.714 & $-$1.068 & +0.354 & 21/4 & ",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 table row coupling_0.30",
+  "snippet": null,
+  "computed": "coupling 0.30 & 6.457 & 6.766 & $-$0.310 & 11/14 & ",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 table row amplitude_0.50",
+  "snippet": null,
+  "computed": "load swing 0.50 & 6.015 & 5.831 & +0.184 & 18/7 & ",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S14 re-tuned rule 0.16, 0.12 n.s., 0.62 at 120%",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 original simulator accept-all reward",
+  "snippet": "accepting every request earned 14.45 reward per step",
+  "computed": 14.452188939219193,
+  "formatted": "14.45",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M78 original simulator accept-all keeps URLLC and eMBB at 100%",
+  "snippet": null,
+  "computed": 30,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 original AXIOM ties the oracle",
+  "snippet": "tying it in 39 of 40 seeds",
+  "computed": 39,
+  "formatted": "39",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M78 original AXIOM at 19 gNBs",
+  "snippet": "the original AXIOM kept priority-slice compliance at only 79.1\\%",
+  "computed": 79.10592592592593,
+  "formatted": "79.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M78 faster rate and wider encoder within 0.19, not significant",
+  "snippet": null,
+  "computed": [
+   -0.187,
+   0.121
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 DP eMBB low",
+  "snippet": "between 74.3\\% and 83.0\\%",
+  "computed": 74.29333333333334,
+  "formatted": "74.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M78 DP eMBB high",
+  "snippet": "between 74.3\\% and 83.0\\%",
+  "computed": 82.96,
+  "formatted": "83.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M78 DP collapses two and four at sigma 2 and 4",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 disruption 9 or 10 of 10 at Holm p<=0.041",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 spike precision 1.00 for DQN-SA and about 0.95 for DQN-I",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 disruption replication costs significant at p<=0.035, no gap",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 AXIOM collapsed seeds at 37 gNBs",
+  "snippet": null,
+  "computed": {
+   "hex": [
+    918,
+    919,
+    924
+   ],
+   "ring": [
+    901,
+    1001
+   ],
+   "fully_connected": [
+    902
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 collapsed 59-65%, others 96.9-98.1% per layout",
+  "snippet": null,
+  "computed": [
+   [
+    65.31666666666666,
+    60.38333333333333,
+    60.53333333333334,
+    62.63333333333333,
+    59.4,
+    60.5
+   ],
+   [
+    97.0858024691358,
+    98.10897435897435,
+    96.85
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 M74 wins 18 to 19 of 20, collapsed seed 6110",
+  "snippet": null,
+  "computed": [
+   19,
+   18,
+   19,
+   19,
+   19,
+   19
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 pooled 50 seeds 94.2%, 4 collapses",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S16 tuned DQN-SA at 19 won by 0.001",
+  "snippet": null,
+  "computed": [
+   78.32191488683631,
+   78.32077739972468,
+   78.32077739972468
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 S17 re-tuned rule sheds eMBB at 0.05 rather than 0.2",
+  "snippet": null,
+  "computed": [
+   {
+    "tau_c": 0.0,
+    "tau_q": null,
+    "tau_e": 0.05
+   },
+   {
+    "tau_c": 0.0,
+    "tau_q": null,
+    "tau_e": 0.2
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M78 FedProx mu 0.01 above FedAvg, 0.1 and 1.0 below, three seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "text quotes the final check count of 663",
+  "snippet": null,
+  "computed": 663,
   "formatted": null,
   "in_tex": null,
   "ok": true

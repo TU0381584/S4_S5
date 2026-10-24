@@ -1612,6 +1612,127 @@ def main():
            mean(seeds_of("m75/D_envB_n19_hex", "rule_static", S15)) > mean(seeds_of("m75/D_envB_n19_hex", "axiom2", S15))
            and "A static rule known in advance does better under steady load and at nineteen gNBs under coupling" in C.main, None)
 
+    # ---------------- M78 audit (2026-10-25): every remaining reported number traced to its source
+    def r1_(x_):  # round half up to one decimal, as the text does
+        return f"{math.floor(x_ * 10 + 0.5 + 1e-9) / 10:.1f}"
+    for a_ in ("single_agent_dqn_lr1e4", "independent_dqn_lr1e4"):
+        r_ = A[a_]
+        pr_ = float(np.mean([x["precision"] for x in r_.values() if x["precision"] is not None]))
+        C.note(f"M78 Table 5 LR 1e-4 row {a_}", len(r_) == 30 and f"$10^{{-4}}$ & {mean(r_):.3f} [" in C.main
+               and f"& {pr_:.3f} & {sum(x['collapsed'] for x in r_.values())}/30 & {mean(r_, lambda x: x['sla']['urllc']):.3f} & {mean(r_, lambda x: x['sla']['embb']):.3f} \\\\" in C.main, None)
+    cxm_ = json.load(open(f"{ROOT}/m64/complexity.json")); cxn_ = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
+    for k_ in ("independent_dqn", "mappo"):
+        s_ = " / ".join(f"{cxm_[n_][k_]['ms_per_step']:.2f}" for n_ in ("3", "7", "19")) + f" / {cxn_[k_]['ms_per_step']:.2f}"
+        C.note(f"M78 complexity latency row {k_}", s_ in C.main, s_)
+    for n_, ss_, snip_ in ((7, S15, "At seven gNBs AXIOM keeps URLLC and eMBB at {u}\\% and {e}\\%"), (19, S30_19, "AXIOM keeps URLLC and eMBB at {u}\\% and {e}\\%, a pooled")):
+        rr_ = [r for t_ in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n{n_}_{t_}", "axiom2", ss_).values()]
+        u_, e_ = 100 * np.mean([r["sla"]["urllc"] for r in rr_]), 100 * np.mean([r["sla"]["embb"] for r in rr_])
+        C.note(f"M78 Env A {n_} gNBs AXIOM URLLC and eMBB", snip_.format(u=r1_(u_), e=r1_(e_)) in C.main, (u_, e_))
+    wB_ = [paired(B["axiom2"], B[b_], f_)["wins"] for b_ in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for f_ in (lambda r: r["reward"], prio)]
+    C.note("M78 Env B 3 gNBs seed wins 24 to 29", (min(wB_), max(wB_)) == (24, 29) and "winning 24 to 29 of 30 seeds" in C.main, wB_)
+    RB_ = {a_: seeds_of("m64/n3_replication", a_, REP) for a_ in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned")}
+    fr_ = {(b_, m_): paired(RB_["axiom2"], RB_[b_], f_) for b_ in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for m_, f_ in (("r", lambda r: r["reward"]), ("p", prio))}
+    hr_ = holm({k_: v_["p"] for k_, v_ in fr_.items()})
+    C.note("M78 Env B replication 7 or 8 of 10, nothing survives", sorted({v_["wins"] for v_ in fr_.values()}) == [7, 8] and min(hr_.values()) >= 0.05
+           and "with AXIOM winning 7 or 8 of 10 seeds against each, but no lead survives correction there" in C.main, min(hr_.values()))
+    d19_ = paired(seeds_of("m75/D_envB_n19_hex", "rule_local_transfer", S15), seeds_of("m75/D_envB_n19_hex", "axiom2", S15))
+    C.note("M78 carried-over tuned rule wins every seed at 19 gNBs", d19_["wins"] == 15 and "keeps 84.5\\% per-gNB compliance, winning every seed" in C.main, d19_)
+    colB_ = {c_: {a_: sum(r["collapsed"] for r in seeds_of(c_, a_, ss_).values()) for a_ in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned")}
+             for c_, ss_ in (("m64/n3_fully_connected", S30), ("m64/n7_fully_connected", S15), ("m64/n7_ring", S15), ("m64/n7_hex", S15), ("m75/D_envB_n19_hex", S15))}
+    C.note("M78 Env B collapses: none at 3 and 7 gNBs; DQN-SA 14 and AXIOM 1 of 15 at 19",
+           all(v_ == 0 for c_, d_ in colB_.items() if "n19" not in c_ for v_ in d_.values())
+           and colB_["m75/D_envB_n19_hex"]["single_agent_dqn"] == 14 and colB_["m75/D_envB_n19_hex"]["axiom2"] == 1
+           and "In Env B no learned policy collapsed at three or seven gNBs, while at nineteen gNBs DQN-SA collapsed in 14 of 15 seeds and AXIOM in 1" in C.tex, colB_)
+    m37_ = sum(r["collapsed"] for r in seeds_of("m73/A_n37_hex", "mappo_tuned", S30_19).values())
+    C.note("M78 MAPPO never collapses at 37 gNBs but does at 3", m37_ == 0 and sum(r["collapsed"] for r in A["mappo_tuned"].values()) == 2
+           and "MAPPO, which never collapses at thirty-seven gNBs" in C.main, m37_)
+    # simulator constants read from the source files (importing them needs the framework on sys.path)
+    import types
+    def consts_(p_):
+        src_ = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), p_)).read()
+        ns_ = {m_.group(1): eval(m_.group(2)) for m_ in re.finditer(r"^([A-Z_]+) = ([-0-9.(), ]+?)\s*(?:#.*)?$", src_, flags=re.M)}
+        return types.SimpleNamespace(**ns_)
+    sbk_, cdk_ = consts_("shared_budget_kpm_source.py"), consts_("coupled_dynamic_kpm_source.py")
+    lo_m_, hi_m_ = sbk_.LOAD_MULTIPLIER_RANGE
+    C.note("M78 Env A mean demand 95% to 105% of budget", f"about {math.floor(100 * sbk_.LOAD_FACTOR * lo_m_ + 0.5)}\\% to {math.floor(100 * sbk_.LOAD_FACTOR * hi_m_ + 0.5)}\\% of its budget" in C.main
+           and "scaled by a fixed per-gNB multiplier between 0.9 and 1.0" in C.main and (lo_m_, hi_m_) == (0.9, 1.0), (sbk_.LOAD_FACTOR, lo_m_, hi_m_))
+    C.note("M78 Env B demand swings 60% to 124% of budget",
+           f"between about {100 * cdk_.LOAD_BASE * lo_m_ * (1 - cdk_.LOAD_AMPLITUDE):.0f}\\% and {100 * cdk_.LOAD_BASE * hi_m_ * (1 + cdk_.LOAD_AMPLITUDE):.0f}\\% of the budget" in C.main,
+           (cdk_.LOAD_BASE, cdk_.LOAD_AMPLITUDE))
+    th_ = max(33 / (1.2 * 30), 66 / (1.2 * 60))
+    C.note("M78 at 120% load priority demand exceeds the caps at most gNBs", lo_m_ < th_ < (lo_m_ + hi_m_) / 2
+           and "exceeds the slice caps at most gNBs" in C.main, th_)
+    m72b_ = json.load(open(f"{ROOT}/m72/analysis.json"))["B"]
+    for k_, lab_ in (("load_0.80", "80\\% load"), ("nominal", "nominal"), ("load_1.05", "105\\% load"), ("load_1.10", "110\\% load"), ("load_1.15", "115\\% load"),
+                     ("load_1.20", "120\\% load"), ("coupling_0.30", "coupling 0.30"), ("amplitude_0.50", "load swing 0.50")):
+        v_ = m72b_["tests"][k_]
+        fm_ = lambda x: f"$-${abs(x):.3f}" if x < 0 else f"{x:.3f}"
+        row_ = f"{lab_} & {fm_(v_['means']['axiom2'])} & {fm_(v_['means']['rule_local'])} & " + ("$-$" if v_["diff"] < 0 else "+") + f"{abs(v_['diff']):.3f} & {v_['wins']}/{v_['losses']} & "
+        C.note(f"M78 S14 table row {k_}", row_ in C.tex, row_)
+    rt_ = m72b_["retuned"]
+    C.note("M78 S14 re-tuned rule 0.16, 0.12 n.s., 0.62 at 120%", [f"{-rt_[k_]['test']['diff']:.2f}" for k_ in ("load_1.10", "load_1.15", "load_1.20")] == ["0.16", "0.12", "0.62"]
+           and max(rt_[k_]["test"]["p"] for k_ in ("load_1.10", "load_1.15")) >= 0.05
+           and all(rt_[k_]["selected"] != {"tau_c": 0.0, "tau_q": None, "tau_e": 0.2} for k_ in rt_)
+           and "selected thresholds different from the nominal rule's at every shift" in C.tex, None)
+    old_ = json.load(open(f"{ROOT}/m78_oldsim/summary.json"))["accept_all"]
+    C.claim("M78 original simulator accept-all reward", "accepting every request earned 14.45 reward per step", float(np.mean([v_["reward"] for v_ in old_.values()])), "{:.2f}")
+    C.note("M78 original simulator accept-all keeps URLLC and eMBB at 100%", len(old_) == 30 and all(v_["sla"]["urllc"] == 1.0 and v_["sla"]["embb"] == 1.0 for v_ in old_.values())
+           and "kept URLLC and eMBB at 100\\% SLA compliance" in C.tex, len(old_))
+    ax1_ = {**seeds_of("m63_reviewer/base", "axiom", S30), **seeds_of("m63_reviewer/replication", "axiom", REP)}
+    or1_ = {**seeds_of("m63_reviewer/base", "heuristic", S30), **seeds_of("m63_reviewer/replication", "heuristic", REP)}
+    C.claim("M78 original AXIOM ties the oracle", "tying it in 39 of 40 seeds", paired(ax1_, or1_)["ties"], "{:d}")
+    o19_ = [r for t_ in ("fully_connected", "ring", "hex") for r in seeds_of(f"m63_scaling/n19_{t_}", "gat_ctde", S15).values()]
+    C.claim("M78 original AXIOM at 19 gNBs", "the original AXIOM kept priority-slice compliance at only 79.1\\%", 100 * float(np.mean([prio(r) for r in o19_])), "{:.1f}")
+    cur_ = seeds_of("m64/n3_fully_connected", "axiom2", S10)
+    sv_ = [paired(seeds_of("m64/n3_fully_connected", a_, S10), cur_) for a_ in ("axiom2_lr3e-3", "axiom2_wide")]
+    C.note("M78 faster rate and wider encoder within 0.19, not significant", max(abs(v_["diff"]) for v_ in sv_) <= 0.19 and min(v_["p"] for v_ in sv_) >= 0.05
+           and "both stay within 0.19 of the current AXIOM" in C.tex, [round(v_["diff"], 3) for v_ in sv_])
+    dp_ = {s_: seeds_of("m65_m3", f"fl_gat_ctde_sigma{s_}", S10) for s_ in ("0.5", "1.0", "2.0", "4.0")}
+    eb_ = [100 * mean(v_, lambda r: r["sla"]["embb"]) for v_ in dp_.values()]
+    C.claim("M78 DP eMBB low", "between 74.3\\% and 83.0\\%", min(eb_), "{:.1f}")
+    C.claim("M78 DP eMBB high", "between 74.3\\% and 83.0\\%", max(eb_), "{:.1f}")
+    C.note("M78 DP collapses two and four at sigma 2 and 4", [sum(r["collapsed"] for r in dp_[s_].values()) for s_ in ("0.5", "1.0", "2.0", "4.0")] == [0, 0, 2, 4]
+           and "two and four of the ten seeds collapse" in C.tex, None)
+    m4_ = json.load(open(f"{ROOT}/m65_m4/m4_summary.json"))["cells"]; m4r_ = json.load(open(f"{ROOT}/m65_m4_replication/m4_summary.json"))
+    dc_ = [v_ for k_, v_ in m4_.items() if "|spike|" not in k_]
+    C.note("M78 disruption 9 or 10 of 10 at Holm p<=0.041", {v_["hurt"] for v_ in dc_} == {9, 10} and round(max(v_["p_holm"] for v_ in dc_), 3) <= 0.041
+           and "in 9 or 10 of 10 seeds at Holm-adjusted $p\\leq0.041$" in C.tex, None)
+    C.note("M78 spike precision 1.00 for DQN-SA and about 0.95 for DQN-I", all(round(m4_[f"single_agent_dqn|spike|{i_}"]["precision_mean"], 2) == 1.0 for i_ in (1, 2, 3))
+           and all(abs(m4_[f"independent_dqn|spike|{i_}"]["precision_mean"] - 0.95) < 0.01 for i_ in (1, 2, 3))
+           and "against 1.00 for DQN-SA and about 0.95 for DQN-I" in C.tex, None)
+    rc_ = [v_ for k_, v_ in m4r_["cells"].items() if "|spike|" not in k_]
+    C.note("M78 disruption replication costs significant at p<=0.035, no gap", round(max(v_["p_holm"] for v_ in rc_), 3) <= 0.035 and all(v_["cost_mean"] > 0 for v_ in rc_)
+           and min(v_["p_holm"] for v_ in m4r_["axiom_gap"].values()) >= 0.05 and "significant at $p\\leq0.035$ and no significant gap between policies" in C.tex, None)
+    col37_ = {t_: sorted(s_ for s_, r in seeds_of(f"m73/A_n37_{t_}", "axiom2", ss_).items() if r["collapsed"]) for t_, ss_ in (("hex", S30_19), ("ring", S15), ("fully_connected", S15))}
+    C.note("M78 AXIOM collapsed seeds at 37 gNBs", col37_ == {"hex": [918, 919, 924], "ring": [901, 1001], "fully_connected": [902]}
+           and "seeds 918, 919, and 924 on the hex layout, 901 and 1001 on the ring, and 902 on the fully-connected layout" in C.tex, col37_)
+    cp37_, ok37_ = [], []
+    for t_, ss_ in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)):
+        rs_ = seeds_of(f"m73/A_n37_{t_}", "axiom2", ss_)
+        cp37_ += [100 * prio(r) for r in rs_.values() if r["collapsed"]]
+        ok37_.append(100 * float(np.mean([prio(r) for r in rs_.values() if not r["collapsed"]])))
+    C.note("M78 collapsed 59-65%, others 96.9-98.1% per layout", f"{min(cp37_):.0f}\\% to {max(cp37_):.0f}\\%" == "59\\% to 65\\%"
+           and f"{r1_(min(ok37_))}\\% to {r1_(max(ok37_))}\\% on average under each layout" in C.tex, (cp37_, ok37_))
+    F74_ = list(range(6100, 6120)); a74_ = seeds_of("m74/A_n37_hex", "axiom2", F74_)
+    w74_ = [paired(a74_, seeds_of("m74/A_n37_hex", b_, F74_), f_)["wins"] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned") for f_ in (lambda r: r["reward"], prio)]
+    C.note("M78 M74 wins 18 to 19 of 20, collapsed seed 6110", (min(w74_), max(w74_)) == (18, 19) and [s_ for s_, r in a74_.items() if r["collapsed"]] == [6110]
+           and "winning 18 to 19 of 20 seeds in every comparison" in C.tex and "Its one collapsed seed is 6110" in C.tex, w74_)
+    pl_ = list(seeds_of("m73/A_n37_hex", "axiom2", S30_19).values()) + list(a74_.values())
+    C.note("M78 pooled 50 seeds 94.2%, 4 collapses", len(pl_) == 50 and r1_(100 * float(np.mean([prio(r) for r in pl_]))) == "94.2" and sum(r["collapsed"] for r in pl_) == 4
+           and "AXIOM keeps 94.2\\% priority-slice compliance over 50 seeds and collapses in 4 of them" in C.tex, None)
+    g75_ = json.load(open(f"{ROOT}/m75/C_selection.json"))["single_agent_dqn|19"]
+    gr_ = sorted((v_["reward"] for v_ in g75_["grid"].values()), reverse=True)
+    C.note("M78 S16 tuned DQN-SA at 19 won by 0.001", g75_["selected"] == "1e-4,16" and f"{gr_[0] - gr_[1]:.3f}" == "0.001"
+           and "the selected setting won by 0.001 reward per step" in C.tex, gr_[:3])
+    sel76_ = json.load(open(f"{ROOT}/m76/b2_hetero_n7_ring/rule_local_selection.json"))["selected"]
+    sel64_ = json.load(open(f"{ROOT}/m64/n7_hex/rule_local_selection.json"))["selected"]
+    C.note("M78 S17 re-tuned rule sheds eMBB at 0.05 rather than 0.2", (sel76_["tau_e"], sel64_["tau_e"]) == (0.05, 0.2)
+           and "sheds eMBB once the URLLC queue passes 0.05 rather than 0.2" in C.tex, (sel76_, sel64_))
+    fp_ = json.load(open(f"{ROOT}/m65_fedprox_summary.json"))["summary"]
+    C.note("M78 FedProx mu 0.01 above FedAvg, 0.1 and 1.0 below, three seeds", all(v_["n"] == 3 for v_ in fp_.values())
+           and fp_["fedprox_mu0.01"]["reward_mean"] > fp_["fedavg"]["reward_mean"] > max(fp_["fedprox_mu0.1"]["reward_mean"], fp_["fedprox_mu1.0"]["reward_mean"])
+           and "with $\\mu{=}0.01$ above FedAvg and $\\mu$ of 0.1 and 1.0 below it" in C.tex, None)
+
     n_total = len(C.rows) + 1
     C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)
     rows = C.rows
