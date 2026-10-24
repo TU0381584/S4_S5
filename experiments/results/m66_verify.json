@@ -6427,7 +6427,7 @@
   "ok": true
  },
  {
-  "label": "abstract: known static and tuned rules match or beat AXIOM where their conditions hold",
+  "label": "conclusion: known static and tuned rules match or beat AXIOM where their conditions hold",
   "snippet": null,
   "computed": [
    1.31,

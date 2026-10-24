@@ -1734,15 +1734,15 @@ def main():
            and "with $\\mu{=}0.01$ above FedAvg and $\\mu$ of 0.1 and 1.0 below it" in C.tex, None)
 
     # ---------------- revised abstract (2026-10-25)
-    C.note("abstract: the 67-study gap matches the introduction", "none of 67 reviewed studies tests learned controllers against trivial policies or on independent seeds" in C.main
+    C.note("abstract: the 67-study gap matches the introduction", "none of the 67 studies in our review tests learned controllers against trivial policies or on independent seeds" in C.main
            and "our systematic review of 67 core studies" in C.main and "none replicates a headline finding on an independent seed sample" in C.main
            and "No reviewed study checks whether its outcome metric can score a degenerate policy" in C.main, None)
     C.note("abstract: model size fixed as clusters grow", [cxm_[n_]["axiom2"]["params_execution"] for n_ in ("3", "7", "19")] + [cxn_["axiom2"]["params_execution"]] == [7782] * 4
-           and "so its size stays fixed as clusters grow" in C.main, None)
+           and "keeping its size fixed as clusters grow" in C.main, None)
     stv_ = [paired(seeds_of("m75/D_envB_n19_hex", "rule_static", S15), seeds_of("m75/D_envB_n19_hex", "axiom2", S15))["diff"]] + list(st_)
-    C.note("abstract: known static and tuned rules match or beat AXIOM where their conditions hold", min(stv_) > 0
+    C.note("conclusion: known static and tuned rules match or beat AXIOM where their conditions hold", min(stv_) > 0
            and mean(A["heuristic"]) > mean(A["axiom2"]) and mean(B["rule_local"]) > mean(B["axiom2"])
-           and "though tuned and known static rules still match or beat it where their conditions hold" in C.main, [round(x_, 2) for x_ in stv_])
+           and "A static rule known in advance does better under steady load and at nineteen gNBs under coupling, and a tuned rule beats every learned policy at its tuning conditions" in C.main, [round(x_, 2) for x_ in stv_])
 
     n_total = len(C.rows) + 1
     C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)
