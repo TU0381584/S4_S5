@@ -105,7 +105,7 @@
  },
  {
   "label": "T3 single_agent_dqn reward",
-  "snippet": "Single-agent DQN & 12.387",
+  "snippet": "DQN-SA & 12.387",
   "computed": 12.386540465680214,
   "formatted": "12.387",
   "in_tex": true,
@@ -137,7 +137,7 @@
  },
  {
   "label": "T3 independent_dqn reward",
-  "snippet": "Independent DQN & 11.587",
+  "snippet": "DQN-I & 11.587",
   "computed": 11.587390144255737,
   "formatted": "11.587",
   "in_tex": true,
@@ -193,7 +193,7 @@
  },
  {
   "label": "A3 vs indep diff",
-  "snippet": "1.110 more reward per step than the independent DQN",
+  "snippet": "1.110 more reward per step than DQN-I",
   "computed": 1.1101800222827332,
   "formatted": "1.110",
   "in_tex": true,
@@ -209,7 +209,7 @@
  },
  {
   "label": "A3 vs single diff",
-  "snippet": "single-agent DQN, 0.311 with 95\\% CI",
+  "snippet": "DQN-SA, 0.311 with 95\\% CI",
   "computed": 0.31102970085825493,
   "formatted": "0.311",
   "in_tex": true,
@@ -252,9 +252,56 @@
  },
  {
   "label": "A3 MLP diff",
-  "snippet": "earning 0.058 more reward per step with 95\\% CI",
+  "snippet": "which earns 0.058 more reward per step at three gNBs with 95\\% CI",
   "computed": 0.05754008404107231,
   "formatted": "0.058",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 MLP diff in the supplement",
+  "snippet": "In Env A it ties AXIOM, which earns 0.058 more reward per step",
+  "computed": 0.05754008404107231,
+  "formatted": "0.058",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "N19 ring AXIOM over MLP",
+  "snippet": "and 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied",
+  "computed": 0.3119349026470874,
+  "formatted": "0.31",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "N19 ring MLP ties",
+  "snippet": "and 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied",
+  "computed": 7,
+  "formatted": "7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "N19 ring MLP 12 seeds, not significant",
+  "snippet": null,
+  "computed": {
+   "n": 12,
+   "diff": 0.3119349026470874,
+   "wins": 3,
+   "ties": 7,
+   "losses": 2,
+   "p": 0.8125
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "supp N19 ring AXIOM over MLP",
+  "snippet": "0.31 more at nineteen gNBs on the ring layout",
+  "computed": 0.3119349026470874,
+  "formatted": "0.31",
   "in_tex": true,
   "ok": true
  },
@@ -537,7 +584,7 @@
  },
  {
   "label": "T4 single_agent_dqn reward",
-  "snippet": "Single-agent DQN & 7.495 [",
+  "snippet": "DQN-SA & 7.495 [",
   "computed": 7.494879177321698,
   "formatted": "7.495",
   "in_tex": true,
@@ -553,7 +600,7 @@
  },
  {
   "label": "T4 independent_dqn reward",
-  "snippet": "Independent DQN & 7.794 [",
+  "snippet": "DQN-I & 7.794 [",
   "computed": 7.793777748338516,
   "formatted": "7.794",
   "in_tex": true,
@@ -580,6 +627,30 @@
   "snippet": "& 0.797 & 0.289 & 0.579 \\\\",
   "computed": 0.5789222222222222,
   "formatted": "0.579",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "supp EnvB N3 MLP over AXIOM",
+  "snippet": "by 0.116 per step at three gNBs, in 17 of 30 seeds at $p=0.45$",
+  "computed": 0.11646043780519433,
+  "formatted": "0.116",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "supp EnvB N3 MLP seeds won",
+  "snippet": "by 0.116 per step at three gNBs, in 17 of 30 seeds at $p=0.45$",
+  "computed": 17,
+  "formatted": "17",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "supp EnvB N3 MLP p",
+  "snippet": "by 0.116 per step at three gNBs, in 17 of 30 seeds at $p=0.45$",
+  "computed": 0.4521643426269293,
+  "formatted": "0.45",
   "in_tex": true,
   "ok": true
  },
@@ -733,7 +804,7 @@
  },
  {
   "label": "H3 ring p",
-  "snippet": "at $p=0.061$ and $p=0.095$",
+  "snippet": "Holm-adjusted $p=0.061$ and $p=0.095$",
   "computed": 0.06065468502335061,
   "formatted": "0.061",
   "in_tex": true,
@@ -741,7 +812,7 @@
  },
  {
   "label": "H3 hex p",
-  "snippet": "at $p=0.061$ and $p=0.095$",
+  "snippet": "Holm-adjusted $p=0.061$ and $p=0.095$",
   "computed": 0.0946044921875,
   "formatted": "0.095",
   "in_tex": true,
@@ -1368,7 +1439,7 @@
   "computed": [
    12.105,
    12.626,
-   "Single-agent DQN & 12.387 [12.11, 12.63] & 0.990 & 0/30 & 0.994 & 0.941 \\\\"
+   "DQN-SA & 12.387 [12.11, 12.63] & 0.990 & 0/30 & 0.994 & 0.941 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1380,7 +1451,7 @@
   "computed": [
    11.106,
    12.006,
-   "Independent DQN & 11.587 [11.11, 12.02] & 0.962 & 0/30 & 0.993 & 0.865 \\\\"
+   "DQN-I & 11.587 [11.11, 12.02] & 0.962 & 0/30 & 0.993 & 0.865 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1476,7 +1547,7 @@
   "computed": [
    7.196,
    7.774,
-   "Single-agent DQN & 7.495 [7.20, 7.77] & 0.866 & 0.284 & 0.412 \\\\"
+   "DQN-SA & 7.495 [7.20, 7.77] & 0.866 & 0.284 & 0.412 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1488,7 +1559,7 @@
   "computed": [
    7.443,
    8.131,
-   "Independent DQN & 7.794 [7.44, 8.13] & 0.910 & 0.270 & 0.441 \\\\"
+   "DQN-I & 7.794 [7.44, 8.13] & 0.910 & 0.270 & 0.441 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1714,14 +1785,14 @@
   "computed": [
    {
     "AXIOM": "12.698",
-    "Single-agent DQN": "12.387",
-    "Independent DQN": "11.587",
+    "DQN-SA": "12.387",
+    "DQN-I": "11.587",
     "MAPPO": "10.013"
    },
    {
     "AXIOM": "93.7",
-    "Single-agent DQN": "58.7",
-    "Independent DQN": "32.1",
+    "DQN-SA": "58.7",
+    "DQN-I": "32.1",
     "MAPPO": "56.7"
    }
   ],
@@ -1742,7 +1813,7 @@
      0.9,
      0.792
     ],
-    "Single-agent DQN": [
+    "DQN-SA": [
      0.976,
      0.849,
      0.785,
@@ -1750,7 +1821,7 @@
      0.133,
      1.0
     ],
-    "Independent DQN": [
+    "DQN-I": [
      0.913,
      0.882,
      0.768,
@@ -1776,7 +1847,7 @@
      0.9,
      0.793
     ],
-    "Single-agent DQN": [
+    "DQN-SA": [
      0.976,
      0.849,
      0.785,
@@ -1784,7 +1855,7 @@
      0.133,
      1.0
     ],
-    "Independent DQN": [
+    "DQN-I": [
      0.913,
      0.882,
      0.768,
@@ -1983,7 +2054,7 @@
   "ok": true
  },
  {
-  "label": "fresh Env A N=3 beats independent DQN and MAPPO at Holm p<=0.002",
+  "label": "fresh Env A N=3 beats DQN-I and MAPPO at Holm p<=0.002",
   "snippet": null,
   "computed": {
    "mappo_tuned": 0.0003147125244140625,
@@ -1996,7 +2067,7 @@
  },
  {
   "label": "fresh Env A N=3 single-agent seeds won",
-  "snippet": "won 11 of 20 seeds against the single-agent DQN",
+  "snippet": "won 11 of 20 seeds against DQN-SA",
   "computed": 11,
   "formatted": "11",
   "in_tex": true,
@@ -2247,7 +2318,7 @@
   "ok": true
  },
  {
-  "label": "M66b N=7 independent DQN pooled",
+  "label": "M66b N=7 DQN-I pooled",
   "snippet": "reached 80.9\\% and 80.6\\% compliance",
   "computed": 80.85833333333333,
   "formatted": "80.9",
@@ -2255,7 +2326,7 @@
   "ok": true
  },
  {
-  "label": "M66b N=7 single-agent DQN pooled",
+  "label": "M66b N=7 DQN-SA pooled",
   "snippet": "reached 80.9\\% and 80.6\\% compliance",
   "computed": 80.59083333333334,
   "formatted": "80.6",
@@ -2315,7 +2386,7 @@
  },
  {
   "label": "M66c N=7 DQN prio low",
-  "snippet": "DQNs kept 76.2\\% to 83.3\\% priority-slice compliance",
+  "snippet": "DQN-I and DQN-SA kept 76.2\\% to 83.3\\% priority-slice compliance",
   "computed": 76.15166666666669,
   "formatted": "76.2",
   "in_tex": true,
@@ -2323,7 +2394,7 @@
  },
  {
   "label": "M66c N=7 DQN prio high",
-  "snippet": "DQNs kept 76.2\\% to 83.3\\% priority-slice compliance",
+  "snippet": "DQN-I and DQN-SA kept 76.2\\% to 83.3\\% priority-slice compliance",
   "computed": 83.31,
   "formatted": "83.3",
   "in_tex": true,
@@ -2579,7 +2650,7 @@
   "ok": true
  },
  {
-  "label": "M66d D1 beats independent DQN and MAPPO at Holm p<=0.0001",
+  "label": "M66d D1 beats DQN-I and MAPPO at Holm p<=0.0001",
   "snippet": null,
   "computed": {
    "mappo_tuned": 2.702365022226397e-06,
@@ -2968,7 +3039,7 @@
  },
  {
   "label": "map independent mMTC gate",
-  "snippet": "the independent DQN closes the mMTC gate only to 0.92",
+  "snippet": "DQN-I closes the mMTC gate only to 0.92",
   "computed": 0.9212816764132561,
   "formatted": "0.92",
   "in_tex": true,
@@ -3036,7 +3107,7 @@
  },
  {
   "label": "reframe: map37 independent mMTC gate",
-  "snippet": "the independent DQN closes the mMTC gate only to 0.94",
+  "snippet": "DQN-I closes the mMTC gate only to 0.94",
   "computed": 0.9374577577577585,
   "formatted": "0.94",
   "in_tex": true,
@@ -3700,7 +3771,7 @@
  },
  {
   "label": "reframe: M73 single_agent_dqn priority SLA",
-  "snippet": "The single-agent DQN, MAPPO, and the independent DQN keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "snippet": "DQN-SA, MAPPO, and DQN-I keep 58.7\\%, 56.7\\%, and 32.1\\%.",
   "computed": 58.66166666666667,
   "formatted": "58.7",
   "in_tex": true,
@@ -3716,7 +3787,7 @@
  },
  {
   "label": "reframe: M73 mappo_tuned priority SLA",
-  "snippet": "The single-agent DQN, MAPPO, and the independent DQN keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "snippet": "DQN-SA, MAPPO, and DQN-I keep 58.7\\%, 56.7\\%, and 32.1\\%.",
   "computed": 56.676111111111105,
   "formatted": "56.7",
   "in_tex": true,
@@ -3732,7 +3803,7 @@
  },
  {
   "label": "reframe: M73 independent_dqn priority SLA",
-  "snippet": "The single-agent DQN, MAPPO, and the independent DQN keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "snippet": "DQN-SA, MAPPO, and DQN-I keep 58.7\\%, 56.7\\%, and 32.1\\%.",
   "computed": 32.13277777777777,
   "formatted": "32.1",
   "in_tex": true,
@@ -3855,7 +3926,7 @@
  },
  {
   "label": "reframe: M73 single-agent collapses",
-  "snippet": "against 26 of 30 for the single-agent DQN",
+  "snippet": "against 26 of 30 for DQN-SA",
   "computed": 26,
   "formatted": "26",
   "in_tex": true,
@@ -4003,7 +4074,7 @@
  {
   "label": "M73 supplement table row single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 30 & 73.3\\% & 44.1\\% & 58.7\\% & 144.70 & 26 \\\\",
+  "computed": "DQN-SA & 30 & 73.3\\% & 44.1\\% & 58.7\\% & 144.70 & 26 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4011,7 +4082,7 @@
  {
   "label": "M73 supplement table row independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 30 & 38.6\\% & 25.7\\% & 32.1\\% & 148.35 & 3 \\\\",
+  "computed": "DQN-I & 30 & 38.6\\% & 25.7\\% & 32.1\\% & 148.35 & 3 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4104,7 +4175,7 @@
  },
  {
   "label": "reframe: M74 mappo_tuned priority SLA",
-  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, the single-agent DQN, and the independent DQN",
+  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, DQN-SA, and DQN-I",
   "computed": 58.54833333333333,
   "formatted": "58.5",
   "in_tex": true,
@@ -4112,7 +4183,7 @@
  },
  {
   "label": "reframe: M74 single_agent_dqn priority SLA",
-  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, the single-agent DQN, and the independent DQN",
+  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, DQN-SA, and DQN-I",
   "computed": 57.35583333333333,
   "formatted": "57.4",
   "in_tex": true,
@@ -4120,7 +4191,7 @@
  },
  {
   "label": "reframe: M74 independent_dqn priority SLA",
-  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, the single-agent DQN, and the independent DQN",
+  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, DQN-SA, and DQN-I",
   "computed": 34.075833333333335,
   "formatted": "34.1",
   "in_tex": true,
@@ -4143,7 +4214,7 @@
  },
  {
   "label": "reframe: M74 AXIOM collapses",
-  "snippet": "It collapses in 1 of the 20 seeds, against 18 for the single-agent DQN",
+  "snippet": "It collapses in 1 of the 20 seeds, against 18 for DQN-SA",
   "computed": 1,
   "formatted": "1",
   "in_tex": true,
@@ -4151,7 +4222,7 @@
  },
  {
   "label": "reframe: M74 single-agent collapses",
-  "snippet": "It collapses in 1 of the 20 seeds, against 18 for the single-agent DQN",
+  "snippet": "It collapses in 1 of the 20 seeds, against 18 for DQN-SA",
   "computed": 18,
   "formatted": "18",
   "in_tex": true,
@@ -4176,7 +4247,7 @@
  {
   "label": "M74 supplement table row single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 20 & 71.6\\% & 43.1\\% & 57.4\\% & 139.20 & 18 \\\\",
+  "computed": "DQN-SA & 20 & 71.6\\% & 43.1\\% & 57.4\\% & 139.20 & 18 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4184,7 +4255,7 @@
  {
   "label": "M74 supplement table row independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 20 & 42.0\\% & 26.1\\% & 34.1\\% & 149.04 & 2 \\\\",
+  "computed": "DQN-I & 20 & 42.0\\% & 26.1\\% & 34.1\\% & 149.04 & 2 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4305,7 +4376,7 @@
  },
  {
   "label": "reframe: M75 non-collapsed single-agent at 37",
-  "snippet": "those runs of the single-agent and independent DQNs keep only 35.9\\% and 29.1\\%",
+  "snippet": "those runs of DQN-SA and DQN-I keep only 35.9\\% and 29.1\\%",
   "computed": 35.92916666666666,
   "formatted": "35.9",
   "in_tex": true,
@@ -4313,7 +4384,7 @@
  },
  {
   "label": "reframe: M75 non-collapsed independent at 37",
-  "snippet": "those runs of the single-agent and independent DQNs keep only 35.9\\% and 29.1\\%",
+  "snippet": "those runs of DQN-SA and DQN-I keep only 35.9\\% and 29.1\\%",
   "computed": 29.08333333333333,
   "formatted": "29.1",
   "in_tex": true,
@@ -4329,7 +4400,7 @@
  },
  {
   "label": "M75 non-collapsed independent at 19",
-  "snippet": "the independent DQN's 55.9\\% and 29.1\\%",
+  "snippet": "DQN-I's 55.9\\% and 29.1\\%",
   "computed": 55.915517241379305,
   "formatted": "55.9",
   "in_tex": true,
@@ -4504,7 +4575,7 @@
  {
   "label": "M75 S16 table row single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 74.74 & 66.4\\% & 18.0\\% & 14 \\\\",
+  "computed": "DQN-SA & 74.74 & 66.4\\% & 18.0\\% & 14 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4512,7 +4583,7 @@
  {
   "label": "M75 S16 table row independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 71.20 & 66.8\\% & 16.7\\% & 0 \\\\",
+  "computed": "DQN-I & 71.20 & 66.8\\% & 16.7\\% & 0 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4668,7 +4739,7 @@
  {
   "label": "M75 S16 tuned row 19 single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 19 & $10^{-4}$, 16 & 67.1\\% & 65.3\\% & 78.55 & 30 \\\\",
+  "computed": "DQN-SA & 19 & $10^{-4}$, 16 & 67.1\\% & 65.3\\% & 78.55 & 30 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4676,7 +4747,7 @@
  {
   "label": "M75 S16 tuned row 19 independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 19 & $3{\\times}10^{-4}$, 64 & 59.1\\% & 56.4\\% & 77.07 & 11 \\\\",
+  "computed": "DQN-I & 19 & $3{\\times}10^{-4}$, 64 & 59.1\\% & 56.4\\% & 77.07 & 11 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4684,7 +4755,7 @@
  {
   "label": "M75 S16 tuned row 37 single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 37 & $10^{-3}$, 16, unchanged & 58.7\\% & 58.7\\% & 144.70 & 26 \\\\",
+  "computed": "DQN-SA & 37 & $10^{-3}$, 16, unchanged & 58.7\\% & 58.7\\% & 144.70 & 26 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4692,7 +4763,7 @@
  {
   "label": "M75 S16 tuned row 37 independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 37 & $10^{-4}$, 64 & 45.5\\% & 32.1\\% & 150.42 & 18 \\\\",
+  "computed": "DQN-I & 37 & $10^{-4}$, 64 & 45.5\\% & 32.1\\% & 150.42 & 18 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4712,6 +4783,28 @@
    495.35,
    1182.4
   ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "complexity table training seconds at 3 gNBs match Env B primary seeds",
+  "snippet": null,
+  "computed": {
+   "axiom2": 624,
+   "axiom2_mlp": 503,
+   "single_agent_dqn": 85,
+   "independent_dqn": 181,
+   "mappo_tuned": 73
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "MLP variant parameters and latency in the supplement match the measurements",
+  "snippet": null,
+  "computed": null,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4922,7 +5015,7 @@
  {
   "label": "M76 S17 oversubscription row single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 72.81 & 34.3\\% & 15 & 65.75 & 17.1\\% & 14 \\\\",
+  "computed": "DQN-SA & 72.81 & 34.3\\% & 15 & 65.75 & 17.1\\% & 14 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4930,7 +5023,7 @@
  {
   "label": "M76 S17 oversubscription row independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 71.36 & 29.5\\% & 0 & 68.88 & 15.3\\% & 0 \\\\",
+  "computed": "DQN-I & 71.36 & 29.5\\% & 0 & 68.88 & 15.3\\% & 0 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5210,7 +5303,7 @@
  {
   "label": "M76 S17 row b2_hetero_n7_ring single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 19.04 & 62.3\\% & 0 \\\\",
+  "computed": "DQN-SA & 19.04 & 62.3\\% & 0 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5218,7 +5311,7 @@
  {
   "label": "M76 S17 row b2_hetero_n7_ring independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 18.65 & 61.0\\% & 0 \\\\",
+  "computed": "DQN-I & 18.65 & 61.0\\% & 0 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5274,7 +5367,7 @@
  {
   "label": "M76 S17 row c_pergnb_n19_hex single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & -8.69 & 65.5\\% & 10 \\\\",
+  "computed": "DQN-SA & -8.69 & 65.5\\% & 10 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5282,7 +5375,7 @@
  {
   "label": "M76 S17 row c_pergnb_n19_hex independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & -20.59 & 63.8\\% & 0 \\\\",
+  "computed": "DQN-I & -20.59 & 63.8\\% & 0 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5452,7 +5545,7 @@
  {
   "label": "M77 S18 row A_n3 independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 99.4\\% & 98.5\\% & 0.23 & 1.11 & 0.43 & 6.24 \\\\",
+  "computed": "DQN-I & 99.4\\% & 98.5\\% & 0.23 & 1.11 & 0.43 & 6.24 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5476,7 +5569,7 @@
  {
   "label": "M77 S18 row A_n3 single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 99.5\\% & 99.4\\% & 0.20 & 0.96 & 0.18 & 0.83 \\\\",
+  "computed": "DQN-SA & 99.5\\% & 99.4\\% & 0.20 & 0.96 & 0.18 & 0.83 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5508,7 +5601,7 @@
  {
   "label": "M77 S18 row A_n37_hex single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 94.2\\% & 95.2\\% & 3.61 & 16.87 & 2.09 & 14.28 \\\\",
+  "computed": "DQN-SA & 94.2\\% & 95.2\\% & 3.61 & 16.87 & 2.09 & 14.28 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5524,7 +5617,7 @@
  {
   "label": "M77 S18 row A_n37_hex independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 97.7\\% & 97.5\\% & 0.76 & 5.23 & 0.72 & 5.49 \\\\",
+  "computed": "DQN-I & 97.7\\% & 97.5\\% & 0.76 & 5.23 & 0.72 & 5.49 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5548,7 +5641,7 @@
  {
   "label": "M77 S18 row B_n3 independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 98.6\\% & 82.7\\% & 0.66 & 2.81 & 4.73 & 49.34 \\\\",
+  "computed": "DQN-I & 98.6\\% & 82.7\\% & 0.66 & 2.81 & 4.73 & 49.34 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5580,7 +5673,7 @@
  {
   "label": "M77 S18 row B_n3 single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 98.2\\% & 82.1\\% & 0.75 & 3.15 & 5.73 & 49.79 \\\\",
+  "computed": "DQN-SA & 98.2\\% & 82.1\\% & 0.75 & 3.15 & 5.73 & 49.79 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5604,7 +5697,7 @@
  {
   "label": "M77 S18 row B_n19_hex single_agent_dqn",
   "snippet": null,
-  "computed": "Single-agent DQN & 93.8\\% & 93.9\\% & 2.26 & 6.99 & 2.24 & 6.82 \\\\",
+  "computed": "DQN-SA & 93.8\\% & 93.9\\% & 2.26 & 6.99 & 2.24 & 6.82 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5628,7 +5721,7 @@
  {
   "label": "M77 S18 row B_n19_hex independent_dqn",
   "snippet": null,
-  "computed": "Independent DQN & 94.1\\% & 86.1\\% & 2.17 & 9.71 & 4.17 & 72.77 \\\\",
+  "computed": "DQN-I & 94.1\\% & 86.1\\% & 2.17 & 9.71 & 4.17 & 72.77 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5676,9 +5769,213 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 587",
+  "label": "abstract: lead over best learned baseline at 37 gNBs",
+  "snippet": "it leads the best learned baseline by 35.0 points, 36.5 on 20 fresh seeds",
+  "computed": 35.02833333333333,
+  "formatted": "35.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: fresh-seed lead at 37 gNBs",
+  "snippet": "it leads the best learned baseline by 35.0 points, 36.5 on 20 fresh seeds",
+  "computed": 36.5375,
+  "formatted": "36.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: lead at 37 gNBs",
+  "snippet": "its lead over the best learned baseline reaches 35.0 points, and 36.5 points on 20 fresh seeds",
+  "computed": 35.02833333333333,
+  "formatted": "35.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: fresh-seed lead at 37 gNBs",
+  "snippet": "its lead over the best learned baseline reaches 35.0 points, and 36.5 points on 20 fresh seeds",
+  "computed": 36.5375,
+  "formatted": "36.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: URLLC served at 37",
+  "snippet": "There it serves 99.8\\% of URLLC demand",
+  "computed": 99.79064546939206,
+  "formatted": "99.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: URLLC served at 37",
+  "snippet": "There it serves 99.8\\% of URLLC demand at a mean URLLC delay",
+  "computed": 99.79064546939206,
+  "formatted": "99.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: URLLC delay ratio low",
+  "snippet": "with a backlog delay 7 to 44 times shorter than the learned baselines",
+  "computed": 7.0177495329612025,
+  "formatted": "7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: URLLC delay ratio high",
+  "snippet": "with a backlog delay 7 to 44 times shorter than the learned baselines",
+  "computed": 43.9277192431859,
+  "formatted": "44",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: URLLC delay 0.08 against 0.58 to 3.61",
   "snippet": null,
-  "computed": 587,
+  "computed": [
+   43.9277192431859,
+   9.234438016848825,
+   7.0177495329612025
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "abstract and conclusion: 7,782 parameters against up to 682,058",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "abstract: Env B over MAPPO at 3 gNBs",
+  "snippet": "it earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
+  "computed": 26.740273897977463,
+  "formatted": "27",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: Env B over MAPPO at 19 gNBs",
+  "snippet": "it earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
+  "computed": 35.91822054686071,
+  "formatted": "36",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: Env B over MAPPO at 3 gNBs",
+  "snippet": "AXIOM earns 27\\% to 36\\% more reward than MAPPO at three and nineteen gNBs",
+  "computed": 26.740273897977463,
+  "formatted": "27",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: Env B over MAPPO at 19 gNBs",
+  "snippet": "AXIOM earns 27\\% to 36\\% more reward than MAPPO at three and nineteen gNBs",
+  "computed": 35.91822054686071,
+  "formatted": "36",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: Env B over static rule at 3 gNBs",
+  "snippet": "and 39\\% more than a static shedding rule at three",
+  "computed": 39.37476993281535,
+  "formatted": "39",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: overload margin over tuned rule",
+  "snippet": "AXIOM overtakes that rule by up to 8.7 reward per step",
+  "computed": 8.666876187993841,
+  "formatted": "8.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: overload margin low",
+  "snippet": "AXIOM overtakes that rule at nineteen gNBs by 6.2 to 8.7 reward per step without retraining",
+  "computed": 6.225685115267432,
+  "formatted": "6.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: overload margin high",
+  "snippet": "AXIOM overtakes that rule at nineteen gNBs by 6.2 to 8.7 reward per step without retraining",
+  "computed": 8.666876187993841,
+  "formatted": "8.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: compliance low from 7 to 37 gNBs",
+  "snippet": "keeps priority-slice compliance between 93.7\\% and 97.3\\% from seven to thirty-seven gNBs",
+  "computed": 93.69,
+  "formatted": "93.7",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: compliance high from 7 to 37 gNBs",
+  "snippet": "keeps priority-slice compliance between 93.7\\% and 97.3\\% from seven to thirty-seven gNBs",
+  "computed": 97.25055555555555,
+  "formatted": "97.3",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: percent of oracle at 3 gNBs",
+  "snippet": "it reaches 98.9\\% of an oracle rule's reward at three gNBs",
+  "computed": 98.92637702729311,
+  "formatted": "98.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: tuned DQN gap low",
+  "snippet": "Tuned DQN baselines stay 29.9 to 48.1 points behind it",
+  "computed": 29.941666666666663,
+  "formatted": "29.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: tuned DQN gap high",
+  "snippet": "Tuned DQN baselines stay 29.9 to 48.1 points behind it",
+  "computed": 48.06166666666665,
+  "formatted": "48.1",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: VDN gap at 19 gNBs",
+  "snippet": "trails by 13.6 points at nineteen",
+  "computed": 13.634444444444444,
+  "formatted": "13.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "conclusion: static rule earns more than AXIOM at 19 gNBs under coupling",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "text quotes the final check count of 622",
+  "snippet": null,
+  "computed": 622,
   "formatted": null,
   "in_tex": null,
   "ok": true

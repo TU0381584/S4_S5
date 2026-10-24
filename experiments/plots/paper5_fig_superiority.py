@@ -20,8 +20,8 @@ mpl.rcParams.update({
     "savefig.bbox": "tight",
 })
 
-C = {"AXIOM": "#2a78d6", "Single-agent DQN": "#1baf7a", "Independent DQN": "#eb6834", "MAPPO": "#7a4fd0"}
-M = {"AXIOM": "o", "Single-agent DQN": "s", "Independent DQN": "^", "MAPPO": "D"}
+C = {"AXIOM": "#2a78d6", "DQN-SA": "#1baf7a", "DQN-I": "#eb6834", "MAPPO": "#7a4fd0"}
+M = {"AXIOM": "o", "DQN-SA": "s", "DQN-I": "^", "MAPPO": "D"}
 
 
 def draw_quadrant(ax):
@@ -30,8 +30,8 @@ def draw_quadrant(ax):
     #    layout-independent baselines over the 30 hex seeds, 95% bootstrap CI
     arms = {
         "AXIOM": dict(x=12.698, xci=(12.490, 12.861), y=93.7, yspan=(89.8, 97.2), tx=11.68, ty=93.4, ha="right", va="center"),
-        "Single-agent DQN": dict(x=12.387, xci=(12.115, 12.630), y=58.7, yspan=(53.5, 62.4), tx=12.387, ty=72.0, ha="center", va="bottom"),
-        "Independent DQN": dict(x=11.587, xci=(11.112, 12.020), y=32.1, yspan=(25.6, 39.0), tx=11.587, ty=21.0, ha="center", va="top"),
+        "DQN-SA": dict(x=12.387, xci=(12.115, 12.630), y=58.7, yspan=(53.5, 62.4), tx=12.387, ty=72.0, ha="center", va="bottom"),
+        "DQN-I": dict(x=11.587, xci=(11.112, 12.020), y=32.1, yspan=(25.6, 39.0), tx=11.587, ty=21.0, ha="center", va="top"),
         "MAPPO": dict(x=10.013, xci=(9.298, 10.727), y=56.7, yspan=(51.2, 62.4), tx=10.013, ty=70.0, ha="center", va="bottom"),
     }
     ax.grid(True, linewidth=0.4, alpha=0.4)
@@ -61,8 +61,8 @@ def draw_radar(ax):
               "No collapse\n37 gNBs", "Env B priority\nSLA 7 gNBs"]
     vals = {
         "AXIOM":            [1.000, 1.000, 1.000, 1.000, 0.900, 0.792],
-        "Single-agent DQN": [0.976, 0.849, 0.785, 0.626, 0.133, 1.000],
-        "Independent DQN":  [0.913, 0.882, 0.768, 0.343, 0.900, 0.903],
+        "DQN-SA": [0.976, 0.849, 0.785, 0.626, 0.133, 1.000],
+        "DQN-I":  [0.913, 0.882, 0.768, 0.343, 0.900, 0.903],
         "MAPPO":            [0.789, 0.789, 0.697, 0.605, 1.000, 0.810],
     }
     N = len(labels)
@@ -80,9 +80,9 @@ def draw_radar(ax):
     ax.grid(linewidth=0.4, alpha=0.5)
     # AXIOM first (its fill dominates), baselines on top so their lines stay visible.
     # Distinct dash patterns keep all three readable where the lines overlap.
-    zbase = {"AXIOM": 4, "Independent DQN": 5, "Single-agent DQN": 6, "MAPPO": 5}
-    LS = {"AXIOM": (0, (1, 1.35)), "Independent DQN": (0, (5, 2)), "Single-agent DQN": "-", "MAPPO": (0, (3, 1, 1, 1))}
-    for name in ["AXIOM", "Independent DQN", "Single-agent DQN", "MAPPO"]:
+    zbase = {"AXIOM": 4, "DQN-I": 5, "DQN-SA": 6, "MAPPO": 5}
+    LS = {"AXIOM": (0, (1, 1.35)), "DQN-I": (0, (5, 2)), "DQN-SA": "-", "MAPPO": (0, (3, 1, 1, 1))}
+    for name in ["AXIOM", "DQN-I", "DQN-SA", "MAPPO"]:
         v = vals[name] + vals[name][:1]
         lw = 2.2 if name == "AXIOM" else 1.9
         ms = 4 if name == "AXIOM" else 5
@@ -96,7 +96,7 @@ def draw_radar(ax):
                 fontweight="bold", ha="center", va="center", zorder=7)
     ax.set_title("(b) Capability profile, fraction of best", fontweight="bold", pad=16)
     handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=2, linestyle=LS[n], label=n)
-               for n in ["AXIOM", "Single-agent DQN", "Independent DQN", "MAPPO"]]
+               for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
     ax.legend(handles=handles, loc="upper center", bbox_to_anchor=(0.5, -0.2),
               ncol=4, frameon=False, fontsize=8, handlelength=1.4, columnspacing=1.2)
 

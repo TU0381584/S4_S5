@@ -51,8 +51,8 @@ mpl.rcParams.update({
 M2_ARM_ORDER: List[str] = ["gat_ctde", "independent_dqn", "single_agent_dqn"]
 M2_ARM_STYLE: Dict[str, dict] = {
     "gat_ctde":         {"color": "#2a78d6", "marker": "o", "label": "AXIOM (proposed)"},
-    "independent_dqn":  {"color": "#eb6834", "marker": "^", "label": "Independent DQN"},
-    "single_agent_dqn": {"color": "#1baf7a", "marker": "s", "label": "Single-agent DQN"},
+    "independent_dqn":  {"color": "#eb6834", "marker": "^", "label": "DQN-I"},
+    "single_agent_dqn": {"color": "#1baf7a", "marker": "s", "label": "DQN-SA"},
 }
 
 # M64/M65 arms: AXIOM v2 reuses AXIOM's style; MAPPO and the rules get their own.

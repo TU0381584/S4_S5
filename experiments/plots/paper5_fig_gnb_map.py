@@ -40,8 +40,8 @@ from qoe_oran_framework.marl.topology import hex_cluster_coords  # noqa: E402
 
 SLICES = ("urllc", "embb", "mmtc")
 FLOOR_CAP = {"urllc": (5, 33), "embb": (10, 66), "mmtc": (5, 11)}   # saclb_offline_dqn_n19.yaml and _n37.yaml
-ARMS = [("axiom2", "AXIOM (proposed)"), ("single_agent_dqn", "Single-agent DQN"),
-        ("independent_dqn", "Independent DQN"), ("mappo_tuned", "MAPPO")]
+ARMS = [("axiom2", "AXIOM (proposed)"), ("single_agent_dqn", "DQN-SA"),
+        ("independent_dqn", "DQN-I"), ("mappo_tuned", "MAPPO")]
 CMAP = plt.get_cmap("RdYlBu")
 
 

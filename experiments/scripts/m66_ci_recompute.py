@@ -16,8 +16,8 @@ def fmt(lo, hi, d=2):
 out = []
 A = {a: rows("m65_reviewer/base", a, S30) for a in ("axiom2", "axiom2_mlp", "mappo_tuned")}
 A.update({a: rows("m63_reviewer/base", a, S30) for a in ("heuristic", "single_agent_dqn", "single_agent_dqn_lr1e4", "independent_dqn", "independent_dqn_lr1e4")})
-t3 = [("heuristic", "Oracle rule"), ("axiom2", "AXIOM"), ("axiom2_mlp", "AXIOM, MLP encoder"), ("single_agent_dqn", "Single-agent DQN"),
-      ("single_agent_dqn_lr1e4", "\\quad at LR $10^{-4}$", ), ("independent_dqn", "Independent DQN"), ("independent_dqn_lr1e4", "\\quad at LR $10^{-4}$"), ("mappo_tuned", "MAPPO")]
+t3 = [("heuristic", "Oracle rule"), ("axiom2", "AXIOM"), ("axiom2_mlp", "AXIOM, MLP encoder"), ("single_agent_dqn", "DQN-SA"),
+      ("single_agent_dqn_lr1e4", "\\quad at LR $10^{-4}$", ), ("independent_dqn", "DQN-I"), ("independent_dqn_lr1e4", "\\quad at LR $10^{-4}$"), ("mappo_tuned", "MAPPO")]
 for arm, nm in t3:
     v = [r["reward"] for r in A[arm].values()]
     out.append((f"{sum(v)/len(v):.3f} [", fmt(*boot_ci(v)), "T3 " + arm))
@@ -28,10 +28,10 @@ for arm, r in B.items():
 def dci(a, b, seeds, label, key):
     d = [a[s]["reward"] - b[s]["reward"] for s in seeds]
     out.append((key, fmt(*boot_ci(d)), label))
-dci(A["axiom2"], A["independent_dqn"], S30, "A3 vs indep", "1.110 more reward per step than the independent DQN, with 95\\% CI ")
+dci(A["axiom2"], A["independent_dqn"], S30, "A3 vs indep", "1.110 more reward per step than DQN-I, with 95\\% CI ")
 dci(A["axiom2"], A["mappo_tuned"], S30, "A3 vs MAPPO", "and 2.685 more than MAPPO, with 95\\% CI ")
-dci(A["axiom2"], A["single_agent_dqn"], S30, "A3 vs single", "single-agent DQN, 0.311 with 95\\% CI ")
-dci(A["axiom2"], A["axiom2_mlp"], S30, "A3 vs MLP", "earning 0.058 more reward per step with 95\\% CI ")
+dci(A["axiom2"], A["single_agent_dqn"], S30, "A3 vs single", "DQN-SA, 0.311 with 95\\% CI ")
+dci(A["axiom2"], A["axiom2_mlp"], S30, "A3 vs MLP", "0.058 more reward per step at three gNBs with 95\\% CI ")
 cen = rows("m65_reviewer/base", "axiom2", S10); fed = rows("m65_m3", "fl_gat_ctde_sigma0.0", S10)
 dci(cen, fed, S10, "federation", "$+0.427$ with 95\\% CI ")
 cr = rows("m65_reviewer/replication", "axiom2", REP); fr = rows("m65_m3_replication", "fl_gat_ctde_sigma0.0", REP)
@@ -49,7 +49,7 @@ for key, ci, label in out:
     # find the CI that follows the key in the tex
     m = re.search(re.escape(key) + r"(\[[^\]]*\])", tex) if key.endswith("[") is False else re.search(re.escape(key[:-1]) + r"(\[[^\]]*\])", tex)
     if m is None and supp:
-        ms = re.search(re.escape(key) + r"(\[[^\]]*\])", supp)
+        ms = re.search(re.escape(key[:-1] if key.endswith("[") else key) + r"(\[[^\]]*\])", supp)
         if ms:
             print(f"{label:28s} text={ms.group(1)} recomputed={ci} {'same' if ms.group(1) == ci else 'DIFF'} (supplementary)")
             continue

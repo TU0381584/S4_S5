@@ -86,7 +86,7 @@ def main() -> None:
 
     ax1.set_xlim(-0.25, 1.25)
     ax1.set_xticks([0, 1])
-    ax1.set_xticklabels(["Single-agent\nDQN", "AXIOM\n(proposed)"])
+    ax1.set_xticklabels(["DQN-SA", "AXIOM\n(proposed)"])
     ax1.set_ylabel("Mean reward per step")
     ax1.set_title(f"(a) Paired per-seed comparison (n={len(single)})")
 
@@ -137,7 +137,7 @@ def main() -> None:
 
     ax2.set_xlim(-0.5, 2.7)
     ax2.set_xticks([0, 1, 2])
-    ax2.set_xticklabels(["AXIOM", "Independent\nDQN", "Single-agent\nDQN"])
+    ax2.set_xticklabels(["AXIOM", "DQN-I", "DQN-SA"])
     ax2.set_ylabel("Mean reward per step")
     ax2.set_title(f"(b) Per-seed distribution (n={len(all_seeds)}/arm)")
 

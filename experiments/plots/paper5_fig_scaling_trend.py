@@ -32,8 +32,8 @@ from m66_verify import ROOT, S15, S30, S30_19, prio, seeds_of  # noqa: E402
 from paper5_common import M2_ARM_STYLE  # noqa: E402
 
 ARMS = ["axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"]
-LABEL = {"axiom2": "AXIOM (proposed)", "single_agent_dqn": "Single-agent DQN",
-         "independent_dqn": "Independent DQN", "mappo_tuned": "MAPPO"}
+LABEL = {"axiom2": "AXIOM (proposed)", "single_agent_dqn": "DQN-SA",
+         "independent_dqn": "DQN-I", "mappo_tuned": "MAPPO"}
 COMPLEXITY_KEY = {"axiom2": "axiom2", "single_agent_dqn": "single_agent_dqn",
                   "independent_dqn": "independent_dqn", "mappo_tuned": "mappo"}
 LAYOUTS = ("fully_connected", "ring", "hex")

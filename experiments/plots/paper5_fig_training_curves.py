@@ -26,8 +26,8 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from paper5_common import M2_ARM_STYLE  # noqa: E402
 
-ARMS = [("axiom2", "AXIOM", "#2a78d6", "-"), ("single_agent_dqn", "Single-agent DQN", "#1baf7a", "--"),
-        ("independent_dqn", "Independent DQN", "#eb6834", "-."), ("mappo_tuned", "MAPPO", "#7a4fd0", ":")]
+ARMS = [("axiom2", "AXIOM", "#2a78d6", "-"), ("single_agent_dqn", "DQN-SA", "#1baf7a", "--"),
+        ("independent_dqn", "DQN-I", "#eb6834", "-."), ("mappo_tuned", "MAPPO", "#7a4fd0", ":")]
 SMOOTH = 10
 
 

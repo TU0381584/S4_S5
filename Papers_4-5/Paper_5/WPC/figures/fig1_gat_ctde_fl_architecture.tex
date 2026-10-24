@@ -32,7 +32,7 @@
 \draw[thick, gray] (n1) -- (n3);
 \draw[thick, gray] (n2) -- (n3);
 
-\node[encoder, below=0.5cm of n3] (gat) {Shared encoder\\\footnotesize GAT (2 layers, 4 heads) or per-node MLP\\\footnotesize LayerNorm output $\mathbf{z}_i$};
+\node[encoder, below=0.5cm of n3] (gat) {Shared GAT encoder\\\footnotesize 2 layers, 4 attention heads\\\footnotesize LayerNorm output $\mathbf{z}_i$};
 \draw[arrow] (n1.south) .. controls +(0,-0.6) and +(-0.6,0.5) .. (gat.west);
 \draw[arrow] (n2.south) .. controls +(0,-0.6) and +(0.6,0.5) .. (gat.east);
 \draw[arrow] (n3.south) -- (gat.north);

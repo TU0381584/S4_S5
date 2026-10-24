@@ -21,8 +21,8 @@ sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 from m62_analysis import boot_ci, eval_log, seed_metrics  # noqa: E402
 from paper5_common import M2_ARM_STYLE, RULE_STYLE  # noqa: E402,F401
 
-N3_ARMS = ["single_agent_dqn", "independent_dqn", "mappo_tuned", "axiom2_mlp", "axiom2"]
-SHORT = {"single_agent_dqn": "Single-agent\nDQN", "independent_dqn": "Independent\nDQN",
+N3_ARMS = ["single_agent_dqn", "independent_dqn", "mappo_tuned", "axiom2"]
+SHORT = {"single_agent_dqn": "DQN-SA", "independent_dqn": "DQN-I",
          "mappo_tuned": "MAPPO", "axiom2_mlp": "AXIOM,\nMLP encoder", "axiom2": "AXIOM\n(proposed)"}
 
 
