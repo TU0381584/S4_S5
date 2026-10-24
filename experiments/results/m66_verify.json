@@ -6411,9 +6411,38 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 663",
+  "label": "abstract: the 67-study gap matches the introduction",
   "snippet": null,
-  "computed": 663,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "abstract: model size fixed as clusters grow",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "abstract: known static and tuned rules match or beat AXIOM where their conditions hold",
+  "snippet": null,
+  "computed": [
+   1.31,
+   1.83,
+   1.91,
+   1.96
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "text quotes the final check count of 666",
+  "snippet": null,
+  "computed": 666,
   "formatted": null,
   "in_tex": null,
   "ok": true
