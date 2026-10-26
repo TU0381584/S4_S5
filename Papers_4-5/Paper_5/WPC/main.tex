@@ -217,7 +217,43 @@ Admission is therefore a decentralised partially observable Markov decision proc
 \max_{\pi}\;\mathbb{E}_{\pi}\Big[\textstyle\sum_{t=0}^{T-1}\gamma^{t} r_t\Big],\qquad \gamma=0.95.
 \end{equation}
 
-Each gNB has $B{=}100$ PRBs, and each slice's mean offered demand is 105\% of its nominal share of 30, 60, and 10 PRBs for URLLC, eMBB, and mMTC, scaled by a fixed per-gNB multiplier between 0.9 and 1.0. A gNB's mean demand is therefore about 95\% to 105\% of its budget, before per-step noise and backlog. When admitted demand exceeds $B$, the slices share it in proportion to demand, so every admitted mMTC request takes resources from URLLC and eMBB, and unserved demand carries forward as backlog within an episode. Env B keeps all of this and adds two mechanisms. Each gNB's mean demand follows $0.95\,(1+0.3\sin(2\pi(s+\psi_i)/60))$ times its nominal shares, with $s$ the step and $\psi_i$ a phase redrawn per gNB and episode, again scaled by the per-gNB multiplier, so demand swings between about 60\% and 124\% of the budget. A gNB's usable budget also shrinks with its neighbours' previous load, $B_i(t)=B\,(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1))$, a first-order model of inter-cell interference over the same adjacency graph the encoder reads. In Env B shedding every mMTC request leaves URLLC compliance at 62.5\% at three gNBs, whereas a rule that also sheds eMBB when the URLLC queue builds keeps it at 98.9\%. Per-slice compliance counts a slice as compliant only when every gNB meets it, which saturates in Env B at nineteen gNBs, so there we also report per-gNB compliance. Section S10 of Online Resource 1 gives the remaining simulator details.
+Each gNB has $B{=}100$ PRBs, and each slice's mean offered demand is 105\% of its nominal share of 30, 60, and 10 PRBs for URLLC, eMBB, and mMTC, scaled by a fixed per-gNB multiplier between 0.9 and 1.0, denoted $m_i$. A gNB's mean demand is therefore about 95\% to 105\% of its budget, before per-step noise and backlog. When admitted demand exceeds $B$, the slices share it in proportion to demand, so every admitted mMTC request takes resources from URLLC and eMBB, and unserved demand carries forward as backlog within an episode. Env B keeps all of this and adds two mechanisms. Each gNB's mean demand follows $0.95\,(1+0.3\sin(2\pi(s+\psi_i)/60))$ times its nominal shares, with $s$ the step and $\psi_i$ a phase redrawn per gNB and episode, again scaled by the per-gNB multiplier, so demand swings between about 60\% and 124\% of the budget. A gNB's usable budget also shrinks with its neighbours' previous load, $B_i(t)=B\,(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1))$, a first-order model of inter-cell interference over the same adjacency graph the encoder reads. In Env B shedding every mMTC request leaves URLLC compliance at 62.5\% at three gNBs, whereas a rule that also sheds eMBB when the URLLC queue builds keeps it at 98.9\%. Per-slice compliance counts a slice as compliant only when every gNB meets it, which saturates in Env B at nineteen gNBs, so there we also report per-gNB compliance. Fig.~\ref{fig:envflow} traces one control step of each simulator, and Section S10 of Online Resource 1 gives the remaining simulator details.
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+  font=\sffamily\footnotesize,
+  st/.style={draw=black!60, rounded corners=2pt, fill=gray!6, align=center, text width=5.35cm, inner sep=2.5pt, minimum height=0.62cm},
+  ch/.style={st, draw=orange!75!black, fill=orange!12},
+  ar/.style={-{Latex[length=1.8mm]}, semithick},
+  lb/.style={font=\sffamily\bfseries\footnotesize}
+]
+\foreach \c/\x/\envb in {a/0/0, b/6.6/1}{
+  \ifnum\envb=0
+    \node[st] (\c1) at (\x,0) {Episode start\\ empty queues, reset ceilings to nominal};
+  \else
+    \node[ch] (\c1) at (\x,0) {Episode start\\ empty queues, reset ceilings, redraw phase $\psi_i$};
+  \fi
+  \node[st, below=0.28cm of \c1] (\c2) {Observe\\ each gNB's PRB use, congestion, queues $\rightarrow \mathbf{x}_i$};
+  \node[st, below=0.28cm of \c2] (\c3) {Arrive\\ $N$ requests, each with a random slice and gNB};
+  \node[st, below=0.28cm of \c3] (\c4) {Decide\\ each agent accepts or rejects its own requests, moving the slice ceiling by 5 points};
+  \node[st, below=0.28cm of \c4] (\c5) {Reward $r_t$ of Eq.~\eqref{eq:reward}};
+  \ifnum\envb=0
+    \node[st, below=0.28cm of \c5] (\c6) {Demand drifts to\\ $1.05\times$ share $\times\, m_i$, plus noise};
+    \node[st, below=0.28cm of \c6] (\c7) {Serve $\min(\text{demand}+\text{backlog},\ \text{ceiling})$,\\ scaled to fit budget $B$; the rest is backlog};
+  \else
+    \node[ch, below=0.28cm of \c5] (\c6) {Demand drifts to\\ $0.95\,\bigl(1+0.3\sin(2\pi(s+\psi_i)/60)\bigr)\times$ share $\times\, m_i$};
+    \node[ch, below=0.28cm of \c6] (\c7) {Serve as Env A, within budget\\ $B_i(t)=B\,\bigl(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1)\bigr)$};
+  \fi
+  \foreach \i/\j in {1/2,2/3,3/4,4/5,5/6,6/7}{\draw[ar] (\c\i) -- (\c\j);}
+  \draw[ar] (\c7.west) -- ++(-0.22,0) |- node[pos=0.25, rotate=90, above, font=\sffamily\footnotesize] {next step, $T{=}60$} (\c2.west);
+}
+\node[lb, anchor=south west] at ($(a1.north west)+(-0.35,0.05)$) {a};
+\node[lb, anchor=south west] at ($(b1.north west)+(-0.35,0.05)$) {b};
+\end{tikzpicture}
+\caption{One control step of each simulator, repeated for $T{=}60$ steps per episode. a, Env A with static load. b, Env B, whose three highlighted steps add time-varying load and inter-cell coupling}
+\label{fig:envflow}
+\end{figure}
 
 
 \section{The AXIOM Architecture}
@@ -241,7 +277,7 @@ Fig.~\ref{fig:architecture}a shows the AXIOM architecture and its data flow. At 
 
 Two design choices in AXIOM matter most at scale. One small MLP per slice gives each slice its own parameters, so URLLC's large priority weight cannot swamp mMTC's smaller learning signal in a shared head, which Section~\ref{sec:results-ablation} confirms at nineteen gNBs. Each node's raw features are also concatenated onto its normalised embedding before the heads, $Q_{\phi_k}([\mathbf{z}_i,\mathbf{x}_i])$, so a head sees absolute queue and congestion levels, and below $\mathbf{z}_i$ denotes that concatenation. This skip connection and a learning rate of $10^{-3}$, both chosen on Env B pilot seeds before any reported run, are the only changes from the original AXIOM design.
 
-In training, every pending request at gNB $i$, slice $k$ is its own temporal-difference sample, and Section S10 of Online Resource 1 gives the full training loop. For a request with immediate reward $r$ and next-state embedding $\mathbf{z}_i'$, the target $y$ at discount $\gamma$ and the minibatch loss are
+In training, every pending request at gNB $i$, slice $k$ is its own temporal-difference sample, and Algorithm~\ref{alg:gat-ctde} gives the full training loop. For a request with immediate reward $r$ and next-state embedding $\mathbf{z}_i'$, the target $y$ at discount $\gamma$ and the minibatch loss are
 \begin{equation}
 \label{eq:td}
 y = r + \gamma\,(1-\mathrm{done})\max_{a'} Q_{\phi_k^-}\!\big(\mathbf{z}_i'\big)[a'],
@@ -249,6 +285,27 @@ y = r + \gamma\,(1-\mathrm{done})\max_{a'} Q_{\phi_k^-}\!\big(\mathbf{z}_i'\big)
 \mathcal{L} = \frac{1}{|\mathcal{M}|}\sum_{(i,k,a)\in \mathcal{M}}\ell_\delta\!\Big(Q_{\phi_k}(\mathbf{z}_i)[a]-y\Big),
 \end{equation}
 where $Q_{\phi_k^-}$ is slice $k$'s target Q-head, $\mathrm{done}$ the episode-done flag, $\mathcal{M}$ the minibatch of requests, and $\ell_\delta$ the Huber loss. Section~\ref{sec:results-ablation} shows that a summed per-step target works as well, so the per-request scheme is a simplification rather than a source of AXIOM's advantage.
+
+\begin{algorithm}[t]
+\caption{AXIOM: centralised training, decentralised execution}
+\label{alg:gat-ctde}
+\begin{algorithmic}[1]
+\REQUIRE encoder $f_\theta$, per-slice Q-heads $\{Q_{\phi_k}\}$, targets $f_{\theta^-},\{Q_{\phi_k^-}\}$, buffer $\mathcal{D}$, adjacency $\mathbf{A}$, discount $\gamma$, sync period $T_{\mathrm{s}}$
+\FOR{each step $t$, observing joint node features $\mathbf{X}_t$}
+  \STATE $\mathbf{E}_t \gets f_\theta(\mathbf{X}_t, \mathbf{A})$ \COMMENT{centralised, one row per gNB}
+  \FORALL{pending requests at gNB $i$, slice $k$}
+    \STATE $a \gets \arg\max_a Q_{\phi_k}([\mathbf{E}_t[i], \mathbf{X}_t[i]])[a]$, $\epsilon$-greedy \COMMENT{decentralised, own row only}
+  \ENDFOR
+  \STATE step env, store $(\mathbf{X}_t, \mathbf{X}_{t+1}, \{(i,k,a)\}, r_t, \text{done})$ in $\mathcal{D}$
+  \IF{$|\mathcal{D}| \geq$ warmup}
+    \STATE sample minibatch $\mathcal{M}$; $\mathbf{E}_{\mathcal{M}} \gets f_\theta(\mathbf{X}_{\mathcal{M}},\mathbf{A})$, $\mathbf{E}'_{\mathcal{M}} \gets f_{\theta^-}(\mathbf{X}'_{\mathcal{M}},\mathbf{A})$
+    \STATE per request, $y \gets r + \gamma(1{-}\text{done})\max_{a'} Q_{\phi_k^-}([\mathbf{E}'_{\mathcal{M}}[i], \mathbf{X}'_{\mathcal{M}}[i]])[a']$
+    \STATE $\mathcal{L} \gets$ mean per-request Huber loss, never summed per step; update $\theta,\{\phi_k\}$, clip grad-norm 1.0
+  \ENDIF
+  \STATE every $T_{\mathrm{s}}$ episodes, $\theta^-\gets\theta$, $\phi_k^-\gets\phi_k$
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
 
 \subsection{Federated Training with Differential Privacy}
 Fig.~\ref{fig:architecture}b shows the federated variant, in which each gNB holds a private copy of the network, trains only on its own requests, and every $N_{\mathrm{loc}}$ local steps sends its weights for federated averaging (FedAvg)~\cite{lim2020flmec}. Each client can add differential privacy through a differentially private stochastic gradient descent (DP-SGD) step~\cite{dpsgd}, which clips its minibatch gradient and adds Gaussian noise of multiplier $\sigma$, accounted for with zero-concentrated differential privacy~\cite{zcdp}. Section S10 of Online Resource 1 gives the clipping, the privacy accounting, and its assumptions.

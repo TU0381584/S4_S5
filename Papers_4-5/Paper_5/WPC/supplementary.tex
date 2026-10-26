@@ -117,7 +117,7 @@ This section reports what the real OpenAirInterface (OAI) testbed of Fig.~\ref{f
 A capacity probe at a deliberately wide-open ceiling showed all three slices serving essentially 100\% of offered demand with 0.000\% loss at both loads. The frozen checkpoint's decision logic runs correctly end to end, through the real E2 control loop, with real accept and reject decisions, and its signature low-priority-only blocking of mMTC reappears at both loads, which shows that the deployment pipeline works end to end. Because the rig never actually runs short of capacity, the same pattern is equally consistent with the policy's trained priority bias, so we claim admission-control behaviour under contention only in the offline shared-budget environment, not live. Two integrity issues surfaced and were fixed during these checks. A scheduler-configuration error had turned the per-slice PRB-ratio ranges into raw grants below the gNB scheduler's hard five-PRB floor, which we fixed at the root, after which direct instrumentation confirmed zero below-floor grants across more than 100{,}000 readings. A separate unit mismatch in the live SLA-margin diagnostic was corrected by converting backlog into a queueing-delay estimate, using Little's law, against each slice's own latency budget.
 
 \section*{S10. Additional setup details}
-Fig.~\ref{fig:overview} gives an overview of the research, Table~\ref{tab:params} lists the simulation and training parameters shared by both environments, and Algorithm~\ref{alg:gat-ctde} states AXIOM's training loop.
+Fig.~\ref{fig:overview} gives an overview of the research, and Table~\ref{tab:params} lists the simulation and training parameters shared by both environments. Algorithm 1 of the main paper states AXIOM's training loop.
 
 \begin{figure}[!htbp]
 \centering
@@ -188,25 +188,6 @@ MAPPO & Actor and critic learning rate $10^{-3}$, 10 epochs, minibatch 64, clip 
 \bottomrule
 \end{tabular}}
 \end{table}
-
-\begin{algorithm}[!htbp]
-\caption{AXIOM: centralised training, decentralised execution}
-\label{alg:gat-ctde}
-\begin{algorithmic}[1]
-\REQUIRE encoder $f_\theta$, per-slice Q-heads $\{Q_{\phi_k}\}$, targets $f_{\theta^-},\{Q_{\phi_k^-}\}$, buffer $\mathcal{D}$, adjacency $\mathbf{A}$, discount $\gamma$, sync period $T_{\mathrm{s}}$
-\FOR{each step $t$, observing joint node features $\mathbf{X}_t$}
-  \STATE $\mathbf{E}_t \gets f_\theta(\mathbf{X}_t, \mathbf{A})$ \COMMENT{centralised, one row per gNB}
-  \STATE for each pending request at gNB $i$, slice $k$, pick $a \gets \arg\max_a Q_{\phi_k}([\mathbf{E}_t[i], \mathbf{X}_t[i]])[a]$, $\epsilon$-greedy \COMMENT{decentralised, own row only}
-  \STATE step env, store $(\mathbf{X}_t, \mathbf{X}_{t+1}, \{(i,k,a)\}, r_t, \text{done})$ in $\mathcal{D}$
-  \IF{$|\mathcal{D}| \geq$ warmup}
-    \STATE sample minibatch $\mathcal{M}$; $\mathbf{E}_{\mathcal{M}} \gets f_\theta(\mathbf{X}_{\mathcal{M}},\mathbf{A})$, $\mathbf{E}'_{\mathcal{M}} \gets f_{\theta^-}(\mathbf{X}'_{\mathcal{M}},\mathbf{A})$
-    \STATE per request, $y \gets r + \gamma(1{-}\text{done})\max_{a'} Q_{\phi_k^-}(\mathbf{E}'_{\mathcal{M}}[i])[a']$
-    \STATE $\mathcal{L} \gets$ mean per-request Huber loss, never summed per step; update $\theta,\{\phi_k\}$, clip grad-norm 1.0
-  \ENDIF
-  \STATE every $T_{\mathrm{s}}$ episodes, $\theta^-\gets\theta$, $\phi_k^-\gets\phi_k$
-\ENDFOR
-\end{algorithmic}
-\end{algorithm}
 
 All learned arms share the discount factor $\gamma=0.95$ and the training budget. The value-based arms also share the Adam optimiser, an epsilon schedule decaying from $1.0$ to $0.05$ at a per-episode factor of $0.985$, and target synchronisation every 10 episodes. AXIOM and the DQN baselines train at learning rate $10^{-3}$. The GAT encoder uses hidden and output dimension 16, feeding per-slice Q-heads of hidden dimension 32. A sensitivity study repeats the learned arms and the oracle rule in Env A on 10 seeds under three changed conditions. Two change the load, to 102\% and 107\% of the nominal shares, and the third lowers eMBB's priority weight from 3.5 to 2.5 and raises mMTC's from 0.3 to 0.6. A second study repeats AXIOM in Env B on 10 seeds with learning rates of $3{\times}10^{-4}$ and $3{\times}10^{-3}$ and with an encoder twice as wide.
 
