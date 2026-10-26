@@ -1734,7 +1734,7 @@ def main():
            and "with $\\mu{=}0.01$ above FedAvg and $\\mu$ of 0.1 and 1.0 below it" in C.tex, None)
 
     # ---------------- revised abstract (2026-10-25)
-    C.note("abstract: the 67-study gap matches the introduction", "none of the 67 studies in our review tests learned controllers against trivial policies or on independent seeds" in C.main
+    C.note("abstract: the evaluation gap matches the introduction", "However, state-of-the-art studies rarely test learned controllers against trivial policies or on independent seeds" in C.main
            and "our systematic review of 67 core studies" in C.main and "none replicates a headline finding on an independent seed sample" in C.main
            and "No reviewed study checks whether its outcome metric can score a degenerate policy" in C.main, None)
     C.note("abstract: model size fixed as clusters grow", [cxm_[n_]["axiom2"]["params_execution"] for n_ in ("3", "7", "19")] + [cxn_["axiom2"]["params_execution"]] == [7782] * 4
