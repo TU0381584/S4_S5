@@ -708,7 +708,7 @@ def main():
     C.claim("M66c N=7 DQN prio high", "DQN-I and DQN-SA kept 76.2\\% to 83.3\\% priority-slice compliance", max(vals), "{:.1f}")
     C.claim("M66c N=7 DQN prio high, pointer", "the two DQN baselines reach up to 83.3\\%", max(vals), "{:.1f}")
     C.claim("M66c N=7 DQN prio high, conclusion", "baseline compliance of up to 83\\%", max(vals), "{:.0f}")
-    C.note("M66c three DQN cells above 80%", sum(v > 80 for v in vals) == 3 and "above the 80\\% bound in three cells" in C.tex, vals)
+    C.note("M66c three DQN cells above 80%", sum(v > 80 for v in vals) == 3 and "above the 80\\% bound in three settings" in C.tex, vals)
     c8 = mc["C8"]
     s102 = c8["load102"]["summary"]
     frac = 100 * s102["axiom2"]["reward"] / s102["rule_static"]["reward"]
@@ -1040,7 +1040,7 @@ def main():
     C.note("reframe: M70 joint target never significantly different", all(v >= 0.05 for v in hvd_.values())
            and "is never significantly different and trends slightly better" in C.main, {str(k): v for k, v in hvd_.items()})
     C.note("reframe: M70 joint target trends better on reward in every cell", all(tvd_[(k_, "r")]["diff"] < 0 for k_ in abl_cells_), None)
-    C.claim("reframe: M70 joint target Env A N=3 reward", "reaching 12.831 reward per step", mean(seeds_of("m70/R4_vdn/A_n3", "axiom2", S30)), "{:.3f}")
+    C.claim("reframe: M70 joint target Env A N=3 reward", "It reaches 12.831 reward per step", mean(seeds_of("m70/R4_vdn/A_n3", "axiom2", S30)), "{:.3f}")
     C.claim("reframe: M70 joint target N=19 compliance", "and 99.96\\% priority-slice compliance at nineteen", 100 * mean(seeds_of("m70/R4_vdn/A_n19_ring", "axiom2", ABL_), prio), "{:.2f}")
     mp_cells_ = {"A3": ("m65_n3_view", "m70/R3_confirm/A_n3", S30), "A19": ("m65_scaling/n19_ring", "m70/R3_confirm/A_n19_ring", S30_19),
                  "B3": ("m64/n3_fully_connected", "m70/R3_confirm/B_n3", S30)}
@@ -1142,7 +1142,7 @@ def main():
             vt_[(k_, m_)] = paired(vd_, ax_, f_)
     hv_ = holm({k: v["p"] for k, v in vt_.items()})
     C.note("reframe: M72 VDN 60 fresh seeds, never significantly different", nseed_ == 60 and all(v >= 0.05 for v in hv_.values())
-           and "on 60 fresh seeds across four cells" in C.main, {str(k): v for k, v in hv_.items()})
+           and "on 60 fresh seeds across four settings" in C.main, {str(k): v for k, v in hv_.items()})
     C.note("reframe: M72 VDN ahead in three cells, behind in Env B at seven gNBs",
            [k_ for k_ in vc_ if vt_[(k_, "r")]["diff"] > 0] == ["A3", "B3", "A19"] and vt_[("B7", "r")]["diff"] < 0, None)
     C.note("reframe: M72 VDN test streams disjoint within the experiment",
@@ -1360,7 +1360,7 @@ def main():
     C.claim("reframe: M75 C lead low", "by 29.9 to 48.1 points", min(cp_), "{:.1f}")
     C.claim("reframe: M75 C lead high", "by 29.9 to 48.1 points", max(cp_), "{:.1f}")
     C.note("reframe: M75 C new settings in three of four cells", sum(not v_["is_current"] for v_ in sel75_.values()) == 3
-           and "selected new settings in three of the four cells" in C.main, {k_: v_["selected"] for k_, v_ in sel75_.items()})
+           and "selected new settings in three of the four combinations of baseline and size" in C.main, {k_: v_["selected"] for k_, v_ in sel75_.items()})
     tp_ = {k_: 100 * mean(v_, prio) for k_, v_ in tcr_.items()}
     C.claim("reframe: M75 C tuned independent at 19", "rises from 56.4\\% to 59.1\\% at nineteen gNBs", tp_[(19, "independent_dqn")], "{:.1f}")
     C.claim("reframe: M75 C tuned independent at 37", "and from 32.1\\% to 45.5\\% at thirty-seven", tp_[(37, "independent_dqn")], "{:.1f}")
@@ -1399,7 +1399,7 @@ def main():
     C.note("complexity table training seconds at 3 gNBs match Env B primary seeds",
            tr3_ == {"axiom2": 624, "axiom2_mlp": 503, "single_agent_dqn": 85, "independent_dqn": 181, "mappo_tuned": 73}
            and all(s_ in C.main for s_ in ("& 624 / 892 / 1182", "& 85 / 202 / 358", "& 181 / 1054 / 2088", "& 73 / 256 / 495"))
-           and "median training time of 503 s per seed in Env B at three gNBs" in C.tex, tr3_)
+           and "median training time is 503 s per seed in Env B at three gNBs" in C.tex, tr3_)
     C.note("MLP variant parameters and latency in the supplement match the measurements",
            all(cx[n_]["axiom2_mlp"]["params_execution"] == 3190 for n_ in ("3", "7", "19")) and cxt_["37"]["axiom2_mlp"]["params_execution"] == 3190
            and ", ".join(f"{cx[n_]['axiom2_mlp']['ms_per_step']:.2f}" for n_ in ("3", "7", "19")) + f", and {cxt_['37']['axiom2_mlp']['ms_per_step']:.2f} ms per control step" in C.tex

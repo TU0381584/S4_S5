@@ -3401,7 +3401,7 @@
  },
  {
   "label": "reframe: M70 joint target Env A N=3 reward",
-  "snippet": "reaching 12.831 reward per step",
+  "snippet": "It reaches 12.831 reward per step",
   "computed": 12.831251182343498,
   "formatted": "12.831",
   "in_tex": true,
