@@ -1,0 +1,403 @@
+{
+ "table": {
+  "stored AXIOM": {
+   "n": 15,
+   "reward_per_gnb": 3.3566249479131205,
+   "reward_per_gnb_ci": [
+    3.271646143916855,
+    3.430274488133014
+   ],
+   "prio_sla": 34.026666666666664,
+   "prio_sla_ci": [
+    31.39333333333333,
+    36.78780555555555
+   ],
+   "urllc": 46.866666666666674,
+   "embb": 21.186666666666667,
+   "mmtc_share_of_blocks": 0.9789495232084066,
+   "non_mmtc_blocks_per_seed": 164.53333333333333,
+   "mmtc_only_seeds": 11,
+   "collapsed": 0
+  },
+  "stored DQN-SA": {
+   "n": 15,
+   "reward_per_gnb": 3.41153499449318,
+   "reward_per_gnb_ci": [
+    3.249570888210852,
+    3.541031680984299
+   ],
+   "prio_sla": 48.16222222222222,
+   "prio_sla_ci": [
+    42.90469444444444,
+    52.74669444444444
+   ],
+   "urllc": 79.22000000000001,
+   "embb": 17.104444444444443,
+   "mmtc_share_of_blocks": 0.653001014345747,
+   "non_mmtc_blocks_per_seed": 3991.0666666666666,
+   "mmtc_only_seeds": 0,
+   "collapsed": 0
+  },
+  "stored AXIOM-MLP": {
+   "n": 15,
+   "reward_per_gnb": 3.517166388943173,
+   "reward_per_gnb_ci": [
+    3.4193778571749394,
+    3.6167645408458386
+   ],
+   "prio_sla": 47.75333333333333,
+   "prio_sla_ci": [
+    42.008750000000006,
+    53.51227777777779
+   ],
+   "urllc": 75.04444444444445,
+   "embb": 20.462222222222227,
+   "mmtc_share_of_blocks": 0.720468402988088,
+   "non_mmtc_blocks_per_seed": 2307.5333333333333,
+   "mmtc_only_seeds": 3,
+   "collapsed": 0
+  },
+  "stored static rule": {
+   "n": 15,
+   "reward_per_gnb": 3.373815598688791,
+   "reward_per_gnb_ci": [
+    3.3298525435079136,
+    3.4198843761466744
+   ],
+   "prio_sla": 33.65888888888889,
+   "prio_sla_ci": [
+    32.0788611111111,
+    35.29336111111111
+   ],
+   "urllc": 45.91555555555556,
+   "embb": 21.402222222222225,
+   "mmtc_share_of_blocks": 1.0,
+   "non_mmtc_blocks_per_seed": 0.0,
+   "mmtc_only_seeds": 15,
+   "collapsed": 0
+  },
+  "stored local rule": {
+   "n": 15,
+   "reward_per_gnb": 3.9051745130586863,
+   "reward_per_gnb_ci": [
+    3.8824028444850014,
+    3.9301693901463435
+   ],
+   "prio_sla": 60.54666666666667,
+   "prio_sla_ci": [
+    60.018861111111114,
+    61.10555555555555
+   ],
+   "urllc": 97.66444444444443,
+   "embb": 23.42888888888889,
+   "mmtc_share_of_blocks": 0.7734153233780069,
+   "non_mmtc_blocks_per_seed": 2368.0666666666666,
+   "mmtc_only_seeds": 0,
+   "collapsed": 0
+  },
+  "H1 AXIOM per-gNB penalty": {
+   "n": 15,
+   "reward_per_gnb": 1.0620425448291877,
+   "reward_per_gnb_ci": [
+    0.8176790949868348,
+    1.3288952956588462
+   ],
+   "prio_sla": 44.73444444444445,
+   "prio_sla_ci": [
+    39.08975000000001,
+    50.42666666666667
+   ],
+   "urllc": 69.05111111111111,
+   "embb": 20.417777777777776,
+   "mmtc_share_of_blocks": 0.8117914914212094,
+   "non_mmtc_blocks_per_seed": 1840.6666666666667,
+   "mmtc_only_seeds": 0,
+   "collapsed": 0
+  },
+  "H1 DQN-SA per-gNB penalty": {
+   "n": 15,
+   "reward_per_gnb": -0.25545480396174375,
+   "reward_per_gnb_ci": [
+    -0.5082677143366947,
+    -0.012873561986600085
+   ],
+   "prio_sla": 23.80111111111111,
+   "prio_sla_ci": [
+    22.76775,
+    24.85447222222222
+   ],
+   "urllc": 30.962222222222216,
+   "embb": 16.639999999999997,
+   "mmtc_share_of_blocks": 0.7547169811320755,
+   "non_mmtc_blocks_per_seed": 91.0,
+   "mmtc_only_seeds": 0,
+   "collapsed": 11
+  },
+  "H2 AXIOM LR 3e-3": {
+   "n": 15,
+   "reward_per_gnb": 3.499677395011102,
+   "reward_per_gnb_ci": [
+    3.4265534717842256,
+    3.573729336379445
+   ],
+   "prio_sla": 48.88111111111111,
+   "prio_sla_ci": [
+    43.28875,
+    53.987833333333334
+   ],
+   "urllc": 79.18444444444444,
+   "embb": 18.577777777777776,
+   "mmtc_share_of_blocks": 0.6336040888425564,
+   "non_mmtc_blocks_per_seed": 3374.0666666666666,
+   "mmtc_only_seeds": 3,
+   "collapsed": 0
+  },
+  "H3 AXIOM 900 episodes": {
+   "n": 15,
+   "reward_per_gnb": 3.7890791638415293,
+   "reward_per_gnb_ci": [
+    3.693673309168186,
+    3.8733276989574326
+   ],
+   "prio_sla": 55.67777777777778,
+   "prio_sla_ci": [
+    51.46330555555555,
+    58.721222222222224
+   ],
+   "urllc": 89.01999999999998,
+   "embb": 22.33555555555556,
+   "mmtc_share_of_blocks": 0.7837543880704492,
+   "non_mmtc_blocks_per_seed": 1921.9333333333334,
+   "mmtc_only_seeds": 1,
+   "collapsed": 0
+  }
+ },
+ "criteria": [
+  {
+   "label": "R. AXIOM seeds 900-902 reproduce the stored evaluation reward within 1e-9",
+   "holds": true,
+   "detail": {
+    "901": 0.0,
+    "900": 0.0,
+    "902": 0.0
+   }
+  },
+  {
+   "label": "H1a. H1 AXIOM per-gNB penalty mMTC-only in at most 5 of 15 seeds",
+   "holds": true,
+   "detail": 0
+  },
+  {
+   "label": "H2a. H2 AXIOM LR 3e-3 mMTC-only in at most 5 of 15 seeds",
+   "holds": true,
+   "detail": 3
+  },
+  {
+   "label": "H3a. H3 AXIOM 900 episodes mMTC-only in at most 5 of 15 seeds",
+   "holds": true,
+   "detail": 1
+  },
+  {
+   "label": "H1b. compliance above stored AXIOM, Holm over 3",
+   "holds": true,
+   "detail": "diff +10.7078, W/T/L 13/0/2, p 0.00336, p_holm 0.00671 (n=15)"
+  },
+  {
+   "label": "H2b. compliance above stored AXIOM, Holm over 3",
+   "holds": true,
+   "detail": "diff +14.8544, W/T/L 10/2/3, p 0.00577, p_holm 0.00671 (n=15)"
+  },
+  {
+   "label": "H3b. compliance above stored AXIOM, Holm over 3",
+   "holds": true,
+   "detail": "diff +21.6511, W/T/L 14/0/1, p 0.000122, p_holm 0.000366 (n=15)"
+  },
+  {
+   "label": "H1 AXIOM per-gNB penalty vs H1 DQN-SA per-gNB penalty, prio",
+   "holds": null,
+   "detail": "diff +20.9333, W/T/L 15/0/0, p 6.1e-05 (n=15)"
+  },
+  {
+   "label": "H1 AXIOM per-gNB penalty vs H1 DQN-SA per-gNB penalty, reward_per_gnb",
+   "holds": null,
+   "detail": "diff +1.3175, W/T/L 15/0/0, p 6.1e-05 (n=15)"
+  },
+  {
+   "label": "H1 AXIOM per-gNB penalty vs stored DQN-SA, prio",
+   "holds": null,
+   "detail": "diff -3.4278, W/T/L 8/0/7, p 0.639 (n=15)"
+  },
+  {
+   "label": "H2 AXIOM LR 3e-3 vs stored DQN-SA, prio",
+   "holds": null,
+   "detail": "diff +0.7189, W/T/L 8/0/7, p 0.847 (n=15)"
+  },
+  {
+   "label": "H2 AXIOM LR 3e-3 vs stored DQN-SA, reward_per_gnb",
+   "holds": null,
+   "detail": "diff +0.0881, W/T/L 8/0/7, p 0.561 (n=15)"
+  },
+  {
+   "label": "H3 AXIOM 900 episodes vs stored DQN-SA, prio",
+   "holds": null,
+   "detail": "diff +7.5156, W/T/L 11/0/4, p 0.0353 (n=15)"
+  },
+  {
+   "label": "H3 AXIOM 900 episodes vs stored DQN-SA, reward_per_gnb",
+   "holds": null,
+   "detail": "diff +0.3775, W/T/L 14/0/1, p 0.000122 (n=15)"
+  },
+  {
+   "label": "H1 AXIOM per-gNB penalty vs stored AXIOM, prio",
+   "holds": null,
+   "detail": "diff +10.7078, W/T/L 13/0/2, p 0.00336 (n=15)"
+  },
+  {
+   "label": "H2 AXIOM LR 3e-3 vs stored AXIOM, prio",
+   "holds": null,
+   "detail": "diff +14.8544, W/T/L 10/2/3, p 0.00577 (n=15)"
+  },
+  {
+   "label": "H2 AXIOM LR 3e-3 vs stored AXIOM, reward_per_gnb",
+   "holds": null,
+   "detail": "diff +0.1431, W/T/L 10/2/3, p 0.0192 (n=15)"
+  },
+  {
+   "label": "H3 AXIOM 900 episodes vs stored AXIOM, prio",
+   "holds": null,
+   "detail": "diff +21.6511, W/T/L 14/0/1, p 0.000122 (n=15)"
+  },
+  {
+   "label": "H3 AXIOM 900 episodes vs stored AXIOM, reward_per_gnb",
+   "holds": null,
+   "detail": "diff +0.4325, W/T/L 15/0/0, p 6.1e-05 (n=15)"
+  }
+ ],
+ "tests": {
+  "H1": {
+   "n": 15,
+   "diff": 10.70777777777778,
+   "wins": 13,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.00335693359375,
+   "p_holm": 0.0067138671875
+  },
+  "H2": {
+   "n": 15,
+   "diff": 14.854444444444445,
+   "wins": 10,
+   "ties": 2,
+   "losses": 3,
+   "p": 0.0057715890441035304,
+   "p_holm": 0.0067138671875
+  },
+  "H3": {
+   "n": 15,
+   "diff": 21.651111111111117,
+   "wins": 14,
+   "ties": 0,
+   "losses": 1,
+   "p": 0.0001220703125,
+   "p_holm": 0.0003662109375
+  }
+ },
+ "reported": {
+  "H1 AXIOM per-gNB penalty vs H1 DQN-SA per-gNB penalty, prio": {
+   "n": 15,
+   "diff": 20.933333333333334,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05
+  },
+  "H1 AXIOM per-gNB penalty vs H1 DQN-SA per-gNB penalty, reward_per_gnb": {
+   "n": 15,
+   "diff": 1.3174973487909314,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05
+  },
+  "H1 AXIOM per-gNB penalty vs stored DQN-SA, prio": {
+   "n": 15,
+   "diff": -3.4277777777777745,
+   "wins": 8,
+   "ties": 0,
+   "losses": 7,
+   "p": 0.638671875
+  },
+  "H2 AXIOM LR 3e-3 vs stored DQN-SA, prio": {
+   "n": 15,
+   "diff": 0.7188888888888897,
+   "wins": 8,
+   "ties": 0,
+   "losses": 7,
+   "p": 0.846923828125
+  },
+  "H2 AXIOM LR 3e-3 vs stored DQN-SA, reward_per_gnb": {
+   "n": 15,
+   "diff": 0.08814240051792102,
+   "wins": 8,
+   "ties": 0,
+   "losses": 7,
+   "p": 0.5614013671875
+  },
+  "H3 AXIOM 900 episodes vs stored DQN-SA, prio": {
+   "n": 15,
+   "diff": 7.515555555555556,
+   "wins": 11,
+   "ties": 0,
+   "losses": 4,
+   "p": 0.03533935546875
+  },
+  "H3 AXIOM 900 episodes vs stored DQN-SA, reward_per_gnb": {
+   "n": 15,
+   "diff": 0.37754416934834933,
+   "wins": 14,
+   "ties": 0,
+   "losses": 1,
+   "p": 0.0001220703125
+  },
+  "H1 AXIOM per-gNB penalty vs stored AXIOM, prio": {
+   "n": 15,
+   "diff": 10.70777777777778,
+   "wins": 13,
+   "ties": 0,
+   "losses": 2,
+   "p": 0.00335693359375
+  },
+  "H2 AXIOM LR 3e-3 vs stored AXIOM, prio": {
+   "n": 15,
+   "diff": 14.854444444444445,
+   "wins": 10,
+   "ties": 2,
+   "losses": 3,
+   "p": 0.0057715890441035304
+  },
+  "H2 AXIOM LR 3e-3 vs stored AXIOM, reward_per_gnb": {
+   "n": 15,
+   "diff": 0.14305244709798132,
+   "wins": 10,
+   "ties": 2,
+   "losses": 3,
+   "p": 0.01922343909754908
+  },
+  "H3 AXIOM 900 episodes vs stored AXIOM, prio": {
+   "n": 15,
+   "diff": 21.651111111111117,
+   "wins": 14,
+   "ties": 0,
+   "losses": 1,
+   "p": 0.0001220703125
+  },
+  "H3 AXIOM 900 episodes vs stored AXIOM, reward_per_gnb": {
+   "n": 15,
+   "diff": 0.4324542159284096,
+   "wins": 15,
+   "ties": 0,
+   "losses": 0,
+   "p": 6.103515625e-05
+  }
+ }
+}
