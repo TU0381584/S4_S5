@@ -107,7 +107,7 @@ def main():
         v = summ["axiom2"][n]["prio_mean"]
         # below the AXIOM band and above every baseline, so no line or band crosses the label
         axs[0].text(i - 0.12, 82.0, f"{v:.1f}%", ha="right", va="center",
-                    fontsize=8, color=M2_ARM_STYLE["axiom2"]["color"], fontweight="bold")
+                    fontsize=8, color=M2_ARM_STYLE["axiom2"]["color"])
     gap19 = summ["axiom2"][19]["prio_mean"] - max(summ[b][19]["prio_mean"] for b in ARMS[1:])
     gap = summ["axiom2"][big]["prio_mean"] - max(summ[b][big]["prio_mean"] for b in ARMS[1:])
     xg = len(sizes) - 1 + 0.2
@@ -115,7 +115,7 @@ def main():
                     xytext=(xg, max(summ[b][big]["prio_mean"] for b in ARMS[1:])),
                     arrowprops=dict(arrowstyle="<->", color="#1f5fae", lw=1.0))
     axs[0].text(xg + 0.05, (summ["axiom2"][big]["prio_mean"] + max(summ[b][big]["prio_mean"] for b in ARMS[1:])) / 2,
-                f"{gap:+.0f}\npoints", fontsize=8, color="#1f5fae", va="center", fontweight="bold")
+                f"{gap:+.0f}\npoints", fontsize=8, color="#1f5fae", va="center")
     axs[0].set_ylabel("Priority-slice SLA, %")
     axs[0].set_ylim(20 if 37 in sizes else 40, 104)
     panel(axs[0], "a")

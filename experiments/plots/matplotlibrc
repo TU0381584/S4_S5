@@ -1,0 +1,9 @@
+font.family: sans-serif
+font.sans-serif: Liberation Sans, Arial, DejaVu Sans
+pdf.fonttype: 42
+ps.fonttype: 42
+mathtext.fontset: custom
+mathtext.rm: Liberation Sans
+mathtext.it: Liberation Sans:italic
+mathtext.bf: Liberation Sans:bold
+mathtext.sf: Liberation Sans

@@ -82,7 +82,7 @@ Network slicing virtualises the radio access network (RAN) to serve Ultra-Reliab
   gedge/.style={dashed, thick, draw=orange!75!black}
 ]
 % --- 5G Core (cloud-like ellipse) with a small server-rack glyph ---
-\node[core] (core) at (7.5,6.75) {\\[2pt]{\sffamily\footnotesize\bfseries 5G Core}\\[1pt]{\sffamily\footnotesize Open5GS core network}};
+\node[core] (core) at (7.5,6.75) {\\[2pt]{\sffamily\footnotesize 5G Core}\\[1pt]{\sffamily\footnotesize Open5GS core network}};
 \begin{scope}[shift={(7.5,7.3)}]
   \foreach \yy in {0,0.14}{
     \draw[thick,gray!55!black,fill=gray!18,rounded corners=0.4pt] (-0.24,\yy) rectangle (0.24,\yy+0.1);
@@ -468,11 +468,11 @@ Fig.~\ref{fig:gnb-map} shows where that gap comes from, gNB by gNB, in the thirt
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig10_axiom_superiority.pdf}
-\caption{AXIOM against the three learned baselines. a, Env A and b, Env B, reward per gNB per step against priority-slice compliance, shaded light to dark from the smallest to the largest cluster, with 95\% CIs. c, Six measured axes, each as a fraction of the best learned policy}
+\caption{AXIOM against the three learned baselines. a, Env A and b, Env B reward per gNB per step against priority-slice compliance, light to dark from the smallest to the largest cluster, with 95\% CIs. c, Env A and d, Env B measures, each as a fraction of the best learned policy}
 \label{fig:quadrant}
 \end{figure}
 
-Fig.~\ref{fig:quadrant} summarises how the four learned policies compare as the cluster grows. In Env A, panel a, AXIOM stays between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. In Env B, panel b, every policy loses compliance as the cluster grows. There AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs, and it earns about as much per gNB as DQN-SA at seven, where DQN-SA keeps more compliance. AXIOM leads on four of the six axes of panel c. MAPPO, which never collapses at thirty-seven gNBs, leads on collapse resistance, and DQN-SA leads on Env B compliance at seven gNBs.
+Fig.~\ref{fig:quadrant} summarises how the four learned policies compare as the cluster grows. In Env A, panel a, AXIOM stays between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. In Env B, panel b, every policy loses compliance as the cluster grows. There AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs, and it earns about as much per gNB as DQN-SA at seven, where DQN-SA keeps more compliance. Panels c and d place six measures per environment on one scale. In Env A, AXIOM leads on five of the six, and MAPPO, which never collapses at thirty-seven gNBs, leads on collapse resistance. In Env B, AXIOM leads on four, and DQN-SA leads on both measures at seven gNBs.
 
 \subsection{Ablations and Sensitivity}
 \label{sec:results-ablation}
@@ -572,7 +572,7 @@ Second, four further runs retrained every policy on fresh seeds, 10 to 40 per se
 
 The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set. AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur, at margins of $-0.021$ and $0.159$ reward per step on 20 and 40 new seeds. At 102\% load that baseline also matched AXIOM. Two weak AXIOM seeds also left one ten-seed load sample 3.2\% short of the oracle, a gap that a twenty-seed rerun did not reproduce. A fifth fresh-seed run, at thirty-seven gNBs on 20 seeds, held all three of its checks, as Section~\ref{sec:results-m6} reports.
 
-Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 669 of its checks pass.
+Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 670 of its checks pass.
 
 \subsection{Federation, Privacy, Disruption, and Live Deployment}
 \label{sec:results-m3}
@@ -618,14 +618,14 @@ grant FRGS/1/2024/ICT06/TAYLOR/02/1.
 this manuscript unless otherwise indicated.
 
 \begin{itemize}
-\item \textbf{Funding:} This work was supported by the Fundamental Research Grant Scheme (FRGS), Ministry of Higher Education (MOHE), Malaysia, under grant number FRGS/1/2024/ICT06/TAYLOR/02/1.
-\item \textbf{Competing interests:} The authors declare no competing interests.
-\item \textbf{Ethics approval and consent to participate:} Not applicable, since this study involves no human participants, animal subjects, or identifiable patient data. All reported results are either offline simulation campaigns or measurements from a laboratory radio testbed.
-\item \textbf{Consent for publication:} Not applicable, since this manuscript contains no personal data or identifying information about any individual.
-\item \textbf{Data availability:} The experiment logs, checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request. They are not yet publicly archived because the research is ongoing and the dataset is not yet complete.
-\item \textbf{Materials availability:} Not applicable, since this study involves no physical or biological materials.
-\item \textbf{Code availability:} The framework and experiment scripts used to produce this paper's results, including the reproducibility manifest and analysis scripts used to independently re-derive every table and figure in this paper, are available from the corresponding author on reasonable request.
-\item \textbf{Author contributions:} M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
+\item Funding: This work was supported by the Fundamental Research Grant Scheme (FRGS), Ministry of Higher Education (MOHE), Malaysia, under grant number FRGS/1/2024/ICT06/TAYLOR/02/1.
+\item Competing interests: The authors declare no competing interests.
+\item Ethics approval and consent to participate: Not applicable, since this study involves no human participants, animal subjects, or identifiable patient data. All reported results are either offline simulation campaigns or measurements from a laboratory radio testbed.
+\item Consent for publication: Not applicable, since this manuscript contains no personal data or identifying information about any individual.
+\item Data availability: The experiment logs, checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request. They are not yet publicly archived because the research is ongoing and the dataset is not yet complete.
+\item Materials availability: Not applicable, since this study involves no physical or biological materials.
+\item Code availability: The framework and experiment scripts used to produce this paper's results, including the reproducibility manifest and analysis scripts used to independently re-derive every table and figure in this paper, are available from the corresponding author on reasonable request.
+\item Author contributions: M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
 \end{itemize}
 
 \bibliography{refs}

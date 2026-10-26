@@ -581,16 +581,25 @@ def main():
            and all(sB_["AXIOM"][n_][m_] > max(sB_[k_][n_][m_] for k_ in ("DQN-SA", "DQN-I", "MAPPO")) for n_ in ("3", "19") for m_ in ("x", "y"))
            and abs(sB_["AXIOM"]["7"]["x"] - sB_["DQN-SA"]["7"]["x"]) < 0.05 and sB_["DQN-SA"]["7"]["y"] > sB_["AXIOM"]["7"]["y"]
            and "earns about as much per gNB as DQN-SA at seven, where DQN-SA keeps more compliance" in C.main, sB_)
-    radar = {k: [float(x) for x in v.split(",")] for k, v in re.findall(r'"([A-Za-z -]+)":\s+\[([0-9., ]+)\],', src)}
-    best = lambda d: max(d.values())
-    A3r = {a: mean(A[a]) for a in lab.values()}
-    B3r = {a: mean(B[a]) for a in lab.values()}
-    p7 = {a: float(np.mean([prio(r) for t in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n7_{t}", a, S15).values()])) for a in lab.values()}
-    nc19 = {a: 1 - sum(r["collapsed"] for t in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n19_{t}", a, S30_19).values()) / 90 for a in lab.values()}
-    axes = [A3r, B3r, p7, pooled37, nc37, n7p]
-    expect = {k: [round(ax[lab[k]] / best(ax), 3) for ax in axes] for k in lab}
-    okr = all(abs(radar[k][i] - expect[k][i]) <= 0.002 for k in lab for i in range(6))
-    C.note("Fig 9b radar fractions match recomputation", okr, {"figure": radar, "recomputed": expect})
+    # Fig 6c and 6d (since 2026-10-27): the radars are computed by the figure script and saved to its summary;
+    # recompute every fraction from the logs (reward per step, priority compliance, or share of runs not collapsed)
+    spec_ = {"A": (envA_rows_, ((3, "r"), (37, "r"), (7, "y"), (19, "y"), (37, "y"), (37, "c"))),
+             "B": (envB_rows_, ((3, "r"), (7, "r"), (19, "r"), (3, "y"), (7, "y"), (19, "y")))}
+    okr, expect, lead_ = True, {}, {}
+    for env_, (fn_, axes_) in spec_.items():
+        raw_ = {k_: [float(np.mean([r["reward"] if m_ == "r" else 100 * prio(r) if m_ == "y" else 1 - r["collapsed"]
+                                    for r in fn_(n_, a_)])) for n_, m_ in axes_] for k_, a_ in lab.items()}
+        best_ = [max(raw_[k_][i_] for k_ in raw_) for i_ in range(6)]
+        expect[env_] = {k_: [v_ / b_ for v_, b_ in zip(raw_[k_], best_)] for k_ in raw_}
+        lead_[env_] = {k_: sum(abs(x_ - 1) < 1e-12 for x_ in v_) for k_, v_ in expect[env_].items()}
+        okr = okr and len(sup_["radar"][env_]["axes"]) == 6 and all(sup_["radar"][env_]["axes"][i_].startswith(f"Env {env_} ") for i_ in range(6)) \
+            and all(abs(sup_["radar"][env_]["fractions"][k_][i_] - expect[env_][k_][i_]) < 1e-9 for k_ in lab for i_ in range(6))
+    C.note("Fig 6c and 6d radar fractions match recomputation from the logs", okr, {"figure": sup_["radar"], "recomputed": expect})
+    C.note("Fig 6 text: AXIOM leads 5 of 6 Env A axes with MAPPO on no-collapse, 4 of 6 Env B axes with DQN-SA on both 7-gNB axes",
+           lead_["A"]["AXIOM"] == 5 and expect["A"]["MAPPO"][5] == 1 and expect["A"]["AXIOM"][5] < 1
+           and lead_["B"]["AXIOM"] == 4 and expect["B"]["DQN-SA"][1] == 1 and expect["B"]["DQN-SA"][4] == 1
+           and "In Env A, AXIOM leads on five of the six, and MAPPO, which never collapses at thirty-seven gNBs, leads on collapse resistance" in C.main
+           and "In Env B, AXIOM leads on four, and DQN-SA leads on both measures at seven gNBs" in C.main, lead_)
 
     # ---------------- M66 verification subsection: V1 reruns and V2 fresh seeds
     v1 = [("m66_repro/B_n3", "m64/n3_fully_connected", a_, range(900, 905 if a_ in ("axiom2", "mappo_tuned") else 903))

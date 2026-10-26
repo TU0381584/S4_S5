@@ -57,14 +57,13 @@ def main():
         ax.errorbar(i, m, yerr=[[m - lo], [hi - m]], fmt=st["marker"], color=st["color"],
                     ms=6.5 if emph else 5, capsize=3, lw=1.3 if emph else 1.0, mec="white" if emph else st["color"], zorder=5)
         ax.text(i + 0.24, m, f"{m:.2f}", fontsize=8.5, va="center", ha="left", color=st["color"],
-                fontweight="bold" if emph else "normal")
+                fontweight="normal")
         summ["n3"][arm] = {"n": len(rows), "reward": m, "ci": [lo, hi],
                            "urllc": float(np.mean([x["sla"]["urllc"] for x in rows])),
                            "embb": float(np.mean([x["sla"]["embb"] for x in rows])),
                            "collapsed": int(sum(x["collapsed"] for x in rows))}
     ax.set_xticks(range(len(N3_ARMS)))
     ax.set_xticklabels([SHORT[x] for x in N3_ARMS], fontsize=8.5)
-    ax.get_xticklabels()[-1].set_fontweight("bold")
     ax.set_xlim(-0.55, len(N3_ARMS) - 0.35)
     ax.set_ylabel("Reward per step, 3 gNBs", fontsize=8.5)
     ax.tick_params(axis="y", labelsize=8.5)

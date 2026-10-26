@@ -167,7 +167,7 @@ def main() -> None:
                  marker=style["marker"], markersize=5.5, linewidth=1.6, capsize=3, zorder=4)
     for xi, n in zip(x_cat, n_seeds):
         ax2.annotate(f"n={n}", (xi, -0.17), ha="center", va="top", fontsize=8,
-                     color="#333333", fontweight="bold", annotation_clip=False)
+                     color="#333333", annotation_clip=False)
 
     ax2.set_xlim(-0.5, len(sigma_vals) - 0.5)
     ax2.set_xticks(x_cat)

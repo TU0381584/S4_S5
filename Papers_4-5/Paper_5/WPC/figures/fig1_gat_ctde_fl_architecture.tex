@@ -22,7 +22,7 @@
 ]
 
 % ===== Left half: AXIOM per-agent pipeline =====
-\node[font=\sffamily\bfseries] (lefttitle) at (-3.2,3.0) {a};
+\node[font=\sffamily] (lefttitle) at (-3.2,3.0) {a};
 
 % 3-gNB fully-connected graph
 \node[node1] (n1) at (-0.8,2.1) {gNB-0};
@@ -53,7 +53,7 @@
 \draw[arrow] (qlab.south) -- (action.north);
 
 % ===== Right half: federated training loop =====
-\node[font=\sffamily\bfseries] (righttitle) at (2.75,3.0) {b};
+\node[font=\sffamily] (righttitle) at (2.75,3.0) {b};
 
 \node[client, minimum width=2.0cm] (c1) at (4.05,2.2) {Client 0\\\small local AXIOM};
 \node[client, minimum width=2.0cm] (c2) at (6.3,2.2) {Client 1\\\small local AXIOM};

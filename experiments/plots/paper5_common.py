@@ -56,7 +56,7 @@ SUPP_WIDTH_IN = 453.5 / 72.27
 
 def panel(ax, letter, **kw):
     """Bare bold panel letter, the Springer convention; the caption carries the description."""
-    ax.set_title(letter, loc="left", fontsize=9, fontweight="bold", **kw)
+    ax.set_title(letter, loc="left", fontsize=9, **kw)
 
 
 M2_ARM_ORDER: List[str] = ["gat_ctde", "independent_dqn", "single_agent_dqn"]

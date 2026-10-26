@@ -120,10 +120,10 @@ def main():
         draw_cluster(ax, coords, corr, lw=0.4)
         emph = arm == "axiom2"
         col = "#1f5fae" if emph else "#333333"
-        ax.set_title(label, fontsize=9.5 if emph else 9, fontweight="bold" if emph else "normal", color=col, pad=19)
+        ax.set_title(label, fontsize=9.5 if emph else 9, fontweight="normal", color=col, pad=19)
         ax.text(0.5, 1.01, f"Priority SLA {p_sla:.1f}%\n{coll}/{len(rows)} seeds collapsed",
                 transform=ax.transAxes, ha="center", va="bottom", fontsize=7.2, linespacing=1.15,
-                fontweight="bold" if emph else "normal", color=col)
+                fontweight="normal", color=col)
         if emph:
             ax.axis("on")
             ax.set_xticks([]); ax.set_yticks([])
@@ -137,7 +137,7 @@ def main():
                                       (0.45, -0.3, 1.5, -0.7, "mMTC gate, correct if shed", "left")):
         kax.annotate(txt, xy=(x0, y0), xytext=(x1, y1), fontsize=7, ha=ha, va="center",
                      arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6))
-    kax.text(1.5, 0.7, "One gNB", fontsize=7.5, fontweight="bold", ha="left", va="center")
+    kax.text(1.5, 0.7, "One gNB", fontsize=7.5, ha="left", va="center")
     kax.set_xlim(-9.5, 9.5); kax.set_ylim(-1.15, 1.15)
     cax = fig.add_subplot(gs[1, 2:4])
     pos = cax.get_position()

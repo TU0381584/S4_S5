@@ -1,5 +1,5 @@
 """Fig: AXIOM against the three learned baselines as the cluster grows.
-(a) Env A at 3, 7, 19, and 37 gNBs, (b) Env B at 3, 7, and 19 gNBs, (c) capability radar.
+(a) Env A at 3, 7, 19, and 37 gNBs, (b) Env B at 3, 7, and 19 gNBs, (c) Env A and (d) Env B capability radars.
 
 Panels a and b are computed here from the stored evaluation logs (via m66_verify's
 reader): x is reward per gNB per step, y is priority-slice compliance, each point a
@@ -74,7 +74,8 @@ def compute():
                 y = [100 * prio(r) for r in rows]
                 out.setdefault(env, {}).setdefault(name, {})[str(n)] = {
                     "n_runs": len(rows), "x": float(np.mean(x)), "x_ci": list(boot_ci(x)),
-                    "y": float(np.mean(y)), "y_ci": list(boot_ci(y))}
+                    "y": float(np.mean(y)), "y_ci": list(boot_ci(y)),
+                    "no_collapse": 1.0 - sum(r["collapsed"] for r in rows) / len(rows)}
     return out
 
 
@@ -93,81 +94,94 @@ def draw_env(ax, data, env, xlab):
                 off = (7, -11) if (env == "A" and n == 37) else (0, 6) if env == "A" else (6, 4)
                 ax.annotate(str(n), (p["x"], p["y"]), textcoords="offset points", xytext=off, ha="center" if env == "A" else "left",
                             fontsize=8, color=C[name])
-    ax.set_xlabel(xlab)
-    ax.set_ylabel("Priority-slice SLA, %")
+    ax.set_xlabel(f"Env {env} reward per gNB per step")
+    ax.set_ylabel(f"Env {env} priority-slice SLA, %")
     ax.grid(True, linewidth=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
 
 
-def draw_radar(ax, fig):
-    # six measured axes (M64/M65/M73); each value is the arm's score over the best learned arm's score
-    labels = ["Env A reward\n3 gNBs", "Env B reward\n3 gNBs", "Env A priority\nSLA 7 gNBs", "Env A priority\nSLA 37 gNBs",
-              "No collapse\n37 gNBs", "Env B priority\nSLA 7 gNBs"]
-    vals = {
-        "AXIOM":            [1.000, 1.000, 1.000, 1.000, 0.900, 0.792],
-        "DQN-SA": [0.976, 0.849, 0.785, 0.626, 0.133, 1.000],
-        "DQN-I":  [0.913, 0.882, 0.768, 0.343, 0.900, 0.903],
-        "MAPPO":            [0.789, 0.789, 0.697, 0.605, 1.000, 0.810],
-    }
+RADAR = {
+    "A": [("Reward\n3 gNBs", "3", "r"), ("Reward\n37 gNBs", "37", "r"), ("Priority\nSLA 7 gNBs", "7", "y"),
+          ("Priority\nSLA 19 gNBs", "19", "y"), ("Priority\nSLA 37 gNBs", "37", "y"), ("No collapse\n37 gNBs", "37", "c")],
+    "B": [("Reward\n3 gNBs", "3", "r"), ("Reward\n7 gNBs", "7", "r"), ("Reward\n19 gNBs", "19", "r"),
+          ("Priority\nSLA 3 gNBs", "3", "y"), ("Priority\nSLA 7 gNBs", "7", "y"), ("Priority\nSLA 19 gNBs", "19", "y")],
+}
+
+
+def radar_values(data, env):
+    """Each axis as a fraction of the best learned policy on it (reward per step, compliance, or no-collapse share)."""
+    raw = {}
+    for name in ARM:
+        raw[name] = []
+        for _, n, kind in RADAR[env]:
+            p = data[env][name][n]
+            raw[name].append(p["x"] * int(n) if kind == "r" else p["y"] if kind == "y" else p["no_collapse"])
+    best = [max(raw[k][i] for k in raw) for i in range(len(RADAR[env]))]
+    return {k: [v / b for v, b in zip(raw[k], best)] for k in raw}
+
+
+def draw_radar(ax, data, env):
+    labels = [l for l, _, _ in RADAR[env]]
+    vals = radar_values(data, env)
+    data.setdefault("radar", {})[env] = {"axes": [f"Env {env} " + l.replace("\n", " ") for l in labels], "fractions": vals}
+    ax.set_title(f"Env {env}, fraction of best learned policy", fontsize=8.5, pad=22)
     N = len(labels)
     ang = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
     ang += ang[:1]
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
     ax.set_xticks(ang[:-1])
-    ax.set_xticklabels(labels, fontsize=8.5)
+    ax.set_xticklabels(labels, fontsize=8)
     ax.set_ylim(0, 1.08)
     ax.set_yticks([0.25, 0.5, 0.75, 1.0])
     ax.set_yticklabels([])
-    ax.tick_params(axis="x", pad=3)
+    ax.tick_params(axis="x", pad=2)
     for lab_, a_ in zip(ax.get_xticklabels(), ang[:-1]):
         s_ = np.sin(a_)
         lab_.set_horizontalalignment("left" if s_ > 0.1 else "right" if s_ < -0.1 else "center")
-    ax.set_rlabel_position(215)
     ax.grid(linewidth=0.4, alpha=0.5)
-    # AXIOM first (its fill dominates), baselines on top so their lines stay visible.
-    # Distinct dash patterns keep all three readable where the lines overlap.
     zbase = {"AXIOM": 4, "DQN-I": 5, "DQN-SA": 6, "MAPPO": 5}
     LS = {"AXIOM": (0, (1, 1.35)), "DQN-I": (0, (5, 2)), "DQN-SA": "-", "MAPPO": (0, (3, 1, 1, 1))}
     for name in ["AXIOM", "DQN-I", "DQN-SA", "MAPPO"]:
         v = vals[name] + vals[name][:1]
-        lw = 1.6 if name == "AXIOM" else 1.3
-        ms = 3 if name == "AXIOM" else 3.5
-        ax.plot(ang, v, color=C[name], linewidth=lw, linestyle=LS[name], marker=M[name],
-                markersize=ms, zorder=zbase[name])
+        ax.plot(ang, v, color=C[name], linewidth=1.5 if name == "AXIOM" else 1.2, linestyle=LS[name], marker=M[name],
+                markersize=3 if name == "AXIOM" else 3.5, zorder=zbase[name])
         ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.05, zorder=2)
-    
-    handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=2, linestyle=LS[n], label=n)
-               for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.0),
-               ncol=4, frameon=False, fontsize=8.5, handlelength=1.8, columnspacing=1.2)
+    return LS
 
 
 def main():
     out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
     data = compute()
-    fig = plt.figure(figsize=(5.16, 5.0))
-    axA = fig.add_axes([0.1, 0.6, 0.37, 0.36])
-    axB = fig.add_axes([0.6, 0.6, 0.37, 0.36])
-    axR = fig.add_axes([0.37, 0.12, 0.27, 0.31], projection="polar")
-    draw_env(axA, data, "A", "Reward per gNB per step")
-    draw_env(axB, data, "B", "Reward per gNB per step")
+    fig = plt.figure(figsize=(5.16, 5.7))
+    axA = fig.add_axes([0.11, 0.665, 0.36, 0.3])
+    axB = fig.add_axes([0.61, 0.665, 0.36, 0.3])
+    axRA = fig.add_axes([0.125, 0.15, 0.22, 0.3], projection="polar")
+    axRB = fig.add_axes([0.665, 0.15, 0.22, 0.3], projection="polar")
+    draw_env(axA, data, "A", None)
+    draw_env(axB, data, "B", None)
     axA.set_ylim(25, 102)
     axB.set_ylim(10, 72)
-    draw_radar(axR, fig)
-    for x_, y_, t_ in ((0.01, 0.985, "a"), (0.51, 0.985, "b"), (0.01, 0.5, "c")):
-        fig.text(x_, y_, t_, fontsize=9, fontweight="bold", va="top")
+    draw_radar(axRA, data, "A")
+    LS = draw_radar(axRB, data, "B")
+    for x_, y_, t_ in ((0.01, 0.99, "a"), (0.51, 0.99, "b"), (0.01, 0.55, "c"), (0.51, 0.55, "d")):
+        fig.text(x_, y_, t_, fontsize=9, va="top")
+    handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=1.5, linestyle=LS[n], label=n)
+               for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.02), ncol=4, frameon=False,
+               fontsize=8.5, handlelength=1.8, columnspacing=1.2)
     shades = [Patch(facecolor=shade("#6b6b6b", f), edgecolor="#6b6b6b", label=l)
               for f, l in zip(np.linspace(0.38, 1.0, 4), ("3 gNBs", "7 gNBs", "19 gNBs", "37 gNBs"))]
-    fig.legend(handles=shades, loc="lower center", bbox_to_anchor=(0.5, -0.045), ncol=4, frameon=False,
+    fig.legend(handles=shades, loc="lower center", bbox_to_anchor=(0.5, -0.025), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.2, columnspacing=1.2)
     fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.02)
     fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.02)
     json.dump(data, open(out + "_summary.json", "w"), indent=1)
     print("wrote", out)
-    for env in data:
-        for name in data[env]:
+    for env in ("A", "B"):
+        for name in ARM:
             print(env, name, {n: (round(v["x"], 2), round(v["y"], 1), v["n_runs"]) for n, v in data[env][name].items()})
+        print("radar", env, {k: [round(x, 3) for x in v] for k, v in data["radar"][env]["fractions"].items()})
 
 
 if __name__ == "__main__":
