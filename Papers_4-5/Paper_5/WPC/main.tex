@@ -43,7 +43,7 @@
 
 \begin{document}
 
-\title[AXIOM for Multi-Agent Slice Admission Control]{AXIOM: Scalable Multi-Agent Slice Admission Control under Verified Evaluation}
+\title[AXIOM for Scalable Multi-Agent 5G Slice Admission]{AXIOM: A Shared Graph-Attention Controller for Scalable Multi-Agent 5G Slice Admission}
 
 \author[1]{\fnm{Manoj Prasad} \sur{Kunasegran}}\nomail
 
@@ -98,8 +98,13 @@ Network slicing virtualises the radio access network (RAN) to serve Ultra-Reliab
 \draw[gedge] (g1) -- (g2);
 \draw[gedge] (g2) -- (g3);
 \draw[gedge] (g1) to[bend right=9] (g3);
+% --- further gNBs: the cluster holds N of them (7, 19, or 37 in the scaling study) ---
+\node[font=\footnotesize] (gdots) at (14.55,3.05) {$\cdots$};
+\begin{scope}[opacity=0.55]\gnbtower{(16.4,3.55)}\end{scope}
+\node[gnb, dashed] (gN) at (16.4,3.05) {gNB~$N$};
+\draw[gedge] (g3) -- (gdots); \draw[gedge] (gdots) -- (gN);
 \node[draw=orange!75!black, dashed, thick, rounded corners, inner sep=3pt,
-      fit={(0.7,2.3) (14.3,4.6)}] (clu) {};
+      fit={(0.7,2.3) (17.6,4.6)}] (clu) {};
 \node[font=\sffamily\footnotesize, text=orange!55!black, inner sep=1.5pt]
       at (0.7,4.85) [anchor=south west] {AXIOM cluster graph};
 \draw[ar] (core.south) -- (7.5,4.62) node[pos=0.5, right=1pt, font=\sffamily\footnotesize, fill=white, inner sep=1pt] {N2 / N3};
@@ -118,7 +123,7 @@ Network slicing virtualises the radio access network (RAN) to serve Ultra-Reliab
 \fill[blue!65!black] (6.56,0.85) rectangle (6.63,1.27);
 % mMTC sensor grid
 \foreach \a in {-0.14,0,0.14}{\foreach \b in {-0.14,0,0.14}{\fill[green!55!black] (11.5+\a,1.05+\b) circle (0.03);}}
-\draw[ar] (clu.south) -- (7.5,1.9);
+\draw[ar] (g2 |- clu.south) -- (7.5,1.9);
 \draw[ar] (7.5,1.86) -- (s1.north);
 \draw[ar] (7.5,1.86) -- (s2.north);
 \draw[ar] (7.5,1.86) -- (s3.north);
@@ -126,13 +131,16 @@ Network slicing virtualises the radio access network (RAN) to serve Ultra-Reliab
 \uephone{(2.0,0.3)}{red}  \uephone{(3.0,0.3)}{red}
 \uephone{(7.0,0.3)}{blue} \uephone{(8.0,0.3)}{blue}
 \uephone{(12.0,0.3)}{green} \uephone{(13.0,0.3)}{green}
+\node[font=\footnotesize] at (14.55,0.3) {$\cdots$};
+\begin{scope}[opacity=0.55]\uephone{(15.7,0.3)}{gray}\end{scope}
+\node[font=\sffamily\footnotesize, anchor=west] at (16.0,0.3) {UE~$M$};
 \node[font=\sffamily\footnotesize] at (7.5,-0.5) {User equipments, per-slice UDP traffic};
 \draw[ar] (s1.south) -- (2.5,0.62);
 \draw[ar] (s2.south) -- (7.5,0.62);
 \draw[ar] (s3.south) -- (12.5,0.62);
 \end{tikzpicture}
-\caption{Conceptual system view. A cluster of gNBs, coordinated by the shared
-AXIOM encoder and backhauled to a 5G core, serves user equipments (UEs) across three slices.
+\caption{Conceptual system view. A cluster of $N$ gNBs, coordinated by the shared
+AXIOM encoder and backhauled to a 5G core, serves $M$ user equipments (UEs) across three slices.
 AXIOM is evaluated offline; the live rig runs one gNB}
 \label{fig:sysview}
 \end{figure}
@@ -164,8 +172,8 @@ Several recent works come close on a single axis of this problem. Shao et al.~\c
 \label{tab:related}
 \centering
 \footnotesize
-{\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.2\textwidth} >{\raggedright\arraybackslash}p{0.34\textwidth} >{\raggedright\arraybackslash}p{0.1\textwidth} >{\raggedright\arraybackslash}p{0.14\textwidth} >{\raggedright\arraybackslash}p{0.12\textwidth}@{}}
+{\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.185\textwidth} >{\raggedright\arraybackslash}p{0.30\textwidth} >{\raggedright\arraybackslash}p{0.065\textwidth} >{\raggedright\arraybackslash}p{0.135\textwidth} >{\raggedright\arraybackslash}p{0.261\textwidth}@{}}
 \toprule
 Work & Problem & Multi-agent & Graph encoder & Federated \\
 \midrule
