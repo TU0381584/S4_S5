@@ -536,24 +536,51 @@ def main():
 
     # ---------------- hand-entered figure values (Fig 9) against recomputation
     src = open("/home/kmanojp/oranslice_rig/experiments/plots/paper5_fig_superiority.py").read()
-    xs = dict(re.findall(r'"([A-Za-z -]+)": dict\(x=([0-9.]+)', src))
-    ys = dict(re.findall(r'"([A-Za-z -]+)": dict\(x=[0-9.]+, xci=\([^)]*\), y=([0-9.]+)', src))
     pooled19 = {}
     for arm in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"):
         pooled19[arm] = 100 * float(np.mean([prio(r) for t in ("fully_connected", "ring", "hex")
                                               for r in seeds_of(f"m65_scaling/n19_{t}", arm, S30_19).values()]))
     lab = {"AXIOM": "axiom2", "DQN-SA": "single_agent_dqn", "DQN-I": "independent_dqn", "MAPPO": "mappo_tuned"}
-    # x is Env A reward per step at 3 gNBs with its 95% bootstrap CI (absolute since M73; it was % of the oracle)
-    xcis = {k: tuple(float(x) for x in v.split(",")) for k, v in re.findall(r'"([A-Za-z -]+)": dict\(x=[0-9.]+, xci=\(([^)]*)\)', src)}
-    okx = all(round(mean(A[lab[k]]), 3) == float(v) for k, v in xs.items()) and len(xcis) == 4 and \
-        all(np.allclose(ci([r["reward"] for r in A[lab[k]].values()]), v, atol=0.03) for k, v in xcis.items())
     # since M73 the y axis and two radar axes use 37 gNBs (AXIOM over hex 30 + ring 15 + fully-connected 15, baselines over hex 30)
     rows37 = {a: ([r for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for r in seeds_of(f"m73/A_n37_{t}", a, ss).values()]
                   if a == "axiom2" else list(seeds_of("m73/A_n37_hex", a, S30_19).values())) for a in lab.values()}
     pooled37 = {a: 100 * float(np.mean([prio(r) for r in v])) for a, v in rows37.items()}
     nc37 = {a: 1 - sum(r["collapsed"] for r in v) / len(v) for a, v in rows37.items()}
-    oky = all(round(pooled37[lab[k]], 1) == float(v) for k, v in ys.items())
-    C.note("Fig 9a hand-entered x and y values match recomputation", okx and oky and len(xs) == 4 and len(ys) == 4, (xs, ys))
+    # Fig 6a/b (since 2026-10-26): every plotted point is computed by the figure script and saved to its summary;
+    # recompute each point here from the logs and compare
+    sup_ = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority_summary.json"))
+    def envA_rows_(n_, a_):
+        if n_ == 3:
+            return list(A[a_].values())
+        if n_ in (7, 19):
+            return [r for t_ in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n{n_}_{t_}", a_, S15 if n_ == 7 else S30_19).values()]
+        return rows37[a_]
+    def envB_rows_(n_, a_):
+        if n_ == 3:
+            return list(B[a_].values())
+        if n_ == 7:
+            return [r for t_ in ("fully_connected", "ring", "hex") for r in seeds_of(f"m64/n7_{t_}", a_, S15).values()]
+        return list(seeds_of("m75/D_envB_n19_hex", a_, S15).values())
+    bad_ = []
+    for env_, fn_, sizes_ in (("A", envA_rows_, (3, 7, 19, 37)), ("B", envB_rows_, (3, 7, 19))):
+        for k_, a_ in lab.items():
+            for n_ in sizes_:
+                rr_ = fn_(n_, a_); p_ = sup_[env_][k_][str(n_)]
+                if not (p_["n_runs"] == len(rr_) and abs(p_["x"] - float(np.mean([r["reward"] / n_ for r in rr_]))) < 1e-9
+                        and abs(p_["y"] - 100 * float(np.mean([prio(r) for r in rr_]))) < 1e-9):
+                    bad_.append((env_, k_, n_))
+    C.note("Fig 6a and 6b plotted points match recomputation from the logs", not bad_ and len(sup_["A"]) == 4 and len(sup_["B"]) == 4, bad_)
+    axA_ = [sup_["A"]["AXIOM"][n_] for n_ in ("3", "7", "19", "37")]
+    C.note("Fig 6 text: AXIOM 4.2 to 4.7 reward per gNB and above 93% in Env A at every size, every baseline falls",
+           f"{min(p_['x'] for p_ in axA_):.1f}" == "4.2" and f"{max(p_['x'] for p_ in axA_):.1f}" == "4.7" and min(p_["y"] for p_ in axA_) > 93
+           and all(all(sup_["A"][k_][a][ "y"] > sup_["A"][k_][b]["y"] for a, b in (("3", "7"), ("7", "19"), ("19", "37"))) for k_ in ("DQN-SA", "DQN-I", "MAPPO"))
+           and "between 4.2 and 4.7 reward per gNB per step and above 93\\% priority-slice compliance, while every baseline loses compliance as the cluster grows" in C.main, axA_)
+    sB_ = sup_["B"]
+    C.note("Fig 6 text: Env B compliance falls with size for every policy; AXIOM leads reward and compliance at 3 and 19, near DQN-SA reward at 7",
+           all(sB_[k_]["3"]["y"] > sB_[k_]["7"]["y"] > sB_[k_]["19"]["y"] for k_ in sB_)
+           and all(sB_["AXIOM"][n_][m_] > max(sB_[k_][n_][m_] for k_ in ("DQN-SA", "DQN-I", "MAPPO")) for n_ in ("3", "19") for m_ in ("x", "y"))
+           and abs(sB_["AXIOM"]["7"]["x"] - sB_["DQN-SA"]["7"]["x"]) < 0.05 and sB_["DQN-SA"]["7"]["y"] > sB_["AXIOM"]["7"]["y"]
+           and "earns about as much per gNB as DQN-SA at seven, where DQN-SA keeps more compliance" in C.main, sB_)
     radar = {k: [float(x) for x in v.split(",")] for k, v in re.findall(r'"([A-Za-z -]+)":\s+\[([0-9., ]+)\],', src)}
     best = lambda d: max(d.values())
     A3r = {a: mean(A[a]) for a in lab.values()}
@@ -1157,8 +1184,13 @@ def main():
     p37_ = [100 * prio(r) for r in axr_]
     C.claim("reframe: M73 AXIOM pooled priority SLA", "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]", float(np.mean(p37_)), "{:.1f}")
     lo_, hi_ = ci(p37_)
-    C.claim("reframe: M73 AXIOM CI low", "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]", lo_, "", tol=0.15)
-    C.claim("reframe: M73 AXIOM CI high", "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]", hi_, "", tol=0.15)
+    # independent resampling: tolerance scales with the interval's width, as in ci_claim
+    tw_ = max(0.03, 0.05 * (hi_ - lo_))
+    C.claim("reframe: M73 AXIOM CI low", "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]", lo_, "", tol=tw_)
+    C.claim("reframe: M73 AXIOM CI high", "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]", hi_, "", tol=tw_)
+    from m62_analysis import boot_ci as boot_ci_exact_
+    lo_x_, hi_x_ = boot_ci_exact_(p37_)
+    C.note("reframe: M73 AXIOM CI exact with the order-independent bootstrap", f"[{lo_x_:.1f}\\%, {hi_x_:.1f}\\%]" == "[89.8\\%, 97.2\\%]", (lo_x_, hi_x_))
     C.claim("reframe: M73 AXIOM URLLC", "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%", 100 * float(np.mean([r["sla"]["urllc"] for r in axr_])), "{:.1f}")
     C.claim("reframe: M73 AXIOM eMBB", "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%", 100 * float(np.mean([r["sla"]["embb"] for r in axr_])), "{:.1f}")
     bp_ = {b_: 100 * mean(v_, prio) for b_, v_ in b37_.items()}

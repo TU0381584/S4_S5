@@ -217,41 +217,50 @@ Admission is therefore a decentralised partially observable Markov decision proc
 \max_{\pi}\;\mathbb{E}_{\pi}\Big[\textstyle\sum_{t=0}^{T-1}\gamma^{t} r_t\Big],\qquad \gamma=0.95.
 \end{equation}
 
-Each gNB has a budget of $B{=}100$ PRBs in both simulators. Each slice's mean offered demand is 105\% of its nominal share of 30, 60, and 10 PRBs for URLLC, eMBB, and mMTC, scaled by a fixed per-gNB multiplier between 0.9 and 1.0, denoted $m_i$. This puts a gNB's mean demand at about 95\% to 105\% of its budget, before per-step noise and backlog. When admitted demand exceeds $B$, the slices share it in proportion to demand, so every admitted mMTC request takes resources from URLLC and eMBB. Unserved demand carries forward as backlog within an episode. Env B keeps all of this and adds two mechanisms. Each gNB's mean demand follows $0.95\,(1+0.3\sin(2\pi(s+\psi_i)/60))$ times its nominal shares, again scaled by $m_i$, with $s$ the step and $\psi_i$ a phase redrawn per gNB and episode. As a result, demand swings between about 60\% and 124\% of the budget. A gNB's usable budget also shrinks with its neighbours' previous load, $B_i(t)=B\,(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1))$, a first-order model of inter-cell interference over the same adjacency graph the encoder reads. In Env B shedding every mMTC request leaves URLLC compliance at 62.5\% at three gNBs, whereas a rule that also sheds eMBB when the URLLC queue builds keeps it at 98.9\%. Per-slice compliance counts a slice as compliant only when every gNB meets it, which saturates in Env B at nineteen gNBs, so there we also report per-gNB compliance. Fig.~\ref{fig:envflow} traces one control step of each simulator, and Section S10 of Online Resource 1 gives the remaining simulator details.
+Each gNB has a budget of $B{=}100$ PRBs in both simulators. Each slice's mean offered demand is 105\% of its nominal share of 30, 60, and 10 PRBs for URLLC, eMBB, and mMTC, scaled by a fixed per-gNB multiplier between 0.9 and 1.0, denoted $m_i$. This puts a gNB's mean demand at about 95\% to 105\% of its budget, before per-step noise and backlog. When admitted demand exceeds $B$, the slices share it in proportion to demand, so every admitted mMTC request takes resources from URLLC and eMBB. Unserved demand carries forward as backlog within an episode. Env B keeps all of this and adds two mechanisms. Each gNB's mean demand follows $0.95\,(1+0.3\sin(2\pi(s+\psi_i)/60))$ times its nominal shares, again scaled by $m_i$, with $s$ the step and $\psi_i$ a phase redrawn per gNB and episode. As a result, demand swings between about 60\% and 124\% of the budget. A gNB's usable budget also shrinks with its neighbours' previous load, $B_i(t)=B\,(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1))$, a first-order model of inter-cell interference over the same adjacency graph the encoder reads. In Env B shedding every mMTC request leaves URLLC compliance at 62.5\% at three gNBs, whereas a rule that also sheds eMBB when the URLLC queue builds keeps it at 98.9\%. Per-slice compliance counts a slice as compliant only when every gNB meets it, which saturates in Env B at nineteen gNBs, so there we also report per-gNB compliance. Fig.~\ref{fig:envflow} traces one control step of both simulators, and Section S10 of Online Resource 1 gives the remaining simulator details.
 
 \begin{figure}[t]
 \centering
 \begin{tikzpicture}[
   font=\sffamily\footnotesize,
-  st/.style={draw=black!60, rounded corners=2pt, fill=gray!6, align=center, text width=5.35cm, inner sep=2.5pt, minimum height=0.62cm},
-  ch/.style={st, draw=orange!75!black, fill=orange!12},
+  base/.style={draw, rounded corners=2pt, align=flush left, inner sep=3pt, minimum height=0.62cm},
+  sh/.style={base, draw=black!60, fill=gray!7, text width=11.6cm},
+  ea/.style={base, draw=blue!55!black, fill=blue!6, text width=5.55cm},
+  eb/.style={base, draw=orange!75!black, fill=orange!12, text width=5.55cm},
   ar/.style={-{Latex[length=1.8mm]}, semithick},
-  lb/.style={font=\sffamily\bfseries\footnotesize}
+  tl/.style={font=\sffamily\footnotesize, text=black!70}
 ]
-\foreach \c/\x/\envb in {a/0/0, b/6.6/1}{
-  \ifnum\envb=0
-    \node[st] (\c1) at (\x,0) {Episode start\\ empty queues, reset ceilings to nominal};
-  \else
-    \node[ch] (\c1) at (\x,0) {Episode start\\ empty queues, reset ceilings, redraw phase $\psi_i$};
-  \fi
-  \node[st, below=0.28cm of \c1] (\c2) {Observe\\ each gNB's PRB use, congestion, queues $\rightarrow \mathbf{x}_i$};
-  \node[st, below=0.28cm of \c2] (\c3) {Arrive\\ $N$ requests, each with a random slice and gNB};
-  \node[st, below=0.28cm of \c3] (\c4) {Decide\\ each agent accepts or rejects its own requests, moving the slice ceiling by 5 points};
-  \node[st, below=0.28cm of \c4] (\c5) {Reward $r_t$ of Eq.~\eqref{eq:reward}};
-  \ifnum\envb=0
-    \node[st, below=0.28cm of \c5] (\c6) {Demand drifts to\\ $1.05\times$ share $\times\, m_i$, plus noise};
-    \node[st, below=0.28cm of \c6] (\c7) {Serve $\min(\text{demand}+\text{backlog},\ \text{ceiling})$,\\ scaled to fit budget $B$, the rest kept as backlog};
-  \else
-    \node[ch, below=0.28cm of \c5] (\c6) {Demand drifts to\\ $0.95\,\bigl(1+0.3\sin(2\pi(s+\psi_i)/60)\bigr)\times$ share $\times\, m_i$};
-    \node[ch, below=0.28cm of \c6] (\c7) {Serve as Env A, within budget\\ $B_i(t)=B\,\bigl(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1)\bigr)$};
-  \fi
-  \foreach \i/\j in {1/2,2/3,3/4,4/5,5/6,6/7}{\draw[ar] (\c\i) -- (\c\j);}
-  \draw[ar] (\c7.west) -- ++(-0.22,0) |- node[pos=0.25, rotate=90, above, font=\sffamily\footnotesize] {next step, $T{=}60$} (\c2.west);
-}
-\node[lb, anchor=south west] at ($(a1.north west)+(-0.35,0.05)$) {a};
-\node[lb, anchor=south west] at ($(b1.north west)+(-0.35,0.05)$) {b};
+% episode start, split
+\node[ea, anchor=north west] (a1) at (0,0) {Env A\quad empty all queues and reset each slice ceiling to its nominal share};
+\node[eb, anchor=north west] (b1) at (6.05,0) {Env B\quad as Env A, and redraw each gNB's load phase $\psi_i$};
+\node[tl, anchor=south west] at ($(a1.north west)+(0,0.02)$) {Episode start};
+% shared steps
+\node[sh, anchor=north west] (s2) at ($(a1.south west)+(0,-0.5)$) {Observe\quad each gNB reports its PRB-used ratio, congestion level, and normalised queue length, forming its feature row $\mathbf{x}_i$};
+\node[sh, below=0.28cm of s2.south west, anchor=north west] (s3) {Arrive\quad $N$ requests, each with a random slice and gNB, with at most $4N$ pending};
+\node[sh, below=0.28cm of s3.south west, anchor=north west] (s4) {Decide\quad each gNB's agent accepts or rejects its own requests. An accept raises the slice ceiling by 5 PRB-ratio points, up to its cap. A reject lowers it by 5 points, down to its floor, and relieves one request's demand from the backlog};
+\node[sh, below=0.28cm of s4.south west, anchor=north west] (s5) {Reward\quad $r_t$ of Eq.~\eqref{eq:reward}, from slice service, SLA-violation penalties, a congestion charge, and load imbalance. In training the transition is stored for learning, as in Algorithm~\ref{alg:gat-ctde}};
+% demand, split
+\node[ea, below=0.5cm of s5.south west, anchor=north west] (a6) {Env A\quad offered PRBs drift 10\% per step towards $1.05\times$ nominal share $\times\, m_i$, plus noise of $0.005B$};
+\node[eb, anchor=north west] (b6) at (a6.north -| b1.west) {Env B\quad offered PRBs drift towards\\ $0.95\,\bigl(1+0.3\sin(2\pi(s+\psi_i)/60)\bigr)\times$ share $\times\, m_i$,\\ plus the same noise};
+\node[tl, anchor=south west] at ($(a6.north west)+(0,0.02)$) {Demand};
+% serve, split
+\node[ea, below=0.5cm of a6.south west, anchor=north west] (a7) {Env A\quad each slice asks for $\min(\text{offered}+\text{backlog},\ \text{ceiling})$. If the total exceeds $B$, every slice is scaled down in proportion to fit $B$};
+\node[eb, anchor=north west] (b7) at (a7.north -| b1.west) {Env B\quad as Env A, but within the shrunken budget\\ $B_i(t)=B\,\bigl(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1)\bigr)$,\\ and each gNB's utilisation $u_i(t)$ is kept for its neighbours' next step};
+\node[tl, anchor=south west] at ($(a7.north west)+(0,0.02)$) {Serve};
+% shared update
+\node[sh, below=0.5cm of a7.south west, anchor=north west] (s8) {Update\quad unserved demand becomes backlog, and backlog and loss give each slice's SLA margin of Eq.~\eqref{eq:margin} for the next observation};
+% arrows
+\draw[ar] (a1.south) -- (a1.south |- s2.north);
+\draw[ar] (b1.south) -- (b1.south |- s2.north);
+\foreach \i/\j in {s2/s3,s3/s4,s4/s5}{\draw[ar] (\i) -- (\j);}
+\draw[ar] (s5.south -| a6.north) -- (a6.north);
+\draw[ar] (s5.south -| b6.north) -- (b6.north);
+\draw[ar] (a6) -- (a7); \draw[ar] (b6) -- (b7);
+\draw[ar] (a7.south) -- (a7.south |- s8.north);
+\draw[ar] (b7.south) -- (b7.south |- s8.north);
+\draw[ar] (s8.west) -- ++(-0.25,0) |- node[pos=0.25, rotate=90, above, font=\sffamily\footnotesize] {next step, $T{=}60$ per episode} (s2.west);
 \end{tikzpicture}
-\caption{One control step of each simulator, repeated for $T{=}60$ steps per episode. a, Env A with static load. b, Env B, whose three highlighted steps add time-varying load and inter-cell coupling}
+\caption{One control step of both simulators, repeated for $T{=}60$ steps per episode. Shared steps span the full width, while the split steps show where Env A and Env B differ}
 \label{fig:envflow}
 \end{figure}
 
@@ -459,13 +468,11 @@ Fig.~\ref{fig:gnb-map} shows where that gap comes from, gNB by gNB, in the thirt
 \begin{figure}[t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig10_axiom_superiority.pdf}
-\caption{AXIOM against the three learned baselines. a, Env A reward per step at three gNBs
-against compliance at 37 gNBs, with 95\% CIs.
-b, Six measured axes, each as a fraction of the best learned policy on it}
+\caption{AXIOM against the three learned baselines. a, Env A and b, Env B, reward per gNB per step against priority-slice compliance, shaded light to dark from the smallest to the largest cluster, with 95\% CIs. c, Six measured axes, each as a fraction of the best learned policy}
 \label{fig:quadrant}
 \end{figure}
 
-Fig.~\ref{fig:quadrant} summarises how the four learned policies compare. AXIOM sits highest on both axes of panel a, accuracy at three gNBs and priority-slice protection at thirty-seven, and it leads on four of the six axes of panel b. MAPPO, which never collapses at thirty-seven gNBs, leads on collapse resistance, and DQN-SA leads on Env B compliance at seven gNBs.
+Fig.~\ref{fig:quadrant} summarises how the four learned policies compare as the cluster grows. In Env A, panel a, AXIOM stays between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. In Env B, panel b, every policy loses compliance as the cluster grows. There AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs, and it earns about as much per gNB as DQN-SA at seven, where DQN-SA keeps more compliance. AXIOM leads on four of the six axes of panel c. MAPPO, which never collapses at thirty-seven gNBs, leads on collapse resistance, and DQN-SA leads on Env B compliance at seven gNBs.
 
 \subsection{Ablations and Sensitivity}
 \label{sec:results-ablation}
@@ -565,7 +572,7 @@ Second, four further runs retrained every policy on fresh seeds, 10 to 40 per se
 
 The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set. AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur, at margins of $-0.021$ and $0.159$ reward per step on 20 and 40 new seeds. At 102\% load that baseline also matched AXIOM. Two weak AXIOM seeds also left one ten-seed load sample 3.2\% short of the oracle, a gap that a twenty-seed rerun did not reproduce. A fifth fresh-seed run, at thirty-seven gNBs on 20 seeds, held all three of its checks, as Section~\ref{sec:results-m6} reports.
 
-Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 666 of its checks pass.
+Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 669 of its checks pass.
 
 \subsection{Federation, Privacy, Disruption, and Live Deployment}
 \label{sec:results-m3}

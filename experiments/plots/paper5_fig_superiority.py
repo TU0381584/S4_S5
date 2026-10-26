@@ -1,17 +1,27 @@
-"""Fig: AXIOM superiority, two panels side by side.
-(a) quality-versus-robustness quadrant, (b) capability radar.
+"""Fig: AXIOM against the three learned baselines as the cluster grows.
+(a) Env A at 3, 7, 19, and 37 gNBs, (b) Env B at 3, 7, and 19 gNBs, (c) capability radar.
 
-Every value is a number reported in the WPC manuscript, recomputed from the logs by m66_verify.py. The radar
-normalises each axis as a fraction of the best policy on that axis, so a
-baseline reads 0 only where it genuinely has no such capability, namely the
-topology and privacy axes. Colours/markers match the other result figures.
+Panels a and b are computed here from the stored evaluation logs (via m66_verify's
+reader): x is reward per gNB per step, y is priority-slice compliance, each point a
+policy at one cluster size with 95% bootstrap CIs on both axes. A policy keeps one
+colour family, shaded light to dark from the smallest to the largest cluster. Every
+plotted number is written to <out>_summary.json, which m66_verify checks. The radar
+values are fractions of the best learned policy on each axis and are checked there too.
 """
+import json
+import sys
+
 import numpy as np
 import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt
-from matplotlib.patches import Rectangle
+from matplotlib.colors import to_rgb
 from matplotlib.lines import Line2D
+from matplotlib.patches import Patch
+
+sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
+from m62_analysis import boot_ci  # noqa: E402
+from m66_verify import S15, S30, S30_19, prio, seeds_of  # noqa: E402
 
 mpl.rcParams.update({
     "font.size": 8.5, "axes.titlesize": 9, "axes.labelsize": 8.5,
@@ -22,37 +32,71 @@ mpl.rcParams.update({
 
 C = {"AXIOM": "#2a78d6", "DQN-SA": "#1baf7a", "DQN-I": "#eb6834", "MAPPO": "#7a4fd0"}
 M = {"AXIOM": "o", "DQN-SA": "s", "DQN-I": "^", "MAPPO": "D"}
+ARM = {"AXIOM": "axiom2", "DQN-SA": "single_agent_dqn", "DQN-I": "independent_dqn", "MAPPO": "mappo_tuned"}
+SIZES = {"A": (3, 7, 19, 37), "B": (3, 7, 19)}
+LAYOUTS = ("fully_connected", "ring", "hex")
 
 
-def draw_quadrant(ax):
-    # x: Env A mean reward per step at 3 gNBs, 95% bootstrap CI (M65, 30 seeds; m65_n3_view)
-    # y: Env A URLLC/eMBB SLA at 37 gNBs (M73), AXIOM pooled over hex 30 + ring 15 + fully-connected 15 runs,
-    #    layout-independent baselines over the 30 hex seeds, 95% bootstrap CI
-    arms = {
-        "AXIOM": dict(x=12.698, xci=(12.490, 12.861), y=93.7, yspan=(89.8, 97.2), tx=11.45, ty=95.0, ha="right", va="center"),
-        "DQN-SA": dict(x=12.387, xci=(12.115, 12.630), y=58.7, yspan=(53.5, 62.4), tx=12.387, ty=72.0, ha="center", va="bottom"),
-        "DQN-I": dict(x=11.587, xci=(11.112, 12.020), y=32.1, yspan=(25.6, 39.0), tx=10.55, ty=27.0, ha="center", va="center"),
-        "MAPPO": dict(x=10.013, xci=(9.298, 10.727), y=56.7, yspan=(51.2, 62.4), tx=10.013, ty=70.0, ha="center", va="bottom"),
-    }
+def rows_env_a(n, arm):
+    """Env A cells as reported in the paper (three-gNB baselines reused from M63)."""
+    if n == 3:
+        cell = "m65_reviewer/base" if arm in ("axiom2", "mappo_tuned") else "m63_reviewer/base"
+        return list(seeds_of(cell, arm, S30).values())
+    if n in (7, 19):
+        ss = S15 if n == 7 else S30_19
+        return [r for t in LAYOUTS for r in seeds_of(f"m65_scaling/n{n}_{t}", arm, ss).values()]
+    if arm == "axiom2":   # 37 gNBs, AXIOM pooled over hex 30, ring 15, fully-connected 15
+        return [r for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15))
+                for r in seeds_of(f"m73/A_n37_{t}", arm, ss).values()]
+    return list(seeds_of("m73/A_n37_hex", arm, S30_19).values())
+
+
+def rows_env_b(n, arm):
+    if n == 3:
+        return list(seeds_of("m64/n3_fully_connected", arm, S30).values())
+    if n == 7:
+        return [r for t in LAYOUTS for r in seeds_of(f"m64/n7_{t}", arm, S15).values()]
+    return list(seeds_of("m75/D_envB_n19_hex", arm, S15).values())
+
+
+def shade(colour, f):
+    c = np.array(to_rgb(colour))
+    return tuple(1 - f * (1 - c))
+
+
+def compute():
+    out = {}
+    for env, fn in (("A", rows_env_a), ("B", rows_env_b)):
+        for name, arm in ARM.items():
+            for n in SIZES[env]:
+                rows = fn(n, arm)
+                x = [r["reward"] / n for r in rows]
+                y = [100 * prio(r) for r in rows]
+                out.setdefault(env, {}).setdefault(name, {})[str(n)] = {
+                    "n_runs": len(rows), "x": float(np.mean(x)), "x_ci": list(boot_ci(x)),
+                    "y": float(np.mean(y)), "y_ci": list(boot_ci(y))}
+    return out
+
+
+def draw_env(ax, data, env, xlab):
+    sizes = SIZES[env]
+    fr = np.linspace(0.38, 1.0, len(sizes))
+    for name in ("MAPPO", "DQN-I", "DQN-SA", "AXIOM"):
+        pts = [data[env][name][str(n)] for n in sizes]
+        ax.plot([p["x"] for p in pts], [p["y"] for p in pts], color=C[name], lw=0.8, alpha=0.55, zorder=2)
+        for f, n, p in zip(fr, sizes, pts):
+            ax.errorbar(p["x"], p["y"], xerr=[[p["x"] - p["x_ci"][0]], [p["x_ci"][1] - p["x"]]],
+                        yerr=[[p["y"] - p["y_ci"][0]], [p["y_ci"][1] - p["y"]]], fmt=M[name], ms=5 if name == "AXIOM" else 4.2,
+                        mfc=shade(C[name], f), mec=C[name], mew=0.7, ecolor=shade(C[name], max(f, 0.55)), elinewidth=0.7,
+                        capsize=1.5, zorder=4 if name == "AXIOM" else 3)
+            if name == "AXIOM":
+                off = (7, -11) if (env == "A" and n == 37) else (0, 6) if env == "A" else (6, 4)
+                ax.annotate(str(n), (p["x"], p["y"]), textcoords="offset points", xytext=off, ha="center" if env == "A" else "left",
+                            fontsize=8, color=C[name])
+    ax.set_xlabel(xlab)
+    ax.set_ylabel("Priority-slice SLA, %")
     ax.grid(True, linewidth=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
-    for name, a in arms.items():
-        xerr = [[a["x"] - a["xci"][0]], [a["xci"][1] - a["x"]]]
-        yerr = [[a["y"] - a["yspan"][0]], [a["yspan"][1] - a["y"]]]
-        ax.errorbar(a["x"], a["y"], xerr=xerr, yerr=yerr, fmt=M[name], color=C[name],
-                    markersize=7, markeredgecolor="white", markeredgewidth=0.6,
-                    elinewidth=0.9, capsize=2.5, capthick=1.0, zorder=5)
-        lab = f"{name}\n{a['x']:.2f}, {a['y']:.1f}%"
-        ax.annotate(lab, (a["x"], a["y"]), xytext=(a["tx"], a["ty"]),
-                    ha=a["ha"], va=a["va"], fontsize=8.5, color=C[name], fontweight="bold",
-                    linespacing=1.2, zorder=6,
-                    arrowprops=dict(arrowstyle="-", color=C[name], lw=0.7, shrinkA=2, shrinkB=8, alpha=0.7))
-    ax.set_xlim(9.0, 13.1)
-    ax.set_ylim(10, 102)
-    ax.set_xticks([9, 10, 11, 12, 13])
-    ax.set_xlabel("Env A reward per step at 3 gNBs")
-    ax.set_ylabel("Env A priority SLA at 37 gNBs, %")
-    
 
 
 def draw_radar(ax, fig):
@@ -99,15 +143,32 @@ def draw_radar(ax, fig):
                ncol=4, frameon=False, fontsize=8.5, handlelength=1.8, columnspacing=1.2)
 
 
-fig = plt.figure(figsize=(5.16, 2.85))
-axL = fig.add_axes([0.1, 0.22, 0.37, 0.72])
-axR = fig.add_axes([0.66, 0.27, 0.25, 0.58], projection="polar")
-fig.text(0.01, 0.97, "a", fontsize=9, fontweight="bold", va="top")
-fig.text(0.52, 0.97, "b", fontsize=9, fontweight="bold", va="top")
-draw_quadrant(axL)
-draw_radar(axR, fig)
+def main():
+    out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
+    data = compute()
+    fig = plt.figure(figsize=(5.16, 5.0))
+    axA = fig.add_axes([0.1, 0.6, 0.37, 0.36])
+    axB = fig.add_axes([0.6, 0.6, 0.37, 0.36])
+    axR = fig.add_axes([0.37, 0.12, 0.27, 0.31], projection="polar")
+    draw_env(axA, data, "A", "Reward per gNB per step")
+    draw_env(axB, data, "B", "Reward per gNB per step")
+    axA.set_ylim(25, 102)
+    axB.set_ylim(10, 72)
+    draw_radar(axR, fig)
+    for x_, y_, t_ in ((0.01, 0.985, "a"), (0.51, 0.985, "b"), (0.01, 0.5, "c")):
+        fig.text(x_, y_, t_, fontsize=9, fontweight="bold", va="top")
+    shades = [Patch(facecolor=shade("#6b6b6b", f), edgecolor="#6b6b6b", label=l)
+              for f, l in zip(np.linspace(0.38, 1.0, 4), ("3 gNBs", "7 gNBs", "19 gNBs", "37 gNBs"))]
+    fig.legend(handles=shades, loc="lower center", bbox_to_anchor=(0.5, -0.045), ncol=4, frameon=False,
+               fontsize=8.5, handlelength=1.2, columnspacing=1.2)
+    fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.02)
+    fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.02)
+    json.dump(data, open(out + "_summary.json", "w"), indent=1)
+    print("wrote", out)
+    for env in data:
+        for name in data[env]:
+            print(env, name, {n: (round(v["x"], 2), round(v["y"], 1), v["n_runs"]) for n, v in data[env][name].items()})
 
-out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
-fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.02)
-fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.02)
-print("wrote", out + ".pdf / .png")
+
+if __name__ == "__main__":
+    main()
