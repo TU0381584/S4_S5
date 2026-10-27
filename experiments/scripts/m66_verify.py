@@ -883,7 +883,7 @@ def main():
     eps_min = min(v[1] for v in eps.values()) if eps else None
     C.claim("reframe: smallest DP epsilon about 2,600", "$\\varepsilon$ of about 2{,}600 or more", float(f"{eps_min:.2g}") if eps_min else None, "{:,.0f}".replace(",", "{,}") if False else "{:.0f}", tol=0.5)
     m4s = json.load(open(f"{ROOT}/m65_m4/m4_summary.json"))["cells"]
-    C.claim("reframe: AXIOM spike precision 0.98", "with block precision at 0.98, and Section S12", 
+    C.claim("reframe: AXIOM spike precision 0.98", "with block precision at 0.98, and Section S6", 
             float(np.mean([m4s[f"gat_ctde|spike|{v}"]["precision_mean"] for v in (1, 2, 3)])), "{:.2f}")
     C.note("reframe: every AXIOM spike precision rounds to 0.98",
            all(round(m4s[f"gat_ctde|spike|{v}"]["precision_mean"], 2) == 0.98 for v in (1, 2, 3)), None)
