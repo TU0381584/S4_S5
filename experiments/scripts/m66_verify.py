@@ -1785,6 +1785,122 @@ def main():
            and mean(A["heuristic"]) > mean(A["axiom2"]) and mean(B["rule_local"]) > mean(B["axiom2"])
            and "A static rule known in advance does better under steady load and at nineteen gNBs under coupling, and a tuned rule beats every learned policy at its tuning conditions" in C.main, [round(x_, 2) for x_ in stv_])
 
+    # ---------------- M79/M80 (2026-10-27): Env B seven-gNB convergence, further reruns, fresh seeds at 19 gNBs
+    mo_ = lambda r: r["blocks"] > 0 and r["mmtc"] == r["blocks"]
+    cp_ = lambda r: 100 * prio(r)
+    n7c_ = lambda arm: [r for t_ in ("fully_connected", "ring", "hex") for r in seeds_of(f"m64/n7_{t_}", arm, S15).values()]
+    cnt_ = {a_: (sum(mo_(r) for r in n7c_(a_)), len(n7c_(a_))) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "axiom2_mlp")}
+    n3mo_ = (sum(mo_(r) for r in B["axiom2"].values()), len(B["axiom2"]))
+    C.note("M79 28 of 45 AXIOM seeds mMTC-only at 7 gNBs, 0 of 30 at 3, DQNs 0 of 45, MLP 13 of 45",
+           cnt_ == {"axiom2": (28, 45), "single_agent_dqn": (0, 45), "independent_dqn": (0, 45), "axiom2_mlp": (13, 45)} and n3mo_ == (0, 30)
+           and "Within 300 episodes, 28 of AXIOM's 45 seeds settle on the static rule's policy and never shed eMBB, which none of its 30 seeds does at three gNBs" in C.main
+           and "At seven gNBs 28 of AXIOM's 45 seeds shed only mMTC" in C.tex and "None of AXIOM's 30 seeds does this at three gNBs" in C.tex
+           and "Neither does any of the 45 DQN-SA or DQN-I seeds at seven, against 13 of 45 for the MLP variant" in C.tex, {"n7": cnt_, "n3": n3mo_})
+    rep79_ = {s_: abs(v_["reward"] - seeds_of("m64/n7_ring", "axiom2", [s_])[s_]["reward"]) for s_, v_ in seeds_of("m79/repro_n7_ring", "axiom2", [900, 901, 902]).items()}
+    C.note("M79 three reruns of the original setting reproduce it exactly", len(rep79_) == 3 and max(rep79_.values()) <= 1e-9
+           and "Three reruns of the original setting reproduced it exactly" in C.tex, rep79_)
+    rows79_ = [("AXIOM, 300 episodes, as reported", "m64/n7_ring", "axiom2", True), ("AXIOM, per-gNB SLA penalty", "m79/pergnb_n7_ring", "axiom2", False),
+               ("AXIOM, learning rate 0.003", "m79/lr3e-3_n7_ring", "axiom2_lr3e-3", True), ("AXIOM, 900 episodes", "m79/ep900_n7_ring", "axiom2", True),
+               ("DQN-SA, 900 episodes", "m80/A_ep900_n7_ring", "single_agent_dqn", True), ("DQN-I, 900 episodes", "m80/A_ep900_n7_ring", "independent_dqn", True),
+               ("MAPPO, 900 episodes", "m80/A_ep900_n7_ring", "mappo_tuned", True), ("Tuned local rule", "m64/n7_ring", "rule_local", True)]
+    d79_ = {lab_: seeds_of(c_, a_, S15) for lab_, c_, a_, _ in rows79_}
+    for lab_, c_, a_, rw_ in rows79_:
+        v_ = list(d79_[lab_].values())
+        row_ = (f"{lab_} & " + (f"{float(np.mean([r['reward'] / 7 for r in v_])):.2f}" if rw_ else "--")
+                + f" & {float(np.mean([cp_(r) for r in v_])):.1f}\\% & {sum(mo_(r) for r in v_)} \\\\")
+        C.note(f"M79/M80 Table S-conv row: {lab_}", len(v_) == 15 and row_ in C.tex, row_)
+    base79_ = d79_["AXIOM, 300 episodes, as reported"]
+    t79_ = {k_: paired(d79_[k_], base79_, cp_) for k_ in ("AXIOM, per-gNB SLA penalty", "AXIOM, learning rate 0.003", "AXIOM, 900 episodes")}
+    h79_ = holm({k_: v_["p"] for k_, v_ in t79_.items()})
+    C.note("M79 three changes raise compliance by 10.7, 14.9, 21.7 points, Holm p 0.007, 0.007, 0.0004",
+           [f"{v_['diff']:.1f}" for v_ in t79_.values()] == ["10.7", "14.9", "21.7"]
+           and [f"{h79_[k_]:.3f}" for k_ in t79_][:2] == ["0.007", "0.007"] and f"{h79_['AXIOM, 900 episodes']:.4f}" == "0.0004"
+           and "raised AXIOM's compliance by 10.7, 14.9, and 21.7 points. The Holm-adjusted $p$ values are 0.007, 0.007, and 0.0004" in C.tex, {k_: (v_["diff"], h79_[k_]) for k_, v_ in t79_.items()})
+    sapg_ = seeds_of("m79/pergnb_n7_ring", "single_agent_dqn", S15)
+    tpg_ = paired(d79_["AXIOM, per-gNB SLA penalty"], sapg_, cp_)
+    C.note("M79 under the per-gNB penalty AXIOM keeps 20.9 points more than DQN-SA, which collapses in 11 of 15",
+           len(sapg_) == 15 and f"{tpg_['diff']:.1f}" == "20.9" and sum(r["collapsed"] for r in sapg_.values()) == 11
+           and "Under that reward AXIOM keeps 20.9 points more than DQN-SA trained the same way, which collapses in 11 of 15 seeds" in C.tex, tpg_)
+    ax9_ = d79_["AXIOM, 900 episodes"]
+    b9_ = {a_: d79_[l_] for a_, l_ in (("single_agent_dqn", "DQN-SA, 900 episodes"), ("independent_dqn", "DQN-I, 900 episodes"), ("mappo_tuned", "MAPPO, 900 episodes"))}
+    tAc_ = {a_: paired(ax9_, v_, cp_) for a_, v_ in b9_.items()}
+    tAr_ = {a_: paired(ax9_, v_, lambda r: r["reward"] / 7) for a_, v_ in b9_.items()}
+    hAc_ = holm({a_: v_["p"] for a_, v_ in tAc_.items()})
+    hAr_ = holm({a_: v_["p"] for a_, v_ in tAr_.items()})
+    dc_ = [v_["diff"] for v_ in tAc_.values()]
+    dr_ = [v_["diff"] for v_ in tAr_.values()]
+    pb_ = [float(np.mean([cp_(r) for r in v_.values()])) for v_ in b9_.values()]
+    C.note("M80 A with 900 episodes AXIOM keeps 12.8-15.2 pts more and earns 0.44-0.82 more per gNB, Holm p<=0.0012",
+           f"{min(dc_):.1f}" == "12.8" and f"{max(dc_):.1f}" == "15.2" and f"{min(dr_):.2f}" == "0.44" and f"{max(dr_):.2f}" == "0.82"
+           and max(list(hAc_.values()) + list(hAr_.values())) <= 0.0012
+           and "AXIOM keeps 12.8 to 15.2 points more compliance and earns 0.44 to 0.82 more reward per gNB than each baseline, at Holm-adjusted $p\\leq0.0012$" in C.tex,
+           {"comp": tAc_, "reward": tAr_})
+    C.note("M80 A main text: AXIOM 55.7% against 40.5-42.9% at 900 episodes, Holm p<=0.0012, below the tuned rule's 60.5%",
+           f"{float(np.mean([cp_(r) for r in ax9_.values()])):.1f}" == "55.7" and f"{min(pb_):.1f}" == "40.5" and f"{max(pb_):.1f}" == "42.9"
+           and max(hAc_.values()) <= 0.0012 and f"{float(np.mean([cp_(r) for r in d79_['Tuned local rule'].values()])):.1f}" == "60.5"
+           and "With 900 episodes for every learner on the ring layout, AXIOM keeps 55.7\\% priority-slice compliance against 40.5\\% to 42.9\\% for the baselines, at Holm-adjusted $p\\leq0.0012$, though still below the tuned rule's 60.5\\%" in C.main
+           and "Section~\\ref{sec:results-envb} traces that gap to the training budget" in C.main, pb_)
+    b3_ = {"single_agent_dqn": seeds_of("m80/A_ep300_n7_ring", "single_agent_dqn", S15),
+           "independent_dqn": seeds_of("m64/n7_ring", "independent_dqn", S15), "mappo_tuned": seeds_of("m64/n7_ring", "mappo_tuned", S15)}
+    gain_ = [paired(b9_[a_], b3_[a_], cp_)["diff"] for a_ in b9_]
+    loc_ = paired(d79_["Tuned local rule"], ax9_, cp_)
+    sas_ = paired(b3_["single_agent_dqn"], seeds_of("m64/n7_ring", "single_agent_dqn", S15), cp_)
+    C.note("M80 A baselines gain at most 7.0 pts, rule beats AXIOM-900 in all 15, seeded DQN-SA 6.7 pts below reported (p 0.048)",
+           f"{max(gain_):.1f}" == "7.0" and loc_["wins"] == 15 and f"{-sas_['diff']:.1f}" == "6.7" and f"{sas_['p']:.3f}" == "0.048"
+           and "The baselines gain at most 7.0 points from the longer budget. The tuned rule still keeps more compliance than AXIOM in all 15 seeds" in C.tex
+           and "DQN-SA with a seeded initialisation keeps 6.7 points less than the reported unseeded run at 300 episodes, at $p=0.048$" in C.tex,
+           {"gain": gain_, "rule": loc_, "seeded": sas_})
+    s8_ = list(range(900, 908))
+    n9_ = seeds_of("m80/B_ep900_envB_n19_hex", "axiom2", s8_)
+    o3_ = seeds_of("m75/D_envB_n19_hex", "axiom2", s8_)
+    C.note("M80 B at 19 gNBs 7 of 8 seeds still mMTC-only after 900 episodes, 8 of 8 after 300",
+           len(n9_) == 8 and sum(mo_(r) for r in n9_.values()) == 7 and sum(mo_(r) for r in o3_.values()) == 8
+           and "After 900 episodes seven of eight seeds still shed only mMTC, against all eight after 300" in C.tex
+           and "At nineteen gNBs the longer budget does not help, and seven of eight seeds keep the static policy after 900 episodes" in C.main, None)
+    rc_ = [("m80/C_A_n7_ring", "m65_scaling/n7_ring", ("axiom2", "independent_dqn", "mappo_tuned")),
+           ("m80/C_A_n19_hex", "m65_scaling/n19_hex", ("axiom2", "independent_dqn", "mappo_tuned")),
+           ("m80/C_A_n37_hex", "m73/A_n37_hex", ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned")),
+           ("m80/C_B_n7_hex", "m64/n7_hex", ("axiom2", "independent_dqn", "mappo_tuned")),
+           ("m80/C_B_n7_fully_connected", "m64/n7_fully_connected", ("axiom2", "independent_dqn", "mappo_tuned"))]
+    ex_ = []
+    for f_, s_, arms_ in rc_:
+        for a_ in arms_:
+            x_, y_ = seeds_of(f_, a_, [900]).get(900), seeds_of(s_, a_, [900]).get(900)
+            ex_.append(x_ is not None and y_ is not None and max(abs(x_["reward"] - y_["reward"]), abs(x_["blocks"] - y_["blocks"]),
+                                                               max(abs(x_["sla"][k_] - y_["sla"][k_]) for k_ in ("urllc", "embb", "mmtc"))) <= 1e-9)
+    C.note("M80 C sixteen further reruns match the stored logs exactly", len(ex_) == 16 and all(ex_)
+           and "Sixteen further reruns, from seven to thirty-seven gNBs in both environments, also matched exactly" in C.main
+           and "Sixteen runs that no earlier rerun covered matched their stored per-seed results exactly" in C.tex, ex_)
+    F15_ = list(range(7000, 7015))
+    dc19_ = "m80/D_envB_n19_hex_fresh"
+    d19_ = {a_: seeds_of(dc19_, a_, F15_) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_local_transfer")}
+    for a_, v_ in d19_.items():
+        for s_, r_ in v_.items():
+            m_ = json.load(open(f"{ROOT}/{dc19_}/{a_}/seed{s_}/eval/per_gnb_sla.json"))["mean_compliance"]
+            r_["pergnb"] = 100 * 0.5 * (m_["urllc"] + m_["embb"])
+    bl_ = ("single_agent_dqn", "independent_dqn", "mappo_tuned")
+    tDr_ = {b_: paired(d19_["axiom2"], d19_[b_]) for b_ in bl_}
+    tDg_ = {b_: paired(d19_["axiom2"], d19_[b_], lambda r: r["pergnb"]) for b_ in bl_}
+    hDr_ = holm({b_: v_["p"] for b_, v_ in tDr_.items()})
+    hDg_ = holm({b_: v_["p"] for b_, v_ in tDg_.items()})
+    st19_ = paired(d19_["rule_static"], d19_["axiom2"])
+    lt19_ = paired(d19_["rule_local_transfer"], d19_["axiom2"])
+    C.note("M80 D fresh seeds at 19 gNBs: AXIOM +5.90 to +22.00 reward, +6.9 to +11.1 per-gNB pts, Holm p<=0.011, 76.9%",
+           all(len(v_) == 15 for v_ in d19_.values())
+           and f"{min(v_['diff'] for v_ in tDr_.values()):.2f}" == "5.90" and f"{max(v_['diff'] for v_ in tDr_.values()):.2f}" == "22.00"
+           and f"{min(v_['diff'] for v_ in tDg_.values()):.1f}" == "6.9" and f"{max(v_['diff'] for v_ in tDg_.values()):.1f}" == "11.1"
+           and max(list(hDr_.values()) + list(hDg_.values())) <= 0.011
+           and f"{float(np.mean([r['pergnb'] for r in d19_['axiom2'].values()])):.1f}" == "76.9"
+           and "AXIOM earned 5.90 to 22.00 more reward per step than each learned baseline and kept 6.9 to 11.1 points more per-gNB priority-slice compliance, at Holm-adjusted $p\\leq0.011$, keeping 76.9\\%" in C.tex,
+           {"reward": tDr_, "pergnb": tDg_})
+    C.note("M80 D static rule +0.87 and tied in 13 of 15; carried rule wins all 15 by 3.33; DQN-SA collapses 15 of 15; all four checks hold",
+           st19_["diff"] > 0 and f"{st19_['diff']:.2f}" == "0.87" and st19_["ties"] == 13 and lt19_["wins"] == 15 and f"{lt19_['diff']:.2f}" == "3.33"
+           and sum(r["collapsed"] for r in d19_["single_agent_dqn"].values()) == 15
+           and all(v_["diff"] > 0 for v_ in list(tDr_.values()) + list(tDg_.values())) and max(list(hDr_.values()) + list(hDg_.values())) < 0.05
+           and "The static rule again earned more, by 0.87 per step, and tied AXIOM exactly in 13 of the 15 seeds" in C.tex
+           and "The local rule carried over from seven gNBs won every seed, by 3.33 per step, and DQN-SA collapsed in all 15" in C.tex
+           and "A sixth, in Env B at nineteen gNBs on 15 seeds, held all four of its checks" in C.main, {"static": st19_, "local": lt19_})
+
     n_total = len(C.rows) + 1
     C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)
     rows = C.rows
