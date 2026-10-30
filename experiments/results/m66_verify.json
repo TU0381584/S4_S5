@@ -691,9 +691,9 @@
  },
  {
   "label": "EnvB AXIOM URLLC",
-  "snippet": "AXIOM keeps URLLC at 95.8\\%",
-  "computed": 95.81111111111109,
-  "formatted": "95.8",
+  "snippet": "AXIOM & 8.832 [8.64, 9.03] & 0.958",
+  "computed": 0.9581111111111109,
+  "formatted": "0.958",
   "in_tex": true,
   "ok": true
  },
@@ -934,7 +934,7 @@
  },
  {
   "label": "N19 baselines",
-  "snippet": "keep 65.3\\%, 56.4\\%, and 60.6\\%",
+  "snippet": "76.2, 65.3, 58.7\\% & 74.6, 56.4, 32.1\\% & 67.7, 60.6, 56.7\\%",
   "computed": 65.27574074074074,
   "formatted": "65.3",
   "in_tex": true,
@@ -955,7 +955,7 @@
  },
  {
   "label": "N19 single collapse",
-  "snippet": "in 84 of its 90 runs",
+  "snippet": "84/90 and 26/30",
   "computed": 84,
   "formatted": "84",
   "in_tex": true,
@@ -2768,7 +2768,7 @@
  },
  {
   "label": "M66c N=7 DQN prio high, pointer",
-  "snippet": "the two DQN baselines reach up to 83.3\\%",
+  "snippet": "the DQN baselines reached up to 83.3\\% compliance at seven gNBs",
   "computed": 83.31,
   "formatted": "83.3",
   "in_tex": true,
@@ -3605,7 +3605,7 @@
  },
  {
   "label": "reframe: pooled federation in Table 2",
-  "snippet": "Cost $+0.49$ [$-$0.08, 1.09]",
+  "snippet": "the cost is $+0.491$ per step",
   "computed": 0.4906664430838218,
   "formatted": "+0.49",
   "in_tex": true,
@@ -4132,7 +4132,7 @@
  },
  {
   "label": "reframe: M73 AXIOM URLLC",
-  "snippet": "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%",
+  "snippet": "and at thirty-seven at 96.7\\% and 90.7\\%",
   "computed": 96.71444444444445,
   "formatted": "96.7",
   "in_tex": true,
@@ -4140,7 +4140,7 @@
  },
  {
   "label": "reframe: M73 AXIOM eMBB",
-  "snippet": "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%",
+  "snippet": "and at thirty-seven at 96.7\\% and 90.7\\%",
   "computed": 90.66555555555556,
   "formatted": "90.7",
   "in_tex": true,
@@ -4148,7 +4148,7 @@
  },
  {
   "label": "reframe: M73 single_agent_dqn priority SLA",
-  "snippet": "DQN-SA, MAPPO, and DQN-I keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "snippet": "76.2, 65.3, 58.7\\% & 74.6, 56.4, 32.1\\% & 67.7, 60.6, 56.7\\%",
   "computed": 58.66166666666667,
   "formatted": "58.7",
   "in_tex": true,
@@ -4164,7 +4164,7 @@
  },
  {
   "label": "reframe: M73 mappo_tuned priority SLA",
-  "snippet": "DQN-SA, MAPPO, and DQN-I keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "snippet": "76.2, 65.3, 58.7\\% & 74.6, 56.4, 32.1\\% & 67.7, 60.6, 56.7\\%",
   "computed": 56.676111111111105,
   "formatted": "56.7",
   "in_tex": true,
@@ -4180,7 +4180,7 @@
  },
  {
   "label": "reframe: M73 independent_dqn priority SLA",
-  "snippet": "DQN-SA, MAPPO, and DQN-I keep 58.7\\%, 56.7\\%, and 32.1\\%.",
+  "snippet": "76.2, 65.3, 58.7\\% & 74.6, 56.4, 32.1\\% & 67.7, 60.6, 56.7\\%",
   "computed": 32.13277777777777,
   "formatted": "32.1",
   "in_tex": true,
@@ -4204,7 +4204,7 @@
  },
  {
   "label": "reframe: M73 lead over best baseline",
-  "snippet": "the lead reaches 35.0 points",
+  "snippet": "its lead over the best learned baseline reaches 35.0 points",
   "computed": 35.02833333333333,
   "formatted": "35.0",
   "in_tex": true,
@@ -4369,7 +4369,7 @@
  },
  {
   "label": "reframe: M73 grid MAPPO compliance",
-  "snippet": "the selected MAPPO keeps 65.6\\% priority-slice compliance",
+  "snippet": "It keeps 65.6\\% priority-slice compliance and 151.90 reward per step",
   "computed": 65.5988888888889,
   "formatted": "65.6",
   "in_tex": true,
@@ -4377,7 +4377,7 @@
  },
  {
   "label": "reframe: M73 grid MAPPO compliance gap",
-  "snippet": "AXIOM keeps 29.2 percentage points more compliance and earns 23.23 more reward per step on 15 seeds",
+  "snippet": "AXIOM beats it by 29.2 points, winning 13 of 15 seeds at $p<0.001$, and by 23.23 reward per step",
   "computed": 29.196666666666662,
   "formatted": "29.2",
   "in_tex": true,
@@ -4385,7 +4385,7 @@
  },
  {
   "label": "reframe: M73 grid MAPPO reward gap",
-  "snippet": "AXIOM keeps 29.2 percentage points more compliance and earns 23.23 more reward per step on 15 seeds",
+  "snippet": "AXIOM beats it by 29.2 points, winning 13 of 15 seeds at $p<0.001$, and by 23.23 reward per step",
   "computed": 23.230492172847004,
   "formatted": "23.23",
   "in_tex": true,
@@ -4544,7 +4544,7 @@
  },
  {
   "label": "reframe: M74 AXIOM priority SLA",
-  "snippet": "There AXIOM keeps 95.1\\% priority-slice compliance",
+  "snippet": "with AXIOM at 95.1\\% priority-slice compliance",
   "computed": 95.08583333333334,
   "formatted": "95.1",
   "in_tex": true,
@@ -4753,7 +4753,7 @@
  },
  {
   "label": "reframe: M75 non-collapsed single-agent at 37",
-  "snippet": "those runs of DQN-SA and DQN-I keep only 35.9\\% and 29.1\\%",
+  "snippet": "runs that do not collapse keep only 40.0\\% and 35.9\\%, DQN-I's 55.9\\% and 29.1\\%",
   "computed": 35.92916666666666,
   "formatted": "35.9",
   "in_tex": true,
@@ -4761,7 +4761,7 @@
  },
  {
   "label": "reframe: M75 non-collapsed independent at 37",
-  "snippet": "those runs of DQN-SA and DQN-I keep only 35.9\\% and 29.1\\%",
+  "snippet": "runs that do not collapse keep only 40.0\\% and 35.9\\%, DQN-I's 55.9\\% and 29.1\\%",
   "computed": 29.08333333333333,
   "formatted": "29.1",
   "in_tex": true,
@@ -5053,7 +5053,7 @@
  },
  {
   "label": "reframe: M75 C tuned independent at 19",
-  "snippet": "rises from 56.4\\% to 59.1\\% at nineteen gNBs",
+  "snippet": "DQN-I & 19 & $3{\\times}10^{-4}$, 64 & 59.1\\%",
   "computed": 59.09333333333334,
   "formatted": "59.1",
   "in_tex": true,
@@ -5061,7 +5061,7 @@
  },
  {
   "label": "reframe: M75 C tuned independent at 37",
-  "snippet": "and from 32.1\\% to 45.5\\% at thirty-seven",
+  "snippet": "DQN-I & 37 & $10^{-4}$, 64 & 45.5\\%",
   "computed": 45.52333333333334,
   "formatted": "45.5",
   "in_tex": true,
@@ -5842,7 +5842,7 @@
  },
  {
   "label": "reframe: M77 AXIOM URLLC delay at 37",
-  "snippet": "Its URLLC delay is 0.08 control periods with a 95th percentile of 0.42",
+  "snippet": "is 0.08 with a 95th percentile of 0.42",
   "computed": 0.08225048043321402,
   "formatted": "0.08",
   "in_tex": true,
@@ -5850,7 +5850,7 @@
  },
  {
   "label": "reframe: M77 AXIOM URLLC p95 at 37",
-  "snippet": "Its URLLC delay is 0.08 control periods with a 95th percentile of 0.42",
+  "snippet": "is 0.08 with a 95th percentile of 0.42",
   "computed": 0.42346168354293856,
   "formatted": "0.42",
   "in_tex": true,
@@ -5877,7 +5877,7 @@
  },
  {
   "label": "reframe: M77 static rule URLLC delay at 37",
-  "snippet": "and the static rule reaches 0.03",
+  "snippet": "Static rule & 100.0\\% & 100.0\\% & 0.03",
   "computed": 0.03037465368956921,
   "formatted": "0.03",
   "in_tex": true,
@@ -6187,7 +6187,7 @@
  },
  {
   "label": "conclusion: URLLC served at 37",
-  "snippet": "There it serves 99.8\\% of URLLC demand at a mean URLLC delay",
+  "snippet": "AXIOM serves 99.8\\% of the offered URLLC demand",
   "computed": 99.79064546939206,
   "formatted": "99.8",
   "in_tex": true,
@@ -6319,7 +6319,7 @@
  },
  {
   "label": "conclusion: tuned DQN gap low",
-  "snippet": "Tuned DQN baselines stay 29.9 to 48.1 points behind it",
+  "snippet": "by 29.9 to 48.1 points",
   "computed": 29.941666666666663,
   "formatted": "29.9",
   "in_tex": true,
@@ -6327,7 +6327,7 @@
  },
  {
   "label": "conclusion: tuned DQN gap high",
-  "snippet": "Tuned DQN baselines stay 29.9 to 48.1 points behind it",
+  "snippet": "by 29.9 to 48.1 points",
   "computed": 48.06166666666665,
   "formatted": "48.1",
   "in_tex": true,
@@ -6335,7 +6335,7 @@
  },
  {
   "label": "conclusion: VDN gap at 19 gNBs",
-  "snippet": "trails by 13.6 points at nineteen",
+  "snippet": "trails it by 13.6 points at nineteen",
   "computed": 13.634444444444444,
   "formatted": "13.6",
   "in_tex": true,
@@ -6352,7 +6352,7 @@
  {
   "label": "M78 Table 5 LR 1e-4 row single_agent_dqn_lr1e4",
   "snippet": null,
-  "computed": null,
+  "computed": 0.9437107403652171,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -6360,7 +6360,7 @@
  {
   "label": "M78 Table 5 LR 1e-4 row independent_dqn_lr1e4",
   "snippet": null,
-  "computed": null,
+  "computed": 0.8783616261644599,
   "formatted": null,
   "in_tex": null,
   "ok": true

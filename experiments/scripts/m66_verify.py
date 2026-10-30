@@ -116,6 +116,63 @@ def mean(rows, f=lambda r: r["reward"]):
 
 
 # ------------------------------------------------------------------ claims
+# main-only (reframe:) claims whose sentences the author asked to move into Online Resource 1 when the
+# results were condensed on 2026-10-30; these must still be found, now in the supplement
+MOVED_TO_SUPP = {
+    'reframe: ten-seed load sample shortfall',
+    'reframe: map37 independent mMTC gate',
+    'reframe: map37 MAPPO eMBB gate',
+    'reframe: map37 MAPPO mMTC gate',
+    'reframe: trend AXIOM low',
+    'reframe: trend AXIOM high',
+    'reframe: trend gap at 19 gNBs',
+    'reframe: M70 joint target Env A N=3 reward',
+    'reframe: M70 joint target N=19 compliance',
+    'reframe: M70 MAPPO reported A3',
+    'reframe: M70 MAPPO grid A3',
+    'reframe: M70 MAPPO reported N=19 ring',
+    'reframe: M70 MAPPO grid N=19 ring',
+    'reframe: M70 MAPPO lead low',
+    'reframe: M70 MAPPO lead high',
+    'reframe: M70 MAPPO Env B N=7',
+    'reframe: M70 seeded single N=7',
+    'reframe: M70 seeded single N=19',
+    'reframe: M72 overload lead 1.10',
+    'reframe: M72 overload lead 1.15',
+    'reframe: M72 overload lead 1.20',
+    'reframe: M72 N=7 nominal deficit',
+    'reframe: M72 N=7 lead 1.10',
+    'reframe: M72 N=7 lead 1.20',
+    'reframe: M76 VDN 19-gNB compliance',
+    'reframe: M76 AXIOM over VDN compliance at 19',
+    'reframe: M76 AXIOM over VDN reward at 19',
+    'reframe: VDN gap at nineteen gNBs',
+    'reframe: M76 AXIOM compliance at 110% load',
+    'reframe: M76 AXIOM compliance at 120% load',
+    'reframe: M76 uneven load AXIOM vs nominal rule',
+    'reframe: M76 per-gNB penalty AXIOM compliance',
+    'reframe: M76 original-reward AXIOM compliance',
+    'reframe: M77 AXIOM URLLC delay Env B 19',
+    'reframe: M77 tuned rule URLLC delay Env B 19',
+    'reframe: fresh AXIOM scaling compliance low',
+    'reframe: fresh AXIOM scaling compliance high',
+    'reframe: fresh 20-seed single-agent gap',
+    'reframe: fresh 40-seed single-agent gap',
+    'reframe: short LR sentence 2.37',
+    'reframe: M73 AXIOM URLLC',
+    'reframe: M73 AXIOM eMBB',
+    'reframe: M73 grid MAPPO compliance',
+    'reframe: M73 grid MAPPO compliance gap',
+    'reframe: M73 grid MAPPO reward gap',
+    'reframe: M75 non-collapsed single-agent at 37',
+    'reframe: M75 non-collapsed independent at 37',
+    'reframe: M75 C tuned independent at 19',
+    'reframe: M75 C tuned independent at 37',
+    'reframe: AXIOM slowest decision share of control period',
+    'reframe: M77 static rule URLLC delay at 37',
+}
+
+
 class Checker:
     def __init__(self, tex, main_tex=None):
         self.tex = tex                      # main paper plus supplementary material
@@ -126,7 +183,7 @@ class Checker:
         """snippet must appear in the tex; value formatted with fmt must equal the quoted text,
         or lie within tol of the number parsed from the snippet when tol is given."""
         # claims about the reframed main text must be found in the main paper itself
-        present = snippet in (self.main if label.startswith("reframe:") else self.tex)
+        present = snippet in (self.main if label.startswith("reframe:") and label not in MOVED_TO_SUPP else self.tex)
         quoted = fmt.format(value) if value is not None else None
         if tol is None:
             ok = present and quoted is not None and quoted in snippet
@@ -245,7 +302,7 @@ def main():
     C.claim("H1 accept-all", "and 4.476 more than accept-all", h1["rule_accept_all"]["diff"], "{:.3f}")
     C.note("H1 all 30 seeds won", all(v["wins"] == 30 for v in h1.values()), {k: v["wins"] for k, v in h1.items()})
     C.claim("EnvB static URLLC", "now leaves URLLC compliance at 62.5\\%", 100 * mean(B["rule_static"], lambda x: x["sla"]["urllc"]), "{:.1f}")
-    C.claim("EnvB AXIOM URLLC", "AXIOM keeps URLLC at 95.8\\%", 100 * mean(B["axiom2"], lambda x: x["sla"]["urllc"]), "{:.1f}")
+    C.claim("EnvB AXIOM URLLC", "AXIOM & 8.832 [8.64, 9.03] & 0.958", mean(B["axiom2"], lambda x: x["sla"]["urllc"]), "{:.3f}")
     for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned"):
         C.claim(f"H2 n3 vs {b}", "It earns 1.038, 1.337, and 1.863 more reward per step", paired(B["axiom2"], B[b])["diff"], "{:.3f}")
     loc = paired(B["axiom2"], B["rule_local"])
@@ -303,9 +360,9 @@ def main():
         coll = {a: sum(r["collapsed"] for t in D for r in D[t][a].values()) for a in D["ring"]}
         if n == 19:
             C.claim("N19 AXIOM pooled", "compliance of 97.3\\% with 95\\% CI", 100 * pooled["axiom2"], "{:.1f}")
-            C.claim("N19 baselines", "keep 65.3\\%, 56.4\\%, and 60.6\\%", 100 * pooled["single_agent_dqn"], "{:.1f}")
+            C.claim("N19 baselines", "76.2, 65.3, 58.7\\% & 74.6, 56.4, 32.1\\% & 67.7, 60.6, 56.7\\%", 100 * pooled["single_agent_dqn"], "{:.1f}")
             C.note("N19 indep and MAPPO pooled 56.4 and 60.6", round(100 * pooled["independent_dqn"], 1) == 56.4 and round(100 * pooled["mappo_tuned"], 1) == 60.6, pooled)
-            C.claim("N19 single collapse", "in 84 of its 90 runs", coll["single_agent_dqn"], "{}")
+            C.claim("N19 single collapse", "84/90 and 26/30", coll["single_agent_dqn"], "{}")
             C.note("N19 collapse counts 3, 1, 0", (coll["independent_dqn"], coll["axiom2"], coll["mappo_tuned"]) == (3, 1, 0), coll)
         else:
             C.note("N7 AXIOM URLLC/eMBB 99.8/94.4", round(100 * float(np.mean([r['sla']['urllc'] for t in D for r in D[t]['axiom2'].values()])), 1) == 99.8
@@ -598,7 +655,7 @@ def main():
     C.note("Fig 6 text: AXIOM leads 5 of 6 Env A axes with MAPPO on no-collapse, 4 of 6 Env B axes with DQN-SA on both 7-gNB axes",
            lead_["A"]["AXIOM"] == 5 and expect["A"]["MAPPO"][5] == 1 and expect["A"]["AXIOM"][5] < 1
            and lead_["B"]["AXIOM"] == 4 and expect["B"]["DQN-SA"][1] == 1 and expect["B"]["DQN-SA"][4] == 1
-           and "In Env A, AXIOM leads on five of the six, and MAPPO, which never collapses at thirty-seven gNBs, leads on collapse resistance" in C.main
+           and "AXIOM leads on five of the six, and MAPPO, which never collapses at thirty-seven gNBs, leads on collapse resistance" in C.main
            and "In Env B, AXIOM leads on four, and DQN-SA leads on both measures at seven gNBs" in C.main, lead_)
 
     # ---------------- M66 verification subsection: V1 reruns and V2 fresh seeds
@@ -742,7 +799,7 @@ def main():
     vals = [100 * c_["summary"][a_]["prio"] for c_ in (c1, c3) for a_ in ("independent_dqn", "single_agent_dqn")]
     C.claim("M66c N=7 DQN prio low", "DQN-I and DQN-SA kept 76.2\\% to 83.3\\% priority-slice compliance", min(vals), "{:.1f}")
     C.claim("M66c N=7 DQN prio high", "DQN-I and DQN-SA kept 76.2\\% to 83.3\\% priority-slice compliance", max(vals), "{:.1f}")
-    C.claim("M66c N=7 DQN prio high, pointer", "the two DQN baselines reach up to 83.3\\%", max(vals), "{:.1f}")
+    C.claim("M66c N=7 DQN prio high, pointer", "the DQN baselines reached up to 83.3\\% compliance at seven gNBs", max(vals), "{:.1f}")
     C.claim("M66c N=7 DQN prio high, conclusion", "baseline compliance of up to 83\\%", max(vals), "{:.0f}")
     C.note("M66c three DQN cells above 80%", sum(v > 80 for v in vals) == 3 and "above the 80\\% bound in three settings" in C.tex, vals)
     c8 = mc["C8"]
@@ -879,7 +936,7 @@ def main():
     C.claim("reframe: DP drop low", "lowers reward by 0.77 to 1.25 per step", min(v["diff"] for v in dp_.values()), "{:.2f}")
     C.claim("reframe: DP drop high", "lowers reward by 0.77 to 1.25 per step", max(v["diff"] for v in dp_.values()), "{:.2f}")
     hdp_ = holm({k: v["p"] for k, v in dp_.items()})
-    C.note("reframe: no DP drop survives Holm", all(v >= 0.05 for v in hdp_.values()) and "no drop survives Holm correction at ten seeds" in C.main, hdp_)
+    C.note("reframe: no DP drop survives Holm", all(v >= 0.05 for v in hdp_.values()) and "None of these drops survives Holm correction at ten seeds" in C.tex, hdp_)
     eps_min = min(v[1] for v in eps.values()) if eps else None
     C.claim("reframe: smallest DP epsilon about 2,600", "$\\varepsilon$ of about 2{,}600 or more", float(f"{eps_min:.2g}") if eps_min else None, "{:,.0f}".replace(",", "{,}") if False else "{:.0f}", tol=0.5)
     m4s = json.load(open(f"{ROOT}/m65_m4/m4_summary.json"))["cells"]
@@ -948,7 +1005,7 @@ def main():
            and a37_[:, 2].max() < 0.2 and a37_[:, 0].min() > 0.95 and a37_[:, 1].min() > 0.95, None)
     s37_ = gm37["single_agent_dqn"][1].mean(axis=0)
     C.note("reframe: map37 single-agent every gate open at 0.93 to 0.95", round(float(s37_.min()), 2) == 0.93 and round(float(s37_.max()), 2) == 0.95
-           and "DQN-SA leaves every gate open at 0.93 to 0.95" in C.main, s37_.round(4).tolist())
+           and "DQN-SA leaves every gate open at 0.93 to 0.95" in C.tex, s37_.round(4).tolist())
     C.claim("reframe: map37 independent mMTC gate", "DQN-I closes the mMTC gate only to 0.94", float(gm37["independent_dqn"][1][:, 2].mean()), "{:.2f}")
     C.claim("reframe: map37 MAPPO eMBB gate", "partly closes the eMBB gate, to 0.80", float(gm37["mappo_tuned"][1][:, 1].mean()), "{:.2f}")
     C.claim("reframe: map37 MAPPO mMTC gate", "while leaving mMTC open at 0.51", float(gm37["mappo_tuned"][1][:, 2].mean()), "{:.2f}")
@@ -1005,7 +1062,7 @@ def main():
     C.claim("reframe: pooled federation cost", "the cost is $+0.491$ per step with 95\\% CI", float(np.mean(fd_)), "{:+.3f}")
     ci_claim("pooled federation CI", "the cost is $+0.491$ per step with 95\\% CI [$-$0.08, 1.09]", fd_)
     C.claim("reframe: pooled federation p", "1.09] and $p=0.14$, so federation", float(wilcoxon(np.array(fd_)).pvalue), "{:.2f}")
-    C.claim("reframe: pooled federation in Table 2", "Cost $+0.49$ [$-$0.08, 1.09]", float(np.mean(fd_)), "{:+.2f}")
+    C.claim("reframe: pooled federation in Table 2", "the cost is $+0.491$ per step", float(np.mean(fd_)), "{:+.2f}")
     eb_ = max(100 * mean(seeds_of("m64/n3_fully_connected", a_, S30), lambda x: x["sla"]["embb"]) for a_ in
               ("rule_accept_all", "rule_static", "rule_local", "rule_neighbour", "axiom2", "axiom2_mlp", "single_agent_dqn", "independent_dqn", "mappo_tuned"))
     C.note("no Env B policy keeps eMBB above 37%", eb_ < 37 and "keeps eMBB compliance above 37\\% in Env B" in C.tex, round(eb_, 2))
@@ -1075,7 +1132,7 @@ def main():
            and all(hsh_[(k_, m_)] >= 0.05 for k_ in ("A3", "B3") for m_ in "rp"), {str(k): v for k, v in hsh_.items()})
     tvd_, hvd_ = abl_("vdn")
     C.note("reframe: M70 joint target never significantly different", all(v >= 0.05 for v in hvd_.values())
-           and "is never significantly different and trends slightly better" in C.main, {str(k): v for k, v in hvd_.items()})
+           and "a variant with one joint summed target in place of per-request samples is never significantly different" in C.main, {str(k): v for k, v in hvd_.items()})
     C.note("reframe: M70 joint target trends better on reward in every cell", all(tvd_[(k_, "r")]["diff"] < 0 for k_ in abl_cells_), None)
     C.claim("reframe: M70 joint target Env A N=3 reward", "It reaches 12.831 reward per step", mean(seeds_of("m70/R4_vdn/A_n3", "axiom2", S30)), "{:.3f}")
     C.claim("reframe: M70 joint target N=19 compliance", "and 99.96\\% priority-slice compliance at nineteen", 100 * mean(seeds_of("m70/R4_vdn/A_n19_ring", "axiom2", ABL_), prio), "{:.2f}")
@@ -1111,7 +1168,7 @@ def main():
         assert all(v["diff"] > 0 for v in tt_.values())
         hmax_ = max(hmax_, max(hh_.values()))
     C.note("reframe: M70 seeded single beaten under every layout at Holm p<=0.035", round(hmax_, 3) <= 0.035
-           and "under every layout at Holm-adjusted $p\\leq0.035$" in C.main, hmax_)
+           and "under every layout at Holm-adjusted $p\\leq0.035$" in C.tex, hmax_)
 
     # ---------------- M72 confirmatory follow-ups (2026-10-21), shift results read from the raw evaluation logs
     def _log(path_):
@@ -1179,7 +1236,7 @@ def main():
             vt_[(k_, m_)] = paired(vd_, ax_, f_)
     hv_ = holm({k: v["p"] for k, v in vt_.items()})
     C.note("reframe: M72 VDN 60 fresh seeds, never significantly different", nseed_ == 60 and all(v >= 0.05 for v in hv_.values())
-           and "on 60 fresh seeds across four settings" in C.main, {str(k): v for k, v in hv_.items()})
+           and "60 further fresh seeds across four settings" in C.tex, {str(k): v for k, v in hv_.items()})
     C.note("reframe: M72 VDN ahead in three cells, behind in Env B at seven gNBs",
            [k_ for k_ in vc_ if vt_[(k_, "r")]["diff"] > 0] == ["A3", "B3", "A19"] and vt_[("B7", "r")]["diff"] < 0, None)
     C.note("reframe: M72 VDN test streams disjoint within the experiment",
@@ -1201,19 +1258,19 @@ def main():
     from m62_analysis import boot_ci as boot_ci_exact_
     lo_x_, hi_x_ = boot_ci_exact_(p37_)
     C.note("reframe: M73 AXIOM CI exact with the order-independent bootstrap", f"[{lo_x_:.1f}\\%, {hi_x_:.1f}\\%]" == "[89.8\\%, 97.2\\%]", (lo_x_, hi_x_))
-    C.claim("reframe: M73 AXIOM URLLC", "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%", 100 * float(np.mean([r["sla"]["urllc"] for r in axr_])), "{:.1f}")
-    C.claim("reframe: M73 AXIOM eMBB", "AXIOM keeps URLLC and eMBB at 96.7\\% and 90.7\\%", 100 * float(np.mean([r["sla"]["embb"] for r in axr_])), "{:.1f}")
+    C.claim("reframe: M73 AXIOM URLLC", "and at thirty-seven at 96.7\\% and 90.7\\%", 100 * float(np.mean([r["sla"]["urllc"] for r in axr_])), "{:.1f}")
+    C.claim("reframe: M73 AXIOM eMBB", "and at thirty-seven at 96.7\\% and 90.7\\%", 100 * float(np.mean([r["sla"]["embb"] for r in axr_])), "{:.1f}")
     bp_ = {b_: 100 * mean(v_, prio) for b_, v_ in b37_.items()}
     for b_, q_ in (("single_agent_dqn", "58.7"), ("mappo_tuned", "56.7"), ("independent_dqn", "32.1")):
-        C.claim(f"reframe: M73 {b_} priority SLA", "DQN-SA, MAPPO, and DQN-I keep 58.7\\%, 56.7\\%, and 32.1\\%.", bp_[b_], "{:.1f}")
+        C.claim(f"reframe: M73 {b_} priority SLA", "76.2, 65.3, 58.7\\% & 74.6, 56.4, 32.1\\% & 67.7, 60.6, 56.7\\%", bp_[b_], "{:.1f}")
         C.claim(f"reframe: M73 table {b_}", f"{q_}\\%", bp_[b_], "{:.1f}")
     C.claim("reframe: M73 table AXIOM", "97.1, 97.3, 93.7\\%", float(np.mean(p37_)), "{:.1f}")
     gap37_ = float(np.mean(p37_)) - max(bp_[b_] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
-    C.claim("reframe: M73 lead over best baseline", "the lead reaches 35.0 points", gap37_, "{:.1f}")
+    C.claim("reframe: M73 lead over best baseline", "its lead over the best learned baseline reaches 35.0 points", gap37_, "{:.1f}")
     C.claim("reframe: M73 rule gap", "within 6.3 at thirty-seven", bp_["rule_static"] - float(np.mean(p37_)), "{:.1f}")
     C.note("reframe: M73 static rule inside the quoted 99.96 to 99.99 range", 99.955 <= bp_["rule_static"] < 99.995, round(bp_["rule_static"], 3))
     C.note("reframe: M73 every baseline falls again from 19 to 37 gNBs", all(bp_[b_] < tr[(19, b_)] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
-           and "At thirty-seven gNBs every baseline falls again" in C.main, None)
+           and "while every baseline loses compliance as the cluster grows" in C.main, None)
     t37_ = {}
     for t_, ss_ in L37_.items():
         for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"):
@@ -1243,9 +1300,9 @@ def main():
     mg_ = seeds_of("m73/A_n37_hex_mappo_grid", "mappo", S15)
     axh15_ = seeds_of("m73/A_n37_hex", "axiom2", S15)
     tg_p_, tg_r_ = paired(axh15_, mg_, lambda r: 100 * prio(r)), paired(axh15_, mg_)
-    C.claim("reframe: M73 grid MAPPO compliance", "the selected MAPPO keeps 65.6\\% priority-slice compliance", 100 * mean(mg_, prio), "{:.1f}")
-    C.claim("reframe: M73 grid MAPPO compliance gap", "AXIOM keeps 29.2 percentage points more compliance and earns 23.23 more reward per step on 15 seeds", tg_p_["diff"], "{:.1f}")
-    C.claim("reframe: M73 grid MAPPO reward gap", "AXIOM keeps 29.2 percentage points more compliance and earns 23.23 more reward per step on 15 seeds", tg_r_["diff"], "{:.2f}")
+    C.claim("reframe: M73 grid MAPPO compliance", "It keeps 65.6\\% priority-slice compliance and 151.90 reward per step", 100 * mean(mg_, prio), "{:.1f}")
+    C.claim("reframe: M73 grid MAPPO compliance gap", "AXIOM beats it by 29.2 points, winning 13 of 15 seeds at $p<0.001$, and by 23.23 reward per step", tg_p_["diff"], "{:.1f}")
+    C.claim("reframe: M73 grid MAPPO reward gap", "AXIOM beats it by 29.2 points, winning 13 of 15 seeds at $p<0.001$, and by 23.23 reward per step", tg_r_["diff"], "{:.2f}")
     C.note("reframe: M73 grid MAPPO 15 seeds, both p<0.001, 13 and 15 wins", len(mg_) == 15 and tg_p_["p"] < 0.001 and tg_r_["p"] < 0.001
            and tg_p_["wins"] == 13 and tg_r_["wins"] == 15 and sum(r["collapsed"] for r in mg_.values()) == 0, (tg_p_, tg_r_))
     C.claim("M73 grid MAPPO reward", "It keeps 65.6\\% priority-slice compliance and 151.90 reward per step", mean(mg_), "{:.2f}")
@@ -1275,7 +1332,7 @@ def main():
     S74_ = list(range(6100, 6120))
     f74_ = {k_: seeds_of("m74/A_n37_hex", k_, S74_) for k_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}
     C.note("reframe: M74 complete, 20 seeds per arm", all(len(v_) == 20 for v_ in f74_.values()), {k_: len(v_) for k_, v_ in f74_.items()})
-    C.claim("reframe: M74 AXIOM priority SLA", "There AXIOM keeps 95.1\\% priority-slice compliance", 100 * mean(f74_["axiom2"], prio), "{:.1f}")
+    C.claim("reframe: M74 AXIOM priority SLA", "with AXIOM at 95.1\\% priority-slice compliance", 100 * mean(f74_["axiom2"], prio), "{:.1f}")
     for b_ in ("mappo_tuned", "single_agent_dqn", "independent_dqn"):
         C.claim(f"reframe: M74 {b_} priority SLA", "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, DQN-SA, and DQN-I", 100 * mean(f74_[b_], prio), "{:.1f}")
     t74_ = {}
@@ -1324,8 +1381,8 @@ def main():
            all(lp_[(n_, a_)] < aap_[n_] for n_ in (19, 37) for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
            and [a_ for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned") if lp_[(7, a_)] < aap_[7]] == ["mappo_tuned"]
            and "at nineteen and thirty-seven gNBs every baseline falls below it on average" in C.main, {str(k_): round(v_, 2) for k_, v_ in lp_.items()})
-    C.claim("reframe: M75 non-collapsed single-agent at 37", "those runs of DQN-SA and DQN-I keep only 35.9\\% and 29.1\\%", lnc_[(37, "single_agent_dqn")], "{:.1f}")
-    C.claim("reframe: M75 non-collapsed independent at 37", "those runs of DQN-SA and DQN-I keep only 35.9\\% and 29.1\\%", lnc_[(37, "independent_dqn")], "{:.1f}")
+    C.claim("reframe: M75 non-collapsed single-agent at 37", "runs that do not collapse keep only 40.0\\% and 35.9\\%, DQN-I's 55.9\\% and 29.1\\%", lnc_[(37, "single_agent_dqn")], "{:.1f}")
+    C.claim("reframe: M75 non-collapsed independent at 37", "runs that do not collapse keep only 40.0\\% and 35.9\\%, DQN-I's 55.9\\% and 29.1\\%", lnc_[(37, "independent_dqn")], "{:.1f}")
     C.claim("M75 non-collapsed single-agent at 19", "runs that do not collapse keep only 40.0\\% and 35.9\\%", lnc_[(19, "single_agent_dqn")], "{:.1f}")
     C.claim("M75 non-collapsed independent at 19", "DQN-I's 55.9\\% and 29.1\\%", lnc_[(19, "independent_dqn")], "{:.1f}")
     C.claim("M75 MAPPO below accept-all at 7", "only MAPPO, at 67.7\\%, falls below it", lp_[(7, "mappo_tuned")], "{:.1f}")
@@ -1397,21 +1454,21 @@ def main():
             tc_[(n_, a_, "r")] = paired(axc_, b_)
     hc_ = holm({k_: v_["p"] for k_, v_ in tc_.items()})
     C.note("reframe: M75 C AXIOM beats every tuned baseline, Holm p<0.001", len(tc_) == 8 and all(tc_[k_]["diff"] > 0 and hc_[k_] < 0.001 for k_ in tc_)
-           and "AXIOM beats each of them on compliance and on reward at Holm-adjusted $p<0.001$" in C.main, {str(k_): round(v_, 7) for k_, v_ in hc_.items()})
+           and "AXIOM beats each tuned baseline on compliance and on reward at Holm-adjusted $p<0.001$" in C.main, {str(k_): round(v_, 7) for k_, v_ in hc_.items()})
     cp_ = [v_["diff"] for k_, v_ in tc_.items() if k_[2] == "p"]
     C.claim("reframe: M75 C lead low", "by 29.9 to 48.1 points", min(cp_), "{:.1f}")
     C.claim("reframe: M75 C lead high", "by 29.9 to 48.1 points", max(cp_), "{:.1f}")
     C.note("reframe: M75 C new settings in three of four cells", sum(not v_["is_current"] for v_ in sel75_.values()) == 3
-           and "selected new settings in three of the four combinations of baseline and size" in C.main, {k_: v_["selected"] for k_, v_ in sel75_.items()})
+           and "selected new settings in three of the four combinations of baseline and size" in C.tex, {k_: v_["selected"] for k_, v_ in sel75_.items()})
     tp_ = {k_: 100 * mean(v_, prio) for k_, v_ in tcr_.items()}
-    C.claim("reframe: M75 C tuned independent at 19", "rises from 56.4\\% to 59.1\\% at nineteen gNBs", tp_[(19, "independent_dqn")], "{:.1f}")
-    C.claim("reframe: M75 C tuned independent at 37", "and from 32.1\\% to 45.5\\% at thirty-seven", tp_[(37, "independent_dqn")], "{:.1f}")
+    C.claim("reframe: M75 C tuned independent at 19", "DQN-I & 19 & $3{\\times}10^{-4}$, 64 & 59.1\\%", tp_[(19, "independent_dqn")], "{:.1f}")
+    C.claim("reframe: M75 C tuned independent at 37", "DQN-I & 37 & $10^{-4}$, 64 & 45.5\\%", tp_[(37, "independent_dqn")], "{:.1f}")
     sa19_, aa19_ = tcr_[(19, "single_agent_dqn")], seeds_of("m75/B_acceptall/n19", "rule_accept_all", S30_19)
     C.note("reframe: M75 C tuned single-agent at 19 accepts everything and matches accept-all exactly",
            all(r["collapsed"] for r in sa19_.values()) and len(sa19_) == 30
            and all(sa19_[s_]["reward"] == aa19_[s_]["reward"] and sa19_[s_]["sla"] == aa19_[s_]["sla"] for s_ in S30_19), None)
     C.note("reframe: M75 C no tuned baseline exceeds accept-all",
-           all(tp_[(n_, a_)] <= aap_[n_] + 1e-9 for (n_, a_) in tp_) and "No tuned baseline exceeds the accept-all floor" in C.main, {str(k_): round(v_, 3) for k_, v_ in tp_.items()})
+           all(tp_[(n_, a_)] <= aap_[n_] + 1e-9 for (n_, a_) in tp_) and "No tuned baseline exceeds the accept-all floor" in C.tex, {str(k_): round(v_, 3) for k_, v_ in tp_.items()})
     wc_ = [v_["wins"] for v_ in tc_.values()]
     C.note("M75 C supplement: wins 26 to 30 of 30", min(wc_) == 26 and max(wc_) == 30 and "winning 26 to 30 of 30 seeds at Holm-adjusted $p<0.001$" in C.tex, wc_)
     pc_ = sel75_["single_agent_dqn|19"]["grid"]
@@ -1428,7 +1485,8 @@ def main():
     cxa_ = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
     C.note("reframe: MAPPO cost numbers at 37 gNBs", cxa_["mappo"]["params_execution"] == 5122 and f"{cxa_['mappo']['ms_per_step']:.2f}" == "0.27"
            and cxa_["axiom2"]["params_execution"] == 7782 and f"{cxa_['axiom2']['ms_per_step']:.2f}" == "9.89"
-           and "it uses 5,122 parameters, 0.27 ms per control step, and 495 s of training per seed, against AXIOM's 7,782 parameters, 9.89 ms, and 1,182 s" in C.main, None)
+           and "MAPPO & 5,122 at every size & 0.19 / 0.20 / 0.22 / 0.27 & 73 / 256 / 495" in C.main
+           and "AXIOM & 7,782 at every size & 1.04 / 1.98 / 4.79 / 9.89 & 624 / 892 / 1182" in C.main, None)
     def med_train_(cell_, arm_):
         v_ = [r_["train_seconds"] for f_ in glob.glob(f"{ROOT}/{cell_}/{arm_}_*.json") for r_ in json.load(open(f_)).values() if isinstance(r_, dict) and "train_seconds" in r_]
         return float(np.median(v_))
@@ -1463,7 +1521,7 @@ def main():
     h7_ = {t_: hf7_[f"n7_{t_}|mappo_tuned|reward"] for t_ in ("fully_connected", "ring", "hex")}
     C.note("reframe: Env B 7 gNBs AXIOM over MAPPO 7 to 15 percent, significant on two layouts after Holm",
            round(min(rel7_)) == 7 and round(max(rel7_)) == 15 and sum(v_ < 0.05 for v_ in h7_.values()) == 2
-           and "At seven gNBs it earns between 7\\% and 15\\% more, significantly on two of the three layouts" in C.main, {"rel": rel7_, "p_holm": h7_})
+           and "it earns between 7\\% and 15\\% more, significantly on two of the three layouts" in C.tex, {"rel": rel7_, "p_holm": h7_})
     a19_, m19_ = mean(d75_["axiom2"]), mean(d75_["mappo_tuned"])
     C.claim("reframe: Env B 19 gNBs AXIOM over MAPPO percent", "and 36\\% more at nineteen gNBs, 80.28 against 59.07", 100 * (a19_ / m19_ - 1), "{:.0f}")
     C.claim("reframe: AXIOM slowest decision share of control period", "AXIOM's slowest decision takes 0.2\\% of the 5 s control period", 100 * cxa_["axiom2"]["ms_per_step"] / 5000, "{:.1f}")
@@ -1481,7 +1539,7 @@ def main():
     vr_ = {k_: (seeds_of(c_, "vdn", ss_), seeds_of(ac_, "axiom2", ss_), seeds_of(ac_, "independent_dqn", ss_)) for k_, (c_, ac_, ss_) in vc_.items()}
     C.note("reframe: M76 VDN complete, 30 seeds per cell", all(len(v_[0]) == 30 for v_ in vr_.values()), {k_: len(v_[0]) for k_, v_ in vr_.items()})
     C.note("reframe: M76 VDN ties AXIOM at three gNBs", all(round(mean(vr_[k_][0]), 3) == q_[0] and round(mean(vr_[k_][1]), 3) == q_[1] for k_, q_ in (("A3", (12.664, 12.698)), ("B3", (8.552, 8.832))))
-           and "at 12.664 against 12.698 reward per step in Env A and 8.552 against 8.832 in Env B" in C.main, None)
+           and "at 12.664 against 12.698 reward per step in Env A and 8.552 against 8.832 in Env B" in C.tex, None)
     dv_ = {("A3", "r"): paired(vr_["A3"][1], vr_["A3"][0]), ("B3", "r"): paired(vr_["B3"][1], vr_["B3"][0]),
            ("A19", "r"): paired(vr_["A19"][1], vr_["A19"][0]), ("A19", "p"): paired(vr_["A19"][1], vr_["A19"][0], lambda r: 100 * prio(r))}
     hv76_ = holm({k_: v_["p"] for k_, v_ in dv_.items()})
@@ -1490,7 +1548,7 @@ def main():
     C.claim("reframe: M76 AXIOM over VDN compliance at 19", "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step", dv_[("A19", "p")]["diff"], "{:.1f}")
     C.claim("reframe: M76 AXIOM over VDN reward at 19", "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step", dv_[("A19", "r")]["diff"], "{:.2f}")
     C.note("reframe: M76 VDN 19-gNB wins 27 to 28 of 30 at Holm p<0.001", sorted([dv_[("A19", "p")]["wins"], dv_[("A19", "r")]["wins"]]) == [27, 28]
-           and hv76_[("A19", "p")] < 0.001 and hv76_[("A19", "r")] < 0.001 and "winning 27 to 28 of 30 seeds at Holm-adjusted $p<0.001$" in C.main, None)
+           and hv76_[("A19", "p")] < 0.001 and hv76_[("A19", "r")] < 0.001 and "winning 27 to 28 of 30 seeds at Holm-adjusted $p<0.001$" in C.tex, None)
     C.claim("reframe: VDN gap at nineteen gNBs", "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step", dv_[("A19", "p")]["diff"], "{:.1f}")
     for k_, l_ in (("A3", "Env A, 3 gNBs"), ("B3", "Env B, 3 gNBs"), ("A19", "Env A, 19 gNBs, hex")):
         v_, ax_, ind_ = vr_[k_]
@@ -1505,7 +1563,7 @@ def main():
     for L_, lo_, hi_ in (("1.10", "24.3", "34.0"), ("1.20", "2.5", "6.4")):
         dl_ = [te76_[(L_, b_)]["diff"] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
         C.note(f"reframe: M76 oversubscription margins at {L_}", f"{min(dl_):.1f}" == lo_ and f"{max(dl_):.1f}" == hi_
-               and "24.3 to 34.0 and 2.5 to 6.4 percentage points more than every learned baseline, at Holm-adjusted $p\\leq0.006$" in C.main, dl_)
+               and "24.3 to 34.0 and 2.5 to 6.4 percentage points more than every learned baseline, at Holm-adjusted $p\\leq0.006$" in C.tex, dl_)
     C.note("reframe: M76 oversubscription Holm p<=0.006, AXIOM ahead", all(te76_[k_]["diff"] > 0 and he76_[k_] <= 0.006 for k_ in te76_), {str(k_): v_ for k_, v_ in he76_.items()})
     for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_accept_all"):
         x_, y_ = e76_["1.10"][a_], e76_["1.20"][a_]
@@ -1523,11 +1581,11 @@ def main():
     hb1_ = holm({k_: v_["p"] for k_, v_ in tb1_.items()})
     C.note("reframe: M76 overload at 19 gNBs, margins 6.23/7.55/8.67, 14 of 15, Holm p<0.001",
            [round(tb1_[k_]["diff"], 2) for k_ in ("load_1.10", "load_1.15", "load_1.20")] == [6.23, 7.55, 8.67] and all(v_["wins"] == 14 for v_ in tb1_.values())
-           and all(v_ < 0.001 for v_ in hb1_.values()) and "AXIOM earns 6.23, 7.55, and 8.67 more reward per step than that rule, winning 14 of 15 seeds at each level at Holm-adjusted $p<0.001$" in C.main, {k_: round(v_["diff"], 3) for k_, v_ in tb1_.items()})
+           and all(v_ < 0.001 for v_ in hb1_.values()) and "earns 6.23, 7.55, and 8.67 more reward per step than that rule, winning 14 of 15 seeds at each level at Holm-adjusted $p<0.001$" in C.main, {k_: round(v_["diff"], 3) for k_, v_ in tb1_.items()})
     st_ = [paired(b176_[sh_]["rule_static"], b176_[sh_]["axiom2"])["diff"] for sh_ in ("load_1.10", "load_1.15", "load_1.20")]
     same_b1_ = [sum(b176_[sh_]["axiom2"][s_]["reward"] == b176_[sh_]["rule_static"][s_]["reward"] and b176_[sh_]["axiom2"][s_]["blocks"] == b176_[sh_]["rule_static"][s_]["blocks"] for s_ in S15) for sh_ in ("load_1.10", "load_1.15", "load_1.20")]
     C.note("reframe: M76 static rule 1.8 to 2.0 above AXIOM, identical decisions in 9 to 11 seeds", f"{min(st_):.1f}" == "1.8" and f"{max(st_):.1f}" == "2.0" and min(same_b1_) == 9 and max(same_b1_) == 11
-           and "the static rule earns 1.8 to 2.0 more reward than AXIOM, which makes the static rule's decisions in 9 to 11 of the 15 seeds" in C.main, (st_, same_b1_))
+           and "the static rule earns 1.8 to 2.0 more reward than AXIOM, which makes the static rule's decisions in 9 to 11 of the 15 seeds" in C.tex, (st_, same_b1_))
     pg1_ = {sh_: {a_: {s_: pg76_("m76/b1_shift_n19/" + sh_, a_, s_, "") for s_ in S15} for a_ in ("axiom2", "rule_local_transfer", "rule_static")} for sh_ in b176_}
     C.note("reframe: M76 tuned rule keeps more per-gNB compliance under overload", all(np.mean(list(pg1_[sh_]["rule_local_transfer"].values())) > np.mean(list(pg1_[sh_]["axiom2"].values())) for sh_ in ("load_1.10", "load_1.15", "load_1.20")), None)
     for sh_, l_ in (("nominal", "Nominal"), ("load_1.10", "110\\%"), ("load_1.15", "115\\%"), ("load_1.20", "120\\%")):
@@ -1542,12 +1600,12 @@ def main():
     C.claim("reframe: M76 uneven load AXIOM vs nominal rule", "earning 0.36 more reward per step at $p=0.23$", t_tr_["diff"], "{:.2f}")
     C.note("reframe: M76 uneven load not significant, ties re-tuned rule", round(t_tr_["p"], 2) == 0.23 and t_rt_["p"] > 0.05, (t_tr_, t_rt_))
     C.note("reframe: M76 uneven load static rule 0.27 more at p=0.028", f"{t_st_['diff']:.2f}" == "0.27" and f"{t_st_['p']:.3f}" == "0.028"
-           and "while the static rule earns 0.27 more at $p=0.028$" in C.main, t_st_)
+           and "while the static rule earns 0.27 more at $p=0.028$" in C.tex, t_st_)
     lb2_ = [paired(hb_["axiom2"], hb_[b_]) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
     C.note("reframe: M76 uneven load AXIOM beats learned baselines 1.18 to 4.28, p<=0.005", f"{min(t['diff'] for t in lb2_):.2f}" == "1.18" and f"{max(t['diff'] for t in lb2_):.2f}" == "4.28"
-           and all(t["p"] <= 0.005 for t in lb2_) and "by 1.18 to 4.28 reward per step at unadjusted $p\\leq0.005$" in C.main, lb2_)
+           and all(t["p"] <= 0.005 for t in lb2_) and "by 1.18 to 4.28 reward per step at unadjusted $p\\leq0.005$" in C.tex, lb2_)
     C.note("reframe: M76 uneven load 27% more than MAPPO, every seed", round(100 * (mean(hb_["axiom2"]) / mean(hb_["mappo_tuned"]) - 1)) == 27 and lb2_[2]["wins"] == 15
-           and "Under uneven per-gNB load at seven gNBs it earns 27\\% more and wins every seed" in C.main, None)
+           and "under uneven per-gNB load at seven gNBs it earns 27\\% more and wins every seed" in C.tex, None)
     # c: per-gNB penalty
     Cc_ = "m76/c_pergnb_n19_hex"
     cg_ = {a_: {s_: pg76_(Cc_, a_, s_) for s_ in S15} for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_accept_all", "rule_local_transfer")}
@@ -1559,7 +1617,7 @@ def main():
     C.note("reframe: M76 per-gNB penalty AXIOM does not beat the static rule", pvd_(cg_["axiom2"], cg_["rule_static"])["p"] >= 0.05, None)
     lc_ = [pvd_(cg_["axiom2"], cg_[b_]) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
     C.note("reframe: M76 per-gNB penalty baselines 13.7 to 18.5 points below AXIOM in every seed", f"{min(t['diff'] for t in lc_):.1f}" == "13.7" and f"{max(t['diff'] for t in lc_):.1f}" == "18.5"
-           and all(t["wins"] == 15 for t in lc_) and "kept 13.7 to 18.5 percentage points less per-gNB compliance than AXIOM, in every seed" in C.main, lc_)
+           and all(t["wins"] == 15 for t in lc_) and "kept 13.7 to 18.5 percentage points less per-gNB compliance than AXIOM, in every seed" in C.tex, lc_)
     lab76_ = {"axiom2": "AXIOM", "single_agent_dqn": "DQN-SA", "independent_dqn": "DQN-I", "mappo_tuned": "MAPPO", "rule_static": "Static rule",
               "rule_accept_all": "Accept all", "rule_local_transfer": "Tuned rule, carried over", "rule_local": "Tuned rule, re-tuned"}
     for cell_, arms_ in ((H2c_, list(hb_)), (Cc_, list(cg_))):
@@ -1579,7 +1637,7 @@ def main():
     k77_ = {c_: m77_(c_) for c_ in ("A_n3", "A_n37_hex", "B_n3", "B_n19_hex")}
     allr_ = [r for c_ in k77_.values() for a_ in c_.values() for r in a_.values()]
     C.note("reframe: M77 every checkable re-run reproduces its stored log", len(allr_) > 0 and not any(r["reproduces_stored"] is False for r in allr_)
-           and "which reproduced every stored log that could be checked" in C.main, {"runs": len(allr_), "unchecked": sum(r["reproduces_stored"] is None for r in allr_)})
+           and "Every re-run whose stored log could be compared reproduced it exactly in reward, blocks, and SLA compliance" in C.tex, {"runs": len(allr_), "unchecked": sum(r["reproduces_stored"] is None for r in allr_)})
     def km_(c_, a_, sl_, f_):
         return float(np.mean([r["kpi"][sl_][f_] for r in k77_[c_][a_].values() if r["kpi"][sl_][f_] is not None]))
     B77_ = ("single_agent_dqn", "independent_dqn", "mappo_tuned")
@@ -1589,16 +1647,16 @@ def main():
         v_ = [100 * km_("A_n37_hex", b_, sl_, "served_over_offered") for b_ in B77_]
         C.note(f"reframe: M77 baseline {sl_} served range at 37", f"{min(v_):.1f}" == lo_ and f"{max(v_):.1f}" == hi_
                and "against 94.2\\% to 97.7\\% and 85.7\\% to 97.5\\% for the learned baselines" in C.main, v_)
-    C.claim("reframe: M77 AXIOM URLLC delay at 37", "Its URLLC delay is 0.08 control periods with a 95th percentile of 0.42", km_("A_n37_hex", "axiom2", "urllc", "delay_steps"), "{:.2f}")
-    C.claim("reframe: M77 AXIOM URLLC p95 at 37", "Its URLLC delay is 0.08 control periods with a 95th percentile of 0.42", km_("A_n37_hex", "axiom2", "urllc", "delay_steps_p95"), "{:.2f}")
+    C.claim("reframe: M77 AXIOM URLLC delay at 37", "is 0.08 with a 95th percentile of 0.42", km_("A_n37_hex", "axiom2", "urllc", "delay_steps"), "{:.2f}")
+    C.claim("reframe: M77 AXIOM URLLC p95 at 37", "is 0.08 with a 95th percentile of 0.42", km_("A_n37_hex", "axiom2", "urllc", "delay_steps_p95"), "{:.2f}")
     dl_ = [km_("A_n37_hex", b_, "urllc", "delay_steps") for b_ in B77_]; dp_ = [km_("A_n37_hex", b_, "urllc", "delay_steps_p95") for b_ in B77_]
     C.note("reframe: M77 baseline URLLC delay 0.58 to 3.61, p95 5.2 to 16.9 at 37", f"{min(dl_):.2f}" == "0.58" and f"{max(dl_):.2f}" == "3.61" and f"{min(dp_):.1f}" == "5.2" and f"{max(dp_):.1f}" == "16.9"
            and "the baselines reach 0.58 to 3.61 with 95th percentiles of 5.2 to 16.9" in C.main, (dl_, dp_))
-    C.claim("reframe: M77 static rule URLLC delay at 37", "and the static rule reaches 0.03", km_("A_n37_hex", "rule_static", "urllc", "delay_steps"), "{:.2f}")
+    C.claim("reframe: M77 static rule URLLC delay at 37", "Static rule & 100.0\\% & 100.0\\% & 0.03", km_("A_n37_hex", "rule_static", "urllc", "delay_steps"), "{:.2f}")
     C.claim("reframe: M77 AXIOM URLLC delay Env B 19", "AXIOM's URLLC delay of 1.35 control periods is below every learned baseline's 2.17 to 2.66", km_("B_n19_hex", "axiom2", "urllc", "delay_steps"), "{:.2f}")
     d19_ = [km_("B_n19_hex", b_, "urllc", "delay_steps") for b_ in B77_]
     C.note("reframe: M77 Env B 19 baseline URLLC delay 2.17 to 2.66", f"{min(d19_):.2f}" == "2.17" and f"{max(d19_):.2f}" == "2.66"
-           and "below every learned baseline's 2.17 to 2.66" in C.main, d19_)
+           and "below every learned baseline's 2.17 to 2.66" in C.tex, d19_)
     C.claim("reframe: M77 tuned rule URLLC delay Env B 19", "while the tuned rule's is lower still, at 0.51", km_("B_n19_hex", "rule_local_transfer", "urllc", "delay_steps"), "{:.2f}")
     lab77_ = {"axiom2": "AXIOM", "single_agent_dqn": "DQN-SA", "independent_dqn": "DQN-I", "mappo_tuned": "MAPPO", "rule_static": "Static rule",
               "rule_local_cell": "Tuned rule", "rule_local_transfer": "Tuned rule, carried", "rule_accept_all": "Accept all"}
@@ -1624,13 +1682,13 @@ def main():
     C.claim("conclusion: lead at 37 gNBs", "its lead over the best learned baseline reaches 35.0 points, and 36.5 points on 20 fresh seeds", gap37_, "{:.1f}")
     C.claim("conclusion: fresh-seed lead at 37 gNBs", "its lead over the best learned baseline reaches 35.0 points, and 36.5 points on 20 fresh seeds", fg_, "{:.1f}")
     C.claim("abstract: URLLC served at 37", "There it serves 99.8\\% of URLLC demand", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
-    C.claim("conclusion: URLLC served at 37", "There it serves 99.8\\% of URLLC demand at a mean URLLC delay", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
+    C.claim("conclusion: URLLC served at 37", "AXIOM serves 99.8\\% of the offered URLLC demand", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
     rat_ = [d_ / km_("A_n37_hex", "axiom2", "urllc", "delay_steps") for d_ in dl_]
     C.claim("abstract: URLLC delay ratio low", "with a backlog delay 7 to 44 times shorter than the learned baselines", min(rat_), "{:.0f}")
     C.claim("abstract: URLLC delay ratio high", "with a backlog delay 7 to 44 times shorter than the learned baselines", max(rat_), "{:.0f}")
     C.note("conclusion: URLLC delay 0.08 against 0.58 to 3.61", f"{km_('A_n37_hex', 'axiom2', 'urllc', 'delay_steps'):.2f}" == "0.08"
            and f"{min(dl_):.2f}" == "0.58" and f"{max(dl_):.2f}" == "3.61"
-           and "at a mean URLLC delay of 0.08 control periods, against 0.58 to 3.61 for the learned baselines" in C.main, rat_)
+           and "is 0.08 with a 95th percentile of 0.42, whereas the baselines reach 0.58 to 3.61" in C.main, rat_)
     C.note("abstract and conclusion: 7,782 parameters against the DQNs' 64,770 and 682,058 (abstract) and up to 682,058 (conclusion)", cx37_["axiom2"]["params_execution"] == 7782
            and max(cx37_[k_]["params_execution"] for k_ in ("single_agent_dqn", "independent_dqn", "mappo")) == 682058
            and (cx37_["single_agent_dqn"]["params_execution"], cx37_["independent_dqn"]["params_execution"]) == (64770, 682058)
@@ -1649,9 +1707,9 @@ def main():
     C.claim("conclusion: compliance low from 7 to 37 gNBs", "keeps priority-slice compliance between 93.7\\% and 97.3\\% from seven to thirty-seven gNBs", min(cps_), "{:.1f}")
     C.claim("conclusion: compliance high from 7 to 37 gNBs", "keeps priority-slice compliance between 93.7\\% and 97.3\\% from seven to thirty-seven gNBs", max(cps_), "{:.1f}")
     C.claim("conclusion: percent of oracle at 3 gNBs", "it reaches 98.9\\% of an oracle rule's reward at three gNBs", 100 * mean(A["axiom2"]) / mean(A["heuristic"]), "{:.1f}")
-    C.claim("conclusion: tuned DQN gap low", "Tuned DQN baselines stay 29.9 to 48.1 points behind it", min(cp_), "{:.1f}")
-    C.claim("conclusion: tuned DQN gap high", "Tuned DQN baselines stay 29.9 to 48.1 points behind it", max(cp_), "{:.1f}")
-    C.claim("conclusion: VDN gap at 19 gNBs", "trails by 13.6 points at nineteen", dv_[("A19", "p")]["diff"], "{:.1f}")
+    C.claim("conclusion: tuned DQN gap low", "by 29.9 to 48.1 points", min(cp_), "{:.1f}")
+    C.claim("conclusion: tuned DQN gap high", "by 29.9 to 48.1 points", max(cp_), "{:.1f}")
+    C.claim("conclusion: VDN gap at 19 gNBs", "trails it by 13.6 points at nineteen", dv_[("A19", "p")]["diff"], "{:.1f}")
     C.note("conclusion: static rule earns more than AXIOM at 19 gNBs under coupling",
            mean(seeds_of("m75/D_envB_n19_hex", "rule_static", S15)) > mean(seeds_of("m75/D_envB_n19_hex", "axiom2", S15))
            and "A static rule known in advance does better under steady load and at nineteen gNBs under coupling" in C.main, None)
@@ -1662,23 +1720,24 @@ def main():
     for a_ in ("single_agent_dqn_lr1e4", "independent_dqn_lr1e4"):
         r_ = A[a_]
         pr_ = float(np.mean([x["precision"] for x in r_.values() if x["precision"] is not None]))
-        C.note(f"M78 Table 5 LR 1e-4 row {a_}", len(r_) == 30 and f"$10^{{-4}}$ & {mean(r_):.3f} [" in C.main
-               and f"& {pr_:.3f} & {sum(x['collapsed'] for x in r_.values())}/30 & {mean(r_, lambda x: x['sla']['urllc']):.3f} & {mean(r_, lambda x: x['sla']['embb']):.3f} \\\\" in C.main, None)
+        # since 2026-10-30 these rows sit in Online Resource 1 S6 as reward with its CI only
+        C.note(f"M78 Table 5 LR 1e-4 row {a_}", len(r_) == 30 and f"{mean(r_):.3f} [" in C.tex
+               and "The DQN baselines also lose reward when rerun at $10^{-4}$" in C.tex, pr_)
     cxm_ = json.load(open(f"{ROOT}/m64/complexity.json")); cxn_ = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
     for k_ in ("independent_dqn", "mappo"):
         s_ = " / ".join(f"{cxm_[n_][k_]['ms_per_step']:.2f}" for n_ in ("3", "7", "19")) + f" / {cxn_[k_]['ms_per_step']:.2f}"
         C.note(f"M78 complexity latency row {k_}", s_ in C.main, s_)
-    for n_, ss_, snip_ in ((7, S15, "At seven gNBs AXIOM keeps URLLC and eMBB at {u}\\% and {e}\\%"), (19, S30_19, "AXIOM keeps URLLC and eMBB at {u}\\% and {e}\\%, a pooled")):
+    for n_, ss_, snip_ in ((7, S15, "At seven gNBs AXIOM keeps URLLC and eMBB at {u}\\% and {e}\\%"), (19, S30_19, "At nineteen gNBs it keeps them at {u}\\% and {e}\\%")):
         rr_ = [r for t_ in ("fully_connected", "ring", "hex") for r in seeds_of(f"m65_scaling/n{n_}_{t_}", "axiom2", ss_).values()]
         u_, e_ = 100 * np.mean([r["sla"]["urllc"] for r in rr_]), 100 * np.mean([r["sla"]["embb"] for r in rr_])
-        C.note(f"M78 Env A {n_} gNBs AXIOM URLLC and eMBB", snip_.format(u=r1_(u_), e=r1_(e_)) in C.main, (u_, e_))
+        C.note(f"M78 Env A {n_} gNBs AXIOM URLLC and eMBB", snip_.format(u=r1_(u_), e=r1_(e_)) in C.tex, (u_, e_))
     wB_ = [paired(B["axiom2"], B[b_], f_)["wins"] for b_ in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for f_ in (lambda r: r["reward"], prio)]
     C.note("M78 Env B 3 gNBs seed wins 24 to 29", (min(wB_), max(wB_)) == (24, 29) and "winning 24 to 29 of 30 seeds" in C.main, wB_)
     RB_ = {a_: seeds_of("m64/n3_replication", a_, REP) for a_ in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned")}
     fr_ = {(b_, m_): paired(RB_["axiom2"], RB_[b_], f_) for b_ in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for m_, f_ in (("r", lambda r: r["reward"]), ("p", prio))}
     hr_ = holm({k_: v_["p"] for k_, v_ in fr_.items()})
     C.note("M78 Env B replication 7 or 8 of 10, nothing survives", sorted({v_["wins"] for v_ in fr_.values()}) == [7, 8] and min(hr_.values()) >= 0.05
-           and "with AXIOM winning 7 or 8 of 10 seeds against each, but no lead survives correction there" in C.main, min(hr_.values()))
+           and "with AXIOM winning 7 or 8 of 10 seeds against each, but no lead survives correction there" in C.tex, min(hr_.values()))
     d19_ = paired(seeds_of("m75/D_envB_n19_hex", "rule_local_transfer", S15), seeds_of("m75/D_envB_n19_hex", "axiom2", S15))
     C.note("M78 carried-over tuned rule wins every seed at 19 gNBs", d19_["wins"] == 15 and "keeps 84.5\\% per-gNB compliance, winning every seed" in C.main, d19_)
     colB_ = {c_: {a_: sum(r["collapsed"] for r in seeds_of(c_, a_, ss_).values()) for a_ in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned")}
@@ -1705,7 +1764,7 @@ def main():
            (cdk_.LOAD_BASE, cdk_.LOAD_AMPLITUDE))
     th_ = max(33 / (1.2 * 30), 66 / (1.2 * 60))
     C.note("M78 at 120% load priority demand exceeds the caps at most gNBs", lo_m_ < th_ < (lo_m_ + hi_m_) / 2
-           and "exceeds the slice caps at most gNBs" in C.main, th_)
+           and "exceeds the slice caps at most gNBs" in C.tex, th_)
     m72b_ = json.load(open(f"{ROOT}/m72/analysis.json"))["B"]
     for k_, lab_ in (("load_0.80", "80\\% load"), ("nominal", "nominal"), ("load_1.05", "105\\% load"), ("load_1.10", "110\\% load"), ("load_1.15", "115\\% load"),
                      ("load_1.20", "120\\% load"), ("coupling_0.30", "coupling 0.30"), ("amplitude_0.50", "load swing 0.50")):
@@ -1902,7 +1961,7 @@ def main():
            and all(v_["diff"] > 0 for v_ in list(tDr_.values()) + list(tDg_.values())) and max(list(hDr_.values()) + list(hDg_.values())) < 0.05
            and "The static rule again earned more, by 0.87 per step, and tied AXIOM exactly in 13 of the 15 seeds" in C.tex
            and "The local rule carried over from seven gNBs won every seed, by 3.33 per step, and DQN-SA collapsed in all 15" in C.tex
-           and "A sixth, in Env B at nineteen gNBs on 15 seeds, held all four of its checks" in C.main, {"static": st19_, "local": lt19_})
+           and "a sixth, in Env B at nineteen gNBs on 15 seeds, held all four" in C.main, {"static": st19_, "local": lt19_})
 
     n_total = len(C.rows) + 1
     C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)

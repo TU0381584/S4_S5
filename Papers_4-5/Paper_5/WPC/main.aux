@@ -89,45 +89,43 @@
 \newlabel{sec:results-m6}{{6.2}{11}{Cluster-Size Scaling}{subsection.6.2}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces How the four learned policies compare. Env A has static load, Env B time-varying load with inter-cell coupling. Priority SLA is the mean of URLLC and eMBB compliance}}{11}{table.3}\protected@file@percent }
 \newlabel{tab:compare}{{3}{11}{How the four learned policies compare. Env A has static load, Env B time-varying load with inter-cell coupling. Priority SLA is the mean of URLLC and eMBB compliance}{table.3}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Env A, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance, and LR is the learning rate}}{12}{table.4}\protected@file@percent }
-\newlabel{tab:m2-results}{{4}{12}{Env A, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance, and LR is the learning rate}{table.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Env A, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance}}{12}{table.4}\protected@file@percent }
+\newlabel{tab:m2-results}{{4}{12}{Env A, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance}{table.4}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, mean and 95\% CI. b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}}{12}{figure.4}\protected@file@percent }
 \newlabel{fig:m6-topology}{{4}{12}{Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, mean and 95\% CI. b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}{figure.4}{}}
+\citation{sunehag2018vdn}
 \@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}}{13}{figure.5}\protected@file@percent }
 \newlabel{fig:gnb-map}{{5}{13}{Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}{figure.5}{}}
-\citation{sunehag2018vdn}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces AXIOM against the three learned baselines. a, Env A and b, Env B reward per gNB per step against priority-slice compliance, light to dark from the smallest to the largest cluster, with 95\% CIs. c, Env A and d, Env B measures, each as a fraction of the best learned policy}}{15}{figure.6}\protected@file@percent }
-\newlabel{fig:quadrant}{{6}{15}{AXIOM against the three learned baselines. a, Env A and b, Env B reward per gNB per step against priority-slice compliance, light to dark from the smallest to the largest cluster, with 95\% CIs. c, Env A and d, Env B measures, each as a fraction of the best learned policy}{figure.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Ablations and Sensitivity}{16}{subsection.6.3}\protected@file@percent }
-\newlabel{sec:results-ablation}{{6.3}{16}{Ablations and Sensitivity}{subsection.6.3}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}}{17}{figure.7}\protected@file@percent }
-\newlabel{fig:envb}{{7}{17}{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}{figure.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Env B, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it}}{17}{table.5}\protected@file@percent }
-\newlabel{tab:envb}{{5}{17}{Env B, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it}{table.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Time-Varying Load with Inter-Cell Coupling}{18}{subsection.6.4}\protected@file@percent }
-\newlabel{sec:results-envb}{{6.4}{18}{Time-Varying Load with Inter-Cell Coupling}{subsection.6.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Throughput and Delay}{19}{subsection.6.5}\protected@file@percent }
-\newlabel{sec:results-kpi}{{6.5}{19}{Throughput and Delay}{subsection.6.5}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Model Complexity}{20}{subsection.6.6}\protected@file@percent }
-\newlabel{sec:results-complexity}{{6.6}{20}{Model Complexity}{subsection.6.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Reproducibility and Fresh-Seed Verification}{20}{subsection.6.7}\protected@file@percent }
-\newlabel{sec:results-verify}{{6.7}{20}{Reproducibility and Fresh-Seed Verification}{subsection.6.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}}{20}{table.6}\protected@file@percent }
-\newlabel{tab:complexity}{{6}{20}{Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}{table.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.8}Federation, Privacy, Disruption, and Live Deployment}{21}{subsection.6.8}\protected@file@percent }
-\newlabel{sec:results-m3}{{6.8}{21}{Federation, Privacy, Disruption, and Live Deployment}{subsection.6.8}{}}
-\newlabel{sec:results-m4}{{6.8}{21}{Federation, Privacy, Disruption, and Live Deployment}{subsection.6.8}{}}
-\newlabel{sec:results-m8}{{6.8}{21}{Federation, Privacy, Disruption, and Live Deployment}{subsection.6.8}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{21}{section.7}\protected@file@percent }
-\newlabel{sec:discussion}{{7}{21}{Discussion and Limitations}{section.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{22}{section.8}\protected@file@percent }
-\newlabel{sec:conclusion}{{8}{22}{Conclusion}{section.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces AXIOM against the three learned baselines. a, Env A and b, Env B reward per gNB per step against priority-slice compliance, light to dark from the smallest to the largest cluster, with 95\% CIs. c, Env A and d, Env B measures, each as a fraction of the best learned policy}}{14}{figure.6}\protected@file@percent }
+\newlabel{fig:quadrant}{{6}{14}{AXIOM against the three learned baselines. a, Env A and b, Env B reward per gNB per step against priority-slice compliance, light to dark from the smallest to the largest cluster, with 95\% CIs. c, Env A and d, Env B measures, each as a fraction of the best learned policy}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}}{15}{figure.7}\protected@file@percent }
+\newlabel{fig:envb}{{7}{15}{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed points behind the mean and 95\% CI}{figure.7}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Ablations and Sensitivity}{15}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:results-ablation}{{6.3}{15}{Ablations and Sensitivity}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Time-Varying Load with Inter-Cell Coupling}{15}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:results-envb}{{6.4}{15}{Time-Varying Load with Inter-Cell Coupling}{subsection.6.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Env B, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it}}{16}{table.5}\protected@file@percent }
+\newlabel{tab:envb}{{5}{16}{Env B, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it}{table.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Model Complexity}{17}{subsection.6.5}\protected@file@percent }
+\newlabel{sec:results-complexity}{{6.5}{17}{Model Complexity}{subsection.6.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Reproducibility and Fresh-Seed Verification}{17}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:results-verify}{{6.6}{17}{Reproducibility and Fresh-Seed Verification}{subsection.6.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Federation, Privacy, Disruption, and Live Deployment}{17}{subsection.6.7}\protected@file@percent }
+\newlabel{sec:results-m3}{{6.7}{17}{Federation, Privacy, Disruption, and Live Deployment}{subsection.6.7}{}}
+\newlabel{sec:results-m4}{{6.7}{17}{Federation, Privacy, Disruption, and Live Deployment}{subsection.6.7}{}}
+\newlabel{sec:results-m8}{{6.7}{17}{Federation, Privacy, Disruption, and Live Deployment}{subsection.6.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}}{17}{table.6}\protected@file@percent }
+\newlabel{tab:complexity}{{6}{17}{Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}{table.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{18}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{18}{Discussion and Limitations}{section.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{18}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{18}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{19}{section*.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{19}{section*.3}\protected@file@percent }
 \bibdata{refs}
 \bibcite{dpsgd}{{1}{2016}{{Abadi et~al.}}{{Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar, and Zhang}}}
 \bibcite{ahmadi2024generalizable}{{2}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
 \bibcite{alqahtani2025dynamic}{{3}{2025}{{AlQahtani}}{{}}}
-\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{23}{section*.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subparagraph}{Acknowledgements}{23}{section*.3}\protected@file@percent }
 \bibcite{amiri2024vnf}{{4}{2024}{{Amiri et~al.}}{{Amiri, Wang, Shojafar, and Tafazolli}}}
 \bibcite{bega2020market}{{5}{2020}{{Bega et~al.}}{{Bega, Gramaglia, Banchs, Sciancalepore, and Costa-P{\'e}rez}}}
 \bibcite{bouroudi2025gnnmarl}{{6}{2025}{{Bouroudi et~al.}}{{Bouroudi, Outtagarts, and Hadjadj-Aoul}}}
@@ -167,4 +165,4 @@
 \bibcite{yu2022mappo}{{40}{2022}{{Yu et~al.}}{{Yu, Velu, Vinitsky, Gao, Wang, Bayen, and Wu}}}
 \bibcite{zangooei2024flexible}{{41}{2024}{{Zangooei et~al.}}{{Zangooei, Golkarifard, Rouili, Saha, and Boutaba}}}
 \bibcite{zhang2022federatedoran}{{42}{2022}{{Zhang et~al.}}{{Zhang, Zhou, and Erol-Kantarci}}}
-\gdef \@abspage@last{27}
+\gdef \@abspage@last{24}

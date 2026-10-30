@@ -87,7 +87,7 @@ def main():
         summ["rule"][n] = {"n_cells": len(rows), "prio_mean": float(np.mean(v)), "prio_ci": list(boot_ci(v)),
                            "collapsed": int(sum(r["collapsed"] for r in rows))}
     big = sizes[-1]
-    fig, axs = plt.subplots(1, 3, figsize=(MAIN_WIDTH_IN, 2.55), gridspec_kw={"width_ratios": [1.3, 1, 1]})
+    fig, axs = plt.subplots(1, 3, figsize=(MAIN_WIDTH_IN, 2.2), gridspec_kw={"width_ratios": [1.3, 1, 1]})
     xs = np.arange(len(sizes))
     for arm in ARMS:
         st = M2_ARM_STYLE[arm]

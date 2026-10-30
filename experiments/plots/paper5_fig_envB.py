@@ -41,7 +41,7 @@ def main():
     a = ap.parse_args()
     S30 = list(range(900, 930))
     d3 = load(f"{a.root}/n3_fully_connected", N3_ARMS, S30)
-    fig, ax = plt.subplots(figsize=(0.72 * MAIN_WIDTH_IN, 2.45))
+    fig, ax = plt.subplots(figsize=(0.72 * MAIN_WIDTH_IN, 2.1))
     rng = np.random.RandomState(0)
     summ = {"n3": {}}
     for i, arm in enumerate(N3_ARMS):
