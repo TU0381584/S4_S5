@@ -213,14 +213,16 @@ def draw_radar(ax, data, env):
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
     ax.set_xticks(ang[:-1])
-    ax.set_xticklabels(labels, fontsize=8.5)
+    ax.set_xticklabels([])
     ax.set_ylim(0, 1.08)
     ax.set_yticks([0.25, 0.5, 0.75, 1.0])
     ax.set_yticklabels([])
-    ax.tick_params(axis="x", pad=2)
-    for lab_, a_ in zip(ax.get_xticklabels(), ang[:-1]):
-        s_ = np.sin(a_)
-        lab_.set_horizontalalignment("left" if s_ > 0.1 else "right" if s_ < -0.1 else "center")
+    # axis codes sit just outside the outer ring, anchored on the side facing the centre
+    for lab_, a_ in zip(labels, ang[:-1]):
+        s_, c_ = np.sin(a_), np.cos(a_)
+        ax.text(a_, 1.12 + 0.07 * abs(c_), lab_, fontsize=8.5, clip_on=False,
+                ha="left" if s_ > 0.1 else "right" if s_ < -0.1 else "center",
+                va="bottom" if c_ > 0.1 else "top" if c_ < -0.1 else "center")
     ax.grid(linewidth=0.4, alpha=0.5)
     zbase = {"AXIOM": 4, "DQN-I": 5, "DQN-SA": 6, "MAPPO": 5}
     LS = {"AXIOM": (0, (1, 1.35)), "DQN-I": (0, (5, 2)), "DQN-SA": "-", "MAPPO": (0, (3, 1, 1, 1))}
