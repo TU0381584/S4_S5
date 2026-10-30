@@ -666,48 +666,46 @@ def main():
            and lead_["B"]["AXIOM"] == 4 and expect["B"]["DQN-SA"][1] == 1 and expect["B"]["DQN-SA"][4] == 1
            and "In Env A AXIOM leads on five of the six, while MAPPO leads on collapse resistance because it never collapses at thirty-seven gNBs" in C.main
            and "In Env B, AXIOM leads on four, and DQN-SA leads on both measures at seven gNBs" in C.main, lead_)
-    # Fig 7e and 7f (since 2026-10-30): each learner's reward as a percentage of a rule's reward on the same seed,
-    # the static rule in Env A (layout-independent) and the tuned local rule in Env B (carried over at 19 gNBs)
-    lay3_ = ("fully_connected", "ring", "hex")
-    def kd_(env_, n_, a_):
-        if env_ == "A":
-            if n_ == 3:
-                return {("-", s_): r_ for s_, r_ in seeds_of("m65_reviewer/base" if a_ in ("axiom2", "mappo_tuned") else "m63_reviewer/base", a_, S30).items()}
-            if n_ in (7, 19):
-                return {(l_, s_): r_ for l_ in lay3_ for s_, r_ in seeds_of(f"m65_scaling/n{n_}_{l_}", a_, S15 if n_ == 7 else S30_19).items()}
-            if a_ == "axiom2":
-                return {(l_, s_): r_ for l_, ss_ in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for s_, r_ in seeds_of(f"m73/A_n37_{l_}", a_, ss_).items()}
-            return {("hex", s_): r_ for s_, r_ in seeds_of("m73/A_n37_hex", a_, S30_19).items()}
-        if n_ == 3:
-            return {("-", s_): r_ for s_, r_ in seeds_of("m64/n3_fully_connected", a_, S30).items()}
-        if n_ == 7:
-            return {(l_, s_): r_ for l_ in lay3_ for s_, r_ in seeds_of(f"m64/n7_{l_}", a_, S15).items()}
-        return {("hex", s_): r_ for s_, r_ in seeds_of("m75/D_envB_n19_hex", a_, S15).items()}
-    def rl_(env_, n_, k_):
-        l_, s_ = k_
-        if env_ == "A":
-            cell_, arm_ = (("m65_n3_view", "heuristic") if n_ == 3 else (f"m70/R1/A_n{n_}_{l_}", "rule_static") if n_ in (7, 19) else ("m73/A_n37_hex", "rule_static"))
-        else:
-            cell_, arm_ = (("m64/n3_fully_connected", "rule_local") if n_ == 3 else (f"m64/n7_{l_}", "rule_local") if n_ == 7 else ("m75/D_envB_n19_hex", "rule_local_transfer"))
-        return seeds_of(cell_, arm_, [s_])[s_]["reward"]
-    rr_, bad7_ = {}, []
-    for env_, sizes_ in (("A", (3, 7, 19, 37)), ("B", (3, 7, 19))):
-        for k_, a_ in lab.items():
-            for n_ in sizes_:
-                v_ = [100 * r_["reward"] / rl_(env_, n_, key_) for key_, r_ in kd_(env_, n_, a_).items()]
-                rr_[(env_, k_, n_)] = float(np.mean(v_))
-                p_ = sup_["rule"][env_][k_][str(n_)]
-                if p_["n_runs"] != len(v_) or abs(p_["pct"] - rr_[(env_, k_, n_)]) > 1e-9:
-                    bad7_.append((env_, k_, n_))
-    C.note("Fig 7e and 7f reward as a percentage of the rule matches recomputation from the logs", not bad7_ and len(rr_) == 28, bad7_)
-    ax7_ = [rr_[("A", "AXIOM", n_)] for n_ in (3, 7, 19, 37)]
-    bl7_ = [rr_[("A", k_, n_)] for k_ in ("DQN-SA", "DQN-I", "MAPPO") for n_ in (7, 19, 37)]
-    bB7_ = [rr_[("B", "AXIOM", n_)] for n_ in (3, 7, 19)]
-    C.note("Fig 7 text: AXIOM 97.8-98.9% of the static rule; baselines 76.3-86.3% from 7 gNBs; every Env B learner below the tuned rule, AXIOM 85.9-95.5%",
-           (f"{min(ax7_):.1f}", f"{max(ax7_):.1f}", f"{min(bl7_):.1f}", f"{max(bl7_):.1f}", f"{min(bB7_):.1f}", f"{max(bB7_):.1f}") == ("97.8", "98.9", "76.3", "86.3", "85.9", "95.5")
-           and all(v_ < 100 for (e_, k_, n_), v_ in rr_.items() if e_ == "B")
-           and "In Env A AXIOM keeps 97.8\\% to 98.9\\% of the static rule's reward at every size, while the baselines keep 76.3\\% to 86.3\\% from seven gNBs up" in C.main
-           and "In Env B every learner stays below the tuned rule, AXIOM at 85.9\\% to 95.5\\% of its reward" in C.main, {str(k_): round(v_, 2) for k_, v_ in rr_.items()})
+    # Fig 7e and 7f (since 2026-10-30, replacing the rule-share panels): (e) Env A priority-slice compliance at
+    # nineteen gNBs as offered load rises from the nominal 105% of the shares, hex layout, 15 seeds; (f) AXIOM's
+    # Env B reward per gNB over the tuned rule, paired per seed, as load shifts, neither retrained nor re-tuned
+    def lg_(path_):
+        for c_ in (path_, path_ + ".gz"):
+            if os.path.exists(c_):
+                return read(c_)
+        raise FileNotFoundError(path_)
+    eA_, badl_ = {}, []
+    for k_, a_ in list(lab.items()) + [("Static rule", "rule_static")]:
+        for L_ in ("1.05", "1.10", "1.20"):
+            cell_ = ("m70/R1/A_n19_hex" if a_ == "rule_static" else "m65_scaling/n19_hex") if L_ == "1.05" else f"m76/e_load{L_}_n19_hex"
+            rows_ = list(seeds_of(cell_, a_, S15).values())
+            eA_[(k_, L_)] = float(np.mean([100 * prio(r_) for r_ in rows_]))
+            q_ = sup_["load"]["A"][k_][L_]
+            if q_["n_runs"] != len(rows_) or len(rows_) != 15 or abs(q_["y"] - eA_[(k_, L_)]) > 1e-9:
+                badl_.append(("A", k_, L_))
+    fB_ = {}
+    for n_, (cell_, rule_, ss_, shs_) in {3: ("m72/B_shift/n3", "rule_local", list(range(905, 930)), ("load_0.80", "nominal", "load_1.05", "load_1.10", "load_1.15", "load_1.20")),
+                                         7: ("m72/B_shift/n7_ring", "rule_local", S15, ("nominal", "load_1.10", "load_1.20")),
+                                         19: ("m76/b1_shift_n19", "rule_local_transfer", S15, ("nominal", "load_1.10", "load_1.15", "load_1.20"))}.items():
+        for sh_ in shs_:
+            dd7_ = [(lg_(f"{ROOT}/{cell_}/{sh_}/axiom2/seed{s_}/omega_log.jsonl")["reward"]
+                     - lg_(f"{ROOT}/{cell_}/{sh_}/{rule_}/seed{s_}/lb_only/offline_eval/rep_0/omega_log.jsonl")["reward"]) / n_ for s_ in ss_]
+            L_ = "1.00" if sh_ == "nominal" else sh_.split("_")[1]
+            fB_[(n_, L_)] = float(np.mean(dd7_))
+            q_ = sup_["load"]["B"][str(n_)][L_]
+            if q_["n_runs"] != len(dd7_) or abs(q_["d"] - fB_[(n_, L_)]) > 1e-9:
+                badl_.append(("B", n_, L_))
+    C.note("Fig 7e and 7f load panels match recomputation from the logs", not badl_ and len(eA_) == 15 and len(fB_) == 13, badl_)
+    gapA_ = max(eA_[("Static rule", L_)] - eA_[("AXIOM", L_)] for L_ in ("1.05", "1.10", "1.20"))
+    nomB_ = [-fB_[(n_, "1.00")] for n_ in (3, 7, 19)]
+    upB_ = [v_ for (n_, L_), v_ in fB_.items() if float(L_) > 1.0]
+    C.note("Fig 7 text: AXIOM within 5.3 points of the static rule under load, above every baseline; Env B trails the tuned rule by 0.14-0.55 per gNB at nominal, leads by 0.10-0.46 above it",
+           f"{gapA_:.1f}" == "5.3" and all(eA_[(k_, L_)] < eA_[("AXIOM", L_)] for k_ in ("DQN-SA", "DQN-I", "MAPPO") for L_ in ("1.05", "1.10", "1.20"))
+           and min(nomB_) > 0 and (f"{min(nomB_):.2f}", f"{max(nomB_):.2f}") == ("0.14", "0.55")
+           and min(upB_) > 0 and (f"{min(upB_):.2f}", f"{max(upB_):.2f}") == ("0.10", "0.46")
+           and "AXIOM stays within 5.3 points of the static rule as offered load rises from 105\\% to 120\\% of the nominal shares, and every baseline stays below AXIOM at each load" in C.main
+           and "In Env B AXIOM trails the tuned rule at the rule's own load, by 0.14 to 0.55 reward per gNB, but leads it by 0.10 to 0.46 once the load rises 5\\% to 20\\%" in C.main,
+           {"A": {str(k_): round(v_, 2) for k_, v_ in eA_.items()}, "B": {str(k_): round(v_, 3) for k_, v_ in fB_.items()}})
 
     # ---------------- M66 verification subsection: V1 reruns and V2 fresh seeds
     v1 = [("m66_repro/B_n3", "m64/n3_fully_connected", a_, range(900, 905 if a_ in ("axiom2", "mappo_tuned") else 903))
