@@ -2013,6 +2013,120 @@ def main():
            and "The local rule carried over from seven gNBs won every seed, by 3.33 per step, and DQN-SA collapsed in all 15" in C.tex
            and "A sixth held all four in Env B at nineteen gNBs on 15 seeds" in C.main, {"static": st19_, "local": lt19_})
 
+    # ---------------- M81 (2026-10-31): what AXIOM learned at seven gNBs, per-gNB maps at nineteen, reported against fresh
+    FIG_ = "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures"
+    rp81_ = json.load(open(f"{ROOT}/m81/replay.json"))
+    ck81_ = {"300": "m64/n7_ring", "900": "m79/ep900_n7_ring"}
+    dr81_ = {b_: max(abs(rp81_[b_][str(s_)]["replayed_reward"] - r_["reward"]) for s_, r_ in seeds_of(c_, "axiom2", S15).items()) for b_, c_ in ck81_.items()}
+    C.note("M81 probe replays every stored evaluation exactly, 15 seeds per budget, 21000 gNB-steps each",
+           all(len(rp81_[b_]) == 15 and len(seeds_of(c_, "axiom2", S15)) == 15 for b_, c_ in ck81_.items()) and max(dr81_.values()) <= 1e-9
+           and all(v_["states"] == 21000 for b_ in rp81_ for v_ in rp81_[b_].values()), dr81_)
+    ds81_ = json.load(open(f"{FIG_}/fig_decision_summary.json"))
+    bins81_ = ds81_["bins"]
+    ld81_ = {b_: [(np.load(f"{ROOT}/m81/{b_}_seed{s_}.npz")["urllc_queue"], np.load(f"{ROOT}/m81/{b_}_seed{s_}.npz")["shed_embb"]) for s_ in S15] for b_ in ck81_}
+    def sh81_(b_):
+        q_ = np.concatenate([q for q, _ in ld81_[b_]]); s_ = np.concatenate([x for _, x in ld81_[b_]])
+        out_ = []
+        for k_ in range(len(bins81_) - 1):
+            m_ = (q_ >= bins81_[k_]) & (q_ < bins81_[k_ + 1])
+            out_.append(float(s_[m_].mean()) if m_.sum() >= 50 else None)
+        return float(s_.mean()), out_
+    rc81_ = {b_: sh81_(b_) for b_ in ck81_}
+    C.note("M81 decision figure summary recomputed from the probe records",
+           all(abs(rc81_[b_][0] - ds81_["budgets"][b_]["overall_shed"]) <= 1e-12
+               and all((x_ is None and y_ is None) or (x_ is not None and y_ is not None and abs(x_ - y_) <= 1e-12)
+                       for x_, y_ in zip(rc81_[b_][1], ds81_["budgets"][b_]["shed"])) for b_ in ck81_), None)
+    C.claim("M81 300-episode pooled eMBB reject share", "pooled over all 15 it rejects on 2.0\\% of gNB-steps", 100 * rc81_["300"][0], "{:.1f}")
+    C.claim("M81 900-episode reject share, lowest queue bin", "the share rises from 12.2\\% below a queue of 0.05", 100 * rc81_["900"][1][0], "{:.1f}")
+    C.claim("M81 900-episode reject share, queue 0.75 to 1.0", "to 71.8\\% between 0.75 and 1.0", 100 * rc81_["900"][1][bins81_.index(0.75)], "{:.1f}")
+    z300_ = sum(not s_.any() for _, s_ in ld81_["300"])
+    up900_ = [s_[q_ >= 0.2].mean() > s_[q_ < 0.2].mean() for q_, s_ in ld81_["900"]]
+    C.note("M81 11 of 15 seeds never reject eMBB at 300 episodes; at 900, 14 of 15 reject more at a queue of 0.2 or more and one never rejects",
+           z300_ == 11 and sum(up900_) == 14 and sum(not s_.any() for _, s_ in ld81_["900"]) == 1
+           and "After 300 episodes the eMBB head of 11 of its 15 seeds would reject at no step" in C.main
+           and "After 900 episodes 14 of 15 seeds reject more often as the gNB's own URLLC queue grows" in C.main, (z300_, sum(up900_)))
+    pgs_ = json.load(open(f"{FIG_}/fig_pergnb_envb_summary.json"))
+    def pgmap_(cell_, arm_, seeds_):
+        acc_ = np.zeros(19)
+        for s_ in seeds_:
+            m_ = json.load(open(f"{ROOT}/{cell_}/{arm_}/seed{s_}/eval/per_gnb_sla.json"))
+            v_ = np.zeros(19)
+            v_[[int(g_.split("-")[1]) for g_ in m_["gnbs"]]] = 50 * (np.array(m_["per_gnb_compliance"]["urllc"]) + np.array(m_["per_gnb_compliance"]["embb"]))
+            acc_ += v_
+        return acc_ / len(seeds_)
+    arms81_ = ("axiom2", "mappo_tuned", "rule_static", "rule_local_transfer", "single_agent_dqn", "independent_dqn")
+    pm81_ = {nm_: {a_: pgmap_(c_, a_, ss_) for a_ in arms81_} for nm_, (c_, ss_) in
+             {"reported": ("m75/D_envB_n19_hex", S15), "fresh": ("m80/D_envB_n19_hex_fresh", list(range(7000, 7015)))}.items()}
+    C.note("M81 per-gNB map summary recomputed, and the centre gNB is the lowest for every policy in both seed sets",
+           all(np.allclose(pm81_[nm_][a_], pgs_["sets"][nm_]["arms"][a_]["per_gnb"], atol=6e-5) and int(np.argmin(pm81_[nm_][a_])) == 0
+               for nm_ in pm81_ for a_ in arms81_)
+           and "Every policy keeps the least at the centre gNB" in C.main, None)
+    deg81_ = np.array(pgs_["degree"])
+    gap81_ = [float(pm81_["reported"][a_][1:7].mean() - pm81_["reported"][a_][deg81_ < 6].mean()) for a_ in arms81_[:4]]
+    C.note("M81 six inner gNBs have six neighbours like the centre", all(deg81_[:7] == 6) and int((deg81_ < 6).sum()) == 12, deg81_.tolist())
+    C.claim("M81 inner gNBs trail the edge, low", "trail the edge by only 0.5 to 1.8 points", -max(gap81_), "{:.1f}")
+    C.claim("M81 inner gNBs trail the edge, high", "trail the edge by only 0.5 to 1.8 points", -min(gap81_), "{:.1f}")
+    for nm_, sn_ in (("reported", "The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere"),
+                     ("fresh", "and by 13.2 and 7.0 points on the 15 fresh seeds")):
+        lt_, ax_ = pm81_[nm_]["rule_local_transfer"], pm81_[nm_]["axiom2"]
+        C.claim(f"M81 {nm_} carried rule over AXIOM at the centre", sn_, lt_[0] - ax_[0], "{:.1f}")
+        C.claim(f"M81 {nm_} carried rule over AXIOM elsewhere", sn_, lt_[1:].mean() - ax_[1:].mean(), "{:.1f}")
+    fo_ = {(r_["env"], r_["n"], r_["sample"], r_["baseline"], r_["metric"]): r_ for r_ in json.load(open(f"{FIG_}/fig_forest_summary.json"))["rows"]}
+    LAY81_ = ("fully_connected", "ring", "hex")
+    def fcells_(env_, n_, smp_):
+        if smp_ == "reported":
+            if env_ == "A":
+                if n_ == 3:
+                    return [("m65_reviewer/base", "m63_reviewer/base", S30)]
+                if n_ in (7, 19):
+                    return [(f"m65_scaling/n{n_}_{t_}", f"m65_scaling/n{n_}_{t_}", S15 if n_ == 7 else S30_19) for t_ in LAY81_]
+                return [("m73/A_n37_hex", "m73/A_n37_hex", S30_19)]
+            if n_ == 3:
+                return [("m64/n3_fully_connected", "m64/n3_fully_connected", S30)]
+            if n_ == 7:
+                return [(f"m64/n7_{t_}", f"m64/n7_{t_}", S15) for t_ in LAY81_]
+            return [("m75/D_envB_n19_hex", "m75/D_envB_n19_hex", S15)]
+        fr_ = {("A", 3): ["m66_fresh/A_n3", "m66d_fresh/D1_A_n3"],
+               ("A", 7): ["m66b_fresh/A_n7_ring", "m66b_fresh/A_n7_fully_connected", "m66c_fresh/C1_A_n7_hex", "m66c_fresh/C3_A_n7_fc"],
+               ("A", 19): ["m66_fresh/A_n19_ring", "m66b_fresh/A_n19_hex", "m66c_fresh/C2_A_n19_fc"], ("A", 37): ["m74/A_n37_hex"],
+               ("B", 3): ["m66_fresh/B_n3"], ("B", 7): ["m66_fresh/B_n7_ring", "m66c_fresh/C4_B_n7_fully_connected", "m66c_fresh/C4_B_n7_hex"],
+               ("B", 19): ["m80/D_envB_n19_hex_fresh"]}[(env_, n_)]
+        return [(c_, c_, sorted(int(x_[4:]) for x_ in os.listdir(f"{ROOT}/{c_}/axiom2") if x_.startswith("seed"))) for c_ in fr_]
+    fbad_ = []
+    for (env_, n_, smp_, b_, met_), r_ in fo_.items():
+        if met_ != "reward":
+            continue
+        dr_, dg_ = [], []
+        for ca_, cb_, ss_ in fcells_(env_, n_, smp_):
+            if smp_ == "reported" and env_ == "A" and n_ == 3 and b_ == "mappo_tuned":
+                cb_ = "m65_reviewer/base"
+            xa_, xb_ = seeds_of(ca_, "axiom2", ss_), seeds_of(cb_, b_, ss_)
+            for s_ in sorted(set(xa_) & set(xb_)):
+                dr_.append((xa_[s_]["reward"] - xb_[s_]["reward"]) / n_); dg_.append(100 * (prio(xa_[s_]) - prio(xb_[s_])))
+        for met2_, d_ in (("reward", dr_), ("sla", dg_)):
+            rr_ = fo_[(env_, n_, smp_, b_, met2_)]
+            lo_, hi_ = ci(d_)
+            tol_ = max(0.03 if len(d_) >= 30 else 0.05, 0.05 * (hi_ - lo_))
+            if not (rr_["n_pairs"] == len(d_) >= 15 and abs(rr_["mean"] - float(np.mean(d_))) <= 1e-9
+                    and abs(rr_["ci"][0] - lo_) <= tol_ and abs(rr_["ci"][1] - hi_) <= tol_):
+                fbad_.append((env_, n_, smp_, b_, met2_))
+    C.note("M81 forest figure, all 84 rows recomputed from the logs with the verifier's own bootstrap", len(fo_) == 84 and not fbad_, fbad_)
+    ex_ = lambda r_: r_["ci"][0] > 0 or r_["ci"][1] < 0
+    rep_ = [k_ for k_, r_ in fo_.items() if k_[2] == "reported" and ex_(r_)]
+    held_ = [k_ for k_ in rep_ if (lambda f_: (f_["ci"][0] > 0) == (fo_[k_]["ci"][0] > 0) and ex_(f_))(fo_[k_[:2] + ("fresh",) + k_[3:]])]
+    miss_ = sorted(set(rep_) - set(held_))
+    C.claim("M81 reported differences whose CI excludes zero", "Of the 38 reported differences whose 95\\% CI excludes zero", len(rep_), "{:d}")
+    C.claim("M81 of them, fresh CI on the same side", "35 keep a CI on the same side on fresh seeds", len(held_), "{:d}")
+    C.note("M81 the three exceptions are Env B compliance, DQN-SA and DQN-I at 7 and MAPPO at 19, and all three fresh CIs span zero",
+           miss_ == sorted([("B", 7, "reported", "single_agent_dqn", "sla"), ("B", 7, "reported", "independent_dqn", "sla"), ("B", 19, "reported", "mappo_tuned", "sla")])
+           and all(not ex_(fo_[k_[:2] + ("fresh",) + k_[3:]]) for k_ in miss_) and "and all three fresh CIs span zero" in C.main, miss_)
+    sn81_ = "AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead"
+    C.claim("M81 reported Env B 7 compliance deficit to DQN-SA", sn81_, -fo_[("B", 7, "reported", "single_agent_dqn", "sla")]["mean"], "{:.1f}")
+    C.claim("M81 reported Env B 7 compliance deficit to DQN-I", sn81_, -fo_[("B", 7, "reported", "independent_dqn", "sla")]["mean"], "{:.1f}")
+    C.claim("M81 fresh Env B 7 compliance deficit to DQN-SA", sn81_, -fo_[("B", 7, "fresh", "single_agent_dqn", "sla")]["mean"], "{:.1f}")
+    C.claim("M81 fresh Env B 7 compliance lead over DQN-I", sn81_, fo_[("B", 7, "fresh", "independent_dqn", "sla")]["mean"], "{:.1f}")
+    C.claim("M81 fresh Env B 19 compliance lead over MAPPO", "Its lead over MAPPO at nineteen gNBs falls to 2.9 points", fo_[("B", 19, "fresh", "mappo_tuned", "sla")]["mean"], "{:.1f}")
+
     n_total = len(C.rows) + 1
     C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)
     rows = C.rows

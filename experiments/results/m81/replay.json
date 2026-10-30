@@ -1,0 +1,126 @@
+{
+ "300": {
+  "900": {
+   "replayed_reward": 24.828355045504765,
+   "states": 21000
+  },
+  "901": {
+   "replayed_reward": 23.117506699647993,
+   "states": 21000
+  },
+  "902": {
+   "replayed_reward": 22.77899996956475,
+   "states": 21000
+  },
+  "903": {
+   "replayed_reward": 20.54533862144915,
+   "states": 21000
+  },
+  "904": {
+   "replayed_reward": 23.696226024871077,
+   "states": 21000
+  },
+  "905": {
+   "replayed_reward": 24.444894111179213,
+   "states": 21000
+  },
+  "906": {
+   "replayed_reward": 23.022570154336655,
+   "states": 21000
+  },
+  "907": {
+   "replayed_reward": 24.025146028679327,
+   "states": 21000
+  },
+  "908": {
+   "replayed_reward": 23.369859630569835,
+   "states": 21000
+  },
+  "909": {
+   "replayed_reward": 25.15611336187485,
+   "states": 21000
+  },
+  "910": {
+   "replayed_reward": 23.10881377390436,
+   "states": 21000
+  },
+  "911": {
+   "replayed_reward": 23.123293063291925,
+   "states": 21000
+  },
+  "1000": {
+   "replayed_reward": 24.844827865713324,
+   "states": 21000
+  },
+  "1001": {
+   "replayed_reward": 23.364109127020004,
+   "states": 21000
+  },
+  "1002": {
+   "replayed_reward": 23.019566053270374,
+   "states": 21000
+  }
+ },
+ "900": {
+  "900": {
+   "replayed_reward": 28.01305344329915,
+   "states": 21000
+  },
+  "901": {
+   "replayed_reward": 25.152627879151087,
+   "states": 21000
+  },
+  "902": {
+   "replayed_reward": 26.96228344219844,
+   "states": 21000
+  },
+  "903": {
+   "replayed_reward": 26.69690524934612,
+   "states": 21000
+  },
+  "904": {
+   "replayed_reward": 27.31336832274313,
+   "states": 21000
+  },
+  "905": {
+   "replayed_reward": 27.575975425326934,
+   "states": 21000
+  },
+  "906": {
+   "replayed_reward": 25.060519842076314,
+   "states": 21000
+  },
+  "907": {
+   "replayed_reward": 27.454074105314362,
+   "states": 21000
+  },
+  "908": {
+   "replayed_reward": 27.482033484541137,
+   "states": 21000
+  },
+  "909": {
+   "replayed_reward": 25.44551205630941,
+   "states": 21000
+  },
+  "910": {
+   "replayed_reward": 23.454017724773053,
+   "states": 21000
+  },
+  "911": {
+   "replayed_reward": 25.59318464591081,
+   "states": 21000
+  },
+  "1000": {
+   "replayed_reward": 27.896869451063612,
+   "states": 21000
+  },
+  "1001": {
+   "replayed_reward": 27.136154549355926,
+   "states": 21000
+  },
+  "1002": {
+   "replayed_reward": 26.61673258195112,
+   "states": 21000
+  }
+ }
+}

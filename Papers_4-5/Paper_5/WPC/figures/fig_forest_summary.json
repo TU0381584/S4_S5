@@ -1,0 +1,1264 @@
+{
+ "rows": [
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.10367656695275165,
+   "ci": [
+    -0.0028018249807198717,
+    0.2144418585122826
+   ],
+   "wins": 15,
+   "losses": 7
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 2.1111111111111116,
+   "ci": [
+    -0.6683472222222216,
+    4.926666666666666
+   ],
+   "wins": 13,
+   "losses": 4
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.3700600074275776,
+   "ci": [
+    0.1999072067849641,
+    0.5500151912988305
+   ],
+   "wins": 27,
+   "losses": 3
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 5.959444444444444,
+   "ci": [
+    1.628888888888889,
+    10.68784722222222
+   ],
+   "wins": 17,
+   "losses": 4
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.8948367980967668,
+   "ci": [
+    0.6708740176306602,
+    1.117196707808949
+   ],
+   "wins": 29,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 21.18444444444445,
+   "ci": [
+    15.200458333333335,
+    27.217263888888894
+   ],
+   "wins": 27,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 60,
+   "mean": 0.033133470114775916,
+   "ci": [
+    -0.061309346737007366,
+    0.1304734172930426
+   ],
+   "wins": 33,
+   "losses": 13
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 60,
+   "mean": 0.35555555555555485,
+   "ci": [
+    -2.033104166666668,
+    2.8286180555555553
+   ],
+   "wins": 23,
+   "losses": 11
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 60,
+   "mean": 0.24683710403689366,
+   "ci": [
+    0.15356697230243654,
+    0.33692738537022676
+   ],
+   "wins": 52,
+   "losses": 7
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 60,
+   "mean": 2.8311111111111114,
+   "ci": [
+    0.45376388888888886,
+    5.0808333333333335
+   ],
+   "wins": 38,
+   "losses": 10
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 60,
+   "mean": 0.8226734685154127,
+   "ci": [
+    0.6476181356670296,
+    0.9978711641083777
+   ],
+   "wins": 56,
+   "losses": 3
+  },
+  {
+   "env": "A",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 60,
+   "mean": 18.42,
+   "ci": [
+    14.199798611111111,
+    22.58115277777778
+   ],
+   "wins": 55,
+   "losses": 4
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 45,
+   "mean": 0.5422555828499156,
+   "ci": [
+    0.3691387629548653,
+    0.7273680288309646
+   ],
+   "wins": 40,
+   "losses": 5
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 45,
+   "mean": 20.84,
+   "ci": [
+    14.669231481481482,
+    27.242620370370368
+   ],
+   "wins": 38,
+   "losses": 4
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 45,
+   "mean": 0.6363666452142016,
+   "ci": [
+    0.5397962161980228,
+    0.7216154260808335
+   ],
+   "wins": 44,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 45,
+   "mean": 22.484074074074076,
+   "ci": [
+    18.129444444444445,
+    26.51587962962963
+   ],
+   "wins": 42,
+   "losses": 3
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 45,
+   "mean": 0.987743726493001,
+   "ci": [
+    0.8249939493370514,
+    1.1556988871489093
+   ],
+   "wins": 45,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 45,
+   "mean": 29.3962962962963,
+   "ci": [
+    24.66103703703704,
+    34.03791666666666
+   ],
+   "wins": 44,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 50,
+   "mean": 0.33865433126242933,
+   "ci": [
+    0.2227185227899783,
+    0.44322962836099056
+   ],
+   "wins": 42,
+   "losses": 3
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 50,
+   "mean": 14.790333333333331,
+   "ci": [
+    9.957316666666665,
+    19.361391666666663
+   ],
+   "wins": 43,
+   "losses": 2
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 50,
+   "mean": 0.5672073897719234,
+   "ci": [
+    0.4660765097160019,
+    0.6566083362894347
+   ],
+   "wins": 47,
+   "losses": 3
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 50,
+   "mean": 17.91933333333333,
+   "ci": [
+    13.488824999999999,
+    22.160041666666665
+   ],
+   "wins": 46,
+   "losses": 4
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 50,
+   "mean": 0.844741078290555,
+   "ci": [
+    0.7009236538410704,
+    0.9883906526193518
+   ],
+   "wins": 48,
+   "losses": 2
+  },
+  {
+   "env": "A",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 50,
+   "mean": 27.630333333333333,
+   "ci": [
+    22.51525833333333,
+    32.17409166666666
+   ],
+   "wins": 47,
+   "losses": 3
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 90,
+   "mean": 0.5928062394313577,
+   "ci": [
+    0.5419560531633663,
+    0.6465824757701714
+   ],
+   "wins": 85,
+   "losses": 4
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 90,
+   "mean": 31.974814814814817,
+   "ci": [
+    29.21184722222223,
+    34.90457407407408
+   ],
+   "wins": 86,
+   "losses": 2
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 90,
+   "mean": 0.674170780757816,
+   "ci": [
+    0.6303681344387263,
+    0.714170299188957
+   ],
+   "wins": 88,
+   "losses": 2
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 90,
+   "mean": 40.892222222222216,
+   "ci": [
+    37.85947222222222,
+    43.81334259259259
+   ],
+   "wins": 88,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 90,
+   "mean": 0.9459485614091264,
+   "ci": [
+    0.8614893783679809,
+    1.0342678450732246
+   ],
+   "wins": 90,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 90,
+   "mean": 36.61833333333333,
+   "ci": [
+    34.055370370370376,
+    39.074449074074074
+   ],
+   "wins": 89,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 35,
+   "mean": 0.5884573715584133,
+   "ci": [
+    0.5049418576208601,
+    0.6695594352561379
+   ],
+   "wins": 33,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 35,
+   "mean": 30.517142857142854,
+   "ci": [
+    25.381880952380953,
+    35.38525
+   ],
+   "wins": 32,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 35,
+   "mean": 0.7499899079088581,
+   "ci": [
+    0.6728918546612573,
+    0.825049022128366
+   ],
+   "wins": 35,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 35,
+   "mean": 48.23857142857143,
+   "ci": [
+    42.313809523809525,
+    54.26022619047618
+   ],
+   "wins": 35,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 35,
+   "mean": 0.9071469699427116,
+   "ci": [
+    0.801042645804962,
+    1.0089883639399846
+   ],
+   "wins": 35,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 35,
+   "mean": 33.63428571428572,
+   "ci": [
+    27.568833333333334,
+    39.280988095238094
+   ],
+   "wins": 32,
+   "losses": 3
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.7974848693403366,
+   "ci": [
+    0.4707888213506554,
+    1.2450013749356217
+   ],
+   "wins": 27,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 34.92333333333333,
+   "ci": [
+    27.56093055555556,
+    42.08169444444444
+   ],
+   "wins": 26,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.6988576554972756,
+   "ci": [
+    0.5956257264586371,
+    0.7943996675978862
+   ],
+   "wins": 29,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 61.452222222222204,
+   "ci": [
+    52.173833333333334,
+    70.08399999999999
+   ],
+   "wins": 28,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.7825185654593162,
+   "ci": [
+    0.6229516709054543,
+    0.9477032564733742
+   ],
+   "wins": 29,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 36.90888888888889,
+   "ci": [
+    28.57484722222222,
+    44.73309722222221
+   ],
+   "wins": 28,
+   "losses": 2
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 20,
+   "mean": 0.9584500341644129,
+   "ci": [
+    0.45154357424567426,
+    1.6794064001114604
+   ],
+   "wins": 19,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 20,
+   "mean": 37.730000000000004,
+   "ci": [
+    29.073333333333334,
+    47.05262499999999
+   ],
+   "wins": 18,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 20,
+   "mean": 0.6925455797563939,
+   "ci": [
+    0.5689484384923529,
+    0.8002095312000543
+   ],
+   "wins": 19,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 20,
+   "mean": 61.00999999999999,
+   "ci": [
+    49.92814583333334,
+    70.85258333333333
+   ],
+   "wins": 19,
+   "losses": 0
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 20,
+   "mean": 0.8277606547933327,
+   "ci": [
+    0.6165713029056036,
+    1.057292249477103
+   ],
+   "wins": 19,
+   "losses": 1
+  },
+  {
+   "env": "A",
+   "n": 37,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 20,
+   "mean": 36.537499999999994,
+   "ci": [
+    26.0524375,
+    45.61843749999999
+   ],
+   "wins": 19,
+   "losses": 1
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.44564205287501313,
+   "ci": [
+    0.35196222947011685,
+    0.5471347148231123
+   ],
+   "wins": 29,
+   "losses": 1
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 7.580555555555555,
+   "ci": [
+    5.607180555555556,
+    9.700055555555554
+   ],
+   "wins": 26,
+   "losses": 4
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.3460091958694066,
+   "ci": [
+    0.24432275046793978,
+    0.45909550205074023
+   ],
+   "wins": 29,
+   "losses": 1
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 6.097222222222223,
+   "ci": [
+    4.223277777777778,
+    8.080055555555555
+   ],
+   "wins": 27,
+   "losses": 3
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.6211256202242941,
+   "ci": [
+    0.446690560431347,
+    0.8011692210518833
+   ],
+   "wins": 29,
+   "losses": 1
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 10.82888888888889,
+   "ci": [
+    7.327180555555557,
+    14.428972222222221
+   ],
+   "wins": 24,
+   "losses": 6
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 20,
+   "mean": 0.4778400067295577,
+   "ci": [
+    0.3348608535706977,
+    0.6218783994245952
+   ],
+   "wins": 19,
+   "losses": 1
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 20,
+   "mean": 8.241666666666667,
+   "ci": [
+    5.784124999999998,
+    10.73839583333333
+   ],
+   "wins": 18,
+   "losses": 2
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 20,
+   "mean": 0.3655467655145415,
+   "ci": [
+    0.2511349011888875,
+    0.4840748795806483
+   ],
+   "wins": 19,
+   "losses": 1
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 20,
+   "mean": 6.297499999999998,
+   "ci": [
+    4.332458333333331,
+    8.346729166666664
+   ],
+   "wins": 18,
+   "losses": 2
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 20,
+   "mean": 0.6413341659954404,
+   "ci": [
+    0.40924406784367956,
+    0.8794290333287869
+   ],
+   "wins": 17,
+   "losses": 3
+  },
+  {
+   "env": "B",
+   "n": 3,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 20,
+   "mean": 10.130833333333333,
+   "ci": [
+    5.666666666666666,
+    14.510145833333327
+   ],
+   "wins": 17,
+   "losses": 3
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 45,
+   "mean": -0.01039459131726673,
+   "ci": [
+    -0.08711688814418843,
+    0.06727962368338457
+   ],
+   "wins": 21,
+   "losses": 24
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 45,
+   "mean": -9.156666666666666,
+   "ci": [
+    -12.572962962962963,
+    -5.737777777777778
+   ],
+   "wins": 11,
+   "losses": 34
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 45,
+   "mean": 0.12368863640715101,
+   "ci": [
+    0.05670394723254498,
+    0.19243496934843266
+   ],
+   "wins": 31,
+   "losses": 14
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 45,
+   "mean": -4.848148148148147,
+   "ci": [
+    -7.665935185185184,
+    -2.075148148148149
+   ],
+   "wins": 12,
+   "losses": 33
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 45,
+   "mean": 0.33765257121039177,
+   "ci": [
+    0.2285338709518316,
+    0.44801314986338847
+   ],
+   "wins": 36,
+   "losses": 9
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 45,
+   "mean": -0.7722222222222228,
+   "ci": [
+    -4.383814814814817,
+    2.4694722222222194
+   ],
+   "wins": 29,
+   "losses": 16
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.11070925952110734,
+   "ci": [
+    -0.0006463240998418921,
+    0.22807683244645752
+   ],
+   "wins": 17,
+   "losses": 13
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": -4.208333333333333,
+   "ci": [
+    -9.591152777777774,
+    1.3374027777777753
+   ],
+   "wins": 13,
+   "losses": 17
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.18029483062844412,
+   "ci": [
+    0.08516580375395039,
+    0.26731359494069046
+   ],
+   "wins": 24,
+   "losses": 6
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 0.7694444444444442,
+   "ci": [
+    -3.9513472222222226,
+    5.564152777777773
+   ],
+   "wins": 16,
+   "losses": 14
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 30,
+   "mean": 0.469049291423428,
+   "ci": [
+    0.3160088555330474,
+    0.6367427675992554
+   ],
+   "wins": 26,
+   "losses": 4
+  },
+  {
+   "env": "B",
+   "n": 7,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 30,
+   "mean": 1.8872222222222228,
+   "ci": [
+    -3.191166666666668,
+    7.14409722222222
+   ],
+   "wins": 18,
+   "losses": 12
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 15,
+   "mean": 0.29166528779823697,
+   "ci": [
+    0.2233400298283882,
+    0.34934582348665644
+   ],
+   "wins": 14,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 15,
+   "mean": 6.744444444444443,
+   "ci": [
+    3.8566388888888885,
+    11.623388888888886
+   ],
+   "wins": 14,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 15,
+   "mean": 0.4777782760574783,
+   "ci": [
+    0.40286684500362696,
+    0.5480914258626663
+   ],
+   "wins": 15,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 15,
+   "mean": 8.043333333333333,
+   "ci": [
+    5.185527777777778,
+    12.903444444444442
+   ],
+   "wins": 15,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 15,
+   "mean": 1.1165882364331619,
+   "ci": [
+    0.9135253022325482,
+    1.3299821501536329
+   ],
+   "wins": 15,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "reported",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 15,
+   "mean": 3.946666666666667,
+   "ci": [
+    0.6288611111111116,
+    9.056666666666668
+   ],
+   "wins": 12,
+   "losses": 3
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "reward",
+   "n_pairs": 15,
+   "mean": 0.3103897977756859,
+   "ci": [
+    0.24110896555343764,
+    0.3579673570948104
+   ],
+   "wins": 14,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "single_agent_dqn",
+   "metric": "sla",
+   "n_pairs": 15,
+   "mean": 6.593333333333334,
+   "ci": [
+    3.808888888888889,
+    11.36563888888889
+   ],
+   "wins": 14,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "reward",
+   "n_pairs": 15,
+   "mean": 0.5011638934537924,
+   "ci": [
+    0.4162491410617578,
+    0.5948479138753776
+   ],
+   "wins": 15,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "independent_dqn",
+   "metric": "sla",
+   "n_pairs": 15,
+   "mean": 7.05,
+   "ci": [
+    4.153305555555555,
+    11.817805555555557
+   ],
+   "wins": 15,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "reward",
+   "n_pairs": 15,
+   "mean": 1.157948769116935,
+   "ci": [
+    0.9195180691869358,
+    1.3730846790024558
+   ],
+   "wins": 15,
+   "losses": 0
+  },
+  {
+   "env": "B",
+   "n": 19,
+   "sample": "fresh",
+   "baseline": "mappo_tuned",
+   "metric": "sla",
+   "n_pairs": 15,
+   "mean": 2.9400000000000004,
+   "ci": [
+    -1.7855833333333324,
+    8.155555555555555
+   ],
+   "wins": 12,
+   "losses": 3
+  }
+ ]
+}

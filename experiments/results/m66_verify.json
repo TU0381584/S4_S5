@@ -7239,9 +7239,241 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 692",
+  "label": "M81 probe replays every stored evaluation exactly, 15 seeds per budget, 21000 gNB-steps each",
   "snippet": null,
-  "computed": 692,
+  "computed": {
+   "300": 7.105427357601002e-15,
+   "900": 3.552713678800501e-15
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M81 decision figure summary recomputed from the probe records",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M81 300-episode pooled eMBB reject share",
+  "snippet": "pooled over all 15 it rejects on 2.0\\% of gNB-steps",
+  "computed": 2.021904761904762,
+  "formatted": "2.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 900-episode reject share, lowest queue bin",
+  "snippet": "the share rises from 12.2\\% below a queue of 0.05",
+  "computed": 12.205352856457033,
+  "formatted": "12.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 900-episode reject share, queue 0.75 to 1.0",
+  "snippet": "to 71.8\\% between 0.75 and 1.0",
+  "computed": 71.79352712016781,
+  "formatted": "71.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 11 of 15 seeds never reject eMBB at 300 episodes; at 900, 14 of 15 reject more at a queue of 0.2 or more and one never rejects",
+  "snippet": null,
+  "computed": [
+   11,
+   "14"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M81 per-gNB map summary recomputed, and the centre gNB is the lowest for every policy in both seed sets",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M81 six inner gNBs have six neighbours like the centre",
+  "snippet": null,
+  "computed": [
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   6,
+   3,
+   4,
+   3,
+   4,
+   3,
+   4,
+   3,
+   4,
+   3,
+   4,
+   3,
+   4
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M81 inner gNBs trail the edge, low",
+  "snippet": "trail the edge by only 0.5 to 1.8 points",
+  "computed": 0.5020370370370273,
+  "formatted": "0.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 inner gNBs trail the edge, high",
+  "snippet": "trail the edge by only 0.5 to 1.8 points",
+  "computed": 1.8111111111111171,
+  "formatted": "1.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 reported carried rule over AXIOM at the centre",
+  "snippet": "The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere",
+  "computed": 13.014444444444422,
+  "formatted": "13.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 reported carried rule over AXIOM elsewhere",
+  "snippet": "The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere",
+  "computed": 6.908209876543211,
+  "formatted": "6.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 fresh carried rule over AXIOM at the centre",
+  "snippet": "and by 13.2 and 7.0 points on the 15 fresh seeds",
+  "computed": 13.177777777777784,
+  "formatted": "13.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 fresh carried rule over AXIOM elsewhere",
+  "snippet": "and by 13.2 and 7.0 points on the 15 fresh seeds",
+  "computed": 7.009999999999991,
+  "formatted": "7.0",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 forest figure, all 84 rows recomputed from the logs with the verifier's own bootstrap",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M81 reported differences whose CI excludes zero",
+  "snippet": "Of the 38 reported differences whose 95\\% CI excludes zero",
+  "computed": 38,
+  "formatted": "38",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 of them, fresh CI on the same side",
+  "snippet": "35 keep a CI on the same side on fresh seeds",
+  "computed": 35,
+  "formatted": "35",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 the three exceptions are Env B compliance, DQN-SA and DQN-I at 7 and MAPPO at 19, and all three fresh CIs span zero",
+  "snippet": null,
+  "computed": [
+   [
+    "B",
+    7,
+    "reported",
+    "independent_dqn",
+    "sla"
+   ],
+   [
+    "B",
+    7,
+    "reported",
+    "single_agent_dqn",
+    "sla"
+   ],
+   [
+    "B",
+    19,
+    "reported",
+    "mappo_tuned",
+    "sla"
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M81 reported Env B 7 compliance deficit to DQN-SA",
+  "snippet": "AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead",
+  "computed": 9.156666666666666,
+  "formatted": "9.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 reported Env B 7 compliance deficit to DQN-I",
+  "snippet": "AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead",
+  "computed": 4.848148148148147,
+  "formatted": "4.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 fresh Env B 7 compliance deficit to DQN-SA",
+  "snippet": "AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead",
+  "computed": 4.208333333333333,
+  "formatted": "4.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 fresh Env B 7 compliance lead over DQN-I",
+  "snippet": "AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead",
+  "computed": 0.7694444444444442,
+  "formatted": "0.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M81 fresh Env B 19 compliance lead over MAPPO",
+  "snippet": "Its lead over MAPPO at nineteen gNBs falls to 2.9 points",
+  "computed": 2.9400000000000004,
+  "formatted": "2.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "text quotes the final check count of 715",
+  "snippet": null,
+  "computed": 715,
   "formatted": null,
   "in_tex": null,
   "ok": true
