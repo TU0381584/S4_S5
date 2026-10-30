@@ -479,21 +479,14 @@ MAPPO & 6.968 [6.47, 7.45] & 0.797 & 0.289 & 0.579 \\
 \end{tabular}}
 \end{table}
 
-At seven gNBs the tuned rules beat AXIOM in all 15 seeds under every layout. On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.011$. This gap mainly reflects the 300-episode budget, within which 28 of AXIOM's 45 seeds settle on the static rule's policy and never shed eMBB, which none of its 30 seeds does at three gNBs. With 900 episodes for every learner on the ring layout, AXIOM keeps 55.7\% priority-slice compliance against 40.5\% to 42.9\% for the baselines, at Holm-adjusted $p\leq0.0012$, though still below the tuned rule's 60.5\%. Fig.~\ref{fig:decision} shows what AXIOM learned on the ring layout. After 300 episodes the eMBB head of 11 of its 15 seeds would reject at no step, and pooled over all 15 it rejects on 2.0\% of gNB-steps. After 900 episodes 14 of 15 seeds reject more often as the gNB's own URLLC queue grows. Pooled, the share rises from 12.2\% below a queue of 0.05 to 71.8\% between 0.75 and 1.0, a softer form of the tuned rule's step at 0.2. At nineteen gNBs the longer budget does not help, and seven of eight seeds keep the static policy after 900 episodes, as Section S13 of Online Resource 1 reports.
+At seven gNBs the tuned rules beat AXIOM in all 15 seeds under every layout. On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.011$. This gap mainly reflects the 300-episode budget, within which 28 of AXIOM's 45 seeds settle on the static rule's policy and never shed eMBB, which none of its 30 seeds does at three gNBs. With 900 episodes for every learner on the ring layout, AXIOM keeps 55.7\% priority-slice compliance against 40.5\% to 42.9\% for the baselines, at Holm-adjusted $p\leq0.0012$, though still below the tuned rule's 60.5\%. After 900 episodes AXIOM rejects eMBB more often as the URLLC queue grows, much as the tuned rule does. At nineteen gNBs the longer budget does not help, and seven of eight seeds keep the static policy after 900 episodes, as Section S13 of Online Resource 1 reports.
 
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=\textwidth]{figures/fig_decision.pdf}
-\caption{What AXIOM learned in Env B at seven gNBs on the ring layout, 15 seeds. a, Share of gNB-steps on which its eMBB head would reject, by the gNB's own URLLC queue, with 95\% CIs over seeds. b, How often each queue level occurs}
-\label{fig:decision}
-\end{figure}
-
-At nineteen gNBs, where cluster-level compliance saturates, AXIOM earns 5.54 to 21.22 more reward per step than every learned baseline and keeps 5.5 to 10.9 percentage points more per-gNB priority-slice compliance, at Holm-adjusted $p\leq0.013$. The static rule still earns 1.31 more per step, and the tuned local rule carried over from seven gNBs earns 3.81 more and wins every seed. Fig.~\ref{fig:pergnb} maps this per-gNB compliance for AXIOM, MAPPO, and both rules. Every policy keeps the least at the centre gNB, whose load the simulator fixes at the nominal level while it draws every other gNB's from 90\% to 100\% of it. The six inner gNBs have as many neighbours but trail the edge by only 0.5 to 1.8 points. The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere, and by 13.2 and 7.0 points on the 15 fresh seeds.
+At nineteen gNBs, where cluster-level compliance saturates, AXIOM earns 5.54 to 21.22 more reward per step than every learned baseline and keeps 5.5 to 10.9 percentage points more per-gNB priority-slice compliance, at Holm-adjusted $p\leq0.013$. The static rule still earns 1.31 more per step, and the tuned local rule carried over from seven gNBs earns 3.81 more and wins every seed. Fig.~\ref{fig:pergnb} maps this per-gNB compliance for the four learned policies. Every policy keeps the least at the centre gNB, whose load the simulator fixes at the nominal level while it draws every other gNB's from 90\% to 100\% of it. The six inner gNBs have as many neighbours but trail the edge by only 0.5 to 1.8 points. AXIOM keeps more than every learned baseline at each of the nineteen gNBs, by at least 3.8 points, and by at least 4.3 points on the 15 fresh seeds. The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere, and by 13.2 and 7.0 points on the fresh seeds.
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_pergnb_envb.pdf}
-\caption{Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, Static rule. d, Tuned rule carried over from seven gNBs. The centre gNB is outlined}
+\caption{Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}
 \label{fig:pergnb}
 \end{figure}
 
@@ -535,18 +528,9 @@ MAPPO & 5,122 at every size & 0.19 / 0.20 / 0.22 / 0.27 & 73 / 256 / 495 \\
 \label{sec:results-verify}
 We checked the results in three ways, with every pass criterion fixed before the run it judged. First, rerunning eleven reported settings in fresh processes reproduced every stored result exactly. Sixteen further reruns, from seven to thirty-seven gNBs in both environments, also matched exactly. The one exception is DQN-SA, which builds its network before setting the seed, and seeding it leaves AXIOM's leads unchanged.
 
-Second, four further runs retrained every policy on fresh seeds, 10 to 40 per setting, and 81 of their 90 pre-stated checks held. The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set, and AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur. A fifth fresh-seed run held all three of its checks at thirty-seven gNBs on 20 seeds. A sixth held all four in Env B at nineteen gNBs on 15 seeds, as Section S13 of Online Resource 1 reports.
+Second, four further runs retrained every policy on fresh seeds, 10 to 40 per setting, and 81 of their 90 pre-stated checks held. The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set, and AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur. A fifth fresh-seed run held all three of its checks at thirty-seven gNBs on 20 seeds. A sixth held all four in Env B at nineteen gNBs on 15 seeds, as Section S13 of Online Resource 1 reports. Section S2 of Online Resource 1 compares each reported difference from a learned baseline with its fresh-seed counterpart, and 35 of the 38 whose CI excludes zero hold.
 
-Fig.~\ref{fig:forest} sets each reported comparison with a learned baseline beside its fresh-seed counterpart. Of the 38 reported differences whose 95\% CI excludes zero, 35 keep a CI on the same side on fresh seeds. The three exceptions all concern cluster-level compliance in Env B. AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead. Its lead over MAPPO at nineteen gNBs falls to 2.9 points, and all three fresh CIs span zero.
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=\textwidth]{figures/fig_forest.pdf}
-\caption{AXIOM minus each learned baseline, with 95\% CIs. Solid lines and filled circles are the reported runs, dashed lines and hollow diamonds the fresh seeds. a, Reward per gNB. b, Cluster-level priority-slice compliance}
-\label{fig:forest}
-\end{figure}
-
-Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 715 of its checks pass.
+Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 719 of its checks pass.
 
 \subsection{Federation, Privacy, Disruption, and Live Deployment}
 \label{sec:results-m3}

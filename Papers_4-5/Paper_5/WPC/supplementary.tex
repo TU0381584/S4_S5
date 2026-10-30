@@ -59,6 +59,15 @@ The fourth run enlarged the two unstable samples, and four of its five checks he
 
 An independent script with its own log reader and Holm correction recomputes every results table and key sentence of both documents from the raw logs, and all of its checks pass. Fresh seeds therefore confirmed the main findings of the paper. At seven and nineteen gNBs in Env A AXIOM kept 93.4\% to 100\% priority-slice compliance and beat every baseline under every layout. The exceptions are a small and unstable lead over DQN-SA in Env A at three gNBs and baseline compliance of up to 83\% at seven gNBs. AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur, at margins of $-0.021$ and $0.159$ reward per step on 20 and 40 new seeds. In one ten-seed load sample two weak AXIOM seeds also left it 3.2\% short of the oracle, a gap that a twenty-seed rerun did not reproduce.
 
+Fig.~\ref{fig:s-forest} sets each reported comparison with a learned baseline beside its fresh-seed counterpart. Of the 38 reported differences whose 95\% CI excludes zero, 35 keep a CI on the same side on fresh seeds. The three exceptions all concern cluster-level compliance in Env B. AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead. Its lead over MAPPO at nineteen gNBs falls to 2.9 points, and all three fresh CIs span zero.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_forest.pdf}
+\caption{AXIOM minus each learned baseline, with 95\% CIs. Solid lines and filled circles are the reported runs, dashed lines and hollow diamonds the fresh seeds. a, Reward per gNB. b, Cluster-level priority-slice compliance}
+\label{fig:s-forest}
+\end{figure}
+
 \section*{S3. Live testbed and deployment check}
 \begin{figure}[!htbp]
 \centering
@@ -310,7 +319,7 @@ In training, shown in Fig.~\ref{fig:curves}, MAPPO rises fastest early but plate
 \end{figure}
 
 \section*{S7. Analysis plans and development notes}
-Each analysis plan was committed to the project's version-control history before the runs it governs, with one exception. The main campaign reuses Env A results of DQN-SA, DQN-I, and the oracle rule from an earlier rerun, M63. They cover three gNBs on the primary and replication seeds, the sensitivity study, seven gNBs, and 15 of the 30 seeds at nineteen gNBs. The M63 plan was committed one minute after that rerun was launched and before any of its results were read. Two development stages are also disclosed, although neither changed a reported result. A protocol, M67, tried to make AXIOM beat both DQN baselines decisively in Env A at three gNBs. Checkpoint selection brought AXIOM to the oracle but brought DQN-SA within 0.05 of it too. A test of both encoders on ten new seeds in Env B at seven gNBs then found no significant lead over DQN-SA, so AXIOM was not changed. Exploratory probes on seeds 900 to 904 and pilot seeds 2000 to 2004 suggested the load-shift effect of Section S8 and the hindsight bound of the main paper's Env B results before their reported runs. Three figures of the main paper describe stored runs after the results were known, with no plan or test of their own. They show AXIOM's learned eMBB shedding, per-gNB compliance at nineteen gNBs, and reported beside fresh-seed differences. The first replays every stored evaluation exactly before reading the policy's decisions.
+Each analysis plan was committed to the project's version-control history before the runs it governs, with one exception. The main campaign reuses Env A results of DQN-SA, DQN-I, and the oracle rule from an earlier rerun, M63. They cover three gNBs on the primary and replication seeds, the sensitivity study, seven gNBs, and 15 of the 30 seeds at nineteen gNBs. The M63 plan was committed one minute after that rerun was launched and before any of its results were read. Two development stages are also disclosed, although neither changed a reported result. A protocol, M67, tried to make AXIOM beat both DQN baselines decisively in Env A at three gNBs. Checkpoint selection brought AXIOM to the oracle but brought DQN-SA within 0.05 of it too. A test of both encoders on ten new seeds in Env B at seven gNBs then found no significant lead over DQN-SA, so AXIOM was not changed. Exploratory probes on seeds 900 to 904 and pilot seeds 2000 to 2004 suggested the load-shift effect of Section S8 and the hindsight bound of the main paper's Env B results before their reported runs. Three figures describe stored runs after the results were known, with no plan or test of their own. The main paper maps per-gNB compliance at nineteen gNBs. Section S2 sets reported beside fresh-seed differences, and Section S13 shows AXIOM's learned eMBB shedding after replaying every stored evaluation exactly.
 
 \section*{S8. Shifted load, longer training, and the joint target on fresh seeds}
 No deployable policy we tested keeps eMBB compliance above 37\% in Env B, because demand at the load peaks exceeds the budget by up to 23.5\%. Even the rule with the highest eMBB compliance among all 95 local rules, chosen in hindsight on each evaluation stream, reaches only 37.7\% on average. The best rule by reward in hindsight earns only 0.14\% more than the tuned rule.
@@ -609,6 +618,15 @@ Tuned local rule & 3.91 & 60.5\% & 0 \\
 \end{table}
 
 With 900 episodes for every learner, AXIOM keeps 12.8 to 15.2 points more compliance and earns 0.44 to 0.82 more reward per gNB than each baseline, at Holm-adjusted $p\leq0.0012$. The baselines gain at most 7.0 points from the longer budget. The tuned rule still keeps more compliance than AXIOM in all 15 seeds. DQN-SA with a seeded initialisation keeps 6.7 points less than the reported unseeded run at 300 episodes, at $p=0.048$. At nineteen gNBs the longer budget does not help. After 900 episodes seven of eight seeds still shed only mMTC, against all eight after 300.
+
+Fig.~\ref{fig:s-decision} shows what AXIOM learned at seven gNBs on the ring layout. After 300 episodes the eMBB head of 11 of its 15 seeds would reject at no step, and pooled over all 15 it rejects on 2.0\% of gNB-steps. After 900 episodes 14 of 15 seeds reject more often as the gNB's own URLLC queue grows. Pooled, the share rises from 12.2\% below a queue of 0.05 to 71.8\% between 0.75 and 1.0, a softer form of the tuned rule's step at 0.2.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.85\textwidth]{figures/fig_decision.pdf}
+\caption{What AXIOM learned in Env B at seven gNBs on the ring layout, 15 seeds. a, Share of gNB-steps on which its eMBB head would reject, by the gNB's own URLLC queue, with 95\% CIs over seeds. b, How often each queue level occurs}
+\label{fig:s-decision}
+\end{figure}
 
 Sixteen runs that no earlier rerun covered matched their stored per-seed results exactly, in Env A at seven, nineteen, and thirty-seven gNBs and in Env B at seven gNBs. On 15 fresh seeds, 7000 to 7014, in Env B at nineteen gNBs the results of Section S10 held again. AXIOM earned 5.90 to 22.00 more reward per step than each learned baseline and kept 6.9 to 11.1 points more per-gNB priority-slice compliance, at Holm-adjusted $p\leq0.011$, keeping 76.9\%. The static rule again earned more, by 0.87 per step, and tied AXIOM exactly in 13 of the 15 seeds. The local rule carried over from seven gNBs won every seed, by 3.33 per step, and DQN-SA collapsed in all 15.
 

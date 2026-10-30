@@ -2043,8 +2043,9 @@ def main():
     up900_ = [s_[q_ >= 0.2].mean() > s_[q_ < 0.2].mean() for q_, s_ in ld81_["900"]]
     C.note("M81 11 of 15 seeds never reject eMBB at 300 episodes; at 900, 14 of 15 reject more at a queue of 0.2 or more and one never rejects",
            z300_ == 11 and sum(up900_) == 14 and sum(not s_.any() for _, s_ in ld81_["900"]) == 1
-           and "After 300 episodes the eMBB head of 11 of its 15 seeds would reject at no step" in C.main
-           and "After 900 episodes 14 of 15 seeds reject more often as the gNB's own URLLC queue grows" in C.main, (z300_, sum(up900_)))
+           and "After 300 episodes the eMBB head of 11 of its 15 seeds would reject at no step" in C.tex
+           and "After 900 episodes 14 of 15 seeds reject more often as the gNB's own URLLC queue grows" in C.tex
+           and "After 900 episodes AXIOM rejects eMBB more often as the URLLC queue grows, much as the tuned rule does" in C.main, (z300_, sum(up900_)))
     pgs_ = json.load(open(f"{FIG_}/fig_pergnb_envb_summary.json"))
     def pgmap_(cell_, arm_, seeds_):
         acc_ = np.zeros(19)
@@ -2062,15 +2063,19 @@ def main():
                for nm_ in pm81_ for a_ in arms81_)
            and "Every policy keeps the least at the centre gNB" in C.main, None)
     deg81_ = np.array(pgs_["degree"])
-    gap81_ = [float(pm81_["reported"][a_][1:7].mean() - pm81_["reported"][a_][deg81_ < 6].mean()) for a_ in arms81_[:4]]
+    lrn81_ = ("axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn")     # the four policies mapped
+    gap81_ = [float(pm81_["reported"][a_][1:7].mean() - pm81_["reported"][a_][deg81_ < 6].mean()) for a_ in lrn81_]
     C.note("M81 six inner gNBs have six neighbours like the centre", all(deg81_[:7] == 6) and int((deg81_ < 6).sum()) == 12, deg81_.tolist())
     C.claim("M81 inner gNBs trail the edge, low", "trail the edge by only 0.5 to 1.8 points", -max(gap81_), "{:.1f}")
     C.claim("M81 inner gNBs trail the edge, high", "trail the edge by only 0.5 to 1.8 points", -min(gap81_), "{:.1f}")
     for nm_, sn_ in (("reported", "The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere"),
-                     ("fresh", "and by 13.2 and 7.0 points on the 15 fresh seeds")):
+                     ("fresh", "and by 13.2 and 7.0 points on the fresh seeds")):
         lt_, ax_ = pm81_[nm_]["rule_local_transfer"], pm81_[nm_]["axiom2"]
         C.claim(f"M81 {nm_} carried rule over AXIOM at the centre", sn_, lt_[0] - ax_[0], "{:.1f}")
         C.claim(f"M81 {nm_} carried rule over AXIOM elsewhere", sn_, lt_[1:].mean() - ax_[1:].mean(), "{:.1f}")
+    ld_ = {nm_: min(float((pm81_[nm_]["axiom2"] - pm81_[nm_][b_]).min()) for b_ in lrn81_[1:]) for nm_ in pm81_}
+    C.claim("M81 AXIOM's smallest per-gNB lead over a learned baseline, reported", "by at least 3.8 points, and by at least 4.3 points on the 15 fresh seeds", ld_["reported"], "{:.1f}")
+    C.claim("M81 AXIOM's smallest per-gNB lead over a learned baseline, fresh", "by at least 3.8 points, and by at least 4.3 points on the 15 fresh seeds", ld_["fresh"], "{:.1f}")
     fo_ = {(r_["env"], r_["n"], r_["sample"], r_["baseline"], r_["metric"]): r_ for r_ in json.load(open(f"{FIG_}/fig_forest_summary.json"))["rows"]}
     LAY81_ = ("fully_connected", "ring", "hex")
     def fcells_(env_, n_, smp_):
@@ -2119,7 +2124,9 @@ def main():
     C.claim("M81 of them, fresh CI on the same side", "35 keep a CI on the same side on fresh seeds", len(held_), "{:d}")
     C.note("M81 the three exceptions are Env B compliance, DQN-SA and DQN-I at 7 and MAPPO at 19, and all three fresh CIs span zero",
            miss_ == sorted([("B", 7, "reported", "single_agent_dqn", "sla"), ("B", 7, "reported", "independent_dqn", "sla"), ("B", 19, "reported", "mappo_tuned", "sla")])
-           and all(not ex_(fo_[k_[:2] + ("fresh",) + k_[3:]]) for k_ in miss_) and "and all three fresh CIs span zero" in C.main, miss_)
+           and all(not ex_(fo_[k_[:2] + ("fresh",) + k_[3:]]) for k_ in miss_) and "and all three fresh CIs span zero" in C.tex, miss_)
+    C.claim("reframe: M81 main pointer, of 38 reported differences", "and 35 of the 38 whose CI excludes zero hold", len(rep_), "{:d}")
+    C.claim("reframe: M81 main pointer, 35 hold", "and 35 of the 38 whose CI excludes zero hold", len(held_), "{:d}")
     sn81_ = "AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead"
     C.claim("M81 reported Env B 7 compliance deficit to DQN-SA", sn81_, -fo_[("B", 7, "reported", "single_agent_dqn", "sla")]["mean"], "{:.1f}")
     C.claim("M81 reported Env B 7 compliance deficit to DQN-I", sn81_, -fo_[("B", 7, "reported", "independent_dqn", "sla")]["mean"], "{:.1f}")
