@@ -114,7 +114,7 @@ def draw_load_a(ax, data):
                     elinewidth=0.7, capsize=1.5, zorder=4 if name == "AXIOM" else 3)
     st = [data["load"]["A"]["Static rule"][l]["y"] for l, _ in LOAD_A]
     ax.plot(xs, st, color="#555555", lw=1.0, ls="--", zorder=2)
-    ax.annotate("static rule", (xs[1], st[1]), textcoords="offset points", xytext=(4, 6), fontsize=8, color="#555555")
+    ax.annotate("static rule", (xs[1], st[1]), textcoords="offset points", xytext=(4, 6), fontsize=8.3, color="#555555")
     ax.set_xticks(xs)
     ax.set_xlabel("Offered load at 19 gNBs, %")
     ax.set_ylabel("Priority-slice SLA, %")
@@ -124,18 +124,18 @@ def draw_load_a(ax, data):
 
 def draw_load_b(ax, data):
     sizes = (3, 7, 19)
-    sty = {3: (":", "o"), 7: ("--", "s"), 19: ("-", "^")}
+    sty = {3: (":", "+"), 7: ("--", "x"), 19: ("-", "*")}   # marker shapes unused by the four policies
     for f, n in zip(np.linspace(0.45, 1.0, 3), sizes):
         pts = sorted(data["load"]["B"][str(n)].items(), key=lambda kv: float(kv[0]))
         xs = [100 * float(k) for k, _ in pts]
         ys = [v["d"] for _, v in pts]
         ax.errorbar(xs, ys, yerr=[[v["d"] - v["d_ci"][0] for _, v in pts], [v["d_ci"][1] - v["d"] for _, v in pts]],
-                    fmt=sty[n][1], ls=sty[n][0], color=shade(C["AXIOM"], f), mec=C["AXIOM"], ms=4, lw=1.4, elinewidth=0.7, capsize=1.5, zorder=3,
+                    fmt=sty[n][1], ls=sty[n][0], color=shade(C["AXIOM"], f), mec=shade(C["AXIOM"], max(f, 0.7)), mew=1.1, ms=5.5 if n == 19 else 5, lw=1.4, elinewidth=0.7, capsize=1.5, zorder=3,
                     label=str(n))
     ax.axhline(0, color="#555555", lw=0.8, ls="--", zorder=1)
     ax.set_xticks([80, 100, 120])
     ax.yaxis.set_major_formatter(mpl.ticker.FormatStrFormatter("%.1f"))
-    ax.legend(loc="upper left", title="gNBs", title_fontsize=8, fontsize=8, frameon=False, handlelength=1.0, borderpad=0.1, labelspacing=0.15, handletextpad=0.3)
+    ax.legend(loc="upper left", title="gNBs", title_fontsize=8.3, fontsize=8.3, frameon=False, handlelength=1.0, borderpad=0.1, labelspacing=0.15, handletextpad=0.3)
     ax.set_xlabel("Offered load, %")
     ax.set_ylabel("AXIOM lead per gNB")
     ax.grid(True, axis="y", linewidth=0.4, alpha=0.4)
@@ -176,7 +176,7 @@ def draw_env(ax, data, env, xlab):
             if name == "AXIOM":
                 off = (7, -11) if (env == "A" and n == 37) else (0, 6) if env == "A" else (6, 4)
                 ax.annotate(str(n), (p["x"], p["y"]), textcoords="offset points", xytext=off, ha="center" if env == "A" else "left",
-                            fontsize=8, color=C[name])
+                            fontsize=8.3, color=C[name])
     ax.set_xlabel("Reward per gNB per step")
     ax.set_ylabel("Priority-slice SLA, %")
     ax.grid(True, linewidth=0.4, alpha=0.4)
@@ -229,7 +229,7 @@ def draw_radar(ax, data, env):
     for name in ["AXIOM", "DQN-I", "DQN-SA", "MAPPO"]:
         v = vals[name] + vals[name][:1]
         ax.plot(ang, v, color=C[name], linewidth=1.9 if name == "AXIOM" else 1.5, linestyle=LS[name], marker=M[name],
-                markersize=4.5 if name == "AXIOM" else 5, zorder=zbase[name])
+                markersize=3.2 if name == "AXIOM" else 3.5, zorder=zbase[name])
         ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.05, zorder=2)
     return LS
 
@@ -264,11 +264,11 @@ def main():
     handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=1.5, linestyle=LS[n], label=n)
                for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
     fig.text(0.5, 0.075, "R reward per step, S priority-slice SLA, NC no collapse, each followed by the number of gNBs",
-             ha="center", va="center", fontsize=8)
+             ha="center", va="center", fontsize=8.3)
     fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.025), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.8, columnspacing=1.2)
-    fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.02)
-    fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.02)
+    fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.06)
+    fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.06)
     json.dump(data, open(out + "_summary.json", "w"), indent=1)
     print("wrote", out)
     for env in ("A", "B"):
