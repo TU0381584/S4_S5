@@ -116,27 +116,28 @@ def draw_load_a(ax, data):
     ax.plot(xs, st, color="#555555", lw=1.0, ls="--", zorder=2)
     ax.annotate("static rule", (xs[1], st[1]), textcoords="offset points", xytext=(4, 6), fontsize=8, color="#555555")
     ax.set_xticks(xs)
-    ax.set_xlabel("Offered load, %")
-    ax.set_ylabel("Env A priority SLA,\n19 gNBs, %")
+    ax.set_xlabel("Offered load at 19 gNBs, %")
+    ax.set_ylabel("Env A priority SLA, %")
     ax.grid(True, axis="y", linewidth=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
 
 
 def draw_load_b(ax, data):
     sizes = (3, 7, 19)
+    sty = {3: (":", "o"), 7: ("--", "s"), 19: ("-", "^")}
     for f, n in zip(np.linspace(0.45, 1.0, 3), sizes):
         pts = sorted(data["load"]["B"][str(n)].items(), key=lambda kv: float(kv[0]))
         xs = [100 * float(k) for k, _ in pts]
         ys = [v["d"] for _, v in pts]
         ax.errorbar(xs, ys, yerr=[[v["d"] - v["d_ci"][0] for _, v in pts], [v["d_ci"][1] - v["d"] for _, v in pts]],
-                    fmt="-o", color=shade(C["AXIOM"], f), mec=C["AXIOM"], ms=3.5, lw=1.3, elinewidth=0.7, capsize=1.5, zorder=3,
+                    fmt=sty[n][1], ls=sty[n][0], color=shade(C["AXIOM"], f), mec=C["AXIOM"], ms=4, lw=1.4, elinewidth=0.7, capsize=1.5, zorder=3,
                     label=str(n))
     ax.axhline(0, color="#555555", lw=0.8, ls="--", zorder=1)
     ax.set_xticks([80, 100, 120])
     ax.yaxis.set_major_formatter(mpl.ticker.FormatStrFormatter("%.1f"))
     ax.legend(loc="upper left", title="gNBs", title_fontsize=8, fontsize=8, frameon=False, handlelength=1.0, borderpad=0.1, labelspacing=0.15, handletextpad=0.3)
     ax.set_xlabel("Offered load, %")
-    ax.set_ylabel("Env B AXIOM lead over\ntuned rule, per gNB")
+    ax.set_ylabel("Env B AXIOM lead per gNB")
     ax.grid(True, axis="y", linewidth=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
 
@@ -238,11 +239,11 @@ def main():
     fig = plt.figure(figsize=(5.16, 4.85))
     # one row per environment: scatter, radar, reward against the rule (a, b, e Env A; c, d, f Env B)
     axA = fig.add_axes([0.085, 0.665, 0.23, 0.305])
-    axRA = fig.add_axes([0.39, 0.625, 0.27, 0.29], projection="polar")
-    axE = fig.add_axes([0.835, 0.665, 0.155, 0.305])
+    axRA = fig.add_axes([0.375, 0.655, 0.215, 0.25], projection="polar")
+    axE = fig.add_axes([0.745, 0.665, 0.245, 0.305])
     axB = fig.add_axes([0.085, 0.215, 0.23, 0.305])
-    axRB = fig.add_axes([0.39, 0.19, 0.27, 0.29], projection="polar")
-    axF = fig.add_axes([0.835, 0.215, 0.155, 0.305])
+    axRB = fig.add_axes([0.375, 0.22, 0.215, 0.25], projection="polar")
+    axF = fig.add_axes([0.745, 0.215, 0.245, 0.305])
     draw_env(axA, data, "A", None)
     draw_env(axB, data, "B", None)
     axA.set_ylim(25, 102)
@@ -251,10 +252,10 @@ def main():
     LS = draw_radar(axRB, data, "B")
     draw_load_a(axE, data)
     draw_load_b(axF, data)
-    for x_, y_, t_ in ((0.005, 0.995, "a"), (0.36, 0.995, "b"), (0.73, 0.995, "e"), (0.005, 0.555, "c"), (0.36, 0.555, "d"), (0.73, 0.555, "f")):
+    for x_, y_, t_ in ((0.005, 0.995, "a"), (0.345, 0.995, "b"), (0.655, 0.995, "e"), (0.005, 0.555, "c"), (0.345, 0.555, "d"), (0.655, 0.555, "f")):
         fig.text(x_, y_, t_, fontsize=9, va="top")
     for y_, env_ in ((0.995, "A"), (0.555, "B")):
-        fig.text(0.385, y_, f"Env {env_}, share of best learned", fontsize=8, va="top", ha="left")
+        fig.text(0.37, y_, f"Env {env_}, share of best", fontsize=8, va="top", ha="left")
     handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=1.5, linestyle=LS[n], label=n)
                for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
     fig.text(0.5, 0.075, "R reward per step, S priority-slice SLA, NC no collapse, each followed by the number of gNBs",
