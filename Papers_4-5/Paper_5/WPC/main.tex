@@ -194,7 +194,7 @@ Robustness studies~\cite{tashman2026adversarial,fatehi2026attentionmarl} test di
 \label{sec:system-model}
 This section formulates slice admission across a gNB cluster as a decentralised decision problem and describes the two simulators that evaluate it.
 
-We consider a cluster of $N$ gNBs, three in the main campaigns and up to 37 in the scaling study, each serving URLLC, eMBB, and mMTC under a shared per-gNB Physical Resource Block (PRB) budget $B$. At each control step every gNB holds zero or more pending requests, each tagged with a slice, and its agent accepts or rejects each one, conditioned on the cluster state. Each decision moves the slice's PRB-ratio ceiling, the control that the control-application (xApp) interface of OpenAirInterface (OAI) exposes. The binary action matches our single-gNB work, so any coordination benefit comes from the architecture. At three gNBs the cluster is treated as fully connected, a modelling choice, and the scaling study adds ring and hex-grid layouts. The model works at the PRB level and abstracts the radio channel. Channel quality changes how many PRBs a slice needs for the same traffic, and the model folds this into the per-step demand noise. A channel-aware extension that maps the signal-to-interference-plus-noise ratio to PRB demand is left to future work.
+We consider a cluster of $N$ gNBs, three in the main campaigns and up to 37 in the scaling study, each serving URLLC, eMBB, and mMTC under a shared per-gNB Physical Resource Block (PRB) budget $B$. At each control step every gNB holds zero or more pending requests, each tagged with a slice, and its agent accepts or rejects each one, conditioned on the cluster state. Each decision moves the slice's PRB-ratio ceiling, the control that the xApp interface of OpenAirInterface (OAI) exposes. The binary action matches our single-gNB work, so any coordination benefit comes from the architecture. At three gNBs the cluster is treated as fully connected, a modelling choice, and the scaling study adds ring and hex-grid layouts. The model works at the PRB level and abstracts the radio channel. Channel quality changes how many PRBs a slice needs for the same traffic, and the model folds this into the per-step demand noise. A channel-aware extension that maps the signal-to-interference-plus-noise ratio to PRB demand is left to future work.
 
 The step reward follows our earlier formulations~\cite{mecon-paper1,icraie-paper2}, with a per-slice service term net of SLA-violation penalties, a congestion charge on admitted volume, and a load-imbalance penalty. With priority weight $\omega_k$, per-accept reward $R_k$, admitted count $n_k$, violation penalty $\lambda_k$, and an indicator $\mathbf{1}[v_k]$ of an SLA violation of slice $k$ that step, it is
 \begin{equation}
@@ -289,11 +289,11 @@ Two design choices in AXIOM matter most at scale. One small MLP per slice gives 
 In training, every pending request at gNB $i$, slice $k$ is its own temporal-difference sample, and Algorithm~\ref{alg:gat-ctde} gives the full training loop. For a request with immediate reward $r$ and next-state embedding $\mathbf{z}_i'$, the target $y$ at discount $\gamma$ and the minibatch loss are
 \begin{equation}
 \label{eq:td}
-y = r + \gamma\,(1-\mathrm{done})\max_{a'} Q_{\phi_k^-}\!\big(\mathbf{z}_i'\big)[a'],
+y = r + \gamma\,(1-\eta)\max_{a'} Q_{\phi_k^-}\!\big(\mathbf{z}_i'\big)[a'],
 \qquad
 \mathcal{L} = \frac{1}{|\mathcal{M}|}\sum_{(i,k,a)\in \mathcal{M}}\ell_\delta\!\Big(Q_{\phi_k}(\mathbf{z}_i)[a]-y\Big),
 \end{equation}
-where $Q_{\phi_k^-}$ is slice $k$'s target Q-head, $\mathrm{done}$ the episode-done flag, $\mathcal{M}$ the minibatch of requests, and $\ell_\delta$ the Huber loss. Section~\ref{sec:results-ablation} shows that a summed per-step target works as well, so the per-request scheme is a simplification rather than a source of AXIOM's advantage.
+where $Q_{\phi_k^-}$ is slice $k$'s target Q-head, $\eta\in\{0,1\}$ the flag that marks an episode's last step, $\mathcal{M}$ the minibatch of requests, and $\ell_\delta$ the Huber loss. Section~\ref{sec:results-ablation} shows that a summed per-step target works as well, so the per-request scheme is a simplification rather than a source of AXIOM's advantage.
 
 \begin{algorithm}[t]
 \caption{Centralised training and decentralised execution of AXIOM}
@@ -305,10 +305,10 @@ where $Q_{\phi_k^-}$ is slice $k$'s target Q-head, $\mathrm{done}$ the episode-d
   \FORALL{pending requests at gNB $i$, slice $k$}
     \STATE $a \gets \arg\max_a Q_{\phi_k}([\mathbf{E}_t[i], \mathbf{X}_t[i]])[a]$, $\epsilon$-greedy \COMMENT{decentralised, own row only}
   \ENDFOR
-  \STATE step env, store $(\mathbf{X}_t, \mathbf{X}_{t+1}, \{(i,k,a)\}, r_t, \text{done})$ in $\mathcal{D}$
+  \STATE step env, store $(\mathbf{X}_t, \mathbf{X}_{t+1}, \{(i,k,a)\}, r_t, \eta_t)$ in $\mathcal{D}$
   \IF{$|\mathcal{D}| \geq$ warmup}
     \STATE sample minibatch $\mathcal{M}$, then $\mathbf{E}_{\mathcal{M}} \gets f_\theta(\mathbf{X}_{\mathcal{M}},\mathbf{A})$, $\mathbf{E}'_{\mathcal{M}} \gets f_{\theta^-}(\mathbf{X}'_{\mathcal{M}},\mathbf{A})$
-    \STATE per request, $y \gets r + \gamma(1{-}\text{done})\max_{a'} Q_{\phi_k^-}([\mathbf{E}'_{\mathcal{M}}[i], \mathbf{X}'_{\mathcal{M}}[i]])[a']$
+    \STATE per request, $y \gets r + \gamma(1{-}\eta)\max_{a'} Q_{\phi_k^-}([\mathbf{E}'_{\mathcal{M}}[i], \mathbf{X}'_{\mathcal{M}}[i]])[a']$
     \STATE $\mathcal{L} \gets$ mean per-request Huber loss, never summed per step, then update $\theta,\{\phi_k\}$ with gradient norm clipped at 1.0
   \ENDIF
   \STATE every $T_{\mathrm{s}}$ episodes, $\theta^-\gets\theta$, $\phi_k^-\gets\phi_k$
@@ -465,7 +465,7 @@ Fig.~\ref{fig:m6-topology}a traces the same result across sizes. AXIOM's priorit
 Fig.~\ref{fig:gnb-map} shows where that gap comes from, gNB by gNB, in the thirty-seven-gNB hex cluster. A gNB's admission gate for a slice is the PRB-ratio ceiling that its accept and reject decisions move between the slice's floor and cap. We average its openness over every evaluation step of all 30 seeds. AXIOM keeps the URLLC and eMBB gates open at every gNB, at 1.00 and 0.98, while closing the mMTC gate to 0.16, a mean that includes its three collapsed seeds. AXIOM thus sheds the right slice everywhere in the cluster. DQN-SA leaves every gate open at 0.93 to 0.95, DQN-I closes the mMTC gate only to 0.94, and MAPPO partly closes the eMBB gate, to 0.80, while leaving mMTC open at 0.51. The nineteen-gNB cluster gives the same picture, as Section S6 of Online Resource 1 reports.
 
 
-\begin{figure}[t]
+\begin{figure}[!t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig10_axiom_superiority.pdf}
 \caption{AXIOM against the three learned baselines. a, Env A and b, Env B reward per gNB per step against priority-slice compliance, light to dark from the smallest to the largest cluster, with 95\% CIs. c, Env A and d, Env B measures, each as a fraction of the best learned policy}

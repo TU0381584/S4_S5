@@ -100,11 +100,11 @@ def draw_env(ax, data, env, xlab):
     ax.spines[["top", "right"]].set_visible(False)
 
 
-RADAR = {
-    "A": [("Reward\n3 gNBs", "3", "r"), ("Reward\n37 gNBs", "37", "r"), ("Priority\nSLA 7 gNBs", "7", "y"),
-          ("Priority\nSLA 19 gNBs", "19", "y"), ("Priority\nSLA 37 gNBs", "37", "y"), ("No collapse\n37 gNBs", "37", "c")],
-    "B": [("Reward\n3 gNBs", "3", "r"), ("Reward\n7 gNBs", "7", "r"), ("Reward\n19 gNBs", "19", "r"),
-          ("Priority\nSLA 3 gNBs", "3", "y"), ("Priority\nSLA 7 gNBs", "7", "y"), ("Priority\nSLA 19 gNBs", "19", "y")],
+RADAR = {   # (axis code, full name, cluster size, kind) with kind r reward per step, y priority SLA, c no-collapse share
+    "A": [("R3", "Reward 3 gNBs", "3", "r"), ("R37", "Reward 37 gNBs", "37", "r"), ("S7", "Priority SLA 7 gNBs", "7", "y"),
+          ("S19", "Priority SLA 19 gNBs", "19", "y"), ("S37", "Priority SLA 37 gNBs", "37", "y"), ("NC37", "No collapse 37 gNBs", "37", "c")],
+    "B": [("R3", "Reward 3 gNBs", "3", "r"), ("R7", "Reward 7 gNBs", "7", "r"), ("R19", "Reward 19 gNBs", "19", "r"),
+          ("S3", "Priority SLA 3 gNBs", "3", "y"), ("S7", "Priority SLA 7 gNBs", "7", "y"), ("S19", "Priority SLA 19 gNBs", "19", "y")],
 }
 
 
@@ -113,7 +113,7 @@ def radar_values(data, env):
     raw = {}
     for name in ARM:
         raw[name] = []
-        for _, n, kind in RADAR[env]:
+        for _, _, n, kind in RADAR[env]:
             p = data[env][name][n]
             raw[name].append(p["x"] * int(n) if kind == "r" else p["y"] if kind == "y" else p["no_collapse"])
     best = [max(raw[k][i] for k in raw) for i in range(len(RADAR[env]))]
@@ -121,17 +121,17 @@ def radar_values(data, env):
 
 
 def draw_radar(ax, data, env):
-    labels = [l for l, _, _ in RADAR[env]]
+    labels = [c for c, _, _, _ in RADAR[env]]
     vals = radar_values(data, env)
-    data.setdefault("radar", {})[env] = {"axes": [f"Env {env} " + l.replace("\n", " ") for l in labels], "fractions": vals}
-    ax.set_title(f"Env {env}, fraction of best learned policy", fontsize=8.5, pad=22)
+    data.setdefault("radar", {})[env] = {"axes": [f"Env {env} {d}" for _, d, _, _ in RADAR[env]], "codes": labels, "fractions": vals}
+    ax.set_title(f"Env {env}, fraction of best learned policy", fontsize=8.5, pad=30)
     N = len(labels)
     ang = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
     ang += ang[:1]
     ax.set_theta_offset(np.pi / 2)
     ax.set_theta_direction(-1)
     ax.set_xticks(ang[:-1])
-    ax.set_xticklabels(labels, fontsize=8)
+    ax.set_xticklabels(labels, fontsize=8.5)
     ax.set_ylim(0, 1.08)
     ax.set_yticks([0.25, 0.5, 0.75, 1.0])
     ax.set_yticklabels([])
@@ -144,8 +144,8 @@ def draw_radar(ax, data, env):
     LS = {"AXIOM": (0, (1, 1.35)), "DQN-I": (0, (5, 2)), "DQN-SA": "-", "MAPPO": (0, (3, 1, 1, 1))}
     for name in ["AXIOM", "DQN-I", "DQN-SA", "MAPPO"]:
         v = vals[name] + vals[name][:1]
-        ax.plot(ang, v, color=C[name], linewidth=1.5 if name == "AXIOM" else 1.2, linestyle=LS[name], marker=M[name],
-                markersize=3 if name == "AXIOM" else 3.5, zorder=zbase[name])
+        ax.plot(ang, v, color=C[name], linewidth=1.9 if name == "AXIOM" else 1.5, linestyle=LS[name], marker=M[name],
+                markersize=4.5 if name == "AXIOM" else 5, zorder=zbase[name])
         ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.05, zorder=2)
     return LS
 
@@ -153,26 +153,28 @@ def draw_radar(ax, data, env):
 def main():
     out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
     data = compute()
-    fig = plt.figure(figsize=(5.16, 5.7))
-    axA = fig.add_axes([0.11, 0.665, 0.36, 0.3])
-    axB = fig.add_axes([0.61, 0.665, 0.36, 0.3])
-    axRA = fig.add_axes([0.125, 0.15, 0.22, 0.3], projection="polar")
-    axRB = fig.add_axes([0.665, 0.15, 0.22, 0.3], projection="polar")
+    fig = plt.figure(figsize=(5.16, 6.3))
+    axA = fig.add_axes([0.11, 0.714, 0.36, 0.254])
+    axB = fig.add_axes([0.61, 0.714, 0.36, 0.254])
+    axRA = fig.add_axes([0.07, 0.135, 0.38, 0.311], projection="polar")
+    axRB = fig.add_axes([0.575, 0.135, 0.38, 0.311], projection="polar")
     draw_env(axA, data, "A", None)
     draw_env(axB, data, "B", None)
     axA.set_ylim(25, 102)
     axB.set_ylim(10, 72)
     draw_radar(axRA, data, "A")
     LS = draw_radar(axRB, data, "B")
-    for x_, y_, t_ in ((0.01, 0.99, "a"), (0.51, 0.99, "b"), (0.01, 0.55, "c"), (0.51, 0.55, "d")):
+    for x_, y_, t_ in ((0.01, 0.99, "a"), (0.51, 0.99, "b"), (0.01, 0.57, "c"), (0.51, 0.57, "d")):
         fig.text(x_, y_, t_, fontsize=9, va="top")
     handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=1.5, linestyle=LS[n], label=n)
                for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.02), ncol=4, frameon=False,
+    fig.text(0.5, 0.084, "R reward per step, S priority-slice SLA, NC no collapse, each followed by the number of gNBs",
+             ha="center", va="center", fontsize=8)
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.0125), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.8, columnspacing=1.2)
     shades = [Patch(facecolor=shade("#6b6b6b", f), edgecolor="#6b6b6b", label=l)
               for f, l in zip(np.linspace(0.38, 1.0, 4), ("3 gNBs", "7 gNBs", "19 gNBs", "37 gNBs"))]
-    fig.legend(handles=shades, loc="lower center", bbox_to_anchor=(0.5, -0.025), ncol=4, frameon=False,
+    fig.legend(handles=shades, loc="lower center", bbox_to_anchor=(0.5, -0.027), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.2, columnspacing=1.2)
     fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.02)
     fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.02)
