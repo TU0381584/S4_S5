@@ -485,12 +485,12 @@ At nineteen gNBs, where cluster-level compliance saturates, AXIOM earns 5.54 to 
 
 The rule's lead holds only under its tuning conditions. When the load rises to 110\% to 120\% without re-tuning or retraining, AXIOM wins 21 to 23 of 25 seeds at three gNBs, at Holm-adjusted $p\leq0.0002$. At nineteen gNBs it earns 6.23, 7.55, and 8.67 more reward per step than that rule, winning 14 of 15 seeds at each level at Holm-adjusted $p<0.001$. A re-tuned rule ties AXIOM up to 115\% load and beats it at 120\%. Section S11 of Online Resource 1 adds uneven per-gNB load and a per-gNB SLA penalty, under which AXIOM still beats every learned baseline but not the rules.
 
-In Fig.~\ref{fig:quadrant}a, AXIOM stays between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. In Env B, panel c, every policy loses compliance as the cluster grows. AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs, and it earns about as much per gNB as DQN-SA at seven, where DQN-SA keeps more compliance. That gap reflects the training budget, as shown above. Panels b and d place six measures per environment on one scale. In Env A AXIOM leads on five of the six, while MAPPO leads on collapse resistance because it never collapses at thirty-seven gNBs. In Env B, AXIOM leads on four, and DQN-SA leads on both measures at seven gNBs.
+In Fig.~\ref{fig:quadrant}a, AXIOM stays between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. In Env B, panel c, every policy loses compliance as the cluster grows. AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs, and it earns about as much per gNB as DQN-SA at seven, where DQN-SA keeps more compliance. That gap reflects the training budget, as shown above. Panels b and d place six measures per environment on one scale. In Env A AXIOM leads on five of the six, while MAPPO leads on collapse resistance because it never collapses at thirty-seven gNBs. In Env B, AXIOM leads on four, and DQN-SA leads on both measures at seven gNBs. Panels e and f set each learner against the rule it must beat. In Env A AXIOM keeps 97.8\% to 98.9\% of the static rule's reward at every size, while the baselines keep 76.3\% to 86.3\% from seven gNBs up. In Env B every learner stays below the tuned rule, AXIOM at 85.9\% to 95.5\% of its reward. At nineteen gNBs that rule is the one carried over from seven gNBs without re-tuning.
 
 \begin{figure}[!t]
 \centering
 \includegraphics[width=\textwidth]{figures/fig10_axiom_superiority.pdf}
-\caption{AXIOM against the three learned baselines. a, Env A and c, Env B reward per gNB per step against priority-slice compliance, light to dark from the smallest to the largest cluster, with 95\% CIs. b, Env A and d, Env B measures, each as a fraction of the best learned policy}
+\caption{AXIOM against the three learned baselines, with 95\% CIs. a, Env A and c, Env B reward per gNB per step against priority-slice compliance, light to dark from the smallest to the largest cluster. b, d, Measures as fractions of the best learned policy. e, f, Reward as a percentage of the static rule in Env A and the tuned rule in Env B}
 \label{fig:quadrant}
 \end{figure}
 
@@ -523,7 +523,7 @@ We checked the results in three ways, with every pass criterion fixed before the
 
 Second, four further runs retrained every policy on fresh seeds, 10 to 40 per setting, and 81 of their 90 pre-stated checks held. The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set, and AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur. A fifth fresh-seed run held all three of its checks at thirty-seven gNBs on 20 seeds. A sixth held all four in Env B at nineteen gNBs on 15 seeds, as Section S13 of Online Resource 1 reports.
 
-Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 690 of its checks pass.
+Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 692 of its checks pass.
 
 \subsection{Federation, Privacy, Disruption, and Live Deployment}
 \label{sec:results-m3}

@@ -1,5 +1,5 @@
 """Fig: AXIOM against the three learned baselines as the cluster grows.
-(a) Env A at 3, 7, 19, and 37 gNBs, (b) Env B at 3, 7, and 19 gNBs, (c) Env A and (d) Env B capability radars.
+(a, c) Env A and Env B reward per gNB against compliance, (b, d) capability radars, (e, f) reward as a percentage of the static and tuned rules.
 
 Panels a and b are computed here from the stored evaluation logs (via m66_verify's
 reader): x is reward per gNB per step, y is priority-slice compliance, each point a
@@ -57,6 +57,74 @@ def rows_env_b(n, arm):
     if n == 7:
         return [r for t in LAYOUTS for r in seeds_of(f"m64/n7_{t}", arm, S15).values()]
     return list(seeds_of("m75/D_envB_n19_hex", arm, S15).values())
+
+
+def keyed(env, n, arm):
+    """{(layout, seed): row} for a learned policy, matching rows_env_a/rows_env_b."""
+    if env == "A":
+        if n == 3:
+            cell = "m65_reviewer/base" if arm in ("axiom2", "mappo_tuned") else "m63_reviewer/base"
+            return {("-", s): r for s, r in seeds_of(cell, arm, S30).items()}
+        if n in (7, 19):
+            ss = S15 if n == 7 else S30_19
+            return {(t, s): r for t in LAYOUTS for s, r in seeds_of(f"m65_scaling/n{n}_{t}", arm, ss).items()}
+        if arm == "axiom2":
+            return {(t, s): r for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15))
+                    for s, r in seeds_of(f"m73/A_n37_{t}", arm, ss).items()}
+        return {("hex", s): r for s, r in seeds_of("m73/A_n37_hex", arm, S30_19).items()}
+    if n == 3:
+        return {("-", s): r for s, r in seeds_of("m64/n3_fully_connected", arm, S30).items()}
+    if n == 7:
+        return {(t, s): r for t in LAYOUTS for s, r in seeds_of(f"m64/n7_{t}", arm, S15).items()}
+    return {("hex", s): r for s, r in seeds_of("m75/D_envB_n19_hex", arm, S15).items()}
+
+
+def rule_reward(env, n, key):
+    """The comparison rule's reward on the same seed: Env A the static rule that sheds every mMTC request
+    (layout-independent in Env A), Env B the tuned local rule (carried over from seven gNBs at nineteen)."""
+    t, s = key
+    if env == "A":
+        if n == 3:
+            return seeds_of("m65_n3_view", "heuristic", [s])[s]["reward"]
+        if n in (7, 19):
+            return seeds_of(f"m70/R1/A_n{n}_{t}", "rule_static", [s])[s]["reward"]
+        return seeds_of("m73/A_n37_hex", "rule_static", [s])[s]["reward"]
+    if n == 3:
+        return seeds_of("m64/n3_fully_connected", "rule_local", [s])[s]["reward"]
+    if n == 7:
+        return seeds_of(f"m64/n7_{t}", "rule_local", [s])[s]["reward"]
+    return seeds_of("m75/D_envB_n19_hex", "rule_local_transfer", [s])[s]["reward"]
+
+
+def rule_ratios():
+    """Per-seed reward of each learned policy as a percentage of the rule's reward on the same seed."""
+    out = {}
+    for env in ("A", "B"):
+        for name, arm in ARM.items():
+            for n in SIZES[env]:
+                v = [100 * r["reward"] / rule_reward(env, n, k) for k, r in keyed(env, n, arm).items()]
+                out.setdefault(env, {}).setdefault(name, {})[str(n)] = {"n_runs": len(v), "pct": float(np.mean(v)), "pct_ci": list(boot_ci(v))}
+    return out
+
+
+def draw_rule(ax, data, env):
+    sizes = SIZES[env]
+    xs = np.arange(len(sizes))
+    off = {"AXIOM": 0.09, "DQN-SA": -0.03, "DQN-I": 0.03, "MAPPO": -0.09}
+    for name in ("MAPPO", "DQN-I", "DQN-SA", "AXIOM"):
+        pts = [data["rule"][env][name][str(n)] for n in sizes]
+        y = [p["pct"] for p in pts]
+        lo = [p["pct"] - p["pct_ci"][0] for p in pts]
+        hi = [p["pct_ci"][1] - p["pct"] for p in pts]
+        ax.errorbar(xs + off[name], y, yerr=[lo, hi], fmt="-" + M[name], color=C[name], ms=4.5 if name == "AXIOM" else 4,
+                    lw=1.6 if name == "AXIOM" else 1.0, elinewidth=0.7, capsize=1.5, zorder=4 if name == "AXIOM" else 3)
+    ax.axhline(100, color="#555555", lw=0.8, ls="--", zorder=1)
+    ax.set_xticks(xs)
+    ax.set_xticklabels([str(n) for n in sizes])
+    ax.set_xlabel("gNBs")
+    ax.set_ylabel(f"Env {env} reward,\n% of {'static' if env == 'A' else 'tuned'} rule")
+    ax.grid(True, axis="y", linewidth=0.4, alpha=0.4)
+    ax.spines[["top", "right"]].set_visible(False)
 
 
 def shade(colour, f):
@@ -124,7 +192,6 @@ def draw_radar(ax, data, env):
     labels = [c for c, _, _, _ in RADAR[env]]
     vals = radar_values(data, env)
     data.setdefault("radar", {})[env] = {"axes": [f"Env {env} {d}" for _, d, _, _ in RADAR[env]], "codes": labels, "fractions": vals}
-    ax.set_title(f"Env {env}, fraction of best learned policy", fontsize=8.5, pad=24)
     N = len(labels)
     ang = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
     ang += ang[:1]
@@ -153,30 +220,33 @@ def draw_radar(ax, data, env):
 def main():
     out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
     data = compute()
-    fig = plt.figure(figsize=(5.16, 5.65))
-    # one row per environment, scatter then radar (a, b Env A; c, d Env B)
-    axA = fig.add_axes([0.105, 0.635, 0.37, 0.315])
-    axRA = fig.add_axes([0.6, 0.625, 0.33, 0.33], projection="polar")
-    axB = fig.add_axes([0.105, 0.2, 0.37, 0.315])
-    axRB = fig.add_axes([0.6, 0.15, 0.33, 0.33], projection="polar")
+    data["rule"] = rule_ratios()
+    fig = plt.figure(figsize=(5.16, 4.85))
+    # one row per environment: scatter, radar, reward against the rule (a, b, e Env A; c, d, f Env B)
+    axA = fig.add_axes([0.085, 0.665, 0.23, 0.305])
+    axRA = fig.add_axes([0.39, 0.625, 0.27, 0.29], projection="polar")
+    axE = fig.add_axes([0.835, 0.665, 0.155, 0.305])
+    axB = fig.add_axes([0.085, 0.215, 0.23, 0.305])
+    axRB = fig.add_axes([0.39, 0.19, 0.27, 0.29], projection="polar")
+    axF = fig.add_axes([0.835, 0.215, 0.155, 0.305])
     draw_env(axA, data, "A", None)
     draw_env(axB, data, "B", None)
     axA.set_ylim(25, 102)
     axB.set_ylim(10, 72)
     draw_radar(axRA, data, "A")
     LS = draw_radar(axRB, data, "B")
-    for x_, y_, t_ in ((0.01, 0.995, "a"), (0.52, 0.995, "b"), (0.01, 0.56, "c"), (0.52, 0.56, "d")):
+    draw_rule(axE, data, "A")
+    draw_rule(axF, data, "B")
+    for x_, y_, t_ in ((0.005, 0.995, "a"), (0.36, 0.995, "b"), (0.73, 0.995, "e"), (0.005, 0.555, "c"), (0.36, 0.555, "d"), (0.73, 0.555, "f")):
         fig.text(x_, y_, t_, fontsize=9, va="top")
+    for y_, env_ in ((0.995, "A"), (0.555, "B")):
+        fig.text(0.385, y_, f"Env {env_}, share of best learned", fontsize=8, va="top", ha="left")
     handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=1.5, linestyle=LS[n], label=n)
                for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
-    fig.text(0.5, 0.068, "R reward per step, S priority-slice SLA, NC no collapse, each followed by the number of gNBs",
+    fig.text(0.5, 0.075, "R reward per step, S priority-slice SLA, NC no collapse, each followed by the number of gNBs",
              ha="center", va="center", fontsize=8)
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.005), ncol=4, frameon=False,
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.025), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.8, columnspacing=1.2)
-    shades = [Patch(facecolor=shade("#6b6b6b", f), edgecolor="#6b6b6b", label=l)
-              for f, l in zip(np.linspace(0.38, 1.0, 4), ("3 gNBs", "7 gNBs", "19 gNBs", "37 gNBs"))]
-    fig.legend(handles=shades, loc="lower center", bbox_to_anchor=(0.5, -0.04), ncol=4, frameon=False,
-               fontsize=8.5, handlelength=1.2, columnspacing=1.2)
     fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.02)
     fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.02)
     json.dump(data, open(out + "_summary.json", "w"), indent=1)
