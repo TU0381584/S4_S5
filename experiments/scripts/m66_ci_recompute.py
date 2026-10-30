@@ -29,7 +29,7 @@ def dci(a, b, seeds, label, key):
     d = [a[s]["reward"] - b[s]["reward"] for s in seeds]
     out.append((key, fmt(*boot_ci(d)), label))
 dci(A["axiom2"], A["independent_dqn"], S30, "A3 vs indep", "1.110 more reward per step than DQN-I, with 95\\% CI ")
-dci(A["axiom2"], A["mappo_tuned"], S30, "A3 vs MAPPO", "and 2.685 more than MAPPO, with 95\\% CI ")
+dci(A["axiom2"], A["mappo_tuned"], S30, "A3 vs MAPPO", "It earns 2.685 more than MAPPO, with 95\\% CI ")
 dci(A["axiom2"], A["single_agent_dqn"], S30, "A3 vs single", "DQN-SA, 0.311 with 95\\% CI ")
 dci(A["axiom2"], A["axiom2_mlp"], S30, "A3 vs MLP", "0.058 more reward per step at three gNBs with 95\\% CI ")
 cen = rows("m65_reviewer/base", "axiom2", S10); fed = rows("m65_m3", "fl_gat_ctde_sigma0.0", S10)

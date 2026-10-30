@@ -201,7 +201,7 @@
  },
  {
   "label": "A3 vs mappo diff",
-  "snippet": "and 2.685 more than MAPPO",
+  "snippet": "It earns 2.685 more than MAPPO",
   "computed": 2.684510394290301,
   "formatted": "2.685",
   "in_tex": true,
@@ -236,7 +236,7 @@
  },
  {
   "label": "A3 oracle ties",
-  "snippet": "tie exactly in 22 of the 30 seeds",
+  "snippet": "tying it exactly in 22 of the 30 seeds",
   "computed": 22,
   "formatted": "22",
   "in_tex": true,
@@ -244,7 +244,7 @@
  },
  {
   "label": "A3 pct of oracle",
-  "snippet": "is 98.9\\% of the oracle",
+  "snippet": "reaches 98.9\\% of the oracle rule's reward",
   "computed": 98.92637702729311,
   "formatted": "98.9",
   "in_tex": true,
@@ -632,7 +632,7 @@
  },
  {
   "label": "supp EnvB N3 MLP over AXIOM",
-  "snippet": "by 0.116 per step at three gNBs, in 17 of 30 seeds at $p=0.45$",
+  "snippet": "0.116 per step at three gNBs in 17 of 30 seeds at $p=0.45$",
   "computed": 0.11646043780519433,
   "formatted": "0.116",
   "in_tex": true,
@@ -640,7 +640,7 @@
  },
  {
   "label": "supp EnvB N3 MLP seeds won",
-  "snippet": "by 0.116 per step at three gNBs, in 17 of 30 seeds at $p=0.45$",
+  "snippet": "0.116 per step at three gNBs in 17 of 30 seeds at $p=0.45$",
   "computed": 17,
   "formatted": "17",
   "in_tex": true,
@@ -648,7 +648,7 @@
  },
  {
   "label": "supp EnvB N3 MLP p",
-  "snippet": "by 0.116 per step at three gNBs, in 17 of 30 seeds at $p=0.45$",
+  "snippet": "0.116 per step at three gNBs in 17 of 30 seeds at $p=0.45$",
   "computed": 0.4521643426269293,
   "formatted": "0.45",
   "in_tex": true,
@@ -656,7 +656,7 @@
  },
  {
   "label": "H1 static",
-  "snippet": "AXIOM earns 2.495 more reward per step than that rule",
+  "snippet": "AXIOM earns 2.495 more reward per step than shedding every mMTC request",
   "computed": 2.495073558592738,
   "formatted": "2.495",
   "in_tex": true,
@@ -683,7 +683,7 @@
  },
  {
   "label": "EnvB static URLLC",
-  "snippet": "now leaves URLLC compliance at 62.5\\%",
+  "snippet": "leaves URLLC compliance at 62.5\\% at three gNBs",
   "computed": 62.49777777777778,
   "formatted": "62.5",
   "in_tex": true,
@@ -699,7 +699,7 @@
  },
  {
   "label": "H2 n3 vs independent_dqn",
-  "snippet": "It earns 1.038, 1.337, and 1.863 more reward per step",
+  "snippet": "by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO",
   "computed": 1.03802758760822,
   "formatted": "1.038",
   "in_tex": true,
@@ -707,7 +707,7 @@
  },
  {
   "label": "H2 n3 vs single_agent_dqn",
-  "snippet": "It earns 1.038, 1.337, and 1.863 more reward per step",
+  "snippet": "by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO",
   "computed": 1.3369261586250398,
   "formatted": "1.337",
   "in_tex": true,
@@ -715,7 +715,7 @@
  },
  {
   "label": "H2 n3 vs mappo_tuned",
-  "snippet": "It earns 1.038, 1.337, and 1.863 more reward per step",
+  "snippet": "by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO",
   "computed": 1.8633768606728818,
   "formatted": "1.863",
   "in_tex": true,
@@ -723,7 +723,7 @@
  },
  {
   "label": "H2 rule_local gap",
-  "snippet": "9.252 per step, 0.420 more than AXIOM",
+  "snippet": "earning 0.420 more than AXIOM in 22 of 30 seeds",
   "computed": 0.420190861508788,
   "formatted": "0.420",
   "in_tex": true,
@@ -731,7 +731,7 @@
  },
  {
   "label": "H2 rule_local seeds",
-  "snippet": "winning 22 of 30 seeds",
+  "snippet": "in 22 of 30 seeds at $p<0.0001$",
   "computed": 22,
   "formatted": "22",
   "in_tex": true,
@@ -804,7 +804,7 @@
  },
  {
   "label": "H3 ring p",
-  "snippet": "Holm-adjusted $p=0.061$ and $p=0.095$",
+  "snippet": "at $p=0.061$ and $p=0.095$",
   "computed": 0.06065468502335061,
   "formatted": "0.061",
   "in_tex": true,
@@ -812,7 +812,7 @@
  },
  {
   "label": "H3 hex p",
-  "snippet": "Holm-adjusted $p=0.061$ and $p=0.095$",
+  "snippet": "at $p=0.061$ and $p=0.095$",
   "computed": 0.0946044921875,
   "formatted": "0.095",
   "in_tex": true,
@@ -3413,7 +3413,7 @@
  },
  {
   "label": "map MAPPO eMBB gate",
-  "snippet": "partly closes the eMBB gate, to 0.82",
+  "snippet": "partly closes the eMBB gate to 0.82",
   "computed": 0.8224136591478685,
   "formatted": "0.82",
   "in_tex": true,
@@ -3421,7 +3421,7 @@
  },
  {
   "label": "map MAPPO mMTC gate",
-  "snippet": "while leaving mMTC open at 0.69",
+  "snippet": "but leaves mMTC open at 0.69",
   "computed": 0.6899681286549711,
   "formatted": "0.69",
   "in_tex": true,
@@ -3429,7 +3429,7 @@
  },
  {
   "label": "reframe: map37 AXIOM URLLC gate",
-  "snippet": "at 1.00 and 0.98, while closing the mMTC gate to 0.16",
+  "snippet": "at 1.00 and 0.98, and closes the mMTC gate to 0.16",
   "computed": 0.9961849420849439,
   "formatted": "1.00",
   "in_tex": true,
@@ -3437,7 +3437,7 @@
  },
  {
   "label": "reframe: map37 AXIOM eMBB gate",
-  "snippet": "at 1.00 and 0.98, while closing the mMTC gate to 0.16",
+  "snippet": "at 1.00 and 0.98, and closes the mMTC gate to 0.16",
   "computed": 0.9828322072072069,
   "formatted": "0.98",
   "in_tex": true,
@@ -3445,7 +3445,7 @@
  },
  {
   "label": "reframe: map37 AXIOM mMTC gate",
-  "snippet": "while closing the mMTC gate to 0.16, a mean that includes its three collapsed seeds",
+  "snippet": "closes the mMTC gate to 0.16 even with its three collapsed seeds included",
   "computed": 0.1572764264264265,
   "formatted": "0.16",
   "in_tex": true,
@@ -3481,7 +3481,7 @@
  },
  {
   "label": "reframe: map37 MAPPO eMBB gate",
-  "snippet": "partly closes the eMBB gate, to 0.80",
+  "snippet": "partly closes the eMBB gate to 0.80",
   "computed": 0.8042615561990549,
   "formatted": "0.80",
   "in_tex": true,
@@ -3489,7 +3489,7 @@
  },
  {
   "label": "reframe: map37 MAPPO mMTC gate",
-  "snippet": "while leaving mMTC open at 0.51",
+  "snippet": "but leaves mMTC open at 0.51",
   "computed": 0.5133066066066067,
   "formatted": "0.51",
   "in_tex": true,
@@ -3597,7 +3597,7 @@
  },
  {
   "label": "reframe: pooled federation p",
-  "snippet": "1.09] and $p=0.14$, so federation",
+  "snippet": "1.09] and $p=0.14$",
   "computed": 0.14277775326005962,
   "formatted": "0.14",
   "in_tex": true,
@@ -3884,25 +3884,25 @@
  },
  {
   "label": "reframe: M72 overload lead 1.10",
-  "snippet": "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
+  "snippet": "110\\% load & 2.082 & 1.624 & +0.458",
   "computed": 0.4579227494591433,
-  "formatted": "0.46",
+  "formatted": "+0.458",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M72 overload lead 1.15",
-  "snippet": "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
+  "snippet": "115\\% load & 0.378 & $-$0.052 & +0.431",
   "computed": 0.430786223708374,
-  "formatted": "0.43",
+  "formatted": "+0.431",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M72 overload lead 1.20",
-  "snippet": "AXIOM earns 0.46, 0.43, and 0.35 more reward per step than the nominally tuned rule",
+  "snippet": "120\\% load & $-$0.714 & $-$1.068 & +0.354",
   "computed": 0.35427552004125945,
-  "formatted": "0.35",
+  "formatted": "+0.354",
   "in_tex": true,
   "ok": true
  },
@@ -3960,7 +3960,7 @@
  },
  {
   "label": "reframe: M72 re-tuned rule beats AXIOM at 1.20",
-  "snippet": "and beats it by 0.62 reward per step at 120\\%",
+  "snippet": "and by 0.62 at 120\\% load",
   "computed": 0.6198413736889133,
   "formatted": "0.62",
   "in_tex": true,
@@ -4295,7 +4295,7 @@
  },
  {
   "label": "reframe: M73 AXIOM collapses",
-  "snippet": "AXIOM collapses in 6 of its 60 runs",
+  "snippet": "1/90 and 6/60",
   "computed": 6,
   "formatted": "6",
   "in_tex": true,
@@ -4303,7 +4303,7 @@
  },
  {
   "label": "reframe: M73 single-agent collapses",
-  "snippet": "against 26 of 30 for DQN-SA",
+  "snippet": "84/90 and 26/30",
   "computed": 26,
   "formatted": "26",
   "in_tex": true,
@@ -4377,7 +4377,7 @@
  },
  {
   "label": "reframe: M73 grid MAPPO compliance gap",
-  "snippet": "AXIOM beats it by 29.2 points, winning 13 of 15 seeds at $p<0.001$, and by 23.23 reward per step",
+  "snippet": "AXIOM beats it by 29.2 points in 13 of 15 seeds at $p<0.001$ and by 23.23 reward per step",
   "computed": 29.196666666666662,
   "formatted": "29.2",
   "in_tex": true,
@@ -4385,7 +4385,7 @@
  },
  {
   "label": "reframe: M73 grid MAPPO reward gap",
-  "snippet": "AXIOM beats it by 29.2 points, winning 13 of 15 seeds at $p<0.001$, and by 23.23 reward per step",
+  "snippet": "AXIOM beats it by 29.2 points in 13 of 15 seeds at $p<0.001$ and by 23.23 reward per step",
   "computed": 23.230492172847004,
   "formatted": "23.23",
   "in_tex": true,
@@ -4544,7 +4544,7 @@
  },
  {
   "label": "reframe: M74 AXIOM priority SLA",
-  "snippet": "with AXIOM at 95.1\\% priority-slice compliance",
+  "snippet": "There AXIOM keeps 95.1\\% priority-slice compliance",
   "computed": 95.08583333333334,
   "formatted": "95.1",
   "in_tex": true,
@@ -4552,7 +4552,7 @@
  },
  {
   "label": "reframe: M74 mappo_tuned priority SLA",
-  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, DQN-SA, and DQN-I",
+  "snippet": "MAPPO & 20 & 70.1\\% & 47.0\\% & 58.5\\%",
   "computed": 58.54833333333333,
   "formatted": "58.5",
   "in_tex": true,
@@ -4560,7 +4560,7 @@
  },
  {
   "label": "reframe: M74 single_agent_dqn priority SLA",
-  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, DQN-SA, and DQN-I",
+  "snippet": "DQN-SA & 20 & 71.6\\% & 43.1\\% & 57.4\\%",
   "computed": 57.35583333333333,
   "formatted": "57.4",
   "in_tex": true,
@@ -4568,7 +4568,7 @@
  },
  {
   "label": "reframe: M74 independent_dqn priority SLA",
-  "snippet": "against 58.5\\%, 57.4\\%, and 34.1\\% for MAPPO, DQN-SA, and DQN-I",
+  "snippet": "DQN-I & 20 & 42.0\\% & 26.1\\% & 34.1\\%",
   "computed": 34.075833333333335,
   "formatted": "34.1",
   "in_tex": true,
@@ -4708,7 +4708,7 @@
  },
  {
   "label": "M75 accept-all reward at 7 gNBs",
-  "snippet": "with reward 26.88, 78.55, and 156.22 per step",
+  "snippet": "Its reward there is 26.88, 78.55, and 156.22 per step",
   "computed": 26.878612994949886,
   "formatted": "26.88",
   "in_tex": true,
@@ -4716,7 +4716,7 @@
  },
  {
   "label": "M75 accept-all reward at 19 gNBs",
-  "snippet": "with reward 26.88, 78.55, and 156.22 per step",
+  "snippet": "Its reward there is 26.88, 78.55, and 156.22 per step",
   "computed": 78.5524602499424,
   "formatted": "78.55",
   "in_tex": true,
@@ -4724,7 +4724,7 @@
  },
  {
   "label": "M75 accept-all reward at 37 gNBs",
-  "snippet": "with reward 26.88, 78.55, and 156.22 per step",
+  "snippet": "Its reward there is 26.88, 78.55, and 156.22 per step",
   "computed": 156.21581591158082,
   "formatted": "156.22",
   "in_tex": true,
@@ -4817,7 +4817,7 @@
  },
  {
   "label": "reframe: M75 D cluster compliance low",
-  "snippet": "at 16.7\\% to 24.7\\% for every learned policy",
+  "snippet": "DQN-I & 71.20 & 66.8\\% & 16.7\\%",
   "computed": 16.70333333333333,
   "formatted": "16.7",
   "in_tex": true,
@@ -4825,7 +4825,7 @@
  },
  {
   "label": "reframe: M75 D cluster compliance high",
-  "snippet": "at 16.7\\% to 24.7\\% for every learned policy",
+  "snippet": "AXIOM & 80.28 & 77.3\\% & 24.7\\%",
   "computed": 24.74666666666667,
   "formatted": "24.7",
   "in_tex": true,
@@ -4880,7 +4880,7 @@
  },
  {
   "label": "reframe: M75 D AXIOM per-gNB",
-  "snippet": "keeping 77.3\\%",
+  "snippet": "AXIOM & 80.28 & 77.3\\%",
   "computed": 77.3076023391813,
   "formatted": "77.3",
   "in_tex": true,
@@ -4888,7 +4888,7 @@
  },
  {
   "label": "reframe: M75 D static rule margin",
-  "snippet": "the static rule, which earns 1.31 more per step",
+  "snippet": "The static rule still earns 1.31 more per step",
   "computed": 1.3081758141530306,
   "formatted": "1.31",
   "in_tex": true,
@@ -4896,7 +4896,7 @@
  },
  {
   "label": "reframe: M75 D identical to static rule",
-  "snippet": "in 9 of the 15 seeds it makes exactly the static rule's decisions",
+  "snippet": "AXIOM makes exactly the static rule's decisions in 9 of the 15 seeds",
   "computed": 9,
   "formatted": "9",
   "in_tex": true,
@@ -4904,7 +4904,7 @@
  },
  {
   "label": "reframe: M75 D tuned rule margin",
-  "snippet": "earns 3.81 more than AXIOM and keeps 84.5\\%",
+  "snippet": "carried over from seven gNBs earns 3.81 more and wins every seed",
   "computed": 3.8141086518388345,
   "formatted": "3.81",
   "in_tex": true,
@@ -4912,7 +4912,7 @@
  },
  {
   "label": "reframe: M75 D tuned rule per-gNB",
-  "snippet": "earns 3.81 more than AXIOM and keeps 84.5\\%",
+  "snippet": "Tuned local rule, carried over & 84.09 & 84.5\\%",
   "computed": 84.53719298245615,
   "formatted": "84.5",
   "in_tex": true,
@@ -5188,7 +5188,7 @@
  },
  {
   "label": "reframe: Env B 3 gNBs AXIOM over MAPPO percent",
-  "snippet": "AXIOM earns 27\\% more reward per step than MAPPO at three gNBs, 8.83 against 6.97",
+  "snippet": "AXIOM earns 27\\% more reward per step than MAPPO at three gNBs",
   "computed": 26.740273897977463,
   "formatted": "27",
   "in_tex": true,
@@ -5215,7 +5215,7 @@
  },
  {
   "label": "reframe: Env B 19 gNBs AXIOM over MAPPO percent",
-  "snippet": "and 36\\% more at nineteen gNBs, 80.28 against 59.07",
+  "snippet": "and 36\\% more at nineteen gNBs",
   "computed": 35.91822054686071,
   "formatted": "36",
   "in_tex": true,
@@ -5264,7 +5264,7 @@
  },
  {
   "label": "reframe: M76 VDN 19-gNB compliance",
-  "snippet": "but at nineteen gNBs it keeps 83.4\\% priority-slice compliance",
+  "snippet": "86.428 & 89.161 & 76.388 & 83.4\\%",
   "computed": 83.38611111111109,
   "formatted": "83.4",
   "in_tex": true,
@@ -5328,7 +5328,7 @@
  },
  {
   "label": "reframe: M76 AXIOM compliance at 110% load",
-  "snippet": "AXIOM keeps 63.4\\% and 21.7\\% priority-slice compliance",
+  "snippet": "AXIOM & 84.58 & 63.4\\% & 0 & 77.44 & 21.7\\%",
   "computed": 63.40666666666668,
   "formatted": "63.4",
   "in_tex": true,
@@ -5336,7 +5336,7 @@
  },
  {
   "label": "reframe: M76 AXIOM compliance at 120% load",
-  "snippet": "AXIOM keeps 63.4\\% and 21.7\\% priority-slice compliance",
+  "snippet": "AXIOM & 84.58 & 63.4\\% & 0 & 77.44 & 21.7\\%",
   "computed": 21.693333333333335,
   "formatted": "21.7",
   "in_tex": true,
@@ -5599,7 +5599,7 @@
  },
  {
   "label": "reframe: M76 per-gNB penalty AXIOM compliance",
-  "snippet": "at 79.2\\% against 77.3\\% with $p=0.65$",
+  "snippet": "AXIOM & 23.48 & 79.2\\%",
   "computed": 79.15865497076022,
   "formatted": "79.2",
   "in_tex": true,
@@ -5607,10 +5607,18 @@
  },
  {
   "label": "reframe: M76 original-reward AXIOM compliance",
-  "snippet": "at 79.2\\% against 77.3\\% with $p=0.65$",
+  "snippet": "AXIOM & 80.28 & 77.3\\%",
   "computed": 77.3076023391813,
   "formatted": "77.3",
   "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M76 per-gNB penalty raises AXIOM's per-gNB compliance by only 1.9 points",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
   "ok": true
  },
  {
@@ -5885,7 +5893,7 @@
  },
  {
   "label": "reframe: M77 AXIOM URLLC delay Env B 19",
-  "snippet": "AXIOM's URLLC delay of 1.35 control periods is below every learned baseline's 2.17 to 2.66",
+  "snippet": "AXIOM & 96.6\\% & 92.6\\% & 1.35",
   "computed": 1.3494046206595054,
   "formatted": "1.35",
   "in_tex": true,
@@ -5905,7 +5913,7 @@
  },
  {
   "label": "reframe: M77 tuned rule URLLC delay Env B 19",
-  "snippet": "while the tuned rule's is lower still, at 0.51",
+  "snippet": "Tuned rule, carried & 99.1\\% & 87.9\\% & 0.51",
   "computed": 0.5066895321992131,
   "formatted": "0.51",
   "in_tex": true,
@@ -7182,9 +7190,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 689",
+  "label": "text quotes the final check count of 690",
   "snippet": null,
-  "computed": 689,
+  "computed": 690,
   "formatted": null,
   "in_tex": null,
   "ok": true

@@ -124,7 +124,7 @@ def draw_radar(ax, data, env):
     labels = [c for c, _, _, _ in RADAR[env]]
     vals = radar_values(data, env)
     data.setdefault("radar", {})[env] = {"axes": [f"Env {env} {d}" for _, d, _, _ in RADAR[env]], "codes": labels, "fractions": vals}
-    ax.set_title(f"Env {env}, fraction of best learned policy", fontsize=8.5, pad=30)
+    ax.set_title(f"Env {env}, fraction of best learned policy", fontsize=8.5, pad=24)
     N = len(labels)
     ang = np.linspace(0, 2 * np.pi, N, endpoint=False).tolist()
     ang += ang[:1]
@@ -153,28 +153,29 @@ def draw_radar(ax, data, env):
 def main():
     out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
     data = compute()
-    fig = plt.figure(figsize=(5.16, 6.3))
-    axA = fig.add_axes([0.11, 0.714, 0.36, 0.254])
-    axB = fig.add_axes([0.61, 0.714, 0.36, 0.254])
-    axRA = fig.add_axes([0.07, 0.135, 0.38, 0.311], projection="polar")
-    axRB = fig.add_axes([0.575, 0.135, 0.38, 0.311], projection="polar")
+    fig = plt.figure(figsize=(5.16, 5.65))
+    # one row per environment, scatter then radar (a, b Env A; c, d Env B)
+    axA = fig.add_axes([0.105, 0.635, 0.37, 0.315])
+    axRA = fig.add_axes([0.6, 0.625, 0.33, 0.33], projection="polar")
+    axB = fig.add_axes([0.105, 0.2, 0.37, 0.315])
+    axRB = fig.add_axes([0.6, 0.15, 0.33, 0.33], projection="polar")
     draw_env(axA, data, "A", None)
     draw_env(axB, data, "B", None)
     axA.set_ylim(25, 102)
     axB.set_ylim(10, 72)
     draw_radar(axRA, data, "A")
     LS = draw_radar(axRB, data, "B")
-    for x_, y_, t_ in ((0.01, 0.99, "a"), (0.51, 0.99, "b"), (0.01, 0.57, "c"), (0.51, 0.57, "d")):
+    for x_, y_, t_ in ((0.01, 0.995, "a"), (0.52, 0.995, "b"), (0.01, 0.56, "c"), (0.52, 0.56, "d")):
         fig.text(x_, y_, t_, fontsize=9, va="top")
     handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=1.5, linestyle=LS[n], label=n)
                for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
-    fig.text(0.5, 0.084, "R reward per step, S priority-slice SLA, NC no collapse, each followed by the number of gNBs",
+    fig.text(0.5, 0.068, "R reward per step, S priority-slice SLA, NC no collapse, each followed by the number of gNBs",
              ha="center", va="center", fontsize=8)
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.0125), ncol=4, frameon=False,
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, 0.005), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.8, columnspacing=1.2)
     shades = [Patch(facecolor=shade("#6b6b6b", f), edgecolor="#6b6b6b", label=l)
               for f, l in zip(np.linspace(0.38, 1.0, 4), ("3 gNBs", "7 gNBs", "19 gNBs", "37 gNBs"))]
-    fig.legend(handles=shades, loc="lower center", bbox_to_anchor=(0.5, -0.027), ncol=4, frameon=False,
+    fig.legend(handles=shades, loc="lower center", bbox_to_anchor=(0.5, -0.04), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.2, columnspacing=1.2)
     fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.02)
     fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.02)
