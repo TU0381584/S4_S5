@@ -54,9 +54,27 @@ MAIN_WIDTH_IN = 372.0 / 72.27
 SUPP_WIDTH_IN = 453.5 / 72.27
 
 
-def panel(ax, letter, **kw):
-    """Bare bold panel letter, the Springer convention; the caption carries the description."""
-    ax.set_title(letter, loc="left", fontsize=9, **kw)
+# Boxed, colour-coded environment tags, the style of the AXIOM superiority figure (fill, edge, text).
+ENV_TAG = {"A": dict(fc="#e2e8f0", ec="#5a6b82", tc="#26344a"), "B": dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")}
+
+
+def env_tag(ax, env, anchor=None, fontsize=8.5):
+    """Environment tag beside a panel letter (anchor = the letter's text artist), else just above the
+    panel's top-left corner. Pass fontsize so the tag prints at about 8.5 pt once the figure is scaled."""
+    t = ENV_TAG[env]
+    kw = dict(fontsize=fontsize, color=t["tc"], ha="left", annotation_clip=False,
+              bbox=dict(boxstyle="round,pad=0.25", fc=t["fc"], ec=t["ec"], lw=0.6))
+    if anchor is not None:
+        return ax.annotate(f"Env {env}", xy=(1, 0.5), xycoords=anchor, xytext=(6, 0), textcoords="offset points", va="center", **kw)
+    return ax.annotate(f"Env {env}", xy=(0, 1), xycoords="axes fraction", xytext=(0, 6), textcoords="offset points", va="bottom", **kw)
+
+
+def panel(ax, letter, env=None, tag_size=8.5, **kw):
+    """Bare panel letter, the Springer convention, with the environment tag beside it when env is given;
+    the caption carries the description."""
+    t = ax.set_title(letter, loc="left", fontsize=9, **kw)
+    if env is not None:
+        env_tag(ax, env, anchor=t, fontsize=tag_size)
 
 
 M2_ARM_ORDER: List[str] = ["gat_ctde", "independent_dqn", "single_agent_dqn"]

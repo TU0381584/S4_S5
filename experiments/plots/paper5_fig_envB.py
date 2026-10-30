@@ -19,7 +19,7 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 from m62_analysis import boot_ci, eval_log, seed_metrics  # noqa: E402
-from paper5_common import M2_ARM_STYLE, MAIN_WIDTH_IN, RULE_STYLE  # noqa: E402,F401
+from paper5_common import M2_ARM_STYLE, MAIN_WIDTH_IN, RULE_STYLE, env_tag  # noqa: E402,F401
 
 N3_ARMS = ["single_agent_dqn", "independent_dqn", "mappo_tuned", "axiom2"]
 SHORT = {"single_agent_dqn": "DQN-SA", "independent_dqn": "DQN-I",
@@ -69,6 +69,7 @@ def main():
     ax.tick_params(axis="y", labelsize=8.5)
     ax.grid(True, axis="y", lw=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
+    env_tag(ax, "B")
     fig.tight_layout()
     fig.savefig(a.out + ".pdf", bbox_inches="tight")
     fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")

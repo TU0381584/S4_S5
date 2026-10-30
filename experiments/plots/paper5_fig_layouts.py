@@ -63,7 +63,7 @@ def main():
                 summ.setdefault(str(n), {}).setdefault(arm, {})[t] = {"n": len(v), "mean": m, "ci": [lo, hi]}
         ax.set_xticks(range(3))
         ax.set_xticklabels([LAB[t] for t in LAYOUTS], fontsize=8)
-        panel(ax, "a" if n == 19 else "b")
+        panel(ax, "a" if n == 19 else "b", env="A")
         ax.grid(True, axis="y", lw=0.4, alpha=0.4)
         ax.spines[["top", "right"]].set_visible(False)
     axs[0].set_ylabel("Priority-slice SLA, %", fontsize=8)

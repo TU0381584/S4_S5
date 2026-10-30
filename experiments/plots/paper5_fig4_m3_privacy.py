@@ -115,7 +115,7 @@ def main() -> None:
     ax1.set_xticks([0, 1])
     ax1.set_xticklabels(["Centralised\n(AXIOM)", "Federated\n(no DP)"])
     ax1.set_ylabel("Mean reward per step")
-    panel(ax1, "a")
+    panel(ax1, "a", env="A", tag_size=7.3)
 
     diff_mean = diff_c_minus_f.mean()
     lo, hi = bootstrap_ci(diff_c_minus_f)
@@ -175,7 +175,7 @@ def main() -> None:
     ax2.set_xlabel("DP noise multiplier $\\sigma$", labelpad=14)
     ax2.set_ylabel("Block precision\n(fraction targeting mMTC)")
     ax2.set_ylim(-0.05, 1.08)
-    panel(ax2, "b")
+    panel(ax2, "b", env="A", tag_size=7.3)
 
     fig.subplots_adjust(bottom=0.28, wspace=0.32)
 

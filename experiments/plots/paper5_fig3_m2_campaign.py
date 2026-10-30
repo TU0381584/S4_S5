@@ -88,7 +88,7 @@ def main() -> None:
     ax1.set_xticks([0, 1])
     ax1.set_xticklabels(["DQN-SA", "AXIOM\n(proposed)"])
     ax1.set_ylabel("Mean reward per step")
-    panel(ax1, "a")
+    panel(ax1, "a", env="A")
 
     lo, hi = bootstrap_ci(diff)
     _w_stat, w_p = stats.wilcoxon(gat, single)
@@ -144,7 +144,7 @@ def main() -> None:
     ax2.set_xticks([0, 1, 2])
     ax2.set_xticklabels(["AXIOM", "DQN-I", "DQN-SA"])
     ax2.set_ylabel("Mean reward per step")
-    panel(ax2, "b")
+    panel(ax2, "b", env="A")
 
     handles2, labels2 = ax2.get_legend_handles_labels()
     handles2.append(Line2D([0], [0], marker="D", color="#0b0b0b", linestyle="none",

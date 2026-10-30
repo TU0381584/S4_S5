@@ -81,7 +81,7 @@ def main():
             ax.fill_between(x, smooth(lo, SMOOTH), smooth(hi, SMOOTH), color=col, alpha=0.15, lw=0)
             summary.setdefault(cell, {})[arm] = {"n": len(M), "last20_mean": float(mean[-20:].mean()),
                                                  "first20_mean": float(mean[:20].mean())}
-        panel(ax, title.split(")")[0].strip("( "))
+        panel(ax, title.split(")")[0].strip("( "), env=title.split("Env ")[1][0] if "Env " in title else None)
         ax.set_xlabel("Training episode")
         ax.grid(True, lw=0.4, alpha=0.4)
         ax.spines[["top", "right"]].set_visible(False)

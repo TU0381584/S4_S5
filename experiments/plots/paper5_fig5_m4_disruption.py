@@ -138,7 +138,7 @@ def main() -> None:
     ax1.set_xticklabels(sev_ticks)
     ax1.set_xlabel("Dropout window, % of episode")
     ax1.set_ylabel(ylab)
-    panel(ax1, "a") if args.no_titles else ax1.set_title("(a) gNB dropout", loc="left")
+    panel(ax1, "a", env="A") if args.no_titles else ax1.set_title("(a) gNB dropout", loc="left")
     ax1.axhline(0, color="#c3c2b7", linewidth=0.6, zorder=0)
 
     for arm in churn_arms:
@@ -150,7 +150,7 @@ def main() -> None:
     ax2.set_xticklabels(sev_ticks)
     ax2.set_xlabel("Churn window, % of episode")
     ax2.set_ylabel(ylab)
-    panel(ax2, "b") if args.no_titles else ax2.set_title("(b) Agent churn", loc="left")
+    panel(ax2, "b", env="A") if args.no_titles else ax2.set_title("(b) Agent churn", loc="left")
     ax2.axhline(0, color="#c3c2b7", linewidth=0.6, zorder=0)
 
     for arm in M4_ARM_ORDER:
@@ -163,7 +163,7 @@ def main() -> None:
     ax3.set_xlabel("Spike multiplier")
     ax3.set_ylabel("Block precision")
     ax3.set_ylim(-0.05, 1.08)
-    panel(ax3, "c") if args.no_titles else ax3.set_title("(c) Demand spike", loc="left")
+    panel(ax3, "c", env="A") if args.no_titles else ax3.set_title("(c) Demand spike", loc="left")
 
     handles, labels = ax1.get_legend_handles_labels()
     fig.legend(handles, labels, loc="lower center", bbox_to_anchor=(0.5, 0.0), ncol=4, frameon=False, fontsize=8)

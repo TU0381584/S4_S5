@@ -129,6 +129,10 @@ def main():
             ax.set_xticks([]); ax.set_yticks([])
             for sp in ax.spines.values():
                 sp.set_edgecolor("#1f5fae"); sp.set_linewidth(1.8)
+    # boxed environment tag in the style of paper5_common.ENV_TAG (not imported: its rcParams would restyle this
+    # figure); 9.8 pt here prints at about 8.5 pt, since the figure is scaled to 0.87 in the main text
+    fig.text(0.005, 0.995, "Env A", fontsize=9.8, va="top", ha="left", color="#26344a",
+             bbox=dict(boxstyle="round,pad=0.25", fc="#e2e8f0", ec="#5a6b82", lw=0.6))
     # key: one hexagon with its three slice rhombi labelled beside it
     kax = fig.add_subplot(gs[1, 0:2])
     draw_cluster(kax, [(0, 0)], np.array([[1.0, 1.0, 1.0]]), r=1.0, lw=1.0)
