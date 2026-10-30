@@ -3680,7 +3680,7 @@
   "ok": true
  },
  {
-  "label": "reframe: abstract says only a known static rule does better",
+  "label": "reframe: conclusion says a known static rule does better",
   "snippet": null,
   "computed": null,
   "formatted": null,
@@ -6131,7 +6131,7 @@
  },
  {
   "label": "abstract: lead over best learned baseline at 37 gNBs",
-  "snippet": "it leads the best learned baseline by 35.0 points, 36.5 on 20 fresh seeds",
+  "snippet": "AXIOM leads the best learned baseline by 35.0 to 36.5 points",
   "computed": 35.02833333333333,
   "formatted": "35.0",
   "in_tex": true,
@@ -6139,7 +6139,7 @@
  },
  {
   "label": "abstract: fresh-seed lead at 37 gNBs",
-  "snippet": "it leads the best learned baseline by 35.0 points, 36.5 on 20 fresh seeds",
+  "snippet": "AXIOM leads the best learned baseline by 35.0 to 36.5 points",
   "computed": 36.5375,
   "formatted": "36.5",
   "in_tex": true,
@@ -6206,7 +6206,7 @@
   "ok": true
  },
  {
-  "label": "abstract and conclusion: 7,782 parameters against up to 682,058",
+  "label": "abstract and conclusion: 7,782 parameters against the DQNs' 64,770 and 682,058 (abstract) and up to 682,058 (conclusion)",
   "snippet": null,
   "computed": null,
   "formatted": null,
@@ -6215,7 +6215,7 @@
  },
  {
   "label": "abstract: Env B over MAPPO at 3 gNBs",
-  "snippet": "it earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
+  "snippet": "AXIOM earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
   "computed": 26.740273897977463,
   "formatted": "27",
   "in_tex": true,
@@ -6223,7 +6223,7 @@
  },
  {
   "label": "abstract: Env B over MAPPO at 19 gNBs",
-  "snippet": "it earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
+  "snippet": "AXIOM earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
   "computed": 35.91822054686071,
   "formatted": "36",
   "in_tex": true,
@@ -6247,7 +6247,7 @@
  },
  {
   "label": "abstract: Env B over static rule at 3 gNBs",
-  "snippet": "and 39\\% more than a static shedding rule at three",
+  "snippet": "and 39\\% more than a static shedding rule at 3 gNBs",
   "computed": 39.37476993281535,
   "formatted": "39",
   "in_tex": true,

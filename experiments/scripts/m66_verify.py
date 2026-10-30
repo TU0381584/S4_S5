@@ -1052,7 +1052,8 @@ def main():
                  for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
     C.note("reframe: M70 other learners at least 24 points short at 7 and 19 gNBs", short_ >= 23.5
            and "falls at least 24 points short" in C.main, round(short_, 2))
-    C.note("reframe: abstract says only a known static rule does better", "only a known static rule does better" in C.main
+    # the abstract dropped this caveat at the user's request (2026-10-30); the conclusion still states it
+    C.note("reframe: conclusion says a known static rule does better", "A static rule known in advance does better under steady load" in C.main
            and all(rule_[n_] > axp_[n_] for n_ in (7, 19)), None)
     ABL_ = list(range(900, 912)) + [1000, 1001, 1002]
     abl_cells_ = {"A3": ("m65_n3_view", "A_n3", S30), "B3": ("m64/n3_fully_connected", "B_n3", S30), "A19": ("m65_scaling/n19_ring", "A_n19_ring", ABL_)}
@@ -1617,9 +1618,9 @@ def main():
            all(v is None or v["episodes"] == 50 for v in CACHE.values()), sorted({v["episodes"] for v in CACHE.values() if v}))
 
     # ---------------- abstract and conclusion (2026-10-24): every number recomputed from the stored results
-    C.claim("abstract: lead over best learned baseline at 37 gNBs", "it leads the best learned baseline by 35.0 points, 36.5 on 20 fresh seeds", gap37_, "{:.1f}")
+    C.claim("abstract: lead over best learned baseline at 37 gNBs", "AXIOM leads the best learned baseline by 35.0 to 36.5 points", gap37_, "{:.1f}")
     fg_ = min(t74_[(b_, "p")]["diff"] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
-    C.claim("abstract: fresh-seed lead at 37 gNBs", "it leads the best learned baseline by 35.0 points, 36.5 on 20 fresh seeds", fg_, "{:.1f}")
+    C.claim("abstract: fresh-seed lead at 37 gNBs", "AXIOM leads the best learned baseline by 35.0 to 36.5 points", fg_, "{:.1f}")
     C.claim("conclusion: lead at 37 gNBs", "its lead over the best learned baseline reaches 35.0 points, and 36.5 points on 20 fresh seeds", gap37_, "{:.1f}")
     C.claim("conclusion: fresh-seed lead at 37 gNBs", "its lead over the best learned baseline reaches 35.0 points, and 36.5 points on 20 fresh seeds", fg_, "{:.1f}")
     C.claim("abstract: URLLC served at 37", "There it serves 99.8\\% of URLLC demand", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
@@ -1630,14 +1631,16 @@ def main():
     C.note("conclusion: URLLC delay 0.08 against 0.58 to 3.61", f"{km_('A_n37_hex', 'axiom2', 'urllc', 'delay_steps'):.2f}" == "0.08"
            and f"{min(dl_):.2f}" == "0.58" and f"{max(dl_):.2f}" == "3.61"
            and "at a mean URLLC delay of 0.08 control periods, against 0.58 to 3.61 for the learned baselines" in C.main, rat_)
-    C.note("abstract and conclusion: 7,782 parameters against up to 682,058", cx37_["axiom2"]["params_execution"] == 7782
+    C.note("abstract and conclusion: 7,782 parameters against the DQNs' 64,770 and 682,058 (abstract) and up to 682,058 (conclusion)", cx37_["axiom2"]["params_execution"] == 7782
            and max(cx37_[k_]["params_execution"] for k_ in ("single_agent_dqn", "independent_dqn", "mappo")) == 682058
-           and C.main.count("7,782 parameters against up to 682,058") == 2, None)
-    for lab_, snip_ in (("abstract", "it earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs"),
+           and (cx37_["single_agent_dqn"]["params_execution"], cx37_["independent_dqn"]["params_execution"]) == (64770, 682058)
+           and "using only 7,782 parameters against 64,770 and 682,058 for the deep Q-networks" in C.main
+           and C.main.count("7,782 parameters against up to 682,058") == 1, None)
+    for lab_, snip_ in (("abstract", "AXIOM earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs"),
                         ("conclusion", "AXIOM earns 27\\% to 36\\% more reward than MAPPO at three and nineteen gNBs")):
         C.claim(f"{lab_}: Env B over MAPPO at 3 gNBs", snip_, 100 * (b3a_ / b3m_ - 1), "{:.0f}")
         C.claim(f"{lab_}: Env B over MAPPO at 19 gNBs", snip_, 100 * (a19_ / m19_ - 1), "{:.0f}")
-    C.claim("abstract: Env B over static rule at 3 gNBs", "and 39\\% more than a static shedding rule at three", 100 * (mean(B["axiom2"]) / mean(B["rule_static"]) - 1), "{:.0f}")
+    C.claim("abstract: Env B over static rule at 3 gNBs", "and 39\\% more than a static shedding rule at 3 gNBs", 100 * (mean(B["axiom2"]) / mean(B["rule_static"]) - 1), "{:.0f}")
     ov_ = [tb1_[k_]["diff"] for k_ in ("load_1.10", "load_1.15", "load_1.20")]
     C.claim("abstract: overload margin over tuned rule", "AXIOM overtakes that rule by up to 8.7 reward per step", max(ov_), "{:.1f}")
     C.claim("conclusion: overload margin low", "AXIOM overtakes that rule at nineteen gNBs by 6.2 to 8.7 reward per step without retraining", min(ov_), "{:.1f}")
@@ -1775,8 +1778,8 @@ def main():
            and "with $\\mu{=}0.01$ above FedAvg and $\\mu$ of 0.1 and 1.0 below it" in C.tex, None)
 
     # ---------------- revised abstract (2026-10-25)
-    C.note("abstract: the evaluation gap matches the introduction", "However, state-of-the-art studies rarely test learned controllers against trivial policies or on independent seeds" in C.main
-           and "our systematic review of 67 core studies" in C.main and "none replicates a headline finding on an independent seed sample" in C.main
+    C.note("abstract: the evaluation gap matches the introduction", "However, state-of-the-art research rarely evaluates learned multi-agent controllers against trivial policies or on independent seeds" in C.main
+           and "systematic review of 67 core studies" in C.main and "none replicates a headline finding on an independent seed sample" in C.main
            and "No reviewed study checks whether its outcome metric can score a degenerate policy" in C.main, None)
     C.note("abstract: model size fixed as clusters grow", [cxm_[n_]["axiom2"]["params_execution"] for n_ in ("3", "7", "19")] + [cxn_["axiom2"]["params_execution"]] == [7782] * 4
            and "keeping its size fixed as clusters grow" in C.main, None)
