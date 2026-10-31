@@ -431,19 +431,19 @@ b, Share of trained policies that collapse into accept-all. c, Parameters used a
 
 At seven gNBs, under every layout, AXIOM keeps 17.9 to 29.9 percentage points more priority-slice compliance than each baseline and earns 3.40 to 7.07 more reward per step. All 18 comparisons hold after Holm correction, at adjusted $p\leq0.011$. At nineteen gNBs the gaps widen, and they answer hypothesis H4. AXIOM keeps a pooled priority-slice compliance of 97.3\% with 95\% CI [95.2\%, 99.0\%]. Under every layout AXIOM keeps 31.0 to 42.1 percentage points more compliance than every baseline and earns 10.7 to 18.6 more reward per step, winning 28 to 30 of 30 seeds. All 18 comparisons hold after Holm correction, at adjusted $p\leq0.0001$.
 
-At thirty-seven gNBs the lead grows further, and AXIOM keeps a pooled priority-slice compliance of 93.7\% with 95\% CI [89.8\%, 97.2\%]. Under every layout AXIOM keeps 32.0 to 67.8 percentage points more compliance than every baseline and earns 18.3 to 29.5 more reward per step. Here all 18 comparisons hold after Holm correction within their pre-registered families, at adjusted $p<0.01$. AXIOM collapses more often than at nineteen gNBs, as Table~\ref{tab:compare} shows, but even its collapsed runs keep 59\% to 65\%, the level of the best baselines. A pre-registered replication on 20 fresh seeds confirms the result. There AXIOM keeps 95.1\% priority-slice compliance against 34.1\% to 58.5\% for the baselines and leads each on compliance and on reward at Holm-adjusted $p<0.001$. It collapses in 1 of the 20 seeds, against 18 for DQN-SA. On these clusters AXIOM serves 99.8\% of the offered URLLC demand and 99.0\% of the eMBB demand, against 94.2\% to 97.7\% and 85.7\% to 97.5\% for the learned baselines. Its URLLC delay, the mean backlog over the mean served PRBs in 5 s control periods, is 0.08 with a 95th percentile of 0.42, whereas the baselines reach 0.58 to 3.61 with 95th percentiles of 5.2 to 16.9. Section S12 of Online Resource 1 gives throughput and delay in every setting.
-
-Accepting every request is the natural floor at scale. It keeps 70.9\%, 67.1\%, and 61.9\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs. Every baseline falls below it on average at the two larger sizes. AXIOM stays 26 to 32 points above the floor. Its advantage at scale therefore lies in reliably learning the correct shedding policy, the one the static rule encodes, rather than in coordination beyond that rule. The static rule that sheds every mMTC request keeps 99.96\% to 99.99\% at every size. Where that rule is known, AXIOM comes within 3 points of it up to nineteen gNBs and within 6.3 at thirty-seven, while from seven gNBs up every other learner falls at least 24 points short. Tuning the DQN baselines on pilot seeds does not close the gap, and AXIOM beats each tuned baseline on compliance and on reward at Holm-adjusted $p<0.001$, by 29.9 to 48.1 points. The published value-decomposition network (VDN)~\cite{sunehag2018vdn} ties AXIOM at three gNBs but trails it by 13.6 points at nineteen, as Sections S10 and S11 of Online Resource 1 report.
-
-Fig.~\ref{fig:gnb-map} shows where the gap comes from, gNB by gNB, in the thirty-seven-gNB hex cluster. A gNB's admission gate for a slice is the PRB-ratio ceiling that its accept and reject decisions move between the slice's floor and cap, averaged over every evaluation step of all 30 seeds. AXIOM keeps the URLLC and eMBB gates open at every gNB, at 1.00 and 0.98, and closes the mMTC gate to 0.16 even with its three collapsed seeds included. No baseline closes the mMTC gate below 0.51.
-
-\begin{figure}[!htbp]
+\begin{figure}[!b]
 \centering
 \includegraphics[width=\textwidth]{figures/fig13_gnb_map.pdf}
 \caption{Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true
 position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}
 \label{fig:gnb-map}
 \end{figure}
+
+At thirty-seven gNBs the lead grows further, and AXIOM keeps a pooled priority-slice compliance of 93.7\% with 95\% CI [89.8\%, 97.2\%]. Under every layout AXIOM keeps 32.0 to 67.8 percentage points more compliance than every baseline and earns 18.3 to 29.5 more reward per step. Here all 18 comparisons hold after Holm correction within their pre-registered families, at adjusted $p<0.01$. AXIOM collapses more often than at nineteen gNBs, as Table~\ref{tab:compare} shows, but even its collapsed runs keep 59\% to 65\%, the level of the best baselines. A pre-registered replication on 20 fresh seeds confirms the result. There AXIOM keeps 95.1\% priority-slice compliance against 34.1\% to 58.5\% for the baselines and leads each on compliance and on reward at Holm-adjusted $p<0.001$. It collapses in 1 of the 20 seeds, against 18 for DQN-SA. On these clusters AXIOM serves 99.8\% of the offered URLLC demand and 99.0\% of the eMBB demand, against 94.2\% to 97.7\% and 85.7\% to 97.5\% for the learned baselines. Its URLLC delay, the mean backlog over the mean served PRBs in 5 s control periods, is 0.08 with a 95th percentile of 0.42, whereas the baselines reach 0.58 to 3.61 with 95th percentiles of 5.2 to 16.9. Section S12 of Online Resource 1 gives throughput and delay in every setting.
+
+Accepting every request is the natural floor at scale. It keeps 70.9\%, 67.1\%, and 61.9\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs. Every baseline falls below it on average at the two larger sizes. AXIOM stays 26 to 32 points above the floor. Its advantage at scale therefore lies in reliably learning the correct shedding policy, the one the static rule encodes, rather than in coordination beyond that rule. The static rule that sheds every mMTC request keeps 99.96\% to 99.99\% at every size. Where that rule is known, AXIOM comes within 3 points of it up to nineteen gNBs and within 6.3 at thirty-seven, while from seven gNBs up every other learner falls at least 24 points short. Tuning the DQN baselines on pilot seeds does not close the gap, and AXIOM beats each tuned baseline on compliance and on reward at Holm-adjusted $p<0.001$, by 29.9 to 48.1 points. The published value-decomposition network (VDN)~\cite{sunehag2018vdn} ties AXIOM at three gNBs but trails it by 13.6 points at nineteen, as Sections S10 and S11 of Online Resource 1 report.
+
+Fig.~\ref{fig:gnb-map} shows where the gap comes from, gNB by gNB, in the thirty-seven-gNB hex cluster. A gNB's admission gate for a slice is the PRB-ratio ceiling that its accept and reject decisions move between the slice's floor and cap, averaged over every evaluation step of all 30 seeds. AXIOM keeps the URLLC and eMBB gates open at every gNB, at 1.00 and 0.98, and closes the mMTC gate to 0.16 even with its three collapsed seeds included. No baseline closes the mMTC gate below 0.51.
 
 \subsection{Ablations and Sensitivity}
 \label{sec:results-ablation}
@@ -453,14 +453,6 @@ Four checks test where AXIOM's behaviour comes from, as Sections S6 and S8 of On
 \label{sec:results-envb}
 
 Table~\ref{tab:envb} and Fig.~\ref{fig:envb} report Env B at three gNBs, where shedding one fixed slice no longer suffices. AXIOM earns 2.495 more reward per step than shedding every mMTC request and 4.476 more than accept-all. Both gaps hold at Holm-adjusted $p<0.0001$, as hypothesis H1 predicted. It also leads every learned policy, by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO. It also keeps more priority-slice compliance than each, at Holm-adjusted $p<0.0001$. A tuned rule that also sheds eMBB whenever the URLLC queue passes 0.2 beats every learned policy, earning 0.420 more than AXIOM at $p<0.0001$.
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics[width=0.72\textwidth]{figures/fig11_envB.pdf}
-\caption{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed
-points behind the mean and 95\% CI}
-\label{fig:envb}
-\end{figure}
 
 \begin{table}[!htbp]
 \caption{Env B, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it. W/T/L counts the seeds where AXIOM does better, the same, or worse}
@@ -486,6 +478,14 @@ MAPPO & 6.968 [6.47, 7.45] & 75.3 & 29/0/1 & 24/0/6 & 0.797 & 0.289 & 0.579 \\
 \botrule
 \end{tabular}}
 \end{table}
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=0.72\textwidth]{figures/fig11_envB.pdf}
+\caption{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed
+points behind the mean and 95\% CI}
+\label{fig:envb}
+\end{figure}
 
 At seven gNBs the tuned rules beat AXIOM in all 15 seeds under every layout. On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.011$. This gap mainly reflects the 300-episode budget, within which 28 of AXIOM's 45 seeds settle on the static rule's policy and never shed eMBB, which none of its 30 seeds does at three gNBs. With 900 episodes for every learner on the ring layout, AXIOM keeps 55.7\% priority-slice compliance against 40.5\% to 42.9\% for the baselines, at Holm-adjusted $p\leq0.0012$, though still below the tuned rule's 60.5\%. After 900 episodes AXIOM rejects eMBB more often as the URLLC queue grows, much as the tuned rule does. At nineteen gNBs the longer budget does not help, and seven of eight seeds keep the static policy after 900 episodes, as Section S13 of Online Resource 1 reports.
 
