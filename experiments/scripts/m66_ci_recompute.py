@@ -45,6 +45,8 @@ changes = 0
 # CIs moved to Online Resource 1 are looked up there too (read only; --apply edits main.tex alone)
 supp_path = os.path.join(os.path.dirname(a.tex), "supplementary.tex") if a.tex else ""
 supp = open(supp_path).read() if supp_path and os.path.exists(supp_path) else ""
+arch_path = os.path.join(os.path.dirname(a.tex), "archive", "supplementary_full_2026-10-31.tex") if a.tex else ""
+arch = open(arch_path).read() if arch_path and os.path.exists(arch_path) else ""
 for key, ci, label in out:
     # find the CI that follows the key in the tex
     m = re.search(re.escape(key) + r"(\[[^\]]*\])", tex) if key.endswith("[") is False else re.search(re.escape(key[:-1]) + r"(\[[^\]]*\])", tex)
@@ -52,6 +54,12 @@ for key, ci, label in out:
         ms = re.search(re.escape(key[:-1] if key.endswith("[") else key) + r"(\[[^\]]*\])", supp)
         if ms:
             print(f"{label:28s} text={ms.group(1)} recomputed={ci} {'same' if ms.group(1) == ci else 'DIFF'} (supplementary)")
+            continue
+    # rows cut from OR1 on 2026-10-31 are matched against the archived full OR1, and the label says so
+    if m is None and arch:
+        ma = re.search(re.escape(key[:-1] if key.endswith("[") else key) + r"(\[[^\]]*\])", arch)
+        if ma:
+            print(f"{label:28s} text={ma.group(1)} recomputed={ci} {'same' if ma.group(1) == ci else 'DIFF'} (retired, archived OR1)")
             continue
     cur = m.group(1) if m else None
     status = "same" if cur == ci else "DIFF"
