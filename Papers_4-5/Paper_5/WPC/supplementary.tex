@@ -6,8 +6,6 @@
 \usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage{array}
-\usepackage{algorithm}
-\usepackage{algorithmic}
 \usepackage{tikz}
 \usepackage[section]{placeins}
 % Online Resource layout: captions in the journal's style (small type, label then a quad, caption above tables
@@ -28,6 +26,8 @@
 \small School of Engineering, Faculty of Innovation and Technology, Taylor's University,\\
 \small 47500 Subang Jaya, Selangor, Malaysia}
 \date{}
+\pdfinfo{/Title (Online Resource 1: AXIOM: A Shared Graph-Attention Controller for Scalable Multi-Agent 5G Slice Admission)
+  /Author (Manoj Prasad Kunasegran, Wai Leong Pang, Swee King Phang) /Subject (Wireless Personal Communications)}
 \begin{document}
 \maketitle
 
@@ -137,14 +137,12 @@ A validation screen checks every trained checkpoint of every learned policy befo
 
 AXIOM's encoder is a graph-attention network over the gNB graph. At every control step each gNB forms its own feature row $\mathbf{x}_i$ of PRB-used ratio, congestion level, and normalised queue length. A two-layer network with $H{=}4$ heads then produces one embedding per gNB. Each head $h$ uses a learned source vector $\mathbf{a}_s^{h}$ and destination vector $\mathbf{a}_d^{h}$ on the shared projection $\mathbf{W}^{h}$. Here $\mathrm{LeakyReLU}$, the leaky rectified linear unit, has slope $0.2$ for negative inputs, and $\mathcal{N}_i$ is the set of neighbours of node $i$,
 \begin{equation}
-\label{eq:gat}
 \varepsilon_{ij}^{h}=\mathrm{LeakyReLU}\big(\mathbf{a}_s^{h\top} \mathbf{W}^{h} \mathbf{x}_i + \mathbf{a}_d^{h\top} \mathbf{W}^{h} \mathbf{x}_j\big),
 \qquad
 \alpha_{ij}^{h}=\frac{\exp\varepsilon_{ij}^{h}}{\sum_{l\in\mathcal{N}_i}\exp\varepsilon_{il}^{h}}.
 \end{equation}
 Here $\varepsilon_{ij}^{h}$ is the unnormalised attention score from node $i$ to neighbour $j$ in head $h$, and $\alpha_{ij}^{h}$ is its normalisation over $i$'s neighbours, with $l$ ranging over $\mathcal{N}_i$. Hidden layers concatenate the $H$ heads under an exponential linear unit (ELU), while the final layer averages them. A per-layer normalisation $\mathrm{LN}(\cdot)$ then rescales each node's embedding to zero mean and unit variance, giving the per-gNB embedding $\mathbf{z}_i$,
 \begin{equation}
-\label{eq:gat-agg}
 \mathbf{z}_i=\mathrm{LN}\!\Big(\tfrac{1}{H}\textstyle\sum_{h=1}^{H}\sum_{j\in\mathcal{N}_i}\alpha_{ij}^{h}\,\mathbf{W}^{h} \mathbf{x}_j\Big).
 \end{equation}
 Every agent's loss updates this shared encoder, so training sees the full cluster state. At execution each agent reads only its own row $\mathbf{z}_i$ to decide its pending requests. An earlier variant mixed each gNB's summed per-request values with a QMIX-style monotonic mixer. Its target changed scale with the request count, and its mean training loss diverged from about 76 to about 409. Treating each request as its own sample removed that dependence.

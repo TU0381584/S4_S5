@@ -39,7 +39,8 @@ def labels_from_aux(aux):
 def tikz_preamble(main):
     """Packages, fonts, colours and icon macros that the inline TikZ figures rely on."""
     pre = main[:main.index("\\begin{document}")]
-    macros = pre[pre.index("% --- reusable vector icons"):pre.index("\\newcommand{\\authorTODO}")]
+    start = pre.index("% --- reusable vector icons")
+    macros = pre[start:pre.index("\n\n", pre.index("\\newcommand{\\uephone}")) + 1]
     return ("\\documentclass[border=0pt]{standalone}\n\\usepackage{amsmath,amssymb}\n\\usepackage{xcolor}\n\\usepackage{tikz}\n"
             "\\renewcommand{\\sfdefault}{phv}\n"
             "\\usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}\n" + macros)
@@ -81,6 +82,8 @@ def main():
             if not path.endswith(".pdf"):
                 path += ".pdf"
             shutil.copy(path, os.path.join(OUT, name + ".pdf"))
+            if os.path.exists(path[:-4] + ".tex"):          # a TikZ source drawn as its own document
+                shutil.copy(path[:-4] + ".tex", os.path.join(OUT, name + ".tex"))
             src = os.path.basename(path)
         w, h = pdf_width_bp(os.path.join(OUT, name + ".pdf"))
         run(["pdftops", "-eps", name + ".pdf", name + ".eps"], OUT)
@@ -89,8 +92,19 @@ def main():
         new_tex = new_tex.replace(m.group(0), new_fig, 1)
         report.append((name, src, round(w / 72 * 25.4, 1), round(h / 72 * 25.4, 1), "scaled to 119 mm" if width else "natural size"))
 
-    # figures now load from the package root; Online Resource 1 is supplied as ESM_1.pdf
-    new_tex = new_tex.replace("\\graphicspath{{figures/}}", "")
+    # every figure is now a file, so the submitted source needs no TikZ, no figure font and no icon macros
+    pre_end = new_tex.index("\\begin{document}")
+    pre_tex = new_tex[:pre_end]
+    for line in ("\\usepackage{tikz}\n",
+                 "% figure lettering in Helvetica, as the journal asks; \\sffamily appears only inside figures\n",
+                 "\\renewcommand{\\sfdefault}{phv}\n"):
+        pre_tex = pre_tex.replace(line, "", 1)
+    pre_tex = re.sub(r"\\usetikzlibrary\{[^}]*\}\n", "", pre_tex, count=1)
+    i0 = pre_tex.index("% --- reusable vector icons")
+    i1 = pre_tex.index("\n\n", pre_tex.index("\\newcommand{\\uephone}"))
+    pre_tex = pre_tex[:i0] + pre_tex[i1 + 2:]
+    new_tex = pre_tex + new_tex[pre_end:]
+    assert "tikzpicture" not in new_tex and "\\figfont" not in new_tex
     open(os.path.join(OUT, "main.tex"), "w").write(new_tex)
     for f in ("refs.bib", "sn-jnl.cls", "sn-basic.bst"):
         shutil.copy(os.path.join(HERE, f), OUT)
@@ -98,6 +112,10 @@ def main():
     for cmd in (["pdflatex", "-interaction=nonstopmode", "main.tex"], ["bibtex", "main"],
                 ["pdflatex", "-interaction=nonstopmode", "main.tex"], ["pdflatex", "-interaction=nonstopmode", "main.tex"]):
         run(cmd, OUT)
+    # keep main.bbl, which Springer's system uses; drop the other build files
+    for ext in (".aux", ".log", ".blg", ".out"):
+        if os.path.exists(os.path.join(OUT, "main" + ext)):
+            os.remove(os.path.join(OUT, "main" + ext))
     for name, src, w, h, how in report:
         print(f"{name}: {src:38s} {w:6.1f} x {h:5.1f} mm, {how}")
 

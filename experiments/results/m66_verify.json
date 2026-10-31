@@ -1411,41 +1411,6 @@
   "ok": true
  },
  {
-  "label": "curves: MAPPO ends 6.4, 16.0, 62.9; AXIOM about 85 at N=19; DQNs near 71 and 74",
-  "snippet": null,
-  "computed": {
-   "n3_fully_connected": {
-    "axiom2": 8.4,
-    "single_agent_dqn": 7.6,
-    "independent_dqn": 7.4,
-    "mappo_tuned": 6.4
-   },
-   "n7_ring": {
-    "axiom2": 23.2,
-    "single_agent_dqn": 23.3,
-    "independent_dqn": 21.8,
-    "mappo_tuned": 16.0
-   },
-   "n19_ring": {
-    "axiom2": 85.2,
-    "single_agent_dqn": 73.5,
-    "independent_dqn": 71.0,
-    "mappo_tuned": 62.9
-   }
-  },
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "MAPPO curve recomputed from raw curve files matches figure",
-  "snippet": null,
-  "computed": 6.3897190777907165,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "Table 5 parameters",
   "snippet": null,
   "computed": null,
@@ -6584,9 +6549,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 620",
+  "label": "text quotes the final check count of 618",
   "snippet": null,
-  "computed": 620,
+  "computed": 618,
   "formatted": null,
   "in_tex": null,
   "ok": true

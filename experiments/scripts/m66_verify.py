@@ -186,6 +186,8 @@ MOVED_TO_SUPP = {
 # The author asked that the script check only what the current documents say, so these checks are no longer
 # run or counted. The labels are kept here as a record of what was cut.
 CUT_FROM_OR1 = {
+    'curves: MAPPO ends 6.4, 16.0, 62.9; AXIOM about 85 at N=19; DQNs near 71 and 74',
+    'MAPPO curve recomputed from raw curve files matches figure',
     'reframe: trend AXIOM low',
     'reframe: trend AXIOM high',
     'reframe: trend gap at 19 gNBs',
@@ -632,7 +634,7 @@ def main():
            (sum(r["fails"] for r in ax3), sum(r["fails"] for r in ax7), sum(r["fails"] for r in ax19), sum(r["fails"] for r in sg19)))
     C.note("AXIOM's one N=19 collapse fails the screen", all(r["fails"] for r in ax19 if r["eval_collapsed"]), [r["seed"] for r in ax19 if r["eval_collapsed"]])
     # training curves (from the figure's own summary, cross-checked against raw curves for MAPPO)
-    tc = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig12_training_curves_summary.json"))
+    tc = json.load(open("/home/kmanojp/oranslice_rig/experiments/results/m64/fig12_training_curves_summary.json"))
     last = {k.split("/")[-1]: {a: round(v["last20_mean"], 1) for a, v in d.items()} for k, d in tc.items()}
     C.note("curves: MAPPO ends 6.4, 16.0, 62.9; AXIOM about 85 at N=19; DQNs near 71 and 74",
            (last["n3_fully_connected"]["mappo_tuned"], last["n7_ring"]["mappo_tuned"], last["n19_ring"]["mappo_tuned"]) == (6.4, 16.0, 62.9)
