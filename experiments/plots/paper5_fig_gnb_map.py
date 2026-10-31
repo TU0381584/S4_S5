@@ -28,6 +28,7 @@ import sys
 
 import matplotlib
 matplotlib.use("Agg")
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.collections import PolyCollection
@@ -43,7 +44,9 @@ FLOOR_CAP = {"urllc": (5, 33), "embb": (10, 66), "mmtc": (5, 11)}   # saclb_offl
 ARMS = [("axiom2", "AXIOM (proposed)"), ("single_agent_dqn", "DQN-SA"),
         ("independent_dqn", "DQN-I"), ("mappo_tuned", "MAPPO")]
 MAIN_WIDTH_IN = 119.0 / 25.4  # WPC maximum figure width
-CMAP = plt.get_cmap("cividis")  # monotonic in lightness, so it reads in greyscale and for colour-blind readers
+# inferno, trimmed at both ends so the darkest cells keep their outlines and the palest stay off white;
+# its lightness rises steadily, so it reads in greyscale and for protan, deutan, and tritan readers
+CMAP = mpl.colors.ListedColormap(plt.get_cmap("inferno")(np.linspace(0.08, 0.92, 256)), name="inferno_trim")
 
 
 def gate_openness(path, n):
@@ -105,7 +108,7 @@ def main():
     summary = {"cell": a.cell, "n_gnbs": n, "seeds": S30_19, "arms": {}}
     # drawn at the journal's 119 mm figure width so every label prints at 8 pt or more; the four panels,
     # the key and the colour bar sit symmetrically, so the figure centres on the page
-    fig = plt.figure(figsize=(0.965 * MAIN_WIDTH_IN, 2.3))  # tight bbox adds about 3%
+    fig = plt.figure(figsize=(0.953 * MAIN_WIDTH_IN, 2.3))  # tight bbox adds about 4.5%
     L, W, G = 0.02, 0.225, (0.96 - 4 * 0.225) / 3
     for idx, (arm, label) in enumerate(ARMS):
         mats = [gate_openness(p, n) for s in S30_19 if (p := find_eval(a.cell, arm, s))]
