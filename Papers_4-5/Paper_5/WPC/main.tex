@@ -222,6 +222,12 @@ Each gNB has a budget of $B{=}100$ PRBs in both simulators. The nominal shares a
 
 \begin{figure}[!htbp]
 \centering
+% boxed, colour-coded environment tags, the same fill, edge, and text colours as the tags in the plotted figures
+\definecolor{envAfc}{HTML}{E2E8F0}\definecolor{envAec}{HTML}{5A6B82}\definecolor{envAtc}{HTML}{26344A}
+\definecolor{envBfc}{HTML}{F4EAD6}\definecolor{envBec}{HTML}{9C7A45}\definecolor{envBtc}{HTML}{4F3A15}
+\newsavebox{\envAtag}\newsavebox{\envBtag}
+\sbox{\envAtag}{\tikz[baseline=(t.base)]\node[draw=envAec, fill=envAfc, text=envAtc, rounded corners=1.5pt, line width=0.4pt, inner sep=1.4pt, font=\sffamily\footnotesize] (t) {Env A};}
+\sbox{\envBtag}{\tikz[baseline=(t.base)]\node[draw=envBec, fill=envBfc, text=envBtc, rounded corners=1.5pt, line width=0.4pt, inner sep=1.4pt, font=\sffamily\footnotesize] (t) {Env B};}
 \begin{tikzpicture}[
   font=\sffamily\footnotesize,
   base/.style={draw, rounded corners=2pt, align=flush left, inner sep=3pt, minimum height=0.62cm},
@@ -232,8 +238,8 @@ Each gNB has a budget of $B{=}100$ PRBs in both simulators. The nominal shares a
   tl/.style={font=\sffamily\footnotesize, text=black!70}
 ]
 % episode start, split
-\node[ea, anchor=north west] (a1) at (0,0) {Env A\quad empty all queues and reset each slice ceiling to its nominal share};
-\node[eb, anchor=north west] (b1) at (6.05,0) {Env B\quad as Env A, and redraw each gNB's load phase $\psi_i$};
+\node[ea, anchor=north west] (a1) at (0,0) {\usebox{\envAtag}\quad empty all queues and reset each slice ceiling to its nominal share};
+\node[eb, anchor=north west] (b1) at (6.05,0) {\usebox{\envBtag}\quad as Env A, and redraw each gNB's load phase $\psi_i$};
 \node[tl, anchor=south west] at ($(a1.north west)+(0,0.02)$) {Episode start};
 % shared steps
 \node[sh, anchor=north west] (s2) at ($(a1.south west)+(0,-0.5)$) {Observe\quad each gNB reports its PRB-used ratio, congestion level, and normalised queue length, forming its feature row $\mathbf{x}_i$};
@@ -241,12 +247,12 @@ Each gNB has a budget of $B{=}100$ PRBs in both simulators. The nominal shares a
 \node[sh, below=0.28cm of s3.south west, anchor=north west] (s4) {Decide\quad each gNB's agent accepts or rejects its own requests. An accept raises the slice ceiling by 5 PRB-ratio points, up to its cap. A reject lowers it by 5 points, down to its floor, and relieves one request's demand from the backlog};
 \node[sh, below=0.28cm of s4.south west, anchor=north west] (s5) {Reward\quad $r_t$ of Eq.~\eqref{eq:reward}, from slice service, SLA-violation penalties, a congestion charge, and load imbalance. In training the transition is stored for learning, as in Algorithm~\ref{alg:gat-ctde}};
 % demand, split
-\node[ea, below=0.5cm of s5.south west, anchor=north west] (a6) {Env A\quad offered PRBs drift 10\% per step towards $1.05\times$ nominal share $\times\, m_i$, plus noise of $0.005B$};
-\node[eb, anchor=north west] (b6) at (a6.north -| b1.west) {Env B\quad offered PRBs drift towards\\ $0.95\,\bigl(1+0.3\sin(2\pi(s+\psi_i)/60)\bigr)\times$ share $\times\, m_i$,\\ plus the same noise};
+\node[ea, below=0.5cm of s5.south west, anchor=north west] (a6) {\usebox{\envAtag}\quad offered PRBs drift 10\% per step towards $1.05\times$ nominal share $\times\, m_i$, plus noise of $0.005B$};
+\node[eb, anchor=north west] (b6) at (a6.north -| b1.west) {\usebox{\envBtag}\quad offered PRBs drift towards\\ $0.95\,\bigl(1+0.3\sin(2\pi(s+\psi_i)/60)\bigr)\times$ share $\times\, m_i$,\\ plus the same noise};
 \node[tl, anchor=south west] at ($(a6.north west)+(0,0.02)$) {Demand};
 % serve, split
-\node[ea, below=0.5cm of a6.south west, anchor=north west] (a7) {Env A\quad each slice asks for $\min(\text{offered}+\text{backlog},\ \text{ceiling})$. If the total exceeds $B$, every slice is scaled down in proportion to fit $B$};
-\node[eb, anchor=north west] (b7) at (a7.north -| b1.west) {Env B\quad as Env A, but within the shrunken budget\\ $B_i(t)=B\,\bigl(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1)\bigr)$,\\ and each gNB's utilisation $u_i(t)$ is kept for its neighbours' next step};
+\node[ea, below=0.5cm of a6.south west, anchor=north west] (a7) {\usebox{\envAtag}\quad each slice asks for $\min(\text{offered}+\text{backlog},\ \text{ceiling})$. If the total exceeds $B$, every slice is scaled down in proportion to fit $B$};
+\node[eb, anchor=north west] (b7) at (a7.north -| b1.west) {\usebox{\envBtag}\quad as Env A, but within the shrunken budget\\ $B_i(t)=B\,\bigl(1-0.15\,\bar u_{\mathcal{N}(i)}(t-1)\bigr)$,\\ and each gNB's utilisation $u_i(t)$ is kept for its neighbours' next step};
 \node[tl, anchor=south west] at ($(a7.north west)+(0,0.02)$) {Serve};
 % shared update
 \node[sh, below=0.5cm of a7.south west, anchor=north west] (s8) {Update\quad unserved demand becomes backlog, and backlog and loss give each slice's SLA margin of Eq.~\eqref{eq:margin} for the next observation};

@@ -119,6 +119,8 @@ def main():
                                 "mean_openness": dict(zip(SLICES, op.mean(axis=0).round(4).tolist())),
                                 "priority_sla_pct": round(p_sla, 2), "collapsed_seeds": coll, "n_eval_seeds": len(rows)}
         ax = fig.add_axes([L + idx * (W + G), 0.27, W, 0.47])
+        if idx == 0:
+            ax0 = ax
         draw_cluster(ax, coords, corr, lw=0.3)
         emph = arm == "axiom2"
         col = "#1f5fae" if emph else "#333333"
@@ -132,8 +134,10 @@ def main():
             for sp in ax.spines.values():
                 sp.set_edgecolor("#1f5fae"); sp.set_linewidth(1.4)
     # boxed environment tag in the style of paper5_common.ENV_TAG (not imported: its rcParams would restyle this figure)
-    fig.text(L, 0.995, "Env A", fontsize=8.5, va="top", ha="left", color="#26344a",
-             bbox=dict(boxstyle="round,pad=0.25", fc="#e2e8f0", ec="#5a6b82", lw=0.6))
+    # it sits above the first panel's title with a clear gap, aligned with that panel's left edge
+    ax0.annotate("Env A", xy=(0, 1), xycoords="axes fraction", xytext=(0, 44), textcoords="offset points", ha="left", va="bottom",
+                 fontsize=8.5, color="#26344a", annotation_clip=False,
+                 bbox=dict(boxstyle="round,pad=0.25", fc="#e2e8f0", ec="#5a6b82", lw=0.6))
     # key: one gNB's hexagon under the first two panels, its three slice rhombi labelled to its right
     kax = fig.add_axes([L, 0.0, 2 * W + G, 0.21])
     draw_cluster(kax, [(0, 0)], np.array([[1.0, 1.0, 1.0]]), r=1.0, lw=0.8)
