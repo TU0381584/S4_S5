@@ -43,13 +43,17 @@ This supplement gives the detail behind the main paper's verification runs and a
 \toprule
 Acronym & Meaning & Acronym & Meaning \\
 \midrule
-CI & Confidence interval & O-RAN & Open Radio Access Network \\
-DP & Differential privacy & PRB & Physical resource block \\
-DP-SGD & Differentially private stochastic gradient descent & RAN & Radio Access Network \\
-eMBB & Enhanced Mobile Broadband & SLA & Service Level Agreement \\
-FedAvg & Federated averaging & URLLC & Ultra-Reliable Low-Latency Communication \\
-gNB & gNodeB, the 5G base station & mMTC & Massive Machine-Type Communication \\
-OAI & OpenAirInterface & & \\
+CI & Confidence interval & PRB & Physical resource block \\
+CPU & Central processing unit & RAN & Radio Access Network \\
+DP & Differential privacy & RF & Radio frequency \\
+DP-SGD & Differentially private stochastic gradient descent & RIC & RAN Intelligent Controller \\
+eMBB & Enhanced Mobile Broadband & SDR & Software-defined radio \\
+FedAvg & Federated averaging & SLA & Service Level Agreement \\
+gNB & gNodeB, the 5G base station & TDD & Time-division duplex \\
+GPU & Graphics processing unit & UDP & User Datagram Protocol \\
+mMTC & Massive Machine-Type Communication & UE & User equipment \\
+OAI & OpenAirInterface & URLLC & Ultra-Reliable Low-Latency Communication \\
+O-RAN & Open Radio Access Network & & \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -71,7 +75,58 @@ An independent script with its own log reader and Holm correction recomputes eve
 \end{figure}
 
 \section*{S3. Live testbed and deployment check}
-Every live measurement comes from the single-host, software-radio O-RAN stack that the main paper's testbed figure shows. AXIOM itself is not deployed on the live testbed. Its multi-gNB policy needs at least two live gNBs, and our two-gNB attempt registered both with the core but did not sustain traffic. The testbed therefore validates the pipeline AXIOM would use, namely the control path over the O-RAN E2 interface, PRB-ratio actuation, and real-time inference. It does so with a single-agent DQN checkpoint trained offline for this rig, at one and at two user equipment (UE) devices per slice. A capacity probe showed every slice served at essentially 100\% of offered demand with 0.000\% loss. The checkpoint's real accept and reject decisions, typically blocking mMTC alone, ran correctly through the E2 loop. Because the rig never ran short of capacity, this shows that the pipeline works, not admission under contention. A scheduler-configuration error that granted fewer PRBs than the gNB scheduler's five-PRB floor was fixed at the root. Instrumentation then confirmed zero below-floor grants across more than 100{,}000 readings.
+\begin{figure}[!htbp]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[
+  block/.style={draw, thick, rounded corners, align=center, fill=gray!8,
+                font=\footnotesize, inner sep=5pt, text width=3.7cm},
+  arr/.style={-{Latex[length=2.5mm]}, thick},
+  lbl/.style={font=\footnotesize, inner sep=1pt}
+]
+\node[block, anchor=north] (core) at (0,0)
+  {Core network\\[2pt]
+   Open5GS, Docker Compose\\
+   17 core-function containers\\
+   MongoDB};
+\node[block, anchor=north west] (ran) at ($(core.north east)+(2.2,0)$)
+  {RAN\\[2pt]
+   OAI gNB (ORANSlice fork)\\
+   rfsim software radio\\
+   no SDR/RF hardware\\
+   n78, 106 PRB, $\mu{=}1$, TDD-SA};
+\node[block, anchor=north west] (ues) at ($(ran.north east)+(2.2,0)$)
+  {UEs + traffic\\[2pt]
+   Up to 6 native \texttt{nr-uesoftmodem} UEs, netns-isolated\\
+   eMBB/URLLC/mMTC iperf3 UDP flows};
+\node[block, anchor=north east, text width=4.6cm] (ctrl) at ($(ran.south east)+(0,-1.3)$)
+  {Control loop (RIC-free)\\[2pt]
+   UDP E2 agent, ports 6600/6655\\
+   xApp/orchestrator \texttt{slicing\_control\_m}\\
+   per-slice (min, max) PRB-ratio ceiling\\
+   \texttt{omega\_log}};
+\node[block, anchor=north] (policy) at (ues.south |- ctrl.north)
+  {Policy\\[2pt]
+   Single-agent DQN checkpoint, seed 900\\
+   18{,}562 parameters\\
+   CPU inference};
+\draw[arr] ($(core.north east)+(0,-0.9)$) -- ($(ran.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {N2/N3};
+\draw[arr] ($(ran.north east)+(0,-0.9)$) -- ($(ues.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {Uu / rfsim};
+\draw[arr] (ran.south) -- (ran.south |- ctrl.north) node[lbl, midway, right=3pt] {E2 (UDP)};
+\draw[arr] ($(ctrl.north east)+(0,-0.9)$) -- ($(policy.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {state / action};
+\node[draw, thick, dashed, rounded corners, inner sep=7pt, fit=(core)(ran)(ues)(ctrl)(policy)] (host) {};
+\node[font=\footnotesize, anchor=south west, inner sep=2pt] at ($(host.north west)+(0,0.05)$)
+  {Single commodity host, CPU-only, no GPU, no SDR/RF hardware};
+\end{tikzpicture}%
+}
+\caption{Real testbed stack, a single-host, software-radio rfsim,
+RIC-free O-RAN deployment distinguished from software-defined-radio hardware-in-the-loop
+testbeds. Every block and label is a measured or configured value from
+this rig}
+\label{fig:testbed}
+\end{figure}
+
+Every live measurement comes from the single-host, software-radio O-RAN stack of Fig.~\ref{fig:testbed}. It runs without a near-real-time RAN Intelligent Controller (RIC), because the ORANSlice fork applies slicing control directly through a lightweight User Datagram Protocol (UDP) E2 agent. AXIOM itself is not deployed on the live testbed. Its multi-gNB policy needs at least two live gNBs, and our two-gNB attempt registered both with the core but did not sustain traffic. The testbed therefore validates the pipeline AXIOM would use, namely the control path over the O-RAN E2 interface, PRB-ratio actuation, and real-time inference. It does so with a single-agent DQN checkpoint trained offline for this rig, at one and at two user equipment (UE) devices per slice. A capacity probe showed every slice served at essentially 100\% of offered demand with 0.000\% loss. The checkpoint's real accept and reject decisions, typically blocking mMTC alone, ran correctly through the E2 loop. Because the rig never ran short of capacity, this shows that the pipeline works, not admission under contention. A scheduler-configuration error that granted fewer PRBs than the gNB scheduler's five-PRB floor was fixed at the root. Instrumentation then confirmed zero below-floor grants across more than 100{,}000 readings.
 
 \section*{S4. Setup, safeguards, and analysis plans}
 Algorithm 1 of the main paper states AXIOM's training loop, and its parameter table lists the simulation and training settings.
