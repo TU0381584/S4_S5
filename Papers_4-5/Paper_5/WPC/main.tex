@@ -390,23 +390,23 @@ Env B priority SLA, 7 gNBs & 35.1\% & 44.3\% & 39.9\% & 35.9\% \\
 
 \subsection{Static Load, Three gNBs}
 \label{sec:results-m2}
-In the thirty-seed campaign of Table~\ref{tab:m2-results}, AXIOM never collapses and reaches 98.9\% of the oracle rule's reward, tying it exactly in 22 of the 30 seeds. AXIOM earns 1.110 more reward per step than DQN-I, with 95\% CI [0.60, 1.65]. It earns 2.685 more than MAPPO, with 95\% CI [2.01, 3.35], and both margins hold at Holm-adjusted $p\leq0.0002$. Its margin over DQN-SA, 0.311 with 95\% CI [$-$0.01, 0.64], does not survive correction on thirty seeds, at $p=0.066$. A disjoint replication on seeds 1000 to 1009 and the pooled 40 seeds favour AXIOM more strongly, as Section S6 of Online Resource 1 reports, but fresh seeds in Section~\ref{sec:results-verify} do not reproduce the lead over DQN-SA.
+In the thirty-seed campaign of Table~\ref{tab:m2-results}, AXIOM never collapses and comes closer to the oracle rule's reward than any other learner. AXIOM earns 1.110 more reward per step than DQN-I, with 95\% CI [0.60, 1.65]. It earns 2.685 more than MAPPO, with 95\% CI [2.01, 3.35], and both margins hold at Holm-adjusted $p\leq0.0002$. Its margin over DQN-SA, 0.311 with 95\% CI [$-$0.01, 0.64], does not survive correction on thirty seeds, at $p=0.066$. A disjoint replication on seeds 1000 to 1009 and the pooled 40 seeds favour AXIOM more strongly, as Section S6 of Online Resource 1 reports, but fresh seeds in Section~\ref{sec:results-verify} do not reproduce the lead over DQN-SA.
 
 \begin{table}[!htbp]
-\caption{Env A, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Precision averages the seeds that block at all. SLA columns give per-slice compliance}
+\caption{Env A, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. W/T/L counts the seeds where AXIOM earns more, the same, or less. Precision averages the seeds that block at all. SLA columns give per-slice compliance}
 \label{tab:m2-results}
 \centering
 \footnotesize
-{\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lccccc@{}}
+{\setlength{\tabcolsep}{3.7pt}
+\begin{tabular}{@{}lcccccccc@{}}
 \toprule
-Policy & Reward/step & Precision & Collapsed & URLLC & eMBB \\
+Policy & Reward/step & \begin{tabular}[b]{@{}c@{}}Of oracle\\reward, \%\end{tabular} & \begin{tabular}[b]{@{}c@{}}AXIOM\\W/T/L\end{tabular} & Precision & Collapsed & URLLC & eMBB & mMTC \\
 \midrule
-Oracle rule & 12.835 [12.77, 12.91] & 1.000 & 0/30 & 1.000 & 1.000 \\
-\rowcolor{blue!7}AXIOM & 12.698 [12.49, 12.86] & 0.992 & 0/30 & 0.998 & 0.979 \\
-DQN-SA & 12.387 [12.11, 12.63] & 0.990 & 0/30 & 0.994 & 0.941 \\
-DQN-I & 11.587 [11.11, 12.02] & 0.962 & 0/30 & 0.993 & 0.865 \\
-MAPPO & 10.013 [9.30, 10.73] & 0.707 & 2/30 & 0.978 & 0.576 \\
+Oracle rule & 12.835 [12.77, 12.91] & 100.0 & 2/22/6 & 1.000 & 0/30 & 1.000 & 1.000 & 0.366 \\
+\rowcolor{blue!7}AXIOM & 12.698 [12.49, 12.86] & 98.9 & -- & 0.992 & 0/30 & 0.998 & 0.979 & 0.389 \\
+DQN-SA & 12.387 [12.11, 12.63] & 96.5 & 15/8/7 & 0.990 & 0/30 & 0.994 & 0.941 & 0.436 \\
+DQN-I & 11.587 [11.11, 12.02] & 90.3 & 27/0/3 & 0.962 & 0/30 & 0.993 & 0.865 & 0.402 \\
+MAPPO & 10.013 [9.30, 10.73] & 78.0 & 29/1/0 & 0.707 & 2/30 & 0.978 & 0.576 & 0.664 \\
 \botrule
 \end{tabular}}
 \end{table}
@@ -446,7 +446,7 @@ Four checks test where AXIOM's behaviour comes from, as Sections S6 and S8 of On
 \subsection{Time-Varying Load with Inter-Cell Coupling}
 \label{sec:results-envb}
 
-Table~\ref{tab:envb} and Fig.~\ref{fig:envb} report Env B at three gNBs, where shedding one fixed slice no longer suffices. AXIOM earns 2.495 more reward per step than shedding every mMTC request and 4.476 more than accept-all. It wins all 30 seeds against each at Holm-adjusted $p<0.0001$, as hypothesis H1 predicted. It also leads every learned policy, by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO. It keeps more priority-slice compliance, winning 24 to 29 of 30 seeds at Holm-adjusted $p<0.0001$. A tuned rule that also sheds eMBB whenever the URLLC queue passes 0.2 beats every learned policy, earning 0.420 more than AXIOM in 22 of 30 seeds at $p<0.0001$.
+Table~\ref{tab:envb} and Fig.~\ref{fig:envb} report Env B at three gNBs, where shedding one fixed slice no longer suffices. AXIOM earns 2.495 more reward per step than shedding every mMTC request and 4.476 more than accept-all. Both gaps hold at Holm-adjusted $p<0.0001$, as hypothesis H1 predicted. It also leads every learned policy, by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO. It also keeps more priority-slice compliance than each, at Holm-adjusted $p<0.0001$. A tuned rule that also sheds eMBB whenever the URLLC queue passes 0.2 beats every learned policy, earning 0.420 more than AXIOM at $p<0.0001$.
 
 \begin{figure}[!htbp]
 \centering
@@ -457,31 +457,33 @@ points behind the mean and 95\% CI}
 \end{figure}
 
 \begin{table}[!htbp]
-\caption{Env B, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it}
+\caption{Env B, three gNBs, 30 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it. W/T/L counts the seeds where AXIOM does better, the same, or worse}
 \label{tab:envb}
 \centering
 \footnotesize
-{\setlength{\tabcolsep}{4pt}
-\begin{tabular}{@{}lcccc@{}}
+{\setlength{\tabcolsep}{3.7pt}
+\begin{tabular}{@{}lccccccc@{}}
 \toprule
-Policy & Reward/step & URLLC & eMBB & mMTC \\
+& & & \multicolumn{2}{c}{AXIOM W/T/L} & & & \\
+\cmidrule{4-5}
+Policy & Reward/step & \begin{tabular}[b]{@{}c@{}}Of tuned\\rule, \%\end{tabular} & Reward & \begin{tabular}[b]{@{}c@{}}Priority\\SLA\end{tabular} & URLLC & eMBB & mMTC \\
 \midrule
-Accept all & 4.356 [4.13, 4.60] & 0.446 & 0.265 & 0.955 \\
-Shed all mMTC & 6.337 [6.00, 6.67] & 0.625 & 0.367 & 0.371 \\
-Tuned local rule & 9.252 [9.12, 9.40] & 0.989 & 0.367 & 0.390 \\
-Tuned neighbour-aware rule & 9.041 [8.93, 9.15] & 0.988 & 0.283 & 0.901 \\
+Accept all & 4.356 [4.13, 4.60] & 47.1 & 30/0/0 & 30/0/0 & 0.446 & 0.265 & 0.955 \\
+Shed all mMTC & 6.337 [6.00, 6.67] & 68.5 & 30/0/0 & 30/0/0 & 0.625 & 0.367 & 0.371 \\
+Tuned local rule & 9.252 [9.12, 9.40] & 100.0 & 8/0/22 & 6/0/24 & 0.989 & 0.367 & 0.390 \\
+Tuned neighbour-aware rule & 9.041 [8.93, 9.15] & 97.7 & 13/0/17 & 23/0/7 & 0.988 & 0.283 & 0.901 \\
 \midrule
-\rowcolor{blue!7}AXIOM & 8.832 [8.64, 9.03] & 0.958 & 0.344 & 0.406 \\
-DQN-SA & 7.495 [7.20, 7.77] & 0.866 & 0.284 & 0.412 \\
-DQN-I & 7.794 [7.44, 8.13] & 0.910 & 0.270 & 0.441 \\
-MAPPO & 6.968 [6.47, 7.45] & 0.797 & 0.289 & 0.579 \\
+\rowcolor{blue!7}AXIOM & 8.832 [8.64, 9.03] & 95.5 & -- & -- & 0.958 & 0.344 & 0.406 \\
+DQN-SA & 7.495 [7.20, 7.77] & 81.0 & 29/0/1 & 26/0/4 & 0.866 & 0.284 & 0.412 \\
+DQN-I & 7.794 [7.44, 8.13] & 84.2 & 29/0/1 & 27/0/3 & 0.910 & 0.270 & 0.441 \\
+MAPPO & 6.968 [6.47, 7.45] & 75.3 & 29/0/1 & 24/0/6 & 0.797 & 0.289 & 0.579 \\
 \botrule
 \end{tabular}}
 \end{table}
 
 At seven gNBs the tuned rules beat AXIOM in all 15 seeds under every layout. On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.011$. This gap mainly reflects the 300-episode budget, within which 28 of AXIOM's 45 seeds settle on the static rule's policy and never shed eMBB, which none of its 30 seeds does at three gNBs. With 900 episodes for every learner on the ring layout, AXIOM keeps 55.7\% priority-slice compliance against 40.5\% to 42.9\% for the baselines, at Holm-adjusted $p\leq0.0012$, though still below the tuned rule's 60.5\%. After 900 episodes AXIOM rejects eMBB more often as the URLLC queue grows, much as the tuned rule does. At nineteen gNBs the longer budget does not help, and seven of eight seeds keep the static policy after 900 episodes, as Section S13 of Online Resource 1 reports.
 
-At nineteen gNBs, where cluster-level compliance saturates, AXIOM earns 5.54 to 21.22 more reward per step than every learned baseline and keeps 5.5 to 10.9 percentage points more per-gNB priority-slice compliance, at Holm-adjusted $p\leq0.013$. The static rule still earns 1.31 more per step, and the tuned local rule carried over from seven gNBs earns 3.81 more and wins every seed. Fig.~\ref{fig:pergnb} maps this per-gNB compliance for the four learned policies. Every policy keeps the least at the centre gNB, whose load the simulator fixes at the nominal level while it draws every other gNB's from 90\% to 100\% of it. The six inner gNBs have as many neighbours but trail the edge by only 0.5 to 1.8 points. AXIOM keeps more than every learned baseline at each of the nineteen gNBs, by at least 3.8 points, and by at least 4.3 points on the 15 fresh seeds. The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere, and by 13.2 and 7.0 points on the fresh seeds.
+At nineteen gNBs, where cluster-level compliance saturates, AXIOM earns 5.54 to 21.22 more reward per step than every learned baseline and keeps 5.5 to 10.9 percentage points more per-gNB priority-slice compliance, at Holm-adjusted $p\leq0.013$. The static rule still earns 1.31 more per step, and the tuned local rule carried over from seven gNBs earns 3.81 more and wins every seed. Fig.~\ref{fig:pergnb} maps this per-gNB compliance for the four learned policies. Each hexagon is one gNB, coloured from red at 50\% to blue at 85\% by the mean share of evaluation steps on which it meets the URLLC and eMBB SLAs. The policies only admit or reject requests where they arrive, so the colours show how well each gNB copes with its own offered load. Every policy keeps the least at the centre gNB, whose load the simulator fixes at the nominal level while it draws every other gNB's from 90\% to 100\% of it. The six inner gNBs have as many neighbours but trail the edge by only 0.5 to 1.8 points. AXIOM keeps more than every learned baseline at each of the nineteen gNBs, by at least 3.8 points, and by at least 4.3 points on the 15 fresh seeds. The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere, and by 13.2 and 7.0 points on the fresh seeds.
 
 \begin{figure}[!htbp]
 \centering
@@ -530,7 +532,7 @@ We checked the results in three ways, with every pass criterion fixed before the
 
 Second, four further runs retrained every policy on fresh seeds, 10 to 40 per setting, and 81 of their 90 pre-stated checks held. The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set, and AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur. A fifth fresh-seed run held all three of its checks at thirty-seven gNBs on 20 seeds. A sixth held all four in Env B at nineteen gNBs on 15 seeds, as Section S13 of Online Resource 1 reports. Section S2 of Online Resource 1 compares each reported difference from a learned baseline with its fresh-seed counterpart, and 35 of the 38 whose CI excludes zero hold.
 
-Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 719 of its checks pass.
+Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 733 of its checks pass.
 
 \subsection{Federation, Privacy, Disruption, and Live Deployment}
 \label{sec:results-m3}

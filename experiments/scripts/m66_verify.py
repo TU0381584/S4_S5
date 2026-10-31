@@ -228,7 +228,9 @@ def main():
         row = (f"{nm} & {mean(r):.3f}")
         C.note(f"T3 {arm} has 30 seeds", len(r) == 30, len(r))
         C.claim(f"T3 {arm} reward", row, mean(r), "{:.3f}")
-        C.claim(f"T3 {arm} URLLC/eMBB", f"& {mean(r, lambda x: x['sla']['urllc']):.3f} & {mean(r, lambda x: x['sla']['embb']):.3f} \\\\",
+        # Table 4 also gives mMTC; the MLP variant's row sits in a supplement table without it
+        mm_ = "" if arm == "axiom2_mlp" else f" & {mean(r, lambda x: x['sla']['mmtc']):.3f}"
+        C.claim(f"T3 {arm} URLLC/eMBB/mMTC", f"& {mean(r, lambda x: x['sla']['urllc']):.3f} & {mean(r, lambda x: x['sla']['embb']):.3f}{mm_} \\\\",
                 mean(r, lambda x: x['sla']['urllc']), "{:.3f}")
         C.claim(f"T3 {arm} precision", f"& {np.mean(prec):.3f} & {sum(x['collapsed'] for x in r.values())}/30", float(np.mean(prec)), "{:.3f}")
     fam = {b: paired(A["axiom2"], A[b]) for b in ("axiom2_mlp", "heuristic", "single_agent_dqn", "single_agent_dqn_lr1e4",
@@ -240,8 +242,19 @@ def main():
     C.claim("A3 vs single p_holm", "at $p=0.066$", h["single_agent_dqn"], "{:.3f}")
     C.note("A3 vs indep and MAPPO p_holm <= 0.0002", max(h["independent_dqn"], h["mappo_tuned"]) <= 0.0002,
            (h["independent_dqn"], h["mappo_tuned"]))
-    C.claim("A3 oracle ties", "tying it exactly in 22 of the 30 seeds", fam["heuristic"]["ties"], "{}")
-    C.claim("A3 pct of oracle", "reaches 98.9\\% of the oracle rule's reward", 100 * mean(A["axiom2"]) / mean(A["heuristic"]), "{:.1f}")
+    C.claim("A3 oracle ties", "Oracle rule & 12.835 [12.77, 12.91] & 100.0 & 2/22/6 &", fam["heuristic"]["ties"], "/{}/")
+    C.claim("A3 pct of oracle", "AXIOM & 12.698 [12.49, 12.86] & 98.9 & -- &", 100 * mean(A["axiom2"]) / mean(A["heuristic"]), "{:.1f}")
+    # Table 4's share-of-oracle and AXIOM W/T/L columns, and the sentence that AXIOM comes closest to the oracle
+    for arm, nm in names.items():
+        if arm in ("axiom2", "axiom2_mlp"):
+            continue
+        p_ = paired(A["axiom2"], A[arm])
+        C.note(f"T3 {arm} row reads {100 * mean(A[arm]) / mean(A['heuristic']):.1f} and {p_['wins']}/{p_['ties']}/{p_['losses']}",
+               any(l_.startswith(f"{nm} & {mean(A[arm]):.3f} [") and f"] & {100 * mean(A[arm]) / mean(A['heuristic']):.1f} & {p_['wins']}/{p_['ties']}/{p_['losses']} &" in l_
+                   for l_ in C.main.splitlines()), (p_["wins"], p_["ties"], p_["losses"]))
+    C.note("A3 AXIOM earns more than every other learner, so it comes closest to the oracle",
+           all(mean(A["axiom2"]) > mean(A[b_]) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned", "axiom2_mlp"))
+           and "AXIOM never collapses and comes closer to the oracle rule's reward than any other learner" in C.main, None)
     C.claim("A3 MLP diff", "which earns 0.058 more reward per step at three gNBs with 95\\% CI", fam["axiom2_mlp"]["diff"], "{:.3f}")
     C.claim("A3 MLP diff in the supplement", "In Env A it ties AXIOM, which earns 0.058 more reward per step", fam["axiom2_mlp"]["diff"], "{:.3f}")
     ax19m_ = seeds_of("m65_scaling/n19_ring", "axiom2", range(900, 912)); ml19_ = seeds_of("m65_scaling_mlp/n19_ring", "axiom2_mlp", range(900, 912))
@@ -315,8 +328,16 @@ def main():
     for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned"):
         C.claim(f"H2 n3 vs {b}", "by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO", paired(B["axiom2"], B[b])["diff"], "{:.3f}")
     loc = paired(B["axiom2"], B["rule_local"])
-    C.claim("H2 rule_local gap", "earning 0.420 more than AXIOM in 22 of 30 seeds", -loc["diff"], "{:.3f}")
-    C.claim("H2 rule_local seeds", "in 22 of 30 seeds at $p<0.0001$", loc["losses"], "{}")
+    C.claim("H2 rule_local gap", "earning 0.420 more than AXIOM at $p<0.0001$", -loc["diff"], "{:.3f}")
+    C.claim("H2 rule_local seeds", "Tuned local rule & 9.252 [9.12, 9.40] & 100.0 & 8/0/22 &", loc["losses"], "/{}")
+    # Table 5's share-of-tuned-rule and AXIOM W/T/L columns, on reward and on priority-slice compliance
+    for arm, nm in bnames.items():
+        if arm in ("axiom2", "axiom2_mlp"):
+            continue
+        pr_, ps_ = paired(B["axiom2"], B[arm]), paired(B["axiom2"], B[arm], prio)
+        cell_ = f"] & {100 * mean(B[arm]) / mean(B['rule_local']):.1f} & {pr_['wins']}/{pr_['ties']}/{pr_['losses']} & {ps_['wins']}/{ps_['ties']}/{ps_['losses']} &"
+        C.note(f"T4 {arm} row reads {cell_}", any(l_.startswith(f"{nm} & {mean(B[arm]):.3f} [") and cell_ in l_ for l_ in C.main.splitlines()), cell_)
+    C.note("T4 AXIOM row reads 95.5 of the tuned rule", f"AXIOM & 8.832 [8.64, 9.03] & {100 * mean(B['axiom2']) / mean(B['rule_local']):.1f} & -- & -- &" in C.main, None)
     # H2 family at N=3 recomputed and compared to the stated p < 0.0001
     famB = {}
     for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned", "rule_local", "rule_neighbour"):
@@ -1782,7 +1803,10 @@ def main():
         u_, e_ = 100 * np.mean([r["sla"]["urllc"] for r in rr_]), 100 * np.mean([r["sla"]["embb"] for r in rr_])
         C.note(f"M78 Env A {n_} gNBs AXIOM URLLC and eMBB", snip_.format(u=r1_(u_), e=r1_(e_)) in C.tex, (u_, e_))
     wB_ = [paired(B["axiom2"], B[b_], f_)["wins"] for b_ in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for f_ in (lambda r: r["reward"], prio)]
-    C.note("M78 Env B 3 gNBs seed wins 24 to 29", (min(wB_), max(wB_)) == (24, 29) and "winning 24 to 29 of 30 seeds" in C.main, wB_)
+    # the per-baseline seed wins now sit in Table 5's AXIOM W/T/L columns (no ties occur), reward then priority SLA
+    C.note("M78 Env B 3 gNBs seed wins 24 to 29", (min(wB_), max(wB_)) == (24, 29)
+           and all(f"{nm_} & " in C.main and f"& {wB_[2 * k_]}/0/{30 - wB_[2 * k_]} & {wB_[2 * k_ + 1]}/0/{30 - wB_[2 * k_ + 1]} &" in C.main
+                   for k_, nm_ in enumerate(("DQN-I", "DQN-SA", "MAPPO"))), wB_)
     RB_ = {a_: seeds_of("m64/n3_replication", a_, REP) for a_ in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned")}
     fr_ = {(b_, m_): paired(RB_["axiom2"], RB_[b_], f_) for b_ in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for m_, f_ in (("r", lambda r: r["reward"]), ("p", prio))}
     hr_ = holm({k_: v_["p"] for k_, v_ in fr_.items()})
@@ -2133,6 +2157,14 @@ def main():
     C.claim("M81 fresh Env B 7 compliance deficit to DQN-SA", sn81_, -fo_[("B", 7, "fresh", "single_agent_dqn", "sla")]["mean"], "{:.1f}")
     C.claim("M81 fresh Env B 7 compliance lead over DQN-I", sn81_, fo_[("B", 7, "fresh", "independent_dqn", "sla")]["mean"], "{:.1f}")
     C.claim("M81 fresh Env B 19 compliance lead over MAPPO", "Its lead over MAPPO at nineteen gNBs falls to 2.9 points", fo_[("B", 19, "fresh", "mappo_tuned", "sla")]["mean"], "{:.1f}")
+
+    # Fig. 7's colour scale and the sentence that explains it
+    import importlib.util as ilu_
+    sp_ = ilu_.spec_from_file_location("pgfig_", "/home/kmanojp/oranslice_rig/experiments/plots/paper5_fig_pergnb_envb.py")
+    pgfig_ = ilu_.module_from_spec(sp_); sp_.loader.exec_module(pgfig_)
+    C.note("Fig. 7 colour scale runs from 50% to 85%, and the text says so", (pgfig_.VMIN, pgfig_.VMAX) == (50, 85)
+           and "coloured from red at 50\\% to blue at 85\\% by the mean share of evaluation steps on which it meets the URLLC and eMBB SLAs" in C.main,
+           (pgfig_.VMIN, pgfig_.VMAX))
 
     n_total = len(C.rows) + 1
     C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)
