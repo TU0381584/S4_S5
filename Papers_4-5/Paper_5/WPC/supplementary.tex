@@ -10,6 +10,17 @@
 \usepackage{algorithmic}
 \usepackage{tikz}
 \usepackage[section]{placeins}
+% Online Resource layout: captions in the journal's style (small type, label then a quad, caption above tables
+% with a gap to the top rule), supplement numbering S1, S2, ... so no table or figure shares a number with the
+% main paper, and more room between floats and the surrounding text
+\usepackage[font=small,labelfont=bf,labelsep=quad,skip=6pt]{caption}
+\captionsetup[table]{position=top}
+\captionsetup[figure]{name=Fig.}
+\renewcommand{\thetable}{S\arabic{table}}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\setlength{\intextsep}{16pt plus 4pt minus 2pt}
+\setlength{\textfloatsep}{18pt plus 4pt minus 2pt}
+\setlength{\floatsep}{16pt plus 4pt minus 2pt}
 \usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}
 \title{Online Resource 1\\[4pt]\large Supplementary material for the article ``AXIOM: A Shared Graph-Attention Controller for Scalable Multi-Agent 5G Slice Admission''\\[2pt]\normalsize Wireless Personal Communications}
 \author{Manoj Prasad Kunasegran, Wai Leong Pang, Swee King Phang\\[4pt]
