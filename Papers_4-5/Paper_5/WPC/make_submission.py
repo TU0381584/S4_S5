@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """Build the Wireless Personal Communications submission package from main.tex and supplementary.tex.
 
-The journal asks for figure files named Fig1, Fig2, ... (EPS preferred), figures no wider than 119 mm,
+The journal asks for figure files named Fig1, Fig2, ..., figures no wider than 119 mm,
 and supplementary files named ESM_1.pdf and so on. This script
   1. numbers the main paper's figures in the order they appear,
   2. turns every inline TikZ figure into a standalone FigN.tex, compiled to FigN.pdf,
-  3. copies every included graphic to FigN.pdf, and writes an EPS copy of each figure,
+  3. copies every included graphic to FigN.pdf (vector, fonts embedded, which pdflatex includes directly),
   4. writes submission/main.tex, which includes FigN.pdf at its natural size, never wider than 119 mm,
   5. copies refs.bib, the class and style files and Online Resource 1 as ESM_1.pdf, and compiles the package.
 Run it from this directory after main.pdf and supplementary.pdf are up to date.
@@ -86,7 +86,6 @@ def main():
                 shutil.copy(path[:-4] + ".tex", os.path.join(OUT, name + ".tex"))
             src = os.path.basename(path)
         w, h = pdf_width_bp(os.path.join(OUT, name + ".pdf"))
-        run(["pdftops", "-eps", name + ".pdf", name + ".eps"], OUT)
         width = "" if w <= MAX_W_BP + 0.5 else "[width=119mm]"
         new_fig = f"\\begin{{figure}}{opt}\n\\centering\n\\includegraphics{width}{{{name}}}\n{cap}\\end{{figure}}"
         new_tex = new_tex.replace(m.group(0), new_fig, 1)
