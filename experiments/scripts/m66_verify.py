@@ -186,6 +186,11 @@ MOVED_TO_SUPP = {
 # The author asked that the script check only what the current documents say, so these checks are no longer
 # run or counted. The labels are kept here as a record of what was cut.
 CUT_FROM_OR1 = {
+    'reframe: trend AXIOM low',
+    'reframe: trend AXIOM high',
+    'reframe: trend gap at 19 gNBs',
+    'MLP variant parameters and latency in the supplement match the measurements',
+    'reframe: AXIOM slowest decision share of control period',
     'M66c AXIOM spike precision',
     'M66c seeded single A3 lead',
     'M66c seeded single A3 Holm p',
@@ -1180,7 +1185,7 @@ def main():
            and a37_[:, 2].max() < 0.2 and a37_[:, 0].min() > 0.95 and a37_[:, 1].min() > 0.95, None)
     s37_ = gm37["single_agent_dqn"][1].mean(axis=0)
     C.note("reframe: map37 single-agent every gate open at 0.93 to 0.95", round(float(s37_.min()), 2) == 0.93 and round(float(s37_.max()), 2) == 0.95
-           and "DQN-SA leaves every gate open at 0.93 to 0.95" in C.tex, s37_.round(4).tolist())
+           and "DQN-SA leaves every admission gate open at 0.93 to 0.95" in C.tex, s37_.round(4).tolist())
     C.claim("reframe: map37 independent mMTC gate", "DQN-I closes the mMTC gate only to 0.94", float(gm37["independent_dqn"][1][:, 2].mean()), "{:.2f}")
     C.claim("reframe: map37 MAPPO eMBB gate", "partly closes the eMBB gate to 0.80", float(gm37["mappo_tuned"][1][:, 1].mean()), "{:.2f}")
     C.claim("reframe: map37 MAPPO mMTC gate", "but leaves mMTC open at 0.51", float(gm37["mappo_tuned"][1][:, 2].mean()), "{:.2f}")
@@ -1494,7 +1499,6 @@ def main():
     cxt_ = json.load(open(f"{ROOT}/m73/complexity_n37.json"))
     C.note("reframe: M73 latency at 37 gNBs in the complexity table",
            all(f"{cxt_['37'][k_]['ms_per_step']:.2f}" in C.main for k_ in ("axiom2", "independent_dqn", "mappo"))
-           and f"{cxt_['37']['axiom2_mlp']['ms_per_step']:.2f} ms per control step" in C.tex
            and "1.04 / 1.98 / 4.79 / 9.89" in C.main, cxt_["37"])
     sa_ = cxt_["single_agent_ms_per_step"]
     C.note("reframe: single-agent latency row matches its measurement", " / ".join(f"{sa_[k_]:.2f}" for k_ in ("3", "7", "19", "37")) in C.main, sa_)
@@ -1674,7 +1678,7 @@ def main():
     C.note("complexity table training seconds at 3 gNBs match Env B primary seeds",
            tr3_ == {"axiom2": 624, "axiom2_mlp": 503, "single_agent_dqn": 85, "independent_dqn": 181, "mappo_tuned": 73}
            and all(s_ in C.main for s_ in ("& 624 / 892 / 1182", "& 85 / 202 / 358", "& 181 / 1054 / 2088", "& 73 / 256 / 495"))
-           and "median training time is 503 s per seed in Env B at three gNBs" in C.tex, tr3_)
+           , tr3_)
     C.note("MLP variant parameters and latency in the supplement match the measurements",
            all(cx[n_]["axiom2_mlp"]["params_execution"] == 3190 for n_ in ("3", "7", "19")) and cxt_["37"]["axiom2_mlp"]["params_execution"] == 3190
            and ", ".join(f"{cx[n_]['axiom2_mlp']['ms_per_step']:.2f}" for n_ in ("3", "7", "19")) + f", and {cxt_['37']['axiom2_mlp']['ms_per_step']:.2f} ms per control step" in C.tex
@@ -1813,7 +1817,7 @@ def main():
     k77_ = {c_: m77_(c_) for c_ in ("A_n3", "A_n37_hex", "B_n3", "B_n19_hex")}
     allr_ = [r for c_ in k77_.values() for a_ in c_.values() for r in a_.values()]
     C.note("reframe: M77 every checkable re-run reproduces its stored log", len(allr_) > 0 and not any(r["reproduces_stored"] is False for r in allr_)
-           and "Every re-run whose stored log could be compared reproduced it exactly in reward, blocks, and SLA compliance" in C.tex, {"runs": len(allr_), "unchecked": sum(r["reproduces_stored"] is None for r in allr_)})
+           and "Each re-run with a stored log reproduced it exactly" in C.tex, {"runs": len(allr_), "unchecked": sum(r["reproduces_stored"] is None for r in allr_)})
     def km_(c_, a_, sl_, f_):
         return float(np.mean([r["kpi"][sl_][f_] for r in k77_[c_][a_].values() if r["kpi"][sl_][f_] is not None]))
     B77_ = ("single_agent_dqn", "independent_dqn", "mappo_tuned")
@@ -1868,7 +1872,7 @@ def main():
     C.note("abstract and conclusion: 7,782 parameters against the DQNs' 64,770 and 682,058 (abstract) and up to 682,058 (conclusion)", cx37_["axiom2"]["params_execution"] == 7782
            and max(cx37_[k_]["params_execution"] for k_ in ("single_agent_dqn", "independent_dqn", "mappo")) == 682058
            and (cx37_["single_agent_dqn"]["params_execution"], cx37_["independent_dqn"]["params_execution"]) == (64770, 682058)
-           and "using only 7,782 parameters against 64,770 and 682,058 for the deep Q-networks" in C.main
+           and "using only 7,782 parameters against 64,770 and 682,058 for the DQN baselines" in C.main
            and C.main.count("7,782 parameters against up to 682,058") == 1, None)
     for lab_, snip_ in (("abstract", "AXIOM earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs"),
                         ("conclusion", "AXIOM earns 27\\% to 36\\% more reward than MAPPO at three and nineteen gNBs")):

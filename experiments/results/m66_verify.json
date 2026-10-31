@@ -3125,35 +3125,11 @@
   "ok": true
  },
  {
-  "label": "reframe: trend AXIOM low",
-  "snippet": "stays between 97.1\\% and 98.9\\% from three to nineteen gNBs",
-  "computed": 97.07296296296296,
-  "formatted": "97.1",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: trend AXIOM high",
-  "snippet": "stays between 97.1\\% and 98.9\\% from three to nineteen gNBs",
-  "computed": 98.85555555555555,
-  "formatted": "98.9",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: trend every baseline falls from 3 to 19 gNBs",
   "snippet": null,
   "computed": null,
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "reframe: trend gap at 19 gNBs",
-  "snippet": "grows to 32.0 points at nineteen gNBs",
-  "computed": 31.97481481481482,
-  "formatted": "32.0",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -4776,14 +4752,6 @@
   "ok": true
  },
  {
-  "label": "MLP variant parameters and latency in the supplement match the measurements",
-  "snippet": null,
-  "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "reframe: Env B 3 gNBs AXIOM over MAPPO percent",
   "snippet": "AXIOM earns 27\\% more reward per step than MAPPO at three gNBs",
   "computed": 26.740273897977463,
@@ -4796,14 +4764,6 @@
   "snippet": "and 36\\% more at nineteen gNBs",
   "computed": 35.91822054686071,
   "formatted": "36",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: AXIOM slowest decision share of control period",
-  "snippet": "AXIOM's slowest decision takes 0.2\\% of the 5 s control period",
-  "computed": 0.1979,
-  "formatted": "0.2",
   "in_tex": true,
   "ok": true
  },
@@ -6624,9 +6584,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 625",
+  "label": "text quotes the final check count of 620",
   "snippet": null,
-  "computed": 625,
+  "computed": 620,
   "formatted": null,
   "in_tex": null,
   "ok": true

@@ -6,6 +6,7 @@
 \usepackage{amsmath}
 \usetikzlibrary{arrows.meta,positioning,fit,backgrounds}
 
+\renewcommand{\sfdefault}{phv}
 \begin{document}
 \begin{tikzpicture}[
   font=\sffamily\normalsize,
@@ -32,7 +33,7 @@
 \draw[thick, gray] (n1) -- (n3);
 \draw[thick, gray] (n2) -- (n3);
 
-\node[encoder, below=0.5cm of n3] (gat) {Shared GAT encoder\\\small 2 layers, 4 attention heads\\\small LayerNorm output $\mathbf{z}_i$};
+\node[encoder, below=0.5cm of n3] (gat) {Shared GAT encoder\\\small 2 layers, 4 attention heads\\\small normalised output $\mathbf{z}_i$};
 \draw[arrow] (n1.south) .. controls +(0,-0.6) and +(-0.6,0.5) .. (gat.west);
 \draw[arrow] (n2.south) .. controls +(0,-0.6) and +(0.6,0.5) .. (gat.east);
 \draw[arrow] (n3.south) -- (gat.north);
@@ -59,7 +60,7 @@
 \node[client, minimum width=2.0cm] (c2) at (6.3,2.2) {Client 1\\\small local AXIOM};
 \node[client, minimum width=2.0cm] (c3) at (8.55,2.2) {Client 2\\\small local AXIOM};
 
-\node[server, below=1.3cm of c2] (server) {FedAvg server\\\small weight averaging};
+\node[server, below=1.3cm of c2] (server) {Federated server\\\small weight averaging};
 
 \draw[arrow] (c1.south) .. controls +(0,-0.7) and +(-1.0,0.7) .. (server.north west);
 \draw[arrow] (c2.south) -- (server.north);
@@ -67,7 +68,7 @@
 
 \draw[dashedarrow] (server.west) .. controls +(-0.7,0.2) and +(-0.4,-0.7) .. (c1.west);
 \draw[dashedarrow] (server.east) .. controls +(0.7,0.2) and +(0.4,-0.7) .. (c3.east);
-\node[font=\sffamily\small, align=center] at (5.55,1.3) {clip +\\DP noise};
+\node[font=\sffamily\small, align=right, anchor=east] at (6.2,1.12) {clip +\\privacy\\noise};
 \node[font=\sffamily\small] at (9.05,-0.2) {broadcast};
 
 \node[below=0.35cm of server, font=\sffamily\small, align=center] {every $N_{\mathrm{loc}}$ local steps};
