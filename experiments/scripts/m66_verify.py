@@ -182,11 +182,25 @@ MOVED_TO_SUPP = {
 }
 
 
-# checks whose sentences or table rows were cut from Online Resource 1 when the author asked to condense it to
-# about ten pages on 2026-10-31. The full earlier OR1 is kept as archive/supplementary_full_2026-10-31.tex next to
-# main.tex. Each check still recomputes its number from the raw logs, and its quoted text is matched against that
-# archive instead of the current documents. The report counts these separately as retired.
-RETIRED_FROM_OR1 = {
+# checks of sentences and table rows cut from Online Resource 1 when the author condensed it on 2026-10-31.
+# The author asked that the script check only what the current documents say, so these checks are no longer
+# run or counted. The labels are kept here as a record of what was cut.
+CUT_FROM_OR1 = {
+    'M66c AXIOM spike precision',
+    'M66c seeded single A3 lead',
+    'M66c seeded single A3 Holm p',
+    'M66c seeded single A3 replication',
+    'M66c seeded single B3',
+    'M66c seeded single N=19 collapses',
+    'M66c seeded single N=19 gap',
+    'M66d D2 single',
+    'M66d D2 AXIOM',
+    'M75 MAPPO below accept-all at 7',
+    'M75 E screen at 37 gNBs: AXIOM 8 of 60 incl. all six collapses; baselines 29, 27, 27 of 30',
+    'reframe: Env B 7 gNBs AXIOM over MAPPO 7 to 15 percent, significant on two layouts after Holm',
+    'M78 Env B collapses: none at 3 and 7 gNBs; DQN-SA 14 and AXIOM 1 of 15 at 19',
+    'M78 original AXIOM ties the oracle',
+    'M78 disruption replication costs significant at p<=0.035, no gap',
     'Env A N=3 single-agent Holm p without unseeded-init seeds',
     'Env A lead over single-agent without unseeded-init seeds',
     'M66b N=19 hex AXIOM priority SLA',
@@ -256,7 +270,7 @@ RETIRED_FROM_OR1 = {
     'single-agent seed 900 rerun minimum',
     'single-agent seed 900 stored',
 }
-RETIRED_FROM_OR1_PREFIXES = (
+CUT_FROM_OR1_PREFIXES = (
     'M76 S17 oversubscription row ',
     'M76 S17 shift row ',
     'M76 S17 row b2_hetero_n7_ring ',
@@ -265,24 +279,23 @@ RETIRED_FROM_OR1_PREFIXES = (
 
 
 def retired(label):
-    return label in RETIRED_FROM_OR1 or label.startswith(RETIRED_FROM_OR1_PREFIXES)
+    return label in CUT_FROM_OR1 or label.startswith(CUT_FROM_OR1_PREFIXES)
 
 
 class Checker:
-    def __init__(self, tex, main_tex=None, arch=""):
+    def __init__(self, tex, main_tex=None):
         self.tex = tex                      # main paper plus supplementary material
         self.main = main_tex if main_tex is not None else tex
-        self.arch = arch                    # the full OR1 before the 2026-10-31 condensing, for retired checks only
-        self.texr = tex + "\n" + arch
+        self.texr = tex                     # kept so older note conditions read the current documents
         self.rows = []
 
     def claim(self, label, snippet, value, fmt, tol=None):
         """snippet must appear in the tex; value formatted with fmt must equal the quoted text,
         or lie within tol of the number parsed from the snippet when tol is given."""
+        if retired(label):
+            return
         # claims about the reframed main text must be found in the main paper itself
         present = snippet in (self.main if label.startswith("reframe:") and label not in MOVED_TO_SUPP else self.tex)
-        if not present and retired(label):
-            present = snippet in self.arch
         quoted = fmt.format(value) if value is not None else None
         if tol is None:
             ok = present and quoted is not None and quoted in snippet
@@ -290,11 +303,12 @@ class Checker:
             nums = [float(x) for x in re.findall(r"-?\d+\.?\d*", snippet.replace("{,}", "").replace(",", ""))]
             ok = present and value is not None and any(abs(x - value) <= tol for x in nums)
         self.rows.append({"label": label, "snippet": snippet, "computed": value, "formatted": quoted,
-                          "in_tex": present, "ok": bool(ok), "retired": retired(label)})
+                          "in_tex": present, "ok": bool(ok)})
 
     def note(self, label, ok, detail):
-        self.rows.append({"label": label, "snippet": None, "computed": detail, "formatted": None, "in_tex": None, "ok": bool(ok),
-                          "retired": retired(label)})
+        if retired(label):
+            return
+        self.rows.append({"label": label, "snippet": None, "computed": detail, "formatted": None, "in_tex": None, "ok": bool(ok)})
 
 
 def main():
@@ -302,12 +316,10 @@ def main():
     ap.add_argument("--tex", required=True)
     ap.add_argument("--supp", help="supplementary .tex whose sentences also count as quoted text")
     ap.add_argument("--out", required=True)
-    ap.add_argument("--archive", help="full OR1 before the 2026-10-31 condensing; default archive/supplementary_full_2026-10-31.tex beside --tex")
     a = ap.parse_args()
     main_tex = open(a.tex).read()
     tex = main_tex + ("\n" + open(a.supp).read() if a.supp else "")
-    arch_path = a.archive or os.path.join(os.path.dirname(os.path.abspath(a.tex)), "archive", "supplementary_full_2026-10-31.tex")
-    C = Checker(tex, main_tex, open(arch_path).read())
+    C = Checker(tex, main_tex)
 
     # ---------------- Env A, N=3 (Table 3)
     A = {arm: seeds_of("m65_reviewer/base", arm, S30) for arm in ("axiom2", "axiom2_mlp", "mappo_tuned")}
@@ -641,7 +653,7 @@ def main():
         # independent resampling noise in a bound scales with the interval's width
         tol = tol if tol is not None else max(0.03 if len(vals) >= 30 else 0.05, 0.05 * (hi - lo))
         m = re.search(r"\[\s*(-?\$?-?[0-9.]+)\$?\\?%?,\s*(-?[0-9.]+)\\?%?\]", snippet.replace("$-$", "-"))
-        okk = (snippet in C.tex or (retired(label) and snippet in C.arch)) and m is not None and abs(float(m.group(1).replace("$", "")) - lo) <= tol and abs(float(m.group(2)) - hi) <= tol
+        okk = snippet in C.tex and m is not None and abs(float(m.group(1).replace("$", "")) - lo) <= tol and abs(float(m.group(2)) - hi) <= tol
         C.note(label, okk, (round(lo, 3), round(hi, 3), snippet))
     for arm, nm in names.items():
         r = A[arm]; lo, hi = ci([x["reward"] for x in r.values()])
@@ -2266,8 +2278,6 @@ def main():
     fails = [r for r in rows if not r["ok"]]
     for r in rows:
         print(("PASS " if r["ok"] else "FAIL ") + r["label"] + ("" if r["ok"] else f"  computed={r['computed']} formatted={r['formatted']} in_tex={r['in_tex']}"))
-    n_ret = sum(1 for r in rows if r.get("retired"))
-    print(f"\n{n_ret} retired checks match the archived full OR1 of 2026-10-31 rather than the current documents")
     print(f"\n{len(rows) - len(fails)} of {len(rows)} checks pass")
 
 
