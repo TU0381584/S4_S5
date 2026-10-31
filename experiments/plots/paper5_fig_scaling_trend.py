@@ -113,9 +113,9 @@ def main():
     xg = len(sizes) - 1 + 0.2
     axs[0].annotate("", xy=(xg, summ["axiom2"][big]["prio_mean"]),
                     xytext=(xg, max(summ[b][big]["prio_mean"] for b in ARMS[1:])),
-                    arrowprops=dict(arrowstyle="<->", color="#1f5fae", lw=1.0))
+                    arrowprops=dict(arrowstyle="<->", color="#0072B2", lw=1.0))
     axs[0].text(xg + 0.05, (summ["axiom2"][big]["prio_mean"] + max(summ[b][big]["prio_mean"] for b in ARMS[1:])) / 2,
-                f"{gap:+.0f}\npoints", fontsize=8, color="#1f5fae", va="center")
+                f"{gap:+.0f}\npoints", fontsize=8, color="#0072B2", va="center")
     axs[0].set_ylabel("Priority-slice SLA, %")
     axs[0].set_ylim(20 if 37 in sizes else 40, 104)
     panel(axs[0], "a", env="A")

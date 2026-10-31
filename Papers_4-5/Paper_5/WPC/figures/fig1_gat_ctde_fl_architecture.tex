@@ -16,7 +16,7 @@
   node3/.style={box, fill=blue!12, minimum width=1.0cm},
   encoder/.style={box, fill=orange!12, minimum width=2.6cm},
   qhead/.style={box, fill=green!12, minimum width=1.5cm, minimum height=0.55cm},
-  client/.style={box, fill=violet!10, minimum width=1.8cm, inner sep=2pt},
+  client/.style={box, fill=violet!10, minimum width=1.8cm, inner sep=1.5pt},
   server/.style={box, fill=orange!14, minimum width=2.0cm},
   arrow/.style={-{Latex[length=1.8mm]}, thick},
   dashedarrow/.style={-{Latex[length=1.8mm]}, thick, dashed},
@@ -33,7 +33,7 @@
 \draw[thick, gray] (n1) -- (n3);
 \draw[thick, gray] (n2) -- (n3);
 
-\node[encoder, below=0.5cm of n3] (gat) {Shared GAT encoder\\\small 2 layers, 4 attention heads\\\small normalised output $\mathbf{z}_i$};
+\node[encoder, below=0.5cm of n3] (gat) {Shared GAT encoder\\\normalsize 2 layers, 4 attention heads\\\normalsize normalised output $\mathbf{z}_i$};
 \draw[arrow] (n1.south) .. controls +(0,-0.6) and +(-0.6,0.5) .. (gat.west);
 \draw[arrow] (n2.south) .. controls +(0,-0.6) and +(0.6,0.5) .. (gat.east);
 \draw[arrow] (n3.south) -- (gat.north);
@@ -45,22 +45,22 @@
 \draw[arrow] (gat.south) -- (q2.north);
 \draw[arrow] (gat.south) -- ++(0,-0.15) -| (q3.north);
 \node[draw, dashed, rounded corners, fit=(q1)(q2)(q3), inner sep=4pt] (qbox) {};
-\node[below=0.08cm of qbox, font=\sffamily\small] (qlab) {per-slice Q-heads, separate parameters};
+\node[below=0.08cm of qbox, font=\sffamily\normalsize] (qlab) {per-slice Q-heads, separate parameters};
 
-\node[below=0.35cm of qlab, font=\sffamily\small, align=center] (action) {accept / reject each pending request};
+\node[below=0.35cm of qlab, font=\sffamily\normalsize, align=center] (action) {accept / reject each pending request};
 % raw-feature skip into the heads: Q_k([z_i, x_i])
 \draw[dashedarrow, gray!70!black] (n1.west) .. controls +(-1.0,-0.4) and +(-0.7,0.7) .. (qbox.west);
-\node[anchor=east, font=\sffamily\small, align=right] at (-3.05,0.3) {raw\\features\\$\mathbf{x}_i$, skip};
+\node[anchor=east, font=\sffamily\normalsize, align=right] at (-3.05,0.3) {raw\\features\\$\mathbf{x}_i$, skip};
 \draw[arrow] (qlab.south) -- (action.north);
 
 % ===== Right half: federated training loop =====
 \node[font=\sffamily] (righttitle) at (2.75,3.0) {b};
 
-\node[client, minimum width=2.0cm] (c1) at (4.05,2.2) {Client 0\\\small local AXIOM};
-\node[client, minimum width=2.0cm] (c2) at (6.3,2.2) {Client 1\\\small local AXIOM};
-\node[client, minimum width=2.0cm] (c3) at (8.55,2.2) {Client 2\\\small local AXIOM};
+\node[client, minimum width=1.9cm] (c1) at (3.95,2.2) {Client 0\\\normalsize local AXIOM};
+\node[client, minimum width=1.9cm] (c2) at (6.1,2.2) {Client 1\\\normalsize local AXIOM};
+\node[client, minimum width=1.9cm] (c3) at (8.25,2.2) {Client 2\\\normalsize local AXIOM};
 
-\node[server, below=1.3cm of c2] (server) {Federated server\\\small weight averaging};
+\node[server, below=1.3cm of c2] (server) {Federated server\\\normalsize weight averaging};
 
 \draw[arrow] (c1.south) .. controls +(0,-0.7) and +(-1.0,0.7) .. (server.north west);
 \draw[arrow] (c2.south) -- (server.north);
@@ -68,10 +68,10 @@
 
 \draw[dashedarrow] (server.west) .. controls +(-0.7,0.2) and +(-0.4,-0.7) .. (c1.west);
 \draw[dashedarrow] (server.east) .. controls +(0.7,0.2) and +(0.4,-0.7) .. (c3.east);
-\node[font=\sffamily\small, align=right, anchor=east] at (6.2,1.12) {clip +\\privacy\\noise};
-\node[font=\sffamily\small] at (9.05,-0.2) {broadcast};
+\node[font=\sffamily\normalsize, align=right, anchor=east] at (6.0,1.12) {clip +\\privacy\\noise};
+\node[font=\sffamily\normalsize] at (8.55,-0.35) {broadcast};
 
-\node[below=0.35cm of server, font=\sffamily\small, align=center] {every $N_{\mathrm{loc}}$ local steps};
+\node[below=0.35cm of server, font=\sffamily\normalsize, align=center] {every $N_{\mathrm{loc}}$ local steps};
 
 \end{tikzpicture}
 \end{document}

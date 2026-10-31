@@ -132,7 +132,7 @@ def main() -> None:
     for arm in M4_ARM_ORDER:
         style = M4_ARM_STYLE[arm]
         means, los, his = dropout[arm]
-        ax1.errorbar(xl, means, yerr=[los, his], color=style["color"], marker=style["marker"],
+        ax1.errorbar(xl, means, yerr=[los, his], color=style["color"], marker=style["marker"], linestyle=style.get("ls", "-"),
                      markersize=3.5, linewidth=1.0, capsize=2, label=style["label"])
     ax1.set_xticks(xl)
     ax1.set_xticklabels(sev_ticks)
@@ -144,7 +144,7 @@ def main() -> None:
     for arm in churn_arms:
         style = M4_ARM_STYLE[arm]
         means, los, his = churn[arm]
-        ax2.errorbar(xl, means, yerr=[los, his], color=style["color"], marker=style["marker"],
+        ax2.errorbar(xl, means, yerr=[los, his], color=style["color"], marker=style["marker"], linestyle=style.get("ls", "-"),
                      markersize=3.5, linewidth=1.0, capsize=2, label=style["label"])
     ax2.set_xticks(xl)
     ax2.set_xticklabels(sev_ticks)
@@ -156,7 +156,7 @@ def main() -> None:
     for arm in M4_ARM_ORDER:
         style = M4_ARM_STYLE[arm]
         means, los, his = spike_precision[arm]
-        ax3.errorbar(x, means, yerr=[los, his], color=style["color"], marker=style["marker"],
+        ax3.errorbar(x, means, yerr=[los, his], color=style["color"], marker=style["marker"], linestyle=style.get("ls", "-"),
                      markersize=3.5, linewidth=1.0, capsize=2, label=style["label"])
     ax3.set_xticks(x)
     ax3.set_xticklabels(["2x", "4x", "8x"])

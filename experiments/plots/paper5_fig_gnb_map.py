@@ -42,7 +42,8 @@ SLICES = ("urllc", "embb", "mmtc")
 FLOOR_CAP = {"urllc": (5, 33), "embb": (10, 66), "mmtc": (5, 11)}   # saclb_offline_dqn_n19.yaml and _n37.yaml
 ARMS = [("axiom2", "AXIOM (proposed)"), ("single_agent_dqn", "DQN-SA"),
         ("independent_dqn", "DQN-I"), ("mappo_tuned", "MAPPO")]
-CMAP = plt.get_cmap("RdYlBu")
+MAIN_WIDTH_IN = 119.0 / 25.4  # WPC maximum figure width
+CMAP = plt.get_cmap("cividis")  # monotonic in lightness, so it reads in greyscale and for colour-blind readers
 
 
 def gate_openness(path, n):
@@ -102,9 +103,9 @@ def main():
     else:
         coords = hex_cluster_coords(n)
     summary = {"cell": a.cell, "n_gnbs": n, "seeds": S30_19, "arms": {}}
-    # drawn at the main text's printed width (372 pt) so every label prints at 8 pt or more; the four panels,
+    # drawn at the journal's 119 mm figure width so every label prints at 8 pt or more; the four panels,
     # the key and the colour bar sit symmetrically, so the figure centres on the page
-    fig = plt.figure(figsize=(372.0 / 72.27, 2.3))
+    fig = plt.figure(figsize=(0.965 * MAIN_WIDTH_IN, 2.3))  # tight bbox adds about 3%
     L, W, G = 0.02, 0.225, (0.96 - 4 * 0.225) / 3
     for idx, (arm, label) in enumerate(ARMS):
         mats = [gate_openness(p, n) for s in S30_19 if (p := find_eval(a.cell, arm, s))]
@@ -123,7 +124,7 @@ def main():
             ax0 = ax
         draw_cluster(ax, coords, corr, lw=0.3)
         emph = arm == "axiom2"
-        col = "#1f5fae" if emph else "#333333"
+        col = "#0072B2" if emph else "#333333"
         ax.annotate(f"Priority SLA {p_sla:.1f}%\n{coll}/{len(rows)} collapsed", xy=(0.5, 1), xycoords="axes fraction",
                     xytext=(0, 3), textcoords="offset points", ha="center", va="bottom", fontsize=8, linespacing=1.1, color=col)
         ax.annotate(label, xy=(0.5, 1), xycoords="axes fraction", xytext=(0, 24), textcoords="offset points",
@@ -132,7 +133,7 @@ def main():
             ax.axis("on")
             ax.set_xticks([]); ax.set_yticks([])
             for sp in ax.spines.values():
-                sp.set_edgecolor("#1f5fae"); sp.set_linewidth(1.4)
+                sp.set_edgecolor("#0072B2"); sp.set_linewidth(1.4)
     # boxed environment tag in the style of paper5_common.ENV_TAG (not imported: its rcParams would restyle this figure)
     # it sits above the first panel's title with a clear gap, aligned with that panel's left edge
     ax0.annotate("Env A", xy=(0, 1), xycoords="axes fraction", xytext=(0, 44), textcoords="offset points", ha="left", va="bottom",
@@ -150,7 +151,7 @@ def main():
     kax.text(-1.3, 0, "One gNB", fontsize=8, ha="right", va="center")
     kax.set_xlim(-4.6, 13.0); kax.set_ylim(-1.3, 1.15)
     # colour bar under the last two panels
-    cax = fig.add_axes([L + 2 * (W + G) + 0.04, 0.12, 2 * W + G - 0.08, 0.045])
+    cax = fig.add_axes([L + 2 * (W + G) + 0.12, 0.12, 2 * W + G - 0.14, 0.045])
     cb = fig.colorbar(plt.cm.ScalarMappable(cmap=CMAP, norm=plt.Normalize(0, 1)), cax=cax, orientation="horizontal")
     cb.set_ticks([0, 0.5, 1]); cb.set_ticklabels(["wrong", "partial", "correct"]); cb.ax.tick_params(labelsize=8, length=2)
     cb.set_label("Gate correctness, mean of 30 seeds", fontsize=8)

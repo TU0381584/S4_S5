@@ -17,11 +17,11 @@ mpl.use("Agg")
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
-from paper5_common import MAIN_WIDTH_IN  # noqa: E402
+from paper5_common import OR1_FIG_WIDTH_IN as MAIN_WIDTH_IN  # noqa: E402  (an Online Resource 1 figure)
 
 PROBE = "/home/kmanojp/oranslice_rig/experiments/results/m81"
 BINS = [0.0, 0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0, 1.5, 2.01]
-COL = {"300": "#9cc3ec", "900": "#1f5fae"}
+COL = {"300": "#9cc3ec", "900": "#0072B2"}
 STY = {"300": (":", "o"), "900": ("-", "s")}
 TAG = dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")
 
@@ -67,9 +67,9 @@ def main():
         y = 100 * np.array(s["shed"])
         lo, hi = 100 * np.array(s["shed_ci"][0]), 100 * np.array(s["shed_ci"][1])
         axA.fill_between(centres, lo, hi, color=COL[b], alpha=0.25, lw=0)
-        axA.plot(centres, y, ls=STY[b][0], marker=STY[b][1], color=COL[b], mec="#1f5fae", ms=4, lw=1.5, label=f"AXIOM, {lab}")
+        axA.plot(centres, y, ls=STY[b][0], marker=STY[b][1], color=COL[b], mec="#0072B2", ms=4, lw=1.5, label=f"AXIOM, {lab}")
         axB.bar(np.arange(len(centres)) + (-0.2 if b == "300" else 0.2), 100 * np.array(s["visits"]), width=0.4, color=COL[b],
-                edgecolor="#1f5fae", lw=0.5, label=lab)
+                edgecolor="#0072B2", lw=0.5, label=lab)
     axA.step([0, 0.2, 0.2, 2.0], [0, 0, 100, 100], where="post", color="#555555", ls="--", lw=1.0, label="Tuned rule")
     axA.set_xlim(0, 2.0)
     axA.set_ylim(-3, 103)

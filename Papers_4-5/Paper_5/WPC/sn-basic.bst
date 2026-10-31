@@ -1,5 +1,7 @@
 %%
 %% This is file `sn-basic.bst',
+%% Local changes 2026-11-01 for Wireless Personal Communications: up to 20 authors listed (APA 7),
+%% journal names and proceedings titles in italics.
 %% generated with the docstrip utility.
 %%
 %% The original source files were: merlin.mbs
@@ -214,7 +216,11 @@ FUNCTION {field.or.null}
   if$
 }
 FUNCTION {emphasize}
-{ skip$ }
+{ duplicate$ empty$
+    { pop$ "" }
+    { "\emph{" swap$ * "}" * }
+  if$
+}
 FUNCTION {tie.or.space.prefix}
 { duplicate$ text.length$ #3 <
     { "~" }
@@ -542,9 +548,9 @@ FUNCTION {format.names}
       format.name$ 't :=
      nameptr #1 >
          {
-          nameptr #3
+          nameptr #20
           #1 + =
-          numnames #3
+          numnames #20
           > and
             { "others" 't :=
               #1 'namesleft := }
@@ -1092,6 +1098,7 @@ FUNCTION {format.chapter.pages}
 FUNCTION {format.booktitle}
 {
   booktitle "booktitle" bibinfo.check
+  emphasize
 }
 FUNCTION {format.in.ed.booktitle}
 { format.booktitle duplicate$ empty$ 'skip$
@@ -1190,6 +1197,7 @@ FUNCTION {article}
       journal
       remove.dots
       "journal" bibinfo.check
+      emphasize
       "journal" output.check
       add.blank
       format.vol.num.pages output

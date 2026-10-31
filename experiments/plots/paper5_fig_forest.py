@@ -21,10 +21,11 @@ sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
 from m62_analysis import boot_ci  # noqa: E402
 from m66_verify import S15, S30, S30_19, prio, seeds_of  # noqa: E402
-from paper5_common import MAIN_WIDTH_IN  # noqa: E402
+from paper5_common import OR1_FIG_WIDTH_IN as MAIN_WIDTH_IN  # noqa: E402  (an Online Resource 1 figure)
 
 RES = "/home/kmanojp/oranslice_rig/experiments/results"
-BASE = [("single_agent_dqn", "DQN-SA", "#1baf7a"), ("independent_dqn", "DQN-I", "#eb6834"), ("mappo_tuned", "MAPPO", "#7a4fd0")]
+BASE = [("single_agent_dqn", "DQN-SA", "#009E73"), ("independent_dqn", "DQN-I", "#D55E00"), ("mappo_tuned", "MAPPO", "#000000")]
+MARK = {"single_agent_dqn": "s", "independent_dqn": "^", "mappo_tuned": "D"}  # as in the main paper's figures
 LAY = ("fully_connected", "ring", "hex")
 TAG = {"A": dict(fc="#e2e8f0", ec="#5a6b82", tc="#26344a"), "B": dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")}
 
@@ -107,7 +108,8 @@ def main():
             yy = ypos[(r["env"], r["n"], r["baseline"])] + (0.12 if r["sample"] == "fresh" else -0.04)
             fresh = r["sample"] == "fresh"
             ax.plot(r["ci"], [yy, yy], color=col, lw=1.0, alpha=0.9, ls=(0, (2, 1)) if fresh else "-")
-            ax.plot(r["mean"], yy, "D" if fresh else "o", ms=3.6 if fresh else 4.2, mec=col, mfc="white" if fresh else col, mew=1.0, zorder=3)
+            mk = MARK[r["baseline"]]  # shape tells the baselines apart in greyscale, fill tells reported from fresh
+            ax.plot(r["mean"], yy, mk, ms=4.0, mec=col, mfc="white" if fresh else col, mew=1.0, zorder=3)
         ax.axvline(0, color="#555555", lw=0.8, ls="--")
         ax.set_ylim(y - 0.2, -0.45)
         ax.set_yticks([p for p, _ in ylab])
@@ -124,9 +126,9 @@ def main():
                  bbox=dict(boxstyle="round,pad=0.25", fc=TAG[env]["fc"], ec=TAG[env]["ec"], lw=0.6))
     for x_, t_ in ((0.005, "a"), (0.6, "b")):
         fig.text(x_ + (0.19 if t_ == "a" else 0.0), 0.995, t_, fontsize=9, va="top")
-    handles = [Line2D([0], [0], color=c, lw=1.0, marker="o", mfc=c, mec=c, ms=4, label=l) for _, l, c in BASE]
+    handles = [Line2D([0], [0], color=c, lw=1.0, marker=MARK[b], mfc=c, mec=c, ms=4, label=l) for b, l, c in BASE]
     handles += [Line2D([0], [0], color="#444444", lw=1.0, marker="o", mfc="#444444", ms=4, label="reported"),
-                Line2D([0], [0], color="#444444", lw=1.0, ls=(0, (2, 1)), marker="D", mfc="white", mec="#444444", ms=3.6, label="fresh seeds")]
+                Line2D([0], [0], color="#444444", lw=1.0, ls=(0, (2, 1)), marker="o", mfc="white", mec="#444444", ms=4, label="fresh seeds")]
     fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.55, -0.1), ncol=5, fontsize=8.3, frameon=False,
                handlelength=1.2, columnspacing=0.9, handletextpad=0.35)
     fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.04)

@@ -2272,7 +2272,7 @@ def main():
     sp_ = ilu_.spec_from_file_location("pgfig_", "/home/kmanojp/oranslice_rig/experiments/plots/paper5_fig_pergnb_envb.py")
     pgfig_ = ilu_.module_from_spec(sp_); sp_.loader.exec_module(pgfig_)
     C.note("Fig. 7 colour scale runs from 50% to 85%, and the text says so", (pgfig_.VMIN, pgfig_.VMAX) == (50, 85)
-           and "coloured from red at 50\\% to blue at 85\\% by the mean share of evaluation steps on which it meets the URLLC and eMBB SLAs" in C.main,
+           and "coloured from dark blue at 50\\% to yellow at 85\\% by the mean share of evaluation steps on which it meets the URLLC and eMBB SLAs" in C.main,
            (pgfig_.VMIN, pgfig_.VMAX))
 
     n_total = len(C.rows) + 1

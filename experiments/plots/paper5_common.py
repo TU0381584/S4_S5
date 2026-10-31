@@ -48,9 +48,12 @@ mpl.rcParams.update({
     "savefig.bbox": "tight",
 })
 
-# Printed widths for WPC (sn-jnl text block 372 pt) and Online Resource 1 (A4, 2.5 cm margins).
+# Printed widths: WPC figures at most 119 mm wide (journal figure guideline), Online Resource 1 (A4, 2.5 cm margins).
+# Learner colours are Okabe-Ito hues chosen to stay distinct under protan, deutan and tritan vision
+# (CIELAB distance >= 17 after simulation) with contrast >= 3.4:1 on white; markers separate them in greyscale.
 # Figures are drawn at these widths so every label prints at 8 pt or more, as Springer asks.
-MAIN_WIDTH_IN = 372.0 / 72.27
+MAIN_WIDTH_IN = 119.0 / 25.4
+OR1_FIG_WIDTH_IN = 372.0 / 72.27   # Online Resource 1 figures keep the width they were drawn at
 SUPP_WIDTH_IN = 453.5 / 72.27
 
 
@@ -79,15 +82,15 @@ def panel(ax, letter, env=None, tag_size=8.5, **kw):
 
 M2_ARM_ORDER: List[str] = ["gat_ctde", "independent_dqn", "single_agent_dqn"]
 M2_ARM_STYLE: Dict[str, dict] = {
-    "gat_ctde":         {"color": "#2a78d6", "marker": "o", "label": "AXIOM (proposed)"},
-    "independent_dqn":  {"color": "#eb6834", "marker": "^", "label": "DQN-I"},
-    "single_agent_dqn": {"color": "#1baf7a", "marker": "s", "label": "DQN-SA"},
+    "gat_ctde":         {"color": "#0072B2", "marker": "o", "label": "AXIOM (proposed)"},
+    "independent_dqn":  {"color": "#D55E00", "marker": "^", "label": "DQN-I"},
+    "single_agent_dqn": {"color": "#009E73", "marker": "s", "label": "DQN-SA"},
 }
 
 # M64/M65 arms: AXIOM v2 reuses AXIOM's style; MAPPO and the rules get their own.
 M2_ARM_STYLE["axiom2"] = dict(M2_ARM_STYLE["gat_ctde"])
-M2_ARM_STYLE["axiom2_mlp"] = {"color": "#8fb8ea", "marker": "o", "label": "AXIOM, MLP encoder"}
-M2_ARM_STYLE["mappo_tuned"] = {"color": "#7a4fd0", "marker": "D", "label": "MAPPO"}
+M2_ARM_STYLE["axiom2_mlp"] = {"color": "#56B4E9", "marker": "o", "label": "AXIOM, MLP encoder"}
+M2_ARM_STYLE["mappo_tuned"] = {"color": "#000000", "marker": "D", "label": "MAPPO"}
 M2_ARM_STYLE["axiom"] = {"color": "#9aa0a6", "marker": "o", "label": "AXIOM, original"}
 RULE_STYLE = {
     "rule_static": {"color": "#5b5a52", "marker": "v", "label": "Rule, shed all mMTC"},
@@ -97,9 +100,9 @@ RULE_STYLE = {
 }
 
 M3_STYLE: Dict[str, dict] = {
-    "centralized": {"color": "#2a78d6", "marker": "o", "label": "Centralised (AXIOM)"},
-    "federated":   {"color": "#eb6834", "marker": "D", "label": "Federated, no DP ($\\sigma$=0)"},
-    "curve":       {"color": "#2a78d6", "marker": "o", "label": "Federated AXIOM"},
+    "centralized": {"color": "#0072B2", "marker": "o", "label": "Centralised (AXIOM)"},
+    "federated":   {"color": "#E69F00", "marker": "D", "label": "Federated, no DP ($\\sigma$=0)"},
+    "curve":       {"color": "#0072B2", "marker": "o", "label": "Federated AXIOM"},
 }
 
 # M4 shows all four arms together (unlike M3's Fig. 4, which only ever
@@ -112,11 +115,11 @@ M3_STYLE: Dict[str, dict] = {
 # consistency across every figure in the paper.
 M4_ARM_ORDER: List[str] = ["gat_ctde", "independent_dqn", "single_agent_dqn", "fl_gat_ctde_sigma0.0"]
 M4_ARM_STYLE: Dict[str, dict] = {
-    "gat_ctde":            M2_ARM_STYLE["gat_ctde"],
-    "independent_dqn":     M2_ARM_STYLE["independent_dqn"],
-    "single_agent_dqn":    M2_ARM_STYLE["single_agent_dqn"],
-    "fl_gat_ctde_sigma0.0": {"color": "#eda100", "marker": "D", "label": "Federated AXIOM"},
-}
+    "gat_ctde":            dict(M2_ARM_STYLE["gat_ctde"], ls="-"),
+    "independent_dqn":     dict(M2_ARM_STYLE["independent_dqn"], ls="--"),
+    "single_agent_dqn":    dict(M2_ARM_STYLE["single_agent_dqn"], ls=":"),
+    "fl_gat_ctde_sigma0.0": {"color": "#E69F00", "marker": "D", "label": "Federated AXIOM", "ls": "-."},
+}  # line styles keep the four series apart in greyscale
 
 # Fixed (never themed) status roles, dataviz skill palette.md -- used for
 # paired win/tie/loss outcome coloring, never for series identity, so a

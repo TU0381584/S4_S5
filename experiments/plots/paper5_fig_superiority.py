@@ -31,7 +31,8 @@ mpl.rcParams.update({
     "savefig.bbox": "tight",
 })
 
-C = {"AXIOM": "#2a78d6", "DQN-SA": "#1baf7a", "DQN-I": "#eb6834", "MAPPO": "#7a4fd0"}
+MAIN_WIDTH_IN = 119.0 / 25.4  # WPC maximum figure width
+C = {"AXIOM": "#0072B2", "DQN-SA": "#009E73", "DQN-I": "#D55E00", "MAPPO": "#000000"}
 M = {"AXIOM": "o", "DQN-SA": "s", "DQN-I": "^", "MAPPO": "D"}
 ARM = {"AXIOM": "axiom2", "DQN-SA": "single_agent_dqn", "DQN-I": "independent_dqn", "MAPPO": "mappo_tuned"}
 SIZES = {"A": (3, 7, 19, 37), "B": (3, 7, 19)}
@@ -238,7 +239,7 @@ def main():
     out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
     data = compute()
     data["load"] = load_data()
-    fig = plt.figure(figsize=(5.16, 4.85))
+    fig = plt.figure(figsize=(0.955 * MAIN_WIDTH_IN, 4.85))  # tight bbox and padding add about 4.5%
     # one row per environment: scatter, radar, reward against the rule (a, b, e Env A; c, d, f Env B)
     axA = fig.add_axes([0.085, 0.665, 0.23, 0.285])
     axRA = fig.add_axes([0.375, 0.655, 0.215, 0.25], projection="polar")
@@ -263,7 +264,7 @@ def main():
                  bbox=dict(boxstyle="round,pad=0.25", fc=tag[env_]["fc"], ec=tag[env_]["ec"], lw=0.6))
     handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=1.5, linestyle=LS[n], label=n)
                for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
-    fig.text(0.5, 0.075, "R reward per step, S priority-slice SLA, NC no collapse, each followed by the number of gNBs",
+    fig.text(0.5, 0.075, "R reward per step, S priority-slice SLA, NC no collapse,\neach followed by the number of gNBs",
              ha="center", va="center", fontsize=8.3)
     fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.025), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.8, columnspacing=1.2)

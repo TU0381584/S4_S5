@@ -28,7 +28,7 @@ SETS = {"reported": ("m75/D_envB_n19_hex", list(range(900, 912)) + [1000, 1001, 
         "fresh": ("m80/D_envB_n19_hex_fresh", list(range(7000, 7015)))}
 ARMS = [("axiom2", "AXIOM (proposed)"), ("mappo_tuned", "MAPPO"), ("single_agent_dqn", "DQN-SA"), ("independent_dqn", "DQN-I")]
 TAG = dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")
-CMAP = plt.get_cmap("RdYlBu")
+CMAP = plt.get_cmap("cividis")  # monotonic in lightness, so it reads in greyscale and for colour-blind readers
 VMIN, VMAX = 50, 85
 
 
@@ -74,7 +74,7 @@ def main():
         ax.autoscale_view()
         ax.axis("off")
         s = summary["sets"]["reported"]["arms"][arm]
-        ax.set_title(label, fontsize=8.5, color="#1f5fae" if arm == "axiom2" else "#222222", pad=24)
+        ax.set_title(label, fontsize=8.5, color="#0072B2" if arm == "axiom2" else "#222222", pad=24)
         ax.text(0.5, 1.0, f"centre {s['centre']:.1f}%\nothers {s['others']:.1f}%", transform=ax.transAxes,
                 ha="center", va="bottom", fontsize=8, linespacing=1.1)
         fig.text(0.005 + k * 0.248, 0.995, "abcd"[k], fontsize=9, va="top")
