@@ -425,42 +425,55 @@ Accept all & 93.8\% & 93.9\% & 2.25 & 6.97 & 2.24 & 6.82 \\
 \section*{S9. Reproducing the results}
 Fig.~\ref{fig:repro} sets out what reproducing the results needs and the order of the steps. Every result in both documents comes from one laptop without a graphics processor, and every simulation run fixes its seed. Reruns on the same seeds reproduce the stored per-seed results exactly, except the original DQN-SA runs, whose initial weights were not seeded, as Section S2 explains. The code, configurations, and stored logs are available from the corresponding author on reasonable request.
 
-\begin{figure}[!htbp]
+\begin{figure}[p]
 \centering
 \begin{tikzpicture}[
   font=\fontfamily{phv}\selectfont\footnotesize,
-  need/.style={draw=black!60, rounded corners=2pt, fill=gray!8, align=left, text width=5.5cm, inner sep=4pt},
-  stp/.style={draw=blue!55!black, rounded corners=2pt, fill=blue!5, align=left, text width=8.5cm, inner sep=4pt},
+  need/.style={draw=black!60, rounded corners=2pt, fill=gray!8, align=left, text width=4.75cm, inner sep=4pt, anchor=north west},
+  stp/.style={draw=blue!55!black, rounded corners=2pt, fill=blue!5, align=left, text width=14.6cm, inner sep=4pt, anchor=north west},
+  liv/.style={draw=orange!75!black, rounded corners=2pt, fill=orange!8, align=left, text width=14.6cm, inner sep=4pt, anchor=north west},
   num/.style={circle, draw=blue!55!black, fill=white, inner sep=1pt, minimum size=0.42cm, font=\fontfamily{phv}\selectfont\footnotesize\bfseries},
   hd/.style={font=\fontfamily{phv}\selectfont\footnotesize\bfseries, anchor=south west, inner sep=1pt},
+  tt/.style={font=\ttfamily\footnotesize},
   ar/.style={-{Latex[length=1.8mm]}, semithick, blue!55!black}
 ]
-\node[need, anchor=north west] (hw) at (0,0) {Hardware\\[1pt]
+\newcommand{\bt}[1]{{\fontfamily{phv}\selectfont\bfseries #1}}
+% what is needed
+\node[need] (hw) at (0,0) {\bt{Hardware}\\[1pt]
   One laptop, Intel Core i5-1135G7, 4 cores and 8 threads\\
-  8 GB of memory, 7.4 GiB usable\\
+  8 GB of memory, 7.4 GiB usable, with 23 GiB of swap\\
   No graphics processor, every run on the CPU\\
   Ubuntu 24.04 LTS};
-\node[need, anchor=north west] (sw) at ($(hw.south west)+(0,-0.25)$) {Software\\[1pt]
+\node[need] (sw) at ($(hw.north east)+(0.2,0)$) {\bt{Software}\\[1pt]
   Python 3.12.3, PyTorch 2.13.0 on the CPU\\
   NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.0, PyYAML 6.0.3\\
-  TeX Live 2023 with pdfLaTeX for the manuscript};
-\node[need, anchor=north west] (lv) at ($(sw.south west)+(0,-0.25)$) {Live testbed check only\\[1pt]
-  OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio\\
+  TeX Live 2023 with pdfLaTeX\\
+  Simulators and learners in \texttt{framework/}, never modified};
+\node[need] (lv) at ($(sw.north east)+(0.2,0)$) {\bt{Live testbed check only}\\[1pt]
+  OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio, band n78, 106 PRBs\\
   Open5GS core in Docker, 17 containers\\
-  protobuf-c 1.5.2};
+  protobuf-c 1.5.2, built from source};
 \node[hd] at ($(hw.north west)+(0,0.05)$) {What is needed};
-
-\node[stp, anchor=north west] (s1) at ($(hw.north east)+(0.95,0)$) {Obtain the code, configurations, and stored logs from the corresponding author, then create a Python environment with the packages listed};
-\node[stp, below=0.25cm of s1] (s2) {Train and evaluate each campaign with \texttt{m64\_run.py}, which takes the environment, the cluster size, the layout, the policy, and the seeds, with 300 training and 50 evaluation episodes per seed. \texttt{m73\_run.py} adds 37 gNBs, and the follow-up campaigns have their own runners};
-\node[stp, below=0.25cm of s2] (s3) {Re-evaluate stored checkpoints, under shifted load with \texttt{m72\_shift.py} and for throughput and delay with \texttt{m77\_kpi.py}};
-\node[stp, below=0.25cm of s3] (s4) {Summarise each campaign with its analysis script, such as \texttt{m65\_rebuild\_all.sh}};
-\node[stp, below=0.25cm of s4] (s5) {Check every reported number against the raw logs with \texttt{m66\_verify.py}, and every bootstrap CI with \texttt{m66\_ci\_recompute.py}};
-\node[stp, below=0.25cm of s5] (s6) {Redraw every figure with \texttt{paper5\_regen\_wpc\_figures.sh} and build the manuscript with \texttt{make\_submission.py}};
-\node[hd] at ($(s1.north west)+(0,0.05)$) {Steps};
-\foreach \i/\j in {s1/s2,s2/s3,s3/s4,s4/s5,s5/s6}{\draw[ar] (\i.south) -- (\j.north);}
-\foreach \i [count=\k] in {s1,s2,s3,s4,s5,s6}{\node[num] at ($(\i.west)+(-0.33,0)$) {\k};}
+% steps
+\node[stp] (s1) at ($(hw.west |- lv.south)+(0.55,-0.75)$) {\bt{Set up.} Request the code, configurations, and stored logs from the corresponding author. \texttt{framework/} holds the simulators and learners, \texttt{experiments/scripts/} the campaign scripts, \texttt{experiments/configs/} the cluster configurations, \texttt{experiments/results/} the stored per-seed logs, and \texttt{docs/} the pre-registrations. Create a Python virtual environment with the packages above. Every job runs from \texttt{framework/} on one thread, with \texttt{OMP\_NUM\_THREADS=1}, \texttt{MKL\_NUM\_THREADS=1}, and \texttt{OPENBLAS\_NUM\_THREADS=1}.};
+\node[stp] (s2) at ($(s1.south west)+(0,-0.3)$) {\bt{Train and evaluate.} One command trains and evaluates one policy on a batch of seeds, for example\\[1pt]
+  \texttt{M63\_BACKLOG\_RESET=1 M64\_AXIOM\_V2=1 python m64\_run.py -{}-arm axiom2 -{}-env A -{}-n 19}\\
+  \texttt{\ \ \ \ -{}-topology ring -{}-seeds 900 901 902 903 904 -{}-out-dir ../experiments/results/m65\_scaling/n19\_ring}\\[1pt]
+  The arms are \texttt{axiom2}, \texttt{single\_agent\_dqn}, \texttt{independent\_dqn}, \texttt{mappo\_tuned}, and the rules, whose thresholds are chosen on training streams. Each seed trains for 300 episodes on its own stream and is then evaluated for 50 episodes on the held-out stream 5000 plus the seed. Each seed writes a training log, a checkpoint, and an evaluation log, and each batch a JSON file of reward, blocks, and training time. The median training time per seed runs from 73 s to 2{,}088 s, and the main campaigns ran five jobs at a time. The primary seeds are 900 to 929, the replication 1000 to 1009, the pilots 2000 to 2009, and the fresh seeds 3000 onwards.};
+\node[stp] (s3) at ($(s2.south west)+(0,-0.3)$) {\bt{Run the other campaigns.} \texttt{m3\_run\_experiment.py}, called through \texttt{m62\_shared\_env.py}, trains the federated variant with noise multipliers 0, 0.5, 1, 2, and 4. \texttt{m4\_run\_experiment.py} evaluates frozen checkpoints under dropout, spikes, and churn. \texttt{m73\_run.py} adds the 37-gNB configuration, and \texttt{m70\_run.py}, \texttt{m75\_run.py}, and \texttt{m76\_run.py} add the follow-up variants, selected by environment variables. \texttt{m63\_validation\_screen.py} screens every trained checkpoint on its own training stream.};
+\node[stp] (s4) at ($(s3.south west)+(0,-0.3)$) {\bt{Re-evaluate stored checkpoints.} \texttt{m72\_shift.py eval} replays AXIOM and the nominally tuned rule at 80\% to 120\% load, stronger coupling, and a wider load swing, and \texttt{m72\_shift.py retune} re-tunes the rule on shifted training streams. \texttt{m77\_kpi.py} records the PRBs served and the backlog, and confirms that each re-run reproduces its stored log. \texttt{m81\_decision\_probe.py} replays every stored evaluation to read what the eMBB head decides.};
+\node[stp] (s5) at ($(s4.south west)+(0,-0.3)$) {\bt{Summarise.} \texttt{m65\_rebuild\_all.sh} runs \texttt{m64\_analysis.py} and \texttt{m62\_analysis.py} over the main campaigns, and each later campaign has its own \texttt{analysis} script. Each writes the summaries and judges every pre-registered criterion in \texttt{docs/PAPER5\_M*\_preregistration.md}, reporting each whether it holds or fails.};
+\node[stp] (s6) at ($(s5.south west)+(0,-0.3)$) {\bt{Verify.} \texttt{m66\_verify.py -{}-tex main.tex -{}-supp supplementary.tex} reads the raw logs with its own reader and Holm correction, and recomputes every results table and key sentence of both documents. Its \texttt{m82\_audit.py} traces every remaining number to the configurations and the code. \texttt{m66\_ci\_recompute.py} recomputes every bootstrap CI with 10{,}000 resamples, and \texttt{m66\_v1v2.py} reruns reported settings in fresh processes.};
+\node[stp] (s7) at ($(s6.south west)+(0,-0.3)$) {\bt{Redraw and build.} \texttt{paper5\_regen\_wpc\_figures.sh} redraws every plotted figure from the stored results, with \texttt{MATPLOTLIBRC=experiments/plots}. \texttt{paper5\_cvd\_check.py} renders each figure in greyscale and as seen with protan, deutan, and tritan colour vision. \texttt{make\_submission.py} writes \texttt{Fig1} to \texttt{Fig8}, \texttt{ESM\_1.pdf}, and the compiled manuscript.};
+\node[liv] (lt) at ($(s7.south west)+(0,-0.75)$) {\bt{Live testbed check.} Start the Open5GS core with Docker Compose from \texttt{docker\_open5gs/5g-sa-deploy-slicing.yaml}. Start the gNB with\\[1pt]
+  \texttt{nr-softmodem -O ORANSlice.gnb.sa.band78.fr1.106PRB.usrpx310.conf -{}-sa -{}-rfsim}\\[1pt]
+  and up to six \texttt{nr-uesoftmodem} UEs, from the second on each in its own network namespace. Drive iperf3 UDP traffic on every slice. \texttt{run\_live\_eval\_arm.py} then runs the checkpoint through the UDP E2 agent on ports 6600 and 6655, in short batches with a health check, and a stack restart if needed, before each batch.};
+\node[hd] at ($(s1.north west)+(-0.55,0.05)$) {Steps};
+\node[hd] at ($(lt.north west)+(-0.55,0.05)$) {Live testbed};
+\foreach \i/\j in {s1/s2,s2/s3,s3/s4,s4/s5,s5/s6,s6/s7}{\draw[ar] ($(\i.south west)+(0.4,0)$) -- ($(\j.north west)+(0.4,0)$);}
+\foreach \i [count=\k] in {s1,s2,s3,s4,s5,s6,s7}{\node[num] at ($(\i.north west)+(-0.3,-0.25)$) {\k};}
 \end{tikzpicture}
-\caption{Reproducing the results. Left, the hardware and software every run used. Right, the steps from the stored code to the figures and the manuscript}
+\caption{Reproducing the results. Top, the hardware and software every run used. Below, the steps from the stored code to the figures and the manuscript, and the live testbed check}
 \label{fig:repro}
 \end{figure}
 

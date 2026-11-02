@@ -469,6 +469,28 @@ def run(C):
            (cpu[:1], platform.python_version(), torch.__version__, np.__version__, scipy.__version__, matplotlib.__version__, yaml.__version__))
     for f_ in ("m64_run.py", "m73_run.py", "m72_shift.py", "m77_kpi.py", "m65_rebuild_all.sh", "m66_verify.py", "m66_ci_recompute.py"):
         assert os.path.exists(f"{SC}/{f_}"), f_
+
+    LG = "/home/kmanojp/oranslice_rig/experiments/logs/m64/full"
+    runcmd, chain = open(f"{LG}/run_cmd.sh").read(), open(f"{LG}/chain.sh").read()
+    rrs, lea = open(f"{SC}/restart_ran_stack.sh").read(), open(f"{SC}/run_live_eval_arm.py").read()
+    ex = lambda p: os.path.exists(p)
+    C.note("M82 OR1 Fig. S7 step details match the launch records, scripts and specification",
+           "export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 M63_BACKLOG_RESET=1 M64_AXIOM_V2=1" in runcmd
+           and "cd /home/kmanojp/oranslice_rig/framework" in runcmd and "xargs -0 -P 5" in chain
+           and "5000 + seed, 50 episodes" in open(f"{SC}/m77_kpi.py").read() and "23 GiB" in spec
+           and (prim_train("m64/n3_fully_connected", "mappo_tuned"), med_train("m73/A_n37_hex", "independent_dqn")) == (73, 2088)
+           and "ORANSlice.gnb.sa.band78.fr1.106PRB.usrpx310.conf --sa --rfsim" in rrs and "ip netns exec ue2ns ./nr-uesoftmodem" in rrs
+           and "docker_open5gs/5g-sa-deploy-slicing.yaml" in spec and "listen port 6600, gNB-side port 6655" in spec and "iperf3" in spec and "Drive iperf3 UDP traffic on every slice" in C.tex
+           and "health-checking the rig before every batch" in lea and "full stack restart if unhealthy" in lea
+           and 'ap.add_argument("mode", choices=["eval", "retune"])' in open(f"{SC}/m72_shift.py").read()
+           and all(ex(f"{SC}/{x}") for x in ("m62_shared_env.py", "m3_run_experiment.py", "m4_run_experiment.py", "m70_run.py", "m75_run.py", "m76_run.py",
+                                             "m63_validation_screen.py", "m81_decision_probe.py", "m64_analysis.py", "m62_analysis.py", "m66_v1v2.py", "m82_audit.py"))
+           and ex("/home/kmanojp/oranslice_rig/experiments/plots/paper5_cvd_check.py")
+           and "Every job runs from \\texttt{framework/} on one thread" in C.tex and "the main campaigns ran five jobs at a time" in C.tex
+           and "evaluated for 50 episodes on the held-out stream 5000 plus the seed" in C.tex and "8 GB of memory, 7.4 GiB usable, with 23 GiB of swap" in C.tex
+           and "The median training time per seed runs from 73 s to 2{,}088 s" in C.tex
+           and "the replication 1000 to 1009, the pilots 2000 to 2009, and the fresh seeds 3000 onwards" in C.tex
+           and "with noise multipliers 0, 0.5, 1, 2, and 4" in C.tex and "on ports 6600 and 6655" in C.tex, None)
     C.note("M82 OR1 Fig. S7 names scripts that exist and do what it says", os.path.exists("/home/kmanojp/oranslice_rig/experiments/plots/paper5_regen_wpc_figures.sh")
            and os.path.exists("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/make_submission.py")
            and all(x in inspect.getsource(m64_run.main) for x in ('"--env"', '"--n"', '"--topology"', '"--arm"', '"--seeds"', '"--train-episodes", type=int, default=300'))

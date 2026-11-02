@@ -7907,6 +7907,14 @@
   "ok": true
  },
  {
+  "label": "M82 OR1 Fig. S7 step details match the launch records, scripts and specification",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "M82 OR1 Fig. S7 names scripts that exist and do what it says",
   "snippet": null,
   "computed": null,
@@ -7915,9 +7923,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 680",
+  "label": "text quotes the final check count of 681",
   "snippet": null,
-  "computed": 680,
+  "computed": 681,
   "formatted": null,
   "in_tex": null,
   "ok": true
