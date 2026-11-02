@@ -2277,6 +2277,10 @@ def main():
            and "coloured from dark purple at 50\\% to pale yellow at 85\\% by the mean share of evaluation steps on which it meets the URLLC and eMBB SLAs" in C.main,
            (pgfig_.VMIN, pgfig_.VMAX))
 
+    # ---------------- M82 pre-submission audit: every number no earlier check tied to its printed text
+    import m82_audit
+    m82_audit.run(C)
+
     n_total = len(C.rows) + 1
     C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)
     rows = C.rows

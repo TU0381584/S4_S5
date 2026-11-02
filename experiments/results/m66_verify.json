@@ -6549,9 +6549,1375 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 618",
+  "label": "M82 Table 2 slice rows match the configuration",
   "snippet": null,
-  "computed": 618,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 Table 2 reward, episode, arrival and gate rows match the configuration",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 simulator constants in the text match the simulator code",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 Env A and Env B demand ranges follow from the constants",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 AXIOM as trained matches Table 2 and the 7,782 execution parameters",
+  "snippet": null,
+  "computed": {
+   "gat_W": [
+    [
+     4,
+     9,
+     16
+    ],
+    [
+     4,
+     64,
+     16
+    ]
+   ],
+   "params_exec": 7782
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 DQN and MAPPO settings in Table 2 match the code",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 LeakyReLU slope 0.2 is the encoder's",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 300 training and 50 evaluation episodes per seed",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 seed sets of the campaigns",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 bootstrap CIs use 10,000 resamples",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 Table 4 Env A reward row",
+  "snippet": null,
+  "computed": {
+   "axiom2": 12.698,
+   "mappo_tuned": 10.013,
+   "heuristic": 12.835,
+   "single_agent_dqn": 12.387,
+   "independent_dqn": 11.587
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 Table 4 parameter row",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 Table 4 Env B 7-gNB priority SLA row",
+  "snippet": null,
+  "computed": {
+   "axiom2": 35.1,
+   "single_agent_dqn": 44.26,
+   "independent_dqn": 39.95,
+   "mappo_tuned": 35.87
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 abstract and contributions: AXIOM above 93% and every learned baseline below 84% at 7, 19 and 37 gNBs",
+  "snippet": null,
+  "computed": {
+   "7": {
+    "axiom2": 97.1,
+    "single_agent_dqn": 76.2,
+    "independent_dqn": 74.6,
+    "mappo_tuned": 67.7
+   },
+   "19": {
+    "axiom2": 97.3,
+    "single_agent_dqn": 65.3,
+    "independent_dqn": 56.4,
+    "mappo_tuned": 60.6
+   },
+   "37": {
+    "axiom2": 93.7,
+    "single_agent_dqn": 58.7,
+    "independent_dqn": 32.1,
+    "mappo_tuned": 56.7
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 fresh 37-gNB sentence: AXIOM 95.1% against 34.1% to 58.5%",
+  "snippet": null,
+  "computed": {
+   "axiom2": 95.09,
+   "single_agent_dqn": 57.36,
+   "independent_dqn": 34.08,
+   "mappo_tuned": 58.55
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 no baseline closes the 37-gNB mMTC gate below 0.51",
+  "snippet": null,
+  "computed": {
+   "axiom2": {
+    "urllc": 0.9962,
+    "embb": 0.9828,
+    "mmtc": 0.1573
+   },
+   "single_agent_dqn": {
+    "urllc": 0.9397,
+    "embb": 0.9486,
+    "mmtc": 0.9334
+   },
+   "independent_dqn": {
+    "urllc": 0.9811,
+    "embb": 0.9753,
+    "mmtc": 0.9375
+   },
+   "mappo_tuned": {
+    "urllc": 0.9489,
+    "embb": 0.8043,
+    "mmtc": 0.5133
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 MLP variant wins 10 of 15 seeds on each Env B 7-gNB layout",
+  "snippet": null,
+  "computed": {
+   "ring": [
+    10,
+    1.124
+   ],
+   "hex": [
+    10,
+    0.95
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 AXIOM within 0.13 of the oracle under changed load and weights",
+  "snippet": null,
+  "computed": {
+   "load102": -0.072,
+   "load107": -0.13,
+   "weights": -0.123
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 Env B three-gNB sentences: Holm p<0.0001, tuned rule's 0.2 threshold, 0.420 at p<0.0001",
+  "snippet": null,
+  "computed": {
+   "h1": {
+    "rule_static": 3.725290298461914e-09,
+    "rule_accept_all": 3.725290298461914e-09
+   },
+   "prio": {
+    "single_agent_dqn": 4.917383193969727e-07,
+    "mappo_tuned": 7.580965757369995e-06,
+    "independent_dqn": 1.0240807151176453e-05
+   },
+   "loc": {
+    "n": 30,
+    "diff": 0.420190861508788,
+    "wins": 22,
+    "ties": 0,
+    "losses": 8,
+    "p": 1.8244609236717224e-05
+   },
+   "sel": {
+    "tau_c": 0.0,
+    "tau_q": null,
+    "tau_e": 0.2
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 tuned rules beat AXIOM in all 15 seeds at seven gNBs under every layout",
+  "snippet": null,
+  "computed": {
+   "fully_connected|rule_local": 15,
+   "fully_connected|rule_neighbour": 15,
+   "ring|rule_local": 15,
+   "ring|rule_neighbour": 15,
+   "hex|rule_local": 15,
+   "hex|rule_neighbour": 15
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 complexity table rows recomputed from the measurements",
+  "snippet": null,
+  "computed": {
+   "axiom2": "AXIOM & 7,782 at every size & 1.04 / 1.98 / 4.79 / 9.89 & 624 / 892 / 1182 \\\\",
+   "single_agent_dqn": "DQN-SA & 21,250 / 26,370 / 41,730 / 64,770 & 0.61 / 1.42 / 3.95 / 8.02 & 85 / 202 / 358 \\\\",
+   "independent_dqn": "DQN-I & 55,302 / 129,038 / 350,246 / 682,058 & 0.59 / 1.38 / 3.73 / 8.08 & 181 / 1054 / 2088 \\\\",
+   "mappo_tuned": "MAPPO & 5,122 at every size & 0.19 / 0.20 / 0.22 / 0.27 & 73 / 256 / 495 \\\\"
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 federation pooled over 30 seeds, ten of them fresh",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 7-gNB scaling sentence recomputed",
+  "snippet": null,
+  "computed": "At seven gNBs, under every layout, AXIOM keeps 17.9 to 29.9 percentage points more priority-slice compliance than each baseline and earns 3.40 to 7.07 more reward per step. All 18 comparisons hold after Holm correction, at adjusted $p\\leq0.011$.",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 19-gNB scaling sentence recomputed",
+  "snippet": null,
+  "computed": "Under every layout AXIOM keeps 31.0 to 42.1 percentage points more compliance than every baseline and earns 10.7 to 18.6 more reward per step, winning 28 to 30 of 30 seeds. All 18 comparisons hold after Holm correction, at adjusted $p\\leq0.0001$.",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 37-gNB comparisons hold after Holm correction at p<0.01",
+  "snippet": null,
+  "computed": 0.00613,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 Env B 7-gNB ring: AXIOM below DQN-SA in compliance at Holm p=0.011",
+  "snippet": null,
+  "computed": 0.010986328125,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 the MAPPO tuning grid has 24 configurations in each environment",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 fifth and sixth fresh-seed runs: 3 of 3 and 4 of 4 checks held",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 fresh-seed runs used 10 to 40 seeds per setting and an 80% baseline bound",
+  "snippet": null,
+  "computed": [
+   {
+    "m66_fresh/A_n3": 20,
+    "m66_fresh/A_n19_ring": 15,
+    "m66_fresh/B_n7_ring": 10,
+    "m66b_fresh/A_n7_ring": 10,
+    "m66d_fresh/D1_A_n3": 40
+   },
+   [
+    "Env A N=7 independent_dqn pooled priority SLA <= 80%",
+    "Env A N=7 single_agent_dqn pooled priority SLA <= 80%"
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 a re-tuned rule ties AXIOM up to 115% load and beats it at 120%",
+  "snippet": null,
+  "computed": {
+   "load_1.10": [
+    -0.163,
+    0.1409
+   ],
+   "load_1.15": [
+    -0.121,
+    0.1409
+   ],
+   "load_1.20": [
+    -0.62,
+    0.0
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 eleven rerun settings and the oracle on 30 seeds",
+  "snippet": null,
+  "computed": 11,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 sensitivity, federated and wide-encoder settings match the code",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 validation screen: five greedy episodes, 90% of blocks on mMTC",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 process records: pilot seeds, M63 timing, probe seeds, earlier mixer's diverging loss",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 disruption windows and spike multipliers",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 thirty-seven-gNB arrivals",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 uneven load range and the 95 local rules",
+  "snippet": null,
+  "computed": 95,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 small DQN-SA margins on 20 and 40 new seeds",
+  "snippet": null,
+  "computed": [
+   {
+    "n": 20,
+    "diff": -0.020622156053140106,
+    "wins": 11,
+    "ties": 4,
+    "losses": 5,
+    "p": 0.07032573521121915
+   },
+   {
+    "n": 40,
+    "diff": 0.15941169354306167,
+    "wins": 22,
+    "ties": 10,
+    "losses": 8,
+    "p": 0.08971783776750893
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 baselines up to 83.3% at seven gNBs, above the 80% bound",
+  "snippet": null,
+  "computed": [
+   80.9,
+   80.6,
+   68.1,
+   80.9,
+   82.7,
+   68.1,
+   76.2,
+   83.3,
+   71.0
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 MLP variant: 0.31 at 19 gNBs with 7 of 12 tied, 0.116 in 17 of 30, fresh 1.38 in 9 of 10 at p=0.006",
+  "snippet": null,
+  "computed": [
+   {
+    "n": 12,
+    "diff": 0.3119349026470874,
+    "wins": 3,
+    "ties": 7,
+    "losses": 2,
+    "p": 0.8125
+   },
+   {
+    "n": 30,
+    "diff": 0.11646043780519433,
+    "wins": 17,
+    "ties": 0,
+    "losses": 13,
+    "p": 0.4521643426269293
+   },
+   {
+    "n": 10,
+    "diff": 1.381149460855213,
+    "wins": 9,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.005859375
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 Env B replication: AXIOM wins 7 or 8 of 10 against each",
+  "snippet": null,
+  "computed": [
+   7,
+   8,
+   8
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 DQN baselines at learning rate 1e-4",
+  "snippet": null,
+  "computed": [
+   11.47690600234631,
+   [
+    10.627286731109523,
+    12.081191229258
+   ],
+   11.119157131690338,
+   [
+    10.723698145541352,
+    11.489177864123237
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 roughly 360 per-round updates",
+  "snippet": null,
+  "computed": 359.38,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 spike precision 0.98, 1.00, about 0.95",
+  "snippet": null,
+  "computed": {
+   "gat_ctde": 0.9796397858262882,
+   "single_agent_dqn": 0.9998556083555128,
+   "independent_dqn": 0.9535486280282423
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 per-slice compliance at 7, 19 and 37 gNBs",
+  "snippet": null,
+  "computed": "At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\\% and 94.4\\%, against 91.4\\% and 61.0\\% for DQN-SA, 94.2\\% and 55.0\\% for DQN-I, and 87.0\\% and 48.4\\% for MAPPO. At nineteen gNBs it keeps them at 99.4\\% and 95.1\\%, and at thirty-seven at 96.7\\% and 90.7\\%.",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 Table S2 static-rule row, m73/A_n37_hex",
+  "snippet": null,
+  "computed": "Static rule & 30 & 100.0\\% & 100.0\\% & 99.98\\% & 177.58 & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 Table S2 static-rule row, m74/A_n37_hex",
+  "snippet": null,
+  "computed": "Static rule & 20 & 100.0\\% & 100.0\\% & 99.97\\% & 177.68 & 0 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 AXIOM's non-collapsed 37-gNB runs keep 96.9% to 98.1% under each layout",
+  "snippet": null,
+  "computed": [
+   97.0858024691358,
+   98.10897435897435,
+   96.85
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 fresh 37 gNBs: 18 to 19 of 20 wins, Holm p<0.001",
+  "snippet": null,
+  "computed": {
+   "single_agent_dqn|r": 19,
+   "single_agent_dqn|p": 18,
+   "independent_dqn|r": 19,
+   "independent_dqn|p": 19,
+   "mappo_tuned|r": 19,
+   "mappo_tuned|p": 19
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 tuned DQN grid: learning rates 1e-4 to 1e-3, minibatches 16 and 64",
+  "snippet": null,
+  "computed": [
+   [
+    0.0001,
+    0.0003,
+    0.001
+   ],
+   [
+    16,
+    64
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 Table S5 wins, losses and Wilcoxon p",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 the main campaign reuses M63 baselines at seven gNBs and for 15 of the 30 seeds at nineteen",
+  "snippet": null,
+  "computed": {
+   "7|single_agent_dqn|fully_connected": [
+    15,
+    15
+   ],
+   "7|single_agent_dqn|ring": [
+    15,
+    15
+   ],
+   "7|single_agent_dqn|hex": [
+    15,
+    15
+   ],
+   "7|independent_dqn|fully_connected": [
+    15,
+    15
+   ],
+   "7|independent_dqn|ring": [
+    15,
+    15
+   ],
+   "7|independent_dqn|hex": [
+    15,
+    15
+   ],
+   "19|single_agent_dqn|fully_connected": [
+    15,
+    30
+   ],
+   "19|single_agent_dqn|ring": [
+    15,
+    30
+   ],
+   "19|single_agent_dqn|hex": [
+    15,
+    30
+   ],
+   "19|independent_dqn|fully_connected": [
+    15,
+    30
+   ],
+   "19|independent_dqn|ring": [
+    15,
+    30
+   ],
+   "19|independent_dqn|hex": [
+    15,
+    30
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 seven gNBs: tuned rules 26.5 to 27.3, AXIOM 23.4 to 23.6, static rule 23.6",
+  "snippet": null,
+  "computed": [
+   [
+    27.343986763097224,
+    26.453728714816354,
+    27.336221591410798,
+    26.652277990284468,
+    27.337274178350487,
+    26.55815335157096
+   ],
+   [
+    23.370825697958765,
+    23.496374635391838,
+    23.624394372732567
+   ],
+   23.607215011787478
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 Table S7 AXIOM 300-episode row",
+  "snippet": null,
+  "computed": [
+   3.3566249479131196,
+   34.026666666666664,
+   11
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 nineteen gNBs: seven of eight seeds still shed only mMTC after 900 episodes",
+  "snippet": null,
+  "computed": "7 vs 8 of 8",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 the tuned rule's step at 0.2 at seven gNBs",
+  "snippet": null,
+  "computed": {
+   "tau_c": 0.0,
+   "tau_q": null,
+   "tau_e": 0.2
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 fifteen fresh seeds 7000 to 7014 at nineteen gNBs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 the grid-selected MAPPO at 37 gNBs trains for 900 episodes",
+  "snippet": null,
+  "computed": {
+   "cfg": "lr1e-3_ep4_mb256_te900",
+   "lr": "1e-3",
+   "ep": 4,
+   "mb": 256,
+   "te": 900,
+   "n": 5,
+   "mean": 12.564630632422663
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 old simulator: accept-all kept URLLC and eMBB at 100% on the 30 held-out seeds",
+  "snippet": null,
+  "computed": {
+   "accept_all": {
+    "900": {
+     "reward": 13.668473255898185,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.22833333333333333
+     },
+     "blocks": 0
+    },
+    "901": {
+     "reward": 13.938600301520388,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.35033333333333333
+     },
+     "blocks": 0
+    },
+    "902": {
+     "reward": 15.30024713011047,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.5926666666666667
+     },
+     "blocks": 0
+    },
+    "903": {
+     "reward": 14.288751500815154,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.43166666666666664
+     },
+     "blocks": 0
+    },
+    "904": {
+     "reward": 14.719942339903314,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.4346666666666667
+     },
+     "blocks": 0
+    },
+    "905": {
+     "reward": 14.711412722571662,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.414
+     },
+     "blocks": 0
+    },
+    "906": {
+     "reward": 15.452788466338818,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.6733333333333333
+     },
+     "blocks": 0
+    },
+    "907": {
+     "reward": 14.447848930024099,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.5093333333333333
+     },
+     "blocks": 0
+    },
+    "908": {
+     "reward": 14.0964069137567,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.27
+     },
+     "blocks": 0
+    },
+    "909": {
+     "reward": 14.603095506150419,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.4683333333333334
+     },
+     "blocks": 0
+    },
+    "910": {
+     "reward": 14.366993721354437,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.29766666666666663
+     },
+     "blocks": 0
+    },
+    "911": {
+     "reward": 14.825404926467174,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.49633333333333335
+     },
+     "blocks": 0
+    },
+    "912": {
+     "reward": 14.011912348469782,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.21733333333333335
+     },
+     "blocks": 0
+    },
+    "913": {
+     "reward": 14.285542284554081,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.27366666666666667
+     },
+     "blocks": 0
+    },
+    "914": {
+     "reward": 13.81598158377718,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.23199999999999998
+     },
+     "blocks": 0
+    },
+    "915": {
+     "reward": 14.352382239695315,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.467
+     },
+     "blocks": 0
+    },
+    "916": {
+     "reward": 14.639830439623015,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.34700000000000003
+     },
+     "blocks": 0
+    },
+    "917": {
+     "reward": 13.807171780262463,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.23733333333333334
+     },
+     "blocks": 0
+    },
+    "918": {
+     "reward": 14.273481872170015,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.37799999999999995
+     },
+     "blocks": 0
+    },
+    "919": {
+     "reward": 14.190367771848601,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.25133333333333335
+     },
+     "blocks": 0
+    },
+    "920": {
+     "reward": 15.06953159149072,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.49700000000000005
+     },
+     "blocks": 0
+    },
+    "921": {
+     "reward": 14.096969820236161,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.25266666666666665
+     },
+     "blocks": 0
+    },
+    "922": {
+     "reward": 14.018208166619992,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.30066666666666664
+     },
+     "blocks": 0
+    },
+    "923": {
+     "reward": 13.911035842378892,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.22566666666666665
+     },
+     "blocks": 0
+    },
+    "924": {
+     "reward": 14.270020323635311,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.39166666666666666
+     },
+     "blocks": 0
+    },
+    "925": {
+     "reward": 14.372613941034153,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.2563333333333333
+     },
+     "blocks": 0
+    },
+    "926": {
+     "reward": 14.912008307347842,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.5183333333333333
+     },
+     "blocks": 0
+    },
+    "927": {
+     "reward": 14.846283409880108,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.4403333333333333
+     },
+     "blocks": 0
+    },
+    "928": {
+     "reward": 15.167112556878868,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.6646666666666667
+     },
+     "blocks": 0
+    },
+    "929": {
+     "reward": 15.105248181762486,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.5489999999999999
+     },
+     "blocks": 0
+    }
+   },
+   "static": {
+    "900": {
+     "reward": 13.497407003928743,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.006
+     },
+     "blocks": 3506
+    },
+    "901": {
+     "reward": 13.474784791306924,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.004333333333333333
+     },
+     "blocks": 3489
+    },
+    "902": {
+     "reward": 14.056712253702193,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.004
+     },
+     "blocks": 3468
+    },
+    "903": {
+     "reward": 13.54175628687281,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.005333333333333333
+     },
+     "blocks": 3428
+    },
+    "904": {
+     "reward": 13.924563882390883,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.008
+     },
+     "blocks": 3421
+    },
+    "905": {
+     "reward": 13.983394593196367,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.006666666666666666
+     },
+     "blocks": 3436
+    },
+    "906": {
+     "reward": 14.012497052875613,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.005666666666666666
+     },
+     "blocks": 3488
+    },
+    "907": {
+     "reward": 13.550308259271985,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.004666666666666667
+     },
+     "blocks": 3503
+    },
+    "908": {
+     "reward": 13.791077360529409,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.006666666666666666
+     },
+     "blocks": 3434
+    },
+    "909": {
+     "reward": 13.729066930829736,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.004666666666666667
+     },
+     "blocks": 3507
+    },
+    "910": {
+     "reward": 14.030318291371099,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.011333333333333332
+     },
+     "blocks": 3489
+    },
+    "911": {
+     "reward": 13.911808756271656,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.008333333333333333
+     },
+     "blocks": 3470
+    },
+    "912": {
+     "reward": 13.825595844329108,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.005333333333333333
+     },
+     "blocks": 3419
+    },
+    "913": {
+     "reward": 13.953703034262197,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.004
+     },
+     "blocks": 3439
+    },
+    "914": {
+     "reward": 13.62125141605557,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.008333333333333333
+     },
+     "blocks": 3452
+    },
+    "915": {
+     "reward": 13.539060629955932,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.029666666666666668
+     },
+     "blocks": 3502
+    },
+    "916": {
+     "reward": 14.092934147906568,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.007333333333333333
+     },
+     "blocks": 3447
+    },
+    "917": {
+     "reward": 13.644703386257827,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.011333333333333332
+     },
+     "blocks": 3555
+    },
+    "918": {
+     "reward": 13.666816622434366,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.004333333333333333
+     },
+     "blocks": 3416
+    },
+    "919": {
+     "reward": 13.959098967426888,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.004666666666666667
+     },
+     "blocks": 3484
+    },
+    "920": {
+     "reward": 14.158118924785827,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.006666666666666666
+     },
+     "blocks": 3472
+    },
+    "921": {
+     "reward": 13.864831385036553,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.01
+     },
+     "blocks": 3475
+    },
+    "922": {
+     "reward": 13.676337815871907,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.003333333333333333
+     },
+     "blocks": 3409
+    },
+    "923": {
+     "reward": 13.741474514922848,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.006999999999999999
+     },
+     "blocks": 3501
+    },
+    "924": {
+     "reward": 13.588757956319862,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.009666666666666667
+     },
+     "blocks": 3441
+    },
+    "925": {
+     "reward": 14.143360495547583,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.008
+     },
+     "blocks": 3374
+    },
+    "926": {
+     "reward": 13.968439469198145,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.004666666666666667
+     },
+     "blocks": 3407
+    },
+    "927": {
+     "reward": 14.065627443221064,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.019
+     },
+     "blocks": 3392
+    },
+    "928": {
+     "reward": 13.747080620396467,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.008333333333333333
+     },
+     "blocks": 3511
+    },
+    "929": {
+     "reward": 13.994349767726064,
+     "sla": {
+      "urllc": 1.0,
+      "embb": 1.0,
+      "mmtc": 0.011000000000000001
+     },
+     "blocks": 3413
+    }
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 delay definition: mean backlog over mean served PRBs, 95th percentile over steps and gNBs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 Fig. S7 hardware and software match this machine and its packages",
+  "snippet": null,
+  "computed": [
+   [
+    "11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz"
+   ],
+   "3.12.3",
+   "2.13.0+cu130",
+   "2.5.1",
+   "1.18.0",
+   "3.11.0",
+   "6.0.3"
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M82 OR1 Fig. S7 names scripts that exist and do what it says",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "text quotes the final check count of 680",
+  "snippet": null,
+  "computed": 680,
   "formatted": null,
   "in_tex": null,
   "ok": true

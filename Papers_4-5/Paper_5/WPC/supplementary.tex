@@ -422,4 +422,46 @@ Accept all & 93.8\% & 93.9\% & 2.25 & 6.97 & 2.24 & 6.82 \\
 \end{tabular}
 \end{table}
 
+\section*{S9. Reproducing the results}
+Fig.~\ref{fig:repro} sets out what reproducing the results needs and the order of the steps. Every result in both documents comes from one laptop without a graphics processor, and every simulation run fixes its seed. Reruns on the same seeds reproduce the stored per-seed results exactly, except the original DQN-SA runs, whose initial weights were not seeded, as Section S2 explains. The code, configurations, and stored logs are available from the corresponding author on reasonable request.
+
+\begin{figure}[!htbp]
+\centering
+\begin{tikzpicture}[
+  font=\fontfamily{phv}\selectfont\footnotesize,
+  need/.style={draw=black!60, rounded corners=2pt, fill=gray!8, align=left, text width=5.5cm, inner sep=4pt},
+  stp/.style={draw=blue!55!black, rounded corners=2pt, fill=blue!5, align=left, text width=8.5cm, inner sep=4pt},
+  num/.style={circle, draw=blue!55!black, fill=white, inner sep=1pt, minimum size=0.42cm, font=\fontfamily{phv}\selectfont\footnotesize\bfseries},
+  hd/.style={font=\fontfamily{phv}\selectfont\footnotesize\bfseries, anchor=south west, inner sep=1pt},
+  ar/.style={-{Latex[length=1.8mm]}, semithick, blue!55!black}
+]
+\node[need, anchor=north west] (hw) at (0,0) {Hardware\\[1pt]
+  One laptop, Intel Core i5-1135G7, 4 cores and 8 threads\\
+  8 GB of memory, 7.4 GiB usable\\
+  No graphics processor, every run on the CPU\\
+  Ubuntu 24.04 LTS};
+\node[need, anchor=north west] (sw) at ($(hw.south west)+(0,-0.25)$) {Software\\[1pt]
+  Python 3.12.3, PyTorch 2.13.0 on the CPU\\
+  NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.0, PyYAML 6.0.3\\
+  TeX Live 2023 with pdfLaTeX for the manuscript};
+\node[need, anchor=north west] (lv) at ($(sw.south west)+(0,-0.25)$) {Live testbed check only\\[1pt]
+  OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio\\
+  Open5GS core in Docker, 17 containers\\
+  protobuf-c 1.5.2};
+\node[hd] at ($(hw.north west)+(0,0.05)$) {What is needed};
+
+\node[stp, anchor=north west] (s1) at ($(hw.north east)+(0.95,0)$) {Obtain the code, configurations, and stored logs from the corresponding author, then create a Python environment with the packages listed};
+\node[stp, below=0.25cm of s1] (s2) {Train and evaluate each campaign with \texttt{m64\_run.py}, which takes the environment, the cluster size, the layout, the policy, and the seeds, with 300 training and 50 evaluation episodes per seed. \texttt{m73\_run.py} adds 37 gNBs, and the follow-up campaigns have their own runners};
+\node[stp, below=0.25cm of s2] (s3) {Re-evaluate stored checkpoints, under shifted load with \texttt{m72\_shift.py} and for throughput and delay with \texttt{m77\_kpi.py}};
+\node[stp, below=0.25cm of s3] (s4) {Summarise each campaign with its analysis script, such as \texttt{m65\_rebuild\_all.sh}};
+\node[stp, below=0.25cm of s4] (s5) {Check every reported number against the raw logs with \texttt{m66\_verify.py}, and every bootstrap CI with \texttt{m66\_ci\_recompute.py}};
+\node[stp, below=0.25cm of s5] (s6) {Redraw every figure with \texttt{paper5\_regen\_wpc\_figures.sh} and build the manuscript with \texttt{make\_submission.py}};
+\node[hd] at ($(s1.north west)+(0,0.05)$) {Steps};
+\foreach \i/\j in {s1/s2,s2/s3,s3/s4,s4/s5,s5/s6}{\draw[ar] (\i.south) -- (\j.north);}
+\foreach \i [count=\k] in {s1,s2,s3,s4,s5,s6}{\node[num] at ($(\i.west)+(-0.33,0)$) {\k};}
+\end{tikzpicture}
+\caption{Reproducing the results. Left, the hardware and software every run used. Right, the steps from the stored code to the figures and the manuscript}
+\label{fig:repro}
+\end{figure}
+
 \end{document}
