@@ -332,7 +332,7 @@ def main():
     A = {arm: seeds_of("m65_reviewer/base", arm, S30) for arm in ("axiom2", "axiom2_mlp", "mappo_tuned")}
     for arm in ("heuristic", "single_agent_dqn", "independent_dqn", "single_agent_dqn_lr1e4", "independent_dqn_lr1e4"):
         A[arm] = seeds_of("m63_reviewer/base", arm, S30)
-    names = {"heuristic": "Oracle rule", "axiom2": "AXIOM", "axiom2_mlp": "AXIOM, MLP encoder", "single_agent_dqn": "DQN-SA",
+    names = {"heuristic": "Static rule", "axiom2": "AXIOM", "axiom2_mlp": "AXIOM, MLP encoder", "single_agent_dqn": "DQN-SA",
              "independent_dqn": "DQN-I", "mappo_tuned": "MAPPO"}
     for arm, nm in names.items():
         r = A[arm]
@@ -354,7 +354,7 @@ def main():
     C.claim("A3 vs single p_holm", "at $p=0.066$", h["single_agent_dqn"], "{:.3f}")
     C.note("A3 vs indep and MAPPO p_holm <= 0.0002", max(h["independent_dqn"], h["mappo_tuned"]) <= 0.0002,
            (h["independent_dqn"], h["mappo_tuned"]))
-    C.claim("A3 oracle ties", "Oracle rule & 12.835 [12.77, 12.91] & 100.0 & 2/22/6 &", fam["heuristic"]["ties"], "/{}/")
+    C.claim("A3 oracle ties", "Static rule & 12.835 [12.77, 12.91] & 100.0 & 2/22/6 &", fam["heuristic"]["ties"], "/{}/")
     C.claim("A3 pct of oracle", "AXIOM & 12.698 [12.49, 12.86] & 98.9 & -- &", 100 * mean(A["axiom2"]) / mean(A["heuristic"]), "{:.1f}")
     # Table 4's share-of-oracle and AXIOM W/T/L columns, and the sentence that AXIOM comes closest to the oracle
     for arm, nm in names.items():
@@ -366,7 +366,7 @@ def main():
                    for l_ in C.main.splitlines()), (p_["wins"], p_["ties"], p_["losses"]))
     C.note("A3 AXIOM earns more than every other learner, so it comes closest to the oracle",
            all(mean(A["axiom2"]) > mean(A[b_]) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned", "axiom2_mlp"))
-           and "AXIOM never collapses and comes closer to the oracle rule's reward than any other learner" in C.main, None)
+           and "AXIOM never collapses and comes closer to the static rule's reward than any other learner" in C.main, None)
     C.claim("A3 MLP diff", "which earns 0.058 more reward per step at three gNBs with 95\\% CI", fam["axiom2_mlp"]["diff"], "{:.3f}")
     C.claim("A3 MLP diff in the supplement", "In Env A it ties AXIOM, which earns 0.058 more reward per step", fam["axiom2_mlp"]["diff"], "{:.3f}")
     ax19m_ = seeds_of("m65_scaling/n19_ring", "axiom2", range(900, 912)); ml19_ = seeds_of("m65_scaling_mlp/n19_ring", "axiom2_mlp", range(900, 912))
@@ -386,7 +386,7 @@ def main():
         C.claim(f"Arep vs {b}", "There it earns 1.083, 0.799, and 3.806 more reward per step", famr[b]["diff"], "{:.3f}")
     C.note("Arep three leads p_holm <= 0.023", max(hr["single_agent_dqn"], hr["independent_dqn"], hr["mappo_tuned"]) <= 0.0235,
            {k: hr[k] for k in ("single_agent_dqn", "independent_dqn", "mappo_tuned")})
-    C.claim("Arep oracle gap", "only 0.018 below the oracle", -famr["heuristic"]["diff"], "{:.3f}")
+    C.claim("Arep oracle gap", "only 0.018 below the static rule", -famr["heuristic"]["diff"], "{:.3f}")
     P = {arm: {**A[arm], **R[arm]} for arm in ("axiom2", "heuristic", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
     famp = {b: paired(P["axiom2"], P[b]) for b in ("heuristic", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
     hp = holm({k: v["p"] for k, v in famp.items()})
@@ -893,7 +893,7 @@ def main():
     C.claim("fresh-seed predictions stated in advance", "All 26 predictions stated in advance for these fresh seeds held", len(pred), "{:d}")
     C.note("every fresh-seed prediction holds", all(c_["holds"] for c_ in pred), len(pred))
     fa = {k: seeds_of("m66_fresh/A_n3", k, F20) for k in ("axiom2", "independent_dqn", "single_agent_dqn", "mappo_tuned", "rule_static")}
-    C.claim("fresh Env A N=3 fraction of oracle", "reached 98.2\\% of the oracle reward",
+    C.claim("fresh Env A N=3 fraction of oracle", "reached 98.2\\% of the static rule's reward",
             100 * mean(fa["axiom2"]) / mean(fa["rule_static"]), "{:.1f}")
     t_ = {k: paired(fa["axiom2"], fa[k]) for k in ("independent_dqn", "single_agent_dqn", "mappo_tuned")}
     h_ = holm({k: v["p"] for k, v in t_.items()})
@@ -931,6 +931,10 @@ def main():
     C.claim("fresh Env B N=7 MLP over GAT reward", "beat graph attention by 1.38 reward per step", t_["diff"], "{:.2f}")
     C.claim("fresh Env B N=7 MLP seeds won", "in 9 of 10 seeds at $p=0.006$", t_["wins"], "{:d}")
     C.claim("fresh Env B N=7 MLP over GAT p", "in 9 of 10 seeds at $p=0.006$", t_["p"], "{:.3f}")
+    # the same fresh-seed MLP lead, now stated in the main text's ablation paragraph (2026-11-05)
+    MLPF_ = "On ten fresh ring-layout seeds, however, the MLP encoder led by 1.38 reward per step at $p=0.006$"
+    C.claim("reframe: main fresh Env B N=7 MLP lead", MLPF_, t_["diff"], "{:.2f}")
+    C.claim("reframe: main fresh Env B N=7 MLP p", MLPF_, t_["p"], "{:.3f}")
 
     # ---------------- M66b fresh seeds (addendum 1)
     G = list(range(3000, 3010)); bl = ("independent_dqn", "single_agent_dqn", "mappo_tuned")
@@ -988,7 +992,7 @@ def main():
     s102 = c8["load102"]["summary"]
     frac = 100 * s102["axiom2"]["reward"] / s102["rule_static"]["reward"]
     C.claim("M66c load102 fraction", "left it at 96.8\\% of the oracle reward", frac, "{:.1f}")
-    C.claim("M66c load102 shortfall, conclusion", "left it 3.2\\% short of the oracle", 100 - frac, "{:.1f}")
+    C.claim("M66c load102 shortfall, conclusion", "left it 3.2\\% short of the static rule", 100 - frac, "{:.1f}")
     C.claim("M66c load102 p", "a gap that is not significant at $p=0.25$", c8["load102"]["vs_oracle"]["p"], "{:.2f}")
     C.claim("M66c load102 AXIOM", "at 12.551 against 12.910", s102["axiom2"]["reward"], "{:.3f}")
     C.claim("M66c load102 single", "at 12.551 against 12.910", s102["single_agent_dqn"]["reward"], "{:.3f}")
@@ -1100,7 +1104,7 @@ def main():
     C.claim("reframe: fresh 20-seed single-agent gap", "at margins of $-0.021$ and $0.159$ reward per step", a3f["diff"], "{:+.3f}".replace("+", "") if a3f["diff"] < 0 else "{:+.3f}")
     C.claim("reframe: fresh 40-seed single-agent gap", "at margins of $-0.021$ and $0.159$ reward per step", a3d["diff"], "{:.3f}")
     s102_ = mcc["C8"]["load102"]["summary"]
-    C.claim("reframe: ten-seed load sample shortfall", "3.2\\% short of the oracle", 100 - 100 * s102_["axiom2"]["reward"] / s102_["rule_static"]["reward"], "{:.1f}")
+    C.claim("reframe: ten-seed load sample shortfall", "3.2\\% short of the static rule", 100 - 100 * s102_["axiom2"]["reward"] / s102_["rule_static"]["reward"], "{:.1f}")
     d2_ = {k: seeds_of("m66d_fresh/D2_load102", k, list(range(4000, 4020))) for k in ("axiom2", "single_agent_dqn", "rule_static")}
     C.note("reframe: twenty-seed load rerun within 0.5% and single-agent matches",
            100 - 100 * mean(d2_["axiom2"]) / mean(d2_["rule_static"]) <= 0.5 and mean(d2_["single_agent_dqn"]) >= mean(d2_["axiom2"]), None)
@@ -1451,6 +1455,8 @@ def main():
     C.claim("reframe: M73 lead over best baseline", "its lead over the best learned baseline reaches 35.0 points", gap37_, "{:.1f}")
     C.claim("reframe: M73 rule gap", "within 6.3 at thirty-seven", bp_["rule_static"] - float(np.mean(p37_)), "{:.1f}")
     C.note("reframe: M73 static rule inside the quoted 99.96 to 99.99 range", 99.955 <= bp_["rule_static"] < 99.995, round(bp_["rule_static"], 3))
+    C.claim("reframe: abstract static rule floor at every size", "A static rule shedding all machine-type requests keeps at least 99.96\\%",
+            min(min(rule_.values()), bp_["rule_static"]), "{:.2f}")
     C.note("reframe: M73 every baseline falls again from 19 to 37 gNBs", all(bp_[b_] < tr[(19, b_)] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
            and "while every baseline loses compliance as the cluster grows" in C.main, None)
     t37_ = {}
@@ -1880,7 +1886,7 @@ def main():
                         ("conclusion", "AXIOM earns 27\\% to 36\\% more reward than MAPPO at three and nineteen gNBs")):
         C.claim(f"{lab_}: Env B over MAPPO at 3 gNBs", snip_, 100 * (b3a_ / b3m_ - 1), "{:.0f}")
         C.claim(f"{lab_}: Env B over MAPPO at 19 gNBs", snip_, 100 * (a19_ / m19_ - 1), "{:.0f}")
-    C.claim("abstract: Env B over static rule at 3 gNBs", "and 39\\% more than a static shedding rule at 3 gNBs", 100 * (mean(B["axiom2"]) / mean(B["rule_static"]) - 1), "{:.0f}")
+    C.claim("abstract: Env B over static rule at 3 gNBs", "and 39\\% more than that static rule at 3 gNBs", 100 * (mean(B["axiom2"]) / mean(B["rule_static"]) - 1), "{:.0f}")
     ov_ = [tb1_[k_]["diff"] for k_ in ("load_1.10", "load_1.15", "load_1.20")]
     C.claim("abstract: overload margin over tuned rule", "AXIOM overtakes that rule by up to 8.7 reward per step", max(ov_), "{:.1f}")
     C.claim("conclusion: overload margin low", "AXIOM overtakes that rule at nineteen gNBs by 6.2 to 8.7 reward per step without retraining", min(ov_), "{:.1f}")
@@ -1888,7 +1894,7 @@ def main():
     cps_ = [figtr37_["arms"]["axiom2"][n_]["prio_mean"] for n_ in ("7", "19", "37")]
     C.claim("conclusion: compliance low from 7 to 37 gNBs", "keeps priority-slice compliance between 93.7\\% and 97.3\\% from seven to thirty-seven gNBs", min(cps_), "{:.1f}")
     C.claim("conclusion: compliance high from 7 to 37 gNBs", "keeps priority-slice compliance between 93.7\\% and 97.3\\% from seven to thirty-seven gNBs", max(cps_), "{:.1f}")
-    C.claim("conclusion: percent of oracle at 3 gNBs", "it reaches 98.9\\% of an oracle rule's reward at three gNBs", 100 * mean(A["axiom2"]) / mean(A["heuristic"]), "{:.1f}")
+    C.claim("conclusion: percent of oracle at 3 gNBs", "it reaches 98.9\\% of the static shed-mMTC rule's reward at three gNBs", 100 * mean(A["axiom2"]) / mean(A["heuristic"]), "{:.1f}")
     C.claim("conclusion: tuned DQN gap low", "by 29.9 to 48.1 points", min(cp_), "{:.1f}")
     C.claim("conclusion: tuned DQN gap high", "by 29.9 to 48.1 points", max(cp_), "{:.1f}")
     C.claim("conclusion: VDN gap at 19 gNBs", "trails it by 13.6 points at nineteen", dv_[("A19", "p")]["diff"], "{:.1f}")
@@ -2022,7 +2028,7 @@ def main():
            and "with $\\mu{=}0.01$ above FedAvg and $\\mu$ of 0.1 and 1.0 below it" in C.tex, None)
 
     # ---------------- revised abstract (2026-10-25)
-    C.note("abstract: the evaluation gap matches the introduction", "However, state-of-the-art research rarely evaluates learned multi-agent controllers against trivial policies or on independent seeds" in C.main
+    C.note("abstract: the evaluation gap matches the introduction", "yet learned controllers are rarely tested against trivial policies or on independent seeds" in C.main
            and "systematic review of 67 core studies" in C.main and "none replicates a headline finding on an independent seed sample" in C.main
            and "No reviewed study checks whether its outcome metric can score a degenerate policy" in C.main, None)
     C.note("abstract: model size fixed as clusters grow", [cxm_[n_]["axiom2"]["params_execution"] for n_ in ("3", "7", "19")] + [cxn_["axiom2"]["params_execution"]] == [7782] * 4

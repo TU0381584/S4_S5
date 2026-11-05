@@ -16,7 +16,7 @@ def fmt(lo, hi, d=2):
 out = []
 A = {a: rows("m65_reviewer/base", a, S30) for a in ("axiom2", "axiom2_mlp", "mappo_tuned")}
 A.update({a: rows("m63_reviewer/base", a, S30) for a in ("heuristic", "single_agent_dqn", "single_agent_dqn_lr1e4", "independent_dqn", "independent_dqn_lr1e4")})
-t3 = [("heuristic", "Oracle rule"), ("axiom2", "AXIOM"), ("axiom2_mlp", "AXIOM, MLP encoder"), ("single_agent_dqn", "DQN-SA"),
+t3 = [("heuristic", "Static rule"), ("axiom2", "AXIOM"), ("axiom2_mlp", "AXIOM, MLP encoder"), ("single_agent_dqn", "DQN-SA"),
       ("single_agent_dqn_lr1e4", "\\quad at LR $10^{-4}$", ), ("independent_dqn", "DQN-I"), ("independent_dqn_lr1e4", "\\quad at LR $10^{-4}$"), ("mappo_tuned", "MAPPO")]
 for arm, nm in t3:
     v = [r["reward"] for r in A[arm].values()]

@@ -161,7 +161,7 @@ def run(C):
     A = {a: seeds_of("m65_reviewer/base", a, S30) for a in ("axiom2", "mappo_tuned")}
     A.update({a: seeds_of("m63_reviewer/base", a, S30) for a in ("heuristic", "single_agent_dqn", "independent_dqn")})
     ra = {a: mean(A[a]) for a in A}
-    C.note("M82 Table 4 Env A reward row", f"Env A reward, 3 gNBs & {ra['axiom2']:.2f}, {100 * ra['axiom2'] / ra['heuristic']:.1f}\\% of oracle & {ra['single_agent_dqn']:.2f} & {ra['independent_dqn']:.2f} & {ra['mappo_tuned']:.2f} \\\\" in C.main,
+    C.note("M82 Table 4 Env A reward row", f"Env A reward, 3 gNBs & {ra['axiom2']:.2f}, {100 * ra['axiom2'] / ra['heuristic']:.1f}\\% of static rule & {ra['single_agent_dqn']:.2f} & {ra['independent_dqn']:.2f} & {ra['mappo_tuned']:.2f} \\\\" in C.main,
            {k: round(v, 3) for k, v in ra.items()})
     cx = json.load(open(f"{ROOT}/m64/complexity.json")); cx37 = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
     allc = {n_: cx[n_] for n_ in ("3", "7", "19")}; allc["37"] = cx37
@@ -197,8 +197,8 @@ def run(C):
            and "and wins 10 of 15 seeds in each" in C.main, {t: (h3[t]["wins"], round(h3[t]["diff"], 3)) for t in h3})
     sens = {c_: paired(seeds_of(f"m65_reviewer/{c_}", "axiom2", S10), seeds_of(f"m63_reviewer/{c_}", "heuristic", S10)) for c_ in ("load102", "load107", "weights")}
     C.note("M82 AXIOM within 0.13 of the oracle under changed load and weights", max(abs(v["diff"]) for v in sens.values()) <= 0.13
-           and "AXIOM stays within 0.13 of the oracle rule's reward under changed load and slice weights" in C.main
-           and "AXIOM stays within 0.13 of the oracle rule's reward" in C.supp_only, {k: round(v["diff"], 3) for k, v in sens.items()})
+           and "AXIOM stays within 0.13 of the static rule's reward under changed load and slice weights" in C.main
+           and "AXIOM stays within 0.13 of the static rule's reward" in C.supp_only, {k: round(v["diff"], 3) for k, v in sens.items()})
     B = {a: seeds_of("m64/n3_fully_connected", a, S30) for a in ARMS + ("rule_static", "rule_accept_all", "rule_local")}
     h1 = V.holm({b: paired(B["axiom2"], B[b])["p"] for b in ("rule_static", "rule_accept_all")})
     pr = V.holm({b: paired(B["axiom2"], B[b], prio)["p"] for b in ARMS[1:]})
@@ -291,7 +291,7 @@ def run(C):
     rows_v1 = [l for l in v1.splitlines() if l.startswith("| ") and not l.startswith("| Cell") and "extra check" not in l]
     n_set = sum(2 if "rule_static, rule_local" in l else 1 for l in rows_v1)
     C.note("M82 OR1 eleven rerun settings and the oracle on 30 seeds", n_set == 11 and any("rule_static vs stored oracle" in l and "900-929" in l for l in v1.splitlines())
-           and "We reran eleven reported settings on their original seeds in fresh processes" in C.tex and "as did the Env A oracle rule on all 30 seeds" in C.tex, n_set)
+           and "We reran eleven reported settings on their original seeds in fresh processes" in C.tex and "as did the Env A static rule, which sheds every mMTC request, on all 30 seeds" in C.tex, n_set)
     m62 = open(f"{SC}/m62_reviewer_experiments.py").read(); runsrc = open(f"{SC}/m64_run.py").read()
     flp = open(f"{FW}/marl/fl_ctde_policy.py").read(); m3r = open(f"{SC}/m3_run_experiment.py").read()
     C.note("M82 OR1 sensitivity, federated and wide-encoder settings match the code",
