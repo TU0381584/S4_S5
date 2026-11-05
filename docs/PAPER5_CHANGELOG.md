@@ -16,3 +16,6 @@ Format: timestamp | step | file(s) | change | reason | verify status
 2026-11-05 21:46 | F8 | main.tex Sec. 7 | fifth limitation: rules re-tuned only offline, online re-tuning not tested | external review | 686/686
 2026-11-05 21:46 | F6 F9 | none | proposals only, awaiting author approval | review request | n/a
 2026-11-05 21:46 | F10 | main.tex, submission/ | self-count 686, package rebuilt | rebuild | 686/686
+2026-11-05 21:55 | F9 | main.tex abstract and Sec. 1, supplementary.tex S1 | AXIOM now expands to Adaptive Cross-cell Integrated Orchestration of Multi-slice admission; the integrity-aware gloss is removed and O-RAN is still defined at first use in Sec. 1 | author chose option 2 | see F10b
+2026-11-05 21:55 | F6 | main.tex Table 1 and Sec. 2 | AXIOM row graph encoder "Shared GAT or MLP" (shorter than proposed, so the row keeps two lines and no float moves); related-work sentence now says none pairs per-slice admission with a size-independent shared controller and evaluates it against trivial and tuned rules on independent seeds | author approved after checking the six works | see F10b
+2026-11-05 21:55 | F10b | main.tex, supplementary.tex, submission/ | abstract 243 words, main 25 pages and OR1 12 with floats unchanged, package rebuilt | rebuild | m66_verify 686/686
