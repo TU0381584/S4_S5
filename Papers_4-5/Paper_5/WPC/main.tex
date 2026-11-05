@@ -372,49 +372,50 @@ Finally, every headline comparison is recomputed on an independent, disjoint see
 \begin{tikzpicture}[
   font=\figfont, x=1cm, y=1cm,
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
-  st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=5.0cm, minimum height=0.52cm, inner sep=2pt},
+  st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=2.5cm, minimum height=0.78cm, inner sep=2pt},
   gate/.style={st, draw=blue!55!black, fill=blue!6},
-  fail/.style={draw=red!60!black, fill=red!5, dashed, align=left, text width=4.3cm, minimum height=0.52cm, inner sep=2.5pt},
-  ar/.style={-{Latex[length=1.8mm]}, semithick},
-  ct/.style={-{Latex[length=1.5mm]}, red!60!black},
-  fb/.style={-{Latex[length=1.5mm]}, red!60!black, dashed}
+  num/.style={circle, draw=black!60, fill=white, inner sep=0.4pt, minimum size=0.36cm, font=\figfont},
+  back/.style={num, draw=red!60!black, text=red!50!black, fill=white},
+  fail/.style={draw=red!60!black, fill=red!5, dashed, align=left, inner sep=2.5pt},
+  ar/.style={-{Latex[length=1.7mm]}, semithick},
+  ct/.style={-{Latex[length=1.5mm]}, red!60!black}
 ]
-% the protocol, top to bottom
-\node[st]   (p1) at (2.65,0.00) {Pre-registered plan, committed before launch};
-\node[st]   (p2) at (2.65,-1.10) {Pilot seeds, used for tuning only};
-\node[st]   (p3) at (2.65,-2.20) {Train and evaluate learned and trivial policies};
-\node[gate] (p4) at (2.65,-3.05) {Gate 1, trivial-policy check};
-\node[gate] (p5) at (2.65,-3.90) {Gate 2, correctness metrics};
-\node[st]   (p6) at (2.65,-4.75) {Paired tests with Holm correction};
-\node[gate] (p7) at (2.65,-5.85) {Gate 3, disjoint replication};
-\node[st]   (p8) at (2.65,-6.95) {Fresh seeds and an independent verifier};
-\node[st, fill=blue!14] (p9) at (2.65,-7.80) {Reported result};
-\foreach \a/\b in {p1/p2,p2/p3,p3/p4,p4/p5,p5/p6,p6/p7,p7/p8,p8/p9}{\draw[ar] (\a) -- (\b);}
-% failures, each beside the step that caught it
-\node[fail] (f1) at (8.10,-0.66) {Screen miscalibrated\\ $\rightarrow$ amended plan};
-\node[fail] (f2) at (8.10,-1.54) {Static AXIOM in Env B\\ $\rightarrow$ faster learning rate};
-\node[fail] (f3) at (8.10,-3.05) {Inert simulator\\ $\rightarrow$ shared-budget rerun};
-\node[fail] (f4) at (8.10,-3.90) {Never-blocking policy\\ $\rightarrow$ counted as collapse};
-\node[fail] (f5) at (8.10,-5.41) {Backlog carry-over\\ $\rightarrow$ episode reset, rerun};
-\node[fail] (f6) at (8.10,-6.29) {Reproduction gap\\ $\rightarrow$ claim retracted};
-\draw[ct] (p2.east) -- (f1.west);
-\draw[ct] (p2.east) -- (f2.west);
-\draw[ct] (p4.east) -- (f3.west);
-\draw[ct] (p5.east) -- (f4.west);
-\draw[ct] (p7.east) -- (f5.west);
-\draw[ct] (p7.east) -- (f6.west);
-% each failure changed an earlier step, or withdrew a claim
-\draw[fb] (f1.north) |- (p1.east);
-\draw[fb] (f2.south) |- ([yshift=1.3mm]p3.east);
-\draw[fb] (f3.north) |- ([yshift=-1.3mm]p3.east);
-\draw[fb] (f5.east) -- ++(0.3,0) |- (p3.east);
-\draw[fb] (f6.south) |- (p9.east);
-% the live testbed check
-\node[st, dashed] (lv) at (2.65,-8.80) {Live testbed check, direct instrumentation};
-\node[fail] (f7) at (8.10,-8.80) {Scheduler floor\\ $\rightarrow$ over 100{,}000 readings clear};
+% the protocol: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to right
+\foreach \i/\x/\y/\s/\t in {1/1.35/0/st/{Pre-registered plan},
+                            2/4.25/0/st/{Pilot seeds, tuning only},
+                            3/7.15/0/st/{Train and evaluate all policies},
+                            4/10.05/0/gate/{Gate 1, trivial policies},
+                            5/10.05/-1.95/gate/{Gate 2, correctness metrics},
+                            6/7.15/-1.95/st/{Paired tests, Holm correction},
+                            7/4.25/-1.95/gate/{Gate 3, disjoint replication},
+                            8/1.35/-1.95/st/{Fresh seeds},
+                            9/1.35/-4.05/st/{Independent verifier},
+                            10/4.25/-4.05/st/{Reported result}}{
+  \node[\s] (p\i) at (\x,\y) {\t};
+  \node[num] at (p\i.north west) {\i};
+}
+\foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\draw[ar] (p\a) -- (p\b);}
+% failures each check caught, with the outcome; a red number is the step the work went back to
+\node[fail, text width=2.8cm, anchor=south west] (f1) at (0.0,0.62)  {Screen miscalibrated\\ $\rightarrow$ amended plan};
+\node[fail, text width=3.2cm, anchor=south west] (f2) at (3.3,0.62)  {Static AXIOM in Env B\\ $\rightarrow$ faster learning};
+\node[fail, text width=3.4cm, anchor=south east] (f3) at (11.4,0.62) {Inert simulator\\ $\rightarrow$ shared-budget rerun};
+\node[fail, text width=3.4cm, anchor=east] (f4) at (8.9,-0.975) {Never-blocking policy\\ $\rightarrow$ counted as collapse};
+\node[fail, text width=2.95cm, anchor=north west] (f5) at (2.9,-2.55) {Backlog carry-over\\ $\rightarrow$ episode reset, rerun};
+\node[fail, text width=3.4cm, anchor=north west] (f6) at (7.0,-2.55) {Reproduction gap\\ $\rightarrow$ claim retracted};
+\node[back] at (f1.north east) {1};
+\foreach \f/\n in {f2/3,f3/3,f5/3}{\node[back] at (\f.south east) {\n};}
+\draw[ct] ([xshift=3mm]p2.north west) -- ([xshift=-2mm]f1.south east);
+\draw[ct] (p2.north) -- (p2.north |- f2.south);
+\draw[ct] (p4.north) -- (p4.north |- f3.south);
+\draw[ct] ([xshift=3mm]p5.north west) -- (f4.east);
+\draw[ct] (p7.south) -- (p7.south |- f5.north);
+\draw[ct] ([xshift=-3mm]p7.south east) -- (f6.west);
+% the live testbed check, outside the offline pipeline
+\node[st, dashed] (lv) at (7.15,-4.05) {Live testbed, direct instrumentation};
+\node[fail, text width=2.5cm] (f7) at (10.05,-4.05) {Scheduler floor\\ $\rightarrow$ over 100{,}000 readings clear};
 \draw[ct] (lv) -- (f7);
 \end{tikzpicture}
-\caption{Evaluation protocol. Blue boxes are the three gates, and red dashed boxes name each failure that a check caught and its outcome. Dashed arrows lead to the step that each failure changed}
+\caption{Evaluation protocol in ten steps. Blue boxes are the three gates, and red dashed boxes name each failure that a check caught and its outcome. A red number gives the step the work went back to}
 \label{fig:protocol}
 \end{figure}
 
