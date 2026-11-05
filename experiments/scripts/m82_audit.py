@@ -299,7 +299,7 @@ def run(C):
            and "gat_hidden_dim=32, gat_out_dim=32, q_hidden_dim=64" in runsrc
            and "local_steps_per_round: int = 50" in flp and "dp_clip_norm: float = 1.0" in flp and "dp_clip_norm=1.0, local_steps_per_round=50" in m3r
            and all(len(seeds_of(f"m65_reviewer/{c_}", "axiom2", S10)) == 10 for c_ in ("load102", "load107", "weights"))
-           and "on 10 seeds at 102\\% and 107\\% of the nominal load and with changed slice weights, eMBB lowered from 3.5 to 2.5 and mMTC raised from 0.3 to 0.6" in C.tex
+           and "on 10 seeds at 102\\% and 107\\% of the nominal load. It also changes the slice weights, lowering eMBB from 3.5 to 2.5 and raising mMTC from 0.3 to 0.6" in C.tex
            and "at learning rates of $3{\\times}10^{-4}$ and $3{\\times}10^{-3}$ and with an encoder twice as wide" in C.tex
            and "The federated campaign runs in Env A on seeds 900 to 909, with noise multipliers $\\sigma \\in \\{0, 0.5, 1, 2, 4\\}$ and a replication on seeds 1000 to 1009" in C.tex
            and "Each round runs 50 local steps of federated averaging (FedAvg) with a gradient-clip norm of $1.0$" in C.tex, None)

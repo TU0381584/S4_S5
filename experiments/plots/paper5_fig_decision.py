@@ -73,7 +73,7 @@ def main():
     axA.step([0, 0.2, 0.2, 2.0], [0, 0, 100, 100], where="post", color="#555555", ls="--", lw=1.0, label="Tuned rule")
     axA.set_xlim(0, 2.0)
     axA.set_ylim(-3, 103)
-    axA.set_xlabel("gNB's own URLLC queue, share of budget")
+    axA.set_xlabel("gNB\u2019s own URLLC queue, share of budget")
     axA.set_ylabel("eMBB requests shed, %")
     fig.legend(*axA.get_legend_handles_labels(), loc="lower center", bbox_to_anchor=(0.5, -0.03), ncol=3, fontsize=8.3, frameon=False, handlelength=2.0)
     axB.set_xticks(range(len(centres)))

@@ -117,7 +117,7 @@ def draw_load_a(ax, data):
     ax.plot(xs, st, color="#555555", lw=1.0, ls="--", zorder=2)
     ax.annotate("static rule", (xs[1], st[1]), textcoords="offset points", xytext=(4, 6), fontsize=8.3, color="#555555")
     ax.set_xticks(xs)
-    ax.set_xlabel("Offered load at 19 gNBs, %")
+    ax.set_xlabel("Offered load, %")
     ax.set_ylabel("Priority-slice SLA, %")
     ax.grid(True, axis="y", linewidth=0.4, alpha=0.4)
     ax.spines[["top", "right"]].set_visible(False)
@@ -231,7 +231,6 @@ def draw_radar(ax, data, env):
         v = vals[name] + vals[name][:1]
         ax.plot(ang, v, color=C[name], linewidth=1.9 if name == "AXIOM" else 1.5, linestyle=LS[name], marker=M[name],
                 markersize=3.2 if name == "AXIOM" else 3.5, zorder=zbase[name])
-        ax.fill(ang, v, color=C[name], alpha=0.16 if name == "AXIOM" else 0.05, zorder=2)
     return LS
 
 
