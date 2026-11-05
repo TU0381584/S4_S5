@@ -2257,6 +2257,22 @@
   "ok": true
  },
  {
+  "label": "Fig regime cells match recomputation from the logs, with Holm verdicts per panel",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig regime agrees with the text: the rule matches or beats AXIOM at nominal load in both environments, and AXIOM leads every Env B cell above it",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "Fig 7 text: AXIOM within 5.3 points of the static rule under load, above every baseline; Env B trails the tuned rule by 0.14-0.55 per gNB at nominal, leads by 0.10-0.46 above it",
   "snippet": null,
   "computed": {
@@ -7999,9 +8015,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 686",
+  "label": "text quotes the final check count of 688",
   "snippet": null,
-  "computed": 686,
+  "computed": 688,
   "formatted": null,
   "in_tex": null,
   "ok": true

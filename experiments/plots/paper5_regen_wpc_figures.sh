@@ -15,6 +15,7 @@ $PY $P/paper5_fig_scaling_trend.py --with-37 --out $F/fig6_scaling_trend
 $PY $P/paper5_fig_envB.py --root $R/m64 --out $F/fig11_envB
 (cd $P && $PY paper5_fig_pergnb_envb.py)
 (cd $P && $PY paper5_fig_superiority.py)
+(cd $P && $PY paper5_fig_regime.py)
 
 # Online Resource 1
 (cd $P && $PY paper5_fig_forest.py)

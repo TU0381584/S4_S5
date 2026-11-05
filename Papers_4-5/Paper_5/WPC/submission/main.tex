@@ -223,32 +223,18 @@ A pre-registered validation screen checks every trained checkpoint on its own tr
 
 \subsection{Evaluation Safeguards}
 \label{sec:collapse}
-Three safeguards protect the results, and Table~\ref{tab:safeguards} lists the failure each one caught. A trivial-policy check evaluates accept-all and one-slice shedding before any learned policy is trusted, and it exposed an earlier simulator in which accepting every request was optimal.
+Three safeguards protect the results, and Fig.~\ref{fig:protocol} places them in the evaluation protocol with the failure each one caught. A trivial-policy check evaluates accept-all and one-slice shedding before any learned policy is trusted, and it exposed an earlier simulator in which accepting every request was optimal.
 
 Correctness-aware metrics form the second safeguard of the evaluation. Block precision $\pi = b_{\text{mMTC}}/b$ is the share of a policy's $b$ blocked requests that target mMTC, and a seed that never blocks counts as a collapse rather than a success. Per-slice SLA compliance then shows whether shedding protects URLLC and eMBB, whereas all-slice compliance scores a correct policy and a failed one alike, because correct shedding gives up mMTC's SLA by design.
 
 Finally, every headline comparison is recomputed on an independent, disjoint seed sample. This caught queue backlog carried over between episodes, and every result here comes from the corrected simulator, which empties all queues at the start of each episode.
 
-\begin{table}[!htbp]
-\caption{Evaluation failures this paper's safeguards caught during the work}
-\label{tab:safeguards}
+\begin{figure}[!htbp]
 \centering
-\footnotesize
-{\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.25\textwidth} >{\raggedright\arraybackslash}p{0.215\textwidth} >{\raggedright\arraybackslash}p{0.235\textwidth} >{\raggedright\arraybackslash}p{0.225\textwidth}@{}}
-\toprule
-Failure & Missed by & Caught by & Outcome \\
-\midrule
-Inert simulator (\S\ref{sec:system-model}) & Learned-policy metrics & Accept-all baseline & Shared-budget rerun \\
-Never-blocking policy scored as fine & All-slice compliance & Precision, per-slice SLA & Collapse made visible \\
-Reproduction gap (Online Resource 1) & Single-sample claim & Reproduction against replication & Churn claim retracted \\
-Backlog carry-over (\S\ref{sec:collapse}) & Per-seed means & Replication, step traces & Episode reset, rerun \\
-Static AXIOM in Env B (\S\ref{sec:methodology-perslice}) & Env A results & Env B pilot seeds & Faster learning rate, skip connection \\
-Screen miscalibrated (\S\ref{sec:setup}) & Env A screen design & Pilot screen check & Pre-registered amendment \\
-Scheduler floor (\S\ref{sec:results-m8}) & Cross-layer floor & Direct instrumentation & Over 100{,}000 readings clear \\
-\botrule
-\end{tabular}}
-\end{table}
+\includegraphics{Fig4}
+\caption{Evaluation protocol. Blue boxes are the three gates, and red dashed boxes name each failure that a check caught and its outcome. Dashed arrows lead to the step that each failure changed}
+\label{fig:protocol}
+\end{figure}
 
 \section{Results}
 \label{sec:results}
@@ -302,7 +288,7 @@ We grow the Env A cluster from three gNBs to seven and nineteen under fully-conn
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics{Fig4}
+\includegraphics{Fig5}
 \caption{Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, mean and 95\% CI.
 b, Share of trained policies that collapse into accept-all. c, Parameters used at execution}
 \label{fig:m6-topology}
@@ -312,7 +298,7 @@ At seven gNBs, under every layout, AXIOM keeps 17.9 to 29.9 percentage points mo
 
 \begin{figure}[!b]
 \centering
-\includegraphics{Fig5}
+\includegraphics{Fig6}
 \caption{Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its true
 position, split into its URLLC, eMBB, and mMTC admission gates and coloured by how correct each gate is}
 \label{fig:gnb-map}
@@ -359,7 +345,7 @@ MAPPO & 6.968 [6.47, 7.45] & 75.3 & 29/0/1 & 24/0/6 & 0.797 & 0.289 & 0.579 \\
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics{Fig6}
+\includegraphics{Fig7}
 \caption{Env B reward per step of the learned policies at three gNBs, 30 seeds, with per-seed
 points behind the mean and 95\% CI}
 \label{fig:envb}
@@ -371,7 +357,7 @@ At nineteen gNBs, where cluster-level compliance saturates, AXIOM earns 5.54 to 
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics{Fig7}
+\includegraphics{Fig8}
 \caption{Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}
 \label{fig:pergnb}
 \end{figure}
@@ -380,18 +366,7 @@ The rule's lead holds only under its tuning conditions. When the load rises to 1
 
 In Fig.~\ref{fig:quadrant}a, AXIOM stays between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. In Env B, panel c, every policy loses compliance as the cluster grows. AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs, and it earns about as much per gNB as DQN-SA at seven, where DQN-SA keeps more compliance. That gap reflects the training budget, as shown above. Panels b and d place six measures per environment on one scale. In Env A AXIOM leads on five of the six, while MAPPO leads on collapse resistance because it never collapses at thirty-seven gNBs. In Env B, AXIOM leads on four, and DQN-SA leads on both measures at seven gNBs. Panels e and f show how the policies cope when the load moves. In Env A at nineteen gNBs AXIOM stays within 5.3 points of the static rule as offered load rises from 105\% to 120\% of the nominal shares, and every baseline stays below AXIOM at each load. In Env B AXIOM trails the tuned rule at the rule's own load, by 0.14 to 0.55 reward per gNB, but leads it by 0.10 to 0.46 once the load rises 5\% to 20\%, with neither one retrained nor re-tuned. At nineteen gNBs that rule is the one carried over from seven gNBs.
 
-\begin{figure}[!t]
-\centering
-\includegraphics{Fig8}
-\caption{AXIOM against the learned baselines, with 95\% CIs. a, Env A and c, Env B reward per gNB against priority-slice compliance, light to dark by cluster size. b, d, Shares of the best learned policy. e, Env A compliance at 19 gNBs as load rises. f, AXIOM over the tuned rule in Env B as load shifts}
-\label{fig:quadrant}
-\end{figure}
-
-\subsection{Model Complexity}
-
-Table~\ref{tab:complexity} sets out the cost of each policy. AXIOM's shared encoder keeps its parameter count fixed as the cluster grows, while the DQN baselines grow with it. Its greedy decisions on one central processing unit (CPU) thread stay well inside the 5 s control period of the live testbed. Against MAPPO, the cheapest learner, the extra cost buys the most where the environment is dynamic. In Env B AXIOM earns 27\% more reward per step than MAPPO at three gNBs and 36\% more at nineteen gNBs. A 24-configuration tuning grid for MAPPO did not close the gap in any setting where it was tested.
-
-\begin{table}[!htbp]
+\begin{table}[!b]
 \caption{Model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}
 \label{tab:complexity}
 \centering
@@ -408,6 +383,17 @@ MAPPO & 5,122 at every size & 0.19 / 0.20 / 0.22 / 0.27 & 73 / 256 / 495 \\
 \botrule
 \end{tabular}}
 \end{table}
+\begin{figure}[!t]
+\centering
+\includegraphics{Fig9}
+\caption{AXIOM against the learned baselines, with 95\% CIs. a, Env A and c, Env B reward per gNB against priority-slice compliance, light to dark by cluster size. b, d, Shares of the best learned policy. e, Env A compliance at 19 gNBs as load rises. f, AXIOM over the tuned rule in Env B as load shifts}
+\label{fig:quadrant}
+\end{figure}
+
+\subsection{Model Complexity}
+
+Table~\ref{tab:complexity} sets out the cost of each policy. AXIOM's shared encoder keeps its parameter count fixed as the cluster grows, while the DQN baselines grow with it. Its greedy decisions on one central processing unit (CPU) thread stay well inside the 5 s control period of the live testbed. Against MAPPO, the cheapest learner, the extra cost buys the most where the environment is dynamic. In Env B AXIOM earns 27\% more reward per step than MAPPO at three gNBs and 36\% more at nineteen gNBs. A 24-configuration tuning grid for MAPPO did not close the gap in any setting where it was tested.
+
 
 \subsection{Reproducibility and Fresh-Seed Verification}
 \label{sec:results-verify}
@@ -415,7 +401,7 @@ We checked the results in three ways, with every pass criterion fixed before the
 
 Second, four further runs retrained every policy on fresh seeds, 10 to 40 per setting, and 81 of their 90 pre-stated checks held. The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set, and AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur. A fifth fresh-seed run held all three of its checks at thirty-seven gNBs on 20 seeds. A sixth held all four in Env B at nineteen gNBs on 15 seeds, as Section S7 of Online Resource 1 reports. Section S2 of Online Resource 1 compares each reported difference from a learned baseline with its fresh-seed counterpart, and 35 of the 38 whose CI excludes zero hold.
 
-Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 686 of its checks pass.
+Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 688 of its checks pass.
 
 \subsection{Federation, Privacy, Disruption, and Live Deployment}
 \label{sec:results-m8}
@@ -423,7 +409,14 @@ Federated training costs AXIOM little reward per step on average. Pooled over al
 
 \section{Discussion and Limitations}
 \label{sec:discussion}
-No learned baseline earns significantly more reward than AXIOM in any setting we tested, and its margin over the cheaper MAPPO is largest under time-varying load, coupling, and uneven per-gNB load. A rule known in advance, however, matches or beats AXIOM in steady conditions at every size, and AXIOM beats a tuned rule only when the load moves beyond the rule's tuning conditions. Its practical case is for operators who cannot hand-tune and re-tune rules as conditions change, rather than for a fixed, well-understood cluster.
+No learned baseline earns significantly more reward than AXIOM in any setting we tested, and its margin over the cheaper MAPPO is largest under time-varying load, coupling, and uneven per-gNB load. A rule known in advance, however, matches or beats AXIOM in steady conditions at every size, and AXIOM beats a tuned rule only when the load moves beyond the rule's tuning conditions. Its practical case is for operators who cannot hand-tune and re-tune rules as conditions change, rather than for a fixed, well-understood cluster. Fig.~\ref{fig:regime} maps this boundary over every cluster size and load we tested.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics{Fig10}
+\caption{Where AXIOM beats a rule tuned once at nominal load, paired per seed. a, Env A priority-slice compliance against the static rule. b, Env B reward per gNB against the tuned rule. Colour marks Holm-adjusted $p<0.05$}
+\label{fig:regime}
+\end{figure}
 
 Several limitations bound the findings of this paper. First, both of our simulators are synthetic rather than measured. They use a first-order coupling model with no radio channel, user mobility, or measured traffic traces, and the live testbed never reached contention. External validity on hardware under load therefore remains the main open question. Second, we did not reimplement a published slice-admission algorithm, so our learned baselines are standard multi-agent methods and ablations of AXIOM rather than prior admission controllers. Third, attention added nothing over a per-node encoder, and a value-decomposition baseline matched AXIOM at three gNBs, so AXIOM's contribution is a design that scales rather than a new learning principle. That per-node variant shares its parameters across gNBs but passes no messages between them, so the gain at scale comes from parameter sharing and per-slice heads. Fourth, the reward charges each slice's SLA penalty once for the cluster, and AXIOM's compliance at seven gNBs depends on that choice. Charging the penalty per violating gNB raised its priority-slice compliance by 10.7 points in Env B at seven gNBs on the ring layout, at Holm-adjusted $p=0.007$. At nineteen gNBs on the hex layout it raised AXIOM's per-gNB compliance by only 1.9 points, at $p=0.65$. Fifth, the load-shift comparison re-tunes rules only offline on shifted training streams, and a rule that re-tunes itself online was not tested. Finally, the pre-registrations were committed to the authors' own version-control history rather than an external registry, and development work that changed no reported result is disclosed in Section S4 of Online Resource 1.
 
