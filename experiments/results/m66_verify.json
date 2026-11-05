@@ -5026,6 +5026,14 @@
   "ok": true
  },
  {
+  "label": "reframe: Discussion quotes the 1.9-point per-gNB gain at nineteen gNBs on the hex layout, p=0.65",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "reframe: M76 per-gNB penalty AXIOM does not beat the static rule",
   "snippet": null,
   "computed": null,
@@ -5455,14 +5463,6 @@
   "ok": true
  },
  {
-  "label": "abstract: URLLC served at 37",
-  "snippet": "There it serves 99.8\\% of URLLC demand",
-  "computed": 99.79064546939206,
-  "formatted": "99.8",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "conclusion: URLLC served at 37",
   "snippet": "AXIOM serves 99.8\\% of the offered URLLC demand",
   "computed": 99.79064546939206,
@@ -5472,7 +5472,7 @@
  },
  {
   "label": "abstract: URLLC delay ratio low",
-  "snippet": "with a backlog delay 7 to 44 times shorter than the learned baselines",
+  "snippet": "with a URLLC backlog delay 7 to 44 times shorter than the learned baselines",
   "computed": 7.0177495329612025,
   "formatted": "7",
   "in_tex": true,
@@ -5480,7 +5480,7 @@
  },
  {
   "label": "abstract: URLLC delay ratio high",
-  "snippet": "with a backlog delay 7 to 44 times shorter than the learned baselines",
+  "snippet": "with a URLLC backlog delay 7 to 44 times shorter than the learned baselines",
   "computed": 43.9277192431859,
   "formatted": "44",
   "in_tex": true,
@@ -5499,7 +5499,7 @@
   "ok": true
  },
  {
-  "label": "abstract and conclusion: 7,782 parameters against the DQNs' 64,770 and 682,058 (abstract) and up to 682,058 (conclusion)",
+  "label": "abstract and conclusion: 7,782 parameters against up to the DQNs' 682,058",
   "snippet": null,
   "computed": null,
   "formatted": null,
@@ -5544,6 +5544,50 @@
   "computed": 39.37476993281535,
   "formatted": "39",
   "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: the tuned rule out-earns every learner at its tuning conditions in Env B at 3, 7 and 19 gNBs, reported and fresh seeds",
+  "snippet": null,
+  "computed": [
+   [
+    "m64/n3_fully_connected",
+    0.304,
+    5
+   ],
+   [
+    "m64/n7_fully_connected",
+    2.917,
+    5
+   ],
+   [
+    "m64/n7_ring",
+    2.716,
+    5
+   ],
+   [
+    "m64/n7_hex",
+    2.762,
+    5
+   ],
+   [
+    "m75/D_envB_n19_hex",
+    3.814,
+    4
+   ],
+   [
+    "m66_fresh/B_n3",
+    0.394,
+    4
+   ],
+   [
+    "m66_fresh/B_n7_ring",
+    1.241,
+    5
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
   "ok": true
  },
  {
@@ -6086,6 +6130,14 @@
     0.0003662109375
    ]
   },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: Discussion quotes the 10.7-point gain at seven gNBs on the ring layout, Holm p=0.007",
+  "snippet": null,
+  "computed": null,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -7947,9 +7999,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 684",
+  "label": "text quotes the final check count of 686",
   "snippet": null,
-  "computed": 684,
+  "computed": 686,
   "formatted": null,
   "in_tex": null,
   "ok": true

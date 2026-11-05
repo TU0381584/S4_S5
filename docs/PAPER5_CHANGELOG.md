@@ -1,0 +1,18 @@
+# Paper 5 (WPC) changelog
+
+Format: timestamp | step | file(s) | change | reason | verify status
+
+2026-11-05 21:46 | F1 | none | skipped, AI disclosure stays in Online Resource 1 S4 | author decision 2026-11-05 | n/a
+2026-11-05 21:46 | F2 | none | skipped, data and code stay available on request | author decision 2026-11-05, no archive exists yet | n/a
+2026-11-05 21:46 | F3 | docs/PAPER5_REF_AUDIT.md | new audit of refs [2] [6] [9] [10] [12] [14] [20] [23] [35] against Crossref, bib unchanged | external review request | n/a
+2026-11-05 21:46 | F4 | main.tex Sec. 7 | fourth limitation replaced: per-gNB penalty raised compliance 10.7 points at 7 gNBs ring (Holm p=0.007) but per-gNB compliance only 1.9 points at 19 gNBs hex (p=0.65) | old sentence said the penalty changed neither compliance nor standing, contradicted by Table S7 | m66_verify 686/686, m82 63/63
+2026-11-05 21:46 | F4 | m66_verify.py | two checks tie the new sentences to m79/pergnb_n7_ring and m76/c_pergnb_n19_hex | keep every quoted number verified | 686/686
+2026-11-05 21:46 | F5a | main.tex abstract | added that a tuned rule beats every learner at its tuning conditions; overload sentence moved next to it | balance | 686/686
+2026-11-05 21:46 | F5a | m66_verify.py | check that the tuned rule out-earns every learner in Env B at 3, 7 and 19 gNBs on reported and fresh seeds, and the static rule in Env A at 3 gNBs | verify the new clause | 686/686
+2026-11-05 21:46 | F5b | none | delay ratio already computed from unrounded values, 7.02 and 43.93, kept as 7 to 44 | verified | 686/686
+2026-11-05 21:46 | F5c | main.tex abstract | 250 to 245 words: 37-gNB sentences merged (99.8% URLLC served now only in the conclusion), parameter counts shortened to up to 682,058, final sentence shortened | word target | 686/686
+2026-11-05 21:46 | F5c | m66_verify.py | abstract URLLC-served check retired, delay-ratio and parameter anchors updated | text moved | 686/686
+2026-11-05 21:46 | F7 | main.tex Sec. 7 third limitation | the per-node variant shares parameters but passes no messages, so the gain at scale comes from parameter sharing and per-slice heads | placed in Sec. 7, since any added line in Sec. 6.3 pushes Fig. 6 off page 15 | 686/686
+2026-11-05 21:46 | F8 | main.tex Sec. 7 | fifth limitation: rules re-tuned only offline, online re-tuning not tested | external review | 686/686
+2026-11-05 21:46 | F6 F9 | none | proposals only, awaiting author approval | review request | n/a
+2026-11-05 21:46 | F10 | main.tex, submission/ | self-count 686, package rebuilt | rebuild | 686/686

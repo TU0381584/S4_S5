@@ -276,6 +276,7 @@ CUT_FROM_OR1 = {
     'single-agent seed 900 rerun maximum',
     'single-agent seed 900 rerun minimum',
     'single-agent seed 900 stored',
+    'abstract: URLLC served at 37',
 }
 CUT_FROM_OR1_PREFIXES = (
     'M76 S17 oversubscription row ',
@@ -1802,6 +1803,9 @@ def main():
     C.claim("reframe: M76 original-reward AXIOM compliance", "AXIOM & 80.28 & 77.3\\%", float(np.mean(list(old_.values()))), "{:.1f}")
     C.note("M76 per-gNB penalty raises AXIOM's per-gNB compliance by only 1.9 points", f"{np.mean(list(cg_['axiom2'].values())) - np.mean(list(old_.values())):.1f}" == "1.9" and "raised AXIOM's per-gNB compliance by only 1.9 points, at $p=0.65$" in C.tex, None)
     C.note("reframe: M76 per-gNB penalty change not significant, p=0.65", f"{c1_['p']:.2f}" == "0.65", c1_)
+    C.note("reframe: Discussion quotes the 1.9-point per-gNB gain at nineteen gNBs on the hex layout, p=0.65",
+           f"{np.mean(list(cg_['axiom2'].values())) - np.mean(list(old_.values())):.1f}" == "1.9" and f"{c1_['p']:.2f}" == "0.65"
+           and "At nineteen gNBs on the hex layout it raised AXIOM's per-gNB compliance by only 1.9 points, at $p=0.65$" in C.main, None)
     C.note("reframe: M76 per-gNB penalty AXIOM does not beat the static rule", pvd_(cg_["axiom2"], cg_["rule_static"])["p"] >= 0.05, None)
     lc_ = [pvd_(cg_["axiom2"], cg_[b_]) for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")]
     C.note("reframe: M76 per-gNB penalty baselines 13.7 to 18.5 points below AXIOM in every seed", f"{min(t['diff'] for t in lc_):.1f}" == "13.7" and f"{max(t['diff'] for t in lc_):.1f}" == "18.5"
@@ -1872,22 +1876,31 @@ def main():
     C.claim("abstract: URLLC served at 37", "There it serves 99.8\\% of URLLC demand", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
     C.claim("conclusion: URLLC served at 37", "AXIOM serves 99.8\\% of the offered URLLC demand", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
     rat_ = [d_ / km_("A_n37_hex", "axiom2", "urllc", "delay_steps") for d_ in dl_]
-    C.claim("abstract: URLLC delay ratio low", "with a backlog delay 7 to 44 times shorter than the learned baselines", min(rat_), "{:.0f}")
-    C.claim("abstract: URLLC delay ratio high", "with a backlog delay 7 to 44 times shorter than the learned baselines", max(rat_), "{:.0f}")
+    C.claim("abstract: URLLC delay ratio low", "with a URLLC backlog delay 7 to 44 times shorter than the learned baselines", min(rat_), "{:.0f}")
+    C.claim("abstract: URLLC delay ratio high", "with a URLLC backlog delay 7 to 44 times shorter than the learned baselines", max(rat_), "{:.0f}")
     C.note("conclusion: URLLC delay 0.08 against 0.58 to 3.61", f"{km_('A_n37_hex', 'axiom2', 'urllc', 'delay_steps'):.2f}" == "0.08"
            and f"{min(dl_):.2f}" == "0.58" and f"{max(dl_):.2f}" == "3.61"
            and "is 0.08 with a 95th percentile of 0.42, whereas the baselines reach 0.58 to 3.61" in C.main, rat_)
-    C.note("abstract and conclusion: 7,782 parameters against the DQNs' 64,770 and 682,058 (abstract) and up to 682,058 (conclusion)", cx37_["axiom2"]["params_execution"] == 7782
+    C.note("abstract and conclusion: 7,782 parameters against up to the DQNs' 682,058", cx37_["axiom2"]["params_execution"] == 7782
            and max(cx37_[k_]["params_execution"] for k_ in ("single_agent_dqn", "independent_dqn", "mappo")) == 682058
            and (cx37_["single_agent_dqn"]["params_execution"], cx37_["independent_dqn"]["params_execution"]) == (64770, 682058)
-           and "using only 7,782 parameters against 64,770 and 682,058 for the DQN baselines" in C.main
-           and C.main.count("7,782 parameters against up to 682,058") == 1, None)
+           and "and 7,782 parameters against up to 682,058." in C.main
+           and C.main.count("7,782 parameters against up to 682,058") == 2, None)
     for lab_, snip_ in (("abstract", "AXIOM earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs"),
                         ("conclusion", "AXIOM earns 27\\% to 36\\% more reward than MAPPO at three and nineteen gNBs")):
         C.claim(f"{lab_}: Env B over MAPPO at 3 gNBs", snip_, 100 * (b3a_ / b3m_ - 1), "{:.0f}")
         C.claim(f"{lab_}: Env B over MAPPO at 19 gNBs", snip_, 100 * (a19_ / m19_ - 1), "{:.0f}")
     C.claim("abstract: Env B over static rule at 3 gNBs", "and 39\\% more than that static rule at 3 gNBs", 100 * (mean(B["axiom2"]) / mean(B["rule_static"]) - 1), "{:.0f}")
     ov_ = [tb1_[k_]["diff"] for k_ in ("load_1.10", "load_1.15", "load_1.20")]
+    tr5_ = []
+    for c_, ss_, rl_ in (("m64/n3_fully_connected", S30, "rule_local"), ("m64/n7_fully_connected", S15, "rule_local"), ("m64/n7_ring", S15, "rule_local"),
+                         ("m64/n7_hex", S15, "rule_local"), ("m75/D_envB_n19_hex", S15, "rule_local_transfer"),
+                         ("m66_fresh/B_n3", list(range(3000, 3020)), "rule_local"), ("m66_fresh/B_n7_ring", list(range(3000, 3010)), "rule_local")):
+        lr_ = [mean(v_) for a_ in ("axiom2", "axiom2_mlp", "single_agent_dqn", "independent_dqn", "mappo_tuned") for v_ in [seeds_of(c_, a_, ss_)] if v_]
+        tr5_.append((c_, mean(seeds_of(c_, rl_, ss_)) - max(lr_), len(lr_)))
+    C.note("abstract: the tuned rule out-earns every learner at its tuning conditions in Env B at 3, 7 and 19 gNBs, reported and fresh seeds",
+           all(d_ > 0 and n_ >= 4 for _, d_, n_ in tr5_) and A["heuristic"] and mean(A["heuristic"]) > max(mean(A[k_]) for k_ in ("axiom2", "axiom2_mlp", "single_agent_dqn", "independent_dqn", "mappo_tuned"))
+           and "and a tuned rule beats every learner at its tuning conditions. When load rises 10\\% to 20\\% past them" in C.main, [(c_, round(d_, 3), n_) for c_, d_, n_ in tr5_])
     C.claim("abstract: overload margin over tuned rule", "AXIOM overtakes that rule by up to 8.7 reward per step", max(ov_), "{:.1f}")
     C.claim("conclusion: overload margin low", "AXIOM overtakes that rule at nineteen gNBs by 6.2 to 8.7 reward per step without retraining", min(ov_), "{:.1f}")
     C.claim("conclusion: overload margin high", "AXIOM overtakes that rule at nineteen gNBs by 6.2 to 8.7 reward per step without retraining", max(ov_), "{:.1f}")
@@ -2069,6 +2082,9 @@ def main():
            [f"{v_['diff']:.1f}" for v_ in t79_.values()] == ["10.7", "14.9", "21.7"]
            and [f"{h79_[k_]:.3f}" for k_ in t79_][:2] == ["0.007", "0.007"] and f"{h79_['AXIOM, 900 episodes']:.4f}" == "0.0004"
            and "raised AXIOM's compliance by 10.7 points, a learning rate of 0.003 by 14.9, and 900 training episodes by 21.7. The Holm-adjusted $p$ values are 0.007, 0.007, and 0.0004" in C.tex, {k_: (v_["diff"], h79_[k_]) for k_, v_ in t79_.items()})
+    C.note("reframe: Discussion quotes the 10.7-point gain at seven gNBs on the ring layout, Holm p=0.007",
+           f"{t79_['AXIOM, per-gNB SLA penalty']['diff']:.1f}" == "10.7" and f"{h79_['AXIOM, per-gNB SLA penalty']:.3f}" == "0.007"
+           and "Charging the penalty per violating gNB raised its priority-slice compliance by 10.7 points in Env B at seven gNBs on the ring layout, at Holm-adjusted $p=0.007$" in C.main, None)
     sapg_ = seeds_of("m79/pergnb_n7_ring", "single_agent_dqn", S15)
     tpg_ = paired(d79_["AXIOM, per-gNB SLA penalty"], sapg_, cp_)
     C.note("M79 under the per-gNB penalty AXIOM keeps 20.9 points more than DQN-SA, which collapses in 11 of 15",
