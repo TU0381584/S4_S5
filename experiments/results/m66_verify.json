@@ -9,7 +9,7 @@
  },
  {
   "label": "T3 heuristic reward",
-  "snippet": "Oracle rule & 12.835",
+  "snippet": "Static rule & 12.835",
   "computed": 12.83537368707569,
   "formatted": "12.835",
   "in_tex": true,
@@ -212,7 +212,7 @@
  },
  {
   "label": "A3 oracle ties",
-  "snippet": "Oracle rule & 12.835 [12.77, 12.91] & 100.0 & 2/22/6 &",
+  "snippet": "Static rule & 12.835 [12.77, 12.91] & 100.0 & 2/22/6 &",
   "computed": 22,
   "formatted": "/22/",
   "in_tex": true,
@@ -375,7 +375,7 @@
  },
  {
   "label": "Arep oracle gap",
-  "snippet": "only 0.018 below the oracle",
+  "snippet": "only 0.018 below the static rule",
   "computed": 0.018142083518268848,
   "formatted": "0.018",
   "in_tex": true,
@@ -1432,7 +1432,7 @@
   "computed": [
    12.772,
    12.905,
-   "Oracle rule & 12.835 [12.77, 12.91] & 100.0 & 2/22/6 & 1.000 & 0/30 & 1.000 & 1.000 & 0.366 \\\\"
+   "Static rule & 12.835 [12.77, 12.91] & 100.0 & 2/22/6 & 1.000 & 0/30 & 1.000 & 1.000 & 0.366 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -2419,7 +2419,7 @@
  },
  {
   "label": "fresh Env A N=3 fraction of oracle",
-  "snippet": "reached 98.2\\% of the oracle reward",
+  "snippet": "reached 98.2\\% of the static rule's reward",
   "computed": 98.21018649874294,
   "formatted": "98.2",
   "in_tex": true,
@@ -2512,6 +2512,22 @@
  {
   "label": "fresh Env B N=7 MLP over GAT p",
   "snippet": "in 9 of 10 seeds at $p=0.006$",
+  "computed": 0.005859375,
+  "formatted": "0.006",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: main fresh Env B N=7 MLP lead",
+  "snippet": "On ten fresh ring-layout seeds, however, the MLP encoder led by 1.38 reward per step at $p=0.006$",
+  "computed": 1.381149460855213,
+  "formatted": "1.38",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "reframe: main fresh Env B N=7 MLP p",
+  "snippet": "On ten fresh ring-layout seeds, however, the MLP encoder led by 1.38 reward per step at $p=0.006$",
   "computed": 0.005859375,
   "formatted": "0.006",
   "in_tex": true,
@@ -2619,7 +2635,7 @@
  },
  {
   "label": "M66c load102 shortfall, conclusion",
-  "snippet": "left it 3.2\\% short of the oracle",
+  "snippet": "left it 3.2\\% short of the static rule",
   "computed": 3.1814605992987737,
   "formatted": "3.2",
   "in_tex": true,
@@ -2877,7 +2893,7 @@
  },
  {
   "label": "reframe: ten-seed load sample shortfall",
-  "snippet": "3.2\\% short of the oracle",
+  "snippet": "3.2\\% short of the static rule",
   "computed": 3.1814605992987737,
   "formatted": "3.2",
   "in_tex": true,
@@ -3786,6 +3802,14 @@
   "computed": 99.977,
   "formatted": null,
   "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframe: abstract static rule floor at every size",
+  "snippet": "A static rule shedding all machine-type requests keeps at least 99.96\\%",
+  "computed": 99.96277777777777,
+  "formatted": "99.96",
+  "in_tex": true,
   "ok": true
  },
  {
@@ -5516,7 +5540,7 @@
  },
  {
   "label": "abstract: Env B over static rule at 3 gNBs",
-  "snippet": "and 39\\% more than a static shedding rule at 3 gNBs",
+  "snippet": "and 39\\% more than that static rule at 3 gNBs",
   "computed": 39.37476993281535,
   "formatted": "39",
   "in_tex": true,
@@ -5564,7 +5588,7 @@
  },
  {
   "label": "conclusion: percent of oracle at 3 gNBs",
-  "snippet": "it reaches 98.9\\% of an oracle rule's reward at three gNBs",
+  "snippet": "it reaches 98.9\\% of the static shed-mMTC rule's reward at three gNBs",
   "computed": 98.92637702729311,
   "formatted": "98.9",
   "in_tex": true,
@@ -7923,9 +7947,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 681",
+  "label": "text quotes the final check count of 684",
   "snippet": null,
-  "computed": 681,
+  "computed": 684,
   "formatted": null,
   "in_tex": null,
   "ok": true
