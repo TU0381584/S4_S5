@@ -1,0 +1,122 @@
+{
+ "900": {
+  "reward": 90.66827941451999,
+  "mmtc_blocks": 21947,
+  "blocks": 21947,
+  "exec_params": 7782,
+  "eval_seconds": 16.3,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "901": {
+  "reward": 82.37497470641442,
+  "mmtc_blocks": 4993,
+  "blocks": 4993,
+  "exec_params": 7782,
+  "eval_seconds": 26.7,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "902": {
+  "reward": 90.5993516956503,
+  "mmtc_blocks": 21730,
+  "blocks": 21730,
+  "exec_params": 7782,
+  "eval_seconds": 29.4,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "903": {
+  "reward": 90.91911498665281,
+  "mmtc_blocks": 21865,
+  "blocks": 21865,
+  "exec_params": 7782,
+  "eval_seconds": 24.3,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "904": {
+  "reward": 90.105762036731,
+  "mmtc_blocks": 21803,
+  "blocks": 21803,
+  "exec_params": 7782,
+  "eval_seconds": 25.7,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "905": {
+  "reward": 84.6328496575807,
+  "mmtc_blocks": 7364,
+  "blocks": 7364,
+  "exec_params": 7782,
+  "eval_seconds": 22.9,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "906": {
+  "reward": 90.09929800884179,
+  "mmtc_blocks": 22030,
+  "blocks": 22030,
+  "exec_params": 7782,
+  "eval_seconds": 21.6,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "907": {
+  "reward": 90.23672490636415,
+  "mmtc_blocks": 22103,
+  "blocks": 22103,
+  "exec_params": 7782,
+  "eval_seconds": 20.8,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "908": {
+  "reward": 89.84404586514015,
+  "mmtc_blocks": 21686,
+  "blocks": 21686,
+  "exec_params": 7782,
+  "eval_seconds": 23.6,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "909": {
+  "reward": 90.6134667018202,
+  "mmtc_blocks": 21770,
+  "blocks": 21770,
+  "exec_params": 7782,
+  "eval_seconds": 21.3,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "910": {
+  "reward": 89.95308311420108,
+  "mmtc_blocks": 22017,
+  "blocks": 22017,
+  "exec_params": 7782,
+  "eval_seconds": 20.7,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "911": {
+  "reward": 90.20579188636562,
+  "mmtc_blocks": 22138,
+  "blocks": 22138,
+  "exec_params": 7782,
+  "eval_seconds": 24.4,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "1000": {
+  "reward": 75.53567577780159,
+  "mmtc_blocks": 21724,
+  "blocks": 43676,
+  "exec_params": 7782,
+  "eval_seconds": 21.3,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "1001": {
+  "reward": 90.02091623637887,
+  "mmtc_blocks": 21772,
+  "blocks": 21772,
+  "exec_params": 7782,
+  "eval_seconds": 18.3,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ },
+ "1002": {
+  "reward": 90.66093488246639,
+  "mmtc_blocks": 21860,
+  "blocks": 21860,
+  "exec_params": 7782,
+  "eval_seconds": 16.9,
+  "source": "../experiments/results/m65_scaling/n7_fully_connected"
+ }
+}

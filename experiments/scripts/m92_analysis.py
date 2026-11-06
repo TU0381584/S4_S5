@@ -19,7 +19,8 @@ from m66_verify import ROOT, S15, holm, paired, prio, seeds_of  # noqa: E402
 SEEDS = S15
 RULES_A = {19: ("m70/R1/A_n19_hex", "m75/B_acceptall/n19"), 37: ("m73/A_n37_hex", "m75/B_acceptall/n37")}
 TRAINED_A = {("hex", 19): "m65_scaling/n19_hex", ("hex", 37): "m73/A_n37_hex",
-             ("ring", 19): "m65_scaling/n19_ring", ("ring", 37): "m73/A_n37_ring"}
+             ("ring", 19): "m65_scaling/n19_ring", ("ring", 37): "m73/A_n37_ring",
+             ("fully_connected", 19): "m65_scaling/n19_fully_connected", ("fully_connected", 37): "m73/A_n37_fully_connected"}  # Amendment 1
 B_REF = "m75/D_envB_n19_hex"
 rng = np.random.default_rng(0)
 
@@ -109,7 +110,8 @@ def main():
         out["criteria"].append({"criterion": name, "verdict": verdict, "detail": detail})
         print(f"{verdict:6s} {name}: {detail}")
 
-    for topo, label in (("hex", "primary, Env A hex"), ("ring", "secondary, Env A ring")):
+    for topo, label in (("hex", "primary, Env A hex"), ("ring", "secondary, Env A ring"),
+                        ("fully_connected", "secondary, Env A fully-connected (Amendment 1)")):
         fam = {}
         for n in (19, 37):
             arms = cell_A(topo, n)

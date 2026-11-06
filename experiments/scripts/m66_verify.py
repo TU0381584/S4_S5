@@ -2410,7 +2410,8 @@ def main():
     def pg92_(cell_, arm_, s_):
         m_ = json.load(open(f"{ROOT}/{cell_}/{arm_}/seed{s_}/eval/per_gnb_sla.json"))["mean_compliance"]
         return 100 * 0.5 * (m_["urllc"] + m_["embb"])
-    tr92_ = {("hex", 19): "m65_scaling/n19_hex", ("hex", 37): "m73/A_n37_hex", ("ring", 19): "m65_scaling/n19_ring", ("ring", 37): "m73/A_n37_ring"}
+    tr92_ = {("hex", 19): "m65_scaling/n19_hex", ("hex", 37): "m73/A_n37_hex", ("ring", 19): "m65_scaling/n19_ring", ("ring", 37): "m73/A_n37_ring",
+             ("fully", 19): "m65_scaling/n19_fully_connected", ("fully", 37): "m73/A_n37_fully_connected"}   # Amendment 1
     ru92_ = {19: ("m70/R1/A_n19_hex", "m75/B_acceptall/n19"), 37: ("m73/A_n37_hex", "m75/B_acceptall/n37")}
     def arms92_(key_):
         """arm label -> (seed -> {prio, reward_per_gnb, collapsed, cluster}) for one transfer cell."""
@@ -2430,15 +2431,18 @@ def main():
                                "prio": pg92_(c_, a_, s_) if key_.startswith("B") else 100 * prio(r_)}
                           for s_, r_ in seeds_of(c_, a_, S15).items()}
         return out_
-    K92_ = ("A_hex_n19", "A_hex_n37", "A_ring_n19", "A_ring_n37", "B_hex_n19")
+    K92_ = ("A_hex_n19", "A_hex_n37", "A_ring_n19", "A_ring_n37", "A_fully_connected_n19", "A_fully_connected_n37", "B_hex_n19")
+    KA92_ = K92_[:6]
     C92_ = {k_: arms92_(k_) for k_ in K92_}
     mu92_ = lambda d_, f_="prio": float(np.mean([v_[f_] for v_ in d_.values()]))
     labs92_ = {"A_hex_n19": "Env A hex, 19 gNBs", "A_hex_n37": "Env A hex, 37 gNBs", "A_ring_n19": "Env A ring, 19 gNBs",
-               "A_ring_n37": "Env A ring, 37 gNBs", "B_hex_n19": "Env B hex, 19 gNBs"}
+               "A_ring_n37": "Env A ring, 37 gNBs", "A_fully_connected_n19": "Env A fully-connected, 19 gNBs",
+               "A_fully_connected_n37": "Env A fully-connected, 37 gNBs", "B_hex_n19": "Env B hex, 19 gNBs"}
+    f1_ = lambda x_: f"{x_:.2f}" if x_ >= 99.95 else f"{x_:.1f}"   # 99.95 and above print with two decimals, as the static rule does
     rows92_ = []
     for k_ in K92_:
         n_ = k_.split("_n")[1]; c_ = C92_[k_]
-        rows92_.append(f"{labs92_[k_]} & {mu92_(c_[f'AXIOM-7to{n_}']):.1f} & {mu92_(c_[f'AXIOM trained at {n_}']):.1f} & {mu92_(c_[f'MAPPO-7to{n_}']):.1f} & "
+        rows92_.append(f"{labs92_[k_]} & {f1_(mu92_(c_[f'AXIOM-7to{n_}']))} & {f1_(mu92_(c_[f'AXIOM trained at {n_}']))} & {f1_(mu92_(c_[f'MAPPO-7to{n_}']))} & "
                        f"{mu92_(c_['static rule']):.{2 if k_.startswith('A') else 1}f} & {mu92_(c_['accept-all']):.1f} \\\\")
     C.note("M92 main Table 5 rows recomputed from the logs, 15 seeds per arm", all(x_ in C.main for x_ in rows92_)
            and all(len(v_) == 15 for c_ in C92_.values() for v_ in c_.values()), [x_ for x_ in rows92_ if x_ not in C.main])
@@ -2451,22 +2455,19 @@ def main():
            == ["96.2", "95.4", "65.9", "61.1", "64.2", "61.5"]
            and "AXIOM transferred from seven gNBs keeps 96.2\\% and 95.4\\% priority-slice compliance at nineteen and thirty-seven gNBs" in C.main
            and "Accepting every request keeps 65.9\\% and 61.1\\%, and MAPPO transferred the same way keeps 64.2\\% and 61.5\\%. All four of AXIOM's leads hold at Holm-adjusted $p=0.00024$" in C.main, hh_)
-    rng92_ = np.random.default_rng(12345)
-    def spans92_(a_, b_, f_):
-        cm_ = sorted(set(a_) & set(b_)); d_ = np.array([a_[s_][f_] - b_[s_][f_] for s_ in cm_])
-        m_ = d_[rng92_.integers(0, len(d_), size=(10000, len(d_)))].mean(axis=1)
-        return np.percentile(m_, 2.5) < 0 < np.percentile(m_, 97.5)
-    sp_ = {(k_, f_): spans92_(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"], C92_[k_][f"AXIOM trained at {k_.split('_n')[1]}"], f_)
-           for k_ in K92_ for f_ in ("prio", "reward_per_gnb")}
-    C.note("M92 transferred minus trained-at-N: every 95% CI spans zero on both layouts and in Env B", all(sp_.values())
-           and "On both layouts and in Env B at nineteen gNBs, the 95\\% CI of the gap between the transferred policy and AXIOM trained at the target size spans zero" in C.main,
-           {f"{k_} {f_}": v_ for (k_, f_), v_ in sp_.items()})
-    tie92_ = {k_: paired(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"], C92_[k_]["static rule"], lambda r_: r_["reward_per_gnb"]) for k_ in K92_[:4]}
-    C.note("M92 static rule: transferred AXIOM ties it exactly on 9 or 10 of 15 seeds in reward and earns less on the rest",
-           all(v_["ties"] in (9, 10) and v_["wins"] == 0 for v_ in tie92_.values())
-           and "earns exactly the size-independent static rule's reward on 9 or 10 of 15 seeds and less on the rest" in C.main,
+    gp92_ = {(k_, f_): paired(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"], C92_[k_][f"AXIOM trained at {k_.split('_n')[1]}"], lambda r_, f_=f_: r_[f_])
+             for k_ in K92_ for f_ in ("prio", "reward_per_gnb")}
+    C.note("M92 transferred minus trained-at-N: within 3.4 points on all three layouts and in Env B, no paired difference significant, p >= 0.068",
+           f"{max(abs(v_['diff']) for (k_, f_), v_ in gp92_.items() if f_ == 'prio'):.1f}" == "3.4"
+           and f"{min(v_['p'] for v_ in gp92_.values()):.3f}" == "0.068"
+           and "On all three layouts and in Env B at nineteen gNBs, the transferred policy stays within 3.4 points of AXIOM trained at the target size, and no paired difference is significant, with $p\\geq0.068$" in C.main,
+           {f"{k_} {f_}": (round(v_["diff"], 3), round(v_["p"], 4)) for (k_, f_), v_ in gp92_.items()})
+    tie92_ = {k_: paired(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"], C92_[k_]["static rule"], lambda r_: r_["reward_per_gnb"]) for k_ in KA92_}
+    C.note("M92 static rule: transferred AXIOM ties it exactly on 9 to 11 of 15 seeds in reward and earns less on the rest",
+           min(v_["ties"] for v_ in tie92_.values()) == 9 and max(v_["ties"] for v_ in tie92_.values()) == 11 and all(v_["wins"] == 0 for v_ in tie92_.values())
+           and "earns exactly the size-independent static rule's reward on 9 to 11 of 15 seeds and less on the rest" in C.main,
            {k_: (v_["wins"], v_["ties"], v_["losses"]) for k_, v_ in tie92_.items()})
-    tA92_ = [mu92_(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"]) for k_ in K92_[:4]]
+    tA92_ = [mu92_(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"]) for k_ in KA92_]
     ab92_ = C.main[C.main.index("\\abstract{") + 10:]; ab92_ = ab92_[:ab92_.index("}\n")]
     C.note("M92 abstract and contribution 1: transferred AXIOM above 95% in Env A at 19 and 37 gNBs, abstract at most 250 words",
            min(tA92_) > 95 and len(ab92_.split()) <= 250 and "even when trained only at 7 gNBs, while every learned baseline stays below 84\\%" in ab92_
@@ -2499,13 +2500,19 @@ def main():
              for v_ in json.load(open(f_)).values()]
     hc92_ = [v_ for f_ in sorted(glob.glob(f"{ROOT}/m92/harness_check/*.json")) for v_ in json.load(open(f_)).values()]
     C.note("M92 AXIOM keeps 7,782 execution parameters when transferred, and six stored evaluations reproduced exactly through the loader",
-           len(ex92_) == 75 and all(v_["exec_params"] == 7782 for v_ in ex92_) and len(hc92_) == 6 and all(v_["exact"] for v_ in hc92_)
+           len(ex92_) == 105 and all(v_["exec_params"] == 7782 for v_ in ex92_) and len(hc92_) == 6 and all(v_["exact"] for v_ in hc92_)
            and all(v_.get("per_gnb_exact", True) for v_ in hc92_)
            and "so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters" in C.tex
            and "six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly" in C.tex, (len(ex92_), len(hc92_)))
-    mp92_ = all(C92_[f"A_hex_n{n_}"][f"MAPPO-7to{n_}"][s_]["reward_per_gnb"] == C92_[f"A_ring_n{n_}"][f"MAPPO-7to{n_}"][s_]["reward_per_gnb"]
-                for n_ in (19, 37) for s_ in S15)
-    C.note("M92 MAPPO identical on both Env A layouts", mp92_ and "MAPPO gives the same results on both Env A layouts" in C.tex, None)
+    mp92_ = all(C92_[f"A_hex_n{n_}"][f"MAPPO-7to{n_}"][s_]["reward_per_gnb"] == C92_[f"A_{t_}_n{n_}"][f"MAPPO-7to{n_}"][s_]["reward_per_gnb"]
+                for n_ in (19, 37) for t_ in ("ring", "fully_connected") for s_ in S15)
+    fc19_ = paired(C92_["A_fully_connected_n19"]["AXIOM-7to19"], C92_["A_fully_connected_n19"]["AXIOM trained at 19"], lambda r_: r_["reward_per_gnb"])
+    tfc_ = seeds_of("m65_scaling/n19_fully_connected", "axiom2", S15); sfc_ = seeds_of("m70/R1/A_n19_fully_connected", "rule_static", S15)
+    C.note("M92 MAPPO identical on all three Env A layouts; at 19 fully-connected AXIOM trained there equals the static rule, transferred trails by 0.10, p 0.068",
+           mp92_ and "MAPPO gives the same results on all three Env A layouts" in C.tex
+           and all(tfc_[x_]["reward"] == sfc_[x_]["reward"] for x_ in S15) and f"{-fc19_['diff']:.2f}" == "0.10" and f"{fc19_['p']:.3f}" == "0.068"
+           and "AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$" in C.tex,
+           fc19_)
 
     # ---------------- M94 (Gate D): AXIOM distilled into per-slice trees, OR1 Table S10 and the main Section 6.3 sentences,
     # recomputed from the replays, the stored trees and the rule's evaluation logs (docs/PAPER5_M94_preregistration.md)

@@ -39,10 +39,10 @@
 
 \maketitle
 
-\noindent\footnotesize
+{\noindent\footnotesize\raggedright
 M.~P.~Kunasegran, orcid.org/0009-0005-3169-1873.
 W.~L.~Pang, orcid.org/0000-0001-8407-5648.
-S.~K.~Phang, orcid.org/0000-0002-7877-8766.
+S.~K.~Phang, orcid.org/0000-0002-7877-8766.\par}
 \normalsize
 \vspace{6pt}
 
@@ -314,14 +314,14 @@ Accepting every request is the natural floor at scale. It keeps 70.9\%, 67.1\%, 
 
 Fig.~\ref{fig:gnb-map} shows where the gap comes from, gNB by gNB, in the thirty-seven-gNB hex cluster. A gNB's admission gate for a slice is the PRB-ratio ceiling that its accept and reject decisions move between the slice's floor and cap, averaged over every evaluation step of all 30 seeds. AXIOM keeps the URLLC and eMBB gates open at every gNB, at 1.00 and 0.98, and closes the mMTC gate to 0.16 even with its three collapsed seeds included. No baseline closes the mMTC gate below 0.51.
 
-AXIOM's encoder and heads have the same shape at every cluster size, so a policy trained at one size can run unchanged at another. A pre-registered run evaluated the seven-gNB checkpoints, never retrained, at nineteen and thirty-seven gNBs on each seed's held-out stream, and Table~\ref{tab:transfer} gives the result on the 15 seven-gNB seeds. In Env A on the hex layout, AXIOM transferred from seven gNBs keeps 96.2\% and 95.4\% priority-slice compliance at nineteen and thirty-seven gNBs. Accepting every request keeps 65.9\% and 61.1\%, and MAPPO transferred the same way keeps 64.2\% and 61.5\%. All four of AXIOM's leads hold at Holm-adjusted $p=0.00024$. On both layouts and in Env B at nineteen gNBs, the 95\% CI of the gap between the transferred policy and AXIOM trained at the target size spans zero. The DQN baselines cannot transfer, since DQN-SA reads the joint state of every gNB and DQN-I holds one network for each gNB, with none for the new ones. The Env A result partly reflects how simple the task is there, because the transferred policy earns exactly the size-independent static rule's reward on 9 or 10 of 15 seeds and less on the rest.
+AXIOM's encoder and heads have the same shape at every cluster size, so a policy trained at one size can run unchanged at another. A pre-registered run evaluated the seven-gNB checkpoints, never retrained, at nineteen and thirty-seven gNBs on each seed's held-out stream, and Table~\ref{tab:transfer} gives the result on the 15 seven-gNB seeds. In Env A on the hex layout, AXIOM transferred from seven gNBs keeps 96.2\% and 95.4\% priority-slice compliance at nineteen and thirty-seven gNBs. Accepting every request keeps 65.9\% and 61.1\%, and MAPPO transferred the same way keeps 64.2\% and 61.5\%. All four of AXIOM's leads hold at Holm-adjusted $p=0.00024$. On all three layouts and in Env B at nineteen gNBs, the transferred policy stays within 3.4 points of AXIOM trained at the target size, and no paired difference is significant, with $p\geq0.068$. The DQN baselines cannot transfer, since DQN-SA reads the joint state of every gNB and DQN-I holds one network for each gNB, with none for the new ones. The Env A result partly reflects how simple the task is there, because the transferred policy earns exactly the size-independent static rule's reward on 9 to 11 of 15 seeds and less on the rest.
 
 \begin{table}[!htbp]
 \caption{Zero-shot transfer, priority-slice compliance in percent on the 15 seven-gNB seeds. Policies from 7 were trained at seven gNBs and run unchanged, and AXIOM at $N$ was trained at the target size. Env B gives per-gNB compliance}
 \label{tab:transfer}
 \centering
 \footnotesize
-{\setlength{\tabcolsep}{4pt}
+{\setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{@{}lccccc@{}}
 \toprule
 Setting & AXIOM from 7 & AXIOM at $N$ & MAPPO from 7 & Static rule & Accept all \\
@@ -330,6 +330,8 @@ Env A hex, 19 gNBs & 96.2 & 94.6 & 64.2 & 99.96 & 65.9 \\
 Env A hex, 37 gNBs & 95.4 & 94.8 & 61.5 & 99.99 & 61.1 \\
 Env A ring, 19 gNBs & 96.9 & 96.8 & 64.2 & 99.96 & 65.9 \\
 Env A ring, 37 gNBs & 96.3 & 93.2 & 61.5 & 99.99 & 61.1 \\
+Env A fully-connected, 19 gNBs & 96.6 & 99.96 & 64.2 & 99.96 & 65.9 \\
+Env A fully-connected, 37 gNBs & 96.3 & 94.4 & 61.5 & 99.99 & 61.1 \\
 Env B hex, 19 gNBs & 79.1 & 77.3 & 72.9 & 79.9 & 66.4 \\
 \botrule
 \end{tabular}}
