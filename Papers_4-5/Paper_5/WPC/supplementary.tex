@@ -1,5 +1,6 @@
 \documentclass[10pt]{article}
-\usepackage[a4paper,margin=2.5cm]{geometry}
+\usepackage[a4paper,hmargin=2cm,vmargin=1.8cm]{geometry}
+\linespread{0.97}
 \usepackage{amsmath,amssymb}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
@@ -7,7 +8,6 @@
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{tikz}
-\usepackage[section]{placeins}
 % Online Resource layout: captions in the journal's style (small type, label then a quad, caption above tables
 % with a gap to the top rule), supplement numbering S1, S2, ... so no table or figure shares a number with the
 % main paper, and more room between floats and the surrounding text
@@ -16,9 +16,15 @@
 \captionsetup[figure]{name=Fig.}
 \renewcommand{\thetable}{S\arabic{table}}
 \renewcommand{\thefigure}{S\arabic{figure}}
-\setlength{\intextsep}{16pt plus 4pt minus 2pt}
-\setlength{\textfloatsep}{18pt plus 4pt minus 2pt}
-\setlength{\floatsep}{16pt plus 4pt minus 2pt}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\bottomfraction}{0.8}
+\renewcommand{\textfraction}{0.07}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{3}
+\setcounter{totalnumber}{5}
+\setlength{\intextsep}{10pt plus 3pt minus 2pt}
+\setlength{\textfloatsep}{12pt plus 3pt minus 2pt}
+\setlength{\floatsep}{10pt plus 3pt minus 2pt}
 \usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}
 \title{Online Resource 1\\[4pt]\large Supplementary material for the article ``AXIOM: A Shared Controller for Scalable Multi-Agent 5G Slice Admission''\\[2pt]\normalsize Wireless Personal Communications}
 \author{Manoj Prasad Kunasegran, Wai Leong Pang, Swee King Phang\\[4pt]
@@ -32,55 +38,51 @@
 \maketitle
 
 \section*{S1. Overview}
-This supplement gives the detail behind the main paper's verification runs and additional results for AXIOM, short for Adaptive Cross-cell Integrated Orchestration of Multi-slice admission. Every pass criterion was fixed in a pre-registration committed before the run it judged. The baselines are a single-agent deep Q-network (DQN-SA), independent per-gNB deep Q-networks (DQN-I), and multi-agent proximal policy optimisation (MAPPO), where DQN denotes a deep Q-network in general. AXIOM's encoder is a graph attention network (GAT), and its variant with a per-node multi-layer perceptron (MLP) encoder is called the MLP variant. Table~\ref{tab:s-acronyms} lists the other acronyms used in this supplement.
+This supplement gives the detail behind the main paper's results for AXIOM, short for Adaptive Cross-cell Integrated Orchestration of Multi-slice admission, without repeating what the main paper states. Every pass criterion was fixed in a pre-registration committed before the run it judged, and Table~\ref{tab:s-acronyms} lists the acronyms used here.
 
 \begin{table}[!htbp]
 \caption{Acronyms used in this supplement}
 \label{tab:s-acronyms}
 \centering
 \footnotesize
-\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.36\textwidth}@{\hspace{1.5em}}l>{\raggedright\arraybackslash}p{0.36\textwidth}@{}}
+{\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.21\textwidth}@{\hspace{1em}}l>{\raggedright\arraybackslash}p{0.21\textwidth}@{\hspace{1em}}l>{\raggedright\arraybackslash}p{0.21\textwidth}@{}}
 \toprule
-Acronym & Meaning & Acronym & Meaning \\
+Acronym & Meaning & Acronym & Meaning & Acronym & Meaning \\
 \midrule
-CI & Confidence interval & O-RAN & Open Radio Access Network \\
-CPU & Central processing unit & PRB & Physical resource block \\
-DP & Differential privacy & RAN & Radio Access Network \\
-DP-SGD & Differentially private stochastic gradient descent & RF & Radio frequency \\
-DQN & Deep Q-network & RIC & RAN Intelligent Controller \\
-eMBB & Enhanced Mobile Broadband & SDR & Software-defined radio \\
-FedAvg & Federated averaging & SLA & Service Level Agreement \\
-gNB & gNodeB, the 5G base station & TDD & Time-division duplex \\
-GPU & Graphics processing unit & UDP & User Datagram Protocol \\
-mMTC & Massive Machine-Type Communication & UE & User equipment \\
-OAI & OpenAirInterface & URLLC & Ultra-Reliable Low-Latency Communication \\
+CI & Confidence interval & gNB & gNodeB, the 5G base station & RF & Radio frequency \\
+CPU & Central processing unit & GPU & Graphics processing unit & RIC & RAN Intelligent Controller \\
+DP & Differential privacy & IQM & Interquartile mean & SDR & Software-defined radio \\
+DP-SGD & Differentially private stochastic gradient descent & MAPPO & Multi-agent proximal policy optimisation & SLA & Service Level Agreement \\
+DQN & Deep Q-network & MLP & Multi-layer perceptron & TDD & Time-division duplex \\
+DQN-I & Independent per-gNB deep Q-networks & mMTC & Massive Machine-Type Communication & UDP & User Datagram Protocol \\
+DQN-SA & Single-agent deep Q-network & OAI & OpenAirInterface & UE & User equipment \\
+eMBB & Enhanced Mobile Broadband & O-RAN & Open Radio Access Network & URLLC & Ultra-Reliable Low-Latency Communication \\
+FedAvg & Federated averaging & PRB & Physical resource block & VDN & Value-decomposition network \\
+GAT & Graph attention network & RAN & Radio Access Network &  &  \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 \section*{S2. Verification runs}
-We reran eleven reported settings on their original seeds in fresh processes, and each reproduced its stored per-seed results exactly, as did the Env A static rule, which sheds every mMTC request, on all 30 seeds. Sixteen runs that no earlier rerun covered matched their stored per-seed results exactly, in Env A at seven, nineteen, and thirty-seven gNBs and in Env B at seven gNBs. DQN-SA is the one exception, because its training code builds the network before it sets the seed. Dropping the affected seeds changes no comparison's direction. With its initialisation seeded, DQN-SA then reproduced exactly across processes.
+The fresh-seed runs of the main paper's Section 6.6 retrained every policy on seeds from 3000 onwards. In Env A AXIOM reached 98.2\% of the static rule's reward at three gNBs and at nineteen gNBs kept 95.6\% priority-slice compliance against 47.8\% to 65.5\% for the baselines. Of the nine failed checks, the four that concern AXIOM are small margins, and twenty-seed reruns did not reproduce two of them.
 
-Four further runs retrained every policy on seeds from 3000 onwards, never used before, and 81 of their 90 checks stated in advance held. In Env A AXIOM reached 98.2\% of the static rule's reward at three gNBs and at nineteen gNBs kept 95.6\% priority-slice compliance against 47.8\% to 65.5\% for the baselines. At seven gNBs on the hex layout and at nineteen on the fully-connected layout AXIOM kept 99.0\% and 95.7\% priority-slice compliance and beat every baseline. Federation again showed no significant cost, at $+0.077$ with 95\% CI [$-$1.03, 1.27]. Fresh seeds therefore confirmed the main findings of the paper. At seven and nineteen gNBs in Env A AXIOM kept 93.4\% to 100\% priority-slice compliance and beat every baseline under every layout.
-
-Five of the nine failed checks concern the baselines rather than AXIOM. On fresh seeds at seven gNBs DQN-I and DQN-SA kept up to 83.3\% priority-slice compliance, above the 80\% bound we had set. The other four concern small margins of AXIOM itself. Under the fully-connected layout at seven gNBs two weak AXIOM seeds left its leads short of significance after Holm correction, and a twenty-seed rerun of that layout then held all six tests at Holm-adjusted $p\leq0.007$. In one ten-seed load sample two weak AXIOM seeds also left it 3.2\% short of the static rule, a gap that a twenty-seed rerun did not reproduce. AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur, at margins of $-0.021$ and $0.159$ reward per step on 20 and 40 new seeds.
-
-An independent script with its own log reader and Holm correction recomputes every results table and key sentence of both documents from the raw logs, and all of its checks pass. Fig.~\ref{fig:s-forest} sets each reported comparison with a learned baseline beside its fresh-seed counterpart. Of the 38 reported differences whose 95\% CI excludes zero, 35 keep a CI on the same side on fresh seeds. The three exceptions all concern cluster-level compliance in Env B. AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead. Its lead over MAPPO at nineteen gNBs falls to 2.9 points, and all three fresh CIs span zero.
+Fig.~\ref{fig:s-forest} sets each reported comparison with a learned baseline beside its fresh-seed counterpart. The three reported differences that fresh seeds do not keep all concern cluster-level compliance in Env B. AXIOM's deficits of 9.2 points to DQN-SA and 4.8 points to DQN-I at seven gNBs become 4.2 points and a 0.8-point lead. Its lead over MAPPO at nineteen gNBs falls to 2.9 points, and all three fresh CIs span zero.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/fig_forest.pdf}
+\includegraphics{figures/fig_forest.pdf}
 \caption{AXIOM minus each learned baseline, with 95\% CIs. Solid lines and filled circles are the reported runs, dashed lines and hollow diamonds the fresh seeds. a, Reward per gNB. b, Cluster-level priority-slice compliance}
 \label{fig:s-forest}
 \end{figure}
 
-Few-run evaluations of reinforcement learning can mislead when they rest on means alone, so Agarwal et al.~[2] recommend interquartile means, probabilities of improvement, and performance profiles. Table~\ref{tab:s-rliable} gives the first two for every reported setting, computed with rliable 1.2.0 on the runs of the main paper, pooled over layouts as there. The interquartile mean (IQM) averages the middle half of the runs, so a few collapsed seeds move it less than they move the mean. AXIOM's IQM of priority-slice compliance in Env A is therefore 100.0\% at every size, against means of 93.7\% to 98.9\%, and the mean stays the more conservative summary for AXIOM. Every one of the 51 orderings that the main paper draws from means, among the learned policies and against the rules, holds under the IQM. An independent implementation reproduces every IQM and every probability of improvement to within $10^{-6}$. Fig.~\ref{fig:s-rliable} shows the fraction of runs above each level of priority-slice compliance.
+Table~\ref{tab:s-rliable} gives the interquartile means and probabilities of improvement that Agarwal et al., cited in the main paper, recommend for evaluations with few runs, computed with rliable 1.2.0 on the main paper's pooled runs. The IQM drops the worst quarter of runs, where AXIOM's few collapses sit. AXIOM's IQM of priority-slice compliance in Env A is therefore 100.0\% at every size, against means of 93.7\% to 98.9\%, and the mean stays the more conservative summary for AXIOM. An independent implementation reproduces every IQM and every probability of improvement to within $10^{-6}$, and Fig.~\ref{fig:s-rliable} shows the fraction of runs above each compliance level.
 
 \begin{table}[!htbp]
 \caption{Interquartile means of reward per gNB per step and of priority-slice compliance, and the probability P that a run of AXIOM beats a run of each other policy, with ties counted as one half. Brackets give stratified bootstrap 95\% CIs over 10{,}000 resamples}
 \label{tab:s-rliable}
 \centering
-\footnotesize
+\scriptsize
 {\setlength{\tabcolsep}{3.5pt}
 \begin{tabular}{@{}lccccc@{}}
 \toprule
@@ -143,15 +145,17 @@ Policy & Runs & IQM reward per gNB & IQM priority SLA, \% & P, reward & P, prior
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig_rliable.pdf}
+\includegraphics{figures/fig_rliable.pdf}
 \caption{Performance profiles of priority-slice compliance, the fraction of runs above each level $\tau$. Shaded bands are stratified bootstrap 95\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs}
 \label{fig:s-rliable}
 \end{figure}
 
-\section*{S3. Live testbed and deployment check}
+\section*{S3. Live testbed}
+Every live measurement comes from the single-host, software-radio O-RAN stack of Fig.~\ref{fig:testbed}, which runs without a near-real-time RIC because the ORANSlice fork cited in the main paper applies slicing control through a lightweight UDP E2 agent. AXIOM itself is not deployed there, since its multi-gNB policy needs at least two live gNBs and our two-gNB attempt did not sustain traffic. A single-agent DQN checkpoint instead exercises the control path, PRB-ratio actuation, and real-time inference at one and at two UEs per slice. A capacity probe showed every slice served at essentially 100\% of offered demand, so the rig never ran short of capacity and shows the pipeline working, not admission under contention. The rig starts the Open5GS core with Docker Compose and the gNB with \texttt{nr-softmodem} on the rfsim radio, and attaches up to six UEs. It runs the checkpoint through the UDP E2 agent on ports 6600 and 6655. Drive iperf3 UDP traffic on every slice to reproduce its load. A scheduler-configuration error that granted fewer PRBs than the gNB scheduler's five-PRB floor was fixed at the root. Instrumentation then confirmed zero below-floor grants across more than 100{,}000 readings.
+
 \begin{figure}[!htbp]
 \centering
-\resizebox{\textwidth}{!}{%
+\resizebox{0.9\textwidth}{!}{%
 \begin{tikzpicture}[
   block/.style={draw, thick, rounded corners, align=center, fill=gray!8,
                 font=\footnotesize, inner sep=5pt, text width=3.7cm},
@@ -200,89 +204,68 @@ this rig}
 \label{fig:testbed}
 \end{figure}
 
-Every live measurement comes from the single-host, software-radio O-RAN stack of Fig.~\ref{fig:testbed}. It runs without a near-real-time RAN Intelligent Controller (RIC), because the ORANSlice fork~[1] applies slicing control directly through a lightweight User Datagram Protocol (UDP) E2 agent. AXIOM itself is not deployed on the live testbed. Its multi-gNB policy needs at least two live gNBs, and our two-gNB attempt registered both with the core but did not sustain traffic. The testbed therefore validates the pipeline AXIOM would use, namely the control path over the O-RAN E2 interface, PRB-ratio actuation, and real-time inference. It does so with a single-agent DQN checkpoint trained offline for this rig, at one and at two user equipment (UE) devices per slice. A capacity probe showed every slice served at essentially 100\% of offered demand with 0.000\% loss. The checkpoint's real accept and reject decisions, typically blocking mMTC alone, ran correctly through the E2 loop. Because the rig never ran short of capacity, this shows that the pipeline works, not admission under contention. A scheduler-configuration error that granted fewer PRBs than the gNB scheduler's five-PRB floor was fixed at the root. Instrumentation then confirmed zero below-floor grants across more than 100{,}000 readings.
-
 \section*{S4. Setup, safeguards, and analysis plans}
-Algorithm 1 of the main paper states AXIOM's training loop, and its parameter table lists the simulation and training settings.
+A sensitivity study repeats the learned policies and the static rule in Env A on 10 seeds at 102\% and 107\% of the nominal load. It also changes the slice weights, lowering eMBB from 3.5 to 2.5 and raising mMTC from 0.3 to 0.6. A second repeats AXIOM in Env B on 10 seeds at learning rates of $3{\times}10^{-4}$ and $3{\times}10^{-3}$ and with an encoder twice as wide. The federated campaign runs in Env A on seeds 900 to 909, with noise multipliers $\sigma \in \{0, 0.5, 1, 2, 4\}$ and a replication on seeds 1000 to 1009. Each round runs 50 local steps of federated averaging (FedAvg) with a gradient-clip norm of $1.0$. A validation screen checks every trained checkpoint before evaluation. Each plays five greedy episodes on its own training stream and fails if it blocks no request or if fewer than 90\% of its blocks target mMTC. In Env B, where the reward-optimal policy also sheds eMBB, the no-blocking criterion is the primary screen. The Env B constants, AXIOM's learning rate, and its skip connection were all chosen on pilot seeds 2000 to 2009.
 
-A sensitivity study repeats the learned policies and the static rule in Env A on 10 seeds at 102\% and 107\% of the nominal load. It also changes the slice weights, lowering eMBB from 3.5 to 2.5 and raising mMTC from 0.3 to 0.6. A second repeats AXIOM in Env B on 10 seeds at learning rates of $3{\times}10^{-4}$ and $3{\times}10^{-3}$ and with an encoder twice as wide. The federated campaign runs in Env A on seeds 900 to 909, with noise multipliers $\sigma \in \{0, 0.5, 1, 2, 4\}$ and a replication on seeds 1000 to 1009. Each round runs 50 local steps of federated averaging (FedAvg) with a gradient-clip norm of $1.0$.
-
-A validation screen checks every trained checkpoint of every learned policy before evaluation. Each plays five greedy episodes on its own training stream and fails if it blocks no request or if fewer than 90\% of its blocks target mMTC. Every seed is reported whether or not it passes. In Env B the reward-optimal policy also sheds eMBB, so an amendment recorded before any result was read makes the no-blocking criterion the primary screen there. The two Env B constants were calibrated on pilot seeds with rules only. The main pre-registration fixed them together with AXIOM's learning rate and skip connection, all chosen on pilot seeds 2000 to 2009.
-
-AXIOM's encoder is a graph-attention network over the gNB graph. At every control step each gNB forms its own feature row $\mathbf{x}_i$ of PRB-used ratio, congestion level, and normalised queue length. A two-layer network with $H{=}4$ heads then produces one embedding per gNB. Each head $h$ uses a learned source vector $\mathbf{a}_s^{h}$ and destination vector $\mathbf{a}_d^{h}$ on the shared projection $\mathbf{W}^{h}$. Here $\mathrm{LeakyReLU}$, the leaky rectified linear unit, has slope $0.2$ for negative inputs, and $\mathcal{N}_i$ is the set of neighbours of node $i$,
+AXIOM's encoder is a graph-attention network over the gNB graph. Each gNB forms its own feature row $\mathbf{x}_i$ of PRB-used ratio, congestion level, and normalised queue length, and a two-layer network with $H{=}4$ heads produces one embedding per gNB. Each head $h$ uses a learned source vector $\mathbf{a}_s^{h}$ and destination vector $\mathbf{a}_d^{h}$ on the shared projection $\mathbf{W}^{h}$. Here $\mathrm{LeakyReLU}$, the leaky rectified linear unit, has slope $0.2$ for negative inputs, and $\mathcal{N}_i$ is the set of neighbours of node $i$,
 \begin{equation}
 \varepsilon_{ij}^{h}=\mathrm{LeakyReLU}\big(\mathbf{a}_s^{h\top} \mathbf{W}^{h} \mathbf{x}_i + \mathbf{a}_d^{h\top} \mathbf{W}^{h} \mathbf{x}_j\big),
 \qquad
 \alpha_{ij}^{h}=\frac{\exp\varepsilon_{ij}^{h}}{\sum_{l\in\mathcal{N}_i}\exp\varepsilon_{il}^{h}}.
 \end{equation}
-Here $\varepsilon_{ij}^{h}$ is the unnormalised attention score from node $i$ to neighbour $j$ in head $h$, and $\alpha_{ij}^{h}$ is its normalisation over $i$'s neighbours, with $l$ ranging over $\mathcal{N}_i$. Hidden layers concatenate the $H$ heads under an exponential linear unit (ELU), while the final layer averages them. A per-layer normalisation $\mathrm{LN}(\cdot)$ then rescales each node's embedding to zero mean and unit variance, giving the per-gNB embedding $\mathbf{z}_i$,
+Hidden layers concatenate the $H$ heads under an exponential linear unit, the final layer averages them, and a per-layer normalisation $\mathrm{LN}(\cdot)$ rescales each embedding to zero mean and unit variance,
 \begin{equation}
 \mathbf{z}_i=\mathrm{LN}\!\Big(\tfrac{1}{H}\textstyle\sum_{h=1}^{H}\sum_{j\in\mathcal{N}_i}\alpha_{ij}^{h}\,\mathbf{W}^{h} \mathbf{x}_j\Big).
 \end{equation}
-Every agent's loss updates this shared encoder, so training sees the full cluster state. At execution each agent reads only its own row $\mathbf{z}_i$ to decide its pending requests. An earlier variant mixed each gNB's summed per-request values with a QMIX-style monotonic mixer. Its target changed scale with the request count, and its mean training loss diverged from about 76 to about 409. Treating each request as its own sample removed that dependence.
+An earlier variant fed each gNB's summed per-request values into a QMIX-style mixer, and its mean training loss diverged from about 76 to about 409. Treating each request as its own sample removed that dependence.
 
-In the federated variant each client's encoder still reads the full joint node-feature snapshot. Differential privacy bounds how much any one client's training data can change what the shared model reveals. Each client applies a differentially private stochastic gradient descent (DP-SGD) step, clipping its minibatch gradient to norm $C_{\text{dp}}$ and adding Gaussian noise of standard deviation $\sigma C_{\text{dp}}$. Zero-concentrated differential privacy (zCDP) composes this over the $m$ noisy steps a client takes, with $\varepsilon$ and $\delta$ the usual privacy-loss and failure-probability parameters,
+In the federated variant each client clips its minibatch gradient to norm $C_{\text{dp}}$ and adds Gaussian noise of standard deviation $\sigma C_{\text{dp}}$. Zero-concentrated differential privacy composes this over the $m$ noisy steps a client takes,
 \begin{equation}
 \label{eq:zcdp}
 \rho=\frac{2m}{\sigma^{2}},\qquad
 \varepsilon(\delta)=\rho+2\sqrt{\rho\ln(1/\delta)}.
 \end{equation}
-We credit no amplification by subsampling, because minibatches come from a replay buffer that reuses records, so the bound is conservative. The noise protects each client's admission decisions and rewards, but not the congestion features that every encoder reads by design.
+We credit no amplification by subsampling, because minibatches come from a replay buffer that reuses records, so the bound is conservative.
 
-The trivial-policy check evaluates the simplest rules before trusting any learned policy. In our first simulator every slice was served independently against its own ceiling. There, accepting every request earned 14.45 reward per step and kept URLLC and eMBB at 100\% SLA compliance, more than any learned policy, so admission control had nothing to do. The shared-budget simulator of the main paper removes that loophole. Over the same 30 held-out seeds, accepting every request now earns 9.89 reward per step and lets eMBB compliance fall to 56.8\%, whereas shedding every mMTC request earns 12.84 and keeps URLLC and eMBB at 100\%. Replication on a disjoint seed sample caught one artefact. Queue backlog carried over between episodes, so one early transient spoiled every later episode for every policy, the static rule included. Every result in this paper comes from the corrected simulator, which empties all queues at the start of each episode.
+The trivial-policy check of the main paper's Section 5.1 rests on these numbers. In our first simulator, where every slice was served against its own ceiling, accepting every request earned 14.45 reward per step and kept URLLC and eMBB at 100\% SLA compliance. Over the same 30 held-out seeds in the shared-budget simulator, accepting every request now earns 9.89 reward per step and lets eMBB compliance fall to 56.8\%, whereas shedding every mMTC request earns 12.84.
 
-Each analysis plan was committed to the project's version-control history before the runs it governs, with one exception. The main campaign reuses Env A results of DQN-SA, DQN-I, and the static rule from an earlier rerun, M63. They cover three gNBs on the primary and replication seeds, the sensitivity study, seven gNBs, and 15 of the 30 seeds at nineteen gNBs. The M63 plan was committed one minute after that rerun was launched and before any of its results were read. Two development stages are also disclosed, although neither changed a reported result. A protocol, M67, tested checkpoint selection and both encoders on new seeds, found no decisive gain over DQN-SA, and left AXIOM unchanged. Exploratory probes on seeds 900 to 904 and pilot seeds 2000 to 2004 suggested the load-shift effect of Section S7 and the hindsight bound of the main paper's Env B results before their reported runs. Three figures describe stored runs after the results were known, with no plan or test of their own. The main paper maps per-gNB compliance at nineteen gNBs. Section S2 sets reported beside fresh-seed differences, and Section S7 shows AXIOM's learned eMBB shedding after replaying every stored evaluation exactly.
-
-Three analyses added after the main campaigns follow the same rule where they need one. M92, the zero-shot transfer of Section S6, and M94, the distillation of Section S7, were each committed before their runs. M93, the summary of Section S2, reanalyses stored logs only and has no plan of its own.
-
-Section 5.2 of the main paper describes how an artificial intelligence assistant was used in this work.
+The main campaign reuses Env A results of DQN-SA, DQN-I, and the static rule from an earlier rerun, M63. They cover three gNBs on the primary and replication seeds, the sensitivity study, seven gNBs, and 15 of the 30 seeds at nineteen gNBs. Two development stages are disclosed, although neither changed a reported result. A protocol, M67, tested checkpoint selection and both encoders on new seeds and left AXIOM unchanged, and exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S7 before its reported runs. M92, the zero-shot transfer of Section S6, and M94, the distillation of Section S7, were each committed before their runs. M93, the summary of Section S2, reanalyses stored logs only and has no plan of its own. Section 5.2 of the main paper describes how an artificial intelligence assistant was used in this work.
 
 \section*{S5. Three gNBs, ablations, federation, and disruption}
-The MLP variant reads only a gNB's own features. In Env A it ties AXIOM, which earns 0.058 more reward per step at three gNBs with 95\% CI [$-$0.17, 0.26] and 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied. In Env B it earns slightly more, 0.116 per step at three gNBs in 17 of 30 seeds at $p=0.45$. At seven gNBs it earns 1.12 and 0.95 more, but neither lead survives Holm correction. On ten fresh seeds at seven gNBs in Env B, however, it led by 1.38 reward per step, in 9 of 10 seeds at $p=0.006$.
+The MLP variant reads only a gNB's own features. In Env A it ties AXIOM, which earns 0.058 more reward per step at three gNBs with 95\% CI [$-$0.17, 0.26] and 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied. A disjoint replication on seeds 1000 to 1009 is stronger for AXIOM. There it earns 1.083, 0.799, and 3.806 more reward per step than DQN-SA, DQN-I, and MAPPO, and pooled over all 40 seeds its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step at Holm-adjusted $p\leq0.002$.
 
-A disjoint replication on seeds 1000 to 1009 is stronger for AXIOM. There it earns 1.083, 0.799, and 3.806 more reward per step than DQN-SA, DQN-I, and MAPPO. It sits only 0.018 below the static rule on those seeds. Pooled over all 40 seeds its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step at Holm-adjusted $p\leq0.002$. Fresh seeds in Section S2 do not reproduce the lead over DQN-SA, however. In Env B at three gNBs the disjoint ten-seed replication points the same way, with AXIOM winning 7 or 8 of 10 seeds against each, but no lead survives correction there.
+A grid of 24 MAPPO configurations raised MAPPO from 60.6\% to 69.6\% priority-slice compliance at nineteen gNBs on the ring layout, and AXIOM still beats it by 1.25 to 16.18 reward per step at Holm-adjusted $p<0.001$. With its initialisation properly seeded, DQN-SA keeps 80.3\% and 63.9\% priority-slice compliance at seven and nineteen gNBs, and AXIOM beats it under every layout at Holm-adjusted $p\leq0.035$.
 
-Under 102\% and 107\% load and the changed slice weights AXIOM stays within 0.13 of the static rule's reward. Its leads over both DQN baselines are positive under every condition, but at ten seeds only two survive correction. They are its margin over DQN-I at 107\% load, 1.073 reward per step at $p=0.006$, and over DQN-SA under the changed weights, 1.264 at $p=0.041$.
-
-The comparison also holds when the baselines are made stronger. A grid of 24 MAPPO configurations, chosen on pilot seeds and allowing three times the training budget, kept the reported setting in Env B and selected a longer-trained one in Env A. There MAPPO rises from 10.013 to 11.448 reward per step at three gNBs and from 60.6\% to 69.6\% priority-slice compliance at nineteen gNBs on the ring layout. AXIOM still beats it in every setting tested, by 1.25 to 16.18 reward per step at Holm-adjusted $p<0.001$, and by 2.42 in Env B at seven gNBs. With its initialisation properly seeded, DQN-SA keeps 80.3\% and 63.9\% priority-slice compliance at seven and nineteen gNBs, and AXIOM beats it under every layout at Holm-adjusted $p\leq0.035$.
-
-AXIOM's learning rate matters most as the cluster grows. At the original rate of $10^{-4}$ AXIOM earns only 6.496 per step in Env B on seeds 900 to 909, and $3{\times}10^{-4}$ reaches 7.220. The DQN baselines also lose reward when rerun at $10^{-4}$, falling to 11.477 [10.61, 12.09] and 11.119 [10.73, 11.50] reward per step in Env A at three gNBs, with 95\% CIs. A rate of $3{\times}10^{-3}$ and an encoder twice as wide both stay within 0.19 of the current AXIOM. At nineteen gNBs in Env A the original AXIOM kept priority-slice compliance at only 79.1\%. Over the Env B seeds the original AXIOM earns 2.37 less per step than the current design in all ten seeds. The joint-target variant of AXIOM, trained beside it on fresh seeds, never differed significantly from it after Holm correction over eight tests. It reaches 12.831 reward per step in Env A at three gNBs and 99.96\% priority-slice compliance at nineteen. On 60 further fresh seeds across four settings it was again never significantly different from AXIOM, ahead in three settings and behind at seven gNBs in Env B, so we keep the reported design.
+Fig.~\ref{fig:m3-privacy} shows the federated campaign. With federation and no noise, mean reward per step on the ten shared seeds is 12.356 for centralised AXIOM and 11.929 for the federated variant. That is a difference of $+0.427$ with 95\% CI [$-$0.54, 1.51] and $p=0.65$, so federation shows no significant cost on these seeds. Each client takes 17{,}969 noisy steps over its training run. At $\delta{=}10^{-5}$ Eq.~\eqref{eq:zcdp} then gives $\varepsilon$ of about 146{,}000, 37{,}000, 9{,}600, and 2{,}600 for $\sigma$ of 0.5, 1, 2, and 4, so a useful guarantee would need noise on the roughly 360 per-round model updates instead.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig4_m3_privacy.pdf}
+\includegraphics{figures/fig4_m3_privacy.pdf}
 \caption{Federated campaign in Env A, 10 seeds. a, Paired per-seed federation
 cost on mean reward per step, not significant at $p=0.65$. b, Block precision
 versus DP noise multiplier $\sigma$, over the seeds that block}
 \label{fig:m3-privacy}
 \end{figure}
 
-Fig.~\ref{fig:m3-privacy} shows the federated campaign in Env A on ten seeds. With federation and no noise, mean reward per step on the ten shared seeds is 12.356 for centralised AXIOM and 11.929 for the federated variant. That is a difference of $+0.427$ with 95\% CI [$-$0.54, 1.51] and $p=0.65$, so federation shows no significant cost on these seeds. The disjoint replication shows a larger cost of $+0.968$, with 95\% CI [0.18, 1.96], which falls just short of significance at $p=0.055$. FedProx, which adds a proximal term of weight $\mu$ to each client's loss, gives no consistent picture on three seeds, with $\mu{=}0.01$ above FedAvg and $\mu$ of 0.1 and 1.0 below it.
-
-DP-SGD noise on every step lowers reward by 0.77 to 1.25 per step at every tested noise multiplier. It also lowers eMBB compliance to between 74.3\% and 83.0\%, and two and four of the ten seeds collapse at $\sigma$ of 2 and 4. None of these drops survives Holm correction at ten seeds. Each client takes 17{,}969 noisy steps over its training run. At $\delta{=}10^{-5}$ Eq.~\eqref{eq:zcdp} then gives $\varepsilon$ of about 146{,}000, 37{,}000, 9{,}600, and 2{,}600 for $\sigma$ of 0.5, 1, 2, and 4. Per-step DP-SGD therefore gives no meaningful guarantee here. A useful one would need noise on the roughly 360 per-round model updates instead.
-
-Each policy's frozen Env A checkpoint also faced three disruptions at evaluation time. A gNB dropout forces one gNB to reject everything and blanks its feature row. A demand spike multiplies the arrival rate, and an agent churn swaps one gNB's decisions for an untrained copy of its policy. Dropout and churn windows last 10\%, 30\%, or 60\% of the episode. Spikes multiply arrivals by 2, 4, or 8. Reward is normalised by each step's pending-request count, and Fig.~\ref{fig:m4-disruption} plots the reward each policy keeps.
+Each policy's frozen Env A checkpoint also faced three disruptions. A gNB dropout forces one gNB to reject everything, a demand spike multiplies the arrival rate, and an agent churn swaps one gNB's decisions for an untrained copy. Dropout and churn windows last 10\%, 30\%, or 60\% of the episode. Spikes multiply arrivals by 2, 4, or 8. Fig.~\ref{fig:m4-disruption} shows the reward each policy keeps, normalised by each step's pending-request count.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig5_m4_disruption.pdf}
+\includegraphics{figures/fig5_m4_disruption.pdf}
 \caption{Disruption campaign, 10 seeds per policy, 95\% CIs. a, b, Normalised
 reward kept under dropout and churn, with the undisrupted level at the tick marked None.
 c, Block precision under demand spikes}
 \label{fig:m4-disruption}
 \end{figure}
 
-Dropout and churn hurt every policy significantly at every severity, in 9 or 10 of 10 seeds at Holm-adjusted $p\leq0.041$, and no gap between AXIOM and any baseline survives correction. Demand spikes leave AXIOM's decisions largely intact, with block precision at 0.98, against 1.00 for DQN-SA and about 0.95 for DQN-I.
-
 \section*{S6. Scaling to thirty-seven gNBs and stronger baselines}
-In the gate map of the main paper's thirty-seven-gNB cluster, DQN-SA leaves every admission gate open at 0.93 to 0.95 and DQN-I closes the mMTC gate only to 0.94. MAPPO there partly closes the eMBB gate to 0.80 but leaves mMTC open at 0.51. At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\% and 94.4\%, against 91.4\% and 61.0\% for DQN-SA, 94.2\% and 55.0\% for DQN-I, and 87.0\% and 48.4\% for MAPPO. At nineteen gNBs it keeps them at 99.4\% and 95.1\%, and at thirty-seven at 96.7\% and 90.7\%.
-
-The thirty-seven-gNB configuration extends the nineteen-gNB one exactly as the seven- and nineteen-gNB configurations extended three, with 37 arrivals per step and at most 148 pending requests. AXIOM ran 30 seeds on the hex layout and 15 on each of the ring and fully-connected layouts. In Env A the baselines and the static rule never read the layout, so each ran once on the 30 hex seeds, and Table~\ref{tab:s-n37} lists every policy.
+In the gate map of the main paper's thirty-seven-gNB cluster, DQN-SA leaves every admission gate open at 0.93 to 0.95 and DQN-I closes the mMTC gate only to 0.94. MAPPO there partly closes the eMBB gate to 0.80 but leaves mMTC open at 0.51. At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\% and 94.4\%, against 87.0\% to 94.2\% and 48.4\% to 61.0\% for the baselines, and at thirty-seven at 96.7\% and 90.7\%. The thirty-seven-gNB configuration extends the smaller ones, with 37 arrivals per step and at most 148 pending requests, and Table~\ref{tab:s-n37} lists every policy. AXIOM's six collapsed runs keep 59\% to 65\% priority-slice compliance, while its other runs keep 96.9\% to 98.1\% on average under each layout.
 
 \begin{table}[!htbp]
 \caption{Env A with thirty-seven gNBs, reported and fresh seeds. Priority-slice compliance is the mean of URLLC and eMBB compliance, and collapse counts policies that accept every request}
 \label{tab:s-n37}
 \centering
+\footnotesize
 \begin{tabular}{lcccccc}
 \toprule
 Policy & Runs & URLLC & eMBB & Priority SLA & Reward & Collapsed \\
@@ -305,19 +288,13 @@ Static rule & 20 & 100.0\% & 100.0\% & 99.97\% & 177.68 & 0 \\
 \end{tabular}
 \end{table}
 
-AXIOM's six collapsed runs keep 59\% to 65\% priority-slice compliance, while its other runs keep 96.9\% to 98.1\% on average under each layout. We also ran MAPPO with the configuration that the main paper's grid selected for Env A, trained for 900 episodes. It keeps 65.6\% priority-slice compliance and 151.90 reward per step and never collapses. AXIOM beats it by 29.2 points in 13 of 15 seeds at $p<0.001$ and by 23.23 reward per step in all 15.
-
-The fresh-seed replication retrained every policy on seeds 6100 to 6119 on the hex layout, as the lower part of Table~\ref{tab:s-n37} lists. AXIOM leads DQN-SA by 37.7 points of priority-slice compliance and 35.46 reward per step, DQN-I by 61.0 and 25.62, and MAPPO by 36.5 and 30.63. It wins 18 to 19 of 20 seeds in every comparison, all at Holm-adjusted $p<0.001$. Its one collapsed seed is 6110, and pooled with the 30 hex seeds above, AXIOM keeps 94.2\% priority-slice compliance over 50 seeds and collapses in 4 of them.
-
-Accepting every request is the floor that any admission controller should clear. In Env A it earns 26.88, 78.55, and 156.22 reward per step at seven, nineteen, and thirty-seven gNBs. At nineteen and thirty-seven gNBs every baseline keeps less priority-slice compliance than accept-all on average, and DQN-SA's runs that do not collapse keep only 40.0\% and 35.9\%, DQN-I's 55.9\% and 29.1\%.
-
-The DQN baselines were tuned on pilot seeds over learning rates from $10^{-4}$ to $10^{-3}$ and minibatches of 16 and 64, and retrained on the 30 hex seeds wherever a new setting won, as Table~\ref{tab:s-tuned} lists. The grid selected new settings in three of the four combinations of baseline and size. No tuned baseline exceeds the accept-all floor at either size. At nineteen gNBs the tuned DQN-SA accepts every request in all 30 evaluation seeds. AXIOM beats each tuned baseline on compliance and reward in every setting, winning 26 to 30 of 30 seeds at Holm-adjusted $p<0.001$.
+The DQN baselines were also tuned on pilot seeds over learning rates from $10^{-4}$ to $10^{-3}$ and minibatches of 16 and 64, as Table~\ref{tab:s-tuned} lists. No tuned baseline exceeds the accept-all floor at either size, and AXIOM beats each one on compliance and reward in every setting, winning 26 to 30 of 30 seeds at Holm-adjusted $p<0.001$. VDN, which trains DQN-I's per-gNB networks on one joint target, ties AXIOM at three gNBs but falls behind at nineteen, as Table~\ref{tab:s-vdn} shows.
 
 \begin{table}[!htbp]
 \caption{DQN baselines tuned on pilot seeds, Env A, 30 hex seeds. LR is the learning rate, batch the minibatch size, and Before the priority-slice compliance before tuning}
 \label{tab:s-tuned}
 \centering
-\small
+\footnotesize
 \setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccccc}
 \toprule
@@ -331,13 +308,11 @@ DQN-I & 37 & $10^{-4}$, 64 & 45.5\% & 32.1\% & 150.42 & 18 \\
 \end{tabular}
 \end{table}
 
-The value-decomposition network (VDN) trains DQN-I's per-gNB networks on one joint target per step, with no tuning. VDN ties AXIOM at three gNBs in both environments but falls behind at nineteen gNBs, as Table~\ref{tab:s-vdn} shows. There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step, winning 27 to 28 of 30 seeds at Holm-adjusted $p<0.001$. At 110\% and 120\% of the nominal load at nineteen gNBs, AXIOM keeps 24.3 to 34.0 and 2.5 to 6.4 percentage points more priority-slice compliance than every learned baseline, at Holm-adjusted $p\leq0.006$. At 120\% the priority demand exceeds the slice caps at most gNBs, so no policy can protect it throughout.
-
 \begin{table}[!htbp]
 \caption{VDN against AXIOM and DQN-I, reward per step and priority-slice compliance, 30 seeds per setting}
 \label{tab:s-vdn}
 \centering
-\small
+\footnotesize
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccccc}
 \toprule
@@ -354,84 +329,45 @@ Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results 
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=\textwidth]{figures/fig14_layouts.pdf}
+\includegraphics{figures/fig14_layouts.pdf}
 \caption{Env A priority-slice compliance by layout, per-seed points behind the mean and 95\% CI. a, Nineteen gNBs, 30 seeds per layout. b, Thirty-seven gNBs, where the baselines never read the layout and ran once, on the hex seeds}
 \label{fig:s-layouts}
 \end{figure}
 
-A pre-registered run, M92, evaluated stored seven-gNB checkpoints at nineteen and thirty-seven gNBs without retraining, for AXIOM and MAPPO in Env A and also for AXIOM's MLP variant in Env B. An amendment committed before its runs added the fully-connected layout, so all three Env A layouts are covered. AXIOM's encoder and per-slice heads keep their shape at any size. The stored network also holds a mixer left from an earlier training design. No current loss uses it and its input grows with the cluster, so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters. MAPPO runs through its shared actor, which reads only the acting gNB's features. Before the plan was committed, six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly. Table~\ref{tab:s-transfer} gives every policy on the 15 seven-gNB seeds, each evaluated on its own held-out stream. In Env B the endpoint is per-gNB compliance, because cluster-level compliance, which needs all nineteen gNBs to comply at once, stays between 18\% and 36\% for every policy there. Graph attention again adds nothing measurable, since AXIOM transferred from seven gNBs keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\% CI [$-$2.23, 3.81] and $p=0.72$. MAPPO gives the same results on all three Env A layouts, because neither MAPPO nor Env A reads the layout. On the fully-connected layout at nineteen gNBs, AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$.
+The transfer run of the main paper's Section 6.2, M92, also covered AXIOM's MLP variant in Env B. The stored network also holds a mixer left from an earlier training design. No current loss uses it and its input grows with the cluster, so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters. Before the plan was committed, six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly. Table~\ref{tab:s-transfer} adds CIs, reward, and collapses to the main paper's transfer table. In Env B the endpoint is per-gNB compliance, because cluster-level compliance, which needs all nineteen gNBs to comply at once, stays between 18\% and 36\% for every policy there. Graph attention again adds nothing measurable, since AXIOM transferred from seven gNBs keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\% CI [$-$2.23, 3.81] and $p=0.72$. On the fully-connected layout at nineteen gNBs, AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$.
 
 \begin{table}[!htbp]
-\caption{Zero-shot transfer from seven gNBs, 15 paired seeds. Priority-slice compliance with 95\% CIs, reward per gNB per step, and collapsed runs. Policies from 7 were trained at seven gNBs and never retrained}
+\caption{Zero-shot transfer from seven gNBs on 15 paired seeds, priority-slice compliance with 95\% CIs, reward per gNB per step, and collapsed runs. The main paper's transfer table gives the rule references}
 \label{tab:s-transfer}
 \centering
-\footnotesize
-\begin{tabular}{@{}lcccc@{}}
+\scriptsize
+{\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}lcccccccc@{}}
 \toprule
-Policy & Runs & Priority SLA, \% & Reward per gNB & Collapsed \\
+& \multicolumn{3}{c}{AXIOM from 7} & \multicolumn{3}{c}{AXIOM trained at the size} & \multicolumn{2}{c}{MAPPO from 7} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(l){8-9}
+Setting, gNBs & Priority SLA, \% & Reward & Collapsed & Priority SLA, \% & Reward & Collapsed & Priority SLA, \% & Reward \\
 \midrule
-\multicolumn{5}{@{}l}{Env A, hex, 19 gNBs} \\
-\quad AXIOM from 7 & 15 & 96.2 [91.6, 99.9] & 4.645 & 0 \\
-\quad MAPPO from 7 & 15 & 64.2 [56.6, 72.2] & 3.989 & 0 \\
-\quad AXIOM trained at the size & 15 & 94.6 [86.9, 100.0] & 4.659 & 1 \\
-\quad Static rule & 15 & 100.0 [99.9, 100.0] & 4.756 & 0 \\
-\quad Accept all & 15 & 65.9 [64.8, 67.0] & 4.131 & 15 \\
-\midrule
-\multicolumn{5}{@{}l}{Env A, hex, 37 gNBs} \\
-\quad AXIOM from 7 & 15 & 95.4 [89.6, 99.9] & 4.690 & 0 \\
-\quad MAPPO from 7 & 15 & 61.5 [53.7, 70.2] & 4.134 & 0 \\
-\quad AXIOM trained at the size & 15 & 94.8 [87.3, 100.0] & 4.733 & 0 \\
-\quad Static rule & 15 & 100.0 [100.0, 100.0] & 4.800 & 0 \\
-\quad Accept all & 15 & 61.1 [59.9, 62.4] & 4.220 & 15 \\
-\midrule
-\multicolumn{5}{@{}l}{Env A, ring, 19 gNBs} \\
-\quad AXIOM from 7 & 15 & 96.9 [91.3, 99.9] & 4.666 & 0 \\
-\quad MAPPO from 7 & 15 & 64.2 [56.8, 72.4] & 3.989 & 0 \\
-\quad AXIOM trained at the size & 15 & 96.8 [92.3, 99.9] & 4.689 & 0 \\
-\quad Static rule & 15 & 100.0 [99.9, 100.0] & 4.756 & 0 \\
-\quad Accept all & 15 & 65.9 [64.8, 67.0] & 4.131 & 15 \\
-\midrule
-\multicolumn{5}{@{}l}{Env A, ring, 37 gNBs} \\
-\quad AXIOM from 7 & 15 & 96.3 [90.3, 99.7] & 4.711 & 0 \\
-\quad MAPPO from 7 & 15 & 61.5 [53.6, 70.2] & 4.134 & 0 \\
-\quad AXIOM trained at the size & 15 & 93.2 [85.3, 100.0] & 4.689 & 2 \\
-\quad Static rule & 15 & 100.0 [100.0, 100.0] & 4.800 & 0 \\
-\quad Accept all & 15 & 61.1 [59.9, 62.4] & 4.220 & 15 \\
-\midrule
-\multicolumn{5}{@{}l}{Env A, fully-connected, 19 gNBs} \\
-\quad AXIOM from 7 & 15 & 96.6 [90.6, 100.0] & 4.654 & 0 \\
-\quad MAPPO from 7 & 15 & 64.2 [56.8, 72.3] & 3.989 & 0 \\
-\quad AXIOM trained at the size & 15 & 100.0 [99.9, 100.0] & 4.756 & 0 \\
-\quad Static rule & 15 & 100.0 [99.9, 100.0] & 4.756 & 0 \\
-\quad Accept all & 15 & 65.9 [64.8, 67.0] & 4.131 & 15 \\
-\midrule
-\multicolumn{5}{@{}l}{Env A, fully-connected, 37 gNBs} \\
-\quad AXIOM from 7 & 15 & 96.3 [90.1, 100.0] & 4.702 & 0 \\
-\quad MAPPO from 7 & 15 & 61.5 [53.8, 70.0] & 4.134 & 0 \\
-\quad AXIOM trained at the size & 15 & 94.4 [85.9, 100.0] & 4.715 & 1 \\
-\quad Static rule & 15 & 100.0 [100.0, 100.0] & 4.800 & 0 \\
-\quad Accept all & 15 & 61.1 [59.9, 62.4] & 4.220 & 15 \\
-\midrule
-\multicolumn{5}{@{}l}{Env B, hex, 19 gNBs, per-gNB compliance} \\
-\quad AXIOM from 7 & 15 & 79.1 [76.6, 80.8] & 4.257 & 0 \\
-\quad MLP variant from 7 & 15 & 78.3 [75.5, 80.7] & 4.237 & 0 \\
-\quad MAPPO from 7 & 15 & 72.9 [70.1, 75.6] & 3.898 & 0 \\
-\quad AXIOM trained at the size & 15 & 77.3 [74.2, 79.8] & 4.225 & 1 \\
-\quad Static rule & 15 & 79.9 [79.0, 80.7] & 4.294 & 0 \\
-\quad Accept all & 15 & 66.4 [65.5, 67.3] & 3.935 & 15 \\
+Env A hex, 19 & 96.2 [91.6, 99.9] & 4.645 & 0 & 94.6 [86.9, 100.0] & 4.659 & 1 & 64.2 [56.6, 72.2] & 3.989 \\
+Env A hex, 37 & 95.4 [89.6, 99.9] & 4.690 & 0 & 94.8 [87.3, 100.0] & 4.733 & 0 & 61.5 [53.7, 70.2] & 4.134 \\
+Env A ring, 19 & 96.9 [91.3, 99.9] & 4.666 & 0 & 96.8 [92.3, 99.9] & 4.689 & 0 & 64.2 [56.8, 72.4] & 3.989 \\
+Env A ring, 37 & 96.3 [90.3, 99.7] & 4.711 & 0 & 93.2 [85.3, 100.0] & 4.689 & 2 & 61.5 [53.6, 70.2] & 4.134 \\
+Env A fully-connected, 19 & 96.6 [90.6, 100.0] & 4.654 & 0 & 100.0 [99.9, 100.0] & 4.756 & 0 & 64.2 [56.8, 72.3] & 3.989 \\
+Env A fully-connected, 37 & 96.3 [90.1, 100.0] & 4.702 & 0 & 94.4 [85.9, 100.0] & 4.715 & 1 & 61.5 [53.8, 70.0] & 4.134 \\
+Env B hex, 19 & 79.1 [76.6, 80.8] & 4.257 & 0 & 77.3 [74.2, 79.8] & 4.225 & 1 & 72.9 [70.1, 75.6] & 3.898 \\
+\quad MLP variant from 7 & 78.3 [75.5, 80.7] & 4.237 & 0 & & & & & \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 \section*{S7. Env B, shifted load, longer training, and convergence}
-No deployable policy we tested keeps eMBB compliance above 37\% in Env B, because demand at the load peaks exceeds the budget by up to 23.5\%. Even the rule with the highest eMBB compliance among all 95 local rules, chosen in hindsight on each evaluation stream, reaches only 37.7\% on average. The best rule by reward in hindsight earns only 0.14\% more than the tuned rule.
-
-Table~\ref{tab:s-shift} lists AXIOM against the rule tuned on nominal conditions, on 25 checkpoints neither retrained nor re-tuned. A rule re-tuned on the shifted training streams selected thresholds different from the nominal rule's at every shift. Against it AXIOM trails by 0.16 and 0.12 per step at 110\% and 115\% load, which is not significant, and by 0.62 at 120\% load. Under 110\% to 120\% load AXIOM beats the nominally tuned rule in 21 to 23 of 25 seeds at Holm-adjusted $p\leq0.0002$. At seven gNBs on the ring layout the reversal is larger. AXIOM trails the rule by 3.84 reward per step under nominal load but leads it by 1.86 and 3.14 at 110\% and 120\% load.
+No deployable policy we tested keeps eMBB compliance above 37\% in Env B, because demand at the load peaks exceeds the budget by up to 23.5\%. Even the rule with the highest eMBB compliance among all 95 local rules, chosen in hindsight on each evaluation stream, reaches only 37.7\% on average. Table~\ref{tab:s-shift} lists AXIOM against the rule tuned on nominal conditions, on 25 checkpoints neither retrained nor re-tuned. A rule re-tuned on the shifted training streams selected thresholds different from the nominal rule's at every shift. Against it AXIOM trails by 0.16 and 0.12 per step at 110\% and 115\% load, which is not significant, and by 0.62 at 120\% load.
 
 \begin{table}[!htbp]
 \caption{AXIOM against the rule tuned on nominal conditions, Env B with three gNBs, 25 seeds, reward per step, wins over losses, and the unadjusted Wilcoxon $p$}
 \label{tab:s-shift}
 \centering
+\footnotesize
 \begin{tabular}{lccccc}
 \toprule
 Condition & AXIOM & Tuned rule & Difference & AXIOM wins & $p$ \\
@@ -448,15 +384,13 @@ load swing 0.50 & 6.015 & 5.831 & +0.184 & 18/7 & 0.045 \\
 \end{tabular}
 \end{table}
 
-With three times the training budget AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven, on 20 and 12 seeds. The remaining gaps to the tuned rule, 0.08 and 0.96 per step, are no longer significant, at $p=0.35$ and $p=0.064$.
-
-Table~\ref{tab:s-envb19} lists Env B at nineteen gNBs on the hex layout, over 15 seeds. Per-gNB compliance counts a slice as compliant at a gNB and step when that gNB meets the slice's SLA, whereas the cluster-level metric counts a violation at any gNB as a violation of the cluster. AXIOM makes exactly the static rule's decisions in 9 of the 15 seeds, and in 5 of the other 6 it also blocks only mMTC.
+Table~\ref{tab:s-envb19} lists Env B at nineteen gNBs on the hex layout. Per-gNB compliance counts a slice as compliant at a gNB and step when that gNB meets the slice's SLA, whereas the cluster-level metric counts a violation at any gNB as a violation of the cluster. AXIOM makes exactly the static rule's decisions in 9 of the 15 seeds, and in 5 of the other 6 it also blocks only mMTC. On 15 fresh seeds, 7000 to 7014, in Env B at nineteen gNBs AXIOM earned 5.90 to 22.00 more reward per step than each learned baseline and kept 6.9 to 11.1 points more per-gNB priority-slice compliance, at Holm-adjusted $p\leq0.011$, keeping 76.9\%.
 
 \begin{table}[!htbp]
 \caption{Env B with nineteen gNBs, 15 seeds, hex layout. SLA columns give priority-slice compliance, the mean of URLLC and eMBB compliance, per gNB and at cluster level}
 \label{tab:s-envb19}
 \centering
-\small
+\footnotesize
 \begin{tabular}{lcccc}
 \toprule
 Policy & Reward & Per-gNB SLA & Cluster SLA & Collapsed \\
@@ -472,11 +406,7 @@ Tuned local rule, carried over & 84.09 & 84.5\% & 55.7\% & 0 \\
 \end{tabular}
 \end{table}
 
-Further runs answer an internal review, and four of their six predictions failed. The per-gNB penalty charges each slice's violation penalty once for every violating gNB, in training and evaluation. Under uneven load each gNB's load multiplier is drawn between 75\% and 125\% per seed, and the rule re-tuned on those streams sheds eMBB once the URLLC queue passes 0.05 rather than 0.2. Under this uneven load at seven gNBs AXIOM does not beat the nominally tuned rule, earning 0.36 more reward per step at $p=0.23$. It still beats every learned baseline there, by 1.18 to 4.28 reward per step at unadjusted $p\leq0.005$. Against MAPPO under uneven per-gNB load at seven gNBs it earns 27\% more and wins every seed. Charging the SLA penalty per violating gNB, so that it grows with the cluster, raised AXIOM's per-gNB compliance by only 1.9 points, at $p=0.65$. Under that reward every learned baseline kept 13.7 to 18.5 percentage points less per-gNB compliance than AXIOM, in every seed.
-
-Two further runs explain AXIOM's position at seven gNBs, and every one of their checks held. At seven gNBs the tuned rules earn 26.5 to 27.3 per step and beat AXIOM in all 15 seeds under every layout, while AXIOM earns 23.4 to 23.6, no more than the static rule's 23.6. At seven gNBs 28 of AXIOM's 45 seeds shed only mMTC, which is the static rule's policy. None of AXIOM's 30 seeds does this at three gNBs. The reward charges each slice's SLA penalty once for the cluster when any gNB violates it, so shedding eMBB at one gNB pays only when the other gNBs also comply.
-
-Table~\ref{tab:s-conv} lists three changes, each tested on the ring layout with 15 seeds. Compared with the original setting, the per-gNB SLA penalty raised AXIOM's compliance by 10.7 points, a learning rate of 0.003 by 14.9, and 900 training episodes by 21.7. The Holm-adjusted $p$ values are 0.007, 0.007, and 0.0004. The per-gNB penalty changes the reward itself, so only compliance compares there. Under that reward AXIOM keeps 20.9 points more than DQN-SA trained the same way, which collapses in 11 of 15 seeds.
+At seven gNBs the tuned rules earn 26.5 to 27.3 per step and beat AXIOM in all 15 seeds under every layout, while AXIOM earns 23.4 to 23.6, no more than the static rule's 23.6. The reward charges each slice's SLA penalty once for the cluster when any gNB violates it, so shedding eMBB at one gNB pays only when the other gNBs also comply. Table~\ref{tab:s-conv} lists three changes on the ring layout. The per-gNB SLA penalty raised AXIOM's compliance by 10.7 points, a learning rate of 0.003 by 14.9, and 900 training episodes by 21.7. The Holm-adjusted $p$ values are 0.007, 0.007, and 0.0004. With 900 episodes for every learner, AXIOM keeps 12.8 to 15.2 points more compliance and earns 0.44 to 0.82 more reward per gNB than each baseline, at Holm-adjusted $p\leq0.0012$. The tuned rule still keeps more compliance than AXIOM in all 15 seeds. At nineteen gNBs the longer budget does not help. After 900 episodes seven of eight seeds still shed only mMTC, against all eight after 300. Under uneven load, with each gNB's multiplier drawn between 75\% and 125\% per seed, AXIOM does not beat the nominally tuned rule at seven gNBs, earning 0.36 more reward per step at $p=0.23$. It still beats every learned baseline there, by 1.18 to 4.28 reward per step at unadjusted $p\leq0.005$. Under the per-gNB SLA penalty every learned baseline kept 13.7 to 18.5 percentage points less per-gNB compliance than AXIOM, in every seed.
 
 \begin{table}[!htbp]
 \caption{Env B, seven gNBs, ring layout, 15 seeds, reward per gNB per step, priority-slice compliance, and seeds that shed only mMTC}
@@ -499,20 +429,16 @@ Tuned local rule & 3.91 & 60.5\% & 0 \\
 \end{tabular}
 \end{table}
 
-With 900 episodes for every learner, AXIOM keeps 12.8 to 15.2 points more compliance and earns 0.44 to 0.82 more reward per gNB than each baseline, at Holm-adjusted $p\leq0.0012$. The baselines gain at most 7.0 points from the longer budget. The tuned rule still keeps more compliance than AXIOM in all 15 seeds. At nineteen gNBs the longer budget does not help. After 900 episodes seven of eight seeds still shed only mMTC, against all eight after 300.
-
-Fig.~\ref{fig:s-decision} shows what AXIOM learned at seven gNBs on the ring layout. After 300 episodes the eMBB head of 11 of its 15 seeds would reject at no step, and pooled over all 15 it rejects on 2.0\% of gNB-steps. After 900 episodes 14 of 15 seeds reject more often as the gNB's own URLLC queue grows. Pooled, the share rises from 12.2\% below a queue of 0.05 to 71.8\% between 0.75 and 1.0, a softer form of the tuned rule's step at 0.2.
+Fig.~\ref{fig:s-decision} shows what AXIOM learned at seven gNBs on the ring layout. After 300 episodes the eMBB head of 11 of its 15 seeds would reject at no step. After 900 episodes 14 of 15 seeds reject more often as the gNB's own URLLC queue grows, a softer form of the tuned rule's step at 0.2.
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{figures/fig_decision.pdf}
+\includegraphics{figures/fig_decision.pdf}
 \caption{What AXIOM learned in Env B at seven gNBs on the ring layout, 15 seeds. a, Share of gNB-steps on which its eMBB head would reject, by the gNB's own URLLC queue, with 95\% CIs over seeds. b, How often each queue level occurs}
 \label{fig:s-decision}
 \end{figure}
 
-On 15 fresh seeds, 7000 to 7014, in Env B at nineteen gNBs the results above held again. AXIOM earned 5.90 to 22.00 more reward per step than each learned baseline and kept 6.9 to 11.1 points more per-gNB priority-slice compliance, at Holm-adjusted $p\leq0.011$, keeping 76.9\%. The static rule again earned more, by 0.87 per step, and tied AXIOM exactly in 13 of the 15 seeds. The local rule carried over from seven gNBs won every seed, by 3.33 per step, and DQN-SA collapsed in all 15.
-
-A pre-registered analysis, M94, distils AXIOM's Env B decisions into decision trees that run as a rule. Each stored checkpoint is replayed for 50 episodes on its training stream and on its held-out stream, and the held-out replays reproduce the stored evaluations exactly. Every request gives four features, the gNB's URLLC queue, its congestion level, the requesting slice's PRB share, and the mean congestion of its neighbours, with AXIOM's decision as the label. One tree per slice is fitted on training-stream decisions at the depth, from 1 to 3, that 5-fold cross-validation on those decisions selects, and depth 3 was selected for every target. Table~\ref{tab:s-distil} gives the agreement with AXIOM on held-out decisions and the trees run as a rule on the held-out streams. AXIOM rejected no URLLC request in any replay, and 34 of the 60 mMTC trees reject every request. The eMBB trees split first on the URLLC queue in 24 of 30 seeds at three gNBs, at a median of 0.21. At seven gNBs after 900 episodes they do so in 13 of 15 seeds, at a median of 0.28, against the tuned rule's 0.2. After 300 episodes 11 of 15 eMBB trees accept every request. On priority-slice compliance the rule ties AXIOM at seven gNBs, trails it by 1.3 points at three, and trails the tuned rule by 4.1 to 24.8 points.
+The distillation of the main paper's Section 6.3, M94, replays each stored checkpoint on its training and held-out streams, and the held-out replays reproduce the stored evaluations exactly. Each request gives four features, the gNB's URLLC queue, its congestion level, the requesting slice's PRB share, and the mean congestion of its neighbours. One tree per slice is fitted on training-stream decisions at the depth that 5-fold cross-validation selects, which was 3 for every target, and Table~\ref{tab:s-distil} gives the result. AXIOM rejected no URLLC request in any replay, and 34 of the 60 mMTC trees reject every request. The eMBB trees split first on the URLLC queue in 24 of 30 seeds at three gNBs, at a median of 0.21. At seven gNBs after 900 episodes they do so in 13 of 15 seeds, at a median of 0.28, against the tuned rule's 0.2.
 
 \begin{table}[!htbp]
 \caption{AXIOM distilled into one decision tree per slice in Env B. Fidelity is the share of held-out decisions on which the trees agree with AXIOM, by tree depth. The last columns run the depth-3 trees as a rule, with 95\% CIs and Holm-adjusted $p$}
@@ -534,13 +460,13 @@ Checkpoints & Seeds & 1 & 2 & 3 & Difference & $p$ & Difference & $p$ \\
 \end{table}
 
 \section*{S8. Throughput and delay}
-In Env B at nineteen gNBs AXIOM's URLLC delay is below every learned baseline's but above the tuned rule's. Table~\ref{tab:s-kpi} lists throughput, the share of offered demand that is served, and delay, the mean backlog over the mean served PRBs in 5 s control periods, with the 95th percentile over steps and gNBs. This delay is a queueing proxy from the fluid model, not packet latency. Every stored checkpoint and rule was re-evaluated with a recorder under a plan committed beforehand. Each re-run with a stored log reproduced it exactly, and the Env A accept-all rows, which have no stored log, are marked unchecked.
+Table~\ref{tab:s-kpi} lists throughput, the share of offered demand that is served, and delay, the mean backlog over the mean served PRBs in 5 s control periods, with the 95th percentile over steps and gNBs. This delay is a queueing proxy from the fluid model, not packet latency. Each re-run with a stored log reproduced it exactly, and the Env A accept-all rows, which have no stored log, are marked unchecked.
 
 \begin{table}[!htbp]
 \caption{Served share of offered demand and backlog delay in control periods, mean and 95th percentile, per slice}
 \label{tab:s-kpi}
 \centering
-\footnotesize
+\scriptsize
 \setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{lcccccc}
 \toprule
@@ -584,21 +510,21 @@ Accept all & 93.8\% & 93.9\% & 2.25 & 6.97 & 2.24 & 6.82 \\
 \end{table}
 
 \section*{S9. Reproducing the results}
-Fig.~\ref{fig:repro} sets out what reproducing the results needs and the order of the steps. Every result in both documents comes from one laptop without a graphics processor, and every simulation run fixes its seed. Reruns on the same seeds reproduce the stored per-seed results exactly, except the original DQN-SA runs, whose initial weights were not seeded, as Section S2 explains. The code, configurations, and stored logs are available from the corresponding author on reasonable request.
+Fig.~\ref{fig:repro} sets out what reproducing the results needs and the order of the steps. Every result in both documents comes from one laptop without a graphics processor, and every simulation run fixes its seed.
 
-\begin{figure}[p]
+\begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[
-  font=\fontfamily{phv}\selectfont\footnotesize,
-  need/.style={draw=black!60, rounded corners=2pt, fill=gray!8, align=left, text width=4.75cm, inner sep=4pt, anchor=north west},
-  stp/.style={draw=blue!55!black, rounded corners=2pt, fill=blue!5, align=left, text width=14.6cm, inner sep=4pt, anchor=north west},
-  liv/.style={draw=orange!75!black, rounded corners=2pt, fill=orange!8, align=left, text width=14.6cm, inner sep=4pt, anchor=north west},
-  num/.style={circle, draw=blue!55!black, fill=white, inner sep=1pt, minimum size=0.42cm, font=\fontfamily{phv}\selectfont\footnotesize\bfseries},
-  hd/.style={font=\fontfamily{phv}\selectfont\footnotesize\bfseries, anchor=south west, inner sep=1pt},
+  font=\fontfamily{phv}\selectfont\scriptsize,
+  need/.style={draw=black!60, rounded corners=2pt, fill=gray!8, align=left, text width=5.2cm, inner sep=4pt, anchor=north west},
+  stp/.style={draw=blue!55!black, rounded corners=2pt, fill=blue!5, align=left, text width=16.0cm, inner sep=4pt, anchor=north west},
+  liv/.style={draw=orange!75!black, rounded corners=2pt, fill=orange!8, align=left, text width=16.0cm, inner sep=4pt, anchor=north west},
+  num/.style={circle, draw=blue!55!black, fill=white, inner sep=1pt, minimum size=0.42cm, font=\fontfamily{phv}\selectfont\footnotesize},
+  hd/.style={font=\fontfamily{phv}\selectfont\footnotesize, anchor=south west, inner sep=1pt},
   tt/.style={font=\ttfamily\footnotesize},
   ar/.style={-{Latex[length=1.8mm]}, semithick, blue!55!black}
 ]
-\newcommand{\bt}[1]{{\fontfamily{phv}\selectfont\bfseries #1}}
+\newcommand{\bt}[1]{{\fontfamily{phv}\selectfont #1}}
 % what is needed
 \node[need] (hw) at (0,0) {\bt{Hardware}\\[1pt]
   One laptop, Intel Core i5-1135G7, 4 cores and 8 threads\\
@@ -611,37 +537,26 @@ Fig.~\ref{fig:repro} sets out what reproducing the results needs and the order o
   TeX Live 2023 with pdfLaTeX\\
   Simulators and learners in \texttt{framework/}, never modified};
 \node[need] (lv) at ($(sw.north east)+(0.2,0)$) {\bt{Live testbed check only}\\[1pt]
-  OAI gNB, ORANSlice fork~[1] on OAI 2024.w28, rfsim radio, band n78, 106 PRBs\\
+  OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio, band n78, 106 PRBs\\
   Open5GS core in Docker, 17 containers\\
   protobuf-c 1.5.2, built from source};
 \node[hd] at ($(hw.north west)+(0,0.05)$) {What is needed};
 % steps
-\node[stp] (s1) at ($(hw.west |- lv.south)+(0.55,-0.75)$) {\bt{Set up.} Request the code, configurations, and stored logs from the corresponding author. \texttt{framework/} holds the simulators and learners, \texttt{experiments/scripts/} the campaign scripts, \texttt{experiments/configs/} the cluster configurations, \texttt{experiments/results/} the stored per-seed logs, and \texttt{docs/} the pre-registrations. Create a Python virtual environment with the packages above. Every job runs from \texttt{framework/} on one thread, with \texttt{OMP\_NUM\_THREADS=1}, \texttt{MKL\_NUM\_THREADS=1}, and \texttt{OPENBLAS\_NUM\_THREADS=1}.};
+\node[stp] (s1) at ($(hw.west |- lv.south)+(0.55,-0.75)$) {\bt{Set up.} Request the code, configurations, and stored logs from the corresponding author, and create a Python virtual environment with the packages above. Every job runs from \texttt{framework/} on one thread, with \texttt{OMP\_NUM\_THREADS=1}, \texttt{MKL\_NUM\_THREADS=1}, and \texttt{OPENBLAS\_NUM\_THREADS=1}.};
 \node[stp] (s2) at ($(s1.south west)+(0,-0.3)$) {\bt{Train and evaluate.} One command trains and evaluates one policy on a batch of seeds, for example\\[1pt]
-  \texttt{M63\_BACKLOG\_RESET=1 M64\_AXIOM\_V2=1 python m64\_run.py -{}-arm axiom2 -{}-env A -{}-n 19}\\
-  \texttt{\ \ \ \ -{}-topology ring -{}-seeds 900 901 902 903 904 -{}-out-dir ../experiments/results/m65\_scaling/n19\_ring}\\[1pt]
-  The arms are \texttt{axiom2}, \texttt{single\_agent\_dqn}, \texttt{independent\_dqn}, \texttt{mappo\_tuned}, and the rules, whose thresholds are chosen on training streams. Each seed trains for 300 episodes on its own stream and is then evaluated for 50 episodes on the held-out stream 5000 plus the seed. Each seed writes a training log, a checkpoint, and an evaluation log, and each batch a JSON file of reward, blocks, and training time. The median training time per seed runs from 73 s to 2{,}088 s, and the main campaigns ran five jobs at a time. The primary seeds are 900 to 929, the replication 1000 to 1009, the pilots 2000 to 2009, and the fresh seeds 3000 onwards.};
-\node[stp] (s3) at ($(s2.south west)+(0,-0.3)$) {\bt{Run the other campaigns.} \texttt{m3\_run\_experiment.py}, called through \texttt{m62\_shared\_env.py}, trains the federated variant with noise multipliers 0, 0.5, 1, 2, and 4. \texttt{m4\_run\_experiment.py} evaluates frozen checkpoints under dropout, spikes, and churn. \texttt{m73\_run.py} adds the 37-gNB configuration, and \texttt{m70\_run.py}, \texttt{m75\_run.py}, and \texttt{m76\_run.py} add the follow-up variants, selected by environment variables. \texttt{m63\_validation\_screen.py} screens every trained checkpoint on its own training stream.};
-\node[stp] (s4) at ($(s3.south west)+(0,-0.3)$) {\bt{Re-evaluate stored checkpoints.} \texttt{m72\_shift.py eval} replays AXIOM and the nominally tuned rule at 80\% to 120\% load, stronger coupling, and a wider load swing, and \texttt{m72\_shift.py retune} re-tunes the rule on shifted training streams. \texttt{m77\_kpi.py} records the PRBs served and the backlog, and confirms that each re-run reproduces its stored log. \texttt{m81\_decision\_probe.py} replays every stored evaluation to read what the eMBB head decides.};
-\node[stp] (s5) at ($(s4.south west)+(0,-0.3)$) {\bt{Summarise.} \texttt{m65\_rebuild\_all.sh} runs \texttt{m64\_analysis.py} and \texttt{m62\_analysis.py} over the main campaigns, and each later campaign has its own \texttt{analysis} script. Each writes the summaries and judges every pre-registered criterion in \texttt{docs/PAPER5\_M*\_preregistration.md}, reporting each whether it holds or fails.};
-\node[stp] (s6) at ($(s5.south west)+(0,-0.3)$) {\bt{Verify.} \texttt{m66\_verify.py -{}-tex main.tex -{}-supp supplementary.tex} reads the raw logs with its own reader and Holm correction, and recomputes every results table and key sentence of both documents. Its \texttt{m82\_audit.py} traces every remaining number to the configurations and the code. \texttt{m66\_ci\_recompute.py} recomputes every bootstrap CI with 10{,}000 resamples, and \texttt{m66\_v1v2.py} reruns reported settings in fresh processes.};
-\node[stp] (s7) at ($(s6.south west)+(0,-0.3)$) {\bt{Redraw and build.} \texttt{paper5\_regen\_wpc\_figures.sh} redraws every plotted figure from the stored results, with \texttt{MATPLOTLIBRC=experiments/plots}. \texttt{paper5\_cvd\_check.py} renders each figure in greyscale and as seen with protan, deutan, and tritan colour vision. \texttt{make\_submission.py} writes \texttt{Fig1} to \texttt{Fig8}, \texttt{ESM\_1.pdf}, and the compiled manuscript.};
-\node[liv] (lt) at ($(s7.south west)+(0,-0.75)$) {\bt{Live testbed check.} Start the Open5GS core with Docker Compose from \texttt{docker\_open5gs/5g-sa-deploy-slicing.yaml}. Start the gNB with\\[1pt]
-  \texttt{nr-softmodem -O ORANSlice.gnb.sa.band78.fr1.106PRB.usrpx310.conf -{}-sa -{}-rfsim}\\[1pt]
-  and up to six \texttt{nr-uesoftmodem} UEs, from the second on each in its own network namespace. Drive iperf3 UDP traffic on every slice. \texttt{run\_live\_eval\_arm.py} then runs the checkpoint through the UDP E2 agent on ports 6600 and 6655, in short batches with a health check, and a stack restart if needed, before each batch.};
+  \texttt{M63\_BACKLOG\_RESET=1 M64\_AXIOM\_V2=1 python m64\_run.py -{}-arm axiom2 -{}-env A -{}-n 19 -{}-topology ring -{}-seeds 900 901}\\[1pt]
+  Each seed trains for 300 episodes on its own stream and is then evaluated for 50 episodes on the held-out stream 5000 plus the seed. The median training time per seed runs from 73 s to 2{,}088 s, and the main campaigns ran five jobs at a time. The primary seeds are 900 to 929, the replication 1000 to 1009, the pilots 2000 to 2009, and the fresh seeds 3000 onwards.};
+\node[stp] (s3) at ($(s2.south west)+(0,-0.3)$) {\bt{Run the other campaigns.} \texttt{m3\_run\_experiment.py} trains the federated variant with noise multipliers 0, 0.5, 1, 2, and 4, \texttt{m4\_run\_experiment.py} applies the disruptions, \texttt{m73\_run.py} adds 37 gNBs, and \texttt{m70\_run.py} to \texttt{m95} add the follow-up runs.};
+\node[stp] (s4) at ($(s3.south west)+(0,-0.3)$) {\bt{Re-evaluate stored checkpoints.} \texttt{m72\_shift.py} replays AXIOM and the tuned rule under shifted conditions, \texttt{m77\_kpi.py} records served PRBs and backlog, \texttt{m92\_transfer.py} runs checkpoints at a new size, and \texttt{m94\_distil.py} distils AXIOM into trees.};
+\node[stp] (s5) at ($(s4.south west)+(0,-0.3)$) {\bt{Summarise.} Each campaign's \texttt{analysis} script judges every pre-registered criterion in \texttt{docs/PAPER5\_M*\_preregistration.md} and reports whether it holds or fails.};
+\node[stp] (s6) at ($(s5.south west)+(0,-0.3)$) {\bt{Verify.} \texttt{m66\_verify.py} recomputes every results table and key sentence of both documents from the raw logs with its own reader and Holm correction, \texttt{m82\_audit.py} traces the remaining numbers to configurations and code, and \texttt{m66\_ci\_recompute.py} recomputes every bootstrap CI.};
+\node[stp] (s7) at ($(s6.south west)+(0,-0.3)$) {\bt{Redraw and build.} \texttt{paper5\_regen\_wpc\_figures.sh} redraws every plot, \texttt{paper5\_cvd\_check.py} checks each for colour vision, and \texttt{make\_submission.py} writes \texttt{Fig1} to \texttt{Fig10}, \texttt{ESM\_1.pdf}, and the compiled manuscript.};
 \node[hd] at ($(s1.north west)+(-0.55,0.05)$) {Steps};
-\node[hd] at ($(lt.north west)+(-0.55,0.05)$) {Live testbed};
 \foreach \i/\j in {s1/s2,s2/s3,s3/s4,s4/s5,s5/s6,s6/s7}{\draw[ar] ($(\i.south west)+(0.4,0)$) -- ($(\j.north west)+(0.4,0)$);}
 \foreach \i [count=\k] in {s1,s2,s3,s4,s5,s6,s7}{\node[num] at ($(\i.north west)+(-0.3,-0.25)$) {\k};}
 \end{tikzpicture}
-\caption{Reproducing the results. Top, the hardware and software every run used. Below, the steps from the stored code to the figures and the manuscript, and the live testbed check}
+\caption{Reproducing the results. Top, the hardware and software every run used. Below, the steps from the stored code to the figures and the manuscript, with the live testbed in Section S3}
 \label{fig:repro}
 \end{figure}
-
-\section*{References}
-\begin{enumerate}\renewcommand{\labelenumi}{[\theenumi]}
-\item Cheng H, D'Oro S, Gangula R, Velumani S, Villa D, Bonati L, Polese M, Melodia T (2024) ORANSlice: An open source 5G network slicing platform for O-RAN. In: Proceedings of the 30th Annual International Conference on Mobile Computing and Networking (ACM MobiCom), pp 2297--2302, https://doi.org/10.1145/3636534.3701544
-\item Agarwal R, Schwarzer M, Castro PS, Courville A, Bellemare M (2021) Deep reinforcement learning at the edge of the statistical precipice. In: Advances in Neural Information Processing Systems (NeurIPS), pp 29304--29320
-\end{enumerate}
 
 \end{document}

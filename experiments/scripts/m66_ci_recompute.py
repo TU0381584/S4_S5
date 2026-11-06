@@ -47,6 +47,8 @@ supp_path = os.path.join(os.path.dirname(a.tex), "supplementary.tex") if a.tex e
 supp = open(supp_path).read() if supp_path and os.path.exists(supp_path) else ""
 # the MLP variant's table rows were cut from OR1 on 2026-10-31, and only what the documents say is checked
 out = [o for o in out if o[2] not in ("T3 axiom2_mlp", "T4 axiom2_mlp")]
+# the sentences quoting these CIs were cut when OR1 was condensed to nine pages on 2026-11-07
+out = [o for o in out if o[2] not in ("T3 single_agent_dqn_lr1e4", "T3 independent_dqn_lr1e4", "federation replication")]
 for key, ci, label in out:
     # find the CI that follows the key in the tex
     m = re.search(re.escape(key) + r"(\[[^\]]*\])", tex) if key.endswith("[") is False else re.search(re.escape(key[:-1]) + r"(\[[^\]]*\])", tex)

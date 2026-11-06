@@ -278,6 +278,103 @@ CUT_FROM_OR1 = {
     'single-agent seed 900 stored',
     'abstract: URLLC served at 37',
 }
+# checks of sentences cut when the author asked for a nine-page Online Resource 1 with no duplication of the main
+# paper, on 2026-11-07. As above, they are no longer run or counted, and the labels record what was cut.
+CUT_FROM_OR1 |= {
+    'Arep oracle gap',
+    'Env B LR 3e-4',
+    'Env B original AXIOM reward',
+    'M66b federated CI',
+    'M66b federated difference',
+    'M66c C1 AXIOM prio',
+    'M66c C2 AXIOM prio',
+    'M66c load102 shortfall, conclusion',
+    'M72 hindsight headroom',
+    'M72 longer training gain N=3',
+    'M72 longer training gain N=7',
+    'M72 remaining gap N=3',
+    'M72 remaining gap N=7',
+    'M72 remaining gap p N=3',
+    'M72 remaining gap p N=7',
+    'M73 grid MAPPO reward',
+    'M74 pooled 50 hex seeds',
+    'M74 supplement leads 37.7/61.0/36.5 points and 35.46/25.62/30.63 reward',
+    'M75 accept-all reward at 19 gNBs',
+    'M75 accept-all reward at 37 gNBs',
+    'M75 accept-all reward at 7 gNBs',
+    'M75 non-collapsed independent at 19',
+    'M75 non-collapsed single-agent at 19',
+    'M78 DP collapses two and four at sigma 2 and 4',
+    'M78 DP eMBB high',
+    'M78 DP eMBB low',
+    'M78 Env A 19 gNBs AXIOM URLLC and eMBB',
+    'M78 Env B replication 7 or 8 of 10, nothing survives',
+    'M78 FedProx mu 0.01 above FedAvg, 0.1 and 1.0 below, three seeds',
+    'M78 M74 wins 18 to 19 of 20, collapsed seed 6110',
+    'M78 S17 re-tuned rule sheds eMBB at 0.05 rather than 0.2',
+    'M78 Table 5 LR 1e-4 row independent_dqn_lr1e4',
+    'M78 Table 5 LR 1e-4 row single_agent_dqn_lr1e4',
+    'M78 at 120% load priority demand exceeds the caps at most gNBs',
+    'M78 disruption 9 or 10 of 10 at Holm p<=0.041',
+    'M78 faster rate and wider encoder within 0.19, not significant',
+    'M78 original AXIOM at 19 gNBs',
+    'M78 pooled 50 seeds 94.2%, 4 collapses',
+    'M78 spike precision 1.00 for DQN-SA and about 0.95 for DQN-I',
+    'M79 under the per-gNB penalty AXIOM keeps 20.9 points more than DQN-SA, which collapses in 11 of 15',
+    'M80 D static rule +0.87 and tied in 13 of 15; carried rule wins all 15 by 3.33; DQN-SA collapses 15 of 15; all four checks hold',
+    'M81 300-episode pooled eMBB reject share',
+    'M81 900-episode reject share, lowest queue bin',
+    'M81 900-episode reject share, queue 0.75 to 1.0',
+    'M81 of them, fresh CI on the same side',
+    'M81 reported differences whose CI excludes zero',
+    'M82 OR1 DQN baselines at learning rate 1e-4',
+    'M82 OR1 Env B replication: AXIOM wins 7 or 8 of 10 against each',
+    'M82 OR1 fresh 37 gNBs: 18 to 19 of 20 wins, Holm p<0.001',
+    'M82 OR1 small DQN-SA margins on 20 and 40 new seeds',
+    'M82 OR1 spike precision 0.98, 1.00, about 0.95',
+    'M82 OR1 the grid-selected MAPPO at 37 gNBs trains for 900 episodes',
+    'M94 OR1: on priority-slice compliance the rule ties AXIOM at seven, trails it by 1.3 at three, trails the tuned rule by 4.1 to 24.8',
+    'fed rep diff',
+    'fed rep p',
+    'federation replication CI',
+    'fresh Env B N=7 MLP over GAT p',
+    'fresh Env B N=7 MLP seeds won',
+    'reframe: M70 MAPPO Env B N=7',
+    'reframe: M70 MAPPO grid A3',
+    'reframe: M70 MAPPO reported A3',
+    'reframe: M70 joint target Env A N=3 reward',
+    'reframe: M70 joint target N=19 compliance',
+    'reframe: M72 N=7 lead 1.10',
+    'reframe: M72 N=7 lead 1.20',
+    'reframe: M72 N=7 nominal deficit',
+    'reframe: M72 VDN 60 fresh seeds, never significantly different',
+    'reframe: M72 longer training seeds 20 and 12',
+    'reframe: M73 grid MAPPO compliance',
+    'reframe: M73 grid MAPPO compliance gap',
+    'reframe: M73 grid MAPPO reward gap',
+    'reframe: M75 C new settings in three of four cells',
+    'reframe: M75 non-collapsed independent at 37',
+    'reframe: M75 non-collapsed single-agent at 37',
+    'reframe: M76 AXIOM over VDN compliance at 19',
+    'reframe: M76 AXIOM over VDN reward at 19',
+    'reframe: M76 VDN 19-gNB wins 27 to 28 of 30 at Holm p<0.001',
+    'reframe: M76 oversubscription margins at 1.10',
+    'reframe: M76 oversubscription margins at 1.20',
+    'reframe: M76 uneven load 27% more than MAPPO, every seed',
+    'reframe: VDN gap at nineteen gNBs',
+    'reframe: fresh 20-seed single-agent gap',
+    'reframe: fresh 40-seed single-agent gap',
+    'reframe: fresh AXIOM scaling compliance high',
+    'reframe: fresh AXIOM scaling compliance low',
+    'reframe: no DP drop survives Holm',
+    'reframe: short LR sentence 2.37',
+    'reframe: ten-seed load sample shortfall',
+    'sens load107 vs indep',
+    'sens weights vs single',
+    'supp EnvB N3 MLP over AXIOM',
+    'supp EnvB N3 MLP p',
+    'supp EnvB N3 MLP seeds won',
+}
 CUT_FROM_OR1_PREFIXES = (
     'M76 S17 oversubscription row ',
     'M76 S17 shift row ',
@@ -2181,8 +2278,7 @@ def main():
             ex_.append(x_ is not None and y_ is not None and max(abs(x_["reward"] - y_["reward"]), abs(x_["blocks"] - y_["blocks"]),
                                                                max(abs(x_["sla"][k_] - y_["sla"][k_]) for k_ in ("urllc", "embb", "mmtc"))) <= 1e-9)
     C.note("M80 C sixteen further reruns match the stored logs exactly", len(ex_) == 16 and all(ex_)
-           and "Sixteen further reruns, from seven to thirty-seven gNBs in both environments, also matched exactly" in C.main
-           and "Sixteen runs that no earlier rerun covered matched their stored per-seed results exactly" in C.tex, ex_)
+           and "Sixteen further reruns, from seven to thirty-seven gNBs in both environments, also matched exactly" in C.main, ex_)
     F15_ = list(range(7000, 7015))
     dc19_ = "m80/D_envB_n19_hex_fresh"
     d19_ = {a_: seeds_of(dc19_, a_, F15_) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_local_transfer")}
@@ -2408,7 +2504,6 @@ def main():
     C.note("M93 all 51 mean-based orderings hold under the IQM, and the text says so",
            s93_["claims_checked"] == 51 and not s93_["claims_iqm_contradicted"] and not s93_["claims_mean_inconsistent"]
            and "and all 51 orderings that this paper draws from means hold under them" in C.main
-           and "Every one of the 51 orderings that the main paper draws from means" in C.tex
            and not s93_["cross_check"]["mismatches"] and "reproduces every IQM and every probability of improvement to within $10^{-6}$" in C.tex, None)
     axA93_ = [cells93_[f"Env A, {n_} gNBs"] for n_ in (3, 7, 19, 37)]
     iq93_ = [iqm93_(p_["AXIOM"], f93_(n_)["prio"]) for n_, p_ in axA93_]
@@ -2491,19 +2586,24 @@ def main():
            and "A policy trained at seven gNBs runs unchanged at 19 and 37 gNBs and keeps above 95\\% priority-slice compliance there in Env A" in C.main,
            (tA92_, len(ab92_.split())))
     fm92_ = lambda x_, nd_: f"{x_:.{nd_}f}".replace("-", "$-$")
-    nm92_ = {"AXIOM-7to": "AXIOM from 7", "MLP-7to": "MLP variant from 7", "MAPPO-7to": "MAPPO from 7",
-             "AXIOM trained at": "AXIOM trained at the size", "static rule": "Static rule", "accept-all": "Accept all"}
+    # OR1 Table S6 (compact since 2026-11-07): AXIOM from 7, AXIOM trained at the size, MAPPO from 7, per setting
+    lab6_ = {"A_hex_n19": "Env A hex, 19", "A_hex_n37": "Env A hex, 37", "A_ring_n19": "Env A ring, 19", "A_ring_n37": "Env A ring, 37",
+             "A_fully_connected_n19": "Env A fully-connected, 19", "A_fully_connected_n37": "Env A fully-connected, 37", "B_hex_n19": "Env B hex, 19"}
     bad92_ = []
+    def c6_(k_, lab_, coll_=True):
+        rows_ = C92_[k_][lab_]; sm_ = a92_["cells"][k_][lab_]
+        if abs(sm_["prio"]["mean"] - mu92_(rows_)) > 1e-9 or abs(sm_["reward_per_gnb"]["mean"] - mu92_(rows_, "reward_per_gnb")) > 1e-9:
+            bad92_.append((k_, lab_, "mean"))
+        out_ = (f"{fm92_(mu92_(rows_), 1)} [{fm92_(sm_['prio']['ci'][0], 1)}, {fm92_(sm_['prio']['ci'][1], 1)}] & {fm92_(mu92_(rows_, 'reward_per_gnb'), 3)}")
+        return out_ + (f" & {sum(v_['collapsed'] for v_ in rows_.values())}" if coll_ else "")
     for k_ in K92_:
-        for lab_, rows_ in C92_[k_].items():
-            sm_ = a92_["cells"][k_][lab_]
-            if abs(sm_["prio"]["mean"] - mu92_(rows_)) > 1e-9 or abs(sm_["reward_per_gnb"]["mean"] - mu92_(rows_, "reward_per_gnb")) > 1e-9:
-                bad92_.append((k_, lab_, "mean"))
-            nm_ = next(v_ for p_, v_ in nm92_.items() if lab_.startswith(p_))
-            row_ = (f"\\quad {nm_} & {len(rows_)} & {fm92_(mu92_(rows_), 1)} [{fm92_(sm_['prio']['ci'][0], 1)}, {fm92_(sm_['prio']['ci'][1], 1)}] & "
-                    f"{fm92_(mu92_(rows_, 'reward_per_gnb'), 3)} & {sum(v_['collapsed'] for v_ in rows_.values())} \\\\")
-            if row_ not in C.tex:
-                bad92_.append(row_)
+        n_ = k_.split("_n")[1]
+        row_ = f"{lab6_[k_]} & {c6_(k_, f'AXIOM-7to{n_}')} & {c6_(k_, f'AXIOM trained at {n_}')} & {c6_(k_, f'MAPPO-7to{n_}', False)} \\\\"
+        if row_ not in C.tex:
+            bad92_.append(row_)
+    mrow_ = f"\\quad MLP variant from 7 & {c6_('B_hex_n19', 'MLP-7to19')} & & & & & \\\\"
+    if mrow_ not in C.tex:
+        bad92_.append(mrow_)
     C.note("M92 OR1 Table S6 rows recomputed from the logs and the summary", not bad92_, bad92_)
     h4_ = paired(C92_["B_hex_n19"]["AXIOM-7to19"], C92_["B_hex_n19"]["MLP-7to19"], lambda r_: r_["prio"])
     c4_ = a92_["families"]["H-T4, Env B hex"]["prio_per_gnb"]["ci"]
@@ -2526,7 +2626,7 @@ def main():
     fc19_ = paired(C92_["A_fully_connected_n19"]["AXIOM-7to19"], C92_["A_fully_connected_n19"]["AXIOM trained at 19"], lambda r_: r_["reward_per_gnb"])
     tfc_ = seeds_of("m65_scaling/n19_fully_connected", "axiom2", S15); sfc_ = seeds_of("m70/R1/A_n19_fully_connected", "rule_static", S15)
     C.note("M92 MAPPO identical on all three Env A layouts; at 19 fully-connected AXIOM trained there equals the static rule, transferred trails by 0.10, p 0.068",
-           mp92_ and "MAPPO gives the same results on all three Env A layouts" in C.tex
+           mp92_
            and all(tfc_[x_]["reward"] == sfc_[x_]["reward"] for x_ in S15) and f"{-fc19_['diff']:.2f}" == "0.10" and f"{fc19_['p']:.3f}" == "0.068"
            and "AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$" in C.tex,
            fc19_)
@@ -2633,11 +2733,10 @@ def main():
            and "The eMBB trees split first on the URLLC queue in 24 of 30 seeds at three gNBs, at a median of 0.21" in C.tex
            and "they do so in 13 of 15 seeds, at a median of 0.28, against the tuned rule's 0.2" in C.tex, (len(r3_), len(r9_)))
     rp94_ = json.load(open(f"{ROOT}/m94/probe_B7_ring_900_B7_ring_300_B3.json"))
-    C.note("M94 no URLLC request rejected in any replay, 34 of 60 mMTC trees reject all, 11 of 15 eMBB trees accept all after 300 episodes, held-out replays exact",
-           urej94_ == 0 and mconst94_ == 34 and econst300_ == 11
+    C.note("M94 no URLLC request rejected in any replay, 34 of 60 mMTC trees reject all, held-out replays exact",
+           urej94_ == 0 and mconst94_ == 34
            and sum(1 for r_ in rp94_ if r_[2] == "heldout" and r_[4] is True) == 60 and sum(1 for r_ in rp94_ if r_[2] == "heldout") == 60
            and "AXIOM rejected no URLLC request in any replay, and 34 of the 60 mMTC trees reject every request" in C.tex
-           and "After 300 episodes 11 of 15 eMBB trees accept every request" in C.tex
            and "the held-out replays reproduce the stored evaluations exactly" in C.tex, (urej94_, mconst94_, econst300_))
     C.note("M92 and M94 pre-registrations exist and OR1 S4 says M93 has no plan of its own",
            os.path.exists("/home/kmanojp/oranslice_rig/docs/PAPER5_M92_preregistration.md") and os.path.exists("/home/kmanojp/oranslice_rig/docs/PAPER5_M94_preregistration.md")

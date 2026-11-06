@@ -198,7 +198,7 @@ def run(C):
     sens = {c_: paired(seeds_of(f"m65_reviewer/{c_}", "axiom2", S10), seeds_of(f"m63_reviewer/{c_}", "heuristic", S10)) for c_ in ("load102", "load107", "weights")}
     C.note("M82 AXIOM within 0.13 of the oracle under changed load and weights", max(abs(v["diff"]) for v in sens.values()) <= 0.13
            and "AXIOM stays within 0.13 of the static rule's reward under changed load and slice weights" in C.main
-           and "AXIOM stays within 0.13 of the static rule's reward" in C.supp_only, {k: round(v["diff"], 3) for k, v in sens.items()})
+           , {k: round(v["diff"], 3) for k, v in sens.items()})
     B = {a: seeds_of("m64/n3_fully_connected", a, S30) for a in ARMS + ("rule_static", "rule_accept_all", "rule_local")}
     h1 = V.holm({b: paired(B["axiom2"], B[b])["p"] for b in ("rule_static", "rule_accept_all")})
     pr = V.holm({b: paired(B["axiom2"], B[b], prio)["p"] for b in ARMS[1:]})
@@ -291,7 +291,7 @@ def run(C):
     rows_v1 = [l for l in v1.splitlines() if l.startswith("| ") and not l.startswith("| Cell") and "extra check" not in l]
     n_set = sum(2 if "rule_static, rule_local" in l else 1 for l in rows_v1)
     C.note("M82 OR1 eleven rerun settings and the oracle on 30 seeds", n_set == 11 and any("rule_static vs stored oracle" in l and "900-929" in l for l in v1.splitlines())
-           and "We reran eleven reported settings on their original seeds in fresh processes" in C.tex and "as did the Env A static rule, which sheds every mMTC request, on all 30 seeds" in C.tex, n_set)
+           and "rerunning eleven reported settings in fresh processes reproduced every stored result exactly" in C.main, n_set)
     m62 = open(f"{SC}/m62_reviewer_experiments.py").read(); runsrc = open(f"{SC}/m64_run.py").read()
     flp = open(f"{FW}/marl/fl_ctde_policy.py").read(); m3r = open(f"{SC}/m3_run_experiment.py").read()
     C.note("M82 OR1 sensitivity, federated and wide-encoder settings match the code",
@@ -311,7 +311,7 @@ def run(C):
     C.note("M82 OR1 process records: pilot seeds, M63 timing, probe seeds, earlier mixer's diverging loss",
            "pilot seeds 2000 to 2009" in m64p and "using rules only" in m64p and "after the M63 rerun was launched (14:28) and before any M63 result was read" in m63p
            and "900-904 were used by the probe" in m72p and "mean loss ~76 in the first" in m2d and "~409 in the last 20%" in m2d
-           and "all chosen on pilot seeds 2000 to 2009" in C.tex and "The M63 plan was committed one minute after that rerun was launched" in C.tex
+           and "all chosen on pilot seeds 2000 to 2009" in C.tex and "whose plan was committed one minute after that rerun was launched and before any of its results were read" in C.main
            and "its mean training loss diverged from about 76 to about 409" in C.tex, None)
     dis = open(f"{SC}/m4_run_experiment.py").read()
     C.note("M82 OR1 disruption windows and spike multipliers", "DROPOUT_CHURN_DURATION_FRAC = {1: 0.10, 2: 0.30, 3: 0.60}" in dis and "SPIKE_MULTIPLIER = {1: 2.0, 2: 4.0, 3: 8.0}" in dis
@@ -340,16 +340,16 @@ def run(C):
     crit = mb["criteria"] + mc["criteria"]
     hi_b = [float(re.search(r"([\d.]+)%", c_["detail"]).group(1)) for c_ in crit if "<= 80%" in c_["label"] and re.search(r"([\d.]+)%", c_["detail"])]
     C.note("M82 OR1 baselines up to 83.3% at seven gNBs, above the 80% bound", f"{max(hi_b):.1f}" == "83.3"
-           and "kept up to 83.3\\% priority-slice compliance, above the 80\\% bound we had set" in C.tex, hi_b)
+           and "reached up to 83.3\\% compliance at seven gNBs, above the 80\\% bound we had set" in C.main, hi_b)
     m19a, m19m = seeds_of("m65_scaling/n19_ring", "axiom2", range(900, 912)), seeds_of("m65_scaling_mlp/n19_ring", "axiom2_mlp", range(900, 912))
     t19 = paired(m19a, m19m)
     b3 = paired(seeds_of("m64/n3_fully_connected", "axiom2_mlp", S30), seeds_of("m64/n3_fully_connected", "axiom2", S30))
     f7 = paired(seeds_of("m66_fresh/B_n7_ring", "axiom2_mlp", list(range(3000, 3010))), seeds_of("m66_fresh/B_n7_ring", "axiom2", list(range(3000, 3010))))
-    C.note("M82 OR1 MLP variant: 0.31 at 19 gNBs with 7 of 12 tied, 0.116 in 17 of 30, fresh 1.38 in 9 of 10 at p=0.006",
-           f"{t19['diff']:.2f}" == "0.31" and t19["ties"] == 7 and t19["n"] == 12 and f"{b3['diff']:.3f}" == "0.116" and b3["wins"] == 17 and f"{b3['p']:.2f}" == "0.45"
-           and f"{f7['diff']:.2f}" == "1.38" and f7["wins"] == 9 and f"{f7['p']:.3f}" == "0.006"
-           and "0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied" in C.tex and "0.116 per step at three gNBs in 17 of 30 seeds at $p=0.45$" in C.tex
-           and "it led by 1.38 reward per step, in 9 of 10 seeds at $p=0.006$" in C.tex, (t19, b3, f7))
+    C.note("M82 OR1 MLP variant: 0.31 at 19 gNBs with 7 of 12 tied; main: fresh lead 1.38 at p=0.006",
+           f"{t19['diff']:.2f}" == "0.31" and t19["ties"] == 7 and t19["n"] == 12
+           and f"{f7['diff']:.2f}" == "1.38" and f"{f7['p']:.3f}" == "0.006"
+           and "0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied" in C.tex
+           and "the MLP encoder led by 1.38 reward per step at $p=0.006$" in C.main, (t19, f7))
     brep = {a: seeds_of("m64/n3_replication", a, REP) for a in ARMS}
     wr = [paired(brep["axiom2"], brep[b])["wins"] for b in ARMS[1:]]
     C.note("M82 OR1 Env B replication: AXIOM wins 7 or 8 of 10 against each", sorted(set(wr)) in ([7, 8], [7], [8])
@@ -372,10 +372,10 @@ def run(C):
             rows = [r for t in LAY for r in seeds_of(f"m65_scaling/n{n_}_{t}", a, S15 if n_ == 7 else S30_19).values()]
         return tuple(f"{100 * np.mean([r['sla'][k] for r in rows]):.1f}" for k in ("urllc", "embb"))
     s7 = {a: slices(7, a) for a in ARMS}; s19, s37 = slices(19, "axiom2"), slices(37, "axiom2")
-    t_ = (f"At seven gNBs AXIOM keeps URLLC and eMBB at {s7['axiom2'][0]}\\% and {s7['axiom2'][1]}\\%, against {s7['single_agent_dqn'][0]}\\% and {s7['single_agent_dqn'][1]}\\% for DQN-SA, "
-          f"{s7['independent_dqn'][0]}\\% and {s7['independent_dqn'][1]}\\% for DQN-I, and {s7['mappo_tuned'][0]}\\% and {s7['mappo_tuned'][1]}\\% for MAPPO. "
-          f"At nineteen gNBs it keeps them at {s19[0]}\\% and {s19[1]}\\%, and at thirty-seven at {s37[0]}\\% and {s37[1]}\\%.")
-    C.note("M82 OR1 per-slice compliance at 7, 19 and 37 gNBs", t_ in C.tex, t_)
+    bu_ = [float(s7[a][0]) for a in ARMS[1:]]; be_ = [float(s7[a][1]) for a in ARMS[1:]]
+    t_ = (f"At seven gNBs AXIOM keeps URLLC and eMBB at {s7['axiom2'][0]}\\% and {s7['axiom2'][1]}\\%, against {min(bu_):.1f}\\% to {max(bu_):.1f}\\% "
+          f"and {min(be_):.1f}\\% to {max(be_):.1f}\\% for the baselines, and at thirty-seven at {s37[0]}\\% and {s37[1]}\\%.")
+    C.note("M82 OR1 per-slice compliance at 7 and 37 gNBs", t_ in C.tex, t_)
     for cell, ss, n_lab in (("m73/A_n37_hex", S30_19, "30"), ("m74/A_n37_hex", list(range(6100, 6120)), "20")):
         st = seeds_of(cell, "rule_static", ss)
         row = (f"Static rule & {n_lab} & {100 * mean(st, lambda r: r['sla']['urllc']):.1f}\\% & {100 * mean(st, lambda r: r['sla']['embb']):.1f}\\% & "
@@ -465,7 +465,7 @@ def run(C):
            and "7.4 GiB total" in spec and "OAI 2024.w28" in spec and "17 containers" in spec and "v1.5.2" in spec
            and "One laptop, Intel Core i5-1135G7, 4 cores and 8 threads" in C.tex and "8 GB of memory, 7.4 GiB usable" in C.tex
            and "Python 3.12.3, PyTorch 2.13.0 on the CPU" in C.tex and "NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.0, PyYAML 6.0.3" in C.tex
-           and "OAI gNB, ORANSlice fork~[1] on OAI 2024.w28, rfsim radio" in C.tex and "protobuf-c 1.5.2" in C.tex,
+           and "OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio" in C.tex and "protobuf-c 1.5.2" in C.tex,
            (cpu[:1], platform.python_version(), torch.__version__, np.__version__, scipy.__version__, matplotlib.__version__, yaml.__version__))
     for f_ in ("m64_run.py", "m73_run.py", "m72_shift.py", "m77_kpi.py", "m65_rebuild_all.sh", "m66_verify.py", "m66_ci_recompute.py"):
         assert os.path.exists(f"{SC}/{f_}"), f_
@@ -503,11 +503,15 @@ class _Dry:
         self.tex, self.main, self.texr, self.rows = tex, main, tex, []
 
     def claim(self, label, snippet, value, fmt, tol=None):
+        if V.retired(label):            # same retired list as m66_verify, so both count the same checks
+            return
         quoted = fmt.format(value) if value is not None else None
         ok = snippet in self.tex and quoted is not None and quoted in snippet
         self.rows.append(ok); print(("PASS " if ok else "FAIL ") + label + ("" if ok else f"  value={quoted} in_text={snippet in self.tex}"))
 
     def note(self, label, ok, detail):
+        if V.retired(label):
+            return
         self.rows.append(bool(ok)); print(("PASS " if ok else "FAIL ") + label + ("" if ok else f"  detail={detail}"))
 
 
