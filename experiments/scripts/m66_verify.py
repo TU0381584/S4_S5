@@ -871,7 +871,7 @@ def main():
            and [k_ for k_, v_ in rg_["B"].items() if k_.endswith("|1.05") and v_["verdict"] == "AXIOM"] == ["19|1.05"]
            and all(v_["verdict"] != "AXIOM" for k_, v_ in rg_["B"].items() if float(k_.split("|")[1]) <= 1.0)
            and "maps this boundary over every cluster size and load we tested" in C.main
-           and "In Env B AXIOM pulls ahead of the tuned rule at every size from 110\\% of the rule's tuning load, and from 105\\% at nineteen gNBs, whereas in Env A it never significantly beats the static rule at any size or load" in C.main,
+           and "In Env B AXIOM pulls ahead of the tuned rule at every size from 110\\% of the rule's tuning load, and from 105\\% at nineteen gNBs. In Env A it never significantly beats the static rule at any size or load" in C.main,
            {e_: {k_: v_["verdict"] for k_, v_ in rg_[e_].items()} for e_ in ("A", "B")})
     gapA_ = max(eA_[("Static rule", L_)] - eA_[("AXIOM", L_)] for L_ in ("1.05", "1.10", "1.20"))
     nomB_ = [-fB_[(n_, "1.00")] for n_ in (3, 7, 19)]
@@ -2530,6 +2530,41 @@ def main():
            and all(tfc_[x_]["reward"] == sfc_[x_]["reward"] for x_ in S15) and f"{-fc19_['diff']:.2f}" == "0.10" and f"{fc19_['p']:.3f}" == "0.068"
            and "AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$" in C.tex,
            fc19_)
+
+    # ---------------- practical comparison (main Table 8) and the slice-priority and rule rationale (Secs. 3 and 5)
+    t37_ = [mu92_(C92_[f"A_{t_}_n37"]["AXIOM-7to37"]) for t_ in ("hex", "ring", "fully_connected")]
+    rowsP_ = [f"AXIOM & 7,782 at every size & Yes & {min(t37_):.1f}\\% to {max(t37_):.1f}\\% & None, learned from the reward & Ahead of the tuned rule from 110\\% \\\\",
+              f"MAPPO & 5,122 at every size & Yes, through its actor & {mu92_(C92_['A_hex_n37']['MAPPO-7to37']):.1f}\\% & None & Not tested \\\\",
+              "DQN-SA & 21,250 to 64,770 & No, its input grows & Cannot run & None & Not tested \\\\",
+              "DQN-I & 55,302 to 682,058 & No, one network per gNB & Cannot run & None & Not tested \\\\",
+              f"Static rule & None & Yes & {mu92_(C92_['A_hex_n37']['static rule']):.2f}\\%, no training & Which slice to shed & Ties AXIOM in Env A \\\\",
+              "Tuned rule & None & Yes & Not tested & Thresholds from a grid search & Trails AXIOM from 110\\% \\\\"]
+    C.note("Table 8 rows: transfer compliance recomputed, parameters as Table 7, load verdicts as Fig. 10",
+           all(r_ in C.main for r_ in rowsP_)
+           and "AXIOM & 7,782 at every size & 1.04" in C.main and "MAPPO & 5,122 at every size" in C.main
+           and "DQN-SA & 21,250 / 26,370 / 41,730 / 64,770" in C.main and "DQN-I & 55,302 / 129,038 / 350,246 / 682,058" in C.main
+           and all(v_["verdict"] == "AXIOM" for k_, v_ in rg_["B"].items() if float(k_.split("|")[1]) >= 1.10)
+           and all(v_["verdict"] == "tie" for k_, v_ in rg_["A"].items() if float(k_.split("|")[1]) > 1.05),
+           [r_ for r_ in rowsP_ if r_ not in C.main])
+    C.note("Discussion: one 7,782-parameter network trained at seven gNBs serves clusters five times larger",
+           37 / 7 >= 5 and "one 7,782-parameter network trained at seven gNBs serves clusters five times larger" in C.main, None)
+    C.note("Sec. 3 slice ranking matches the parameter table: URLLC 15 ms and 0.8% budgets, weights 12.0 > 3.5 > 0.3, eMBB the largest ceiling",
+           "Latency budget & 15, 45, 65 ms" in C.main and "Loss budget & 0.8\\%, 2.0\\%, 3.5\\%" in C.main
+           and "Priority weight $\\omega_k$ & 12.0, 3.5, 0.3" in C.main and "Floor and cap, PRB ratio & 5 to 33, 10 to 66, 5 to 11" in C.main
+           and "URLLC carries time-critical traffic with the tightest budgets, 15 ms of latency and 0.8\\% loss" in C.main
+           and "eMBB frees the most room, since it has the largest PRB ceiling and the next-smallest weight" in C.main, None)
+    import shared_budget_kpm_source as sbk_
+    C.note("Sec. 5: Env A demand runs 5% above the nominal shares, and shedding mMTC keeps URLLC at full compliance and eMBB at 99.98%",
+           abs(sbk_.LOAD_FACTOR - 1.05) < 1e-12
+           and all(abs(r_["sla"]["urllc"] - 1) < 1e-12 for r_ in seeds_of("m63_reviewer/base", "heuristic", S30).values())
+           and f"{100 * mean(seeds_of('m63_reviewer/base', 'heuristic', S30), lambda r_: r_['sla']['embb']):.2f}" == "99.98"
+           and "In Env A, where demand runs 5\\% above the nominal shares, removing it frees enough PRBs to keep URLLC at full compliance and eMBB at 99.98\\% on average" in C.main,
+           sbk_.LOAD_FACTOR)
+    sm7_ = seeds_of("m64/n3_fully_connected", "rule_static", S30); lc7_ = seeds_of("m64/n3_fully_connected", "rule_local", S30)
+    C.note("Sec. 5: in Env B shedding mMTC alone cannot protect URLLC, the tuned rule that also sheds eMBB does",
+           mean(sm7_, lambda r_: r_["sla"]["urllc"]) < 0.7 and mean(lc7_, lambda r_: r_["sla"]["urllc"]) > 0.95
+           and "Under Env B's load peaks, shedding mMTC alone cannot protect URLLC" in C.main,
+           (mean(sm7_, lambda r_: r_["sla"]["urllc"]), mean(lc7_, lambda r_: r_["sla"]["urllc"])))
 
     # ---------------- M94 (Gate D): AXIOM distilled into per-slice trees, OR1 Table S10 and the main Section 6.3 sentences,
     # recomputed from the replays, the stored trees and the rule's evaluation logs (docs/PAPER5_M94_preregistration.md)
