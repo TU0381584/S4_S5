@@ -7,6 +7,12 @@
     7782,
     7782
    ],
+   "mappo_tuned": [
+    5122,
+    5122,
+    5122,
+    5122
+   ],
    "single_agent_dqn": [
     21250,
     26370,
@@ -18,12 +24,6 @@
     129038,
     350246,
     682058
-   ],
-   "mappo_tuned": [
-    5122,
-    5122,
-    5122,
-    5122
    ]
   },
   "transfer_axiom": [
@@ -38,6 +38,13 @@
    "independent_dqn": 32.13277777777777,
    "mappo_tuned": 56.676111111111105,
    "rule_static": 99.97666666666666
+  },
+  "delay37": {
+   "axiom2": 0.08225048043321402,
+   "single_agent_dqn": 3.613076012087381,
+   "independent_dqn": 0.759536963416552,
+   "mappo_tuned": 0.5772132706460222,
+   "rule_static": 0.03037465368956921
   },
   "past_B": [
    "AXIOM",
@@ -64,11 +71,20 @@
    "rule",
    "rule",
    "rule"
+  ],
+  "over_mappo_pct": [
+   26.740273897977463,
+   35.91822054686071
+  ],
+  "over_tuned_rule": [
+   6.225685115267432,
+   7.548921514750721,
+   8.666876187993841
   ]
  },
  "rows": [
   [
-   "AXIOM (proposed)",
+   "AXIOM",
    [
     [
      "full",
@@ -84,7 +100,11 @@
     ],
     [
      "full",
-     "learned"
+     ""
+    ],
+    [
+     "full",
+     "0.08"
     ],
     [
      "full",
@@ -92,7 +112,11 @@
     ],
     [
      "none",
-     "rule wins"
+     "loses"
+    ],
+    [
+     "full",
+     "tested"
     ]
    ]
   ],
@@ -113,7 +137,11 @@
     ],
     [
      "full",
-     "learned"
+     ""
+    ],
+    [
+     "none",
+     "0.58"
     ],
     [
      "na",
@@ -121,7 +149,11 @@
     ],
     [
      "none",
-     "rule wins"
+     "loses"
+    ],
+    [
+     "na",
+     ""
     ]
    ]
   ],
@@ -130,7 +162,7 @@
    [
     [
      "none",
-     "21k\u201365k"
+     "64,770"
     ],
     [
      "none",
@@ -142,7 +174,11 @@
     ],
     [
      "full",
-     "learned"
+     ""
+    ],
+    [
+     "none",
+     "3.61"
     ],
     [
      "na",
@@ -150,7 +186,11 @@
     ],
     [
      "none",
-     "rule wins"
+     "loses"
+    ],
+    [
+     "na",
+     ""
     ]
    ]
   ],
@@ -159,7 +199,7 @@
    [
     [
      "none",
-     "55k\u2013682k"
+     "682,058"
     ],
     [
      "none",
@@ -171,7 +211,11 @@
     ],
     [
      "full",
-     "learned"
+     ""
+    ],
+    [
+     "none",
+     "0.76"
     ],
     [
      "na",
@@ -179,7 +223,11 @@
     ],
     [
      "none",
-     "rule wins"
+     "loses"
+    ],
+    [
+     "na",
+     ""
     ]
    ]
   ],
@@ -188,11 +236,11 @@
    [
     [
      "full",
-     "no model"
+     "none"
     ],
     [
      "full",
-     "size-free"
+     "any"
     ],
     [
      "full",
@@ -200,7 +248,11 @@
     ],
     [
      "none",
-     "fixed slice"
+     ""
+    ],
+    [
+     "full",
+     "0.03"
     ],
     [
      "half",
@@ -209,6 +261,10 @@
     [
      "full",
      "best"
+    ],
+    [
+     "na",
+     ""
     ]
    ]
   ],
@@ -217,7 +273,7 @@
    [
     [
      "full",
-     "no model"
+     "none"
     ],
     [
      "full",
@@ -229,7 +285,11 @@
     ],
     [
      "none",
-     "grid search"
+     ""
+    ],
+    [
+     "na",
+     ""
     ],
     [
      "none",
@@ -238,8 +298,42 @@
     [
      "full",
      "best"
+    ],
+    [
+     "na",
+     ""
     ]
    ]
   ]
- ]
+ ],
+ "tiles": [
+  [
+   "35.0 points",
+   "compliance lead over the best\nlearned baseline at 37 gNBs"
+  ],
+  [
+   "7\u201344\u00d7",
+   "shorter URLLC backlog delay\nthan the learned baselines"
+  ],
+  [
+   "88\u00d7",
+   "fewer parameters than\nDQN-I at 37 gNBs"
+  ],
+  [
+   "95%+",
+   "compliance when moved from\n7 to 37 gNBs, no retraining"
+  ],
+  [
+   "+8.7",
+   "reward per step over the\ntuned rule past its load"
+  ],
+  [
+   "27\u201336%",
+   "more reward than MAPPO\nunder coupled load"
+  ]
+ ],
+ "thresholds": {
+  "sla37": 90.0,
+  "delay37": 0.5
+ }
 }

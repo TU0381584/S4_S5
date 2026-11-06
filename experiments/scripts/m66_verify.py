@@ -2631,38 +2631,47 @@ def main():
            and "AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$" in C.tex,
            fc19_)
 
-    # ---------------- capability matrix (main Fig. 10) and the slice-priority and rule rationale (Secs. 3 and 5):
-    # every value recomputed here, every glyph checked against its rule, and the text's "five of its six" against the scores
+    # ---------------- capability matrix and margins (main Fig. 10) and the slice-priority and rule rationale (Secs. 3 and 5):
+    # every value recomputed here, every glyph checked against its rule, the tiles against the verified abstract values,
+    # and the text's "seven of its eight" against the scores
     cap_ = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_capability_summary.json"))
-    cxa_ = json.load(open(f"{ROOT}/m64/complexity.json")); cxb_ = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
-    par_ = {a_: [cxa_[str(n_)][k_]["params_execution"] for n_ in (3, 7, 19)] + [cxb_[k_]["params_execution"]]
+    cxa_ = json.load(open(f"{ROOT}/m64/complexity.json"))
+    par_ = {a_: [cxa_[str(n_)][k_]["params_execution"] for n_ in (3, 7, 19)] + [cx37_[k_]["params_execution"]]
             for a_, k_ in (("axiom2", "axiom2"), ("mappo_tuned", "mappo"), ("single_agent_dqn", "single_agent_dqn"), ("independent_dqn", "independent_dqn"))}
     t37_ = [mu92_(C92_[f"A_{t_}_n37"]["AXIOM-7to37"]) for t_ in ("hex", "ring", "fully_connected")]
+    tm37_ = mu92_(C92_["A_hex_n37"]["MAPPO-7to37"])
     s37_ = {"axiom2": pooled37["axiom2"], **{a_: 100 * mean(seeds_of("m73/A_n37_hex", a_, S30_19), prio) for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}}
-    k_ = lambda x_: f"{x_ / 1000:.0f}k"
+    d37_ = {a_: km_("A_n37_hex", a_, "urllc", "delay_steps") for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}
     pastB_ = all(v_["verdict"] == "AXIOM" for kk_, v_ in rg_["B"].items() if float(kk_.split("|")[1]) >= 1.10)
     pastA_ = all(v_["verdict"] == "tie" for kk_, v_ in rg_["A"].items() if float(kk_.split("|")[1]) > 1.05)
     nomB_ = all(rg_["B"][kk_]["verdict"] == "rule" for kk_ in ("3|1.00", "7|1.00", "19|1.00"))
+    fx_ = lambda a_: "full" if len(set(par_[a_])) == 1 else "none"
+    sl_ = lambda a_: "full" if s37_[a_] >= 90 else "none"
+    dl_c_ = lambda a_: "full" if d37_[a_] < 0.5 else "none"
     exp_ = [
-        ["AXIOM (proposed)", [["full", f"{par_['axiom2'][0]:,}"], ["full", f"{min(t37_):.0f}\u2013{max(t37_):.0f}%"], ["full", f"{s37_['axiom2']:.1f}%"],
-                              ["full", "learned"], ["full" if pastB_ else "half", "ahead"], ["none", "rule wins"]]],
-        ["MAPPO", [["full", f"{par_['mappo_tuned'][0]:,}"], ["half", f"{mu92_(C92_['A_hex_n37']['MAPPO-7to37']):.1f}%"], ["none", f"{s37_['mappo_tuned']:.1f}%"],
-                   ["full", "learned"], ["na", ""], ["none", "rule wins"]]],
-        ["DQN-SA", [["none", f"{k_(par_['single_agent_dqn'][0])}\u2013{k_(par_['single_agent_dqn'][-1])}"], ["none", "cannot"], ["none", f"{s37_['single_agent_dqn']:.1f}%"],
-                    ["full", "learned"], ["na", ""], ["none", "rule wins"]]],
-        ["DQN-I", [["none", f"{k_(par_['independent_dqn'][0])}\u2013{k_(par_['independent_dqn'][-1])}"], ["none", "cannot"], ["none", f"{s37_['independent_dqn']:.1f}%"],
-                   ["full", "learned"], ["na", ""], ["none", "rule wins"]]],
-        ["Static rule", [["full", "no model"], ["full", "size-free"], ["full", f"{s37_['rule_static']:.2f}%"], ["none", "fixed slice"],
-                         ["half" if pastA_ else "none", "ties"], ["full", "best"]]],
-        ["Tuned rule", [["full", "no model"], ["full", "7 to 19"], ["na", ""], ["none", "grid search"], ["none" if pastB_ else "half", "trails"],
-                        ["full" if nomB_ else "half", "best"]]]]
+        ["AXIOM", [[fx_("axiom2"), f"{par_['axiom2'][-1]:,}"], ["full" if min(t37_) >= 90 else "half", f"{min(t37_):.0f}\u2013{max(t37_):.0f}%"],
+                   [sl_("axiom2"), f"{s37_['axiom2']:.1f}%"], ["full", ""], [dl_c_("axiom2"), f"{d37_['axiom2']:.2f}"],
+                   ["full" if pastB_ else "half", "ahead"], ["none", "loses"], ["full", "tested"]]],
+        ["MAPPO", [[fx_("mappo_tuned"), f"{par_['mappo_tuned'][-1]:,}"], ["half" if tm37_ < 90 else "full", f"{tm37_:.1f}%"], [sl_("mappo_tuned"), f"{s37_['mappo_tuned']:.1f}%"],
+                   ["full", ""], [dl_c_("mappo_tuned"), f"{d37_['mappo_tuned']:.2f}"], ["na", ""], ["none", "loses"], ["na", ""]]],
+        ["DQN-SA", [[fx_("single_agent_dqn"), f"{par_['single_agent_dqn'][-1]:,}"], ["none", "cannot"], [sl_("single_agent_dqn"), f"{s37_['single_agent_dqn']:.1f}%"],
+                    ["full", ""], [dl_c_("single_agent_dqn"), f"{d37_['single_agent_dqn']:.2f}"], ["na", ""], ["none", "loses"], ["na", ""]]],
+        ["DQN-I", [[fx_("independent_dqn"), f"{par_['independent_dqn'][-1]:,}"], ["none", "cannot"], [sl_("independent_dqn"), f"{s37_['independent_dqn']:.1f}%"],
+                   ["full", ""], [dl_c_("independent_dqn"), f"{d37_['independent_dqn']:.2f}"], ["na", ""], ["none", "loses"], ["na", ""]]],
+        ["Static rule", [["full", "none"], ["full", "any"], [sl_("rule_static"), f"{s37_['rule_static']:.2f}%"], ["none", ""], [dl_c_("rule_static"), f"{d37_['rule_static']:.2f}"],
+                         ["half" if pastA_ else "none", "ties"], ["full", "best"], ["na", ""]]],
+        ["Tuned rule", [["full", "none"], ["full", "7 to 19"], ["na", ""], ["none", ""], ["na", ""], ["none" if pastB_ else "half", "trails"],
+                        ["full" if nomB_ else "half", "best"], ["na", ""]]]]
     sc_ = [sum(1.0 if c_[0] == "full" else 0.5 if c_[0] == "half" else 0.0 for c_ in r_[1]) for r_ in exp_]
-    C.note("Fig. 10 capability matrix: every value recomputed, every glyph by its rule, AXIOM alone meets five of six",
-           cap_["rows"] == exp_ and len(set(par_["axiom2"])) == 1 and len(set(par_["mappo_tuned"])) == 1
-           and min(t37_) >= 90 and s37_["axiom2"] >= 90 and max(s37_[a_] for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")) < 90
-           and mu92_(C92_["A_hex_n37"]["MAPPO-7to37"]) < 90 and sc_[0] == 5 and all(x_ < 5 for x_ in sc_[1:])
-           and "AXIOM alone meets five of its six criteria" in C.main,
-           {"scores": sc_, "differs": [r_[0] for r_, e_ in zip(cap_["rows"], exp_) if r_ != e_]})
+    om_ = [100 * (b3a_ / b3m_ - 1), 100 * (a19_ / m19_ - 1)]
+    exp_t_ = [f"{gap37_:.1f} points", f"{min(rat_):.0f}\u2013{max(rat_):.0f}\u00d7", f"{par_['independent_dqn'][-1] / par_['axiom2'][-1]:.0f}\u00d7",
+              f"{np.floor(min(t37_)):.0f}%+", f"+{max(ov_):.1f}", f"{min(om_):.0f}\u2013{max(om_):.0f}%"]
+    C.note("Fig. 10 capability matrix and margins: values recomputed, glyphs by rule, tiles as the verified abstract values, AXIOM alone meets seven of eight",
+           cap_["rows"] == exp_ and [t_[0] for t_ in cap_["tiles"]] == exp_t_ and cap_["thresholds"] == {"sla37": 90.0, "delay37": 0.5}
+           and sc_[0] == 7 and all(x_ < 7 for x_ in sc_[1:])
+           and "AXIOM alone meets seven of its eight criteria" in C.main
+           and "At 37 gNBs compliance is met at 90\\% and delay below half a control period" in C.main,
+           {"scores": sc_, "tiles": [t_[0] for t_ in cap_["tiles"]], "expected_tiles": exp_t_, "differs": [r_[0] for r_, e_ in zip(cap_["rows"], exp_) if r_ != e_]})
     C.note("Discussion: one 7,782-parameter network trained at seven gNBs serves clusters five times larger",
            37 / 7 >= 5 and "one 7,782-parameter network trained at seven gNBs serves clusters five times larger" in C.main, None)
     C.note("Sec. 3 slice ranking matches the parameter table: URLLC 15 ms and 0.8% budgets, weights 12.0 > 3.5 > 0.3, eMBB the largest ceiling",
