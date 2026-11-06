@@ -1,0 +1,720 @@
+{
+ "cv": {
+  "1": 0.927536597230737,
+  "2": 0.9251403925791497,
+  "3": 0.929767698566288
+ },
+ "heldout": {
+  "1": 0.9272089355883975,
+  "2": 0.9252780696269911,
+  "3": 0.9305967155143459
+ },
+ "per_seed": {
+  "900": {
+   "heldout_fidelity": 0.9634166460447084,
+   "train_requests": 24154,
+   "heldout_requests": 24246,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.17672466987535482,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.2831\n|   |--- urllc_queue <= 0.1345\n|   |   |--- congestion <= 0.8719\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8719\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.1345\n|   |   |--- congestion <= 0.8794\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8794\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.2831\n|   |--- urllc_queue <= 0.4548\n|   |   |--- slice_prb_used <= 0.5088\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.5088\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.4548\n|   |   |--- congestion <= 0.7950\n|   |   |   |--- class: 1\n|   |   |--- congestion >  0.7950\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.28305333852767944
+    ],
+    [
+     "urllc_queue",
+     0.13454901427030563
+    ],
+    [
+     "congestion",
+     0.8719046711921692
+    ],
+    [
+     "congestion",
+     0.8793768286705017
+    ],
+    [
+     "urllc_queue",
+     0.45481665432453156
+    ],
+    [
+     "slice_prb_used",
+     0.5088253915309906
+    ],
+    [
+     "congestion",
+     0.7950000166893005
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "901": {
+   "heldout_fidelity": 0.8771479441845058,
+   "train_requests": 24062,
+   "heldout_requests": 24151,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.28414481897627963,
+    "mmtc": 0.27538769384692346
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.2233\n|   |--- urllc_queue <= 0.0869\n|   |   |--- urllc_queue <= 0.0025\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.0025\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.0869\n|   |   |--- congestion <= 0.8709\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8709\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.2233\n|   |--- urllc_queue <= 0.3582\n|   |   |--- slice_prb_used <= 0.4926\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.4926\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.3582\n|   |   |--- slice_prb_used <= 0.4829\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.4829\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.22333607822656631
+    ],
+    [
+     "urllc_queue",
+     0.08690617233514786
+    ],
+    [
+     "urllc_queue",
+     0.00249576463829726
+    ],
+    [
+     "congestion",
+     0.8709084689617157
+    ],
+    [
+     "urllc_queue",
+     0.35817359387874603
+    ],
+    [
+     "slice_prb_used",
+     0.49260054528713226
+    ],
+    [
+     "slice_prb_used",
+     0.4829140454530716
+    ]
+   ],
+   "tree_mmtc": "|--- slice_prb_used <= 0.0558\n|   |--- congestion <= 0.8401\n|   |   |--- neighbour_congestion <= 0.8837\n|   |   |   |--- class: 1\n|   |   |--- neighbour_congestion >  0.8837\n|   |   |   |--- class: 0\n|   |--- congestion >  0.8401\n|   |   |--- urllc_queue <= 0.5304\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.5304\n|   |   |   |--- class: 1\n|--- slice_prb_used >  0.0558\n|   |--- slice_prb_used <= 0.1007\n|   |   |--- congestion <= 0.9178\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.9178\n|   |   |   |--- class: 1\n|   |--- slice_prb_used >  0.1007\n|   |   |--- urllc_queue <= 0.5844\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.5844\n|   |   |   |--- class: 0\n",
+   "splits_mmtc": [
+    [
+     "slice_prb_used",
+     0.05580395087599754
+    ],
+    [
+     "congestion",
+     0.84010910987854
+    ],
+    [
+     "neighbour_congestion",
+     0.8836904168128967
+    ],
+    [
+     "urllc_queue",
+     0.5304261744022369
+    ],
+    [
+     "slice_prb_used",
+     0.10068678855895996
+    ],
+    [
+     "congestion",
+     0.9178035259246826
+    ],
+    [
+     "urllc_queue",
+     0.5844305157661438
+    ]
+   ]
+  },
+  "902": {
+   "heldout_fidelity": 0.9500743924615639,
+   "train_requests": 24167,
+   "heldout_requests": 24196,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.1705993690851735,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.3051\n|   |--- urllc_queue <= 0.1320\n|   |   |--- urllc_queue <= 0.0384\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.0384\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.1320\n|   |   |--- slice_prb_used <= 0.5518\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.5518\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.3051\n|   |--- urllc_queue <= 0.4446\n|   |   |--- congestion <= 0.8698\n|   |   |   |--- class: 1\n|   |   |--- congestion >  0.8698\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.4446\n|   |   |--- urllc_queue <= 0.6140\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.6140\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.30507947504520416
+    ],
+    [
+     "urllc_queue",
+     0.1319682076573372
+    ],
+    [
+     "urllc_queue",
+     0.03844995237886906
+    ],
+    [
+     "slice_prb_used",
+     0.5518070161342621
+    ],
+    [
+     "urllc_queue",
+     0.44458283483982086
+    ],
+    [
+     "congestion",
+     0.8698245882987976
+    ],
+    [
+     "urllc_queue",
+     0.6139503419399261
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "903": {
+   "heldout_fidelity": 0.9010571522960027,
+   "train_requests": 24147,
+   "heldout_requests": 24216,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.3246558197747184,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.3360\n|   |--- slice_prb_used <= 0.5453\n|   |   |--- urllc_queue <= 0.1680\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.1680\n|   |   |   |--- class: 1\n|   |--- slice_prb_used >  0.5453\n|   |   |--- congestion <= 0.9900\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.9900\n|   |   |   |--- class: 1\n|--- urllc_queue >  0.3360\n|   |--- slice_prb_used <= 0.5499\n|   |   |--- urllc_queue <= 0.6509\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.6509\n|   |   |   |--- class: 1\n|   |--- slice_prb_used >  0.5499\n|   |   |--- urllc_queue <= 0.8385\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.8385\n|   |   |   |--- class: 0\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.3360176980495453
+    ],
+    [
+     "slice_prb_used",
+     0.5452705025672913
+    ],
+    [
+     "urllc_queue",
+     0.1680472269654274
+    ],
+    [
+     "congestion",
+     0.9900372624397278
+    ],
+    [
+     "slice_prb_used",
+     0.5498985648155212
+    ],
+    [
+     "urllc_queue",
+     0.6509099900722504
+    ],
+    [
+     "urllc_queue",
+     0.8384658992290497
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "904": {
+   "heldout_fidelity": 0.960166147455867,
+   "train_requests": 24131,
+   "heldout_requests": 24075,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.20176529090004972,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.2974\n|   |--- congestion <= 0.9538\n|   |   |--- congestion <= 0.8241\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8241\n|   |   |   |--- class: 0\n|   |--- congestion >  0.9538\n|   |   |--- urllc_queue <= 0.0103\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.0103\n|   |   |   |--- class: 1\n|--- urllc_queue >  0.2974\n|   |--- urllc_queue <= 0.4236\n|   |   |--- urllc_queue <= 0.3783\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.3783\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.4236\n|   |   |--- urllc_queue <= 0.4809\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.4809\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.29744796454906464
+    ],
+    [
+     "congestion",
+     0.9538147151470184
+    ],
+    [
+     "congestion",
+     0.8240977227687836
+    ],
+    [
+     "urllc_queue",
+     0.010317394509911537
+    ],
+    [
+     "urllc_queue",
+     0.42358532547950745
+    ],
+    [
+     "urllc_queue",
+     0.3783305734395981
+    ],
+    [
+     "urllc_queue",
+     0.480851486325264
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "905": {
+   "heldout_fidelity": 0.9371788496602023,
+   "train_requests": 24125,
+   "heldout_requests": 24132,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.2551980198019802,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.2717\n|   |--- urllc_queue <= 0.1904\n|   |   |--- slice_prb_used <= 0.5527\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.5527\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.1904\n|   |   |--- slice_prb_used <= 0.5427\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.5427\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.2717\n|   |--- urllc_queue <= 0.6701\n|   |   |--- slice_prb_used <= 0.5526\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.5526\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.6701\n|   |   |--- congestion <= 0.8534\n|   |   |   |--- class: 1\n|   |   |--- congestion >  0.8534\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.2717301696538925
+    ],
+    [
+     "urllc_queue",
+     0.19036689400672913
+    ],
+    [
+     "slice_prb_used",
+     0.552672803401947
+    ],
+    [
+     "slice_prb_used",
+     0.5426758825778961
+    ],
+    [
+     "urllc_queue",
+     0.6701401472091675
+    ],
+    [
+     "slice_prb_used",
+     0.5525892376899719
+    ],
+    [
+     "congestion",
+     0.8534263372421265
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "906": {
+   "heldout_fidelity": 0.8289158616134092,
+   "train_requests": 24150,
+   "heldout_requests": 24222,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.6497757303915627,
+    "mmtc": 0.09216362740266142
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- slice_prb_used <= 0.3550\n|   |--- urllc_queue <= 0.2329\n|   |   |--- slice_prb_used <= 0.2800\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.2800\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.2329\n|   |   |--- urllc_queue <= 0.3403\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.3403\n|   |   |   |--- class: 1\n|--- slice_prb_used >  0.3550\n|   |--- slice_prb_used <= 0.4510\n|   |   |--- neighbour_congestion <= 0.7775\n|   |   |   |--- class: 1\n|   |   |--- neighbour_congestion >  0.7775\n|   |   |   |--- class: 1\n|   |--- slice_prb_used >  0.4510\n|   |   |--- neighbour_congestion <= 0.7399\n|   |   |   |--- class: 1\n|   |   |--- neighbour_congestion >  0.7399\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "slice_prb_used",
+     0.35500000417232513
+    ],
+    [
+     "urllc_queue",
+     0.23288876563310623
+    ],
+    [
+     "slice_prb_used",
+     0.2800000011920929
+    ],
+    [
+     "urllc_queue",
+     0.34029336273670197
+    ],
+    [
+     "slice_prb_used",
+     0.4509517252445221
+    ],
+    [
+     "neighbour_congestion",
+     0.7774766683578491
+    ],
+    [
+     "neighbour_congestion",
+     0.7399387657642365
+    ]
+   ],
+   "tree_mmtc": "|--- neighbour_congestion <= 0.7855\n|   |--- congestion <= 0.7504\n|   |   |--- slice_prb_used <= 0.0502\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.0502\n|   |   |   |--- class: 0\n|   |--- congestion >  0.7504\n|   |   |--- urllc_queue <= 0.2688\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.2688\n|   |   |   |--- class: 1\n|--- neighbour_congestion >  0.7855\n|   |--- congestion <= 0.6810\n|   |   |--- slice_prb_used <= 0.0488\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.0488\n|   |   |   |--- class: 0\n|   |--- congestion >  0.6810\n|   |   |--- slice_prb_used <= 0.1003\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.1003\n|   |   |   |--- class: 0\n",
+   "splits_mmtc": [
+    [
+     "neighbour_congestion",
+     0.7854838371276855
+    ],
+    [
+     "congestion",
+     0.7503677904605865
+    ],
+    [
+     "slice_prb_used",
+     0.05015220120549202
+    ],
+    [
+     "urllc_queue",
+     0.26875466108322144
+    ],
+    [
+     "congestion",
+     0.6809748709201813
+    ],
+    [
+     "slice_prb_used",
+     0.04875844903290272
+    ],
+    [
+     "slice_prb_used",
+     0.10032979026436806
+    ]
+   ]
+  },
+  "907": {
+   "heldout_fidelity": 0.9579190560666694,
+   "train_requests": 24149,
+   "heldout_requests": 24239,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.10991857883049592,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.4769\n|   |--- urllc_queue <= 0.2931\n|   |   |--- urllc_queue <= 0.2044\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.2044\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.2931\n|   |   |--- slice_prb_used <= 0.5710\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.5710\n|   |   |   |--- class: 1\n|--- urllc_queue >  0.4769\n|   |--- urllc_queue <= 0.7391\n|   |   |--- slice_prb_used <= 0.4300\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.4300\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.7391\n|   |   |--- neighbour_congestion <= 0.8831\n|   |   |   |--- class: 1\n|   |   |--- neighbour_congestion >  0.8831\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.47694210708141327
+    ],
+    [
+     "urllc_queue",
+     0.293131485581398
+    ],
+    [
+     "urllc_queue",
+     0.20439844578504562
+    ],
+    [
+     "slice_prb_used",
+     0.5710353851318359
+    ],
+    [
+     "urllc_queue",
+     0.7390707731246948
+    ],
+    [
+     "slice_prb_used",
+     0.4299999922513962
+    ],
+    [
+     "neighbour_congestion",
+     0.8830617368221283
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "908": {
+   "heldout_fidelity": 0.9414809906402717,
+   "train_requests": 24218,
+   "heldout_requests": 24146,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.27905523619095224,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.1433\n|   |--- urllc_queue <= 0.0407\n|   |   |--- slice_prb_used <= 0.5631\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.5631\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.0407\n|   |   |--- slice_prb_used <= 0.5503\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.5503\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.1433\n|   |--- urllc_queue <= 0.3473\n|   |   |--- congestion <= 0.8450\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8450\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.3473\n|   |   |--- congestion <= 0.7100\n|   |   |   |--- class: 1\n|   |   |--- congestion >  0.7100\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.14330868422985077
+    ],
+    [
+     "urllc_queue",
+     0.040720537304878235
+    ],
+    [
+     "slice_prb_used",
+     0.5630793571472168
+    ],
+    [
+     "slice_prb_used",
+     0.5502809882164001
+    ],
+    [
+     "urllc_queue",
+     0.34731294214725494
+    ],
+    [
+     "congestion",
+     0.8449999988079071
+    ],
+    [
+     "congestion",
+     0.7100000083446503
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "909": {
+   "heldout_fidelity": 0.8617021276595744,
+   "train_requests": 24174,
+   "heldout_requests": 24158,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.26475379025184814,
+    "mmtc": 0.5444875484920536
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.1589\n|   |--- urllc_queue <= 0.1056\n|   |   |--- congestion <= 0.8015\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8015\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.1056\n|   |   |--- neighbour_congestion <= 0.8446\n|   |   |   |--- class: 1\n|   |   |--- neighbour_congestion >  0.8446\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.1589\n|   |--- urllc_queue <= 0.4011\n|   |   |--- slice_prb_used <= 0.5504\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.5504\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.4011\n|   |   |--- slice_prb_used <= 0.4668\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.4668\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.1588716357946396
+    ],
+    [
+     "urllc_queue",
+     0.10559878125786781
+    ],
+    [
+     "congestion",
+     0.8014810383319855
+    ],
+    [
+     "neighbour_congestion",
+     0.8445864915847778
+    ],
+    [
+     "urllc_queue",
+     0.4010733962059021
+    ],
+    [
+     "slice_prb_used",
+     0.5503948926925659
+    ],
+    [
+     "slice_prb_used",
+     0.4668333977460861
+    ]
+   ],
+   "tree_mmtc": "|--- slice_prb_used <= 0.0600\n|   |--- urllc_queue <= 0.3398\n|   |   |--- slice_prb_used <= 0.0500\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.0500\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.3398\n|   |   |--- urllc_queue <= 0.5073\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.5073\n|   |   |   |--- class: 1\n|--- slice_prb_used >  0.0600\n|   |--- urllc_queue <= 0.4972\n|   |   |--- neighbour_congestion <= 0.8930\n|   |   |   |--- class: 0\n|   |   |--- neighbour_congestion >  0.8930\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.4972\n|   |   |--- urllc_queue <= 0.5975\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.5975\n|   |   |   |--- class: 1\n",
+   "splits_mmtc": [
+    [
+     "slice_prb_used",
+     0.060005439445376396
+    ],
+    [
+     "urllc_queue",
+     0.339751735329628
+    ],
+    [
+     "slice_prb_used",
+     0.05001283623278141
+    ],
+    [
+     "urllc_queue",
+     0.5072864592075348
+    ],
+    [
+     "urllc_queue",
+     0.4971752315759659
+    ],
+    [
+     "neighbour_congestion",
+     0.8929519057273865
+    ],
+    [
+     "urllc_queue",
+     0.5975222289562225
+    ]
+   ]
+  },
+  "910": {
+   "heldout_fidelity": 1.0,
+   "train_requests": 24201,
+   "heldout_requests": 24239,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.0,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "constant: accept",
+   "tree_mmtc": "constant: reject"
+  },
+  "911": {
+   "heldout_fidelity": 0.9555426773739548,
+   "train_requests": 24190,
+   "heldout_requests": 24158,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.09229234222998253,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.5176\n|   |--- urllc_queue <= 0.3300\n|   |   |--- neighbour_congestion <= 0.8773\n|   |   |   |--- class: 0\n|   |   |--- neighbour_congestion >  0.8773\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.3300\n|   |   |--- slice_prb_used <= 0.5509\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.5509\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.5176\n|   |--- urllc_queue <= 0.6617\n|   |   |--- slice_prb_used <= 0.5512\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.5512\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.6617\n|   |   |--- urllc_queue <= 0.8405\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.8405\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.5176023840904236
+    ],
+    [
+     "urllc_queue",
+     0.329956978559494
+    ],
+    [
+     "neighbour_congestion",
+     0.8772833943367004
+    ],
+    [
+     "slice_prb_used",
+     0.5508600771427155
+    ],
+    [
+     "urllc_queue",
+     0.6616708934307098
+    ],
+    [
+     "slice_prb_used",
+     0.5511626601219177
+    ],
+    [
+     "urllc_queue",
+     0.8404607176780701
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "1000": {
+   "heldout_fidelity": 0.9408203607610576,
+   "train_requests": 24154,
+   "heldout_requests": 24282,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.28642320905967683,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.2801\n|   |--- slice_prb_used <= 0.5619\n|   |   |--- urllc_queue <= 0.0541\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.0541\n|   |   |   |--- class: 0\n|   |--- slice_prb_used >  0.5619\n|   |   |--- congestion <= 0.8867\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8867\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.2801\n|   |--- urllc_queue <= 0.5058\n|   |   |--- slice_prb_used <= 0.5667\n|   |   |   |--- class: 1\n|   |   |--- slice_prb_used >  0.5667\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.5058\n|   |   |--- urllc_queue <= 0.6357\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.6357\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.28014610707759857
+    ],
+    [
+     "slice_prb_used",
+     0.5618963241577148
+    ],
+    [
+     "urllc_queue",
+     0.054127754643559456
+    ],
+    [
+     "congestion",
+     0.8867338001728058
+    ],
+    [
+     "urllc_queue",
+     0.5057802796363831
+    ],
+    [
+     "slice_prb_used",
+     0.5667366683483124
+    ],
+    [
+     "urllc_queue",
+     0.6357190907001495
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "1001": {
+   "heldout_fidelity": 0.9150974699294898,
+   "train_requests": 24256,
+   "heldout_requests": 24110,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.20667825223435948,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.2387\n|   |--- slice_prb_used <= 0.5510\n|   |   |--- urllc_queue <= 0.0127\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.0127\n|   |   |   |--- class: 1\n|   |--- slice_prb_used >  0.5510\n|   |   |--- slice_prb_used <= 0.5921\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.5921\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.2387\n|   |--- slice_prb_used <= 0.5501\n|   |   |--- urllc_queue <= 0.5972\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.5972\n|   |   |   |--- class: 1\n|   |--- slice_prb_used >  0.5501\n|   |   |--- urllc_queue <= 0.4824\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.4824\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.23865294456481934
+    ],
+    [
+     "slice_prb_used",
+     0.5509652197360992
+    ],
+    [
+     "urllc_queue",
+     0.012729966547340155
+    ],
+    [
+     "slice_prb_used",
+     0.5921055376529694
+    ],
+    [
+     "slice_prb_used",
+     0.5501380562782288
+    ],
+    [
+     "urllc_queue",
+     0.5971786081790924
+    ],
+    [
+     "urllc_queue",
+     0.4824193865060806
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  },
+  "1002": {
+   "heldout_fidelity": 0.9684310565679104,
+   "train_requests": 24162,
+   "heldout_requests": 24201,
+   "reject_share_train": {
+    "urllc": 0.0,
+    "embb": 0.14258982035928144,
+    "mmtc": 1.0
+   },
+   "tree_urllc": "constant: accept",
+   "tree_embb": "|--- urllc_queue <= 0.4056\n|   |--- urllc_queue <= 0.3563\n|   |   |--- urllc_queue <= 0.3272\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.3272\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.3563\n|   |   |--- urllc_queue <= 0.3961\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.3961\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.4056\n|   |--- urllc_queue <= 0.5020\n|   |   |--- slice_prb_used <= 0.4982\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.4982\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.5020\n|   |   |--- urllc_queue <= 0.6941\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.6941\n|   |   |   |--- class: 1\n",
+   "splits_embb": [
+    [
+     "urllc_queue",
+     0.4056060165166855
+    ],
+    [
+     "urllc_queue",
+     0.35628238320350647
+    ],
+    [
+     "urllc_queue",
+     0.32720978558063507
+    ],
+    [
+     "urllc_queue",
+     0.3960579186677933
+    ],
+    [
+     "urllc_queue",
+     0.5020284354686737
+    ],
+    [
+     "slice_prb_used",
+     0.4982481002807617
+    ],
+    [
+     "urllc_queue",
+     0.6940509974956512
+    ]
+   ],
+   "tree_mmtc": "constant: reject"
+  }
+ },
+ "selected_depth": 3
+}

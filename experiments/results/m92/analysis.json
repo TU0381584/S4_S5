@@ -1,0 +1,1715 @@
+{
+ "cells": {
+  "A_hex_n19": {
+   "AXIOM-7to19": {
+    "prio": {
+     "n": 15,
+     "mean": 96.19777777777776,
+     "ci": [
+      91.63222222222221,
+      99.92666666666668
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.644724976509281,
+     "ci": [
+      4.543963587383313,
+      4.729700388196213
+     ],
+     "collapsed": 0
+    }
+   },
+   "MAPPO-7to19": {
+    "prio": {
+     "n": 15,
+     "mean": 64.22111111111111,
+     "ci": [
+      56.56333333333334,
+      72.21363888888891
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 3.9887964128810127,
+     "ci": [
+      3.778456533605593,
+      4.1853506077337705
+     ],
+     "collapsed": 0
+    }
+   },
+   "AXIOM trained at 19": {
+    "prio": {
+     "n": 15,
+     "mean": 94.62666666666665,
+     "ci": [
+      86.87444444444444,
+      99.97666666666667
+     ],
+     "collapsed": 1
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.658548089988016,
+     "ci": [
+      4.512461206377124,
+      4.759892160382635
+     ],
+     "collapsed": 1
+    }
+   },
+   "static rule": {
+    "prio": {
+     "n": 15,
+     "mean": 99.96444444444445,
+     "ci": [
+      99.90555555555557,
+      100.0
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.755643340345666,
+     "ci": [
+      4.745160690736013,
+      4.7659988293488675
+     ],
+     "collapsed": 0
+    }
+   },
+   "accept-all": {
+    "prio": {
+     "n": 15,
+     "mean": 65.85333333333334,
+     "ci": [
+      64.80330555555555,
+      66.96558333333334
+     ],
+     "collapsed": 15
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.130650915506286,
+     "ci": [
+      4.113748846010511,
+      4.147105079029085
+     ],
+     "collapsed": 15
+    }
+   }
+  },
+  "A_hex_n37": {
+   "AXIOM-7to37": {
+    "prio": {
+     "n": 15,
+     "mean": 95.37222222222223,
+     "ci": [
+      89.6288888888889,
+      99.91555555555557
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.690345806681169,
+     "ci": [
+      4.588992231925004,
+      4.773090791406916
+     ],
+     "collapsed": 0
+    }
+   },
+   "MAPPO-7to37": {
+    "prio": {
+     "n": 15,
+     "mean": 61.528888888888886,
+     "ci": [
+      53.682166666666674,
+      70.23233333333333
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.133864731839576,
+     "ci": [
+      3.945983075533452,
+      4.3060045080055875
+     ],
+     "collapsed": 0
+    }
+   },
+   "AXIOM trained at 37": {
+    "prio": {
+     "n": 15,
+     "mean": 94.79555555555557,
+     "ci": [
+      87.33222222222223,
+      100.0
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.733261461336981,
+     "ci": [
+      4.635497795498053,
+      4.800898174825829
+     ],
+     "collapsed": 0
+    }
+   },
+   "static rule": {
+    "prio": {
+     "n": 15,
+     "mean": 99.99444444444445,
+     "ci": [
+      99.98333333333333,
+      100.0
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.80041585361007,
+     "ci": [
+      4.795001778255208,
+      4.80632898643606
+     ],
+     "collapsed": 0
+    }
+   },
+   "accept-all": {
+    "prio": {
+     "n": 15,
+     "mean": 61.12666666666666,
+     "ci": [
+      59.878861111111114,
+      62.39780555555554
+     ],
+     "collapsed": 15
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.220311394083279,
+     "ci": [
+      4.211086448255976,
+      4.2295621965626635
+     ],
+     "collapsed": 15
+    }
+   }
+  },
+  "A_ring_n19": {
+   "AXIOM-7to19": {
+    "prio": {
+     "n": 15,
+     "mean": 96.92444444444445,
+     "ci": [
+      91.3421388888889,
+      99.87222222222222
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.666494778455762,
+     "ci": [
+      4.5837261427078415,
+      4.735194121010124
+     ],
+     "collapsed": 0
+    }
+   },
+   "MAPPO-7to19": {
+    "prio": {
+     "n": 15,
+     "mean": 64.22111111111111,
+     "ci": [
+      56.7788888888889,
+      72.38472222222221
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 3.9887964128810127,
+     "ci": [
+      3.7825489015603604,
+      4.180998735156253
+     ],
+     "collapsed": 0
+    }
+   },
+   "AXIOM trained at 19": {
+    "prio": {
+     "n": 15,
+     "mean": 96.82333333333334,
+     "ci": [
+      92.31333333333333,
+      99.92888888888889
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.688551965783906,
+     "ci": [
+      4.6030188210616405,
+      4.754650265908505
+     ],
+     "collapsed": 0
+    }
+   },
+   "static rule": {
+    "prio": {
+     "n": 15,
+     "mean": 99.96444444444445,
+     "ci": [
+      99.90555555555557,
+      100.0
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.755643340345666,
+     "ci": [
+      4.745489895372444,
+      4.7661814190645195
+     ],
+     "collapsed": 0
+    }
+   },
+   "accept-all": {
+    "prio": {
+     "n": 15,
+     "mean": 65.85333333333334,
+     "ci": [
+      64.78108333333334,
+      66.98002777777778
+     ],
+     "collapsed": 15
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.130650915506286,
+     "ci": [
+      4.113841916376126,
+      4.146980131396418
+     ],
+     "collapsed": 15
+    }
+   }
+  },
+  "A_ring_n37": {
+   "AXIOM-7to37": {
+    "prio": {
+     "n": 15,
+     "mean": 96.32777777777777,
+     "ci": [
+      90.25444444444447,
+      99.74666666666667
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.711479360608223,
+     "ci": [
+      4.63392019965672,
+      4.778542610100869
+     ],
+     "collapsed": 0
+    }
+   },
+   "MAPPO-7to37": {
+    "prio": {
+     "n": 15,
+     "mean": 61.528888888888886,
+     "ci": [
+      53.6263888888889,
+      70.17463888888888
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.133864731839576,
+     "ci": [
+      3.9502328295684808,
+      4.303723976307157
+     ],
+     "collapsed": 0
+    }
+   },
+   "AXIOM trained at 37": {
+    "prio": {
+     "n": 15,
+     "mean": 93.16333333333334,
+     "ci": [
+      85.26444444444445,
+      99.9888888888889
+     ],
+     "collapsed": 2
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.68938661398576,
+     "ci": [
+      4.572817069750433,
+      4.797333846097749
+     ],
+     "collapsed": 2
+    }
+   },
+   "static rule": {
+    "prio": {
+     "n": 15,
+     "mean": 99.99444444444445,
+     "ci": [
+      99.98333333333333,
+      100.0
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.80041585361007,
+     "ci": [
+      4.79491714965019,
+      4.806401380536883
+     ],
+     "collapsed": 0
+    }
+   },
+   "accept-all": {
+    "prio": {
+     "n": 15,
+     "mean": 61.12666666666666,
+     "ci": [
+      59.88333333333333,
+      62.42780555555555
+     ],
+     "collapsed": 15
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.220311394083279,
+     "ci": [
+      4.211062515183228,
+      4.2298377009207995
+     ],
+     "collapsed": 15
+    }
+   }
+  },
+  "B_hex_n19": {
+   "AXIOM-7to19": {
+    "prio": {
+     "n": 15,
+     "mean": 79.08514619883042,
+     "ci": [
+      76.58868713450293,
+      80.83862280701753
+     ],
+     "collapsed": 0
+    },
+    "prio_cluster": {
+     "n": 15,
+     "mean": 25.46555555555556,
+     "ci": [
+      22.86219444444444,
+      29.62891666666667
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.25749055628231,
+     "ci": [
+      4.20901910138982,
+      4.292374350738865
+     ],
+     "collapsed": 0
+    }
+   },
+   "MLP-7to19": {
+    "prio": {
+     "n": 15,
+     "mean": 78.2819298245614,
+     "ci": [
+      75.39201023391814,
+      80.73321783625732
+     ],
+     "collapsed": 0
+    },
+    "prio_cluster": {
+     "n": 15,
+     "mean": 36.233333333333334,
+     "ci": [
+      28.923305555555554,
+      43.692249999999994
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.236618318259301,
+     "ci": [
+      4.174147067694643,
+      4.299973871010172
+     ],
+     "collapsed": 0
+    }
+   },
+   "MAPPO-7to19": {
+    "prio": {
+     "n": 15,
+     "mean": 72.94011695906433,
+     "ci": [
+      70.15242105263157,
+      75.57416081871345
+     ],
+     "collapsed": 0
+    },
+    "prio_cluster": {
+     "n": 15,
+     "mean": 31.52888888888889,
+     "ci": [
+      25.12880555555555,
+      38.16902777777778
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 3.8984079326126997,
+     "ci": [
+      3.77909031037551,
+      4.004845845870726
+     ],
+     "collapsed": 0
+    }
+   },
+   "AXIOM trained at 19": {
+    "prio": {
+     "n": 15,
+     "mean": 77.3076023391813,
+     "ci": [
+      74.22880409356723,
+      79.84561549707601
+     ],
+     "collapsed": 1
+    },
+    "prio_cluster": {
+     "n": 15,
+     "mean": 24.746666666666666,
+     "ci": [
+      21.723333333333336,
+      29.733388888888893
+     ],
+     "collapsed": 1
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.225284100072637,
+     "ci": [
+      4.159328369251416,
+      4.279724903064886
+     ],
+     "collapsed": 1
+    }
+   },
+   "static rule": {
+    "prio": {
+     "n": 15,
+     "mean": 79.87286549707603,
+     "ci": [
+      79.0095701754386,
+      80.74427777777778
+     ],
+     "collapsed": 0
+    },
+    "prio_cluster": {
+     "n": 15,
+     "mean": 22.99,
+     "ci": [
+      22.342194444444445,
+      23.725583333333333
+     ],
+     "collapsed": 0
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 4.29413545871227,
+     "ci": [
+      4.281725592240818,
+      4.306672928970038
+     ],
+     "collapsed": 0
+    }
+   },
+   "accept-all": {
+    "prio": {
+     "n": 15,
+     "mean": 66.3814619883041,
+     "ci": [
+      65.47641812865496,
+      67.26045467836256
+     ],
+     "collapsed": 15
+    },
+    "prio_cluster": {
+     "n": 15,
+     "mean": 18.00222222222222,
+     "ci": [
+      17.685527777777775,
+      18.398888888888884
+     ],
+     "collapsed": 15
+    },
+    "reward_per_gnb": {
+     "n": 15,
+     "mean": 3.9351344652989946,
+     "ci": [
+      3.9231133777928466,
+      3.9472834221849884
+     ],
+     "collapsed": 15
+    }
+   }
+  }
+ },
+ "families": {
+  "primary, Env A hex": {
+   "H-T1 19": {
+    "n": 15,
+    "diff": 30.34444444444445,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     25.146583333333332,
+     34.326666666666675
+    ],
+    "p_holm": 0.000244140625
+   },
+   "H-T2 19": {
+    "n": 15,
+    "diff": 31.976666666666667,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     22.82947222222222,
+     40.85897222222221
+    ],
+    "p_holm": 0.000244140625
+   },
+   "H-T1 37": {
+    "n": 15,
+    "diff": 34.24555555555556,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     28.174361111111107,
+     38.84561111111111
+    ],
+    "p_holm": 0.000244140625
+   },
+   "H-T2 37": {
+    "n": 15,
+    "diff": 33.843333333333334,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     23.949611111111107,
+     43.187999999999995
+    ],
+    "p_holm": 0.000244140625
+   }
+  },
+  "secondary, Env A ring": {
+   "H-T1 19": {
+    "n": 15,
+    "diff": 31.07111111111112,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     25.084305555555563,
+     34.72669444444445
+    ],
+    "p_holm": 0.000244140625
+   },
+   "H-T2 19": {
+    "n": 15,
+    "diff": 32.703333333333326,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     25.418444444444443,
+     39.1278611111111
+    ],
+    "p_holm": 0.000244140625
+   },
+   "H-T1 37": {
+    "n": 15,
+    "diff": 35.20111111111111,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     28.65647222222222,
+     39.360083333333336
+    ],
+    "p_holm": 0.000244140625
+   },
+   "H-T2 37": {
+    "n": 15,
+    "diff": 34.79888888888889,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     27.175444444444448,
+     41.61447222222222
+    ],
+    "p_holm": 0.000244140625
+   }
+  },
+  "secondary, Env B hex": {
+   "H-T1 19": {
+    "n": 15,
+    "diff": 12.703684210526315,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     10.877633040935672,
+     13.784008771929818
+    ],
+    "p_holm": 0.0001220703125
+   },
+   "H-T2 19": {
+    "n": 15,
+    "diff": 6.14502923976608,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00335693359375,
+    "ci": [
+     2.7120877192982458,
+     9.365220760233914
+    ],
+    "p_holm": 0.00335693359375
+   }
+  },
+  "H-T4, Env B hex": {
+   "prio_per_gnb": {
+    "n": 15,
+    "diff": 0.8032163742690055,
+    "wins": 8,
+    "ties": 0,
+    "losses": 7,
+    "p": 0.7197265625,
+    "ci": [
+     -2.3044342105263143,
+     3.8491856725146176
+    ]
+   },
+   "reward_per_gnb": {
+    "n": 15,
+    "diff": 0.020872238023009408,
+    "wins": 11,
+    "ties": 0,
+    "losses": 4,
+    "p": 0.1688232421875,
+    "ci": [
+     -0.05035685751695443,
+     0.08579921170155178
+    ]
+   }
+  }
+ },
+ "criteria": [
+  {
+   "criterion": "T-S1 check (primary, Env A hex)",
+   "verdict": "clear",
+   "detail": "AXIOM-7to37 mean priority SLA 95.37% against accept-all 61.13%"
+  },
+  {
+   "criterion": "H-T1 19 (primary, Env A hex)",
+   "verdict": "HOLDS",
+   "detail": "diff +30.34 points, CI [25.15, 34.33], 15/0/0 W/T/L, p 6.1e-05, Holm p 0.00024"
+  },
+  {
+   "criterion": "H-T2 19 (primary, Env A hex)",
+   "verdict": "HOLDS",
+   "detail": "diff +31.98 points, CI [22.83, 40.86], 15/0/0 W/T/L, p 6.1e-05, Holm p 0.00024, AXIOM significantly ahead"
+  },
+  {
+   "criterion": "H-T1 37 (primary, Env A hex)",
+   "verdict": "HOLDS",
+   "detail": "diff +34.25 points, CI [28.17, 38.85], 15/0/0 W/T/L, p 6.1e-05, Holm p 0.00024"
+  },
+  {
+   "criterion": "H-T2 37 (primary, Env A hex)",
+   "verdict": "HOLDS",
+   "detail": "diff +33.84 points, CI [23.95, 43.19], 14/0/1 W/T/L, p 0.00012, Holm p 0.00024, AXIOM significantly ahead"
+  },
+  {
+   "criterion": "T-S1 check (secondary, Env A ring)",
+   "verdict": "clear",
+   "detail": "AXIOM-7to37 mean priority SLA 96.33% against accept-all 61.13%"
+  },
+  {
+   "criterion": "H-T1 19 (secondary, Env A ring)",
+   "verdict": "HOLDS",
+   "detail": "diff +31.07 points, CI [25.08, 34.73], 14/0/1 W/T/L, p 0.00012, Holm p 0.00024"
+  },
+  {
+   "criterion": "H-T2 19 (secondary, Env A ring)",
+   "verdict": "HOLDS",
+   "detail": "diff +32.70 points, CI [25.42, 39.13], 15/0/0 W/T/L, p 6.1e-05, Holm p 0.00024, AXIOM significantly ahead"
+  },
+  {
+   "criterion": "H-T1 37 (secondary, Env A ring)",
+   "verdict": "HOLDS",
+   "detail": "diff +35.20 points, CI [28.66, 39.36], 14/0/1 W/T/L, p 0.00012, Holm p 0.00024"
+  },
+  {
+   "criterion": "H-T2 37 (secondary, Env A ring)",
+   "verdict": "HOLDS",
+   "detail": "diff +34.80 points, CI [27.18, 41.61], 15/0/0 W/T/L, p 6.1e-05, Holm p 0.00024, AXIOM significantly ahead"
+  },
+  {
+   "criterion": "H-T1 19 (secondary, Env B hex)",
+   "verdict": "HOLDS",
+   "detail": "diff +12.70 points per-gNB, Holm p 0.00012"
+  },
+  {
+   "criterion": "H-T2 19 (secondary, Env B hex)",
+   "verdict": "HOLDS",
+   "detail": "diff +6.15 points per-gNB, Holm p 0.0034, AXIOM significantly ahead"
+  },
+  {
+   "criterion": "H-T4 GAT-7to19 minus MLP-7to19 (Env B hex, reported either way)",
+   "verdict": "REPORT",
+   "detail": "per-gNB priority SLA +0.80 points, CI [-2.30, 3.85], p 0.72; reward per gNB +0.021, p 0.17"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to19 minus AXIOM trained at 19, prio (A_hex_n19, descriptive)",
+   "verdict": "REPORT",
+   "detail": "+1.571, CI [-6.432, 10.692], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to19 minus AXIOM trained at 19, reward_per_gnb (A_hex_n19, descriptive)",
+   "verdict": "REPORT",
+   "detail": "-0.014, CI [-0.171, 0.159], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to37 minus AXIOM trained at 37, prio (A_hex_n37, descriptive)",
+   "verdict": "REPORT",
+   "detail": "+0.577, CI [-8.176, 9.970], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to37 minus AXIOM trained at 37, reward_per_gnb (A_hex_n37, descriptive)",
+   "verdict": "REPORT",
+   "detail": "-0.043, CI [-0.184, 0.099], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to19 minus AXIOM trained at 19, prio (A_ring_n19, descriptive)",
+   "verdict": "REPORT",
+   "detail": "+0.101, CI [-7.358, 6.607], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to19 minus AXIOM trained at 19, reward_per_gnb (A_ring_n19, descriptive)",
+   "verdict": "REPORT",
+   "detail": "-0.022, CI [-0.141, 0.106], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to37 minus AXIOM trained at 37, prio (A_ring_n37, descriptive)",
+   "verdict": "REPORT",
+   "detail": "+3.164, CI [-6.635, 12.541], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to37 minus AXIOM trained at 37, reward_per_gnb (A_ring_n37, descriptive)",
+   "verdict": "REPORT",
+   "detail": "+0.022, CI [-0.119, 0.179], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to19 minus AXIOM trained at 19, prio (B_hex_n19, descriptive)",
+   "verdict": "REPORT",
+   "detail": "+1.778, CI [-1.339, 4.982], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to19 minus AXIOM trained at 19, prio_cluster (B_hex_n19, descriptive)",
+   "verdict": "REPORT",
+   "detail": "+0.719, CI [-5.951, 6.690], n 15"
+  },
+  {
+   "criterion": "H-T3 AXIOM-7to19 minus AXIOM trained at 19, reward_per_gnb (B_hex_n19, descriptive)",
+   "verdict": "REPORT",
+   "detail": "+0.032, CI [-0.049, 0.113], n 15"
+  }
+ ],
+ "flags": [],
+ "descriptive": {
+  "A_hex_n19": {
+   "H-T3 AXIOM-7to19 minus AXIOM trained at 19, prio": {
+    "n": 15,
+    "diff": 1.571111111111111,
+    "wins": 2,
+    "ties": 9,
+    "losses": 4,
+    "p": 0.916511907863894,
+    "ci": [
+     -6.432222222222223,
+     10.691694444444435
+    ]
+   },
+   "AXIOM-7to19 minus static rule, prio": {
+    "n": 15,
+    "diff": -3.7666666666666675,
+    "wins": 0,
+    "ties": 11,
+    "losses": 4,
+    "p": 0.06788915486182899,
+    "ci": [
+     -8.701111111111112,
+     -0.02444444444444495
+    ]
+   },
+   "MAPPO-7to19 minus static rule, prio": {
+    "n": 15,
+    "diff": -35.74333333333333,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -43.16341666666666,
+     -27.475333333333335
+    ]
+   },
+   "MAPPO-7to19 minus accept-all, prio": {
+    "n": 15,
+    "diff": -1.6322222222222167,
+    "wins": 5,
+    "ties": 1,
+    "losses": 9,
+    "p": 0.550923682773407,
+    "ci": [
+     -9.255583333333325,
+     6.513527777777778
+    ]
+   },
+   "AXIOM-7to19 minus accept-all, prio": {
+    "n": 15,
+    "diff": 30.34444444444445,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     24.918805555555554,
+     34.319
+    ]
+   },
+   "AXIOM-7to19 minus MAPPO-7to19, prio": {
+    "n": 15,
+    "diff": 31.976666666666667,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     22.897694444444436,
+     40.70902777777778
+    ]
+   },
+   "H-T3 AXIOM-7to19 minus AXIOM trained at 19, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.01382311347873406,
+    "wins": 2,
+    "ties": 9,
+    "losses": 4,
+    "p": 0.916511907863894,
+    "ci": [
+     -0.17096270860451515,
+     0.15932193706574688
+    ]
+   },
+   "AXIOM-7to19 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.11091836383638404,
+    "wins": 0,
+    "ties": 10,
+    "losses": 5,
+    "p": 0.043114446783075355,
+    "ci": [
+     -0.21198628029915667,
+     -0.030262193646653123
+    ]
+   },
+   "MAPPO-7to19 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.7668469274646529,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -0.9776423366530507,
+     -0.573566249271768
+    ]
+   },
+   "MAPPO-7to19 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.1418545026252741,
+    "wins": 6,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.22930908203125,
+    "ci": [
+     -0.3518286639636343,
+     0.05071063673741437
+    ]
+   },
+   "AXIOM-7to19 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.5140740610029948,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     0.4115798352065505,
+     0.5999790226522096
+    ]
+   },
+   "AXIOM-7to19 minus MAPPO-7to19, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.6559285636282689,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     0.44783757947094743,
+     0.8884748328628905
+    ]
+   }
+  },
+  "A_hex_n37": {
+   "H-T3 AXIOM-7to37 minus AXIOM trained at 37, prio": {
+    "n": 15,
+    "diff": 0.5766666666666665,
+    "wins": 2,
+    "ties": 9,
+    "losses": 4,
+    "p": 0.916511907863894,
+    "ci": [
+     -8.175555555555558,
+     9.9704722222222
+    ]
+   },
+   "AXIOM-7to37 minus static rule, prio": {
+    "n": 15,
+    "diff": -4.622222222222222,
+    "wins": 0,
+    "ties": 11,
+    "losses": 4,
+    "p": 0.06788915486182899,
+    "ci": [
+     -10.37111111111111,
+     -0.08444444444444343
+    ]
+   },
+   "MAPPO-7to37 minus static rule, prio": {
+    "n": 15,
+    "diff": -38.465555555555554,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -46.14349999999999,
+     -30.00305555555556
+    ]
+   },
+   "MAPPO-7to37 minus accept-all, prio": {
+    "n": 15,
+    "diff": 0.4022222222222226,
+    "wins": 5,
+    "ties": 1,
+    "losses": 9,
+    "p": 0.7298909084206947,
+    "ci": [
+     -7.675666666666668,
+     8.904583333333333
+    ]
+   },
+   "AXIOM-7to37 minus accept-all, prio": {
+    "n": 15,
+    "diff": 34.24555555555556,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     28.027694444444446,
+     38.89452777777778
+    ]
+   },
+   "AXIOM-7to37 minus MAPPO-7to37, prio": {
+    "n": 15,
+    "diff": 33.843333333333334,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     23.77219444444445,
+     43.27
+    ]
+   },
+   "H-T3 AXIOM-7to37 minus AXIOM trained at 37, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.04291565465581174,
+    "wins": 2,
+    "ties": 8,
+    "losses": 5,
+    "p": 0.6120898800892568,
+    "ci": [
+     -0.18371429465471895,
+     0.09854133628288698
+    ]
+   },
+   "AXIOM-7to37 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.11007004692890068,
+    "wins": 0,
+    "ties": 10,
+    "losses": 5,
+    "p": 0.043114446783075355,
+    "ci": [
+     -0.20907627187161962,
+     -0.03012698139755218
+    ]
+   },
+   "MAPPO-7to37 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.6665511217704942,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -0.8516911479825322,
+     -0.49677240131807066
+    ]
+   },
+   "MAPPO-7to37 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.08644666224370241,
+    "wins": 8,
+    "ties": 0,
+    "losses": 7,
+    "p": 0.67877197265625,
+    "ci": [
+     -0.270306804650812,
+     0.08062746707998644
+    ]
+   },
+   "AXIOM-7to37 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.4700344125978911,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     0.36959134297281315,
+     0.5513367985199891
+    ]
+   },
+   "AXIOM-7to37 minus MAPPO-7to37, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.5564810748415935,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     0.37292715417352035,
+     0.7609379836694367
+    ]
+   }
+  },
+  "A_ring_n19": {
+   "H-T3 AXIOM-7to19 minus AXIOM trained at 19, prio": {
+    "n": 15,
+    "diff": 0.1011111111111101,
+    "wins": 3,
+    "ties": 8,
+    "losses": 4,
+    "p": 0.8657723749926214,
+    "ci": [
+     -7.358055555555556,
+     6.606666666666666
+    ]
+   },
+   "AXIOM-7to19 minus static rule, prio": {
+    "n": 15,
+    "diff": -3.0399999999999996,
+    "wins": 0,
+    "ties": 11,
+    "losses": 4,
+    "p": 0.06788915486182899,
+    "ci": [
+     -8.607777777777779,
+     -0.10333333333333314
+    ]
+   },
+   "MAPPO-7to19 minus static rule, prio": {
+    "n": 15,
+    "diff": -35.74333333333333,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -43.17238888888888,
+     -27.477638888888887
+    ]
+   },
+   "MAPPO-7to19 minus accept-all, prio": {
+    "n": 15,
+    "diff": -1.6322222222222167,
+    "wins": 5,
+    "ties": 1,
+    "losses": 9,
+    "p": 0.550923682773407,
+    "ci": [
+     -9.111138888888883,
+     6.487972222222223
+    ]
+   },
+   "AXIOM-7to19 minus accept-all, prio": {
+    "n": 15,
+    "diff": 31.07111111111112,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     24.967583333333337,
+     34.757777777777775
+    ]
+   },
+   "AXIOM-7to19 minus MAPPO-7to19, prio": {
+    "n": 15,
+    "diff": 32.703333333333326,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     25.200638888888882,
+     39.108916666666666
+    ]
+   },
+   "H-T3 AXIOM-7to19 minus AXIOM trained at 19, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.02205718732814373,
+    "wins": 3,
+    "ties": 7,
+    "losses": 5,
+    "p": 0.779434528427275,
+    "ci": [
+     -0.14070578522766927,
+     0.10628311227143877
+    ]
+   },
+   "AXIOM-7to19 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.08914856188990286,
+    "wins": 0,
+    "ties": 9,
+    "losses": 6,
+    "p": 0.027707849358079864,
+    "ci": [
+     -0.1652293521460622,
+     -0.02308343964951464
+    ]
+   },
+   "MAPPO-7to19 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.7668469274646529,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -0.9765060653212009,
+     -0.5768946892511638
+    ]
+   },
+   "MAPPO-7to19 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.1418545026252741,
+    "wins": 6,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.22930908203125,
+    "ci": [
+     -0.35063750721709475,
+     0.050187210627134625
+    ]
+   },
+   "AXIOM-7to19 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.5358438629494758,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     0.4527458818848077,
+     0.6066021448077054
+    ]
+   },
+   "AXIOM-7to19 minus MAPPO-7to19, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.67769836557475,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     0.488785007039794,
+     0.885170151743331
+    ]
+   }
+  },
+  "A_ring_n37": {
+   "H-T3 AXIOM-7to37 minus AXIOM trained at 37, prio": {
+    "n": 15,
+    "diff": 3.164444444444445,
+    "wins": 3,
+    "ties": 8,
+    "losses": 4,
+    "p": 0.8657723749926214,
+    "ci": [
+     -6.634638888888888,
+     12.54111111111111
+    ]
+   },
+   "AXIOM-7to37 minus static rule, prio": {
+    "n": 15,
+    "diff": -3.666666666666666,
+    "wins": 0,
+    "ties": 11,
+    "losses": 4,
+    "p": 0.06788915486182899,
+    "ci": [
+     -9.696666666666665,
+     -0.1266666666666661
+    ]
+   },
+   "MAPPO-7to37 minus static rule, prio": {
+    "n": 15,
+    "diff": -38.465555555555554,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -46.24777777777778,
+     -29.904444444444447
+    ]
+   },
+   "MAPPO-7to37 minus accept-all, prio": {
+    "n": 15,
+    "diff": 0.4022222222222226,
+    "wins": 5,
+    "ties": 1,
+    "losses": 9,
+    "p": 0.7298909084206947,
+    "ci": [
+     -7.677833333333328,
+     9.037388888888875
+    ]
+   },
+   "AXIOM-7to37 minus accept-all, prio": {
+    "n": 15,
+    "diff": 35.20111111111111,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     28.726638888888893,
+     39.386694444444444
+    ]
+   },
+   "AXIOM-7to37 minus MAPPO-7to37, prio": {
+    "n": 15,
+    "diff": 34.79888888888889,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     27.066666666666674,
+     41.676694444444436
+    ]
+   },
+   "H-T3 AXIOM-7to37 minus AXIOM trained at 37, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.022092746622463365,
+    "wins": 3,
+    "ties": 8,
+    "losses": 4,
+    "p": 0.49896229860376107,
+    "ci": [
+     -0.11898433881220877,
+     0.1788727843512787
+    ]
+   },
+   "AXIOM-7to37 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.08893649300184597,
+    "wins": 0,
+    "ties": 10,
+    "losses": 5,
+    "p": 0.043114446783075355,
+    "ci": [
+     -0.1677828934828062,
+     -0.022287333975543198
+    ]
+   },
+   "MAPPO-7to37 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.6665511217704942,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -0.8493386907645678,
+     -0.4989300415374075
+    ]
+   },
+   "MAPPO-7to37 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.08644666224370241,
+    "wins": 8,
+    "ties": 0,
+    "losses": 7,
+    "p": 0.67877197265625,
+    "ci": [
+     -0.26449922784617175,
+     0.084937294077502
+    ]
+   },
+   "AXIOM-7to37 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.4911679665249458,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     0.41416802086894555,
+     0.5589014328186372
+    ]
+   },
+   "AXIOM-7to37 minus MAPPO-7to37, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.5776146287686482,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     0.40666246228008573,
+     0.7668652396397301
+    ]
+   }
+  },
+  "B_hex_n19": {
+   "H-T3 AXIOM-7to19 minus AXIOM trained at 19, prio": {
+    "n": 15,
+    "diff": 1.7775438596491204,
+    "wins": 9,
+    "ties": 3,
+    "losses": 3,
+    "p": 0.09155570817720989,
+    "ci": [
+     -1.3390906432748566,
+     4.982391812865492
+    ]
+   },
+   "AXIOM-7to19 minus static rule, prio": {
+    "n": 15,
+    "diff": -0.7877192982456156,
+    "wins": 4,
+    "ties": 6,
+    "losses": 5,
+    "p": 0.8589549227374824,
+    "ci": [
+     -2.6346929824561416,
+     0.2997163742690043
+    ]
+   },
+   "MAPPO-7to19 minus static rule, prio": {
+    "n": 15,
+    "diff": -6.932748538011696,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -9.61823538011696,
+     -4.377381578947375
+    ]
+   },
+   "MLP-7to19 minus static rule, prio": {
+    "n": 15,
+    "diff": -1.590935672514621,
+    "wins": 7,
+    "ties": 0,
+    "losses": 8,
+    "p": 0.5994873046875,
+    "ci": [
+     -4.128992690058477,
+     0.5591871345029219
+    ]
+   },
+   "AXIOM-7to19 minus accept-all, prio": {
+    "n": 15,
+    "diff": 12.703684210526315,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     10.883700292397656,
+     13.786083333333332
+    ]
+   },
+   "MAPPO-7to19 minus accept-all, prio": {
+    "n": 15,
+    "diff": 6.558654970760234,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.00115966796875,
+    "ci": [
+     3.8144590643274876,
+     9.08111257309941
+    ]
+   },
+   "MLP-7to19 minus accept-all, prio": {
+    "n": 15,
+    "diff": 11.900467836257311,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     9.380567251461992,
+     14.055343567251459
+    ]
+   },
+   "H-T3 AXIOM-7to19 minus AXIOM trained at 19, prio_cluster": {
+    "n": 15,
+    "diff": 0.7188888888888901,
+    "wins": 7,
+    "ties": 5,
+    "losses": 3,
+    "p": 0.20262160771231197,
+    "ci": [
+     -5.951416666666667,
+     6.690055555555556
+    ]
+   },
+   "AXIOM-7to19 minus static rule, prio_cluster": {
+    "n": 15,
+    "diff": 2.475555555555557,
+    "wins": 4,
+    "ties": 9,
+    "losses": 2,
+    "p": 0.11585149752593009,
+    "ci": [
+     0.03000000000000066,
+     6.744444444444445
+    ]
+   },
+   "MAPPO-7to19 minus static rule, prio_cluster": {
+    "n": 15,
+    "diff": 8.538888888888888,
+    "wins": 8,
+    "ties": 0,
+    "losses": 7,
+    "p": 0.072998046875,
+    "ci": [
+     2.689916666666666,
+     14.730111111111112
+    ]
+   },
+   "MLP-7to19 minus static rule, prio_cluster": {
+    "n": 15,
+    "diff": 13.243333333333334,
+    "wins": 10,
+    "ties": 1,
+    "losses": 4,
+    "p": 0.013150364234284668,
+    "ci": [
+     6.209555555555558,
+     20.77116666666667
+    ]
+   },
+   "AXIOM-7to19 minus accept-all, prio_cluster": {
+    "n": 15,
+    "diff": 7.463333333333334,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     4.9710833333333335,
+     11.626694444444446
+    ]
+   },
+   "MAPPO-7to19 minus accept-all, prio_cluster": {
+    "n": 15,
+    "diff": 13.526666666666667,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     7.378694444444445,
+     19.94358333333333
+    ]
+   },
+   "MLP-7to19 minus accept-all, prio_cluster": {
+    "n": 15,
+    "diff": 18.231111111111108,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     11.052111111111111,
+     25.842250000000003
+    ]
+   },
+   "H-T3 AXIOM-7to19 minus AXIOM trained at 19, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.03220645620967243,
+    "wins": 5,
+    "ties": 3,
+    "losses": 7,
+    "p": 0.875329249147922,
+    "ci": [
+     -0.04890522668214303,
+     0.11320444653842629
+    ]
+   },
+   "AXIOM-7to19 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.036644902429960734,
+    "wins": 0,
+    "ties": 6,
+    "losses": 9,
+    "p": 0.007685794055213263,
+    "ci": [
+     -0.08274805844533421,
+     -0.006975800140383586
+    ]
+   },
+   "MAPPO-7to19 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.3957275260995708,
+    "wins": 0,
+    "ties": 0,
+    "losses": 15,
+    "p": 6.103515625e-05,
+    "ci": [
+     -0.5114519568345892,
+     -0.2929801217661124
+    ]
+   },
+   "MLP-7to19 minus static rule, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.05751714045297014,
+    "wins": 2,
+    "ties": 0,
+    "losses": 13,
+    "p": 0.01806640625,
+    "ci": [
+     -0.11023810930297527,
+     -0.0045895918727479135
+    ]
+   },
+   "AXIOM-7to19 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.32235609098331514,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     0.27473706768000483,
+     0.3524057360323321
+    ]
+   },
+   "MAPPO-7to19 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": -0.03672653268629495,
+    "wins": 6,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.7197265625,
+    "ci": [
+     -0.15648610210419642,
+     0.06695651493745405
+    ]
+   },
+   "MLP-7to19 minus accept-all, reward_per_gnb": {
+    "n": 15,
+    "diff": 0.3014838529603056,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     0.24859384913198096,
+     0.3558544523288622
+    ]
+   }
+  }
+ }
+}

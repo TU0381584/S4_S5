@@ -2325,6 +2325,265 @@ def main():
            and "coloured from dark purple at 50\\% to pale yellow at 85\\% by the mean share of evaluation steps on which it meets the URLLC and eMBB SLAs" in C.main,
            (pgfig_.VMIN, pgfig_.VMAX))
 
+    # ---------------- M93 (Gate S): interquartile means and probabilities of improvement, Online Resource 1 Table S2.
+    # The cells are re-specified here and every IQM and P(AXIOM > policy) is recomputed from the raw logs with this
+    # file's own arithmetic, then compared with the rliable summary; the printed rows must equal the summary.
+    s93_ = json.load(open("/home/kmanojp/oranslice_rig/experiments/results/m93/m93_summary.json"))
+    L3_ = ("fully_connected", "ring", "hex")
+    def lr93_(cell_, arm_, ss_):
+        d_ = seeds_of(cell_, arm_, ss_)
+        return [d_[s_] for s_ in ss_] if len(d_) == len(ss_) else None
+    lab93_ = {"AXIOM": "axiom2", "DQN-SA": "single_agent_dqn", "DQN-I": "independent_dqn", "MAPPO": "mappo_tuned"}
+    cells93_ = {}
+    cells93_["Env A, 3 gNBs"] = (3, {**{k_: [lr93_("m65_reviewer/base" if k_ in ("AXIOM", "MAPPO") else "m63_reviewer/base", v_, S30)]
+                                        for k_, v_ in lab93_.items()}, "Static rule": [lr93_("m63_reviewer/base", "heuristic", S30)]})
+    for n_, ss_ in ((7, S15), (19, S30_19)):
+        cells93_[f"Env A, {n_} gNBs"] = (n_, {**{k_: [lr93_(f"m65_scaling/n{n_}_{t_}", v_, ss_) for t_ in L3_] for k_, v_ in lab93_.items()},
+                                              "Static rule": [lr93_(f"m70/R1/A_n{n_}_{t_}", "rule_static", ss_) for t_ in L3_]})
+    cells93_["Env A, 37 gNBs"] = (37, {**{k_: [lr93_("m73/A_n37_hex", v_, S30_19)] for k_, v_ in lab93_.items()},
+                                       "AXIOM": [lr93_("m73/A_n37_hex", "axiom2", S30_19) + lr93_("m73/A_n37_ring", "axiom2", S15)
+                                                 + lr93_("m73/A_n37_fully_connected", "axiom2", S15)],
+                                       "Static rule": [lr93_("m73/A_n37_hex", "rule_static", S30_19)]})
+    cells93_["Env B, 3 gNBs"] = (3, {**{k_: [lr93_("m64/n3_fully_connected", v_, S30)] for k_, v_ in lab93_.items()},
+                                     "Static rule": [lr93_("m64/n3_fully_connected", "rule_static", S30)],
+                                     "Tuned rule": [lr93_("m64/n3_fully_connected", "rule_local", S30)]})
+    cells93_["Env B, 7 gNBs"] = (7, {**{k_: [lr93_(f"m64/n7_{t_}", v_, S15) for t_ in L3_] for k_, v_ in lab93_.items()},
+                                     "Static rule": [lr93_(f"m64/n7_{t_}", "rule_static", S15) for t_ in L3_],
+                                     "Tuned rule": [lr93_(f"m64/n7_{t_}", "rule_local", S15) for t_ in L3_]})
+    cells93_["Env B, 19 gNBs"] = (19, {**{k_: [lr93_("m75/D_envB_n19_hex", v_, S15)] for k_, v_ in lab93_.items()},
+                                       "Static rule": [lr93_("m75/D_envB_n19_hex", "rule_static", S15)],
+                                       "Tuned rule": [lr93_("m75/D_envB_n19_hex", "rule_local_transfer", S15)]})
+    def iqm93_(cols_, f_):
+        x_ = np.sort(np.array([f_(r_) for c_ in cols_ for r_ in c_]))
+        k_ = len(x_) // 4
+        return float(x_[k_:len(x_) - k_].mean())
+    def poi93_(ca_, cb_, f_):
+        ps_ = []
+        for a_, b_ in zip(ca_, cb_):
+            xa_, xb_ = np.array([f_(r_) for r_ in a_]), np.array([f_(r_) for r_ in b_])
+            if len(xa_) == len(xb_) and np.array_equal(xa_, xb_):
+                ps_.append(0.5)
+            else:
+                ps_.append(float(((xa_[:, None] > xb_[None, :]).sum() + 0.5 * (xa_[:, None] == xb_[None, :]).sum()) / (len(xa_) * len(xb_))))
+        return float(np.mean(ps_))
+    f93_ = lambda n_: {"reward": lambda r_: r_["reward"] / n_, "prio": lambda r_: 100 * prio(r_)}
+    fm93_ = lambda x_, nd_: f"{x_:.{nd_}f}".replace("-", "$-$")
+    for name_, (n_, pol_) in cells93_.items():
+        S_ = s93_["settings"][name_]["policies"]
+        bad_ = [k_ for k_, cols_ in pol_.items() if any(c_ is None for c_ in cols_)]
+        for k_, cols_ in pol_.items():
+            if k_ in bad_:
+                continue
+            for m_, fn_ in f93_(n_).items():
+                if abs(iqm93_(cols_, fn_) - S_[k_][f"iqm_{m_}"]) > 1e-6 or S_[k_]["runs"] != sum(len(c_) for c_ in cols_):
+                    bad_.append((k_, m_, "iqm"))
+                if k_ != "AXIOM" and abs(poi93_(pol_["AXIOM"], cols_, fn_) - S_[k_][f"poi_{m_}"]) > 1e-6:
+                    bad_.append((k_, m_, "poi"))
+        C.note(f"M93 {name_} IQM and P(AXIOM better) recomputed from the logs", not bad_ and set(S_) == set(pol_), bad_)
+        rows_ = []
+        for k_, p_ in S_.items():
+            r_ = f"{fm93_(p_['iqm_reward'], 3)} [{fm93_(p_['iqm_reward_ci'][0], 2)}, {fm93_(p_['iqm_reward_ci'][1], 2)}]"
+            s_ = f"{fm93_(p_['iqm_prio'], 1)} [{fm93_(p_['iqm_prio_ci'][0], 1)}, {fm93_(p_['iqm_prio_ci'][1], 1)}]"
+            pr_, ps_ = ("--", "--") if k_ == "AXIOM" else (f"{p_['poi_reward']:.2f} [{p_['poi_reward_ci'][0]:.2f}, {p_['poi_reward_ci'][1]:.2f}]",
+                                                         f"{p_['poi_prio']:.2f} [{p_['poi_prio_ci'][0]:.2f}, {p_['poi_prio_ci'][1]:.2f}]")
+            rows_.append(f"\\quad {k_} & {p_['runs']} & {r_} & {s_} & {pr_} & {ps_} \\\\")
+        C.note(f"M93 OR1 Table S2 rows, {name_}", all(x_ in C.tex for x_ in rows_), [x_ for x_ in rows_ if x_ not in C.tex])
+    C.note("M93 all 51 mean-based orderings hold under the IQM, and the text says so",
+           s93_["claims_checked"] == 51 and not s93_["claims_iqm_contradicted"] and not s93_["claims_mean_inconsistent"]
+           and "and all 51 orderings that this paper draws from means hold under them" in C.main
+           and "Every one of the 51 orderings that the main paper draws from means" in C.tex
+           and not s93_["cross_check"]["mismatches"] and "reproduces every IQM and every probability of improvement to within $10^{-6}$" in C.tex, None)
+    axA93_ = [cells93_[f"Env A, {n_} gNBs"] for n_ in (3, 7, 19, 37)]
+    iq93_ = [iqm93_(p_["AXIOM"], f93_(n_)["prio"]) for n_, p_ in axA93_]
+    mn93_ = [float(np.mean([100 * prio(r_) for c_ in p_["AXIOM"] for r_ in c_])) for n_, p_ in axA93_]
+    C.note("M93 AXIOM's Env A IQM compliance 100.0% at every size against means of 93.7% to 98.9%",
+           all(f"{x_:.1f}" == "100.0" for x_ in iq93_) and f"{min(mn93_):.1f}" == "93.7" and f"{max(mn93_):.1f}" == "98.9"
+           and "AXIOM's IQM of priority-slice compliance in Env A is therefore 100.0\\% at every size, against means of 93.7\\% to 98.9\\%" in C.tex,
+           (iq93_, mn93_))
+    import importlib.metadata as ilm_
+    C.note("M93 rliable 1.2.0 installed and named in the text", ilm_.version("rliable") == "1.2.0" and s93_["reps"] == 10000
+           and "computed with rliable 1.2.0" in C.tex and "stratified bootstrap 95\\% CIs over 10{,}000 resamples" in C.tex, ilm_.version("rliable"))
+
+    # ---------------- M92 (Gate T): zero-shot cluster-size transfer, main Table 5 and Online Resource 1 Table S6,
+    # recomputed here from the evaluation logs and per-gNB records (docs/PAPER5_M92_preregistration.md)
+    a92_ = json.load(open(f"{ROOT}/m92/analysis.json"))
+    def pg92_(cell_, arm_, s_):
+        m_ = json.load(open(f"{ROOT}/{cell_}/{arm_}/seed{s_}/eval/per_gnb_sla.json"))["mean_compliance"]
+        return 100 * 0.5 * (m_["urllc"] + m_["embb"])
+    tr92_ = {("hex", 19): "m65_scaling/n19_hex", ("hex", 37): "m73/A_n37_hex", ("ring", 19): "m65_scaling/n19_ring", ("ring", 37): "m73/A_n37_ring"}
+    ru92_ = {19: ("m70/R1/A_n19_hex", "m75/B_acceptall/n19"), 37: ("m73/A_n37_hex", "m75/B_acceptall/n37")}
+    def arms92_(key_):
+        """arm label -> (seed -> {prio, reward_per_gnb, collapsed, cluster}) for one transfer cell."""
+        if key_ == "B_hex_n19":
+            src_ = {"AXIOM-7to19": ("m92/B_hex_n19", "axiom2_transfer"), "MLP-7to19": ("m92/B_hex_n19", "axiom2_mlp_transfer"),
+                    "MAPPO-7to19": ("m92/B_hex_n19", "mappo_tuned_transfer"), "AXIOM trained at 19": ("m75/D_envB_n19_hex", "axiom2"),
+                    "static rule": ("m75/D_envB_n19_hex", "rule_static"), "accept-all": ("m75/D_envB_n19_hex", "rule_accept_all")}
+            n_ = 19
+        else:
+            t_, n_ = key_.split("_")[1], int(key_.split("_n")[1])
+            src_ = {f"AXIOM-7to{n_}": (f"m92/{key_}", "axiom2_transfer"), f"MAPPO-7to{n_}": (f"m92/{key_}", "mappo_tuned_transfer"),
+                    f"AXIOM trained at {n_}": (tr92_[(t_, n_)], "axiom2"), "static rule": (ru92_[n_][0], "rule_static"),
+                    "accept-all": (ru92_[n_][1], "rule_accept_all")}
+        out_ = {}
+        for lab_, (c_, a_) in src_.items():
+            out_[lab_] = {s_: {"cluster": 100 * prio(r_), "reward_per_gnb": r_["reward"] / n_, "collapsed": r_["collapsed"],
+                               "prio": pg92_(c_, a_, s_) if key_.startswith("B") else 100 * prio(r_)}
+                          for s_, r_ in seeds_of(c_, a_, S15).items()}
+        return out_
+    K92_ = ("A_hex_n19", "A_hex_n37", "A_ring_n19", "A_ring_n37", "B_hex_n19")
+    C92_ = {k_: arms92_(k_) for k_ in K92_}
+    mu92_ = lambda d_, f_="prio": float(np.mean([v_[f_] for v_ in d_.values()]))
+    labs92_ = {"A_hex_n19": "Env A hex, 19 gNBs", "A_hex_n37": "Env A hex, 37 gNBs", "A_ring_n19": "Env A ring, 19 gNBs",
+               "A_ring_n37": "Env A ring, 37 gNBs", "B_hex_n19": "Env B hex, 19 gNBs"}
+    rows92_ = []
+    for k_ in K92_:
+        n_ = k_.split("_n")[1]; c_ = C92_[k_]
+        rows92_.append(f"{labs92_[k_]} & {mu92_(c_[f'AXIOM-7to{n_}']):.1f} & {mu92_(c_[f'AXIOM trained at {n_}']):.1f} & {mu92_(c_[f'MAPPO-7to{n_}']):.1f} & "
+                       f"{mu92_(c_['static rule']):.{2 if k_.startswith('A') else 1}f} & {mu92_(c_['accept-all']):.1f} \\\\")
+    C.note("M92 main Table 5 rows recomputed from the logs, 15 seeds per arm", all(x_ in C.main for x_ in rows92_)
+           and all(len(v_) == 15 for c_ in C92_.values() for v_ in c_.values()), [x_ for x_ in rows92_ if x_ not in C.main])
+    hx_ = {f"{h_} {n_}": paired(C92_[f"A_hex_n{n_}"][f"AXIOM-7to{n_}"], C92_[f"A_hex_n{n_}"]["accept-all" if h_ == "T1" else f"MAPPO-7to{n_}"], lambda r_: r_["prio"])
+           for h_ in ("T1", "T2") for n_ in (19, 37)}
+    hh_ = holm({k_: v_["p"] for k_, v_ in hx_.items()})
+    C.note("M92 main text: hex compliance 96.2/95.4, accept-all 65.9/61.1, MAPPO 64.2/61.5, four leads at Holm p=0.00024",
+           all(v_["diff"] > 0 and f"{hh_[k_]:.2g}" == "0.00024" for k_, v_ in hx_.items())
+           and [f"{mu92_(C92_[f'A_hex_n{n_}'][a_ if a_ == 'accept-all' else f'{a_}-7to{n_}']):.1f}" for a_ in ("AXIOM", "accept-all", "MAPPO") for n_ in (19, 37)]
+           == ["96.2", "95.4", "65.9", "61.1", "64.2", "61.5"]
+           and "AXIOM transferred from seven gNBs keeps 96.2\\% and 95.4\\% priority-slice compliance at nineteen and thirty-seven gNBs" in C.main
+           and "Accepting every request keeps 65.9\\% and 61.1\\%, and MAPPO transferred the same way keeps 64.2\\% and 61.5\\%. All four of AXIOM's leads hold at Holm-adjusted $p=0.00024$" in C.main, hh_)
+    rng92_ = np.random.default_rng(12345)
+    def spans92_(a_, b_, f_):
+        cm_ = sorted(set(a_) & set(b_)); d_ = np.array([a_[s_][f_] - b_[s_][f_] for s_ in cm_])
+        m_ = d_[rng92_.integers(0, len(d_), size=(10000, len(d_)))].mean(axis=1)
+        return np.percentile(m_, 2.5) < 0 < np.percentile(m_, 97.5)
+    sp_ = {(k_, f_): spans92_(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"], C92_[k_][f"AXIOM trained at {k_.split('_n')[1]}"], f_)
+           for k_ in K92_ for f_ in ("prio", "reward_per_gnb")}
+    C.note("M92 transferred minus trained-at-N: every 95% CI spans zero on both layouts and in Env B", all(sp_.values())
+           and "On both layouts and in Env B at nineteen gNBs, the 95\\% CI of the gap between the transferred policy and AXIOM trained at the target size spans zero" in C.main,
+           {f"{k_} {f_}": v_ for (k_, f_), v_ in sp_.items()})
+    tie92_ = {k_: paired(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"], C92_[k_]["static rule"], lambda r_: r_["reward_per_gnb"]) for k_ in K92_[:4]}
+    C.note("M92 static rule: transferred AXIOM ties it exactly on 9 or 10 of 15 seeds in reward and earns less on the rest",
+           all(v_["ties"] in (9, 10) and v_["wins"] == 0 for v_ in tie92_.values())
+           and "earns exactly the size-independent static rule's reward on 9 or 10 of 15 seeds and less on the rest" in C.main,
+           {k_: (v_["wins"], v_["ties"], v_["losses"]) for k_, v_ in tie92_.items()})
+    tA92_ = [mu92_(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"]) for k_ in K92_[:4]]
+    ab92_ = C.main[C.main.index("\\abstract{") + 10:]; ab92_ = ab92_[:ab92_.index("}\n")]
+    C.note("M92 abstract and contribution 1: transferred AXIOM above 95% in Env A at 19 and 37 gNBs, abstract at most 250 words",
+           min(tA92_) > 95 and len(ab92_.split()) <= 250 and "even when trained only at 7 gNBs, while every learned baseline stays below 84\\%" in ab92_
+           and "A policy trained at seven gNBs runs unchanged at 19 and 37 gNBs and keeps above 95\\% priority-slice compliance there in Env A" in C.main,
+           (tA92_, len(ab92_.split())))
+    fm92_ = lambda x_, nd_: f"{x_:.{nd_}f}".replace("-", "$-$")
+    nm92_ = {"AXIOM-7to": "AXIOM from 7", "MLP-7to": "MLP variant from 7", "MAPPO-7to": "MAPPO from 7",
+             "AXIOM trained at": "AXIOM trained at the size", "static rule": "Static rule", "accept-all": "Accept all"}
+    bad92_ = []
+    for k_ in K92_:
+        for lab_, rows_ in C92_[k_].items():
+            sm_ = a92_["cells"][k_][lab_]
+            if abs(sm_["prio"]["mean"] - mu92_(rows_)) > 1e-9 or abs(sm_["reward_per_gnb"]["mean"] - mu92_(rows_, "reward_per_gnb")) > 1e-9:
+                bad92_.append((k_, lab_, "mean"))
+            nm_ = next(v_ for p_, v_ in nm92_.items() if lab_.startswith(p_))
+            row_ = (f"\\quad {nm_} & {len(rows_)} & {fm92_(mu92_(rows_), 1)} [{fm92_(sm_['prio']['ci'][0], 1)}, {fm92_(sm_['prio']['ci'][1], 1)}] & "
+                    f"{fm92_(mu92_(rows_, 'reward_per_gnb'), 3)} & {sum(v_['collapsed'] for v_ in rows_.values())} \\\\")
+            if row_ not in C.tex:
+                bad92_.append(row_)
+    C.note("M92 OR1 Table S6 rows recomputed from the logs and the summary", not bad92_, bad92_)
+    h4_ = paired(C92_["B_hex_n19"]["AXIOM-7to19"], C92_["B_hex_n19"]["MLP-7to19"], lambda r_: r_["prio"])
+    c4_ = a92_["families"]["H-T4, Env B hex"]["prio_per_gnb"]["ci"]
+    C.note("M92 H-T4: transferred GAT minus MLP +0.80 per-gNB points, p 0.72",
+           f"{h4_['diff']:.2f}" == "0.80" and f"{h4_['p']:.2f}" == "0.72"
+           and f"keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\\% CI [{fm92_(c4_[0], 2)}, {fm92_(c4_[1], 2)}] and $p=0.72$" in C.tex, h4_)
+    cl92_ = [mu92_(v_, "cluster") for v_ in C92_["B_hex_n19"].values()]
+    C.note("M92 Env B cluster-level compliance between 18% and 36% for every arm", f"{min(cl92_):.0f}" == "18" and f"{max(cl92_):.0f}" == "36"
+           and "stays between 18\\% and 36\\% for every arm there" in C.tex, cl92_)
+    ex92_ = [v_ for f_ in glob.glob(f"{ROOT}/m92/A_*/axiom2_transfer_*.json") + glob.glob(f"{ROOT}/m92/B_*/axiom2_transfer_*.json")
+             for v_ in json.load(open(f_)).values()]
+    hc92_ = [v_ for f_ in sorted(glob.glob(f"{ROOT}/m92/harness_check/*.json")) for v_ in json.load(open(f_)).values()]
+    C.note("M92 AXIOM keeps 7,782 execution parameters when transferred, and six stored evaluations reproduced exactly through the loader",
+           len(ex92_) == 75 and all(v_["exec_params"] == 7782 for v_ in ex92_) and len(hc92_) == 6 and all(v_["exact"] for v_ in hc92_)
+           and all(v_.get("per_gnb_exact", True) for v_ in hc92_)
+           and "so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters" in C.tex
+           and "six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly" in C.tex, (len(ex92_), len(hc92_)))
+    mp92_ = all(C92_[f"A_hex_n{n_}"][f"MAPPO-7to{n_}"][s_]["reward_per_gnb"] == C92_[f"A_ring_n{n_}"][f"MAPPO-7to{n_}"][s_]["reward_per_gnb"]
+                for n_ in (19, 37) for s_ in S15)
+    C.note("M92 MAPPO identical on both Env A layouts", mp92_ and "MAPPO gives the same results on both Env A layouts" in C.tex, None)
+
+    # ---------------- M94 (Gate D): AXIOM distilled into per-slice trees, OR1 Table S10 and the main Section 6.3 sentences,
+    # recomputed from the replays, the stored trees and the rule's evaluation logs (docs/PAPER5_M94_preregistration.md)
+    import pickle as pk_
+    a94_ = json.load(open(f"{ROOT}/m94/analysis.json"))
+    T94_ = {"B3": ("m64/n3_fully_connected", S30, "3 gNBs, 300 episodes"), "B7_ring_300": ("m64/n7_ring", S15, "7 gNBs ring, 300 episodes"),
+            "B7_ring_900": ("m79/ep900_n7_ring", S15, "7 gNBs ring, 900 episodes")}
+    fid94_, roots94_, urej94_, mconst94_, econst300_ = {}, {}, 0, 0, 0
+    for t_, (cell_, ss_, _) in T94_.items():
+        fs_ = []
+        for s_ in ss_:
+            tr_ = pk_.load(open(f"{ROOT}/m94/trees/{t_}/seed{s_}.pkl", "rb"))
+            for st_ in ("train", "heldout"):
+                d_ = np.load(f"{ROOT}/m94/probe/{t_}/{st_}_seed{s_}.npz")
+                urej94_ += int(d_["y"][d_["slice"] == 0].sum())
+            d_ = np.load(f"{ROOT}/m94/probe/{t_}/heldout_seed{s_}.npz")
+            pr_ = np.zeros(len(d_["y"]), dtype=int)
+            for k_, (kind_, m_) in tr_.items():
+                ix_ = d_["slice"] == k_
+                if ix_.any():
+                    pr_[ix_] = m_ if kind_ == "const" else m_.predict(d_["X"][ix_])
+            fs_.append(float((pr_ == d_["y"]).mean()))
+            kind_, m_ = tr_[1]
+            if kind_ == "tree" and m_.tree_.feature[0] == 0:
+                roots94_.setdefault(t_, []).append(float(m_.tree_.threshold[0]))
+            mconst94_ += int(tr_[2] == ("const", 1))
+            if t_ == "B7_ring_300":
+                econst300_ += int(tr_[1] == ("const", 0))
+        fid94_[t_] = float(np.mean(fs_))
+    C.note("M94 held-out fidelity of the depth-3 trees recomputed from the stored trees and replays, 86% to 97%",
+           all(abs(fid94_[t_] - a94_["targets"][t_]["heldout_fidelity_by_depth"]["3"]) < 1e-12 for t_ in T94_)
+           and f"{100 * min(fid94_.values()):.0f}" == "86" and f"{100 * max(fid94_.values()):.0f}" == "97"
+           and all(a94_["targets"][t_]["selected_depth"] == 3 for t_ in T94_)
+           and "depth-3 decision trees reproduce 86\\% to 97\\% of AXIOM's held-out decisions in Env B" in C.main, fid94_)
+    R94_, P94_ = (lambda r_: r_["reward"]), (lambda r_: 100 * prio(r_))
+    bad94_, te94_ = [], {}
+    for t_, (cell_, ss_, lab_) in T94_.items():
+        rc_ = "m64/n7_ring" if t_.startswith("B7") else "m64/n3_fully_connected"
+        dt_, ax_, tu_ = seeds_of(f"m94/{t_}", "distilled_tree", ss_), seeds_of(cell_, "axiom2", ss_), seeds_of(rc_, "rule_local", ss_)
+        fam_ = {"aR": paired(dt_, ax_, R94_), "tR": paired(dt_, tu_, R94_), "aP": paired(dt_, ax_, P94_), "tP": paired(dt_, tu_, P94_)}
+        hp_ = holm({k_: v_["p"] for k_, v_ in fam_.items()})
+        te94_[t_] = (fam_, hp_)
+        sm_ = a94_["targets"][t_]["tests"]; fd_ = a94_["targets"][t_]["heldout_fidelity_by_depth"]
+        fp_ = lambda p_: f"{p_:.2g}" if p_ >= 0.001 else "$<$0.001"
+        ca_, ct_ = sm_["vs AXIOM, reward"]["ci"], sm_["vs tuned rule, reward"]["ci"]
+        row_ = (f"{lab_} & {len(ss_)} & {fd_['1']:.3f} & {fd_['2']:.3f} & {fd_['3']:.3f} & {fm92_(fam_['aR']['diff'], 3)} [{fm92_(ca_[0], 2)}, {fm92_(ca_[1], 2)}] & "
+                f"{fp_(hp_['aR'])} & {fm92_(fam_['tR']['diff'], 3)} [{fm92_(ct_[0], 2)}, {fm92_(ct_[1], 2)}] & {fp_(hp_['tR'])} \\\\")
+        if row_ not in C.tex or len(dt_) != len(ss_):
+            bad94_.append(row_)
+    C.note("M94 OR1 Table S10 rows: rule against AXIOM and the tuned rule recomputed from the logs", not bad94_, bad94_)
+    f3_, h3_ = te94_["B3"]
+    C.note("M94 main: the rule ties AXIOM at seven gNBs, trails it by 0.19 at three, never reaches the tuned rule",
+           f"{-f3_['aR']['diff']:.2f}" == "0.19" and h3_["aR"] < 0.05 and all(te94_[t_][1]["aR"] >= 0.05 for t_ in ("B7_ring_300", "B7_ring_900"))
+           and all(te94_[t_][0]["tR"]["diff"] < 0 and te94_[t_][1]["tR"] < 0.05 for t_ in T94_)
+           and "Run as a rule, the trees tie AXIOM at seven gNBs, trail it by 0.19 reward per step at three, and never reach the tuned rule" in C.main,
+           {t_: (round(v_[0]["aR"]["diff"], 3), round(v_[1]["aR"], 4)) for t_, v_ in te94_.items()})
+    pd_ = {t_: v_[0]["tP"]["diff"] for t_, v_ in te94_.items()}
+    C.note("M94 OR1: on priority-slice compliance the rule ties AXIOM at seven, trails it by 1.3 at three, trails the tuned rule by 4.1 to 24.8",
+           f"{-f3_['aP']['diff']:.1f}" == "1.3" and h3_["aP"] < 0.05 and all(te94_[t_][1]["aP"] >= 0.05 for t_ in ("B7_ring_300", "B7_ring_900"))
+           and f"{-max(pd_.values()):.1f}" == "4.1" and f"{-min(pd_.values()):.1f}" == "24.8"
+           and "On priority-slice compliance the rule ties AXIOM at seven gNBs, trails it by 1.3 points at three, and trails the tuned rule by 4.1 to 24.8 points" in C.tex, pd_)
+    r3_, r9_ = roots94_.get("B3", []), roots94_.get("B7_ring_900", [])
+    C.note("M94 eMBB thresholds: first split on the URLLC queue in 24 of 30 seeds at a median 0.21, and 13 of 15 at 0.28, against 0.2",
+           len(r3_) == 24 and f"{np.median(r3_):.2f}" == "0.21" and len(r9_) == 13 and f"{np.median(r9_):.2f}" == "0.28"
+           and "shed eMBB once the URLLC queue passes 0.21 at three gNBs and 0.28 at seven after 900 training episodes, near the tuned rule's 0.2" in C.main
+           and "The eMBB trees split first on the URLLC queue in 24 of 30 seeds at three gNBs, at a median of 0.21" in C.tex
+           and "they do so in 13 of 15 seeds, at a median of 0.28, against the tuned rule's 0.2" in C.tex, (len(r3_), len(r9_)))
+    rp94_ = json.load(open(f"{ROOT}/m94/probe_B7_ring_900_B7_ring_300_B3.json"))
+    C.note("M94 no URLLC request rejected in any replay, 34 of 60 mMTC trees reject all, 11 of 15 eMBB trees accept all after 300 episodes, held-out replays exact",
+           urej94_ == 0 and mconst94_ == 34 and econst300_ == 11
+           and sum(1 for r_ in rp94_ if r_[2] == "heldout" and r_[4] is True) == 60 and sum(1 for r_ in rp94_ if r_[2] == "heldout") == 60
+           and "AXIOM rejected no URLLC request in any replay, and 34 of the 60 mMTC trees reject every request" in C.tex
+           and "After 300 episodes 11 of 15 eMBB trees accept every request" in C.tex
+           and "the held-out replays reproduce the stored evaluations exactly" in C.tex, (urej94_, mconst94_, econst300_))
+    C.note("M92 and M94 pre-registrations exist and OR1 S4 says M93 has no plan of its own",
+           os.path.exists("/home/kmanojp/oranslice_rig/docs/PAPER5_M92_preregistration.md") and os.path.exists("/home/kmanojp/oranslice_rig/docs/PAPER5_M94_preregistration.md")
+           and "M93, the summary of Section S2, reanalyses stored logs only and has no plan of its own" in C.tex, None)
+
     # ---------------- M82 pre-submission audit: every number no earlier check tied to its printed text
     import m82_audit
     m82_audit.run(C)

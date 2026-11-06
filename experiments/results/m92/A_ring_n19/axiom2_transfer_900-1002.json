@@ -1,0 +1,122 @@
+{
+ "900": {
+  "reward": 90.66827941451999,
+  "mmtc_blocks": 21947,
+  "blocks": 21947,
+  "exec_params": 7782,
+  "eval_seconds": 16.8,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "901": {
+  "reward": 88.98755203086874,
+  "mmtc_blocks": 20083,
+  "blocks": 20083,
+  "exec_params": 7782,
+  "eval_seconds": 33.3,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "902": {
+  "reward": 90.5993516956503,
+  "mmtc_blocks": 21730,
+  "blocks": 21730,
+  "exec_params": 7782,
+  "eval_seconds": 24.3,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "903": {
+  "reward": 90.91911498665281,
+  "mmtc_blocks": 21865,
+  "blocks": 21865,
+  "exec_params": 7782,
+  "eval_seconds": 22.9,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "904": {
+  "reward": 90.105762036731,
+  "mmtc_blocks": 21803,
+  "blocks": 21803,
+  "exec_params": 7782,
+  "eval_seconds": 21.6,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "905": {
+  "reward": 85.54542639036761,
+  "mmtc_blocks": 8624,
+  "blocks": 8624,
+  "exec_params": 7782,
+  "eval_seconds": 23.4,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "906": {
+  "reward": 90.09929800884179,
+  "mmtc_blocks": 22030,
+  "blocks": 22030,
+  "exec_params": 7782,
+  "eval_seconds": 21.2,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "907": {
+  "reward": 83.65868686957063,
+  "mmtc_blocks": 6327,
+  "blocks": 6327,
+  "exec_params": 7782,
+  "eval_seconds": 22.8,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "908": {
+  "reward": 82.04554962684163,
+  "mmtc_blocks": 15799,
+  "blocks": 18056,
+  "exec_params": 7782,
+  "eval_seconds": 23.4,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "909": {
+  "reward": 90.6134667018202,
+  "mmtc_blocks": 21770,
+  "blocks": 21770,
+  "exec_params": 7782,
+  "eval_seconds": 39.7,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "910": {
+  "reward": 89.95308311420108,
+  "mmtc_blocks": 22017,
+  "blocks": 22017,
+  "exec_params": 7782,
+  "eval_seconds": 31.7,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "911": {
+  "reward": 90.20504962304749,
+  "mmtc_blocks": 22136,
+  "blocks": 22136,
+  "exec_params": 7782,
+  "eval_seconds": 29.7,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "1000": {
+  "reward": 90.99581791600205,
+  "mmtc_blocks": 21724,
+  "blocks": 21724,
+  "exec_params": 7782,
+  "eval_seconds": 33.8,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "1001": {
+  "reward": 90.02091623637887,
+  "mmtc_blocks": 21772,
+  "blocks": 21772,
+  "exec_params": 7782,
+  "eval_seconds": 38.8,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ },
+ "1002": {
+  "reward": 85.53365720839827,
+  "mmtc_blocks": 9048,
+  "blocks": 9048,
+  "exec_params": 7782,
+  "eval_seconds": 33.2,
+  "source": "../experiments/results/m65_scaling/n7_ring"
+ }
+}

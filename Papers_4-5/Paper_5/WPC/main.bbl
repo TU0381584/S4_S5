@@ -1,4 +1,4 @@
-\begin{thebibliography}{42}
+\begin{thebibliography}{48}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -12,6 +12,13 @@ Abadi M, Chu A, Goodfellow I, McMahan HB, Mironov I, Talwar K, Zhang L (2016)
   Deep learning with differential privacy. In: \emph{Proceedings of the 2016
   ACM SIGSAC Conference on Computer and Communications Security (CCS)}, pp
   308--318, \doi{10.1145/2976749.2978318}
+
+\bibitem[{Agarwal et~al.(2021)Agarwal, Schwarzer, Castro, Courville, and
+  Bellemare}]{agarwal2021precipice}
+Agarwal R, Schwarzer M, Castro PS, Courville A, Bellemare M (2021) Deep
+  reinforcement learning at the edge of the statistical precipice. In:
+  \emph{Advances in Neural Information Processing Systems (NeurIPS)}, pp
+  29304--29320
 
 \bibitem[{Ahmadi et~al.(2024)Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba,
   and Saleh}]{ahmadi2024generalizable}
@@ -30,6 +37,21 @@ AlQahtani SA (2025) Dynamic slice allocation in {5G} cloud {RAN}.
 Amiri E, Wang N, Shojafar M, Tafazolli R (2024) Edge-{AI} empowered dynamic
   {VNF} splitting in {O-RAN} slicing: A federated {DRL} approach. \emph{IEEE
   Communications Letters} 28(2):318--322. \doi{10.1109/LCOMM.2023.3341302}
+
+\bibitem[{Asdikian et~al.(2025)Asdikian, Amro, Mehyeddine, Natalino, Sbeity,
+  Maier, Monti, Troia, and Ayoub}]{asdikian2025verifying}
+Asdikian JP, Amro A, Mehyeddine L, Natalino C, Sbeity I, Maier G, Monti P,
+  Troia S, Ayoub O (2025) Verifying behavior of reinforcement learning agents
+  for network slice admission control. In: \emph{Proceedings of the 21st
+  International Conference on Network and Service Management (CNSM)}, pp 1--6,
+  \doi{10.23919/CNSM67658.2025.11297450}
+
+\bibitem[{Barlacchi et~al.(2015)Barlacchi, De~Nadai, Larcher, Casella, Chitic,
+  Torrisi, Antonelli, Vespignani, Pentland, and Lepri}]{barlacchi2015milan}
+Barlacchi G, De~Nadai M, Larcher R, Casella A, Chitic C, Torrisi G, Antonelli
+  F, Vespignani A, Pentland A, Lepri B (2015) A multi-source dataset of urban
+  life in the city of {Milan} and the province of {Trentino}. \emph{Scientific
+  Data} 2:150055. \doi{10.1038/sdata.2015.55}
 
 \bibitem[{Bega et~al.(2020)Bega, Gramaglia, Banchs, Sciancalepore, and
   Costa-P{\'e}rez}]{bega2020market}
@@ -50,11 +72,26 @@ Bun M, Steinke T (2016) Concentrated differential privacy: Simplifications,
   extensions, and lower bounds. In: \emph{Theory of Cryptography Conference
   (TCC)}, pp 635--658, \doi{10.1007/978-3-662-53641-4_24}
 
+\bibitem[{Cheng et~al.(2024)Cheng, D'Oro, Gangula, Velumani, Villa, Bonati,
+  Polese, and Melodia}]{cheng2024oranslice}
+Cheng H, D'Oro S, Gangula R, Velumani S, Villa D, Bonati L, Polese M, Melodia T
+  (2024) {ORANSlice}: An open source {5G} network slicing platform for {O-RAN}.
+  In: \emph{Proceedings of the 30th Annual International Conference on Mobile
+  Computing and Networking (ACM MobiCom)}, pp 2297--2302,
+  \doi{10.1145/3636534.3701544}
+
 \bibitem[{Doanis and Spyropoulos(2024)}]{doanis2024madqn}
 Doanis P, Spyropoulos T (2024) Sample-efficient multi-agent {DQNs} for scalable
   multi-domain {5G+} inter-slice orchestration. \emph{IEEE Transactions on
   Machine Learning in Communications and Networking} 2:956--977.
   \doi{10.1109/TMLCN.2024.3420268}
+
+\bibitem[{Doherty et~al.(2025)Doherty, Matzner, Sadeghi, Bayvel, and
+  Beghelli}]{doherty2025hype}
+Doherty M, Matzner R, Sadeghi R, Bayvel P, Beghelli A (2025) Reinforcement
+  learning for dynamic resource allocation in optical networks: Hype or hope?
+  \emph{Journal of Optical Communications and Networking} 17(9):D1.
+  \doi{10.1364/JOCN.559990}
 
 \bibitem[{Fatehi et~al.(2026)Fatehi, Ghourtani, Sonee, Yadav, Russo, Ahmadi,
   and Calinescu}]{fatehi2026attentionmarl}
@@ -77,6 +114,12 @@ Hao X, She C, Yeoh PL, Liu Y, Vucetic B, Li Y (2024) Hybrid-task meta-learning:
   A {GNN} approach for scalable and transferable bandwidth allocation.
   \emph{IEEE Transactions on Wireless Communications} 23(12):19820--19835.
   \doi{10.1109/TWC.2024.3487533}
+
+\bibitem[{Henderson et~al.(2018)Henderson, Islam, Bachman, Pineau, Precup, and
+  Meger}]{henderson2018matters}
+Henderson P, Islam R, Bachman P, Pineau J, Precup D, Meger D (2018) Deep
+  reinforcement learning that matters. In: \emph{Proceedings of the AAAI
+  Conference on Artificial Intelligence}, \doi{10.1609/aaai.v32i1.11694}
 
 \bibitem[{Kamal and Abdulkafi(2026)}]{kamal2026ddqn}
 Kamal YB, Abdulkafi AA (2026) Reinforcement learning double deep {Q}-network

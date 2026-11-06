@@ -1,0 +1,13 @@
+{
+ "900": {
+  "reward": 82.39535076224257,
+  "mmtc_blocks": 21945,
+  "blocks": 21945,
+  "exec_params": 7782,
+  "eval_seconds": 13.1,
+  "source": "../experiments/results/m75/D_envB_n19_hex",
+  "stored_reward": 82.39535076224257,
+  "exact": true,
+  "per_gnb_exact": true
+ }
+}

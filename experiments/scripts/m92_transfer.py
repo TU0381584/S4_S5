@@ -7,7 +7,8 @@ builds them, and the evaluation is m64_run.eval_marl: 50 episodes on the held-ou
 
 Loading. AXIOM and its MLP variant execute through the shared encoder and the per-slice Q-heads,
 whose shapes do not depend on the number of gNBs. The saved network also holds a QMIX mixer whose
-input is the flattened joint state (N x 9), used only by the training loss. The loader therefore
+input is the flattened joint state (N x 9). It is left from an earlier training design and no current loss
+uses it (the framework's ctde_policy.py notes why it was replaced by per-request targets). The loader therefore
 copies every parameter except mixer.*, and refuses any other missing or unexpected key. MAPPO
 executes through its actor alone (own node features plus the request's slice), so only the actor is
 loaded; its critic sees the joint state and is used only in training. Nothing in framework/ or in

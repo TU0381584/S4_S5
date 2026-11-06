@@ -181,7 +181,7 @@ def run(C):
     pl = {n_: pooled(n_) for n_ in (7, 19, 37)}
     C.note("M82 abstract and contributions: AXIOM above 93% and every learned baseline below 84% at 7, 19 and 37 gNBs",
            min(pl[n_]["axiom2"] for n_ in pl) > 93 and max(pl[n_][a] for n_ in pl for a in ARMS[1:]) < 84
-           and "At 7, 19, and 37 gNBs, AXIOM keeps Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) service-level compliance above 93\\%, while every learned baseline stays below 84\\%" in C.main
+           and "At 7, 19, and 37 gNBs, AXIOM keeps Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) service-level compliance above 93\\%, even when trained only at 7 gNBs, while every learned baseline stays below 84\\%" in C.main
            and "AXIOM keeps priority-slice compliance above 93\\% at 7, 19, and 37 gNBs, while both DQN baselines and MAPPO stay below 84\\%" in C.main,
            {n_: {a: round(v, 1) for a, v in pl[n_].items()} for n_ in pl})
     f74 = {a: seeds_of("m74/A_n37_hex", a, list(range(6100, 6120))) for a in ARMS}
@@ -465,7 +465,7 @@ def run(C):
            and "7.4 GiB total" in spec and "OAI 2024.w28" in spec and "17 containers" in spec and "v1.5.2" in spec
            and "One laptop, Intel Core i5-1135G7, 4 cores and 8 threads" in C.tex and "8 GB of memory, 7.4 GiB usable" in C.tex
            and "Python 3.12.3, PyTorch 2.13.0 on the CPU" in C.tex and "NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.0, PyYAML 6.0.3" in C.tex
-           and "OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio" in C.tex and "protobuf-c 1.5.2" in C.tex,
+           and "OAI gNB, ORANSlice fork~[1] on OAI 2024.w28, rfsim radio" in C.tex and "protobuf-c 1.5.2" in C.tex,
            (cpu[:1], platform.python_version(), torch.__version__, np.__version__, scipy.__version__, matplotlib.__version__, yaml.__version__))
     for f_ in ("m64_run.py", "m73_run.py", "m72_shift.py", "m77_kpi.py", "m65_rebuild_all.sh", "m66_verify.py", "m66_ci_recompute.py"):
         assert os.path.exists(f"{SC}/{f_}"), f_

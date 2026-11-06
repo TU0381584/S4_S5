@@ -1,0 +1,12 @@
+{
+ "900": {
+  "reward": 28.379102392320984,
+  "mmtc_blocks": 8129,
+  "blocks": 9485,
+  "exec_params": 3190,
+  "eval_seconds": 5.6,
+  "source": "../experiments/results/m64/n7_hex",
+  "stored_reward": 28.379102392320977,
+  "exact": true
+ }
+}

@@ -1,0 +1,363 @@
+{
+ "targets": {
+  "B7_ring_900": {
+   "n_seeds": 15,
+   "selected_depth": 3,
+   "cv_fidelity": {
+    "1": 0.927536597230737,
+    "2": 0.9251403925791497,
+    "3": 0.929767698566288
+   },
+   "heldout_fidelity_by_depth": {
+    "1": 0.9272089355883975,
+    "2": 0.9252780696269911,
+    "3": 0.9305967155143459
+   },
+   "heldout_fidelity_selected": {
+    "mean": 0.9305967155143459,
+    "min": 0.8289158616134092,
+    "max": 1.0
+   },
+   "means": {
+    "distilled_tree": {
+     "reward": 26.37687600323864,
+     "prio": 55.957777777777785,
+     "n": 15,
+     "collapsed": 0
+    },
+    "AXIOM": {
+     "reward": 26.523554146890707,
+     "prio": 55.67777777777778,
+     "n": 15,
+     "collapsed": 0
+    },
+    "tuned rule": {
+     "reward": 27.336221591410798,
+     "prio": 60.54666666666667,
+     "n": 15,
+     "collapsed": 0
+    }
+   },
+   "tests": {
+    "vs AXIOM, reward": {
+     "n": 15,
+     "diff": -0.1466781436520724,
+     "wins": 3,
+     "ties": 1,
+     "losses": 11,
+     "p": 0.04132685891250041,
+     "ci": [
+      -0.2923088400976066,
+      0.0033607461257517623
+     ],
+     "p_holm": 0.08265371782500082
+    },
+    "vs tuned rule, reward": {
+     "n": 15,
+     "diff": -0.9593455881721683,
+     "wins": 1,
+     "ties": 0,
+     "losses": 14,
+     "p": 0.0008544921875,
+     "ci": [
+      -1.6307141844033959,
+      -0.3961017625206923
+     ],
+     "p_holm": 0.0025634765625
+    },
+    "vs AXIOM, priority SLA": {
+     "n": 15,
+     "diff": 0.28000000000000064,
+     "wins": 10,
+     "ties": 1,
+     "losses": 4,
+     "p": 0.1400483976968418,
+     "ci": [
+      -0.10000000000000049,
+      0.6477777777777783
+     ],
+     "p_holm": 0.1400483976968418
+    },
+    "vs tuned rule, priority SLA": {
+     "n": 15,
+     "diff": -4.588888888888888,
+     "wins": 0,
+     "ties": 0,
+     "losses": 15,
+     "p": 6.103515625e-05,
+     "ci": [
+      -8.619166666666663,
+      -1.944416666666666
+     ],
+     "p_holm": 0.000244140625
+    }
+   },
+   "embb_trees": {
+    "seeds_splitting_on_urllc_queue": 14,
+    "root_urllc_thresholds": [
+     0.28305333852767944,
+     0.22333607822656631,
+     0.30507947504520416,
+     0.3360176980495453,
+     0.29744796454906464,
+     0.2717301696538925,
+     0.47694210708141327,
+     0.14330868422985077,
+     0.1588716357946396,
+     0.5176023840904236,
+     0.28014610707759857,
+     0.23865294456481934,
+     0.4056060165166855
+    ],
+    "median_root_urllc_threshold": 0.28305333852767944,
+    "tuned_rule_threshold": 0.2,
+    "constant_embb_trees": 1
+   },
+   "example_trees": {
+    "urllc": "constant: accept",
+    "embb": "|--- urllc_queue <= 0.2831\n|   |--- urllc_queue <= 0.1345\n|   |   |--- congestion <= 0.8719\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8719\n|   |   |   |--- class: 0\n|   |--- urllc_queue >  0.1345\n|   |   |--- congestion <= 0.8794\n|   |   |   |--- class: 0\n|   |   |--- congestion >  0.8794\n|   |   |   |--- class: 0\n|--- urllc_queue >  0.2831\n|   |--- urllc_queue <= 0.4548\n|   |   |--- slice_prb_used <= 0.5088\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.5088\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.4548\n|   |   |--- congestion <= 0.7950\n|   |   |   |--- class: 1\n|   |   |--- congestion >  0.7950\n|   |   |   |--- class: 1\n",
+    "mmtc": "constant: reject"
+   }
+  },
+  "B7_ring_300": {
+   "n_seeds": 15,
+   "selected_depth": 3,
+   "cv_fidelity": {
+    "1": 0.9639536907297448,
+    "2": 0.963074295041719,
+    "3": 0.9761515404328038
+   },
+   "heldout_fidelity_by_depth": {
+    "1": 0.9629985637277606,
+    "2": 0.9638977076133967,
+    "3": 0.9741743623855526
+   },
+   "heldout_fidelity_selected": {
+    "mean": 0.9741743623855526,
+    "min": 0.9010166969747065,
+    "max": 1.0
+   },
+   "means": {
+    "distilled_tree": {
+     "reward": 23.552923966797362,
+     "prio": 35.779999999999994,
+     "n": 15,
+     "collapsed": 0
+    },
+    "AXIOM": {
+     "reward": 23.496374635391838,
+     "prio": 34.026666666666664,
+     "n": 15,
+     "collapsed": 0
+    },
+    "tuned rule": {
+     "reward": 27.336221591410798,
+     "prio": 60.54666666666667,
+     "n": 15,
+     "collapsed": 0
+    }
+   },
+   "tests": {
+    "vs AXIOM, reward": {
+     "n": 15,
+     "diff": 0.056549331405520556,
+     "wins": 4,
+     "ties": 7,
+     "losses": 4,
+     "p": 0.779434528427275,
+     "ci": [
+      -0.5403441052561909,
+      0.775325894046301
+     ],
+     "p_holm": 1.0
+    },
+    "vs tuned rule, reward": {
+     "n": 15,
+     "diff": -3.783297624613442,
+     "wins": 0,
+     "ties": 0,
+     "losses": 15,
+     "p": 6.103515625e-05,
+     "ci": [
+      -4.611912107167528,
+      -2.907708882090029
+     ],
+     "p_holm": 0.000244140625
+    },
+    "vs AXIOM, priority SLA": {
+     "n": 15,
+     "diff": 1.7533333333333327,
+     "wins": 4,
+     "ties": 7,
+     "losses": 4,
+     "p": 0.6744240722352938,
+     "ci": [
+      -1.3511111111111134,
+      6.05675
+     ],
+     "p_holm": 1.0
+    },
+    "vs tuned rule, priority SLA": {
+     "n": 15,
+     "diff": -24.766666666666662,
+     "wins": 0,
+     "ties": 0,
+     "losses": 15,
+     "p": 6.103515625e-05,
+     "ci": [
+      -29.05005555555555,
+      -19.890972222222224
+     ],
+     "p_holm": 0.000244140625
+    }
+   },
+   "embb_trees": {
+    "seeds_splitting_on_urllc_queue": 4,
+    "root_urllc_thresholds": [
+     1.498591125011444,
+     0.35958442091941833,
+     0.6292224526405334
+    ],
+    "median_root_urllc_threshold": 0.6292224526405334,
+    "tuned_rule_threshold": 0.2,
+    "constant_embb_trees": 11
+   },
+   "example_trees": {
+    "urllc": "constant: accept",
+    "embb": "|--- urllc_queue <= 1.4986\n|   |--- class: 0\n|--- urllc_queue >  1.4986\n|   |--- neighbour_congestion <= 0.7868\n|   |   |--- class: 0\n|   |--- neighbour_congestion >  0.7868\n|   |   |--- neighbour_congestion <= 0.8766\n|   |   |   |--- class: 1\n|   |   |--- neighbour_congestion >  0.8766\n|   |   |   |--- class: 0\n",
+    "mmtc": "constant: reject"
+   }
+  },
+  "B3": {
+   "n_seeds": 30,
+   "selected_depth": 3,
+   "cv_fidelity": {
+    "1": 0.8357905348752329,
+    "2": 0.8658950479249194,
+    "3": 0.8704146860975329
+   },
+   "heldout_fidelity_by_depth": {
+    "1": 0.8329022652477422,
+    "2": 0.8612158273229042,
+    "3": 0.8619826206048459
+   },
+   "heldout_fidelity_selected": {
+    "mean": 0.8619826206048459,
+    "min": 0.6739887749177472,
+    "max": 0.9400097228974235
+   },
+   "means": {
+    "distilled_tree": {
+     "reward": 8.64305274541931,
+     "prio": 63.745555555555555,
+     "n": 30,
+     "collapsed": 0
+    },
+    "AXIOM": {
+     "reward": 8.831805335946738,
+     "prio": 65.0938888888889,
+     "n": 30,
+     "collapsed": 0
+    },
+    "tuned rule": {
+     "reward": 9.251996197455524,
+     "prio": 67.815,
+     "n": 30,
+     "collapsed": 0
+    }
+   },
+   "tests": {
+    "vs AXIOM, reward": {
+     "n": 30,
+     "diff": -0.1887525905274271,
+     "wins": 6,
+     "ties": 0,
+     "losses": 24,
+     "p": 0.0007978975772857666,
+     "ci": [
+      -0.28565595892101947,
+      -0.0893425286128218
+     ],
+     "p_holm": 0.0012168176472187042
+    },
+    "vs tuned rule, reward": {
+     "n": 30,
+     "diff": -0.6089434520362151,
+     "wins": 0,
+     "ties": 0,
+     "losses": 30,
+     "p": 1.862645149230957e-09,
+     "ci": [
+      -0.7445300853882962,
+      -0.47469306106619114
+     ],
+     "p_holm": 7.450580596923828e-09
+    },
+    "vs AXIOM, priority SLA": {
+     "n": 30,
+     "diff": -1.348333333333336,
+     "wins": 8,
+     "ties": 0,
+     "losses": 22,
+     "p": 0.0006084088236093521,
+     "ci": [
+      -2.2028055555555595,
+      -0.5633055555555602
+     ],
+     "p_holm": 0.0012168176472187042
+    },
+    "vs tuned rule, priority SLA": {
+     "n": 30,
+     "diff": -4.0694444444444455,
+     "wins": 0,
+     "ties": 0,
+     "losses": 30,
+     "p": 1.862645149230957e-09,
+     "ci": [
+      -5.091125000000002,
+      -3.0655416666666686
+     ],
+     "p_holm": 7.450580596923828e-09
+    }
+   },
+   "embb_trees": {
+    "seeds_splitting_on_urllc_queue": 30,
+    "root_urllc_thresholds": [
+     0.18720858544111252,
+     0.27042022347450256,
+     0.24479052424430847,
+     0.36265288293361664,
+     0.15847152471542358,
+     0.17886004596948624,
+     0.25848913192749023,
+     0.3572385162115097,
+     0.19195667654275894,
+     0.17992955446243286,
+     0.3218337446451187,
+     0.7217777669429779,
+     0.38829971849918365,
+     0.1209665797650814,
+     0.4027973711490631,
+     0.23397676646709442,
+     0.3782251328229904,
+     0.1301041767001152,
+     0.19481799006462097,
+     0.43984563648700714,
+     0.012278311420232058,
+     0.19407974183559418,
+     0.10262709110975266,
+     0.11216196417808533
+    ],
+    "median_root_urllc_threshold": 0.2143973782658577,
+    "tuned_rule_threshold": 0.2,
+    "constant_embb_trees": 0
+   },
+   "example_trees": {
+    "urllc": "constant: accept",
+    "embb": "|--- slice_prb_used <= 0.5515\n|   |--- urllc_queue <= 0.0356\n|   |   |--- neighbour_congestion <= 0.9004\n|   |   |   |--- class: 0\n|   |   |--- neighbour_congestion >  0.9004\n|   |   |   |--- class: 1\n|   |--- urllc_queue >  0.0356\n|   |   |--- urllc_queue <= 0.8493\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.8493\n|   |   |   |--- class: 1\n|--- slice_prb_used >  0.5515\n|   |--- congestion <= 0.9142\n|   |   |--- urllc_queue <= 0.7532\n|   |   |   |--- class: 0\n|   |   |--- urllc_queue >  0.7532\n|   |   |   |--- class: 1\n|   |--- congestion >  0.9142\n|   |   |--- class: 1\n",
+    "mmtc": "|--- slice_prb_used <= 0.0798\n|   |--- neighbour_congestion <= 0.8297\n|   |   |--- urllc_queue <= 0.1803\n|   |   |   |--- class: 1\n|   |   |--- urllc_queue >  0.1803\n|   |   |   |--- class: 1\n|   |--- neighbour_congestion >  0.8297\n|   |   |--- slice_prb_used <= 0.0450\n|   |   |   |--- class: 0\n|   |   |--- slice_prb_used >  0.0450\n|   |   |   |--- class: 1\n|--- slice_prb_used >  0.0798\n|   |--- congestion <= 0.8891\n|   |   |--- neighbour_congestion <= 0.8589\n|   |   |   |--- class: 0\n|   |   |--- neighbour_congestion >  0.8589\n|   |   |   |--- class: 0\n|   |--- congestion >  0.8891\n|   |   |--- neighbour_congestion <= 0.6786\n|   |   |   |--- class: 1\n|   |   |--- neighbour_congestion >  0.6786\n|   |   |   |--- class: 1\n"
+   }
+  }
+ },
+ "flags": []
+}
