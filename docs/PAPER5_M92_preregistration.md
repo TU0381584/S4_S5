@@ -42,3 +42,16 @@ Reported only: every arm's mean, CI and collapse count per cell; AXIOM-7 to N an
 ## Budget
 
 About 3,000 CPU-seconds of evaluation (14 s per seed at 19 gNBs and 26 s at 37, measured in the harness check): Env A hex and ring, 2 arms x 15 seeds x 2 sizes each, and Env B hex, 3 arms x 15 seeds. At most 5 jobs in parallel, OMP_NUM_THREADS=MKL_NUM_THREADS=OPENBLAS_NUM_THREADS=1, M75_PERGNB=1.
+
+## Erratum (2026-11-06, after the M92 runs, changes no result)
+
+The feasibility section above says the QMIX mixer is used "only by the training loss". That is wrong. No current loss uses the mixer. It is left from an earlier training design that the framework's ctde_policy.py records as replaced by per-request targets. The loader, the runs and AXIOM's 7,782 execution parameters are unaffected, because the loader skips the mixer either way.
+
+## Amendment 1 (2026-11-06, committed before any of its runs)
+
+Why. The abstract now says that AXIOM keeps priority-slice compliance above 93% at 7, 19 and 37 gNBs "even when trained only at 7 gNBs". The design above tested transfer on the hex and ring layouts only, while the abstract's pooled claim covers the fully-connected layout too. This amendment tests the missing layout under the same rules. The result is reported whether it holds or fails, and the abstract is changed if it fails.
+
+- Cells. Env A, fully-connected layout, source m65_scaling/n7_fully_connected (axiom2, mappo_tuned), targets 19 and 37 gNBs fully-connected, the same 15 seeds and held-out streams. References: m65_scaling/n19_fully_connected and m73/A_n37_fully_connected (axiom2), and the same rule runs as the hex cells (m70/R1/A_n19_hex, m73/A_n37_hex, m75/B_acceptall), which do not read the layout.
+- Family. A third secondary family, Env A fully-connected, with the same H-T1 and H-T2 criteria and Holm over its 4 tests. H-T3 reported descriptively as before. The T-S1 check also applies.
+- Abstract criterion. The clause stands only if AXIOM transferred from 7 gNBs keeps a mean priority-slice compliance above 93% at both 19 and 37 gNBs on the fully-connected layout. Contribution 1's "above 95% in Env A" stands only if every Env A layout stays above 95%; otherwise it is changed to the true minimum.
+- Budget. About 20 CPU-minutes (2 arms x 15 seeds x 2 sizes).
