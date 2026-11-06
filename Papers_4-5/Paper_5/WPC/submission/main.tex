@@ -436,7 +436,7 @@ Federated training costs AXIOM little reward per step on average. Pooled over al
 
 \section{Discussion and Limitations}
 \label{sec:discussion}
-No learned baseline earns significantly more reward than AXIOM in any setting we tested, and its margin over the cheaper MAPPO is largest under time-varying load, coupling, and uneven per-gNB load. A rule known in advance, however, matches or beats AXIOM in steady conditions at every size, and AXIOM beats a tuned rule only when the load moves beyond the rule's tuning conditions. Its practical case is for operators who cannot hand-tune and re-tune rules as conditions change, rather than for a fixed, well-understood cluster. Fig.~\ref{fig:regime} maps this boundary over every cluster size and load we tested.
+No learned baseline earns significantly more reward than AXIOM in any setting we tested, and its margin over the cheaper MAPPO is largest under time-varying load, coupling, and uneven per-gNB load. A rule known in advance, however, matches or beats AXIOM in steady conditions at every size, and AXIOM beats a tuned rule only when the load moves beyond the rule's tuning conditions. Its practical case is for operators who cannot hand-tune and re-tune rules as conditions change, rather than for a fixed, well-understood cluster. Fig.~\ref{fig:regime} maps this boundary over every cluster size and load we tested. In Env B AXIOM pulls ahead of the tuned rule at every size from 110\% of the rule's tuning load, and from 105\% at nineteen gNBs, whereas in Env A it never significantly beats the static rule at any size or load.
 
 \begin{figure}[!htbp]
 \centering

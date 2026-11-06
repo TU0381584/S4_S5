@@ -1,0 +1,354 @@
+{
+ "rule": {
+  "tau_c": 0.0,
+  "tau_q": null,
+  "tau_e": 0.2
+ },
+ "results": {
+  "900": {
+   "axiom2": {
+    "reward": 34.33951344650137,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8129
+   },
+   "rule_local": {
+    "reward": 34.311757502987255,
+    "urllc": 1.0,
+    "embb": 0.9956666666666666,
+    "prio": 0.9978333333333333,
+    "blocks": 8145
+   },
+   "rule_static": {
+    "reward": 34.33951344650137,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8129
+   }
+  },
+  "901": {
+   "axiom2": {
+    "reward": 33.73601026603839,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 5788
+   },
+   "rule_local": {
+    "reward": 33.628598561116235,
+    "urllc": 1.0,
+    "embb": 0.9913333333333334,
+    "prio": 0.9956666666666667,
+    "blocks": 8121
+   },
+   "rule_static": {
+    "reward": 33.695174628866056,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8087
+   }
+  },
+  "902": {
+   "axiom2": {
+    "reward": 33.95496628462665,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8100
+   },
+   "rule_local": {
+    "reward": 33.88336083555447,
+    "urllc": 1.0,
+    "embb": 0.9916666666666667,
+    "prio": 0.9958333333333333,
+    "blocks": 8150
+   },
+   "rule_static": {
+    "reward": 33.95496628462665,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8100
+   }
+  },
+  "903": {
+   "axiom2": {
+    "reward": 32.56545462953424,
+    "urllc": 1.0,
+    "embb": 0.973,
+    "prio": 0.9864999999999999,
+    "blocks": 13
+   },
+   "rule_local": {
+    "reward": 33.97043158718982,
+    "urllc": 1.0,
+    "embb": 0.9976666666666667,
+    "prio": 0.9988333333333334,
+    "blocks": 8195
+   },
+   "rule_static": {
+    "reward": 33.99930796448849,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8163
+   }
+  },
+  "904": {
+   "axiom2": {
+    "reward": 33.96779336291408,
+    "urllc": 1.0,
+    "embb": 0.9973333333333333,
+    "prio": 0.9986666666666666,
+    "blocks": 7971
+   },
+   "rule_local": {
+    "reward": 33.939988536730446,
+    "urllc": 1.0,
+    "embb": 0.9963333333333334,
+    "prio": 0.9981666666666666,
+    "blocks": 8006
+   },
+   "rule_static": {
+    "reward": 33.96779336291408,
+    "urllc": 1.0,
+    "embb": 0.9973333333333333,
+    "prio": 0.9986666666666666,
+    "blocks": 7971
+   }
+  },
+  "905": {
+   "axiom2": {
+    "reward": 34.090399545573256,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8042
+   },
+   "rule_local": {
+    "reward": 34.07548515194255,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8065
+   },
+   "rule_static": {
+    "reward": 34.090399545573256,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8042
+   }
+  },
+  "906": {
+   "axiom2": {
+    "reward": 33.896721478782155,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8109
+   },
+   "rule_local": {
+    "reward": 33.87164116261307,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8148
+   },
+   "rule_static": {
+    "reward": 33.896721478782155,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8109
+   }
+  },
+  "907": {
+   "axiom2": {
+    "reward": 34.48120566826411,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8094
+   },
+   "rule_local": {
+    "reward": 34.462162301699,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8122
+   },
+   "rule_static": {
+    "reward": 34.48120566826411,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8094
+   }
+  },
+  "908": {
+   "axiom2": {
+    "reward": 33.812689435744026,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 7407
+   },
+   "rule_local": {
+    "reward": 33.95382483814762,
+    "urllc": 1.0,
+    "embb": 0.9936666666666666,
+    "prio": 0.9968333333333332,
+    "blocks": 8051
+   },
+   "rule_static": {
+    "reward": 34.00337854838764,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8014
+   }
+  },
+  "909": {
+   "axiom2": {
+    "reward": 33.85447291916162,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8130
+   },
+   "rule_local": {
+    "reward": 33.82658295654662,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8170
+   },
+   "rule_static": {
+    "reward": 33.85447291916162,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8130
+   }
+  },
+  "910": {
+   "axiom2": {
+    "reward": 34.258579992686066,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8083
+   },
+   "rule_local": {
+    "reward": 34.163662621409046,
+    "urllc": 1.0,
+    "embb": 0.99,
+    "prio": 0.995,
+    "blocks": 8146
+   },
+   "rule_static": {
+    "reward": 34.258579992686066,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8083
+   }
+  },
+  "911": {
+   "axiom2": {
+    "reward": 34.06239972498537,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8122
+   },
+   "rule_local": {
+    "reward": 34.02265688025891,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8176
+   },
+   "rule_static": {
+    "reward": 34.06239972498537,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8122
+   }
+  },
+  "1000": {
+   "axiom2": {
+    "reward": 34.468872699728216,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8149
+   },
+   "rule_local": {
+    "reward": 34.44975574161716,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8175
+   },
+   "rule_static": {
+    "reward": 34.468872699728216,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8149
+   }
+  },
+  "1001": {
+   "axiom2": {
+    "reward": 33.9222377216936,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8004
+   },
+   "rule_local": {
+    "reward": 33.90084274385608,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8043
+   },
+   "rule_static": {
+    "reward": 33.9222377216936,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8004
+   }
+  },
+  "1002": {
+   "axiom2": {
+    "reward": 34.079973231910095,
+    "urllc": 1.0,
+    "embb": 0.9986666666666666,
+    "prio": 0.9993333333333333,
+    "blocks": 8049
+   },
+   "rule_local": {
+    "reward": 34.05825549108138,
+    "urllc": 1.0,
+    "embb": 1.0,
+    "prio": 1.0,
+    "blocks": 8092
+   },
+   "rule_static": {
+    "reward": 34.079973231910095,
+    "urllc": 1.0,
+    "embb": 0.9986666666666666,
+    "prio": 0.9993333333333333,
+    "blocks": 8049
+   }
+  }
+ }
+}

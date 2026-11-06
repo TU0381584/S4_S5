@@ -832,7 +832,17 @@ def main():
     C.note("Fig 7e and 7f load panels match recomputation from the logs", not badl_ and len(eA_) == 15 and len(fB_) == 13, badl_)
     # Fig. regime: AXIOM against the rule per cluster size and load, recomputed here from the logs
     rg_ = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_regime_summary.json"))
-    badrg_ = [k_ for k_, v_ in rg_["B"].items() if abs(v_["diff"] - fB_[(int(k_.split("|")[0]), k_.split("|")[1])]) > 1e-9]
+    # M95 cells (docs/PAPER5_M95_preregistration.md) are not in Fig. 9's load panel, so they are recomputed here from their own logs
+    ex95_ = {(7, "0.80"): ("m95/B_shift/n7_ring", "rule_local"), (7, "1.05"): ("m95/B_shift/n7_ring", "rule_local"),
+             (7, "1.15"): ("m95/B_shift/n7_ring", "rule_local"), (19, "0.80"): ("m95/B_shift/n19", "rule_local_transfer"),
+             (19, "1.05"): ("m95/B_shift/n19", "rule_local_transfer")}
+    def sh95_(cell_, load_, arm_, s_, n_):
+        b_ = f"{ROOT}/{cell_}/load_{load_}/{arm_}/seed{s_}/"
+        return {"reward": read(b_ + ("omega_log.jsonl" if arm_ == "axiom2" else "lb_only/offline_eval/rep_0/omega_log.jsonl"))["reward"] / n_}
+    fB95_ = dict(fB_)
+    for (n_, L_), (c_, r_) in ex95_.items():
+        fB95_[(n_, L_)] = paired({s_: sh95_(c_, L_, "axiom2", s_, n_) for s_ in S15}, {s_: sh95_(c_, L_, r_, s_, n_) for s_ in S15})["diff"]
+    badrg_ = [k_ for k_, v_ in rg_["B"].items() if abs(v_["diff"] - fB95_[(int(k_.split("|")[0]), k_.split("|")[1])]) > 1e-9]
     lay_ = ("fully_connected", "ring", "hex")
     def kd_(cell_, arm_, ss_, tag_=""):
         return {(tag_, s_): r_ for s_, r_ in seeds_of(cell_, arm_, ss_).items()}
@@ -845,17 +855,24 @@ def main():
         ra_[f"{n_}|1.05"] = (a_, b_)
     for L_ in ("1.10", "1.20"):
         ra_[f"19|{L_}"] = (kd_(f"m76/e_load{L_}_n19_hex", "axiom2", S15), kd_(f"m76/e_load{L_}_n19_hex", "rule_static", S15))
+        for n_, tg_ in ((3, "n3"), (7, "n7_hex"), (37, "n37_hex")):      # M95
+            ra_[f"{n_}|{L_}"] = (kd_(f"m95/A_load{L_}_{tg_}", "axiom2", S15), kd_(f"m95/A_load{L_}_{tg_}", "rule_static", S15))
     ta_ = {k_: paired(a_, b_, lambda r: 100 * prio(r)) for k_, (a_, b_) in ra_.items()}
     hA_ = holm({k_: v_["p"] for k_, v_ in ta_.items()}); hB_ = holm({k_: v_["p"] for k_, v_ in rg_["B"].items()})
     vd_ = lambda d_, h_: ("AXIOM" if d_ > 0 else "rule") if h_ < 0.05 else "tie"
     badrg_ += [k_ for k_, v_ in ta_.items() if k_ not in rg_["A"] or abs(v_["diff"] - rg_["A"][k_]["diff"]) > 1e-9 or vd_(v_["diff"], hA_[k_]) != rg_["A"][k_]["verdict"]]
     badrg_ += [k_ for k_, v_ in rg_["B"].items() if vd_(v_["diff"], hB_[k_]) != v_["verdict"]]
-    C.note("Fig regime cells match recomputation from the logs, with Holm verdicts per panel", not badrg_ and len(rg_["A"]) == 6 and len(rg_["B"]) == 13, badrg_)
-    C.note("Fig regime agrees with the text: the rule matches or beats AXIOM at nominal load in both environments, and AXIOM leads every Env B cell above it",
-           all(v_["verdict"] in ("rule", "tie") for k_, v_ in rg_["A"].items() if k_.endswith("|1.05"))
+    C.note("Fig regime cells match recomputation from the logs, with Holm verdicts per panel", not badrg_ and len(rg_["A"]) == 12 and len(rg_["B"]) == 18
+           and all(len(v_[0]) == len(v_[1]) and len(v_[0]) >= 15 for v_ in ra_.values()), badrg_)
+    C.note("Fig regime agrees with the text: the rule matches or beats AXIOM at nominal load, AXIOM leads every Env B cell from 110% and at 105% only at 19 gNBs, never in Env A",
+           all(v_["verdict"] in ("rule", "tie") for k_, v_ in rg_["A"].items())
            and all(rg_["B"][k_]["verdict"] == "rule" for k_ in ("3|1.00", "7|1.00", "19|1.00"))
-           and all(v_["verdict"] == "AXIOM" for k_, v_ in rg_["B"].items() if float(k_.split("|")[1]) > 1.0)
-           and "maps this boundary over every cluster size and load we tested" in C.main, None)
+           and all(v_["verdict"] == "AXIOM" for k_, v_ in rg_["B"].items() if float(k_.split("|")[1]) >= 1.10)
+           and [k_ for k_, v_ in rg_["B"].items() if k_.endswith("|1.05") and v_["verdict"] == "AXIOM"] == ["19|1.05"]
+           and all(v_["verdict"] != "AXIOM" for k_, v_ in rg_["B"].items() if float(k_.split("|")[1]) <= 1.0)
+           and "maps this boundary over every cluster size and load we tested" in C.main
+           and "In Env B AXIOM pulls ahead of the tuned rule at every size from 110\\% of the rule's tuning load, and from 105\\% at nineteen gNBs, whereas in Env A it never significantly beats the static rule at any size or load" in C.main,
+           {e_: {k_: v_["verdict"] for k_, v_ in rg_[e_].items()} for e_ in ("A", "B")})
     gapA_ = max(eA_[("Static rule", L_)] - eA_[("AXIOM", L_)] for L_ in ("1.05", "1.10", "1.20"))
     nomB_ = [-fB_[(n_, "1.00")] for n_ in (3, 7, 19)]
     upB_ = [v_ for (n_, L_), v_ in fB_.items() if float(L_) > 1.0]
