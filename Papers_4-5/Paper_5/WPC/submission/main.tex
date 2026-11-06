@@ -221,7 +221,6 @@ The settings, seeds, and four hypotheses of the final campaign were fixed in a p
 
 A pre-registered validation screen checks every trained checkpoint on its own training stream before evaluation. Every seed is reported whether or not it passes, and Section S4 of Online Resource 1 gives the screen's criteria.
 
-\subsection{Evaluation Safeguards}
 \label{sec:collapse}
 Three safeguards protect the results, and Fig.~\ref{fig:protocol} places them in the evaluation protocol with the failure each one caught. A trivial-policy check evaluates accept-all and one-slice shedding before any learned policy is trusted, and it exposed an earlier simulator in which accepting every request was optimal.
 
@@ -434,32 +433,19 @@ Federated training costs AXIOM little reward per step on average. Pooled over al
 
 \section{Discussion and Limitations}
 \label{sec:discussion}
-No learned baseline earns significantly more reward than AXIOM in any setting we tested, and its margin over the cheaper MAPPO is largest under time-varying load, coupling, and uneven per-gNB load. A rule known in advance, however, matches or beats AXIOM in steady conditions at every size, and AXIOM beats a tuned rule only when the load moves beyond the rule's tuning conditions. Its practical case is for operators who cannot hand-tune and re-tune rules as conditions change, rather than for a fixed, well-understood cluster. Table~\ref{tab:practical} sets out what each controller needs to serve a larger cluster. AXIOM learns its own shedding thresholds from the reward, close to those an engineer would tune by hand, and one 7,782-parameter network trained at seven gNBs serves clusters five times larger. MAPPO also keeps its size fixed but loses most of its compliance when moved, and the DQN baselines cannot be moved at all. The static rule must know in advance which slice to shed, and the tuned rule needs a fresh threshold search whenever conditions change. AXIOM is not retrained after deployment either, so its edge under shifted load comes from what it learned rather than from online adaptation. Fig.~\ref{fig:regime} maps this boundary over every cluster size and load we tested. In Env B AXIOM pulls ahead of the tuned rule at every size from 110\% of the rule's tuning load, and from 105\% at nineteen gNBs. In Env A it never significantly beats the static rule at any size or load.
-
-\begin{table}[!htbp]
-\caption{What each controller needs to serve a larger cluster. Parameters are those used at execution from 3 to 37 gNBs, and compliance is Env A priority-slice compliance at 37 gNBs}
-\label{tab:practical}
-\centering
-\footnotesize
-{\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.11\textwidth}>{\raggedright\arraybackslash}p{0.15\textwidth}>{\raggedright\arraybackslash}p{0.16\textwidth}>{\raggedright\arraybackslash}p{0.14\textwidth}>{\raggedright\arraybackslash}p{0.17\textwidth}>{\raggedright\arraybackslash}p{0.19\textwidth}@{}}
-\toprule
-Controller & Parameters, 3 to 37 gNBs & Runs unchanged at a new size & Trained at 7, run at 37 & Hand-set thresholds & Load past the rule's tuning point \\
-\midrule
-\rowcolor{blue!7}AXIOM & 7,782 at every size & Yes & 95.4\% to 96.3\% & None, learned from the reward & Ahead of the tuned rule from 110\% \\
-MAPPO & 5,122 at every size & Yes, through its actor & 61.5\% & None & Not tested \\
-DQN-SA & 21,250 to 64,770 & No, its input grows & Cannot run & None & Not tested \\
-DQN-I & 55,302 to 682,058 & No, one network per gNB & Cannot run & None & Not tested \\
-Static rule & None & Yes & 99.99\%, no training & Which slice to shed & Ties AXIOM in Env A \\
-Tuned rule & None & Yes & Not tested & Thresholds from a grid search & Trails AXIOM from 110\% \\
-\botrule
-\end{tabular}}
-\end{table}
-
+No learned baseline earns significantly more reward than AXIOM in any setting we tested, and its margin over the cheaper MAPPO is largest under time-varying load, coupling, and uneven per-gNB load. A rule known in advance, however, matches or beats AXIOM in steady conditions at every size, and AXIOM beats a tuned rule only when the load moves beyond the rule's tuning conditions. Its practical case is for operators who cannot hand-tune and re-tune rules as conditions change, rather than for a fixed, well-understood cluster. Fig.~\ref{fig:capability} sets out what each controller offers, and AXIOM alone meets five of its six criteria. AXIOM learns its own shedding thresholds from the reward, close to those an engineer would tune by hand, and one 7,782-parameter network trained at seven gNBs serves clusters five times larger. MAPPO also keeps its size fixed but loses most of its compliance when moved, and the DQN baselines cannot be moved at all. The static rule must know in advance which slice to shed, and the tuned rule needs a fresh threshold search whenever conditions change. AXIOM is not retrained after deployment either, so its edge under shifted load comes from what it learned rather than from online adaptation. Fig.~\ref{fig:regime} maps this boundary over every cluster size and load we tested. In Env B AXIOM pulls ahead of the tuned rule at every size from 110\% of the rule's tuning load, and from 105\% at nineteen gNBs. In Env A it never significantly beats the static rule at any size or load.
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics{Fig10}
+\caption{What each controller offers. Filled circles meet a criterion, half circles partly, open circles do not, and dashes were not tested. Values are execution parameters, Env A priority-slice compliance, and Env B results past the rules' tuning load}
+\label{fig:capability}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics{Fig11}
 \caption{Where AXIOM beats or trails a rule tuned once at nominal load, paired per seed. a, Env A priority-slice compliance against the static rule. b, Env B reward per gNB against the tuned rule. Colour marks Holm-adjusted $p<0.05$}
 \label{fig:regime}
 \end{figure}

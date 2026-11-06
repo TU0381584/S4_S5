@@ -1,0 +1,245 @@
+{
+ "data": {
+  "params": {
+   "axiom2": [
+    7782,
+    7782,
+    7782,
+    7782
+   ],
+   "single_agent_dqn": [
+    21250,
+    26370,
+    41730,
+    64770
+   ],
+   "independent_dqn": [
+    55302,
+    129038,
+    350246,
+    682058
+   ],
+   "mappo_tuned": [
+    5122,
+    5122,
+    5122,
+    5122
+   ]
+  },
+  "transfer_axiom": [
+   95.37222222222223,
+   96.32777777777777,
+   96.28
+  ],
+  "transfer_mappo": 61.528888888888886,
+  "sla37": {
+   "axiom2": 93.69,
+   "single_agent_dqn": 58.66166666666667,
+   "independent_dqn": 32.13277777777777,
+   "mappo_tuned": 56.676111111111105,
+   "rule_static": 99.97666666666666
+  },
+  "past_B": [
+   "AXIOM",
+   "AXIOM",
+   "AXIOM",
+   "AXIOM",
+   "AXIOM",
+   "AXIOM",
+   "AXIOM",
+   "AXIOM",
+   "AXIOM"
+  ],
+  "past_A": [
+   "tie",
+   "tie",
+   "tie",
+   "tie",
+   "tie",
+   "tie",
+   "tie",
+   "tie"
+  ],
+  "nominal_B": [
+   "rule",
+   "rule",
+   "rule"
+  ]
+ },
+ "rows": [
+  [
+   "AXIOM (proposed)",
+   [
+    [
+     "full",
+     "7,782"
+    ],
+    [
+     "full",
+     "95\u201396%"
+    ],
+    [
+     "full",
+     "93.7%"
+    ],
+    [
+     "full",
+     "learned"
+    ],
+    [
+     "full",
+     "ahead"
+    ],
+    [
+     "none",
+     "rule wins"
+    ]
+   ]
+  ],
+  [
+   "MAPPO",
+   [
+    [
+     "full",
+     "5,122"
+    ],
+    [
+     "half",
+     "61.5%"
+    ],
+    [
+     "none",
+     "56.7%"
+    ],
+    [
+     "full",
+     "learned"
+    ],
+    [
+     "na",
+     ""
+    ],
+    [
+     "none",
+     "rule wins"
+    ]
+   ]
+  ],
+  [
+   "DQN-SA",
+   [
+    [
+     "none",
+     "21k\u201365k"
+    ],
+    [
+     "none",
+     "cannot"
+    ],
+    [
+     "none",
+     "58.7%"
+    ],
+    [
+     "full",
+     "learned"
+    ],
+    [
+     "na",
+     ""
+    ],
+    [
+     "none",
+     "rule wins"
+    ]
+   ]
+  ],
+  [
+   "DQN-I",
+   [
+    [
+     "none",
+     "55k\u2013682k"
+    ],
+    [
+     "none",
+     "cannot"
+    ],
+    [
+     "none",
+     "32.1%"
+    ],
+    [
+     "full",
+     "learned"
+    ],
+    [
+     "na",
+     ""
+    ],
+    [
+     "none",
+     "rule wins"
+    ]
+   ]
+  ],
+  [
+   "Static rule",
+   [
+    [
+     "full",
+     "no model"
+    ],
+    [
+     "full",
+     "size-free"
+    ],
+    [
+     "full",
+     "99.98%"
+    ],
+    [
+     "none",
+     "fixed slice"
+    ],
+    [
+     "half",
+     "ties"
+    ],
+    [
+     "full",
+     "best"
+    ]
+   ]
+  ],
+  [
+   "Tuned rule",
+   [
+    [
+     "full",
+     "no model"
+    ],
+    [
+     "full",
+     "7 to 19"
+    ],
+    [
+     "na",
+     ""
+    ],
+    [
+     "none",
+     "grid search"
+    ],
+    [
+     "none",
+     "trails"
+    ],
+    [
+     "full",
+     "best"
+    ]
+   ]
+  ]
+ ]
+}

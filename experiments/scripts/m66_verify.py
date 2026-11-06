@@ -2631,21 +2631,38 @@ def main():
            and "AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$" in C.tex,
            fc19_)
 
-    # ---------------- practical comparison (main Table 8) and the slice-priority and rule rationale (Secs. 3 and 5)
+    # ---------------- capability matrix (main Fig. 10) and the slice-priority and rule rationale (Secs. 3 and 5):
+    # every value recomputed here, every glyph checked against its rule, and the text's "five of its six" against the scores
+    cap_ = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_capability_summary.json"))
+    cxa_ = json.load(open(f"{ROOT}/m64/complexity.json")); cxb_ = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
+    par_ = {a_: [cxa_[str(n_)][k_]["params_execution"] for n_ in (3, 7, 19)] + [cxb_[k_]["params_execution"]]
+            for a_, k_ in (("axiom2", "axiom2"), ("mappo_tuned", "mappo"), ("single_agent_dqn", "single_agent_dqn"), ("independent_dqn", "independent_dqn"))}
     t37_ = [mu92_(C92_[f"A_{t_}_n37"]["AXIOM-7to37"]) for t_ in ("hex", "ring", "fully_connected")]
-    rowsP_ = [f"AXIOM & 7,782 at every size & Yes & {min(t37_):.1f}\\% to {max(t37_):.1f}\\% & None, learned from the reward & Ahead of the tuned rule from 110\\% \\\\",
-              f"MAPPO & 5,122 at every size & Yes, through its actor & {mu92_(C92_['A_hex_n37']['MAPPO-7to37']):.1f}\\% & None & Not tested \\\\",
-              "DQN-SA & 21,250 to 64,770 & No, its input grows & Cannot run & None & Not tested \\\\",
-              "DQN-I & 55,302 to 682,058 & No, one network per gNB & Cannot run & None & Not tested \\\\",
-              f"Static rule & None & Yes & {mu92_(C92_['A_hex_n37']['static rule']):.2f}\\%, no training & Which slice to shed & Ties AXIOM in Env A \\\\",
-              "Tuned rule & None & Yes & Not tested & Thresholds from a grid search & Trails AXIOM from 110\\% \\\\"]
-    C.note("Table 8 rows: transfer compliance recomputed, parameters as Table 7, load verdicts as Fig. 10",
-           all(r_ in C.main for r_ in rowsP_)
-           and "AXIOM & 7,782 at every size & 1.04" in C.main and "MAPPO & 5,122 at every size" in C.main
-           and "DQN-SA & 21,250 / 26,370 / 41,730 / 64,770" in C.main and "DQN-I & 55,302 / 129,038 / 350,246 / 682,058" in C.main
-           and all(v_["verdict"] == "AXIOM" for k_, v_ in rg_["B"].items() if float(k_.split("|")[1]) >= 1.10)
-           and all(v_["verdict"] == "tie" for k_, v_ in rg_["A"].items() if float(k_.split("|")[1]) > 1.05),
-           [r_ for r_ in rowsP_ if r_ not in C.main])
+    s37_ = {"axiom2": pooled37["axiom2"], **{a_: 100 * mean(seeds_of("m73/A_n37_hex", a_, S30_19), prio) for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}}
+    k_ = lambda x_: f"{x_ / 1000:.0f}k"
+    pastB_ = all(v_["verdict"] == "AXIOM" for kk_, v_ in rg_["B"].items() if float(kk_.split("|")[1]) >= 1.10)
+    pastA_ = all(v_["verdict"] == "tie" for kk_, v_ in rg_["A"].items() if float(kk_.split("|")[1]) > 1.05)
+    nomB_ = all(rg_["B"][kk_]["verdict"] == "rule" for kk_ in ("3|1.00", "7|1.00", "19|1.00"))
+    exp_ = [
+        ["AXIOM (proposed)", [["full", f"{par_['axiom2'][0]:,}"], ["full", f"{min(t37_):.0f}\u2013{max(t37_):.0f}%"], ["full", f"{s37_['axiom2']:.1f}%"],
+                              ["full", "learned"], ["full" if pastB_ else "half", "ahead"], ["none", "rule wins"]]],
+        ["MAPPO", [["full", f"{par_['mappo_tuned'][0]:,}"], ["half", f"{mu92_(C92_['A_hex_n37']['MAPPO-7to37']):.1f}%"], ["none", f"{s37_['mappo_tuned']:.1f}%"],
+                   ["full", "learned"], ["na", ""], ["none", "rule wins"]]],
+        ["DQN-SA", [["none", f"{k_(par_['single_agent_dqn'][0])}\u2013{k_(par_['single_agent_dqn'][-1])}"], ["none", "cannot"], ["none", f"{s37_['single_agent_dqn']:.1f}%"],
+                    ["full", "learned"], ["na", ""], ["none", "rule wins"]]],
+        ["DQN-I", [["none", f"{k_(par_['independent_dqn'][0])}\u2013{k_(par_['independent_dqn'][-1])}"], ["none", "cannot"], ["none", f"{s37_['independent_dqn']:.1f}%"],
+                   ["full", "learned"], ["na", ""], ["none", "rule wins"]]],
+        ["Static rule", [["full", "no model"], ["full", "size-free"], ["full", f"{s37_['rule_static']:.2f}%"], ["none", "fixed slice"],
+                         ["half" if pastA_ else "none", "ties"], ["full", "best"]]],
+        ["Tuned rule", [["full", "no model"], ["full", "7 to 19"], ["na", ""], ["none", "grid search"], ["none" if pastB_ else "half", "trails"],
+                        ["full" if nomB_ else "half", "best"]]]]
+    sc_ = [sum(1.0 if c_[0] == "full" else 0.5 if c_[0] == "half" else 0.0 for c_ in r_[1]) for r_ in exp_]
+    C.note("Fig. 10 capability matrix: every value recomputed, every glyph by its rule, AXIOM alone meets five of six",
+           cap_["rows"] == exp_ and len(set(par_["axiom2"])) == 1 and len(set(par_["mappo_tuned"])) == 1
+           and min(t37_) >= 90 and s37_["axiom2"] >= 90 and max(s37_[a_] for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned")) < 90
+           and mu92_(C92_["A_hex_n37"]["MAPPO-7to37"]) < 90 and sc_[0] == 5 and all(x_ < 5 for x_ in sc_[1:])
+           and "AXIOM alone meets five of its six criteria" in C.main,
+           {"scores": sc_, "differs": [r_[0] for r_, e_ in zip(cap_["rows"], exp_) if r_ != e_]})
     C.note("Discussion: one 7,782-parameter network trained at seven gNBs serves clusters five times larger",
            37 / 7 >= 5 and "one 7,782-parameter network trained at seven gNBs serves clusters five times larger" in C.main, None)
     C.note("Sec. 3 slice ranking matches the parameter table: URLLC 15 ms and 0.8% budgets, weights 12.0 > 3.5 > 0.3, eMBB the largest ceiling",
