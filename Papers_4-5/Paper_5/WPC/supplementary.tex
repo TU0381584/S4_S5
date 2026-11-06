@@ -144,7 +144,7 @@ Policy & Runs & IQM reward per gNB & IQM priority SLA, \% & P, reward & P, prior
 \begin{figure}[!htbp]
 \centering
 \includegraphics[width=\textwidth]{figures/fig_rliable.pdf}
-\caption{Performance profiles of priority-slice compliance, the fraction of runs above each level $\tau$, with stratified bootstrap 95\% bands. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs}
+\caption{Performance profiles of priority-slice compliance, the fraction of runs above each level $\tau$. Shaded bands are stratified bootstrap 95\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs}
 \label{fig:s-rliable}
 \end{figure}
 
@@ -334,14 +334,14 @@ DQN-I & 37 & $10^{-4}$, 64 & 45.5\% & 32.1\% & 150.42 & 18 \\
 The value-decomposition network (VDN) trains DQN-I's per-gNB networks on one joint target per step, with no tuning. VDN ties AXIOM at three gNBs in both environments but falls behind at nineteen gNBs, as Table~\ref{tab:s-vdn} shows. There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step, winning 27 to 28 of 30 seeds at Holm-adjusted $p<0.001$. At 110\% and 120\% of the nominal load at nineteen gNBs, AXIOM keeps 24.3 to 34.0 and 2.5 to 6.4 percentage points more priority-slice compliance than every learned baseline, at Holm-adjusted $p\leq0.006$. At 120\% the priority demand exceeds the slice caps at most gNBs, so no policy can protect it throughout.
 
 \begin{table}[!htbp]
-\caption{VDN against AXIOM and DQN-I, reward per step and priority-slice compliance, 30 seeds per cell}
+\caption{VDN against AXIOM and DQN-I, reward per step and priority-slice compliance, 30 seeds per setting}
 \label{tab:s-vdn}
 \centering
 \small
 \setlength{\tabcolsep}{3pt}
 \begin{tabular}{lcccccc}
 \toprule
-Cell & VDN & AXIOM & DQN-I & VDN SLA & AXIOM SLA & DQN-I SLA \\
+Setting & VDN & AXIOM & DQN-I & VDN SLA & AXIOM SLA & DQN-I SLA \\
 \midrule
 Env A, 3 gNBs & 12.664 & 12.698 & 11.587 & 99.0\% & 98.9\% & 92.9\% \\
 Env B, 3 gNBs & 8.552 & 8.832 & 7.794 & 62.5\% & 65.1\% & 59.0\% \\
@@ -359,7 +359,7 @@ Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results 
 \label{fig:s-layouts}
 \end{figure}
 
-A pre-registered run, M92, evaluated stored seven-gNB checkpoints at nineteen and thirty-seven gNBs without retraining, for AXIOM and MAPPO in Env A and also for AXIOM's MLP variant in Env B. AXIOM's encoder and per-slice heads keep their shape at any size. The stored network also holds a mixer left from an earlier training design. No current loss uses it and its input grows with the cluster, so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters. MAPPO runs through its shared actor, which reads only the acting gNB's features. Before the plan was committed, six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly. Table~\ref{tab:s-transfer} gives every arm on the 15 seven-gNB seeds, each evaluated on its own held-out stream. In Env B the endpoint is per-gNB compliance, because cluster-level compliance, which needs all nineteen gNBs to comply at once, stays between 18\% and 36\% for every arm there. Graph attention again adds nothing measurable, since AXIOM transferred from seven gNBs keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\% CI [$-$2.30, 3.85] and $p=0.72$. MAPPO gives the same results on both Env A layouts, because neither MAPPO nor Env A reads the layout.
+A pre-registered run, M92, evaluated stored seven-gNB checkpoints at nineteen and thirty-seven gNBs without retraining, for AXIOM and MAPPO in Env A and also for AXIOM's MLP variant in Env B. AXIOM's encoder and per-slice heads keep their shape at any size. The stored network also holds a mixer left from an earlier training design. No current loss uses it and its input grows with the cluster, so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters. MAPPO runs through its shared actor, which reads only the acting gNB's features. Before the plan was committed, six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly. Table~\ref{tab:s-transfer} gives every policy on the 15 seven-gNB seeds, each evaluated on its own held-out stream. In Env B the endpoint is per-gNB compliance, because cluster-level compliance, which needs all nineteen gNBs to comply at once, stays between 18\% and 36\% for every policy there. Graph attention again adds nothing measurable, since AXIOM transferred from seven gNBs keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\% CI [$-$2.30, 3.85] and $p=0.72$. MAPPO gives the same results on both Env A layouts, because neither MAPPO nor Env A reads the layout.
 
 \begin{table}[!htbp]
 \caption{Zero-shot transfer from seven gNBs, 15 paired seeds. Priority-slice compliance with 95\% CIs, reward per gNB per step, and collapsed runs. Policies from 7 were trained at seven gNBs and never retrained}

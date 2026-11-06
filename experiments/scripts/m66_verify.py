@@ -2494,7 +2494,7 @@ def main():
            and f"keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\\% CI [{fm92_(c4_[0], 2)}, {fm92_(c4_[1], 2)}] and $p=0.72$" in C.tex, h4_)
     cl92_ = [mu92_(v_, "cluster") for v_ in C92_["B_hex_n19"].values()]
     C.note("M92 Env B cluster-level compliance between 18% and 36% for every arm", f"{min(cl92_):.0f}" == "18" and f"{max(cl92_):.0f}" == "36"
-           and "stays between 18\\% and 36\\% for every arm there" in C.tex, cl92_)
+           and "stays between 18\\% and 36\\% for every policy there" in C.tex, cl92_)
     ex92_ = [v_ for f_ in glob.glob(f"{ROOT}/m92/A_*/axiom2_transfer_*.json") + glob.glob(f"{ROOT}/m92/B_*/axiom2_transfer_*.json")
              for v_ in json.load(open(f_)).values()]
     hc92_ = [v_ for f_ in sorted(glob.glob(f"{ROOT}/m92/harness_check/*.json")) for v_ in json.load(open(f_)).values()]
