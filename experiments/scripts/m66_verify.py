@@ -484,7 +484,7 @@ def main():
     hr = holm({k: v["p"] for k, v in famr.items()})
     for b in ("single_agent_dqn", "independent_dqn", "mappo_tuned"):
         C.claim(f"Arep vs {b}", "There it earns 1.083, 0.799, and 3.806 more reward per step", famr[b]["diff"], "{:.3f}")
-    C.note("Arep three leads p_holm <= 0.023", max(hr["single_agent_dqn"], hr["independent_dqn"], hr["mappo_tuned"]) <= 0.0235,
+    C.note("Arep three leads p_holm <= 0.024 (no p bound is quoted in the text)", max(hr["single_agent_dqn"], hr["independent_dqn"], hr["mappo_tuned"]) <= 0.024,
            {k: hr[k] for k in ("single_agent_dqn", "independent_dqn", "mappo_tuned")})
     C.claim("Arep oracle gap", "only 0.018 below the static rule", -famr["heuristic"]["diff"], "{:.3f}")
     P = {arm: {**A[arm], **R[arm]} for arm in ("axiom2", "heuristic", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
@@ -494,7 +494,8 @@ def main():
         C.claim(f"pooled40 vs {b}", "its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step", famp[b]["diff"], "{:.3f}")
     C.claim("pooled40 oracle gap", "falls 0.108 short of the oracle", -famp["heuristic"]["diff"], "{:.3f}")
     C.claim("pooled40 oracle p", "significant at $p=0.034$", hp["heuristic"], "{:.3f}")
-    C.note("pooled40 leads p_holm <= 0.002", max(hp["single_agent_dqn"], hp["independent_dqn"], hp["mappo_tuned"]) <= 0.0025,
+    C.note("pooled40 leads p_holm <= 0.0023", max(hp["single_agent_dqn"], hp["independent_dqn"], hp["mappo_tuned"]) <= 0.0023
+           and "its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step at Holm-adjusted $p\\leq0.0023$" in C.tex,
            {k: hp[k] for k in ("single_agent_dqn", "independent_dqn", "mappo_tuned")})
 
     # ---------------- Env A sensitivity
@@ -634,7 +635,8 @@ def main():
         approx = {0.5: 146000, 1.0: 37000, 2.0: 9600, 4.0: 2600}
         for sg, v in approx.items():   # the text quotes epsilon to two or three significant figures
             eps_ok &= float(f"{eps[sg][1]:.2g}") == v or float(f"{eps[sg][1]:.3g}") == v
-        C.note("DP epsilons within 1% of the quoted values", eps_ok, {k: round(v[1]) for k, v in eps.items()})
+        C.note("DP epsilons within 1% of the quoted values", eps_ok and "gives $\\varepsilon$ of about 146{,}000, 37{,}000, 9{,}600, and 2{,}600 for $\\sigma$ of 0.5, 1, 2, and 4" in C.tex,
+               {k: round(v[1]) for k, v in eps.items()})
     except Exception as e:  # noqa: BLE001
         C.note("DP epsilon recomputation", False, repr(e))
 
@@ -1458,7 +1460,8 @@ def main():
     C.claim("reframe: M70 shared head compliance", "keeps only 65.9\\% priority-slice compliance", 100 * mean(sh19_, prio), "{:.1f}")
     C.claim("reframe: M70 AXIOM same seeds compliance", "against AXIOM's 96.8\\% on the same seeds", 100 * mean(ax19_, prio), "{:.1f}")
     C.note("reframe: M70 shared head loses every seed at Holm p<0.001", all(tsh_[("A19", m_)]["wins"] == 15 and hsh_[("A19", m_)] < 0.001 for m_ in "rp")
-           and all(hsh_[(k_, m_)] >= 0.05 for k_ in ("A3", "B3") for m_ in "rp"), {str(k): v for k, v in hsh_.items()})
+           and all(hsh_[(k_, m_)] >= 0.05 for k_ in ("A3", "B3") for m_ in "rp")
+           and "against AXIOM's 96.8\\% on the same seeds, losing every seed at Holm-adjusted $p<0.001$" in C.main, {str(k): v for k, v in hsh_.items()})
     tvd_, hvd_ = abl_("vdn")
     C.note("reframe: M70 joint target never significantly different", all(v >= 0.05 for v in hvd_.values())
            and "a variant with one joint summed target in place of per-request samples is never significantly different" in C.main, {str(k): v for k, v in hvd_.items()})
@@ -1477,7 +1480,8 @@ def main():
     rd_ = [tm_[k]["diff"] for k in tm_ if k[1] == "r"]
     C.claim("reframe: M70 MAPPO lead low", "by 1.25 to 16.18 reward per step", min(rd_), "{:.2f}")
     C.claim("reframe: M70 MAPPO lead high", "by 1.25 to 16.18 reward per step", max(rd_), "{:.2f}")
-    C.note("reframe: M70 MAPPO all four at Holm p<0.001", all(v["diff"] > 0 for v in tm_.values()) and max(hm_.values()) < 0.001, {str(k): v for k, v in hm_.items()})
+    C.note("reframe: M70 MAPPO all four at Holm p<0.001", all(v["diff"] > 0 for v in tm_.values()) and max(hm_.values()) < 0.001
+           and "by 1.25 to 16.18 reward per step at Holm-adjusted $p<0.001$" in C.tex, {str(k): v for k, v in hm_.items()})
     C.claim("reframe: M70 MAPPO Env B N=7", "and by 2.42 in Env B at seven gNBs",
             paired(seeds_of("m64/n7_ring", "axiom2", S15), seeds_of("m70/R3_confirm/B_n7_ring", "mappo", S15))["diff"], "{:.2f}")
     sg7_ = 100 * float(np.mean([prio(r) for t_ in LAY_ for r in seeds_of(f"m70/R2/A_n7_{t_}", "single_agent_dqn", S15).values()]))
@@ -1526,7 +1530,8 @@ def main():
     C.claim("reframe: M72 overload lead 1.15", "115\\% load & 0.378 & $-$0.052 & +0.431", sh_t_["load_1.15"]["diff"], "{:+.3f}")
     C.claim("reframe: M72 overload lead 1.20", "120\\% load & $-$0.714 & $-$1.068 & +0.354", sh_t_["load_1.20"]["diff"], "{:+.3f}")
     C.note("reframe: M72 overload wins 21 to 23 of 25 at Holm p<=0.0002", sorted({sh_t_[k]["wins"] for k in prim_}) == [21, 23]
-           and all(sh_t_[k]["n"] == 25 for k in prim_) and round(max(hs_.values()), 4) <= 0.0002, hs_)
+           and all(sh_t_[k]["n"] == 25 for k in prim_) and round(max(hs_.values()), 4) <= 0.0002
+           and "AXIOM wins 21 to 23 of 25 seeds at three gNBs, at Holm-adjusted $p\\leq0.0002$" in C.main, hs_)
     C.note("reframe: M72 lighter load and stronger coupling leave a non-significant rule lead",
            all(sh_t_[k]["diff"] < 0 and sh_t_[k]["p"] >= 0.05 for k in ("load_0.80", "coupling_0.30")), None)
     S7S_ = S15
@@ -1751,6 +1756,14 @@ def main():
     same_ = sum(d75_["axiom2"][s_]["reward"] == d75_["rule_static"][s_]["reward"] and d75_["axiom2"][s_]["blocks"] == d75_["rule_static"][s_]["blocks"]
                 and d75_["axiom2"][s_]["sla"] == d75_["rule_static"][s_]["sla"] for s_ in S15)
     C.claim("reframe: M75 D identical to static rule", "AXIOM makes exactly the static rule's decisions in 9 of the 15 seeds", same_, "{:d}")
+    rest_ = [s_ for s_ in S15 if not (d75_["axiom2"][s_]["reward"] == d75_["rule_static"][s_]["reward"] and d75_["axiom2"][s_]["blocks"] == d75_["rule_static"][s_]["blocks"]
+                                      and d75_["axiom2"][s_]["sla"] == d75_["rule_static"][s_]["sla"])]
+    only_m_ = sum(d75_["axiom2"][s_]["blocks"] > 0 and d75_["axiom2"][s_]["mmtc"] == d75_["axiom2"][s_]["blocks"] for s_ in rest_)
+    none_ = sum(d75_["axiom2"][s_]["blocks"] == 0 for s_ in rest_)
+    other_ = sum(d75_["axiom2"][s_]["mmtc"] < d75_["axiom2"][s_]["blocks"] for s_ in rest_)
+    C.note("M75 D: of the other 6 seeds AXIOM blocks only mMTC in 4, nothing in 1, other slices too in 1", len(rest_) == 6 and (only_m_, none_, other_) == (4, 1, 1)
+           and "In 4 of the other 6 it also blocks only mMTC, one collapses and blocks nothing, and one also blocks other slices" in C.tex,
+           {"rest": rest_, "only_mmtc": only_m_, "none": none_, "other": other_})
     tt_ = paired(d75_["axiom2"], d75_["rule_local_transfer"])
     C.claim("reframe: M75 D tuned rule margin", "carried over from seven gNBs earns 3.81 more and wins every seed", -tt_["diff"], "{:.2f}")
     C.claim("reframe: M75 D tuned rule per-gNB", "Tuned local rule, carried over & 84.09 & 84.5\\%", float(np.mean(list(pgv_["rule_local_transfer"].values()))), "{:.1f}")
@@ -2117,7 +2130,9 @@ def main():
         v_ = m72b_["tests"][k_]
         fm_ = lambda x: f"$-${abs(x):.3f}" if x < 0 else f"{x:.3f}"
         row_ = f"{lab_} & {fm_(v_['means']['axiom2'])} & {fm_(v_['means']['rule_local'])} & " + ("$-$" if v_["diff"] < 0 else "+") + f"{abs(v_['diff']):.3f} & {v_['wins']}/{v_['losses']} & "
-        C.note(f"M78 S14 table row {k_}", row_ in C.tex, row_)
+        row_ += f"{v_['p']:.2g} \\\\"          # the p column, unadjusted Wilcoxon
+        ind_ = sh_t_.get(k_)                            # the verifier's own paired test, where it recomputes this shift
+        C.note(f"M78 S14 table row {k_}", row_ in C.tex and (ind_ is None or (abs(ind_["p"] - v_["p"]) < 1e-12 and abs(ind_["diff"] - v_["diff"]) < 1e-9)), row_)
     rt_ = m72b_["retuned"]
     C.note("M78 S14 re-tuned rule 0.16, 0.12 n.s., 0.62 at 120%", [f"{-rt_[k_]['test']['diff']:.2f}" for k_ in ("load_1.10", "load_1.15", "load_1.20")] == ["0.16", "0.12", "0.62"]
            and max(rt_[k_]["test"]["p"] for k_ in ("load_1.10", "load_1.15")) >= 0.05
@@ -2647,6 +2662,16 @@ def main():
     pastB_ = all(v_["verdict"] == "AXIOM" for kk_, v_ in rg_["B"].items() if float(kk_.split("|")[1]) >= 1.10)
     pastA_ = all(v_["verdict"] == "tie" for kk_, v_ in rg_["A"].items() if float(kk_.split("|")[1]) > 1.05)
     nomB_ = all(rg_["B"][kk_]["verdict"] == "rule" for kk_ in ("3|1.00", "7|1.00", "19|1.00"))
+    # learned controllers past the tuning load (M96 b): nine tests against the tuned rule, Holm per controller
+    cb96_ = {3: ("m96/B_shift/n3", list(range(905, 930)), "rule_local"), 7: ("m96/B_shift/n7_ring", S15, "rule_local"),
+             19: ("m96/B_shift/n19_hex", S15, "rule_local_transfer")}
+    pw96_ = {}
+    for a_ in ("axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn"):
+        t_ = {f"{n_}|{L_}": paired(seeds_of(f"{c_}/{L_}", a_, ss_), seeds_of(f"{c_}/{L_}", rl_, ss_))
+              for n_, (c_, ss_, rl_) in cb96_.items() for L_ in ("load_1.10", "load_1.15", "load_1.20")}
+        h_ = holm({k_: v_["p"] for k_, v_ in t_.items()})
+        pw96_[a_] = (sum(v_["diff"] > 0 and h_[k_] < 0.05 for k_, v_ in t_.items()), len(t_), {v_["n"] for v_ in t_.values()})
+    pg_ = lambda a_: ["full", "ahead"] if pw96_[a_][0] == pw96_[a_][1] else ["half", "mixed"] if pw96_[a_][0] else ["none", "trails"]
     fx_ = lambda a_: "full" if len(set(par_[a_])) == 1 else "none"
     sl_ = lambda a_: "full" if s37_[a_] >= 90 else "none"
     dl_c_ = lambda a_: "full" if d37_[a_] < 0.5 else "none"
@@ -2655,11 +2680,11 @@ def main():
                    [sl_("axiom2"), f"{s37_['axiom2']:.1f}%"], ["full", ""], [dl_c_("axiom2"), f"{d37_['axiom2']:.2f}"],
                    ["full" if pastB_ else "half", "ahead"], ["none", "loses"], ["full", "tested"]]],
         ["MAPPO", [[fx_("mappo_tuned"), f"{par_['mappo_tuned'][-1]:,}"], ["half" if tm37_ < 90 else "full", f"{tm37_:.1f}%"], [sl_("mappo_tuned"), f"{s37_['mappo_tuned']:.1f}%"],
-                   ["full", ""], [dl_c_("mappo_tuned"), f"{d37_['mappo_tuned']:.2f}"], ["na", ""], ["none", "loses"], ["na", ""]]],
+                   ["full", ""], [dl_c_("mappo_tuned"), f"{d37_['mappo_tuned']:.2f}"], pg_("mappo_tuned"), ["none", "loses"], ["na", ""]]],
         ["DQN-SA", [[fx_("single_agent_dqn"), f"{par_['single_agent_dqn'][-1]:,}"], ["none", "cannot"], [sl_("single_agent_dqn"), f"{s37_['single_agent_dqn']:.1f}%"],
-                    ["full", ""], [dl_c_("single_agent_dqn"), f"{d37_['single_agent_dqn']:.2f}"], ["na", ""], ["none", "loses"], ["na", ""]]],
+                    ["full", ""], [dl_c_("single_agent_dqn"), f"{d37_['single_agent_dqn']:.2f}"], pg_("single_agent_dqn"), ["none", "loses"], ["na", ""]]],
         ["DQN-I", [[fx_("independent_dqn"), f"{par_['independent_dqn'][-1]:,}"], ["none", "cannot"], [sl_("independent_dqn"), f"{s37_['independent_dqn']:.1f}%"],
-                   ["full", ""], [dl_c_("independent_dqn"), f"{d37_['independent_dqn']:.2f}"], ["na", ""], ["none", "loses"], ["na", ""]]],
+                   ["full", ""], [dl_c_("independent_dqn"), f"{d37_['independent_dqn']:.2f}"], pg_("independent_dqn"), ["none", "loses"], ["na", ""]]],
         ["Static rule", [["full", "none"], ["full", "any"], [sl_("rule_static"), f"{s37_['rule_static']:.2f}%"], ["none", ""], [dl_c_("rule_static"), f"{d37_['rule_static']:.2f}"],
                          ["half" if pastA_ else "none", "ties"], ["full", "best"], ["na", ""]]],
         ["Tuned rule", [["full", "none"], ["full", "7 to 19"], ["na", ""], ["none", ""], ["na", ""], ["none" if pastB_ else "half", "trails"],
@@ -2670,10 +2695,101 @@ def main():
               f"{np.floor(min(t37_)):.0f}%+", f"+{max(ov_):.1f}", f"{min(om_):.0f}\u2013{max(om_):.0f}%"]
     C.note("Fig. 10 capability matrix and margins: values recomputed, glyphs by rule, tiles as the verified abstract values, AXIOM alone meets seven of eight",
            cap_["rows"] == exp_ and [t_[0] for t_ in cap_["tiles"]] == exp_t_ and cap_["thresholds"] == {"sla37": 90.0, "delay37": 0.5}
-           and sc_[0] == 7 and all(x_ < 7 for x_ in sc_[1:])
+           and sc_[0] == 7 and all(x_ < 7 for x_ in sc_[1:]) and pg_("axiom2")[0] == ("full" if pastB_ else "half")
+           and [pw96_[a_][0] for a_ in ("axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn")] == [9, 0, 4, 3]
+           and all(x_[1] == 9 and x_[2] <= {15, 25} for x_ in pw96_.values())
            and "AXIOM alone meets seven of its eight criteria" in C.main
            and "At 37 gNBs compliance is met at 90\\% and delay below half a control period" in C.main,
            {"scores": sc_, "tiles": [t_[0] for t_ in cap_["tiles"]], "expected_tiles": exp_t_, "differs": [r_[0] for r_, e_ in zip(cap_["rows"], exp_) if r_ != e_]})
+    # ---------------- M96 (prereg 32de84d0): fresh-seed transfer, fresh-seed load-shift lead, learned baselines past the tuning load
+    F96_ = list(range(8000, 8020))
+    a96_ = {n_: {"ax": seeds_of(f"m96/A_fresh/transfer_n{n_}", "axiom2_transfer", F96_), "mp": seeds_of(f"m96/A_fresh/transfer_n{n_}", "mappo_tuned_transfer", F96_),
+                 "acc": seeds_of(f"m96/A_fresh/n{n_}_hex", "rule_accept_all", F96_)} for n_ in (19, 37)}
+    t96_ = {f"{b_}{n_}": paired(a96_[n_]["ax"], a96_[n_][b_], prio) for n_ in (19, 37) for b_ in ("acc", "mp")}
+    h96_ = holm({k_: v_["p"] for k_, v_ in t96_.items()})
+    m96a_ = [f"{100 * mean(a96_[n_]['ax'], prio):.1f}" for n_ in (19, 37)]
+    C.note("M96 a: on 20 fresh seeds AXIOM from 7 keeps 96.2/95.2% at 19/37 gNBs and beats accept-all and MAPPO from 7 by 27.0 to 33.8 points, Holm p < 0.001",
+           all(len(a96_[n_][k_]) == 20 for n_ in a96_ for k_ in a96_[n_]) and m96a_ == ["96.2", "95.2"]
+           and f"{100 * min(v_['diff'] for v_ in t96_.values()):.1f}" == "27.0" and f"{100 * max(v_['diff'] for v_ in t96_.values()):.1f}" == "33.8"
+           and all(v_["diff"] > 0 for v_ in t96_.values()) and max(h96_.values()) < 0.001
+           and "On 20 fresh seeds trained for this check, AXIOM moved from seven gNBs keeps 96.2\\% at nineteen gNBs and 95.2\\% at thirty-seven. It beats accept-all and MAPPO moved the same way by 27.0 to 33.8 points, at Holm-adjusted $p<0.001$" in C.main,
+           {"prio": m96a_, "diff": {k_: round(100 * v_["diff"], 2) for k_, v_ in t96_.items()}, "holm": h96_})
+    F7_ = list(range(7000, 7015)); c96_ = "m96/C_fresh_shift/n19_hex"
+    tc96_ = {L_: paired(seeds_of(f"{c96_}/{L_}", "axiom2", F7_), seeds_of(f"{c96_}/{L_}", "rule_local_transfer", F7_)) for L_ in ("load_1.10", "load_1.15", "load_1.20")}
+    hc96_ = holm({k_: v_["p"] for k_, v_ in tc96_.items()})
+    nc96_ = paired(seeds_of(f"{c96_}/nominal", "axiom2", F7_), seeds_of(f"{c96_}/nominal", "rule_local_transfer", F7_))
+    C.note("M96 c: on 15 fresh seeds AXIOM leads the carried rule by 6.84, 8.25, 9.39 at 110-120%, 14 of 15 wins, Holm p < 0.001; the rule leads by 3.33 at nominal",
+           [f"{v_['diff']:.2f}" for v_ in tc96_.values()] == ["6.84", "8.25", "9.39"] and all(v_["wins"] == 14 and v_["n"] == 15 for v_ in tc96_.values())
+           and max(hc96_.values()) < 0.001 and f"{-nc96_['diff']:.2f}" == "3.33" and nc96_["losses"] == 15
+           and "On 15 fresh seeds it leads that rule by 6.84, 8.25, and 9.39 at the same loads, again winning 14 of 15 seeds at Holm-adjusted $p<0.001$, while the rule leads by 3.33 at nominal load" in C.main,
+           {k_: (round(v_["diff"], 3), v_["wins"], hc96_[k_]) for k_, v_ in tc96_.items()})
+    bl96_ = {}
+    for n_, (c_, ss_, rl_) in cb96_.items():
+        tt_ = {f"{L_} {b_}": paired(seeds_of(f"{c_}/{L_}", "axiom2", ss_), seeds_of(f"{c_}/{L_}", b_, ss_))
+               for L_ in ("load_1.10", "load_1.15", "load_1.20") for b_ in ("mappo_tuned", "single_agent_dqn", "independent_dqn")}
+        bl96_[n_] = (tt_, holm({k_: v_["p"] for k_, v_ in tt_.items()}))
+    ok79_ = all(v_["diff"] > 0 and bl96_[n_][1][k_] <= 0.008 for n_ in (7, 19) for k_, v_ in bl96_[n_][0].items())
+    t3_, h3_ = bl96_[3]
+    sig3_ = lambda L_: [b_ for b_ in ("mappo_tuned", "single_agent_dqn", "independent_dqn") if t3_[f"{L_} {b_}"]["diff"] > 0 and h3_[f"{L_} {b_}"] < 0.05]
+    near3_ = max(abs(t3_[f"{L_} {b_}"]["diff"]) for L_ in ("load_1.15", "load_1.20") for b_ in ("single_agent_dqn", "independent_dqn"))
+    C.note("M96 b: past the tuning load AXIOM out-earns all three learned baselines at 7 and 19 gNBs (Holm p <= 0.008); at 3 gNBs it leads all three only at 110%, and from 115% DQN-SA and DQN-I come within 0.21",
+           ok79_ and len(sig3_("load_1.10")) == 3 and len(sig3_("load_1.15")) < 3 and len(sig3_("load_1.20")) < 3
+           and not any(b_ in sig3_(L_) for L_ in ("load_1.15", "load_1.20") for b_ in ("single_agent_dqn", "independent_dqn"))
+           and near3_ <= 0.21
+           and "Past the tuning load AXIOM also out-earns MAPPO, DQN-SA, and DQN-I at seven and nineteen gNBs, at Holm-adjusted $p\\leq0.008$" in C.main
+           and "At three gNBs it leads all three only at 110\\% load, and from 115\\% DQN-SA and DQN-I come within 0.21 reward per step of it" in C.main,
+           {"max holm 7/19": [max(bl96_[n_][1].values()) for n_ in (7, 19)], "sig at 3": {L_: sig3_(L_) for L_ in ("load_1.10", "load_1.15", "load_1.20")}, "near3": near3_})
+    C.note("M96 overall in Sec. 6.6: eight of nine pre-registered checks held, the failed one at three gNBs past the tuning load",
+           [c_["verdict"] for c_ in json.load(open(f"{ROOT}/m96/analysis.json"))["criteria"]].count("HOLDS") == 8
+           and len(json.load(open(f"{ROOT}/m96/analysis.json"))["criteria"]) == 9
+           and [c_["criterion"] for c_ in json.load(open(f"{ROOT}/m96/analysis.json"))["criteria"] if c_["verdict"] == "FAILS"] == ["R-B1 AXIOM out-earns every learned baseline at 110-120% load, 3 gNBs"]
+           and ok79_
+           and "A final pre-registered run held eight of its nine checks. It replicated the transfer and load-shift results on fresh seeds, and the one check that failed, at three gNBs past the tuning load, is reported in Section~\\ref{sec:results-envb}" in C.main, None)
+    # Fig. 10 steady-load column, which the matrix sets by rule: every learned controller trails the tuned rule at nominal Env B load
+    # on every seed at 3, 7 and 19 gNBs (M96 b), and in Env A at nominal demand AXIOM never wins a seed against the static rule
+    st96_ = {(n_, a_): paired(seeds_of(f"{c_}/nominal", a_, ss_), seeds_of(f"{c_}/nominal", rl_, ss_))
+             for n_, (c_, ss_, rl_) in cb96_.items() for a_ in ("axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn")}
+    C.note("Fig. 10 steady load: every learned controller trails the tuned rule at nominal Env B load (the baselines on every seed); AXIOM wins no seed against the static rule at nominal Env A demand",
+           all(v_["diff"] < 0 and v_["p"] < 0.05 and (a_ == "axiom2" or v_["losses"] == v_["n"]) for (n_, a_), v_ in st96_.items())
+           and all(v_["wins"] == 0 for kk_, v_ in rg_["A"].items() if kk_.endswith("|1.05")) and len([kk_ for kk_ in rg_["A"] if kk_.endswith("|1.05")]) == 4,
+           {f"{n_} {a_}": (round(v_["diff"], 2), v_["losses"], v_["n"]) for (n_, a_), v_ in st96_.items()})
+    # the Env A threshold choice: recomputed from every candidate's training-stream logs in every Env A condition
+    tauc_ = {}
+    for cond_ in ("base", "load102", "load107", "replication", "weights"):
+        tauc_[cond_] = {t_: float(np.mean([read(p_)["reward"] for p_ in glob.glob(f"{ROOT}/m63_reviewer/{cond_}/heuristic_tau_select/tau{t_}/seed*/lb_only/offline_select/rep_0/omega_log.jsonl*")]))
+                        for t_ in ("0.0", "0.5", "0.8", "0.9", "0.97")}
+    best_ = {c_: [t_ for t_, v_ in d_.items() if v_ == max(d_.values())] for c_, d_ in tauc_.items()}
+    C.note("Sec. 3 threshold choice: 0, 0.5 and 0.8 tie exactly on the training streams in every Env A condition, and the lowest, 0, is kept",
+           all(b_ == ["0.0", "0.5", "0.8"] for b_ in best_.values())
+           and "Thresholds of 0, 0.5, and 0.8 tie exactly on the training streams, and we keep the lowest, $\\tau{=}0$" in C.main,
+           {c_: {t_: round(v_, 6) for t_, v_ in d_.items()} for c_, d_ in tauc_.items()})
+    C.note("Conclusion: 7,782 parameters against up to 682,058, as in the complexity records",
+           par_["axiom2"][-1] == 7782 and max(max(v_) for v_ in par_.values()) == 682058
+           and "with 7,782 parameters against up to 682,058" in C.main, None)
+    C.note("Sec. 2 review numbers as in the published review: 6,286 records to 67 core studies from 2024 to 2026",
+           "screened 6{,}286 records down to 67 core studies from 2024 to 2026" in C.main, "checked by hand against the published review, lines 22, 90 and 1121 of its text")
+    # live testbed (M49b-1 native-load probe): every iperf3 interval of the nine full runs, read from the raw logs
+    lv_ = {}
+    for f_ in sorted(glob.glob("/home/kmanojp/oranslice_rig/experiments/results/m49b_1/traffic_*_full_*.log")):
+        sl_ = re.search(r"traffic_([a-z]+)\d_full", f_).group(1)
+        rates_, lost_, tot_ = [], 0, 0
+        for l_ in open(f_):
+            m_ = re.search(r"\]\s+[\d.]+-[\d.]+\s+sec\s+[\d.]+ \w?Bytes\s+([\d.]+) ([KM])bits/sec\s+[\d.]+ ms\s+(\d+)/(\d+) \(", l_)
+            if m_ and "sender" not in l_ and "receiver" not in l_:
+                rates_.append(float(m_.group(1)) * (1000 if m_.group(2) == "M" else 1)); lost_ += int(m_.group(3)); tot_ += int(m_.group(4))
+        lv_[os.path.basename(f_)] = (sl_, float(np.mean(rates_)) / {"embb": 4000.0, "urllc": 300.0, "mmtc": 50.0}[sl_], lost_, tot_)
+    C.note("Live probe from the raw iperf3 logs: zero datagrams lost on every slice at one and two UEs per slice, every slice served at 99.9% to 100.4% of its offered rate",
+           len(lv_) == 9 and {v_[0] for v_ in lv_.values()} == {"embb", "urllc", "mmtc"} and all(v_[2] == 0 and v_[3] > 2000 for v_ in lv_.values())
+           and all(0.999 <= v_[1] <= 1.005 for v_ in lv_.values())
+           and "with 0.000\\% loss at one and at two UEs per slice" in C.main
+           and "A capacity probe showed every slice served at essentially 100\\% of offered demand" in C.tex,
+           {k_: (v_[0], round(100 * v_[1], 2), v_[2], v_[3]) for k_, v_ in lv_.items()})
+    C.note("M94 trees: depth chosen by 5-fold cross-validation, 3 for every target",
+           "KFold(5, shuffle=True, random_state=0)" in open(f"{ROOT}/../scripts/m94_distil.py").read()
+           and "at the depth that 5-fold cross-validation selects, which was 3 for every target" in C.tex, None)
+    C.note("OR1 S4: exploratory probes on seeds 900 to 904 preceded the load-shift runs, which use 905 to 929",
+           "checkpoints 905-929 (25 seeds; 900-904 were used by the probe)" in open("/home/kmanojp/oranslice_rig/docs/PAPER5_M72_preregistration.md").read()
+           and SB_ == list(range(905, 930)) and "exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S7 before its reported runs" in C.tex, None)
     C.note("Discussion: one 7,782-parameter network trained at seven gNBs serves clusters five times larger",
            37 / 7 >= 5 and "one 7,782-parameter network trained at seven gNBs serves clusters five times larger" in C.main, None)
     C.note("Sec. 3 slice ranking matches the parameter table: URLLC 15 ms and 0.8% budgets, weights 12.0 > 3.5 > 0.3, eMBB the largest ceiling",

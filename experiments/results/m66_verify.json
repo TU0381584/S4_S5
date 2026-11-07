@@ -362,7 +362,7 @@
   "ok": true
  },
  {
-  "label": "Arep three leads p_holm <= 0.023",
+  "label": "Arep three leads p_holm <= 0.024 (no p bound is quoted in the text)",
   "snippet": null,
   "computed": {
    "single_agent_dqn": 0.0234375,
@@ -371,14 +371,6 @@
   },
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "Arep oracle gap",
-  "snippet": "only 0.018 below the static rule",
-  "computed": 0.018142083518268848,
-  "formatted": "0.018",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -406,7 +398,7 @@
   "ok": true
  },
  {
-  "label": "pooled40 leads p_holm <= 0.002",
+  "label": "pooled40 leads p_holm <= 0.0023",
   "snippet": null,
   "computed": {
    "single_agent_dqn": 0.0022276018156344134,
@@ -460,22 +452,6 @@
   },
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "sens load107 vs indep",
-  "snippet": "1.073 reward per step at $p=0.006$",
-  "computed": 1.0731185540775667,
-  "formatted": "1.073",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "sens weights vs single",
-  "snippet": "1.264 at $p=0.041$",
-  "computed": 1.2640881889206748,
-  "formatted": "1.264",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -627,30 +603,6 @@
   "snippet": "& 0.797 & 0.289 & 0.579 \\\\",
   "computed": 0.5789222222222222,
   "formatted": "0.579",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "supp EnvB N3 MLP over AXIOM",
-  "snippet": "0.116 per step at three gNBs in 17 of 30 seeds at $p=0.45$",
-  "computed": 0.11646043780519433,
-  "formatted": "0.116",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "supp EnvB N3 MLP seeds won",
-  "snippet": "0.116 per step at three gNBs in 17 of 30 seeds at $p=0.45$",
-  "computed": 17,
-  "formatted": "17",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "supp EnvB N3 MLP p",
-  "snippet": "0.116 per step at three gNBs in 17 of 30 seeds at $p=0.45$",
-  "computed": 0.4521643426269293,
-  "formatted": "0.45",
   "in_tex": true,
   "ok": true
  },
@@ -1071,22 +1023,6 @@
   "ok": true
  },
  {
-  "label": "fed rep diff",
-  "snippet": "larger cost of $+0.968$",
-  "computed": 0.9678125522922423,
-  "formatted": "+0.968",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "fed rep p",
-  "snippet": "significance at $p=0.055$",
-  "computed": 0.0546875,
-  "formatted": "0.055",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "DP steps",
   "snippet": "Each client takes 17{,}969 noisy steps",
   "computed": 17969,
@@ -1259,14 +1195,6 @@
   "ok": true
  },
  {
-  "label": "Env B original AXIOM reward",
-  "snippet": "earns only 6.496 per step",
-  "computed": 6.495936321088036,
-  "formatted": "6.496",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "original AXIOM 2.37 below in all ten seeds",
   "snippet": null,
   "computed": {
@@ -1279,14 +1207,6 @@
   },
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "Env B LR 3e-4",
-  "snippet": "$3{\\times}10^{-4}$ reaches 7.220",
-  "computed": 7.220438304571289,
-  "formatted": "7.220",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -1637,18 +1557,6 @@
    -0.516,
    1.497,
    "[$-$0.54, 1.51]"
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "federation replication CI",
-  "snippet": null,
-  "computed": [
-   0.158,
-   1.955,
-   "[0.18, 1.96]"
   ],
   "formatted": null,
   "in_tex": null,
@@ -2265,9 +2173,44 @@
   "ok": true
  },
  {
-  "label": "Fig regime agrees with the text: the rule matches or beats AXIOM at nominal load in both environments, and AXIOM leads every Env B cell above it",
+  "label": "Fig regime agrees with the text: the rule matches or beats AXIOM at nominal load, AXIOM leads every Env B cell from 110% and at 105% only at 19 gNBs, never in Env A",
   "snippet": null,
-  "computed": null,
+  "computed": {
+   "A": {
+    "3|1.05": "tie",
+    "7|1.05": "rule",
+    "19|1.05": "tie",
+    "37|1.05": "tie",
+    "19|1.10": "tie",
+    "3|1.10": "tie",
+    "7|1.10": "tie",
+    "37|1.10": "tie",
+    "19|1.20": "tie",
+    "3|1.20": "tie",
+    "7|1.20": "tie",
+    "37|1.20": "tie"
+   },
+   "B": {
+    "3|0.80": "tie",
+    "3|1.00": "rule",
+    "3|1.05": "tie",
+    "3|1.10": "AXIOM",
+    "3|1.15": "AXIOM",
+    "3|1.20": "AXIOM",
+    "7|1.00": "rule",
+    "7|1.10": "AXIOM",
+    "7|1.20": "AXIOM",
+    "19|1.00": "rule",
+    "19|1.10": "AXIOM",
+    "19|1.15": "AXIOM",
+    "19|1.20": "AXIOM",
+    "7|0.80": "tie",
+    "7|1.05": "tie",
+    "7|1.15": "AXIOM",
+    "19|0.80": "tie",
+    "19|1.05": "AXIOM"
+   }
+  },
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -2518,22 +2461,6 @@
   "ok": true
  },
  {
-  "label": "fresh Env B N=7 MLP seeds won",
-  "snippet": "in 9 of 10 seeds at $p=0.006$",
-  "computed": 9,
-  "formatted": "9",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "fresh Env B N=7 MLP over GAT p",
-  "snippet": "in 9 of 10 seeds at $p=0.006$",
-  "computed": 0.005859375,
-  "formatted": "0.006",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: main fresh Env B N=7 MLP lead",
   "snippet": "On ten fresh ring-layout seeds, however, the MLP encoder led by 1.38 reward per step at $p=0.006$",
   "computed": 1.381149460855213,
@@ -2553,26 +2480,6 @@
   "label": "M66b N=19 hex all six tests at Holm p<=0.012",
   "snippet": null,
   "computed": 0.01171875,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M66b federated difference",
-  "snippet": "at $+0.077$ with 95\\% CI",
-  "computed": 0.07709961993464454,
-  "formatted": "+0.077",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M66b federated CI",
-  "snippet": null,
-  "computed": [
-   -1.042,
-   1.266,
-   "at $+0.077$ with 95\\% CI [$-$1.03, 1.27]"
-  ],
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -2610,22 +2517,6 @@
   "ok": true
  },
  {
-  "label": "M66c C1 AXIOM prio",
-  "snippet": "AXIOM kept 99.0\\% and 95.7\\% priority-slice compliance",
-  "computed": 99.00666666666666,
-  "formatted": "99.0",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M66c C2 AXIOM prio",
-  "snippet": "AXIOM kept 99.0\\% and 95.7\\% priority-slice compliance",
-  "computed": 95.73666666666666,
-  "formatted": "95.7",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "M66c C1 and C2 all tests Holm p<=0.012",
   "snippet": null,
   "computed": null,
@@ -2646,14 +2537,6 @@
   "snippet": "the DQN baselines reached up to 83.3\\% compliance at seven gNBs",
   "computed": 83.31,
   "formatted": "83.3",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M66c load102 shortfall, conclusion",
-  "snippet": "left it 3.2\\% short of the static rule",
-  "computed": 3.1814605992987737,
-  "formatted": "3.2",
   "in_tex": true,
   "ok": true
  },
@@ -2778,22 +2661,6 @@
   "ok": true
  },
  {
-  "label": "reframe: fresh AXIOM scaling compliance low",
-  "snippet": "AXIOM kept 93.4\\% to 100\\% priority-slice compliance",
-  "computed": 93.40666666666667,
-  "formatted": "93.4",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: fresh AXIOM scaling compliance high",
-  "snippet": "AXIOM kept 93.4\\% to 100\\% priority-slice compliance",
-  "computed": 100.0,
-  "formatted": "100",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: AXIOM leads every baseline in every fresh scaling cell",
   "snippet": null,
   "computed": {
@@ -2892,30 +2759,6 @@
   "ok": true
  },
  {
-  "label": "reframe: fresh 20-seed single-agent gap",
-  "snippet": "at margins of $-0.021$ and $0.159$ reward per step",
-  "computed": -0.020622156053140106,
-  "formatted": "-0.021",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: fresh 40-seed single-agent gap",
-  "snippet": "at margins of $-0.021$ and $0.159$ reward per step",
-  "computed": 0.15941169354306167,
-  "formatted": "0.159",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: ten-seed load sample shortfall",
-  "snippet": "3.2\\% short of the static rule",
-  "computed": 3.1814605992987737,
-  "formatted": "3.2",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: twenty-seed load rerun within 0.5% and single-agent matches",
   "snippet": null,
   "computed": null,
@@ -2929,14 +2772,6 @@
   "computed": null,
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "reframe: short LR sentence 2.37",
-  "snippet": "earns 2.37 less per step than the current design in all ten seeds",
-  "computed": 2.3662961173659824,
-  "formatted": "2.37",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -2968,19 +2803,6 @@
   "computed": 1.2457069055659784,
   "formatted": "1.25",
   "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: no DP drop survives Holm",
-  "snippet": null,
-  "computed": {
-   "4.0": 0.625,
-   "0.5": 0.625,
-   "1.0": 0.625,
-   "2.0": 0.625
-  },
-  "formatted": null,
-  "in_tex": null,
   "ok": true
  },
  {
@@ -3360,38 +3182,6 @@
   "ok": true
  },
  {
-  "label": "reframe: M70 joint target Env A N=3 reward",
-  "snippet": "It reaches 12.831 reward per step",
-  "computed": 12.831251182343498,
-  "formatted": "12.831",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M70 joint target N=19 compliance",
-  "snippet": "and 99.96\\% priority-slice compliance at nineteen",
-  "computed": 99.96444444444444,
-  "formatted": "99.96",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M70 MAPPO reported A3",
-  "snippet": "MAPPO rises from 10.013 to 11.448",
-  "computed": 10.013059772248168,
-  "formatted": "10.013",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M70 MAPPO grid A3",
-  "snippet": "MAPPO rises from 10.013 to 11.448",
-  "computed": 11.44773865321981,
-  "formatted": "11.448",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: M70 MAPPO reported N=19 ring",
   "snippet": "from 60.6\\% to 69.6\\% priority-slice compliance",
   "computed": 60.63222222222222,
@@ -3434,14 +3224,6 @@
   },
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "reframe: M70 MAPPO Env B N=7",
-  "snippet": "and by 2.42 in Env B at seven gNBs",
-  "computed": 2.4178213030688687,
-  "formatted": "2.42",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -3521,30 +3303,6 @@
   "ok": true
  },
  {
-  "label": "reframe: M72 N=7 nominal deficit",
-  "snippet": "AXIOM trails the rule by 3.84 reward per step under nominal load",
-  "computed": 3.8398469560189636,
-  "formatted": "3.84",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M72 N=7 lead 1.10",
-  "snippet": "but leads it by 1.86 and 3.14 at 110\\% and 120\\% load",
-  "computed": 1.8638390598956571,
-  "formatted": "1.86",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M72 N=7 lead 1.20",
-  "snippet": "but leads it by 1.86 and 3.14 at 110\\% and 120\\% load",
-  "computed": 3.1363923809498457,
-  "formatted": "3.14",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: M72 re-tuned rule draws level at 1.10 and 1.15",
   "snippet": null,
   "computed": null,
@@ -3569,62 +3327,6 @@
   "ok": true
  },
  {
-  "label": "M72 longer training gain N=3",
-  "snippet": "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven",
-  "computed": 0.3320202937077131,
-  "formatted": "0.33",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M72 longer training gain N=7",
-  "snippet": "AXIOM gains 0.33 reward per step at three gNBs and 2.92 at seven",
-  "computed": 2.9155365946763374,
-  "formatted": "2.92",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M72 longer training seeds 20 and 12",
-  "snippet": null,
-  "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M72 remaining gap N=3",
-  "snippet": "The remaining gaps to the tuned rule, 0.08 and 0.96 per step",
-  "computed": 0.07552920453220731,
-  "formatted": "0.08",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M72 remaining gap N=7",
-  "snippet": "The remaining gaps to the tuned rule, 0.08 and 0.96 per step",
-  "computed": 0.9550596974302703,
-  "formatted": "0.96",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M72 remaining gap p N=3",
-  "snippet": "at $p=0.35$ and $p=0.064$",
-  "computed": 0.34881019592285156,
-  "formatted": "0.35",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M72 remaining gap p N=7",
-  "snippet": "at $p=0.35$ and $p=0.064$",
-  "computed": 0.06396484375,
-  "formatted": "0.064",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: M72 hindsight covers 15 seeds of 95 rules",
   "snippet": null,
   "computed": 15,
@@ -3638,31 +3340,6 @@
   "computed": 37.684444444444445,
   "formatted": "37.7",
   "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M72 hindsight headroom",
-  "snippet": "earns only 0.14\\% more than the tuned rule",
-  "computed": 0.13998255290616524,
-  "formatted": "0.14",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M72 VDN 60 fresh seeds, never significantly different",
-  "snippet": null,
-  "computed": {
-   "('B3', 'r')": 0.0754852294921875,
-   "('A3', 'r')": 0.08444326393198377,
-   "('B3', 'p')": 0.3875028457623559,
-   "('A3', 'p')": 0.5440471502027284,
-   "('B7', 'p')": 0.5440471502027284,
-   "('B7', 'r')": 0.90234375,
-   "('A19', 'r')": 1.0,
-   "('A19', 'p')": 1.0
-  },
-  "formatted": null,
-  "in_tex": null,
   "ok": true
  },
  {
@@ -3970,30 +3647,6 @@
   "ok": true
  },
  {
-  "label": "reframe: M73 grid MAPPO compliance",
-  "snippet": "It keeps 65.6\\% priority-slice compliance and 151.90 reward per step",
-  "computed": 65.5988888888889,
-  "formatted": "65.6",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M73 grid MAPPO compliance gap",
-  "snippet": "AXIOM beats it by 29.2 points in 13 of 15 seeds at $p<0.001$ and by 23.23 reward per step",
-  "computed": 29.196666666666662,
-  "formatted": "29.2",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M73 grid MAPPO reward gap",
-  "snippet": "AXIOM beats it by 29.2 points in 13 of 15 seeds at $p<0.001$ and by 23.23 reward per step",
-  "computed": 23.230492172847004,
-  "formatted": "23.23",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: M73 grid MAPPO 15 seeds, both p<0.001, 13 and 15 wins",
   "snippet": null,
   "computed": [
@@ -4016,14 +3669,6 @@
   ],
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M73 grid MAPPO reward",
-  "snippet": "It keeps 65.6\\% priority-slice compliance and 151.90 reward per step",
-  "computed": 151.9001818966213,
-  "formatted": "151.90",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -4248,35 +3893,6 @@
   "ok": true
  },
  {
-  "label": "M74 supplement leads 37.7/61.0/36.5 points and 35.46/25.62/30.63 reward",
-  "snippet": null,
-  "computed": {
-   "single_agent_dqn": [
-    37.730000000000004,
-    35.46265126408328
-   ],
-   "independent_dqn": [
-    61.00999999999999,
-    25.624186450986578
-   ],
-   "mappo_tuned": [
-    36.5375,
-    30.627144227353305
-   ]
-  },
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M74 pooled 50 hex seeds",
-  "snippet": "AXIOM keeps 94.2\\% priority-slice compliance over 50 seeds and collapses in 4 of them",
-  "computed": 94.18533333333332,
-  "formatted": "94.2",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "M74 pooled collapse count 4 of 50",
   "snippet": null,
   "computed": null,
@@ -4309,30 +3925,6 @@
   "ok": true
  },
  {
-  "label": "M75 accept-all reward at 7 gNBs",
-  "snippet": "In Env A it earns 26.88, 78.55, and 156.22 reward per step",
-  "computed": 26.878612994949886,
-  "formatted": "26.88",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M75 accept-all reward at 19 gNBs",
-  "snippet": "In Env A it earns 26.88, 78.55, and 156.22 reward per step",
-  "computed": 78.5524602499424,
-  "formatted": "78.55",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M75 accept-all reward at 37 gNBs",
-  "snippet": "In Env A it earns 26.88, 78.55, and 156.22 reward per step",
-  "computed": 156.21581591158082,
-  "formatted": "156.22",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "reframe: M75 every baseline below accept-all at 19 and 37 gNBs, only MAPPO at 7",
   "snippet": null,
   "computed": {
@@ -4351,38 +3943,6 @@
   },
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "reframe: M75 non-collapsed single-agent at 37",
-  "snippet": "runs that do not collapse keep only 40.0\\% and 35.9\\%, DQN-I's 55.9\\% and 29.1\\%",
-  "computed": 35.92916666666666,
-  "formatted": "35.9",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M75 non-collapsed independent at 37",
-  "snippet": "runs that do not collapse keep only 40.0\\% and 35.9\\%, DQN-I's 55.9\\% and 29.1\\%",
-  "computed": 29.08333333333333,
-  "formatted": "29.1",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M75 non-collapsed single-agent at 19",
-  "snippet": "runs that do not collapse keep only 40.0\\% and 35.9\\%",
-  "computed": 40.03333333333334,
-  "formatted": "40.0",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M75 non-collapsed independent at 19",
-  "snippet": "DQN-I's 55.9\\% and 29.1\\%",
-  "computed": 55.915517241379305,
-  "formatted": "55.9",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -4494,6 +4054,26 @@
   "computed": 9,
   "formatted": "9",
   "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M75 D: of the other 6 seeds AXIOM blocks only mMTC in 4, nothing in 1, other slices too in 1",
+  "snippet": null,
+  "computed": {
+   "rest": [
+    903,
+    907,
+    908,
+    911,
+    1000,
+    1002
+   ],
+   "only_mmtc": 4,
+   "none": 1,
+   "other": 1
+  },
+  "formatted": null,
+  "in_tex": null,
   "ok": true
  },
  {
@@ -4622,19 +4202,6 @@
   "computed": 48.06166666666665,
   "formatted": "48.1",
   "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M75 C new settings in three of four cells",
-  "snippet": null,
-  "computed": {
-   "single_agent_dqn|19": "1e-4,16",
-   "single_agent_dqn|37": "1e-3,16",
-   "independent_dqn|19": "3e-4,64",
-   "independent_dqn|37": "1e-4,64"
-  },
-  "formatted": null,
-  "in_tex": null,
   "ok": true
  },
  {
@@ -4814,38 +4381,6 @@
   "ok": true
  },
  {
-  "label": "reframe: M76 AXIOM over VDN compliance at 19",
-  "snippet": "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step",
-  "computed": 13.634444444444444,
-  "formatted": "13.6",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M76 AXIOM over VDN reward at 19",
-  "snippet": "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step",
-  "computed": 2.7332078451255564,
-  "formatted": "2.73",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "reframe: M76 VDN 19-gNB wins 27 to 28 of 30 at Holm p<0.001",
-  "snippet": null,
-  "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "reframe: VDN gap at nineteen gNBs",
-  "snippet": "There AXIOM keeps 13.6 percentage points more and earns 2.73 more reward per step",
-  "computed": 13.634444444444444,
-  "formatted": "13.6",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "M76 S17 VDN row A3",
   "snippet": null,
   "computed": "Env A, 3 gNBs & 12.664 & 12.698 & 11.587 & 99.0\\% & 98.9\\% & 92.9\\% \\\\",
@@ -4865,30 +4400,6 @@
   "label": "M76 S17 VDN row A19",
   "snippet": null,
   "computed": "Env A, 19 gNBs, hex & 86.428 & 89.161 & 76.388 & 83.4\\% & 97.0\\% & 56.4\\% \\\\",
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "reframe: M76 oversubscription margins at 1.10",
-  "snippet": null,
-  "computed": [
-   29.09666666666667,
-   33.95,
-   24.27555555555556
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "reframe: M76 oversubscription margins at 1.20",
-  "snippet": null,
-  "computed": [
-   4.613333333333332,
-   6.384444444444444,
-   2.507777777777778
-  ],
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -4998,14 +4509,6 @@
     "p": 6.103515625e-05
    }
   ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "reframe: M76 uneven load 27% more than MAPPO, every seed",
-  "snippet": null,
-  "computed": null,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5687,22 +5190,6 @@
   "ok": true
  },
  {
-  "label": "M78 Table 5 LR 1e-4 row single_agent_dqn_lr1e4",
-  "snippet": null,
-  "computed": 0.9437107403652171,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 Table 5 LR 1e-4 row independent_dqn_lr1e4",
-  "snippet": null,
-  "computed": 0.8783616261644599,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "M78 complexity latency row independent_dqn",
   "snippet": null,
   "computed": "0.59 / 1.38 / 3.73 / 8.08",
@@ -5730,17 +5217,6 @@
   "ok": true
  },
  {
-  "label": "M78 Env A 19 gNBs AXIOM URLLC and eMBB",
-  "snippet": null,
-  "computed": [
-   99.39037037037036,
-   95.11074074074075
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "M78 Env B 3 gNBs seed wins 24 to 29",
   "snippet": null,
   "computed": [
@@ -5751,14 +5227,6 @@
    29,
    24
   ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 Env B replication 7 or 8 of 10, nothing survives",
-  "snippet": null,
-  "computed": 0.22265625,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5810,17 +5278,9 @@
   "ok": true
  },
  {
-  "label": "M78 at 120% load priority demand exceeds the caps at most gNBs",
-  "snippet": null,
-  "computed": 0.9166666666666666,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "M78 S14 table row load_0.80",
   "snippet": null,
-  "computed": "80\\% load & 13.776 & 14.055 & $-$0.279 & 12/13 & ",
+  "computed": "80\\% load & 13.776 & 14.055 & $-$0.279 & 12/13 & 0.44 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5828,7 +5288,7 @@
  {
   "label": "M78 S14 table row nominal",
   "snippet": null,
-  "computed": "nominal & 8.846 & 9.261 & $-$0.415 & 7/18 & ",
+  "computed": "nominal & 8.846 & 9.261 & $-$0.415 & 7/18 & 0.00016 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5836,7 +5296,7 @@
  {
   "label": "M78 S14 table row load_1.05",
   "snippet": null,
-  "computed": "105\\% load & 4.482 & 4.183 & +0.299 & 21/4 & ",
+  "computed": "105\\% load & 4.482 & 4.183 & +0.299 & 21/4 & 0.017 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5844,7 +5304,7 @@
  {
   "label": "M78 S14 table row load_1.10",
   "snippet": null,
-  "computed": "110\\% load & 2.082 & 1.624 & +0.458 & 23/2 & ",
+  "computed": "110\\% load & 2.082 & 1.624 & +0.458 & 23/2 & 8.8e-05 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5852,7 +5312,7 @@
  {
   "label": "M78 S14 table row load_1.15",
   "snippet": null,
-  "computed": "115\\% load & 0.378 & $-$0.052 & +0.431 & 23/2 & ",
+  "computed": "115\\% load & 0.378 & $-$0.052 & +0.431 & 23/2 & 1e-05 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5860,7 +5320,7 @@
  {
   "label": "M78 S14 table row load_1.20",
   "snippet": null,
-  "computed": "120\\% load & $-$0.714 & $-$1.068 & +0.354 & 21/4 & ",
+  "computed": "120\\% load & $-$0.714 & $-$1.068 & +0.354 & 21/4 & 8.8e-05 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5868,7 +5328,7 @@
  {
   "label": "M78 S14 table row coupling_0.30",
   "snippet": null,
-  "computed": "coupling 0.30 & 6.457 & 6.766 & $-$0.310 & 11/14 & ",
+  "computed": "coupling 0.30 & 6.457 & 6.766 & $-$0.310 & 11/14 & 0.28 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5876,7 +5336,7 @@
  {
   "label": "M78 S14 table row amplitude_0.50",
   "snippet": null,
-  "computed": "load swing 0.50 & 6.015 & 5.831 & +0.184 & 18/7 & ",
+  "computed": "load swing 0.50 & 6.015 & 5.831 & +0.184 & 18/7 & 0.045 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5906,65 +5366,6 @@
   "ok": true
  },
  {
-  "label": "M78 original AXIOM at 19 gNBs",
-  "snippet": "the original AXIOM kept priority-slice compliance at only 79.1\\%",
-  "computed": 79.10592592592593,
-  "formatted": "79.1",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M78 faster rate and wider encoder within 0.19, not significant",
-  "snippet": null,
-  "computed": [
-   -0.187,
-   0.121
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 DP eMBB low",
-  "snippet": "between 74.3\\% and 83.0\\%",
-  "computed": 74.29333333333334,
-  "formatted": "74.3",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M78 DP eMBB high",
-  "snippet": "between 74.3\\% and 83.0\\%",
-  "computed": 82.96,
-  "formatted": "83.0",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M78 DP collapses two and four at sigma 2 and 4",
-  "snippet": null,
-  "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 disruption 9 or 10 of 10 at Holm p<=0.041",
-  "snippet": null,
-  "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 spike precision 1.00 for DQN-SA and about 0.95 for DQN-I",
-  "snippet": null,
-  "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "M78 collapsed 59-65%, others 96.9-98.1% per layout",
   "snippet": null,
   "computed": [
@@ -5982,56 +5383,6 @@
     96.85
    ]
   ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 M74 wins 18 to 19 of 20, collapsed seed 6110",
-  "snippet": null,
-  "computed": [
-   19,
-   18,
-   19,
-   19,
-   19,
-   19
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 pooled 50 seeds 94.2%, 4 collapses",
-  "snippet": null,
-  "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 S17 re-tuned rule sheds eMBB at 0.05 rather than 0.2",
-  "snippet": null,
-  "computed": [
-   {
-    "tau_c": 0.0,
-    "tau_q": null,
-    "tau_e": 0.05
-   },
-   {
-    "tau_c": 0.0,
-    "tau_q": null,
-    "tau_e": 0.2
-   }
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M78 FedProx mu 0.01 above FedAvg, 0.1 and 1.0 below, three seeds",
-  "snippet": null,
-  "computed": null,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -6154,21 +5505,6 @@
   "label": "reframe: Discussion quotes the 10.7-point gain at seven gNBs on the ring layout, Holm p=0.007",
   "snippet": null,
   "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M79 under the per-gNB penalty AXIOM keeps 20.9 points more than DQN-SA, which collapses in 11 of 15",
-  "snippet": null,
-  "computed": {
-   "n": 15,
-   "diff": 20.933333333333334,
-   "wins": 15,
-   "ties": 0,
-   "losses": 0,
-   "p": 6.103515625e-05
-  },
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -6341,31 +5677,6 @@
   "ok": true
  },
  {
-  "label": "M80 D static rule +0.87 and tied in 13 of 15; carried rule wins all 15 by 3.33; DQN-SA collapses 15 of 15; all four checks hold",
-  "snippet": null,
-  "computed": {
-   "static": {
-    "n": 15,
-    "diff": 0.8683258780992286,
-    "wins": 2,
-    "ties": 13,
-    "losses": 0,
-    "p": 0.17971249487899976
-   },
-   "local": {
-    "n": 15,
-    "diff": 3.331577407850323,
-    "wins": 15,
-    "ties": 0,
-    "losses": 0,
-    "p": 6.103515625e-05
-   }
-  },
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "M81 probe replays every stored evaluation exactly, 15 seeds per budget, 21000 gNB-steps each",
   "snippet": null,
   "computed": {
@@ -6382,30 +5693,6 @@
   "computed": null,
   "formatted": null,
   "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M81 300-episode pooled eMBB reject share",
-  "snippet": "pooled over all 15 it rejects on 2.0\\% of gNB-steps",
-  "computed": 2.021904761904762,
-  "formatted": "2.0",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M81 900-episode reject share, lowest queue bin",
-  "snippet": "the share rises from 12.2\\% below a queue of 0.05",
-  "computed": 12.205352856457033,
-  "formatted": "12.2",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M81 900-episode reject share, queue 0.75 to 1.0",
-  "snippet": "to 71.8\\% between 0.75 and 1.0",
-  "computed": 71.79352712016781,
-  "formatted": "71.8",
-  "in_tex": true,
   "ok": true
  },
  {
@@ -6528,22 +5815,6 @@
   "ok": true
  },
  {
-  "label": "M81 reported differences whose CI excludes zero",
-  "snippet": "Of the 38 reported differences whose 95\\% CI excludes zero",
-  "computed": 38,
-  "formatted": "38",
-  "in_tex": true,
-  "ok": true
- },
- {
-  "label": "M81 of them, fresh CI on the same side",
-  "snippet": "35 keep a CI on the same side on fresh seeds",
-  "computed": 35,
-  "formatted": "35",
-  "in_tex": true,
-  "ok": true
- },
- {
   "label": "M81 the three exceptions are Env B compliance, DQN-SA and DQN-I at 7 and MAPPO at 19, and all three fresh CIs span zero",
   "snippet": null,
   "computed": [
@@ -6636,6 +5907,793 @@
    50,
    85
   ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 Env A, 3 gNBs IQM and P(AXIOM better) recomputed from the logs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 OR1 Table S2 rows, Env A, 3 gNBs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 Env A, 7 gNBs IQM and P(AXIOM better) recomputed from the logs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 OR1 Table S2 rows, Env A, 7 gNBs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 Env A, 19 gNBs IQM and P(AXIOM better) recomputed from the logs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 OR1 Table S2 rows, Env A, 19 gNBs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 Env A, 37 gNBs IQM and P(AXIOM better) recomputed from the logs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 OR1 Table S2 rows, Env A, 37 gNBs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 Env B, 3 gNBs IQM and P(AXIOM better) recomputed from the logs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 OR1 Table S2 rows, Env B, 3 gNBs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 Env B, 7 gNBs IQM and P(AXIOM better) recomputed from the logs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 OR1 Table S2 rows, Env B, 7 gNBs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 Env B, 19 gNBs IQM and P(AXIOM better) recomputed from the logs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 OR1 Table S2 rows, Env B, 19 gNBs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 all 51 mean-based orderings hold under the IQM, and the text says so",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 AXIOM's Env A IQM compliance 100.0% at every size against means of 93.7% to 98.9%",
+  "snippet": null,
+  "computed": [
+   [
+    100.0,
+    99.9768115942029,
+    100.0,
+    99.99722222222223
+   ],
+   [
+    98.85555555555555,
+    97.07296296296295,
+    97.25055555555555,
+    93.69
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M93 rliable 1.2.0 installed and named in the text",
+  "snippet": null,
+  "computed": "1.2.0",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 main Table 5 rows recomputed from the logs, 15 seeds per arm",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 main text: hex compliance 96.2/95.4, accept-all 65.9/61.1, MAPPO 64.2/61.5, four leads at Holm p=0.00024",
+  "snippet": null,
+  "computed": {
+   "T1 19": 0.000244140625,
+   "T1 37": 0.000244140625,
+   "T2 19": 0.000244140625,
+   "T2 37": 0.000244140625
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 transferred minus trained-at-N: within 3.4 points on all three layouts and in Env B, no paired difference significant, p >= 0.068",
+  "snippet": null,
+  "computed": {
+   "A_hex_n19 prio": [
+    1.571,
+    0.9165
+   ],
+   "A_hex_n19 reward_per_gnb": [
+    -0.014,
+    0.9165
+   ],
+   "A_hex_n37 prio": [
+    0.577,
+    0.9165
+   ],
+   "A_hex_n37 reward_per_gnb": [
+    -0.043,
+    0.6121
+   ],
+   "A_ring_n19 prio": [
+    0.101,
+    0.8658
+   ],
+   "A_ring_n19 reward_per_gnb": [
+    -0.022,
+    0.7794
+   ],
+   "A_ring_n37 prio": [
+    3.164,
+    0.8658
+   ],
+   "A_ring_n37 reward_per_gnb": [
+    0.022,
+    0.499
+   ],
+   "A_fully_connected_n19 prio": [
+    -3.372,
+    0.1088
+   ],
+   "A_fully_connected_n19 reward_per_gnb": [
+    -0.101,
+    0.0679
+   ],
+   "A_fully_connected_n37 prio": [
+    1.853,
+    1.0
+   ],
+   "A_fully_connected_n37 reward_per_gnb": [
+    -0.012,
+    0.6858
+   ],
+   "B_hex_n19 prio": [
+    1.778,
+    0.0916
+   ],
+   "B_hex_n19 reward_per_gnb": [
+    0.032,
+    0.8753
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 static rule: transferred AXIOM ties it exactly on 9 to 11 of 15 seeds in reward and earns less on the rest",
+  "snippet": null,
+  "computed": {
+   "A_hex_n19": [
+    0,
+    10,
+    5
+   ],
+   "A_hex_n37": [
+    0,
+    10,
+    5
+   ],
+   "A_ring_n19": [
+    0,
+    9,
+    6
+   ],
+   "A_ring_n37": [
+    0,
+    10,
+    5
+   ],
+   "A_fully_connected_n19": [
+    0,
+    11,
+    4
+   ],
+   "A_fully_connected_n37": [
+    0,
+    11,
+    4
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 abstract and contribution 1: transferred AXIOM above 95% in Env A at 19 and 37 gNBs, abstract at most 250 words",
+  "snippet": null,
+  "computed": [
+   [
+    96.19777777777776,
+    95.37222222222223,
+    96.92444444444445,
+    96.32777777777777,
+    96.59222222222222,
+    96.28
+   ],
+   250
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 OR1 Table S6 rows recomputed from the logs and the summary",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 H-T4: transferred GAT minus MLP +0.80 per-gNB points, p 0.72",
+  "snippet": null,
+  "computed": {
+   "n": 15,
+   "diff": 0.8032163742690055,
+   "wins": 8,
+   "ties": 0,
+   "losses": 7,
+   "p": 0.7197265625
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 Env B cluster-level compliance between 18% and 36% for every arm",
+  "snippet": null,
+  "computed": [
+   25.46555555555556,
+   36.233333333333334,
+   31.52888888888889,
+   24.746666666666666,
+   22.99,
+   18.00222222222222
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 AXIOM keeps 7,782 execution parameters when transferred, and six stored evaluations reproduced exactly through the loader",
+  "snippet": null,
+  "computed": [
+   105,
+   6
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 MAPPO identical on all three Env A layouts; at 19 fully-connected AXIOM trained there equals the static rule, transferred trails by 0.10, p 0.068",
+  "snippet": null,
+  "computed": {
+   "n": 15,
+   "diff": -0.10136169165468688,
+   "wins": 0,
+   "ties": 11,
+   "losses": 4,
+   "p": 0.06788915486182899
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig. 10 capability matrix and margins: values recomputed, glyphs by rule, tiles as the verified abstract values, AXIOM alone meets seven of eight",
+  "snippet": null,
+  "computed": {
+   "scores": [
+    7.0,
+    2.5,
+    1.5,
+    1.5,
+    5.5,
+    3.0
+   ],
+   "tiles": [
+    "35.0 points",
+    "7\u201344\u00d7",
+    "88\u00d7",
+    "95%+",
+    "+8.7",
+    "27\u201336%"
+   ],
+   "expected_tiles": [
+    "35.0 points",
+    "7\u201344\u00d7",
+    "88\u00d7",
+    "95%+",
+    "+8.7",
+    "27\u201336%"
+   ],
+   "differs": []
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M96 a: on 20 fresh seeds AXIOM from 7 keeps 96.2/95.2% at 19/37 gNBs and beats accept-all and MAPPO from 7 by 27.0 to 33.8 points, Holm p < 0.001",
+  "snippet": null,
+  "computed": {
+   "prio": [
+    "96.2",
+    "95.2"
+   ],
+   "diff": {
+    "acc19": 29.87,
+    "mp19": 27.03,
+    "acc37": 33.75,
+    "mp37": 29.57
+   },
+   "holm": {
+    "acc19": 7.62939453125e-06,
+    "acc37": 7.62939453125e-06,
+    "mp37": 3.814697265625e-05,
+    "mp19": 3.814697265625e-05
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M96 c: on 15 fresh seeds AXIOM leads the carried rule by 6.84, 8.25, 9.39 at 110-120%, 14 of 15 wins, Holm p < 0.001; the rule leads by 3.33 at nominal",
+  "snippet": null,
+  "computed": {
+   "load_1.10": [
+    6.841,
+    14,
+    0.0003662109375
+   ],
+   "load_1.15": [
+    8.25,
+    14,
+    0.0003662109375
+   ],
+   "load_1.20": [
+    9.385,
+    14,
+    0.0003662109375
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M96 b: past the tuning load AXIOM out-earns all three learned baselines at 7 and 19 gNBs (Holm p <= 0.008); at 3 gNBs it leads all three only at 110%, and from 115% DQN-SA and DQN-I come within 0.21",
+  "snippet": null,
+  "computed": {
+   "max holm 7/19": [
+    0.00787353515625,
+    0.000732421875
+   ],
+   "sig at 3": {
+    "load_1.10": [
+     "mappo_tuned",
+     "single_agent_dqn",
+     "independent_dqn"
+    ],
+    "load_1.15": [
+     "mappo_tuned"
+    ],
+    "load_1.20": []
+   },
+   "near3": 0.20663870313555005
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M96 overall in Sec. 6.6: eight of nine pre-registered checks held, the failed one at three gNBs past the tuning load",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig. 10 steady load: every learned controller trails the tuned rule at nominal Env B load (the baselines on every seed); AXIOM wins no seed against the static rule at nominal Env A demand",
+  "snippet": null,
+  "computed": {
+   "3 axiom2": [
+    -0.42,
+    18,
+    25
+   ],
+   "3 mappo_tuned": [
+    -2.3,
+    25,
+    25
+   ],
+   "3 single_agent_dqn": [
+    -1.76,
+    25,
+    25
+   ],
+   "3 independent_dqn": [
+    -1.37,
+    25,
+    25
+   ],
+   "7 axiom2": [
+    -3.84,
+    15,
+    15
+   ],
+   "7 mappo_tuned": [
+    -6.26,
+    15,
+    15
+   ],
+   "7 single_agent_dqn": [
+    -3.46,
+    15,
+    15
+   ],
+   "7 independent_dqn": [
+    -5.19,
+    15,
+    15
+   ],
+   "19 axiom2": [
+    -3.81,
+    15,
+    15
+   ],
+   "19 mappo_tuned": [
+    -25.03,
+    15,
+    15
+   ],
+   "19 single_agent_dqn": [
+    -9.36,
+    15,
+    15
+   ],
+   "19 independent_dqn": [
+    -12.89,
+    15,
+    15
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Sec. 3 threshold choice: 0, 0.5 and 0.8 tie exactly on the training streams in every Env A condition, and the lowest, 0, is kept",
+  "snippet": null,
+  "computed": {
+   "base": {
+    "0.0": 12.833956,
+    "0.5": 12.833956,
+    "0.8": 12.833956,
+    "0.9": 12.802284,
+    "0.97": 12.474391
+   },
+   "load102": {
+    "0.0": 13.055494,
+    "0.5": 13.055494,
+    "0.8": 13.055494,
+    "0.9": 12.935686,
+    "0.97": 12.676785
+   },
+   "load107": {
+    "0.0": 12.71836,
+    "0.5": 12.71836,
+    "0.8": 12.71836,
+    "0.9": 12.710604,
+    "0.97": 12.428957
+   },
+   "replication": {
+    "0.0": 12.805015,
+    "0.5": 12.805015,
+    "0.8": 12.805015,
+    "0.9": 12.779688,
+    "0.97": 12.427104
+   },
+   "weights": {
+    "0.0": 11.755764,
+    "0.5": 11.755764,
+    "0.8": 11.755764,
+    "0.9": 11.732681,
+    "0.97": 11.499845
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Conclusion: 7,782 parameters against up to 682,058, as in the complexity records",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Sec. 2 review numbers as in the published review: 6,286 records to 67 core studies from 2024 to 2026",
+  "snippet": null,
+  "computed": "checked by hand against the published review, lines 22, 90 and 1121 of its text",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Live probe from the raw iperf3 logs: zero datagrams lost on every slice at one and two UEs per slice, every slice served at 99.9% to 100.4% of its offered rate",
+  "snippet": null,
+  "computed": {
+   "traffic_embb1_full_3ue_20260915_163503.log": [
+    "embb",
+    99.92,
+    0,
+    48751
+   ],
+   "traffic_embb1_full_6ue_20260915_161845.log": [
+    "embb",
+    99.97,
+    0,
+    87917
+   ],
+   "traffic_embb2_full_6ue_20260915_161845.log": [
+    "embb",
+    99.97,
+    0,
+    87083
+   ],
+   "traffic_mmtc1_full_3ue_20260915_163503.log": [
+    "mmtc",
+    100.41,
+    0,
+    2355
+   ],
+   "traffic_mmtc1_full_6ue_20260915_161845.log": [
+    "mmtc",
+    100.41,
+    0,
+    4082
+   ],
+   "traffic_mmtc2_full_6ue_20260915_161845.log": [
+    "mmtc",
+    100.41,
+    0,
+    4082
+   ],
+   "traffic_urllc1_full_3ue_20260915_163503.log": [
+    "urllc",
+    100.0,
+    0,
+    43877
+   ],
+   "traffic_urllc1_full_6ue_20260915_161845.log": [
+    "urllc",
+    100.0,
+    0,
+    79126
+   ],
+   "traffic_urllc2_full_6ue_20260915_161845.log": [
+    "urllc",
+    100.0,
+    0,
+    78376
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M94 trees: depth chosen by 5-fold cross-validation, 3 for every target",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "OR1 S4: exploratory probes on seeds 900 to 904 preceded the load-shift runs, which use 905 to 929",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Discussion: one 7,782-parameter network trained at seven gNBs serves clusters five times larger",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Sec. 3 slice ranking matches the parameter table: URLLC 15 ms and 0.8% budgets, weights 12.0 > 3.5 > 0.3, eMBB the largest ceiling",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Sec. 5: Env A demand runs 5% above the nominal shares, and shedding mMTC keeps URLLC at full compliance and eMBB at 99.98%",
+  "snippet": null,
+  "computed": 1.05,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Sec. 5: in Env B shedding mMTC alone cannot protect URLLC, the tuned rule that also sheds eMBB does",
+  "snippet": null,
+  "computed": [
+   0.6249777777777777,
+   0.9890333333333333
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M94 held-out fidelity of the depth-3 trees recomputed from the stored trees and replays, 86% to 97%",
+  "snippet": null,
+  "computed": {
+   "B3": 0.8619826206048459,
+   "B7_ring_300": 0.9741743623855526,
+   "B7_ring_900": 0.9305967155143459
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M94 OR1 Table S10 rows: rule against AXIOM and the tuned rule recomputed from the logs",
+  "snippet": null,
+  "computed": [],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M94 main: the rule ties AXIOM at seven gNBs, trails it by 0.19 at three, never reaches the tuned rule",
+  "snippet": null,
+  "computed": {
+   "B3": [
+    -0.189,
+    0.0012
+   ],
+   "B7_ring_300": [
+    0.057,
+    1.0
+   ],
+   "B7_ring_900": [
+    -0.147,
+    0.0827
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M94 eMBB thresholds: first split on the URLLC queue in 24 of 30 seeds at a median 0.21, and 13 of 15 at 0.28, against 0.2",
+  "snippet": null,
+  "computed": [
+   24,
+   13
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M94 no URLLC request rejected in any replay, 34 of 60 mMTC trees reject all, held-out replays exact",
+  "snippet": null,
+  "computed": [
+   0,
+   34,
+   11
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M92 and M94 pre-registrations exist and OR1 S4 says M93 has no plan of its own",
+  "snippet": null,
+  "computed": null,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -7080,31 +7138,6 @@
   "ok": true
  },
  {
-  "label": "M82 OR1 small DQN-SA margins on 20 and 40 new seeds",
-  "snippet": null,
-  "computed": [
-   {
-    "n": 20,
-    "diff": -0.020622156053140106,
-    "wins": 11,
-    "ties": 4,
-    "losses": 5,
-    "p": 0.07032573521121915
-   },
-   {
-    "n": 40,
-    "diff": 0.15941169354306167,
-    "wins": 22,
-    "ties": 10,
-    "losses": 8,
-    "p": 0.08971783776750893
-   }
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "M82 OR1 baselines up to 83.3% at seven gNBs, above the 80% bound",
   "snippet": null,
   "computed": [
@@ -7123,7 +7156,7 @@
   "ok": true
  },
  {
-  "label": "M82 OR1 MLP variant: 0.31 at 19 gNBs with 7 of 12 tied, 0.116 in 17 of 30, fresh 1.38 in 9 of 10 at p=0.006",
+  "label": "M82 OR1 MLP variant: 0.31 at 19 gNBs with 7 of 12 tied; main: fresh lead 1.38 at p=0.006",
   "snippet": null,
   "computed": [
    {
@@ -7133,14 +7166,6 @@
     "ties": 7,
     "losses": 2,
     "p": 0.8125
-   },
-   {
-    "n": 30,
-    "diff": 0.11646043780519433,
-    "wins": 17,
-    "ties": 0,
-    "losses": 13,
-    "p": 0.4521643426269293
    },
    {
     "n": 10,
@@ -7156,37 +7181,6 @@
   "ok": true
  },
  {
-  "label": "M82 OR1 Env B replication: AXIOM wins 7 or 8 of 10 against each",
-  "snippet": null,
-  "computed": [
-   7,
-   8,
-   8
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M82 OR1 DQN baselines at learning rate 1e-4",
-  "snippet": null,
-  "computed": [
-   11.47690600234631,
-   [
-    10.627286731109523,
-    12.081191229258
-   ],
-   11.119157131690338,
-   [
-    10.723698145541352,
-    11.489177864123237
-   ]
-  ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
   "label": "M82 OR1 roughly 360 per-round updates",
   "snippet": null,
   "computed": 359.38,
@@ -7195,21 +7189,9 @@
   "ok": true
  },
  {
-  "label": "M82 OR1 spike precision 0.98, 1.00, about 0.95",
+  "label": "M82 OR1 per-slice compliance at 7 and 37 gNBs",
   "snippet": null,
-  "computed": {
-   "gat_ctde": 0.9796397858262882,
-   "single_agent_dqn": 0.9998556083555128,
-   "independent_dqn": 0.9535486280282423
-  },
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M82 OR1 per-slice compliance at 7, 19 and 37 gNBs",
-  "snippet": null,
-  "computed": "At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\\% and 94.4\\%, against 91.4\\% and 61.0\\% for DQN-SA, 94.2\\% and 55.0\\% for DQN-I, and 87.0\\% and 48.4\\% for MAPPO. At nineteen gNBs it keeps them at 99.4\\% and 95.1\\%, and at thirty-seven at 96.7\\% and 90.7\\%.",
+  "computed": "At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\\% and 94.4\\%, against 87.0\\% to 94.2\\% and 48.4\\% to 61.0\\% for the baselines, and at thirty-seven at 96.7\\% and 90.7\\%.",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -7238,21 +7220,6 @@
    98.10897435897435,
    96.85
   ],
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M82 OR1 fresh 37 gNBs: 18 to 19 of 20 wins, Holm p<0.001",
-  "snippet": null,
-  "computed": {
-   "single_agent_dqn|r": 19,
-   "single_agent_dqn|p": 18,
-   "independent_dqn|r": 19,
-   "independent_dqn|p": 19,
-   "mappo_tuned|r": 19,
-   "mappo_tuned|p": 19
-  },
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -7399,22 +7366,6 @@
   "label": "M82 OR1 fifteen fresh seeds 7000 to 7014 at nineteen gNBs",
   "snippet": null,
   "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "M82 OR1 the grid-selected MAPPO at 37 gNBs trains for 900 episodes",
-  "snippet": null,
-  "computed": {
-   "cfg": "lr1e-3_ep4_mb256_te900",
-   "lr": "1e-3",
-   "ep": 4,
-   "mb": 256,
-   "te": 900,
-   "n": 5,
-   "mean": 12.564630632422663
-  },
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -8015,9 +7966,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 688",
+  "label": "text quotes the final check count of 646",
   "snippet": null,
-  "computed": 688,
+  "computed": 646,
   "formatted": null,
   "in_tex": null,
   "ok": true

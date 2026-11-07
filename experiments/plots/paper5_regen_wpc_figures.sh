@@ -16,10 +16,12 @@ $PY $P/paper5_fig_envB.py --root $R/m64 --out $F/fig11_envB
 (cd $P && $PY paper5_fig_pergnb_envb.py)
 (cd $P && $PY paper5_fig_superiority.py)
 (cd $P && $PY paper5_fig_regime.py)
+(cd $P && $PY paper5_fig_capability.py)   # reads the regime map's summary, so after it
 
 # Online Resource 1
 (cd $P && $PY paper5_fig_forest.py)
 (cd $P && $PY paper5_fig_decision.py)
+(cd $P && $PY paper5_fig_rliable.py)
 $PY $P/paper5_fig4_m3_privacy.py --m3-results $R/m65_m3/campaign_results.json --m3-campaign-dir $R/m65_m3 \
     --m2-results $R/m65_m2_view/campaign_results.json --m2-campaign-dir $R/m65_m2_view --out $F/fig4_m3_privacy
 $PY $P/paper5_fig5_m4_disruption.py --level --no-titles --m4-results $R/m65_m4/campaign_results.json \

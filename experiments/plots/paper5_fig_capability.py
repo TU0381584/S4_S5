@@ -4,7 +4,7 @@ Top, a matrix of eight criteria. A criterion is met (filled), partly met (half),
 by the fixed rules in matrix(). Bottom, six margins of AXIOM. Every value is computed here from stored results:
 execution parameters from the complexity records (m64 at 3, 7 and 19 gNBs, m73 at 37), transfer from seven gNBs
 from M92, Env A compliance and URLLC backlog delay at 37 gNBs from the scaling cells and the M77 recorder, behaviour
-past and at the rules' tuning load from the regime map's summary, Env B reward against MAPPO from the reported cells,
+past and at the rules' tuning load from the regime map's summary (AXIOM, rules) and from M96 b (learned baselines), Env B reward against MAPPO from the reported cells,
 and the margin over the carried tuned rule from the M76 load-shift runs. Everything is saved to <out>_summary.json,
 which m66_verify recomputes.
 """
@@ -20,7 +20,7 @@ from matplotlib.patches import Circle, FancyBboxPatch, Wedge  # noqa: E402
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
-from m66_verify import S15, S30, S30_19, prio, seeds_of, paired  # noqa: E402
+from m66_verify import S15, S30, S30_19, holm, prio, seeds_of, paired  # noqa: E402
 from paper5_fig_superiority import shift_row  # noqa: E402
 
 mpl.rcParams.update({"font.size": 8, "pdf.fonttype": 42, "ps.fonttype": 42,
@@ -42,6 +42,23 @@ def m77_delay(arm):
             if x is not None:
                 v.append(x)
     return float(np.mean(v))
+
+
+def past_tuning():
+    """M96 b (Env B, stored checkpoints): each learned controller against the tuned rule at 110, 115 and 120% load at
+    3, 7 and 19 gNBs, Holm over those nine tests per controller. Returns how many of the nine it wins significantly."""
+    cells = {3: ("m96/B_shift/n3", list(range(905, 930)), "rule_local"), 7: ("m96/B_shift/n7_ring", S15, "rule_local"),
+             19: ("m96/B_shift/n19_hex", S15, "rule_local_transfer")}
+    out = {}
+    for arm in ("axiom2",) + LEARNED:
+        t = {}
+        for n, (c, ss, rule) in cells.items():
+            for L in ("load_1.10", "load_1.15", "load_1.20"):
+                t[f"{n}|{L}"] = paired(seeds_of(f"{c}/{L}", arm, ss), seeds_of(f"{c}/{L}", rule, ss))
+        h = holm({k: v["p"] for k, v in t.items()})
+        out[arm] = {"wins": sum(v["diff"] > 0 and h[k] < 0.05 for k, v in t.items()), "tests": len(t),
+                    "n": sorted({v["n"] for v in t.values()})}
+    return out
 
 
 def data():
@@ -70,7 +87,7 @@ def data():
                 past_B=[v["verdict"] for k, v in rg["B"].items() if float(k.split("|")[1]) >= 1.10],
                 past_A=[v["verdict"] for k, v in rg["A"].items() if float(k.split("|")[1]) > 1.05],
                 nominal_B=[v["verdict"] for k, v in rg["B"].items() if k.endswith("|1.00")],
-                over_mappo_pct=over_mappo, over_tuned_rule=over_rule)
+                over_mappo_pct=over_mappo, over_tuned_rule=over_rule, past_learned=past_tuning())
 
 
 def matrix(d):
@@ -79,17 +96,20 @@ def matrix(d):
     sla = lambda a: "full" if S[a] >= SLA_OK else "none"
     dl = lambda a: "full" if D[a] < DELAY_OK else "none"
     past_ax = "full" if all(v == "AXIOM" for v in d["past_B"]) else "half"
+    PL = d["past_learned"]
+    pl = lambda a: ("full", "ahead") if PL[a]["wins"] == PL[a]["tests"] else ("half", "mixed") if PL[a]["wins"] else ("none", "trails")
+    assert pl("axiom2")[0] == past_ax, "M96 and the regime map disagree on AXIOM past the tuning load"
     rows = [
         ("AXIOM", [(fixed("axiom2"), f"{P['axiom2'][-1]:,}"), ("full" if min(T) >= SLA_OK else "half", f"{min(T):.0f}–{max(T):.0f}%"),
                    (sla("axiom2"), f"{S['axiom2']:.1f}%"), ("full", ""), (dl("axiom2"), f"{D['axiom2']:.2f}"), (past_ax, "ahead"),
                    ("none", "loses"), ("full", "tested")]),
         ("MAPPO", [(fixed("mappo_tuned"), f"{P['mappo_tuned'][-1]:,}"), ("half" if d["transfer_mappo"] < SLA_OK else "full", f"{d['transfer_mappo']:.1f}%"),
-                   (sla("mappo_tuned"), f"{S['mappo_tuned']:.1f}%"), ("full", ""), (dl("mappo_tuned"), f"{D['mappo_tuned']:.2f}"), ("na", ""),
+                   (sla("mappo_tuned"), f"{S['mappo_tuned']:.1f}%"), ("full", ""), (dl("mappo_tuned"), f"{D['mappo_tuned']:.2f}"), pl("mappo_tuned"),
                    ("none", "loses"), ("na", "")]),
         ("DQN-SA", [(fixed("single_agent_dqn"), f"{P['single_agent_dqn'][-1]:,}"), ("none", "cannot"), (sla("single_agent_dqn"), f"{S['single_agent_dqn']:.1f}%"),
-                    ("full", ""), (dl("single_agent_dqn"), f"{D['single_agent_dqn']:.2f}"), ("na", ""), ("none", "loses"), ("na", "")]),
+                    ("full", ""), (dl("single_agent_dqn"), f"{D['single_agent_dqn']:.2f}"), pl("single_agent_dqn"), ("none", "loses"), ("na", "")]),
         ("DQN-I", [(fixed("independent_dqn"), f"{P['independent_dqn'][-1]:,}"), ("none", "cannot"), (sla("independent_dqn"), f"{S['independent_dqn']:.1f}%"),
-                   ("full", ""), (dl("independent_dqn"), f"{D['independent_dqn']:.2f}"), ("na", ""), ("none", "loses"), ("na", "")]),
+                   ("full", ""), (dl("independent_dqn"), f"{D['independent_dqn']:.2f}"), pl("independent_dqn"), ("none", "loses"), ("na", "")]),
         ("Static rule", [("full", "none"), ("full", "any"), (sla("rule_static"), f"{S['rule_static']:.2f}%"), ("none", ""),
                          (dl("rule_static"), f"{D['rule_static']:.2f}"), ("half" if all(v == "tie" for v in d["past_A"]) else "none", "ties"),
                          ("full", "best"), ("na", "")]),
