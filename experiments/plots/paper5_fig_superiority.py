@@ -1,5 +1,6 @@
 """Fig: AXIOM against the three learned baselines as the cluster grows.
-(a, c) Env A and Env B reward per gNB against compliance, (b, d) capability radars, (e) Env A compliance under rising load, (f) Env B reward over the tuned rule as load shifts.
+(a, c) Env A and Env B reward per gNB against compliance, (b, d) capability radars. The load panels that were e and f
+were removed on 2026-11-07 as redundant with the regime map; m66_verify recomputes their numbers from the logs.
 
 Panels a and b are computed here from the stored evaluation logs (via m66_verify's
 reader): x is reward per gNB per step, y is priority-slice compliance, each point a
@@ -13,7 +14,6 @@ import sys
 
 import numpy as np
 import matplotlib as mpl
-import matplotlib.ticker  # noqa: F401  (mpl.ticker for panel f)
 mpl.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import to_rgb
@@ -75,72 +75,15 @@ def log_row(path):
 
 
 def shift_row(cell, shift, arm, seed):
+    """Shared with the regime and capability figures."""
     base = f"{RES}/{cell}/{shift}/{arm}/seed{seed}/"
     return log_row(base + ("omega_log.jsonl" if arm == "axiom2" else "lb_only/offline_eval/rep_0/omega_log.jsonl"))
 
 
-LOAD_A = (("1.05", None), ("1.10", "m76/e_load1.10_n19_hex"), ("1.20", "m76/e_load1.20_n19_hex"))
+# Env B load-shift cells, shared with the regime figure
 LOAD_B = {3: ("m72/B_shift/n3", "rule_local", list(range(905, 930)), ("load_0.80", "nominal", "load_1.05", "load_1.10", "load_1.15", "load_1.20")),
           7: ("m72/B_shift/n7_ring", "rule_local", S15, ("nominal", "load_1.10", "load_1.20")),
           19: ("m76/b1_shift_n19", "rule_local_transfer", S15, ("nominal", "load_1.10", "load_1.15", "load_1.20"))}
-
-
-def load_data():
-    """e: Env A priority-slice compliance at nineteen gNBs (hex, 15 seeds) as offered load rises from the nominal 105% of
-    the slice shares; f: Env B reward per gNB of AXIOM over the tuned rule, paired per seed, as load departs from the
-    rule's tuning conditions, with neither retrained nor re-tuned."""
-    out = {"A": {}, "B": {}}
-    for name, arm in list(ARM.items()) + [("Static rule", "rule_static")]:
-        for load, cell in LOAD_A:
-            if cell is None:
-                rows = list(seeds_of("m70/R1/A_n19_hex" if arm == "rule_static" else "m65_scaling/n19_hex", arm, S15).values())
-            else:
-                rows = list(seeds_of(cell, arm, S15).values())
-            y = [100 * prio(r) for r in rows]
-            out["A"].setdefault(name, {})[load] = {"n_runs": len(rows), "y": float(np.mean(y)), "y_ci": list(boot_ci(y))}
-    for n, (cell, rule, seeds, shifts) in LOAD_B.items():
-        for sh in shifts:
-            d = [(shift_row(cell, sh, "axiom2", s)["reward"] - shift_row(cell, sh, rule, s)["reward"]) / n for s in seeds]
-            load = "1.00" if sh == "nominal" else sh.split("_")[1]
-            out["B"].setdefault(str(n), {})[load] = {"n_runs": len(d), "d": float(np.mean(d)), "d_ci": list(boot_ci(d))}
-    return out
-
-
-def draw_load_a(ax, data):
-    xs = [float(l) * 100 for l, _ in LOAD_A]
-    for name in ("MAPPO", "DQN-I", "DQN-SA", "AXIOM"):
-        pts = [data["load"]["A"][name][l] for l, _ in LOAD_A]
-        ax.errorbar(xs, [p["y"] for p in pts], yerr=[[p["y"] - p["y_ci"][0] for p in pts], [p["y_ci"][1] - p["y"] for p in pts]],
-                    fmt="-" + M[name], color=C[name], ms=4.5 if name == "AXIOM" else 4, lw=1.6 if name == "AXIOM" else 1.0,
-                    elinewidth=0.7, capsize=1.5, zorder=4 if name == "AXIOM" else 3)
-    st = [data["load"]["A"]["Static rule"][l]["y"] for l, _ in LOAD_A]
-    ax.plot(xs, st, color="#555555", lw=1.0, ls="--", zorder=2)
-    ax.annotate("static rule", (xs[1], st[1]), textcoords="offset points", xytext=(4, 6), fontsize=8.3, color="#555555")
-    ax.set_xticks(xs)
-    ax.set_xlabel("Offered load, %")
-    ax.set_ylabel("Priority-slice SLA, %")
-    ax.grid(True, axis="y", linewidth=0.4, alpha=0.4)
-    ax.spines[["top", "right"]].set_visible(False)
-
-
-def draw_load_b(ax, data):
-    sizes = (3, 7, 19)
-    sty = {3: (":", "+"), 7: ("--", "x"), 19: ("-", "*")}   # marker shapes unused by the four policies
-    for f, n in zip(np.linspace(0.45, 1.0, 3), sizes):
-        pts = sorted(data["load"]["B"][str(n)].items(), key=lambda kv: float(kv[0]))
-        xs = [100 * float(k) for k, _ in pts]
-        ys = [v["d"] for _, v in pts]
-        ax.errorbar(xs, ys, yerr=[[v["d"] - v["d_ci"][0] for _, v in pts], [v["d_ci"][1] - v["d"] for _, v in pts]],
-                    fmt=sty[n][1], ls=sty[n][0], color=shade(C["AXIOM"], f), mec=shade(C["AXIOM"], max(f, 0.7)), mew=1.1, ms=5.5 if n == 19 else 5, lw=1.4, elinewidth=0.7, capsize=1.5, zorder=3,
-                    label=str(n))
-    ax.axhline(0, color="#555555", lw=0.8, ls="--", zorder=1)
-    ax.set_xticks([80, 100, 120])
-    ax.yaxis.set_major_formatter(mpl.ticker.FormatStrFormatter("%.1f"))
-    ax.legend(loc="upper left", title="gNBs", title_fontsize=8.3, fontsize=8.3, frameon=False, handlelength=1.0, borderpad=0.1, labelspacing=0.15, handletextpad=0.3)
-    ax.set_xlabel("Offered load, %")
-    ax.set_ylabel("AXIOM lead per gNB")
-    ax.grid(True, axis="y", linewidth=0.4, alpha=0.4)
-    ax.spines[["top", "right"]].set_visible(False)
 
 
 def shade(colour, f):
@@ -237,35 +180,29 @@ def draw_radar(ax, data, env):
 def main():
     out = "../../Papers_4-5/Paper_5/WPC/figures/fig10_axiom_superiority"
     data = compute()
-    data["load"] = load_data()
-    fig = plt.figure(figsize=(0.955 * MAIN_WIDTH_IN, 4.85))  # tight bbox and padding add about 4.5%
-    # one row per environment: scatter, radar, reward against the rule (a, b, e Env A; c, d, f Env B)
-    axA = fig.add_axes([0.085, 0.665, 0.23, 0.285])
-    axRA = fig.add_axes([0.375, 0.655, 0.215, 0.25], projection="polar")
-    axE = fig.add_axes([0.745, 0.665, 0.245, 0.285])
-    axB = fig.add_axes([0.085, 0.215, 0.23, 0.285])
-    axRB = fig.add_axes([0.375, 0.22, 0.215, 0.25], projection="polar")
-    axF = fig.add_axes([0.745, 0.215, 0.245, 0.285])
+    fig = plt.figure(figsize=(1.0 * MAIN_WIDTH_IN, 4.6))  # tight bbox and padding add about 4.5%
+    # one row per environment: scatter, then radar (a, b Env A; c, d Env B)
+    axA = fig.add_axes([0.115, 0.605, 0.375, 0.36])
+    axRA = fig.add_axes([0.625, 0.615, 0.30, 0.30], projection="polar")
+    axB = fig.add_axes([0.115, 0.185, 0.375, 0.31])
+    axRB = fig.add_axes([0.625, 0.18, 0.30, 0.30], projection="polar")
     draw_env(axA, data, "A", None)
     draw_env(axB, data, "B", None)
     axA.set_ylim(25, 102)
     axB.set_ylim(10, 72)
     draw_radar(axRA, data, "A")
     LS = draw_radar(axRB, data, "B")
-    draw_load_a(axE, data)
-    draw_load_b(axF, data)
     # every panel letter carries a boxed, colour-coded environment tag (no bold or italic type)
     tag = {"A": dict(fc="#e2e8f0", ec="#5a6b82", tc="#26344a"), "B": dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")}
-    for x_, y_, t_, env_ in ((0.005, 0.995, "a", "A"), (0.345, 0.995, "b", "A"), (0.655, 0.995, "e", "A"),
-                             (0.005, 0.555, "c", "B"), (0.345, 0.555, "d", "B"), (0.655, 0.555, "f", "B")):
+    for x_, y_, t_, env_ in ((0.005, 0.995, "a", "A"), (0.54, 0.995, "b", "A"), (0.005, 0.55, "c", "B"), (0.54, 0.55, "d", "B")):
         fig.text(x_, y_, t_, fontsize=9, va="top")
         fig.text(x_ + 0.03, y_ + 0.002, f"Env {env_}", fontsize=8.5, va="top", color=tag[env_]["tc"],
                  bbox=dict(boxstyle="round,pad=0.25", fc=tag[env_]["fc"], ec=tag[env_]["ec"], lw=0.6))
     handles = [Line2D([0], [0], color=C[n], marker=M[n], linewidth=1.5, linestyle=LS[n], label=n)
                for n in ["AXIOM", "DQN-SA", "DQN-I", "MAPPO"]]
-    fig.text(0.5, 0.075, "R reward per step, S priority-slice SLA, NC no collapse,\neach followed by the number of gNBs",
+    fig.text(0.5, 0.06, "R reward per step, S priority-slice SLA, NC no collapse,\neach followed by the number of gNBs",
              ha="center", va="center", fontsize=8.3)
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.025), ncol=4, frameon=False,
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.5, -0.045), ncol=4, frameon=False,
                fontsize=8.5, handlelength=1.8, columnspacing=1.2)
     fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.06)
     fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.06)

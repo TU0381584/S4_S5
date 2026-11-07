@@ -915,8 +915,7 @@ def main():
             cell_ = ("m70/R1/A_n19_hex" if a_ == "rule_static" else "m65_scaling/n19_hex") if L_ == "1.05" else f"m76/e_load{L_}_n19_hex"
             rows_ = list(seeds_of(cell_, a_, S15).values())
             eA_[(k_, L_)] = float(np.mean([100 * prio(r_) for r_ in rows_]))
-            q_ = sup_["load"]["A"][k_][L_]
-            if q_["n_runs"] != len(rows_) or len(rows_) != 15 or abs(q_["y"] - eA_[(k_, L_)]) > 1e-9:
+            if len(rows_) != 15:
                 badl_.append(("A", k_, L_))
     fB_ = {}
     for n_, (cell_, rule_, ss_, shs_) in {3: ("m72/B_shift/n3", "rule_local", list(range(905, 930)), ("load_0.80", "nominal", "load_1.05", "load_1.10", "load_1.15", "load_1.20")),
@@ -927,10 +926,9 @@ def main():
                      - lg_(f"{ROOT}/{cell_}/{sh_}/{rule_}/seed{s_}/lb_only/offline_eval/rep_0/omega_log.jsonl")["reward"]) / n_ for s_ in ss_]
             L_ = "1.00" if sh_ == "nominal" else sh_.split("_")[1]
             fB_[(n_, L_)] = float(np.mean(dd7_))
-            q_ = sup_["load"]["B"][str(n_)][L_]
-            if q_["n_runs"] != len(dd7_) or abs(q_["d"] - fB_[(n_, L_)]) > 1e-9:
+            if len(dd7_) != len(ss_):
                 badl_.append(("B", n_, L_))
-    C.note("Fig 7e and 7f load panels match recomputation from the logs", not badl_ and len(eA_) == 15 and len(fB_) == 13, badl_)
+    # (Fig. 9e and 9f were removed on 2026-11-07 as redundant with the regime map; eA_ feeds the Env A load sentence, fB_ the regime check)
     # Fig. regime: AXIOM against the rule per cluster size and load, recomputed here from the logs
     rg_ = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_regime_summary.json"))
     # M95 cells (docs/PAPER5_M95_preregistration.md) are not in Fig. 9's load panel, so they are recomputed here from their own logs
@@ -975,14 +973,10 @@ def main():
            and "In Env B AXIOM pulls ahead of the tuned rule at every size from 110\\% of the rule's tuning load, and from 105\\% at nineteen gNBs. In Env A it never significantly beats the static rule at any size or load" in C.main,
            {e_: {k_: v_["verdict"] for k_, v_ in rg_[e_].items()} for e_ in ("A", "B")})
     gapA_ = max(eA_[("Static rule", L_)] - eA_[("AXIOM", L_)] for L_ in ("1.05", "1.10", "1.20"))
-    nomB_ = [-fB_[(n_, "1.00")] for n_ in (3, 7, 19)]
-    upB_ = [v_ for (n_, L_), v_ in fB_.items() if float(L_) > 1.0]
-    C.note("Fig 7 text: AXIOM within 5.3 points of the static rule under load, above every baseline; Env B trails the tuned rule by 0.14-0.55 per gNB at nominal, leads by 0.10-0.46 above it",
-           f"{gapA_:.1f}" == "5.3" and all(eA_[(k_, L_)] < eA_[("AXIOM", L_)] for k_ in ("DQN-SA", "DQN-I", "MAPPO") for L_ in ("1.05", "1.10", "1.20"))
-           and min(nomB_) > 0 and (f"{min(nomB_):.2f}", f"{max(nomB_):.2f}") == ("0.14", "0.55")
-           and min(upB_) > 0 and (f"{min(upB_):.2f}", f"{max(upB_):.2f}") == ("0.10", "0.46")
-           and "AXIOM stays within 5.3 points of the static rule as offered load rises from 105\\% to 120\\% of the nominal shares, and every baseline stays below AXIOM at each load" in C.main
-           and "In Env B AXIOM trails the tuned rule at the rule's own load, by 0.14 to 0.55 reward per gNB, but leads it by 0.10 to 0.46 once the load rises 5\\% to 20\\%" in C.main,
+    C.note("Sec. 6.4 text: in Env A at 19 gNBs AXIOM stays within 5.3 points of the static rule under load, above every baseline at each load",
+           not badl_ and len(eA_) == 15 and len(fB_) == 13
+           and f"{gapA_:.1f}" == "5.3" and all(eA_[(k_, L_)] < eA_[("AXIOM", L_)] for k_ in ("DQN-SA", "DQN-I", "MAPPO") for L_ in ("1.05", "1.10", "1.20"))
+           and "In Env A at nineteen gNBs AXIOM stays within 5.3 points of the static rule as offered load rises from 105\\% to 120\\% of the nominal shares, and every baseline stays below AXIOM at each load" in C.main,
            {"A": {str(k_): round(v_, 2) for k_, v_ in eA_.items()}, "B": {str(k_): round(v_, 3) for k_, v_ in fB_.items()}})
 
     # ---------------- M66 verification subsection: V1 reruns and V2 fresh seeds

@@ -16,7 +16,7 @@ import numpy as np
 import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.patches import Circle, FancyBboxPatch, Wedge  # noqa: E402
+from matplotlib.patches import FancyBboxPatch  # noqa: E402
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
@@ -135,64 +135,98 @@ def tiles(d):
     ]
 
 
-def glyph(ax, x, y, kind, col, r=1.45):
-    if kind == "full":
-        ax.add_patch(Circle((x, y), r, fc=col, ec=col, lw=0.8))
-    elif kind == "half":
-        ax.add_patch(Circle((x, y), r, fc="white", ec=col, lw=0.8))
-        ax.add_patch(Wedge((x, y), r, 90, 270, fc=col, ec=col, lw=0.8))
-    elif kind == "none":
-        ax.add_patch(Circle((x, y), r, fc="white", ec=col, lw=0.8))
-    else:
-        ax.plot([x - r * 0.8, x + r * 0.8], [y, y], color="#9a9a9a", lw=1.0)
+# Status encoding, one sequential blue scale that also reads in greyscale: dark meets, light partly, white does not,
+# grey not tested. Layout follows the summary matrices of benchmarking papers: criteria grouped under category headers,
+# one tile per controller and criterion with its value inside, the overall score as bars, hairlines instead of boxes.
+FILL = {"full": "#0072B2", "half": "#a8cdea", "none": "#ffffff", "na": "#ececec"}
+TXT = {"full": "#ffffff", "half": INK, "none": INK, "na": "#8a8a8a"}
+EDGE = {"full": "#0072B2", "half": "#a8cdea", "none": "#9fb6c9", "na": "#ececec"}
+RULE = "#c8c8c8"
+GROUPS = [("Scale", [(0, "Fixed size"), (1, "New size")]),
+          ("Service at 37 gNBs", [(2, "Priority SLA"), (4, "URLLC delay")]),
+          ("Adaptation", [(3, "Learns its rules"), (5, "Past tuning load"), (6, "Steady load")]),
+          ("Privacy", [(7, "Private training")])]
+
+
+def tile(ax, cx, cy, w, h, kind, lab):
+    ax.add_patch(FancyBboxPatch((cx - w / 2, cy - h / 2), w, h, boxstyle="round,pad=0,rounding_size=1.0",
+                                fc=FILL[kind], ec=EDGE[kind], lw=0.7, zorder=3))
+    txt = lab if lab else {"na": "\u2013", "full": "yes", "none": "no"}.get(kind, "")
+    if txt:
+        ax.text(cx, cy, txt, ha="center", va="center", fontsize=8, color=TXT[kind], zorder=4)
 
 
 def draw(rows, tl):
-    W, H = 119.0, 99.0
+    W, H = 119.0, 124.6
     fig = plt.figure(figsize=(W / 25.4, H / 25.4))
     ax = fig.add_axes([0, 0, 1, 1]); ax.set_xlim(0, W); ax.set_ylim(0, H); ax.axis("off")
-    heads = ["Fixed\nsize", "New\nsize", "SLA at\n37 gNBs", "Learns\nrules", "URLLC\ndelay", "Past\ntuning", "Steady\nload", "Private\ntraining"]
-    x0, dx = 17.5, 10.7
-    xs = x0 + 8 * dx + 0.6
-    ytop, dy = 88.5, 8.0
-    for j, h in enumerate(heads):
-        ax.text(x0 + dx * (j + 0.5), ytop + 5.6, h, ha="center", va="center", fontsize=8, color=INK, linespacing=1.0)
-    ax.text(xs + 7.4, ytop + 5.6, "Criteria\nmet", ha="center", va="center", fontsize=8, color=INK, linespacing=1.0)
-    for i, (name, cells) in enumerate(rows):
-        y = ytop - dy * (i + 0.5)
-        isax = i == 0
-        if isax:
-            ax.add_patch(FancyBboxPatch((0.8, y - dy / 2 + 0.35), W - 1.6, dy - 0.7, boxstyle="round,pad=0,rounding_size=1.5",
-                                        fc=PALE, ec=AX_C, lw=1.0))
-        if i == 4:
-            ax.plot([1.0, W - 1.0], [y + dy / 2, y + dy / 2], color="#b5b5b5", lw=0.6, ls=(0, (3, 2)))
-        ax.text(1.8, y, name, ha="left", va="center", fontsize=8, color=AX_C if isax else INK)
-        for j, (kind, lab) in enumerate(cells):
-            cx = x0 + dx * (j + 0.5)
-            glyph(ax, cx, y + 1.15 if lab else y, kind, AX_C if isax else GREY)
-            if lab:
-                ax.text(cx, y - 2.3, lab, ha="center", va="center", fontsize=8, color=INK)
-        score = sum(1.0 if k == "full" else 0.5 if k == "half" else 0.0 for k, _ in cells)
-        ax.add_patch(FancyBboxPatch((xs + 0.6, y - 1.4), 6.0, 2.8, boxstyle="round,pad=0,rounding_size=0.5", fc="#e6e6e6", ec="none"))
-        if score:
-            ax.add_patch(FancyBboxPatch((xs + 0.6, y - 1.4), 6.0 * score / 8, 2.8, boxstyle="round,pad=0,rounding_size=0.5",
-                                        fc=AX_C if isax else "#8c8c8c", ec="none"))
-        ax.text(xs + 7.4, y, f"{score:g}/8", ha="left", va="center", fontsize=8, color=AX_C if isax else INK)
-    ly = ytop - dy * 6 - 3.0
-    lx = 12.0
+    names = [n for n, _ in rows]
+    x0, cw = 29.0, (W - 1.0 - 29.0) / len(rows)
+    cx = [x0 + cw * (j + 0.5) for j in range(len(rows))]
+    tw, th, rh, gh = cw - 1.4, 4.7, 5.6, 4.2
+    # column headers: controller families, then names
+    y = H - 2.6
+    for lab, js in (("Learned controllers", range(0, 4)), ("Rules", range(4, 6))):
+        xa, xb = cx[js[0]] - tw / 2, cx[js[-1]] + tw / 2
+        ax.text((xa + xb) / 2, y, lab, ha="center", va="center", fontsize=8, color="#6a6a6a")
+        ax.plot([xa, xb], [y - 2.2, y - 2.2], color=RULE, lw=0.6)
+    y_name = y - 5.6
+    for j, n in enumerate(names):
+        ax.text(cx[j], y_name, n, ha="center", va="center", fontsize=8, color=AX_C if j == 0 else INK)
+    ax.plot([1.0, W - 1.0], [y_name - 3.0, y_name - 3.0], color=INK, lw=0.7)
+    # criteria, grouped under category headers
+    y = y_name - 3.0
+    body_top = y
+    for g, crit in GROUPS:
+        ax.text(1.0, y - gh / 2 - 0.1, g, ha="left", va="center", fontsize=8, color="#6a6a6a")
+        y -= gh
+        for k, lab in crit:
+            ax.text(3.0, y - rh / 2, lab, ha="left", va="center", fontsize=8, color=INK)
+            for j, (_, cells) in enumerate(rows):
+                kind, val = cells[k]
+                tile(ax, cx[j], y - rh / 2, tw, th, kind, val)
+            y -= rh
+        y -= 0.7
+        ax.plot([1.0, W - 1.0], [y, y], color=RULE, lw=0.5)
+    # overall score as bars, out of 8
+    sc = [sum(1.0 if k == "full" else 0.5 if k == "half" else 0.0 for k, _ in cells) for _, cells in rows]
+    base, hmax = y - 10.4, 6.6
+    ax.text(1.0, base + hmax + 1.7, "Criteria met", ha="left", va="center", fontsize=8, color=INK)
+    ax.text(3.0, base + 2.4, "out of 8", ha="left", va="center", fontsize=8, color="#6a6a6a")
+    for j, v in enumerate(sc):
+        bw = tw * 0.55
+        ax.add_patch(plt.Rectangle((cx[j] - bw / 2, base), bw, hmax, fc="#f1f1f1", ec="none", zorder=2))
+        ax.add_patch(plt.Rectangle((cx[j] - bw / 2, base), bw, hmax * v / 8, fc=AX_C if j == 0 else "#8c8c8c", ec="none", zorder=3))
+        ax.text(cx[j], base + hmax + 1.7, f"{v:g}", ha="center", va="center", fontsize=8, color=AX_C if j == 0 else INK)
+    ax.plot([1.0, W - 1.0], [base - 0.0, base - 0.0], color=INK, lw=0.7)
+    # AXIOM's column, highlighted from its name to its bar
+    ax.add_patch(FancyBboxPatch((cx[0] - cw / 2 + 0.2, base - 1.0), cw - 0.4, y_name + 3.4 - base + 1.0,
+                                boxstyle="round,pad=0,rounding_size=1.2", fc=PALE, ec="none", zorder=1))
+    # learned against rules
+    xs = (cx[3] + cx[4]) / 2
+    ax.plot([xs, xs], [base, body_top + 7.6], color=RULE, lw=0.6, ls=(0, (2, 1.5)), zorder=2)
+    # legend
+    ly = base - 4.6
+    lx = 6.0
     for kind, lab in (("full", "meets"), ("half", "partly"), ("none", "does not"), ("na", "not tested")):
-        glyph(ax, lx, ly, kind, GREY, r=1.3)
-        ax.text(lx + 2.4, ly, lab, va="center", fontsize=8, color=INK)
-        lx += 25.0
-    ty = ly - 5.0
-    ax.text(1.8, ty, "AXIOM by the numbers", ha="left", va="center", fontsize=8, color=AX_C)
-    tw, th, gap = (W - 1.6 - 2 * 1.4) / 3, 13.2, 1.4
+        ax.add_patch(FancyBboxPatch((lx, ly - 1.6), 5.0, 3.2, boxstyle="round,pad=0,rounding_size=0.7",
+                                    fc=FILL[kind], ec=EDGE[kind], lw=0.7))
+        ax.text(lx + 6.6, ly, lab, ha="left", va="center", fontsize=8, color=INK)
+        lx += 28.0
+    # AXIOM by the numbers: key figures separated by hairlines
+    ty = ly - 5.4
+    ax.text(1.0, ty, "AXIOM by the numbers", ha="left", va="center", fontsize=8, color=AX_C)
+    ax.plot([34.0, W - 1.0], [ty, ty], color=RULE, lw=0.6)
+    sw, sh = (W - 2.0) / 3, 11.8
     for k, (big, lab) in enumerate(tl):
         c, r = k % 3, k // 3
-        bx, by = 0.8 + c * (tw + gap), ty - 2.6 - (r + 1) * th - r * gap
-        ax.add_patch(FancyBboxPatch((bx, by), tw, th, boxstyle="round,pad=0,rounding_size=1.4", fc=PALE, ec="none"))
-        ax.text(bx + tw / 2, by + th - 3.6, big, ha="center", va="center", fontsize=12.5, color=AX_C)
-        ax.text(bx + tw / 2, by + 3.9, lab, ha="center", va="center", fontsize=8, color=INK, linespacing=1.05)
+        bx, by = 1.0 + c * sw, ty - 3.0 - (r + 1) * sh
+        ax.text(bx + sw / 2, by + sh - 2.9, big, ha="center", va="center", fontsize=12.5, color=AX_C)
+        ax.text(bx + sw / 2, by + 3.3, lab, ha="center", va="center", fontsize=8, color=INK, linespacing=1.05)
+        if c:
+            ax.plot([bx, bx], [by + 1.2, by + sh - 1.2], color=RULE, lw=0.6)
+    ax.plot([1.0, W - 1.0], [ty - 3.0 - sh, ty - 3.0 - sh], color=RULE, lw=0.5)
+    print("lowest y", round(ty - 3.0 - 2 * sh, 2))
     fig.savefig(OUT + ".pdf", bbox_inches=None); fig.savefig(OUT + ".png", dpi=220, bbox_inches=None)   # exact 119 mm canvas
 
 
