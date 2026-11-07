@@ -16,7 +16,7 @@ import numpy as np
 import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
-from matplotlib.patches import FancyBboxPatch  # noqa: E402
+from matplotlib.patches import Circle, FancyBboxPatch, Wedge  # noqa: E402
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
@@ -137,23 +137,43 @@ def tiles(d):
 
 # Status encoding, one sequential blue scale that also reads in greyscale: dark meets, light partly, white does not,
 # grey not tested. Layout follows the summary matrices of benchmarking papers: criteria grouped under category headers,
-# one tile per controller and criterion with its value inside, the overall score as bars, hairlines instead of boxes.
-FILL = {"full": "#0072B2", "half": "#a8cdea", "none": "#ffffff", "na": "#ececec"}
-TXT = {"full": "#ffffff", "half": INK, "none": INK, "na": "#8a8a8a"}
-EDGE = {"full": "#0072B2", "half": "#a8cdea", "none": "#9fb6c9", "na": "#ececec"}
+# controllers as columns on a background tinted by family, one tile per run of equal cells with its value inside,
+# the overall score as a pie, hairlines instead of boxes.
+FILL = {"full": "#0072B2", "half": "#a8cdea", "none": "#ffffff", "na": "#e4e4e4"}
+TXT = {"full": "#ffffff", "half": INK, "none": INK, "na": "#7a7a7a"}
+EDGE = {"full": "#0072B2", "half": "#a8cdea", "none": "#9fb6c9", "na": "#e4e4e4"}
 RULE = "#c8c8c8"
+BG = {"learned": "#eaf1f8", "rules": "#f4efe4"}
+FAMILIES = (("Learned controllers", (0, 1, 2, 3), "learned"), ("Rules", (4, 5), "rules"))
 GROUPS = [("Scale", [(0, "Fixed size"), (1, "New size")]),
           ("Service at 37 gNBs", [(2, "Priority SLA"), (4, "URLLC delay")]),
           ("Adaptation", [(3, "Learns its rules"), (5, "Past tuning load"), (6, "Steady load")]),
           ("Privacy", [(7, "Private training")])]
 
 
-def tile(ax, cx, cy, w, h, kind, lab):
-    ax.add_patch(FancyBboxPatch((cx - w / 2, cy - h / 2), w, h, boxstyle="round,pad=0,rounding_size=1.0",
+def tile(ax, xa, xb, cy, h, kind, lab):
+    ax.add_patch(FancyBboxPatch((xa, cy - h / 2), xb - xa, h, boxstyle="round,pad=0,rounding_size=1.0",
                                 fc=FILL[kind], ec=EDGE[kind], lw=0.7, zorder=3))
-    txt = lab if lab else {"na": "\u2013", "full": "yes", "none": "no"}.get(kind, "")
+    txt = lab if lab else {"na": "not tested", "full": "yes", "none": "no"}.get(kind, "")
     if txt:
-        ax.text(cx, cy, txt, ha="center", va="center", fontsize=8, color=TXT[kind], zorder=4)
+        ax.text((xa + xb) / 2, cy, txt, ha="center", va="center", fontsize=8, color=TXT[kind], zorder=4)
+
+
+def runs(cells, cols):
+    """Consecutive columns of one family with the same status and value, merged into one tile."""
+    out, cur = [], [cols[0]]
+    for j in cols[1:]:
+        if cells[j] == cells[cur[-1]]:
+            cur.append(j)
+        else:
+            out.append(cur); cur = [j]
+    return out + [cur]
+
+
+def pie(ax, x, y, r, frac, col):
+    ax.add_patch(Circle((x, y), r, fc="#ffffff", ec=col, lw=0.7, zorder=3))
+    if frac > 0:
+        ax.add_patch(Wedge((x, y), r, 90 - 360 * frac, 90, fc=col, ec=col, lw=0.7, zorder=4))
 
 
 def draw(rows, tl):
@@ -164,63 +184,59 @@ def draw(rows, tl):
     x0, cw = 29.0, (W - 1.0 - 29.0) / len(rows)
     cx = [x0 + cw * (j + 0.5) for j in range(len(rows))]
     tw, th, rh, gh = cw - 1.4, 4.7, 5.6, 4.2
+    left = lambda j: cx[j] - tw / 2
+    right = lambda j: cx[j] + tw / 2
     # column headers: controller families, then names
     y = H - 2.6
-    for lab, js in (("Learned controllers", range(0, 4)), ("Rules", range(4, 6))):
-        xa, xb = cx[js[0]] - tw / 2, cx[js[-1]] + tw / 2
-        ax.text((xa + xb) / 2, y, lab, ha="center", va="center", fontsize=8, color="#6a6a6a")
-        ax.plot([xa, xb], [y - 2.2, y - 2.2], color=RULE, lw=0.6)
-    y_name = y - 5.6
+    for lab, js, _ in FAMILIES:
+        ax.text((left(js[0]) + right(js[-1])) / 2, y, lab, ha="center", va="center", fontsize=8, color="#6a6a6a")
+    y_name = y - 5.4
     for j, n in enumerate(names):
         ax.text(cx[j], y_name, n, ha="center", va="center", fontsize=8, color=AX_C if j == 0 else INK)
-    ax.plot([1.0, W - 1.0], [y_name - 3.0, y_name - 3.0], color=INK, lw=0.7)
-    # criteria, grouped under category headers
+    ax.plot([1.0, W - 1.0], [y_name - 3.0, y_name - 3.0], color=INK, lw=0.7, zorder=2)
+    # criteria, grouped under category headers, equal neighbours merged within a family
     y = y_name - 3.0
-    body_top = y
     for g, crit in GROUPS:
         ax.text(1.0, y - gh / 2 - 0.1, g, ha="left", va="center", fontsize=8, color="#6a6a6a")
         y -= gh
         for k, lab in crit:
             ax.text(3.0, y - rh / 2, lab, ha="left", va="center", fontsize=8, color=INK)
-            for j, (_, cells) in enumerate(rows):
-                kind, val = cells[k]
-                tile(ax, cx[j], y - rh / 2, tw, th, kind, val)
+            for _, cols, _ in FAMILIES:
+                for run in runs([c[k] for _, c in rows], cols):
+                    kind, val = rows[run[0]][1][k]
+                    tile(ax, left(run[0]), right(run[-1]), y - rh / 2, th, kind, val)
             y -= rh
         y -= 0.7
-        ax.plot([1.0, W - 1.0], [y, y], color=RULE, lw=0.5)
-    # overall score as bars, out of 8
+        ax.plot([1.0, W - 1.0], [y, y], color=RULE, lw=0.5, zorder=2)
+    # overall score: share of the eight criteria met, as a pie with its value
     sc = [sum(1.0 if k == "full" else 0.5 if k == "half" else 0.0 for k, _ in cells) for _, cells in rows]
-    base, hmax = y - 10.4, 6.6
-    ax.text(1.0, base + hmax + 1.7, "Criteria met", ha="left", va="center", fontsize=8, color=INK)
-    ax.text(3.0, base + 2.4, "out of 8", ha="left", va="center", fontsize=8, color="#6a6a6a")
+    yp, r = y - 4.6, 2.6
+    ax.text(1.0, yp, "Criteria met", ha="left", va="center", fontsize=8, color=INK)
     for j, v in enumerate(sc):
-        bw = tw * 0.55
-        ax.add_patch(plt.Rectangle((cx[j] - bw / 2, base), bw, hmax, fc="#f1f1f1", ec="none", zorder=2))
-        ax.add_patch(plt.Rectangle((cx[j] - bw / 2, base), bw, hmax * v / 8, fc=AX_C if j == 0 else "#8c8c8c", ec="none", zorder=3))
-        ax.text(cx[j], base + hmax + 1.7, f"{v:g}", ha="center", va="center", fontsize=8, color=AX_C if j == 0 else INK)
-    ax.plot([1.0, W - 1.0], [base - 0.0, base - 0.0], color=INK, lw=0.7)
-    # AXIOM's column, highlighted from its name to its bar
-    ax.add_patch(FancyBboxPatch((cx[0] - cw / 2 + 0.2, base - 1.0), cw - 0.4, y_name + 3.4 - base + 1.0,
-                                boxstyle="round,pad=0,rounding_size=1.2", fc=PALE, ec="none", zorder=1))
-    # learned against rules
-    xs = (cx[3] + cx[4]) / 2
-    ax.plot([xs, xs], [base, body_top + 7.6], color=RULE, lw=0.6, ls=(0, (2, 1.5)), zorder=2)
-    # legend
-    ly = base - 4.6
-    lx = 6.0
-    for kind, lab in (("full", "meets"), ("half", "partly"), ("none", "does not"), ("na", "not tested")):
-        ax.add_patch(FancyBboxPatch((lx, ly - 1.6), 5.0, 3.2, boxstyle="round,pad=0,rounding_size=0.7",
-                                    fc=FILL[kind], ec=EDGE[kind], lw=0.7))
-        ax.text(lx + 6.6, ly, lab, ha="left", va="center", fontsize=8, color=INK)
-        lx += 28.0
+        col = AX_C if j == 0 else "#6f6f6f"
+        pie(ax, cx[j] - 3.0, yp, r, v / 8, col)
+        ax.text(cx[j] + 0.6, yp, f"{v:g}/8", ha="left", va="center", fontsize=8, color=AX_C if j == 0 else INK)
+    base = yp - 4.4
+    ax.plot([1.0, W - 1.0], [base, base], color=INK, lw=0.7, zorder=2)
+    # family backgrounds, from the family label to the score row
+    for _, js, fam in FAMILIES:
+        ax.add_patch(FancyBboxPatch((left(js[0]) - 0.6, base + 0.35), right(js[-1]) - left(js[0]) + 1.2, H - 0.6 - base - 0.35,
+                                    boxstyle="round,pad=0,rounding_size=1.6", fc=BG[fam], ec="none", zorder=0))
+    # key: an ordinal colour strip for the three outcomes (grey cells name themselves)
+    ky, kh, ks = base - 3.4, 2.4, 12.0
+    kx = W - 1.0 - 3 * ks
+    ax.text(kx - 1.6, ky, "Cell colour", ha="right", va="center", fontsize=7, color="#6a6a6a")
+    for i, (kind, lab) in enumerate((("full", "meets"), ("half", "partly"), ("none", "does not"))):
+        ax.add_patch(plt.Rectangle((kx + i * ks, ky - kh / 2), ks, kh, fc=FILL[kind], ec=EDGE["none"], lw=0.5))
+        ax.text(kx + i * ks + ks / 2, ky - kh / 2 - 1.6, lab, ha="center", va="center", fontsize=7, color=INK)
     # AXIOM by the numbers: key figures separated by hairlines
-    ty = ly - 5.4
+    ty = ky - 8.0
     ax.text(1.0, ty, "AXIOM by the numbers", ha="left", va="center", fontsize=8, color=AX_C)
     ax.plot([34.0, W - 1.0], [ty, ty], color=RULE, lw=0.6)
     sw, sh = (W - 2.0) / 3, 11.8
     for k, (big, lab) in enumerate(tl):
-        c, r = k % 3, k // 3
-        bx, by = 1.0 + c * sw, ty - 3.0 - (r + 1) * sh
+        c, r_ = k % 3, k // 3
+        bx, by = 1.0 + c * sw, ty - 3.0 - (r_ + 1) * sh
         ax.text(bx + sw / 2, by + sh - 2.9, big, ha="center", va="center", fontsize=12.5, color=AX_C)
         ax.text(bx + sw / 2, by + 3.3, lab, ha="center", va="center", fontsize=8, color=INK, linespacing=1.05)
         if c:
