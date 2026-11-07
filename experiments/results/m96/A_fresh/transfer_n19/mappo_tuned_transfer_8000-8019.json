@@ -1,0 +1,162 @@
+{
+ "8000": {
+  "reward": 80.81885952479685,
+  "mmtc_blocks": 9374,
+  "blocks": 11552,
+  "exec_params": 5122,
+  "eval_seconds": 9.9,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8001": {
+  "reward": 68.6999003494742,
+  "mmtc_blocks": 1552,
+  "blocks": 4662,
+  "exec_params": 5122,
+  "eval_seconds": 16.3,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8002": {
+  "reward": 86.37462067689033,
+  "mmtc_blocks": 12853,
+  "blocks": 12853,
+  "exec_params": 5122,
+  "eval_seconds": 17.7,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8003": {
+  "reward": 75.43240056222744,
+  "mmtc_blocks": 11057,
+  "blocks": 22664,
+  "exec_params": 5122,
+  "eval_seconds": 9.6,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8004": {
+  "reward": 74.6576055230858,
+  "mmtc_blocks": 69,
+  "blocks": 1065,
+  "exec_params": 5122,
+  "eval_seconds": 9.6,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8005": {
+  "reward": 73.86424035875577,
+  "mmtc_blocks": 12378,
+  "blocks": 20032,
+  "exec_params": 5122,
+  "eval_seconds": 10.0,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8006": {
+  "reward": 77.95092906830196,
+  "mmtc_blocks": 1176,
+  "blocks": 3547,
+  "exec_params": 5122,
+  "eval_seconds": 9.9,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8007": {
+  "reward": 83.86238189959882,
+  "mmtc_blocks": 19165,
+  "blocks": 24217,
+  "exec_params": 5122,
+  "eval_seconds": 9.9,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8008": {
+  "reward": 67.31958837924606,
+  "mmtc_blocks": 11533,
+  "blocks": 24913,
+  "exec_params": 5122,
+  "eval_seconds": 17.0,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8009": {
+  "reward": 75.26993782391087,
+  "mmtc_blocks": 244,
+  "blocks": 2169,
+  "exec_params": 5122,
+  "eval_seconds": 14.5,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8010": {
+  "reward": 84.0599587889942,
+  "mmtc_blocks": 11352,
+  "blocks": 11641,
+  "exec_params": 5122,
+  "eval_seconds": 17.4,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8011": {
+  "reward": 78.93931448922662,
+  "mmtc_blocks": 961,
+  "blocks": 2638,
+  "exec_params": 5122,
+  "eval_seconds": 11.0,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8012": {
+  "reward": 45.68183363397498,
+  "mmtc_blocks": 21836,
+  "blocks": 47814,
+  "exec_params": 5122,
+  "eval_seconds": 9.9,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8013": {
+  "reward": 85.35951515832332,
+  "mmtc_blocks": 12400,
+  "blocks": 13024,
+  "exec_params": 5122,
+  "eval_seconds": 10.1,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8014": {
+  "reward": 79.40544442133417,
+  "mmtc_blocks": 6482,
+  "blocks": 12653,
+  "exec_params": 5122,
+  "eval_seconds": 10.1,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8015": {
+  "reward": 77.44832361824778,
+  "mmtc_blocks": 1534,
+  "blocks": 3205,
+  "exec_params": 5122,
+  "eval_seconds": 11.7,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8016": {
+  "reward": 84.52281594859045,
+  "mmtc_blocks": 13484,
+  "blocks": 15789,
+  "exec_params": 5122,
+  "eval_seconds": 17.7,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8017": {
+  "reward": 79.52641411506553,
+  "mmtc_blocks": 0,
+  "blocks": 63,
+  "exec_params": 5122,
+  "eval_seconds": 16.0,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8018": {
+  "reward": 77.32588124218529,
+  "mmtc_blocks": 1319,
+  "blocks": 4574,
+  "exec_params": 5122,
+  "eval_seconds": 14.4,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8019": {
+  "reward": 76.0431780681795,
+  "mmtc_blocks": 2217,
+  "blocks": 4577,
+  "exec_params": 5122,
+  "eval_seconds": 17.7,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ }
+}

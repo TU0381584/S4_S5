@@ -45,6 +45,8 @@ def read(path):
     """Return per-seed quantities straight from one evaluation log."""
     ep_rewards, ep_norm, ep_norm_all = {}, {}, {}
     blocks, mmtc, sla = 0, 0, {"urllc": [], "embb": [], "mmtc": []}
+    if not os.path.exists(path) and os.path.exists(path + ".gz"):   # logs gzipped losslessly on 2026-11-07 to free disk
+        path += ".gz"
     with (gzip.open(path, "rt") if path.endswith(".gz") else open(path)) as fh:
         for line in fh:
             rec = json.loads(line)

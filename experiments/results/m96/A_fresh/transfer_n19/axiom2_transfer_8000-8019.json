@@ -1,0 +1,162 @@
+{
+ "8000": {
+  "reward": 90.15091950689737,
+  "mmtc_blocks": 21743,
+  "blocks": 21743,
+  "exec_params": 7782,
+  "eval_seconds": 26.6,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8001": {
+  "reward": 86.4813497420802,
+  "mmtc_blocks": 13148,
+  "blocks": 13148,
+  "exec_params": 7782,
+  "eval_seconds": 22.4,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8002": {
+  "reward": 90.74728183791134,
+  "mmtc_blocks": 21924,
+  "blocks": 21924,
+  "exec_params": 7782,
+  "eval_seconds": 37.9,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8003": {
+  "reward": 84.79368239270984,
+  "mmtc_blocks": 11728,
+  "blocks": 11728,
+  "exec_params": 7782,
+  "eval_seconds": 23.2,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8004": {
+  "reward": 90.83243706056841,
+  "mmtc_blocks": 21924,
+  "blocks": 21924,
+  "exec_params": 7782,
+  "eval_seconds": 19.6,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8005": {
+  "reward": 89.96899605057551,
+  "mmtc_blocks": 22132,
+  "blocks": 22132,
+  "exec_params": 7782,
+  "eval_seconds": 26.8,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8006": {
+  "reward": 79.99198288384655,
+  "mmtc_blocks": 1751,
+  "blocks": 1751,
+  "exec_params": 7782,
+  "eval_seconds": 22.4,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8007": {
+  "reward": 84.29409790649737,
+  "mmtc_blocks": 8457,
+  "blocks": 8457,
+  "exec_params": 7782,
+  "eval_seconds": 22.6,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8008": {
+  "reward": 90.16044158143055,
+  "mmtc_blocks": 21781,
+  "blocks": 21781,
+  "exec_params": 7782,
+  "eval_seconds": 21.5,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8009": {
+  "reward": 87.22386397300514,
+  "mmtc_blocks": 14484,
+  "blocks": 14484,
+  "exec_params": 7782,
+  "eval_seconds": 29.8,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8010": {
+  "reward": 81.97705632186502,
+  "mmtc_blocks": 6767,
+  "blocks": 6767,
+  "exec_params": 7782,
+  "eval_seconds": 28.0,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8011": {
+  "reward": 90.2238819488583,
+  "mmtc_blocks": 21692,
+  "blocks": 21692,
+  "exec_params": 7782,
+  "eval_seconds": 21.2,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8012": {
+  "reward": 85.93743405057454,
+  "mmtc_blocks": 12868,
+  "blocks": 12868,
+  "exec_params": 7782,
+  "eval_seconds": 20.8,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8013": {
+  "reward": 89.70076035402282,
+  "mmtc_blocks": 20898,
+  "blocks": 20898,
+  "exec_params": 7782,
+  "eval_seconds": 19.4,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8014": {
+  "reward": 91.45124400042543,
+  "mmtc_blocks": 21613,
+  "blocks": 21613,
+  "exec_params": 7782,
+  "eval_seconds": 19.9,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8015": {
+  "reward": 90.28654417307875,
+  "mmtc_blocks": 21998,
+  "blocks": 21998,
+  "exec_params": 7782,
+  "eval_seconds": 21.7,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8016": {
+  "reward": 91.07550505500036,
+  "mmtc_blocks": 21924,
+  "blocks": 21924,
+  "exec_params": 7782,
+  "eval_seconds": 18.8,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8017": {
+  "reward": 90.86316121935289,
+  "mmtc_blocks": 21704,
+  "blocks": 21704,
+  "exec_params": 7782,
+  "eval_seconds": 17.5,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8018": {
+  "reward": 87.90482961588553,
+  "mmtc_blocks": 17913,
+  "blocks": 18652,
+  "exec_params": 7782,
+  "eval_seconds": 17.2,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ },
+ "8019": {
+  "reward": 90.68121919337814,
+  "mmtc_blocks": 21606,
+  "blocks": 21606,
+  "exec_params": 7782,
+  "eval_seconds": 16.3,
+  "source": "../experiments/results/m96/A_fresh/n7_hex"
+ }
+}
