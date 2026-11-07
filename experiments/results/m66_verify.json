@@ -6260,35 +6260,85 @@
   "ok": true
  },
  {
-  "label": "Fig. 10 capability matrix and margins: values recomputed, glyphs by rule, tiles as the verified abstract values, AXIOM alone meets seven of eight",
+  "label": "M97 tuned local rule in Env A at 37 gNBs: 30 held-out evaluations, the best of the 95-rule grid kept, every recorder re-run reproduces its log",
   "snippet": null,
   "computed": {
-   "scores": [
-    7.0,
-    2.5,
-    1.5,
-    1.5,
-    5.5,
-    3.0
-   ],
-   "tiles": [
-    "35.0 points",
-    "7\u201344\u00d7",
-    "88\u00d7",
-    "95%+",
-    "+8.7",
-    "27\u201336%"
-   ],
-   "expected_tiles": [
-    "35.0 points",
-    "7\u201344\u00d7",
-    "88\u00d7",
-    "95%+",
-    "+8.7",
-    "27\u201336%"
-   ],
-   "differs": []
+   "tau_c": 0.0,
+   "tau_q": null,
+   "tau_e": null
   },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M97: the tuned rule settles on the static rule's policy (tau_c 0 alone) and matches it in all 30 seeds",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig. 10: M96 b and M76 tuned-rule rows at 19 gNBs are identical",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig. 10 text: static rule over the tuned rule past its load at 19, lowest",
+  "snippet": "it leads the tuned rule by 8.05 to 10.63 reward per step",
+  "computed": 8.05226567414889,
+  "formatted": "8.05",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "Fig. 10 text: static rule over the tuned rule past its load at 19, highest",
+  "snippet": "it leads the tuned rule by 8.05 to 10.63 reward per step",
+  "computed": 10.627665556518135,
+  "formatted": "10.63",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "Fig. 10 text: static rule wins all 15 seeds against the tuned rule at Holm p<0.001, and its 1.8 to 2.0 lead over AXIOM has Holm p>=0.08",
+  "snippet": null,
+  "computed": {
+   "rule": {
+    "load_1.10": 8.052,
+    "load_1.15": 9.457,
+    "load_1.20": 10.628
+   },
+   "holm_vs_axiom": {
+    "load_1.10": 0.08312354807423959,
+    "load_1.15": 0.08622889356615071,
+    "load_1.20": 0.08622889356615071
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig. 10 strips and table: every plotted mean, N and 95% bootstrap CI recomputed, every table mark and qualifier rebuilt from its rule",
+  "snippet": null,
+  "computed": {
+   "numbers_failing": [],
+   "rows_differ": []
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig. 10 text: only AXIOM among the learned controllers meets both thresholds at 37 gNBs and keeps above 90% after 7 to 37 transfer",
+  "snippet": null,
+  "computed": [
+   "axiom2"
+  ],
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -7958,9 +8008,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 645",
+  "label": "text quotes the final check count of 652",
   "snippet": null,
-  "computed": 645,
+  "computed": 652,
   "formatted": null,
   "in_tex": null,
   "ok": true

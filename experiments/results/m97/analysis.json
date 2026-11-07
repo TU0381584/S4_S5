@@ -1,0 +1,66 @@
+{
+ "selected": {
+  "tau_c": 0.0,
+  "tau_q": null,
+  "tau_e": null
+ },
+ "train_score": 178.441480472179,
+ "grid_size": 95,
+ "runner_up": [
+  178.441480472179,
+  {
+   "tau_c": 0.0,
+   "tau_q": 0.05,
+   "tau_e": null
+  }
+ ],
+ "n_eval": 30,
+ "n_kpi": 30,
+ "kpi_all_reproduce_stored": true,
+ "prio_mean": 99.97666666666666,
+ "urllc_mean": 99.97555555555554,
+ "embb_mean": 99.97777777777777,
+ "reward_mean": 177.57627322080356,
+ "urllc_delay_mean": 0.03037465368956921,
+ "n_delay": 30,
+ "meets_sla90": true,
+ "meets_delay05": true,
+ "vs_static": {
+  "prio": {
+   "n": 30,
+   "diff": 0.0,
+   "wins": 0,
+   "ties": 30,
+   "losses": 0,
+   "p": 1.0
+  },
+  "reward": {
+   "n": 30,
+   "diff": 0.0,
+   "wins": 0,
+   "ties": 30,
+   "losses": 0,
+   "p": 1.0
+  }
+ },
+ "vs_axiom": {
+  "prio": {
+   "n": 30,
+   "diff": 6.391666666666667,
+   "wins": 5,
+   "ties": 25,
+   "losses": 0,
+   "p": 0.043114446783075355
+  },
+  "reward": {
+   "n": 30,
+   "diff": 3.371874833227588,
+   "wins": 5,
+   "ties": 25,
+   "losses": 0,
+   "p": 0.043114446783075355
+  }
+ },
+ "static_prio_mean": 99.97666666666666,
+ "axiom_hex_prio_mean": 93.585
+}

@@ -2642,59 +2642,119 @@ def main():
            and "AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$" in C.tex,
            fc19_)
 
-    # ---------------- capability matrix and margins (main Fig. 10) and the slice-priority and rule rationale (Secs. 3 and 5):
-    # every value recomputed here, every glyph checked against its rule, the tiles against the verified abstract values,
-    # and the text's "seven of its eight" against the scores
+    # ---------------- capability figure (main Fig. 10, the strips-and-table design): every plotted value, CI and table
+    # mark recomputed here from the logs, and the text that rests on it
     cap_ = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_capability_summary.json"))
+    cd_ = cap_["data"]
+    from scipy.stats import bootstrap as boot_
+    def bci_(v_):
+        v_ = np.asarray(v_, float)
+        if len(v_) < 2 or np.all(v_ == v_[0]):
+            return [float(v_.mean())] * 2
+        r_ = boot_((v_,), np.mean, n_resamples=10000, confidence_level=0.95, method="percentile", random_state=np.random.default_rng(0))
+        return [float(r_.confidence_interval.low), float(r_.confidence_interval.high)]
     cxa_ = json.load(open(f"{ROOT}/m64/complexity.json"))
     par_ = {a_: [cxa_[str(n_)][k_]["params_execution"] for n_ in (3, 7, 19)] + [cx37_[k_]["params_execution"]]
             for a_, k_ in (("axiom2", "axiom2"), ("mappo_tuned", "mappo"), ("single_agent_dqn", "single_agent_dqn"), ("independent_dqn", "independent_dqn"))}
+    LRN_ = ("axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn")
+    # M97 (prereg 33522657): the local rule tuned on Env A training streams at 37 gNBs, hex, the baselines' 30 seeds
+    sel97_ = json.load(open(f"{ROOT}/m97/A_n37_hex/rule_local_selection.json"))
+    rl97_ = seeds_of("m97/A_n37_hex", "rule_local", S30_19)
+    k97_ = {int(s_): r_ for f_ in glob.glob(f"{ROOT}/m97/A_n37_hex_kpi/rule_local_cell_*.json") for s_, r_ in json.load(open(f_)).items()}
+    st97_ = seeds_of("m73/A_n37_hex", "rule_static", S30_19)
+    C.note("M97 tuned local rule in Env A at 37 gNBs: 30 held-out evaluations, the best of the 95-rule grid kept, every recorder re-run reproduces its log",
+           len(rl97_) == 30 and sorted(k97_) == sorted(S30_19) and all(r_["reproduces_stored"] is True for r_ in k97_.values())
+           and len(sel97_["grid"]) == 95 and sel97_["train_score"] == max(g_[0] for g_ in sel97_["grid"])
+           and sel97_["selected"] == next(g_[1] for g_ in sel97_["grid"] if g_[0] == sel97_["train_score"]), sel97_["selected"])
+    C.note("M97: the tuned rule settles on the static rule's policy (tau_c 0 alone) and matches it in all 30 seeds",
+           sel97_["selected"] == {"tau_c": 0.0, "tau_q": None, "tau_e": None}
+           and all(rl97_[s_]["reward"] == st97_[s_]["reward"] and rl97_[s_]["blocks"] == st97_[s_]["blocks"] and rl97_[s_]["sla"] == st97_[s_]["sla"] for s_ in S30_19)
+           and "A local threshold rule tuned on Env A training streams at thirty-seven gNBs, in a further pre-registered run, settles on this same policy and matches the static rule in all 30 seeds" in C.main, None)
+    # per-seed values in the figure script's order
+    sv_ = {"axiom2": [100 * prio(r_) for t_, ss_ in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for r_ in seeds_of(f"m73/A_n37_{t_}", "axiom2", ss_).values()]}
+    for a_ in LRN_[1:] + ("rule_static",):
+        sv_[a_] = [100 * prio(r_) for r_ in seeds_of("m73/A_n37_hex", a_, S30_19).values()]
+    sv_["rule_local"] = [100 * prio(r_) for r_ in rl97_.values()]
+    def kd_(cell_, arm_):
+        rr_ = {}
+        for f_ in glob.glob(f"{ROOT}/{cell_}/{arm_}_*.json"):
+            rr_.update({int(k_): v_ for k_, v_ in json.load(open(f_)).items()})
+        return [rr_[s_]["kpi"]["urllc"]["delay_steps"] for s_ in sorted(rr_) if rr_[s_]["kpi"]["urllc"]["delay_steps"] is not None]
+    dv_ = {a_: kd_("m77/A_n37_hex", a_) for a_ in LRN_ + ("rule_static",)}
+    dv_["rule_local"] = kd_("m97/A_n37_hex_kpi", "rule_local_cell")
+    tv_ = {a_: [100 * prio(r_) for t_ in ("hex", "ring", "fully_connected") for r_ in seeds_of(f"m92/A_{t_}_n37", f"{a_}_transfer", S15).values()]
+           for a_ in ("axiom2", "mappo_tuned")}
     t37_ = [mu92_(C92_[f"A_{t_}_n37"]["AXIOM-7to37"]) for t_ in ("hex", "ring", "fully_connected")]
-    tm37_ = mu92_(C92_["A_hex_n37"]["MAPPO-7to37"])
-    s37_ = {"axiom2": pooled37["axiom2"], **{a_: 100 * mean(seeds_of("m73/A_n37_hex", a_, S30_19), prio) for a_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}}
-    d37_ = {a_: km_("A_n37_hex", a_, "urllc", "delay_steps") for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static")}
-    pastB_ = all(v_["verdict"] == "AXIOM" for kk_, v_ in rg_["B"].items() if float(kk_.split("|")[1]) >= 1.10)
-    pastA_ = all(v_["verdict"] == "tie" for kk_, v_ in rg_["A"].items() if float(kk_.split("|")[1]) > 1.05)
-    nomB_ = all(rg_["B"][kk_]["verdict"] == "rule" for kk_ in ("3|1.00", "7|1.00", "19|1.00"))
-    # learned controllers past the tuning load (M96 b): nine tests against the tuned rule, Holm per controller
+    # Env B, 19 gNBs: reward per step minus the carried tuned rule's, M96 b for the learned controllers, M76 for the static rule
+    LB_ = ("load_1.10", "load_1.15", "load_1.20")
+    rl19_ = {L_: seeds_of(f"m96/B_shift/n19_hex/{L_}", "rule_local_transfer", S15) for L_ in ("nominal",) + LB_}
+    C.note("Fig. 10: M96 b and M76 tuned-rule rows at 19 gNBs are identical", all(rl19_[L_][s_]["reward"] == b176_[L_]["rule_local_transfer"][s_]["reward"]
+           for L_ in rl19_ for s_ in S15), None)
+    row19_ = lambda a_, L_: b176_[L_]["rule_static"] if a_ == "rule_static" else seeds_of(f"m96/B_shift/n19_hex/{L_}", a_, S15)
+    past_ = {a_: float(np.mean([np.mean([row19_(a_, L_)[s_]["reward"] - rl19_[L_][s_]["reward"] for L_ in LB_]) for s_ in S15])) for a_ in LRN_ + ("rule_static",)}
+    stdy_ = {a_: float(np.mean([row19_(a_, "nominal")[s_]["reward"] - rl19_["nominal"][s_]["reward"] for s_ in S15])) for a_ in LRN_ + ("rule_static",)}
     cb96_ = {3: ("m96/B_shift/n3", list(range(905, 930)), "rule_local"), 7: ("m96/B_shift/n7_ring", S15, "rule_local"),
              19: ("m96/B_shift/n19_hex", S15, "rule_local_transfer")}
     pw96_ = {}
-    for a_ in ("axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn"):
-        t_ = {f"{n_}|{L_}": paired(seeds_of(f"{c_}/{L_}", a_, ss_), seeds_of(f"{c_}/{L_}", rl_, ss_))
-              for n_, (c_, ss_, rl_) in cb96_.items() for L_ in ("load_1.10", "load_1.15", "load_1.20")}
+    for a_ in LRN_:
+        t_ = {f"{n_}|{L_}": paired(seeds_of(f"{c_}/{L_}", a_, ss_), seeds_of(f"{c_}/{L_}", rl_, ss_)) for n_, (c_, ss_, rl_) in cb96_.items() for L_ in LB_}
         h_ = holm({k_: v_["p"] for k_, v_ in t_.items()})
-        pw96_[a_] = (sum(v_["diff"] > 0 and h_[k_] < 0.05 for k_, v_ in t_.items()), len(t_), {v_["n"] for v_ in t_.values()})
-    pg_ = lambda a_: ["full", "ahead"] if pw96_[a_][0] == pw96_[a_][1] else ["half", "mixed"] if pw96_[a_][0] else ["none", "trails"]
-    fx_ = lambda a_: "full" if len(set(par_[a_])) == 1 else "none"
-    sl_ = lambda a_: "full" if s37_[a_] >= 90 else "none"
-    dl_c_ = lambda a_: "full" if d37_[a_] < 0.5 else "none"
-    exp_ = [
-        ["AXIOM", [[fx_("axiom2"), f"{par_['axiom2'][-1]:,}"], ["full" if min(t37_) >= 90 else "half", f"{min(t37_):.0f}\u2013{max(t37_):.0f}%"],
-                   [sl_("axiom2"), f"{s37_['axiom2']:.1f}%"], ["full", ""], [dl_c_("axiom2"), f"{d37_['axiom2']:.2f}"],
-                   ["full" if pastB_ else "half", "ahead"], ["none", "loses"], ["full", "tested"]]],
-        ["MAPPO", [[fx_("mappo_tuned"), f"{par_['mappo_tuned'][-1]:,}"], ["half" if tm37_ < 90 else "full", f"{tm37_:.1f}%"], [sl_("mappo_tuned"), f"{s37_['mappo_tuned']:.1f}%"],
-                   ["full", ""], [dl_c_("mappo_tuned"), f"{d37_['mappo_tuned']:.2f}"], pg_("mappo_tuned"), ["none", "loses"], ["na", ""]]],
-        ["DQN-SA", [[fx_("single_agent_dqn"), f"{par_['single_agent_dqn'][-1]:,}"], ["none", "cannot"], [sl_("single_agent_dqn"), f"{s37_['single_agent_dqn']:.1f}%"],
-                    ["full", ""], [dl_c_("single_agent_dqn"), f"{d37_['single_agent_dqn']:.2f}"], pg_("single_agent_dqn"), ["none", "loses"], ["na", ""]]],
-        ["DQN-I", [[fx_("independent_dqn"), f"{par_['independent_dqn'][-1]:,}"], ["none", "cannot"], [sl_("independent_dqn"), f"{s37_['independent_dqn']:.1f}%"],
-                   ["full", ""], [dl_c_("independent_dqn"), f"{d37_['independent_dqn']:.2f}"], pg_("independent_dqn"), ["none", "loses"], ["na", ""]]],
-        ["Static rule", [["full", "none"], ["full", "any"], [sl_("rule_static"), f"{s37_['rule_static']:.2f}%"], ["none", ""], [dl_c_("rule_static"), f"{d37_['rule_static']:.2f}"],
-                         ["half" if pastA_ else "none", "ties"], ["full", "best"], ["na", ""]]],
-        ["Tuned rule", [["full", "none"], ["full", "7 to 19"], ["na", ""], ["none", ""], ["na", ""], ["none" if pastB_ else "half", "trails"],
-                        ["full" if nomB_ else "half", "best"], ["na", ""]]]]
-    sc_ = [sum(1.0 if c_[0] == "full" else 0.5 if c_[0] == "half" else 0.0 for c_ in r_[1]) for r_ in exp_]
-    om_ = [100 * (b3a_ / b3m_ - 1), 100 * (a19_ / m19_ - 1)]
-    exp_t_ = [f"{gap37_:.1f} points", f"{min(rat_):.0f}\u2013{max(rat_):.0f}\u00d7", f"{par_['independent_dqn'][-1] / par_['axiom2'][-1]:.0f}\u00d7",
-              f"{np.floor(min(t37_)):.0f}%+", f"+{max(ov_):.1f}", f"{min(om_):.0f}\u2013{max(om_):.0f}%"]
-    C.note("Fig. 10 capability matrix and margins: values recomputed, glyphs by rule, tiles as the verified abstract values, AXIOM alone meets seven of eight",
-           cap_["rows"] == exp_ and [t_[0] for t_ in cap_["tiles"]] == exp_t_ and cap_["thresholds"] == {"sla37": 90.0, "delay37": 0.5}
-           and sc_[0] == 7 and all(x_ < 7 for x_ in sc_[1:]) and pg_("axiom2")[0] == ("full" if pastB_ else "half")
-           and [pw96_[a_][0] for a_ in ("axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn")] == [9, 0, 4, 3]
-           and all(x_[1] == 9 and x_[2] <= {15, 25} for x_ in pw96_.values())
-           and "AXIOM alone meets seven of its eight criteria" in C.main
-           and "At 37 gNBs compliance is met at 90\\% and delay below half a control period" in C.main,
-           {"scores": sc_, "tiles": [t_[0] for t_ in cap_["tiles"]], "expected_tiles": exp_t_, "differs": [r_[0] for r_, e_ in zip(cap_["rows"], exp_) if r_ != e_]})
+        pw96_[a_] = (sum(v_["diff"] > 0 and h_[k_] < 0.05 for k_, v_ in t_.items()), len(t_))
+    tsr_ = {L_: paired(b176_[L_]["rule_static"], b176_[L_]["rule_local_transfer"]) for L_ in LB_}
+    hsr_ = holm({k_: v_["p"] for k_, v_ in tsr_.items()})
+    pw96_["rule_static"] = (sum(v_["diff"] > 0 and hsr_[k_] < 0.05 for k_, v_ in tsr_.items()), 3)
+    tsa_ = {L_: paired(b176_[L_]["rule_static"], b176_[L_]["axiom2"]) for L_ in LB_}
+    hsa_ = holm({k_: v_["p"] for k_, v_ in tsa_.items()})
+    C.claim("Fig. 10 text: static rule over the tuned rule past its load at 19, lowest", "it leads the tuned rule by 8.05 to 10.63 reward per step", min(v_["diff"] for v_ in tsr_.values()), "{:.2f}")
+    C.claim("Fig. 10 text: static rule over the tuned rule past its load at 19, highest", "it leads the tuned rule by 8.05 to 10.63 reward per step", max(v_["diff"] for v_ in tsr_.values()), "{:.2f}")
+    C.note("Fig. 10 text: static rule wins all 15 seeds against the tuned rule at Holm p<0.001, and its 1.8 to 2.0 lead over AXIOM has Holm p>=0.08",
+           all(v_["wins"] == 15 for v_ in tsr_.values()) and max(hsr_.values()) < 0.001
+           and f"{min(v_['diff'] for v_ in tsa_.values()):.1f}" == "1.8" and f"{max(v_['diff'] for v_ in tsa_.values()):.1f}" == "2.0" and min(hsa_.values()) >= 0.08
+           and "in all 15 seeds at Holm-adjusted $p<0.001$, and its lead of 1.8 to 2.0 over AXIOM stays within chance, at Holm-adjusted $p\\geq0.08$" in C.main,
+           {"rule": {k_: round(v_["diff"], 3) for k_, v_ in tsr_.items()}, "holm_vs_axiom": hsa_})
+    rA_ = {a_: mean(seeds_of("m73/A_n37_hex", a_, S30_19)) for a_ in LRN_ + ("rule_static",)}
+    rA_["rule_local"] = mean(rl97_)
+    fdp_ = float(wilcoxon(np.array(fd_)).pvalue)
+    # the table, rebuilt from its stated rules
+    sg_ = lambda x_: f"{x_:+.1f}".replace("-", "−")
+    tbA_ = {"axiom2": ["yes" if min(t37_) >= 90 else "half", f"{min(t37_):.0f}–{max(t37_):.0f}%"],
+            "mappo_tuned": ["yes" if np.mean(tv_["mappo_tuned"]) >= 90 else "half", f"{np.mean(tv_['mappo_tuned']):.1f}%"],
+            "single_agent_dqn": ["no", "fixed input"], "independent_dqn": ["no", "fixed input"], "rule_static": ["yes", "size-free"],
+            "rule_local": ["yes", "7→19, Env B"]}
+    tbP_ = {}
+    for a_ in LRN_ + ("rule_static",):
+        w_, n_ = pw96_[a_]
+        mk_ = "yes" if w_ == n_ else "half" if w_ else "no"
+        tbP_[a_] = [mk_, sg_(past_[a_]) + "/step" if mk_ == "yes" else f"{w_} of {n_} wins"]
+    tbP_["rule_local"] = ["none", "reference"]
+    bA_ = {a_ for a_ in rA_ if rA_[a_] == max(rA_.values())}
+    bB_ = {"rule_local"} if all(v_ < 0 for v_ in stdy_.values()) else {max(stdy_, key=stdy_.get)}
+    tbS_ = {a_: (["yes", "best in A, B"] if a_ in bA_ and a_ in bB_ else ["yes", "best in A"] if a_ in bA_ else ["yes", "best in B"] if a_ in bB_
+                 else ["no", sg_(stdy_[a_]) + "/step"]) for a_ in LRN_ + ("rule_static", "rule_local")}
+    tbV_ = {"axiom2": ["yes" if fdp_ >= 0.05 else "half", "FedAvg"], "mappo_tuned": ["no", "pooled"], "single_agent_dqn": ["no", "pooled"],
+            "independent_dqn": ["yes", "local"], "rule_static": ["yes", "no model"], "rule_local": ["yes", "no model"]}
+    exp_rows_ = [["Transfers without\nretraining", tbA_], ["Beats tuned rule\npast its load", tbP_], ["Best under\nsteady load", tbS_], ["Private training", tbV_]]
+    num_ok_ = []
+    for k_, src_ in (("sla37", sv_), ("delay37", dv_), ("transfer37", tv_)):
+        for a_, v_ in src_.items():
+            num_ok_.append(abs(cd_[k_][a_]["mean"] - float(np.mean(v_))) < 1e-9 and cd_[k_][a_]["n"] == len(v_)
+                           and np.allclose(cd_[k_][a_]["ci95"], bci_(v_), atol=1e-9))
+    num_ok_ += [cd_["params"][a_] == {"3": par_[a_][0], "7": par_[a_][1], "19": par_[a_][2], "37": par_[a_][3]} for a_ in LRN_]
+    num_ok_ += [abs(cd_["past19"][a_]["mean"] - past_[a_]) < 1e-9 and abs(cd_["steady19"][a_]["mean"] - stdy_[a_]) < 1e-9 for a_ in past_]
+    num_ok_ += [abs(cd_["rewardA37"][a_]["mean"] - rA_[a_]) < 1e-9 for a_ in rA_]
+    num_ok_ += [abs(cd_["fed_cost"]["mean"] - float(np.mean(fd_))) < 1e-9, abs(cd_["fed_cost"]["p"] - fdp_) < 1e-12]
+    lead_ = float(np.mean(sv_["axiom2"])) - max(np.mean(sv_[a_]) for a_ in LRN_[1:])
+    num_ok_ += [abs(cd_["lead37"]["points"] - lead_) < 1e-9, f"{lead_:.1f}" == "35.0", f"{par_['independent_dqn'][3] / par_['axiom2'][3]:.0f}" == "88"]
+    C.note("Fig. 10 strips and table: every plotted mean, N and 95% bootstrap CI recomputed, every table mark and qualifier rebuilt from its rule",
+           all(num_ok_) and cap_["rows"] == exp_rows_ and cap_["thresholds"] == {"sla37": 90.0, "delay37": 0.5} and cap_["size_mm"] == [119.0, 100.0],
+           {"numbers_failing": [i_ for i_, x_ in enumerate(num_ok_) if not x_], "rows_differ": [r_[0] for r_, e_ in zip(cap_["rows"], exp_rows_) if r_ != e_]})
+    thr_ = [a_ for a_ in LRN_ if np.mean(sv_[a_]) >= 90 and np.mean(dv_[a_]) < 0.5]
+    C.note("Fig. 10 text: only AXIOM among the learned controllers meets both thresholds at 37 gNBs and keeps above 90% after 7 to 37 transfer",
+           thr_ == ["axiom2"] and min(t37_) > 90 and np.mean(tv_["mappo_tuned"]) < 90
+           and "Among the learned controllers, only AXIOM meets both service thresholds at 37 gNBs and keeps above 90\\% compliance when moved there from seven gNBs without retraining" in C.main
+           and "Dashed lines mark 90\\% compliance and half a control period of delay, and n/t marks a value not tested" in C.main
+           and "Private training is measured for AXIOM and follows from the training design for the others" in C.main
+           and "AXIOM alone meets seven of its eight criteria" not in C.main, thr_)
     # ---------------- M96 (prereg 32de84d0): fresh-seed transfer, fresh-seed load-shift lead, learned baselines past the tuning load
     F96_ = list(range(8000, 8020))
     a96_ = {n_: {"ax": seeds_of(f"m96/A_fresh/transfer_n{n_}", "axiom2_transfer", F96_), "mp": seeds_of(f"m96/A_fresh/transfer_n{n_}", "mappo_tuned_transfer", F96_),

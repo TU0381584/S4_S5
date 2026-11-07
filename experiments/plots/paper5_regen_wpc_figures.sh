@@ -16,7 +16,7 @@ $PY $P/paper5_fig_envB.py --root $R/m64 --out $F/fig11_envB
 (cd $P && $PY paper5_fig_pergnb_envb.py)
 (cd $P && $PY paper5_fig_superiority.py)
 (cd $P && $PY paper5_fig_regime.py)
-(cd $P && $PY paper5_fig_capability.py)   # reads the regime map's summary, so after it
+(cd $P && $PY paper5_fig_capability.py)   # Fig. 10, strips and table; needs M97 and the M76/M96 load-shift logs
 
 # Online Resource 1
 (cd $P && $PY paper5_fig_forest.py)
