@@ -117,3 +117,26 @@ Reproducibility: paper5_regen_wpc_figures.sh regenerates all 15 figure files; ev
 | CI recompute | 19 of 19 same |
 | figures | all 15 regenerate pixel-identical with paper5_regen_wpc_figures.sh |
 | submission | Fig1 to Fig9 in PDF and EPS, ESM_1.pdf byte-identical to the compiled OR1, ESM_2.csv; main.pdf has the same words as the working copy apart from the single-letter callout keys inside Fig. 4 |
+
+## Table 1, prior-work cells (2026-11-09, author: "proceed on your recommendations")
+
+A cell changed from n.r. only where the paper's own text states the fact; sources read in full with pdftotext.
+
+| Work | Cell | Value | Verbatim support | Source |
+|---|---|---|---|---|
+| Shao et al. | Max cells | 19 | "we consider 19 BSs arranged like beehives as displayed in Fig. 1" (Sec. V-A) | arXiv 2108.05063 |
+| Shao et al. | Rule baselines | yes | "DRL-based schemes (DQN and A2C) and hard slicing methods are involved as baselines ... Hard slicing allocates the total bandwidth for each slice uniformly" (Sec. V-A) | arXiv 2108.05063 |
+| Shao et al. | Size-invariant params | n.r. kept | A2C: "different agents use the independent networks"; the DQN variant's sharing is not stated, so no single answer | arXiv 2108.05063 |
+| Shao et al. | Zero-shot size transfer | n.r. kept | only 19 BSs are evaluated | arXiv 2108.05063 |
+| Sulaiman et al. | Rule baselines | yes | "We utilize two heuristic-based and three DRL-based approaches ... (i) Greedy: All SRs are accepted for embedding ... (ii) Node-ranking" (Sec. VI-C) | rboutaba.cs.uwaterloo.ca/Papers/Journals/2023/SulaimanTNSM2022.pdf |
+| Sulaiman et al. | Max cells | n.r. kept | the topology is "a 3-tiered topology, having 9 nodes, 3 in each tier" of compute sites; the number of cells or RUs is not stated | same |
+| Sulaiman et al. | Zero-shot size transfer | n.r. kept | generalisation is to "variable SRs arrival rate, priority and throughput distributions", not to size | same |
+| Zangooei et al. | Max cells | 1 | "we consider a single-cell scenario" (Sec. III) | rboutaba.cs.uwaterloo.ca/Papers/Journals/2023/ZangooeiJSAC2023.pdf |
+| Zangooei et al. | Size-invariant params | partly, over slices | "A single policy per slice type is stored in Non-RT RIC" | same |
+| Zangooei et al. | Zero-shot size transfer | partly, over slices | "the model is meticulously designed to be able to adapt to variations in the number of slices without necessitating a retraining process" | same |
+| Zangooei et al. | Rule baselines | no | "We consider four RL methods as baseline algorithms: a model-based RL scheme named KBRL, two model-free single-agent RL methods, ... and a multi-agent RL approach" (Sec. VI-B) | same |
+| Ahmadi et al., Mohajer et al., Bouroudi et al. | all four | n.r. kept | no accessible full text found (Ahmadi's NOMS 2023 relative is a different paper) | n/a |
+
+Footnote e added: "Over the number of slices in a single cell, not over cells."
+
+For the author: Sulaiman et al.'s Greedy baseline "accepts all SRs for embedding", close to an accept-all trivial policy. The Related Work sentences "neither study checks for degenerate policies" (Shao, Sulaiman) and "None of these core studies checks its metric against a trivial policy" come from the systematic review and were not changed; please confirm they still hold under the review's definition.
