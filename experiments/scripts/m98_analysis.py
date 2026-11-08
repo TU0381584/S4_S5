@@ -93,8 +93,8 @@ def main():
     from paper5_fig_superiority import shift_row
     d1 = {}
     for L in LOADS:
-        rep_ax = {f"rep:{s}": {"reward": shift_row("m76/b1_shift_n19", L, "axiom2", s)["reward"], "collapsed": 0} for s in S15}
-        rep_st = {f"rep:{s}": {"reward": shift_row("m76/b1_shift_n19", L, "rule_static", s)["reward"], "collapsed": 0} for s in S15}
+        rep_ax = {f"rep:{s}": shift_row("m76/b1_shift_n19", L, "axiom2", s) for s in S15}       # full records, as read from the logs
+        rep_st = {f"rep:{s}": shift_row("m76/b1_shift_n19", L, "rule_static", s) for s in S15}
         fr_ax = keyed(seeds_of(f"m96/C_fresh_shift/n19_hex/{L}", "axiom2", list(range(7000, 7015))), "fresh")
         fr_st = keyed(seeds_of(f"m96/C_fresh_shift/n19_hex/{L}", "rule_static", list(range(7000, 7015))), "fresh")
         d1[L] = comp({**rep_st, **fr_st}, {**rep_ax, **fr_ax})
