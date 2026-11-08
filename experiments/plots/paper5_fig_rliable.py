@@ -16,50 +16,50 @@ from matplotlib.lines import Line2D  # noqa: E402
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
 from paper5_common import SUPP_WIDTH_IN  # noqa: E402
 
-mpl.rcParams.update({"font.size": 8, "axes.labelsize": 8, "xtick.labelsize": 8, "ytick.labelsize": 8,
-                     "axes.linewidth": 0.7, "pdf.fonttype": 42, "ps.fonttype": 42})
+sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
+import axiom_style as S  # noqa: E402
+S.setup()
 SUMMARY = "/home/kmanojp/oranslice_rig/experiments/results/m93/m93_summary.json"
 OUT = "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_rliable"
 TABLE = "/home/kmanojp/oranslice_rig/experiments/results/m93/table_rliable.tex"
-STYLE = {"AXIOM": ("#0072B2", "-", 1.6), "DQN-SA": ("#009E73", "-", 1.1), "DQN-I": ("#D55E00", "-", 1.1),
-         "MAPPO": ("#000000", "-", 1.1), "Static rule": ("#555555", "--", 1.1), "Tuned rule": ("#CC79A7", "--", 1.1)}
+# figure-audit tokens: AXIOM blue, learned baselines grey told apart by line style, rules vermillion
+STYLE = {"AXIOM": ("#0072B2", "-", 1.6), "MAPPO": ("#7F7F7F", "-", 1.0), "DQN-SA": ("#7F7F7F", (0, (4, 1.5)), 1.0),
+         "DQN-I": ("#7F7F7F", (0, (1, 1.2)), 1.0), "Static rule": ("#D55E00", "-", 1.0), "Tuned rule": ("#D55E00", (0, (4, 1.5)), 1.0)}
 ORDER = ("Env A, 3 gNBs", "Env A, 7 gNBs", "Env A, 19 gNBs", "Env A, 37 gNBs", "Env B, 3 gNBs", "Env B, 7 gNBs", "Env B, 19 gNBs")
 TAG = {"A": dict(fc="#e2e8f0", ec="#5a6b82", tc="#26344a"), "B": dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")}
 MINUS = "−"
 
 
 def figure(d):
-    fig, axs = plt.subplots(2, 4, figsize=(SUPP_WIDTH_IN, 4.1), sharey=True)
+    """Figure audit: a 4 x 2 grid, Env A down the left column and Env B down the right, the legend in the last cell.
+    Tokens of figures/axiom_style.py; CI bands are opaque tints with their edges drawn, since EPS has no transparency."""
+    fig = S.figure("full", 150)
+    fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / 150.0)
+    slots = {"Env A, 3 gNBs": (0, 0), "Env A, 7 gNBs": (0, 1), "Env A, 19 gNBs": (0, 2), "Env A, 37 gNBs": (0, 3),
+             "Env B, 3 gNBs": (1, 0), "Env B, 7 gNBs": (1, 1), "Env B, 19 gNBs": (1, 2)}
     for i, name in enumerate(ORDER):
-        ax = axs.flat[i]
-        S = d["settings"][name]
-        tau = np.array(S["profile_tau"])
-        for k, p in S["policies"].items():
+        col, row = slots[name]
+        ax = fig.add_axes([fw(14 + col * 56), fh(150 - 31 - row * 34.5), fw(46), fh(24)])
+        St = d["settings"][name]
+        tau = np.array(St["profile_tau"])
+        for k, p in St["policies"].items():
             c, ls, lw = STYLE[k]
             ci = np.array(p["profile_ci"])
-            ax.fill_between(tau, ci[0], ci[1], color=c, alpha=0.12, lw=0)
+            ax.fill_between(tau, ci[0], ci[1], color=S.lighten(c, 0.88), lw=0, zorder=0)   # opaque tint, EPS-safe
+            for e_ in ci:   # band edges stay visible where bands overlap
+                ax.plot(tau, e_, color=S.lighten(c, 0.45), lw=0.4, ls=ls, zorder=1)
             ax.plot(tau, p["profile"], color=c, ls=ls, lw=lw, zorder=3 if k == "AXIOM" else 2)
-        env, size = name.split(", ")
-        e = env[-1]
-        ax.text(0.10, 1.05, f"Env {e}", transform=ax.transAxes, va="bottom", fontsize=8, color=TAG[e]["tc"],
-                bbox=dict(boxstyle="round,pad=0.25", fc=TAG[e]["fc"], ec=TAG[e]["ec"], lw=0.6))
-        ax.text(0.44, 1.05, size, transform=ax.transAxes, va="bottom", fontsize=8)
-        ax.set_xlim(0, 100)
-        ax.set_ylim(0, 1.02)
-        ax.set_xticks([0, 50, 100])
-        ax.grid(alpha=0.25, lw=0.5)
-        if i % 4 == 0:
-            ax.set_ylabel("Fraction of runs above τ")
-        if i >= 3:
-            ax.set_xlabel("Priority-slice SLA τ, %")
-        ax.text(-0.02, 1.05, "abcdefg"[i], transform=ax.transAxes, fontsize=9, va="bottom")
-    leg = axs.flat[7]
-    leg.axis("off")
+        ax.set_xlim(0, 100); ax.set_ylim(0, 1.02); ax.set_xticks([0, 50, 100]); ax.set_yticks([0, 0.5, 1])
+        ax.set_title(name, loc="left", pad=3)
+        ax.text(-0.2, 1.08, "abcdefg"[i], transform=ax.transAxes, fontweight="bold", va="bottom")
+        if col == 0:
+            ax.set_ylabel("Fraction of runs\nabove \u03c4")
+        if row == 3 or (col == 1 and row == 2):
+            ax.set_xlabel("Priority-slice compliance \u03c4 (%)")
+    leg = fig.add_axes([fw(70), fh(150 - 31 - 3 * 34.5), fw(46), fh(24)]); leg.axis("off")
     handles = [Line2D([], [], color=c, ls=ls, lw=lw, label=k) for k, (c, ls, lw) in STYLE.items()]
-    leg.legend(handles=handles, loc="center", frameon=False, fontsize=8, handlelength=2.2)
-    fig.tight_layout(w_pad=0.6, h_pad=1.4)
-    fig.savefig(OUT + ".pdf", bbox_inches="tight", pad_inches=0.03)
-    fig.savefig(OUT + ".png", dpi=200, bbox_inches="tight", pad_inches=0.03)
+    leg.legend(handles=handles, loc="center", frameon=False, handlelength=2.6)
+    print(S.save(fig, OUT))
 
 
 def fmt(x, nd):

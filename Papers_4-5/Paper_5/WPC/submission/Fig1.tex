@@ -4,6 +4,9 @@
 \usepackage{tikz}
 \renewcommand{\sfdefault}{phv}
 \usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}
+\usepackage{pifont}
+\newcommand{\gyes}{\checkmark}
+\newcommand{\gno}{\ding{55}}
 % --- reusable vector icons for the system-view figure ---
 % figure lettering: 8 pt Helvetica, the journal's minimum (the class's \footnotesize is only 7 pt)
 \newcommand{\figfont}{\sffamily\fontsize{8}{9.6}\selectfont}
@@ -29,9 +32,9 @@
 \begin{document}
 \begin{tikzpicture}[x=0.62cm,y=0.62cm,
   font=\figfont,
-  core/.style={draw=blue!55!black, fill=blue!7, ellipse,
+  core/.style={draw=black!75, ellipse,
                minimum width=3.4cm, minimum height=1.1cm, align=center},
-  gnb/.style={draw=black!55, rounded corners, fill=gray!8, minimum width=1.1cm,
+  gnb/.style={draw=black!65, rounded corners, minimum width=1.1cm,
               minimum height=0.42cm, align=center, font=\figfont, inner sep=1pt},
   band/.style={draw, rounded corners, minimum width=1.75cm, minimum height=0.55cm},
   ar/.style={-{Latex[length=2.2mm]}, thick},
@@ -65,28 +68,29 @@
       at (0.7,4.85) [anchor=south west] {AXIOM cluster graph};
 \draw[ar] (core.south) -- (7.5,4.62) node[pos=0.5, right=1pt, font=\figfont, fill=white, inner sep=1pt] {N2 / N3};
 % --- slice bands with icons + short labels ---
-\node[band, fill=red!14,   draw=red!60!black]   (s1) at (2.5,1.05) {};
-\node[band, fill=blue!14,  draw=blue!60!black]  (s2) at (7.5,1.05) {};
-\node[band, fill=green!14, draw=green!55!black] (s3) at (12.5,1.05) {};
+% slices told apart by icon, label, position, and border style, not by colour (figure audit)
+\node[band, draw=black!75]                       (s1) at (2.5,1.05) {};
+\node[band, draw=black!75, dashed]               (s2) at (7.5,1.05) {};
+\node[band, draw=black!75, densely dotted, thick] (s3) at (12.5,1.05) {};
 \node[font=\figfont] at (2.9,1.05) {URLLC};
 \node[font=\figfont] at (7.9,1.05) {eMBB};
 \node[font=\figfont] at (12.9,1.05) {mMTC};
 % URLLC bolt
-\fill[red!75!black] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)--cycle;
+\fill[black!75] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)--cycle;
 % eMBB bandwidth bars
-\fill[blue!65!black] (6.34,0.85) rectangle (6.41,1.03);
-\fill[blue!65!black] (6.45,0.85) rectangle (6.52,1.15);
-\fill[blue!65!black] (6.56,0.85) rectangle (6.63,1.27);
+\fill[black!75] (6.34,0.85) rectangle (6.41,1.03);
+\fill[black!75] (6.45,0.85) rectangle (6.52,1.15);
+\fill[black!75] (6.56,0.85) rectangle (6.63,1.27);
 % mMTC sensor grid
-\foreach \a in {-0.14,0,0.14}{\foreach \b in {-0.14,0,0.14}{\fill[green!55!black] (11.5+\a,1.05+\b) circle (0.03);}}
+\foreach \a in {-0.14,0,0.14}{\foreach \b in {-0.14,0,0.14}{\fill[black!75] (11.5+\a,1.05+\b) circle (0.03);}}
 \draw[ar] (g2 |- clu.south) -- (7.5,1.9);
 \draw[ar] (7.5,1.86) -- (s1.north);
 \draw[ar] (7.5,1.86) -- (s2.north);
 \draw[ar] (7.5,1.86) -- (s3.north);
 % --- UEs ---
-\uephone{(2.0,0.3)}{red}  \uephone{(3.0,0.3)}{red}
-\uephone{(7.0,0.3)}{blue} \uephone{(8.0,0.3)}{blue}
-\uephone{(12.0,0.3)}{green} \uephone{(13.0,0.3)}{green}
+\uephone{(2.0,0.3)}{gray}  \uephone{(3.0,0.3)}{gray}
+\uephone{(7.0,0.3)}{gray} \uephone{(8.0,0.3)}{gray}
+\uephone{(12.0,0.3)}{gray} \uephone{(13.0,0.3)}{gray}
 \node[font=\figfont] at (14.55,0.3) {$\cdots$};
 \begin{scope}[opacity=0.55]\uephone{(15.7,0.3)}{gray}\end{scope}
 \node[font=\figfont, anchor=west] at (16.0,0.3) {UE~$M$};

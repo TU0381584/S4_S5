@@ -41,12 +41,12 @@ from qoe_oran_framework.marl.topology import hex_cluster_coords  # noqa: E402
 
 SLICES = ("urllc", "embb", "mmtc")
 FLOOR_CAP = {"urllc": (5, 33), "embb": (10, 66), "mmtc": (5, 11)}   # saclb_offline_dqn_n19.yaml and _n37.yaml
-ARMS = [("axiom2", "AXIOM (proposed)"), ("single_agent_dqn", "DQN-SA"),
-        ("independent_dqn", "DQN-I"), ("mappo_tuned", "MAPPO")]
+ARMS = [("axiom2", "AXIOM"), ("mappo_tuned", "MAPPO"), ("single_agent_dqn", "DQN-SA"), ("independent_dqn", "DQN-I")]
 MAIN_WIDTH_IN = 119.0 / 25.4  # WPC maximum figure width
-# inferno, trimmed at both ends so the darkest cells keep their outlines and the palest stay off white;
-# its lightness rises steadily, so it reads in greyscale and for protan, deutan, and tritan readers
-CMAP = mpl.colors.ListedColormap(plt.get_cmap("inferno")(np.linspace(0.08, 0.92, 256)), name="inferno_trim")
+# cividis on 0 to 1 (figure audit): lightness rises steadily, so it reads in greyscale and for colour-vision deficiencies
+CMAP = plt.get_cmap("cividis")
+sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
+import axiom_style as S  # noqa: E402
 
 
 def gate_openness(path, n):
@@ -65,27 +65,32 @@ def gate_openness(path, n):
 
 
 def hex_vertices(cx, cy, r):
-    # pointy-top hexagon, vertices at 30 + 60k degrees
-    return [(cx + r * np.cos(np.radians(30 + 60 * k)), cy + r * np.sin(np.radians(30 + 60 * k))) for k in range(6)]
+    # flat-topped hexagon, vertices at 60k degrees (figure audit)
+    return [(cx + r * np.cos(np.radians(60 * k)), cy + r * np.sin(np.radians(60 * k))) for k in range(6)]
 
 
 def rhombi(cx, cy, r):
     v = hex_vertices(cx, cy, r)
     c = (cx, cy)
-    # top rhombus (URLLC), lower-left (eMBB), lower-right (mMTC)
+    # three sectors: upper (URLLC, 0 to 120 degrees), left (eMBB, 120 to 240), lower right (mMTC, 240 to 360)
     return [[c, v[0], v[1], v[2]], [c, v[2], v[3], v[4]], [c, v[4], v[5], v[0]]]
+
+
+def centre(q, rr):
+    # axial coordinates to centres for flat-topped hexagons
+    return 1.5 * q, np.sqrt(3) * (rr + q / 2)
 
 
 def draw_cluster(ax, coords, corr, r=0.93, lw=0.6):
     polys, cols = [], []
     for (q, rr), row in zip(coords, corr):
-        cx, cy = np.sqrt(3) * (q + rr / 2), -1.5 * rr
+        cx, cy = centre(q, rr)
         for poly, val in zip(rhombi(cx, cy, r), row):
             polys.append(poly)
             cols.append(CMAP(val))
     ax.add_collection(PolyCollection(polys, facecolors=cols, edgecolors="white", linewidths=lw))
     for (q, rr) in coords:
-        cx, cy = np.sqrt(3) * (q + rr / 2), -1.5 * rr
+        cx, cy = centre(q, rr)
         ax.add_patch(Polygon(hex_vertices(cx, cy, r), closed=True, fill=False, edgecolor="#4a4a4a", linewidth=0.7))
     ax.set_aspect("equal")
     ax.autoscale_view()
@@ -106,10 +111,10 @@ def main():
     else:
         coords = hex_cluster_coords(n)
     summary = {"cell": a.cell, "n_gnbs": n, "seeds": S30_19, "arms": {}}
-    # drawn at the journal's 119 mm figure width so every label prints at 8 pt or more; the four panels,
-    # the key and the colour bar sit symmetrically, so the figure centres on the page
-    fig = plt.figure(figsize=(0.953 * MAIN_WIDTH_IN, 2.3))  # tight bbox adds about 4.5%
-    L, W, G = 0.02, 0.225, (0.96 - 4 * 0.225) / 3
+    H = 118.0
+    fig = S.figure("full", H)
+    fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / H)
+    slots = [(1, 76), (61, 76), (1, 34), (61, 34)]   # 2 x 2, so each header fits on one line at 8 pt
     for idx, (arm, label) in enumerate(ARMS):
         mats = [gate_openness(p, n) for s in S30_19 if (p := find_eval(a.cell, arm, s))]
         op = np.mean(mats, axis=0)
@@ -122,44 +127,30 @@ def main():
                                 "correctness_per_gnb": corr.round(4).tolist(),
                                 "mean_openness": dict(zip(SLICES, op.mean(axis=0).round(4).tolist())),
                                 "priority_sla_pct": round(p_sla, 2), "collapsed_seeds": coll, "n_eval_seeds": len(rows)}
-        ax = fig.add_axes([L + idx * (W + G), 0.27, W, 0.47])
-        if idx == 0:
-            ax0 = ax
+        x0_, y0_ = slots[idx]
+        ax = fig.add_axes([fw(x0_), fh(y0_), fw(57), fh(33)])
         draw_cluster(ax, coords, corr, lw=0.3)
-        emph = arm == "axiom2"
-        col = "#0072B2" if emph else "#333333"
-        ax.annotate(f"Priority SLA {p_sla:.1f}%\n{coll}/{len(rows)} collapsed", xy=(0.5, 1), xycoords="axes fraction",
-                    xytext=(0, 3), textcoords="offset points", ha="center", va="bottom", fontsize=8, linespacing=1.1, color=col)
-        ax.annotate(label, xy=(0.5, 1), xycoords="axes fraction", xytext=(0, 24), textcoords="offset points",
-                    ha="center", va="bottom", fontsize=8.5, color=col)
-        if emph:
-            ax.axis("on")
-            ax.set_xticks([]); ax.set_yticks([])
-            for sp in ax.spines.values():
-                sp.set_edgecolor("#0072B2"); sp.set_linewidth(1.4)
-    # boxed environment tag in the style of paper5_common.ENV_TAG (not imported: its rcParams would restyle this figure)
-    # it sits above the first panel's title with a clear gap, aligned with that panel's left edge
-    ax0.annotate("Env A", xy=(0, 1), xycoords="axes fraction", xytext=(0, 44), textcoords="offset points", ha="left", va="bottom",
-                 fontsize=8.5, color="#26344a", annotation_clip=False,
-                 bbox=dict(boxstyle="round,pad=0.25", fc="#e2e8f0", ec="#5a6b82", lw=0.6))
-    # key: one gNB's hexagon under the first two panels, its three slice rhombi labelled to its right
-    kax = fig.add_axes([L, 0.0, 2 * W + G, 0.21])
+        col = S.POLICY[arm]["color"] if arm == "axiom2" else S.INK
+        ax.text(0.5, 1.03, f"{label}\nSLA {p_sla:.1f}% \u00b7 collapsed {coll}/{len(rows)}", transform=ax.transAxes,
+                ha="center", va="bottom", color=col, linespacing=1.1)
+    # key: one gNB's hexagon, its three slice sectors labelled
+    kax = fig.add_axes([fw(14), fh(1), fw(92), fh(11)])
     draw_cluster(kax, [(0, 0)], np.array([[1.0, 1.0, 1.0]]), r=1.0, lw=0.8)
-    # the eMBB leader runs under the hexagon so that it crosses no other gate
-    for (x0, y0, y1, txt, cs) in ((0, 0.55, 0.95, "URLLC gate, correct if open", "arc3"),
-                                  (0.45, -0.3, 0.0, "mMTC gate, correct if shed", "arc3"),
-                                  (-0.3, -0.7, -1.12, "eMBB gate, correct if open", "angle,angleA=0,angleB=90,rad=0")):
-        kax.annotate(txt, xy=(x0, y0), xytext=(1.9, y1), fontsize=8, ha="left", va="center",
-                     arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6, connectionstyle=cs, shrinkA=1, shrinkB=0))
-    kax.text(-1.3, 0, "One gNB", fontsize=8, ha="right", va="center")
-    kax.set_xlim(-4.6, 13.0); kax.set_ylim(-1.3, 1.15)
-    # colour bar under the last two panels
-    cax = fig.add_axes([L + 2 * (W + G) + 0.12, 0.12, 2 * W + G - 0.14, 0.045])
+    for (x0, y0, y1, txt) in ((0.35, 0.55, 0.85, "URLLC gate, correct if open"), (-0.55, 0.0, 0.0, None),
+                              (0.4, -0.45, -0.85, "mMTC gate, correct if shed")):
+        if txt:
+            kax.annotate(txt, xy=(x0, y0), xytext=(1.9, y1), ha="left", va="center",
+                         arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6, shrinkA=1, shrinkB=0))
+    kax.annotate("eMBB gate,\ncorrect if open", xy=(-0.55, 0.0), xytext=(-1.6, 0.0), ha="right", va="center", linespacing=1.0,
+                 arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6, shrinkA=1, shrinkB=0))
+    kax.set_xlim(-8.0, 14.0); kax.set_ylim(-1.25, 1.25)
+    # shared colour bar under the last two panels
+    cax = fig.add_axes([fw(34.5), fh(25.5), fw(50), fh(2.2)])
     cb = fig.colorbar(plt.cm.ScalarMappable(cmap=CMAP, norm=plt.Normalize(0, 1)), cax=cax, orientation="horizontal")
-    cb.set_ticks([0, 0.5, 1]); cb.set_ticklabels(["wrong", "partial", "correct"]); cb.ax.tick_params(labelsize=8, length=2)
-    cb.set_label("Gate correctness, mean of 30 seeds", fontsize=8)
-    fig.savefig(a.out + ".pdf", bbox_inches="tight")
-    fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")
+    cb.set_ticks([0, 0.5, 1]); cb.set_ticklabels(["wrong", "partial", "correct"]); cb.ax.tick_params(length=2)
+    cb.outline.set_linewidth(0.5)
+    cb.set_label("Gate correctness, mean of 30 seeds")
+    print(S.save(fig, a.out))
     json.dump(summary, open(a.out + "_summary.json", "w"), indent=1)
     for arm, v in summary["arms"].items():
         print(arm, v["mean_openness"], v["priority_sla_pct"], v["collapsed_seeds"], v["n_seeds"])

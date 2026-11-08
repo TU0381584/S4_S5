@@ -15,6 +15,9 @@ import numpy as np
 import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt
+sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
+import axiom_style as S  # noqa: E402
+S.setup()
 from matplotlib.lines import Line2D
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
@@ -86,9 +89,9 @@ def main():
                                      "mean": float(d.mean()), "ci": list(boot_ci(d)), "wins": int((d > 0).sum()), "losses": int((d < 0).sum())})
     json.dump({"rows": rows}, open(out + "_summary.json", "w"), indent=1)
 
-    fig = plt.figure(figsize=(MAIN_WIDTH_IN, 3.55))
-    axR = fig.add_axes([0.2, 0.13, 0.36, 0.83])
-    axS = fig.add_axes([0.62, 0.13, 0.36, 0.83])
+    fig = S.figure("full", 98)
+    axR = fig.add_axes([0.2, 0.2, 0.36, 0.74])
+    axS = fig.add_axes([0.62, 0.2, 0.36, 0.74])
     ypos, ylab, y = {}, [], 0.0
     blocks = []
     for env, sizes in (("A", (3, 7, 19, 37)), ("B", (3, 7, 19))):
@@ -113,26 +116,23 @@ def main():
         ax.axvline(0, color="#555555", lw=0.8, ls="--")
         ax.set_ylim(y - 0.2, -0.45)
         ax.set_yticks([p for p, _ in ylab])
-        ax.set_yticklabels([l for _, l in ylab] if ax is axR else [], fontsize=8.3)
+        ax.set_yticklabels([l for _, l in ylab] if ax is axR else [])
         ax.tick_params(axis="y", length=0)
-        ax.set_xlabel(xl, fontsize=8.3)
+        ax.set_xlabel(xl)
         ax.grid(True, axis="x", linewidth=0.4, alpha=0.4)
         ax.spines[["top", "right", "left"]].set_visible(False)
-        for env, a, b in blocks:
-            ax.axhspan(a - 0.35, b + 0.25, color=TAG[env]["fc"], alpha=0.35, lw=0, zorder=0)
+        ax.axhline(blocks[0][2] + 0.35, color="#BBBBBB", lw=0.5, zorder=0)   # divider between Env A and Env B (no tints)
     for env, a, b in blocks:
-        yfig = 0.13 + 0.83 * (1 - ((a + b) / 2 - (-0.45)) / (y - 0.2 - (-0.45)))
-        fig.text(0.015, yfig, f"Env {env}", fontsize=8.5, va="center", color=TAG[env]["tc"],
-                 bbox=dict(boxstyle="round,pad=0.25", fc=TAG[env]["fc"], ec=TAG[env]["ec"], lw=0.6))
+        yfig = 0.2 + 0.74 * (1 - ((a + b) / 2 - (-0.45)) / (y - 0.2 - (-0.45)))
+        fig.text(0.015, yfig, f"Env {env}", va="center")
     for x_, t_ in ((0.005, "a"), (0.6, "b")):
-        fig.text(x_ + (0.19 if t_ == "a" else 0.0), 0.995, t_, fontsize=9, va="top")
+        fig.text(x_ + (0.19 if t_ == "a" else 0.0), 0.995, t_, fontweight="bold", va="top")
     handles = [Line2D([0], [0], color=c, lw=1.0, marker=MARK[b], mfc=c, mec=c, ms=4, label=l) for b, l, c in BASE]
     handles += [Line2D([0], [0], color="#444444", lw=1.0, marker="o", mfc="#444444", ms=4, label="reported"),
                 Line2D([0], [0], color="#444444", lw=1.0, ls=(0, (2, 1)), marker="o", mfc="white", mec="#444444", ms=4, label="fresh seeds")]
-    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.55, -0.1), ncol=5, fontsize=8.3, frameon=False,
+    fig.legend(handles=handles, loc="lower center", bbox_to_anchor=(0.55, 0.0), ncol=5, frameon=False,
                handlelength=1.2, columnspacing=0.9, handletextpad=0.35)
-    fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.04)
-    fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.04)
+    print(S.save(fig, out))
     for r in rows:
         print(r["env"], r["n"], r["sample"], r["baseline"], r["metric"], "pairs", r["n_pairs"], round(r["mean"], 3), [round(c, 3) for c in r["ci"]])
 

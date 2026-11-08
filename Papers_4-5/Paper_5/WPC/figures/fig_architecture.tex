@@ -1,5 +1,5 @@
-% F1: AXIOM encoder + per-slice Q-heads (left) and the federated
-% training loop (right). Standalone-compilable for iteration; \input{}
+% Main Fig. 3: AXIOM encoder and per-slice Q-heads (panel a of the former two-panel figure; panel b, the federated
+% training loop, moved to Online Resource 1 Fig. S4a in the figure audit, file fig_fed_variant.tex). Standalone-compilable for iteration; \input{}
 % into the paper body. Mirrors Papers_4-5/Paper_4/figures/fig1_architecture.tex's
 % style conventions (box/arrow styles, font, palette).
 \documentclass[tikz,border=2pt]{standalone}
@@ -11,19 +11,18 @@
 \begin{tikzpicture}[
   font=\sffamily\normalsize,
   box/.style={draw, rounded corners, minimum height=0.7cm, align=center, inner xsep=4pt, inner ysep=4pt},
-  node1/.style={box, fill=blue!12, minimum width=1.0cm},
-  node2/.style={box, fill=blue!12, minimum width=1.0cm},
-  node3/.style={box, fill=blue!12, minimum width=1.0cm},
-  encoder/.style={box, fill=orange!12, minimum width=2.6cm},
-  qhead/.style={box, fill=green!12, minimum width=1.5cm, minimum height=0.55cm},
-  client/.style={box, fill=violet!10, minimum width=1.8cm},
-  server/.style={box, fill=orange!14, minimum width=2.0cm},
+  node1/.style={box, minimum width=1.0cm},
+  node2/.style={box, minimum width=1.0cm},
+  node3/.style={box, minimum width=1.0cm},
+  encoder/.style={box, minimum width=2.6cm},
+  qhead/.style={box, minimum width=1.5cm, minimum height=0.55cm},
+  client/.style={box, minimum width=1.8cm},
+  server/.style={box, minimum width=2.0cm},
   arrow/.style={-{Latex[length=2.6mm, width=1.9mm]}, thick},
   dashedarrow/.style={-{Latex[length=2.6mm, width=1.9mm]}, thick, dashed},
 ]
 
-% ===== Left half: AXIOM per-agent pipeline =====
-\node[font=\sffamily] (lefttitle) at (-3.2,3.0) {a};
+% ===== AXIOM per-agent pipeline =====
 
 % 3-gNB fully-connected graph
 \node[node1] (n1) at (-0.95,2.1) {gNB-0};
@@ -52,26 +51,8 @@
 \draw[dashedarrow, gray!70!black] (n1.west) .. controls +(-1.0,-0.4) and +(-0.7,0.7) .. (qbox.west);
 \node[anchor=east, font=\sffamily\normalsize, align=right] at (-2.8,0.3) {raw\\features\\$\mathbf{x}_i$, skip};
 \draw[arrow] (qlab.south) -- (action.north);
-
-% ===== Right half: federated training loop =====
-\node[font=\sffamily] (righttitle) at (2.6,3.0) {b};
-
-\node[client, minimum width=1.9cm] (c1) at (3.8,2.2) {Client 0\\\normalsize local AXIOM};
-\node[client, minimum width=1.9cm] (c2) at (6.25,2.2) {Client 1\\\normalsize local AXIOM};
-\node[client, minimum width=1.9cm] (c3) at (8.7,2.2) {Client 2\\\normalsize local AXIOM};
-
-\node[server, below=1.3cm of c2] (server) {Federated server\\\normalsize weight averaging};
-
-\draw[arrow] (c1.south) .. controls +(0,-0.7) and +(-1.0,0.7) .. (server.north west);
-\draw[arrow] (c2.south) -- (server.north);
-\draw[arrow] (c3.south) .. controls +(0,-0.7) and +(1.0,0.7) .. (server.north east);
-
-\draw[dashedarrow] (server.west) .. controls +(-0.7,0.2) and +(-0.4,-0.7) .. (c1.west);
-\draw[dashedarrow] (server.east) .. controls +(0.7,0.2) and +(0.4,-0.7) .. (c3.east);
-\node[font=\sffamily\normalsize, align=right, anchor=east] at (6.15,1.12) {clip +\\privacy\\noise};
-\node[font=\sffamily\normalsize] at (8.95,-0.35) {broadcast};
-
-\node[below=0.35cm of server, font=\sffamily\normalsize, align=center] {every $N_{\mathrm{loc}}$ local steps};
+% figure audit: the size-invariant parameter count (m64/complexity.json and m73/complexity_n37.json, 3 to 37 gNBs)
+\node[below=0.25cm of action, font=\sffamily\normalsize, align=center, draw, dashed, rounded corners, inner sep=3pt] (params) {7,782 parameters at execution,\\ the same at every cluster size};
 
 \end{tikzpicture}
 \end{document}

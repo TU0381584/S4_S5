@@ -65,8 +65,8 @@ def env_tag(ax, env, anchor=None, fontsize=8.5):
     """Environment tag beside a panel letter (anchor = the letter's text artist), else just above the
     panel's top-left corner. Pass fontsize so the tag prints at about 8.5 pt once the figure is scaled."""
     t = ENV_TAG[env]
-    kw = dict(fontsize=fontsize, color=t["tc"], ha="left", annotation_clip=False,
-              bbox=dict(boxstyle="round,pad=0.25", fc=t["fc"], ec=t["ec"], lw=0.6))
+    # figure audit: plain text in ink, no tinted box (no background tints), never below the 7 pt minimum
+    kw = dict(fontsize=max(fontsize, 7.0), color="#222222", ha="left", annotation_clip=False)
     if anchor is not None:
         return ax.annotate(f"Env {env}", xy=(1, 0.5), xycoords=anchor, xytext=(6, 0), textcoords="offset points", va="center", **kw)
     return ax.annotate(f"Env {env}", xy=(0, 1), xycoords="axes fraction", xytext=(0, 6), textcoords="offset points", va="bottom", **kw)

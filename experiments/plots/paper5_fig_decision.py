@@ -4,7 +4,7 @@ Reads the M81 probe (experiments/scripts/m81_decision_probe.py), which replayed 
 evaluation exactly (its rewards match the stored logs) and recorded, for every gNB at every step, the gNB's own
 URLLC queue and whether AXIOM's eMBB head would reject. (a) Share of gNB-steps on which AXIOM would shed an eMBB
 request, by URLLC queue, pooled over 15 seeds, with 95% bootstrap CIs over seeds, against the tuned rule, which sheds
-eMBB once the queue reaches 0.2. (b) How often each URLLC queue level is visited. Every plotted number is written to
+eMBB once the queue reaches 0.2. Above it, as a marginal, how often each URLLC queue level is visited. Every plotted number is written to
 <out>_summary.json, which m66_verify checks.
 """
 import glob
@@ -17,7 +17,9 @@ mpl.use("Agg")
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
-from paper5_common import OR1_FIG_WIDTH_IN as MAIN_WIDTH_IN  # noqa: E402  (an Online Resource 1 figure)
+sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
+import axiom_style as S  # noqa: E402
+S.setup()
 
 PROBE = "/home/kmanojp/oranslice_rig/experiments/results/m81"
 BINS = [0.0, 0.05, 0.1, 0.2, 0.3, 0.5, 0.75, 1.0, 1.5, 2.01]
@@ -59,36 +61,29 @@ def main():
         summary["budgets"][b] = {"n_seeds": len(seeds), "states": int(cnt.sum()), "overall_shed": overall,
                                  "shed": sh.tolist(), "shed_ci": [lo.tolist(), hi.tolist()], "visits": (cnt / cnt.sum()).tolist()}
     centres = [0.5 * (BINS[k] + min(BINS[k + 1], 2.0)) for k in range(len(BINS) - 1)]
-    fig = plt.figure(figsize=(MAIN_WIDTH_IN, 2.45))
-    axA = fig.add_axes([0.09, 0.32, 0.5, 0.55])
-    axB = fig.add_axes([0.74, 0.32, 0.25, 0.55])
+    # figure audit: one panel, with how often each queue level occurs as a marginal on the same queue axis
+    fig = S.figure("full", 74)
+    fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / 74.0)
+    axA = fig.add_axes([fw(16), fh(17), fw(98), fh(36)])
+    axM = fig.add_axes([fw(16), fh(56), fw(98), fh(14)], sharex=axA)
+    edges = [min(e, 2.0) for e in BINS]
     for b, lab in (("300", "300 episodes"), ("900", "900 episodes")):
-        s = summary["budgets"][b]
-        y = 100 * np.array(s["shed"])
-        lo, hi = 100 * np.array(s["shed_ci"][0]), 100 * np.array(s["shed_ci"][1])
-        axA.fill_between(centres, lo, hi, color=COL[b], alpha=0.25, lw=0)
-        axA.plot(centres, y, ls=STY[b][0], marker=STY[b][1], color=COL[b], mec="#0072B2", ms=4, lw=1.5, label=f"AXIOM, {lab}")
-        axB.bar(np.arange(len(centres)) + (-0.2 if b == "300" else 0.2), 100 * np.array(s["visits"]), width=0.4, color=COL[b],
-                edgecolor="#0072B2", lw=0.5, label=lab)
-    axA.step([0, 0.2, 0.2, 2.0], [0, 0, 100, 100], where="post", color="#555555", ls="--", lw=1.0, label="Tuned rule")
-    axA.set_xlim(0, 2.0)
-    axA.set_ylim(-3, 103)
-    axA.set_xlabel("gNB\u2019s own URLLC queue, share of budget")
-    axA.set_ylabel("eMBB requests shed, %")
-    fig.legend(*axA.get_legend_handles_labels(), loc="lower center", bbox_to_anchor=(0.5, -0.03), ncol=3, fontsize=8.3, frameon=False, handlelength=2.0)
-    axB.set_xticks(range(len(centres)))
-    axB.set_xticklabels([f"{c:.2g}" for c in BINS[:-1]], rotation=90, fontsize=8)
-    axB.set_xlabel("URLLC queue bin, from")
-    axB.set_ylabel("gNB-steps, %")
-    for ax in (axA, axB):
-        ax.grid(True, axis="y", linewidth=0.4, alpha=0.4)
-        ax.spines[["top", "right"]].set_visible(False)
-    for x_, t_ in ((0.005, "a"), (0.655, "b")):
-        fig.text(x_, 0.995, t_, fontsize=9, va="top")
-        fig.text(x_ + 0.035, 0.997, "Env B", fontsize=8.5, va="top", color=TAG["tc"],
-                 bbox=dict(boxstyle="round,pad=0.25", fc=TAG["fc"], ec=TAG["ec"], lw=0.6))
-    fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.04)
-    fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.04)
+        s_ = summary["budgets"][b]
+        y = 100 * np.array(s_["shed"])
+        lo, hi = 100 * np.array(s_["shed_ci"][0]), 100 * np.array(s_["shed_ci"][1])
+        axA.fill_between(centres, lo, hi, color=S.lighten(COL[b], 0.75), lw=0, zorder=0)   # opaque tint, EPS-safe
+        for e_ in (lo, hi):
+            axA.plot(centres, e_, color=COL[b], lw=0.4, ls=STY[b][0], zorder=1)
+        axA.plot(centres, y, ls=STY[b][0], marker=STY[b][1], color=COL[b], mec="#0072B2", ms=3.6, lw=1.3, label=f"AXIOM, {lab}", zorder=3)
+        axM.stairs(100 * np.array(s_["visits"]), edges, color="#0072B2" if b == "900" else COL[b], ls=STY[b][0], lw=1.1)
+    axA.step([0, 0.2, 0.2, 2.0], [0, 0, 100, 100], where="post", color=S.POLICY["rule_local"]["color"], ls=(0, (3, 2)), lw=1.0, label="Tuned rule")
+    axA.set_xlim(0, 2.0); axA.set_ylim(-3, 103)
+    axA.set_xlabel("gNB\u2019s own URLLC queue (share of budget)")
+    axA.set_ylabel("eMBB requests\nshed (%)")
+    axM.set_ylabel("gNB-steps\n(%)")
+    axM.tick_params(axis="x", labelbottom=False)
+    fig.legend(*axA.get_legend_handles_labels(), loc="lower center", bbox_to_anchor=(0.55, 0.0), ncol=3, frameon=False, handlelength=2.2)
+    print(S.save(fig, out))
     json.dump(summary, open(out + "_summary.json", "w"), indent=1)
     for b in ("300", "900"):
         s = summary["budgets"][b]

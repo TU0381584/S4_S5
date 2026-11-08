@@ -6,6 +6,8 @@
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{booktabs}
+\usepackage{siunitx}
+\sisetup{group-separator={,}, group-minimum-digits=4, table-number-alignment=center}
 \usepackage{array}
 \usepackage{tikz}
 % Online Resource layout: captions in the journal's style (small type, label then a quad, caption above tables
@@ -76,78 +78,23 @@ Fig.~\ref{fig:s-forest} sets each reported comparison with a learned baseline be
 \label{fig:s-forest}
 \end{figure}
 
-Table~\ref{tab:s-rliable} gives the interquartile means and probabilities of improvement that Agarwal et al., cited in the main paper, recommend for evaluations with few runs, computed with rliable 1.2.0 on the main paper's pooled runs. The IQM drops the worst quarter of runs, where AXIOM's few collapses sit. AXIOM's IQM of priority-slice compliance in Env A is therefore 100.0\% at every size, against means of 93.7\% to 98.9\%, and the mean stays the more conservative summary for AXIOM. An independent implementation reproduces every IQM and every probability of improvement to within $10^{-6}$, and Fig.~\ref{fig:s-rliable} shows the fraction of runs above each compliance level.
+Online Resource 2, a CSV file, gives the interquartile means and probabilities of improvement that Agarwal et al., cited in the main paper, recommend for evaluations with few runs, computed with rliable 1.2.0 on the main paper's pooled runs. For each setting and policy it lists the interquartile means of reward per gNB per step and of priority-slice compliance, and the probability that a run of AXIOM beats a run of the other policy, with ties counted as one half, each with stratified bootstrap 95\% CIs over 10{,}000 resamples. The IQM drops the worst quarter of runs, where AXIOM's few collapses sit. AXIOM's IQM of priority-slice compliance in Env A is therefore 100.0\% at every size, against means of 93.7\% to 98.9\%, and the mean stays the more conservative summary for AXIOM. An independent implementation reproduces every IQM and every probability of improvement to within $10^{-6}$, and Fig.~\ref{fig:s-rliable} shows the fraction of runs above each compliance level.
 
-\begin{table}[!htbp]
-\caption{Interquartile means of reward per gNB per step and of priority-slice compliance, and the probability P that a run of AXIOM beats a run of each other policy, with ties counted as one half. Brackets give stratified bootstrap 95\% CIs over 10{,}000 resamples}
-\label{tab:s-rliable}
-\centering
-\scriptsize
-{\setlength{\tabcolsep}{3.5pt}
-\begin{tabular}{@{}lccccc@{}}
-\toprule
-Policy & Runs & IQM reward per gNB & IQM priority SLA, \% & P, reward & P, priority SLA \\
-\midrule
-\multicolumn{6}{@{}l}{Env A, 3 gNBs} \\
-\quad AXIOM & 30 & 4.266 [4.24, 4.29] & 100.0 [100.0, 100.0] & -- & -- \\
-\quad DQN-SA & 30 & 4.197 [4.12, 4.24] & 99.5 [97.4, 100.0] & 0.68 [0.53, 0.81] & 0.68 [0.56, 0.79] \\
-\quad DQN-I & 30 & 4.018 [3.80, 4.10] & 98.1 [92.4, 99.7] & 0.89 [0.80, 0.97] & 0.76 [0.65, 0.86] \\
-\quad MAPPO & 30 & 3.378 [3.02, 3.72] & 77.4 [67.2, 87.7] & 0.92 [0.83, 0.99] & 0.92 [0.84, 0.98] \\
-\quad Static rule & 30 & 4.269 [4.25, 4.29] & 100.0 [100.0, 100.0] & 0.47 [0.32, 0.62] & 0.45 [0.36, 0.53] \\
-\midrule
-\multicolumn{6}{@{}l}{Env A, 7 gNBs} \\
-\quad AXIOM & 45 & 4.562 [4.52, 4.58] & 100.0 [99.7, 100.0] & -- & -- \\
-\quad DQN-SA & 45 & 4.065 [3.95, 4.16] & 79.4 [72.9, 85.1] & 0.87 [0.78, 0.94] & 0.88 [0.79, 0.95] \\
-\quad DQN-I & 45 & 3.849 [3.79, 3.92] & 73.3 [69.3, 77.7] & 0.96 [0.91, 1.00] & 0.94 [0.88, 0.99] \\
-\quad MAPPO & 45 & 3.573 [3.33, 3.72] & 64.5 [60.4, 69.6] & 0.96 [0.92, 0.99] & 0.96 [0.91, 0.99] \\
-\quad Static rule & 45 & 4.582 [4.57, 4.59] & 100.0 [100.0, 100.0] & 0.33 [0.22, 0.44] & 0.38 [0.29, 0.46] \\
-\midrule
-\multicolumn{6}{@{}l}{Env A, 19 gNBs} \\
-\quad AXIOM & 90 & 4.743 [4.74, 4.75] & 100.0 [100.0, 100.0] & -- & -- \\
-\quad DQN-SA & 90 & 4.129 [4.12, 4.14] & 66.8 [65.9, 67.6] & 0.95 [0.90, 0.99] & 0.96 [0.92, 0.99] \\
-\quad DQN-I & 90 & 4.025 [4.00, 4.05] & 56.0 [52.6, 59.6] & 0.97 [0.94, 0.99] & 0.98 [0.96, 1.00] \\
-\quad MAPPO & 90 & 3.778 [3.69, 3.86] & 58.4 [56.6, 60.7] & 0.99 [0.97, 1.00] & 0.98 [0.95, 0.99] \\
-\quad Static rule & 90 & 4.749 [4.74, 4.76] & 100.0 [100.0, 100.0] & 0.44 [0.36, 0.52] & 0.44 [0.39, 0.49] \\
-\midrule
-\multicolumn{6}{@{}l}{Env A, 37 gNBs} \\
-\quad AXIOM & 60 & 4.796 [4.78, 4.80] & 100.0 [99.2, 100.0] & -- & -- \\
-\quad DQN-SA & 30 & 4.218 [4.19, 4.23] & 61.5 [60.3, 62.9] & 0.94 [0.88, 0.98] & 0.92 [0.85, 0.97] \\
-\quad DQN-I & 30 & 3.999 [3.94, 4.07] & 26.0 [19.3, 37.7] & 0.98 [0.96, 1.00] & 0.98 [0.95, 1.00] \\
-\quad MAPPO & 30 & 3.968 [3.83, 4.10] & 54.3 [48.8, 61.3] & 0.97 [0.93, 0.99] & 0.95 [0.90, 0.98] \\
-\quad Static rule & 30 & 4.799 [4.80, 4.80] & 100.0 [100.0, 100.0] & 0.41 [0.29, 0.53] & 0.42 [0.35, 0.51] \\
-\midrule
-\multicolumn{6}{@{}l}{Env B, 3 gNBs} \\
-\quad AXIOM & 30 & 2.940 [2.87, 3.02] & 65.2 [63.6, 66.9] & -- & -- \\
-\quad DQN-SA & 30 & 2.558 [2.41, 2.64] & 58.2 [55.9, 60.2] & 0.94 [0.87, 0.98] & 0.87 [0.77, 0.95] \\
-\quad DQN-I & 30 & 2.625 [2.50, 2.73] & 59.4 [57.8, 60.7] & 0.84 [0.73, 0.93] & 0.84 [0.73, 0.94] \\
-\quad MAPPO & 30 & 2.361 [2.14, 2.55] & 54.6 [50.3, 58.6] & 0.92 [0.83, 0.98] & 0.86 [0.75, 0.94] \\
-\quad Static rule & 30 & 2.110 [1.97, 2.24] & 49.4 [46.9, 51.7] & 0.99 [0.98, 1.00] & 0.99 [0.96, 1.00] \\
-\quad Tuned rule & 30 & 3.067 [3.02, 3.12] & 67.5 [66.8, 68.3] & 0.27 [0.15, 0.40] & 0.31 [0.18, 0.45] \\
-\midrule
-\multicolumn{6}{@{}l}{Env B, 7 gNBs} \\
-\quad AXIOM & 45 & 3.338 [3.31, 3.38] & 33.3 [32.4, 35.1] & -- & -- \\
-\quad DQN-SA & 45 & 3.406 [3.33, 3.47] & 45.7 [41.6, 49.4] & 0.43 [0.31, 0.56] & 0.23 [0.13, 0.34] \\
-\quad DQN-I & 45 & 3.225 [3.18, 3.28] & 39.3 [37.0, 41.8] & 0.72 [0.61, 0.83] & 0.27 [0.16, 0.38] \\
-\quad MAPPO & 45 & 3.018 [2.92, 3.13] & 33.0 [29.0, 38.2] & 0.79 [0.69, 0.89] & 0.58 [0.44, 0.71] \\
-\quad Static rule & 45 & 3.354 [3.33, 3.39] & 33.2 [32.3, 34.3] & 0.45 [0.33, 0.57] & 0.52 [0.40, 0.64] \\
-\quad Tuned rule & 45 & 3.896 [3.88, 3.91] & 60.4 [60.1, 60.8] & 0.00 [0.00, 0.00] & 0.00 [0.00, 0.00] \\
-\midrule
-\multicolumn{6}{@{}l}{Env B, 19 gNBs} \\
-\quad AXIOM & 15 & 4.269 [4.18, 4.29] & 22.6 [21.7, 24.1] & -- & -- \\
-\quad DQN-SA & 15 & 3.931 [3.92, 3.95] & 17.9 [17.7, 18.2] & 0.95 [0.83, 1.00] & 0.98 [0.91, 1.00] \\
-\quad DQN-I & 15 & 3.755 [3.69, 3.82] & 16.5 [15.9, 17.4] & 1.00 [0.97, 1.00] & 0.99 [0.96, 1.00] \\
-\quad MAPPO & 15 & 3.121 [2.96, 3.29] & 19.9 [19.4, 22.1] & 1.00 [1.00, 1.00] & 0.77 [0.56, 0.94] \\
-\quad Static rule & 15 & 4.294 [4.28, 4.31] & 22.8 [22.1, 23.6] & 0.31 [0.13, 0.51] & 0.46 [0.26, 0.68] \\
-\quad Tuned rule & 15 & 4.427 [4.41, 4.44] & 55.6 [55.2, 56.1] & 0.00 [0.00, 0.00] & 0.05 [0.00, 0.17] \\
-\bottomrule
-\end{tabular}}
-\end{table}
 
 \begin{figure}[!htbp]
 \centering
 \includegraphics{figures/fig_rliable.pdf}
-\caption{Performance profiles of priority-slice compliance, the fraction of runs above each level $\tau$. Shaded bands are stratified bootstrap 95\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs}
+\caption{Performance profiles of priority-slice compliance, the fraction of runs above each level $\tau$. Bands bounded by thin lines are stratified bootstrap 95\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs}
 \label{fig:s-rliable}
+\end{figure}
+
+Fig.~\ref{fig:s-rliable-int} sets the same interquartile means and probabilities of improvement side by side for every setting.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics{figures/fig_rliable_intervals.pdf}
+\caption{Interquartile means and probabilities of improvement with stratified bootstrap 95\% CIs over 10{,}000 resamples. a, IQM of priority-slice compliance. b, IQM of reward per gNB per step. c, d, Probability that a run of AXIOM beats a run of each other policy on the same two measures, ties counted as one half, with a dashed line at one half. Online Resource 2 lists every value}
+\label{fig:s-rliable-int}
 \end{figure}
 
 \section*{S3. Live testbed}
@@ -157,7 +104,7 @@ Every live measurement comes from the single-host, software-radio O-RAN stack of
 \centering
 \resizebox{0.9\textwidth}{!}{%
 \begin{tikzpicture}[
-  block/.style={draw, thick, rounded corners, align=center, fill=gray!8,
+  block/.style={draw, thick, rounded corners, align=center,
                 font=\footnotesize, inner sep=5pt, text width=3.7cm},
   arr/.style={-{Latex[length=2.5mm]}, thick},
   lbl/.style={font=\footnotesize, inner sep=1pt}
@@ -236,14 +183,15 @@ The MLP variant reads only a gNB's own features. In Env A it ties AXIOM, which e
 
 A grid of 24 MAPPO configurations raised MAPPO from 60.6\% to 69.6\% priority-slice compliance at nineteen gNBs on the ring layout, and AXIOM still beats it by 1.25 to 16.18 reward per step at Holm-adjusted $p<0.001$. With its initialisation properly seeded, DQN-SA keeps 80.3\% and 63.9\% priority-slice compliance at seven and nineteen gNBs, and AXIOM beats it under every layout at Holm-adjusted $p\leq0.035$.
 
-Fig.~\ref{fig:m3-privacy} shows the federated campaign. With federation and no noise, mean reward per step on the ten shared seeds is 12.356 for centralised AXIOM and 11.929 for the federated variant. That is a difference of $+0.427$ with 95\% CI [$-$0.54, 1.51] and $p=0.65$, so federation shows no significant cost on these seeds. Each client takes 17{,}969 noisy steps over its training run. At $\delta{=}10^{-5}$ Eq.~\eqref{eq:zcdp} then gives $\varepsilon$ of about 146{,}000, 37{,}000, 9{,}600, and 2{,}600 for $\sigma$ of 0.5, 1, 2, and 4, so a useful guarantee would need noise on the roughly 360 per-round model updates instead.
+Fig.~\ref{fig:m3-privacy}b and c show the federated campaign. With federation and no noise, mean reward per step on the ten shared seeds is 12.356 for centralised AXIOM and 11.929 for the federated variant. That is a difference of $+0.427$ with 95\% CI [$-$0.54, 1.51] and $p=0.65$, so federation shows no significant cost on these seeds. Each client takes 17{,}969 noisy steps over its training run. At $\delta{=}10^{-5}$ Eq.~\eqref{eq:zcdp} then gives $\varepsilon$ of about 146{,}000, 37{,}000, 9{,}600, and 2{,}600 for $\sigma$ of 0.5, 1, 2, and 4, so a useful guarantee would need noise on the roughly 360 per-round model updates instead.
 
 \begin{figure}[!htbp]
 \centering
+\includegraphics[scale=0.81]{figures/fig_fed_variant.pdf}\par\medskip
 \includegraphics{figures/fig4_m3_privacy.pdf}
-\caption{Federated campaign in Env A, 10 seeds. a, Paired per-seed federation
-cost on mean reward per step, not significant at $p=0.65$. b, Block precision
-versus DP noise multiplier $\sigma$, over the seeds that block}
+\caption{Federated training in Env A. a, The federated variant, each gNB a client synchronised by periodic federated
+averaging with optional privacy noise. b, Paired per-seed federation cost on mean reward per step over 10 seeds, not
+significant at $p=0.65$. c, Block precision versus DP noise multiplier $\sigma$, over the seeds that block}
 \label{fig:m3-privacy}
 \end{figure}
 
@@ -337,25 +285,25 @@ Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results 
 The transfer run of the main paper's Section 6.2, M92, also covered AXIOM's MLP variant in Env B. The stored network also holds a mixer left from an earlier training design. No current loss uses it and its input grows with the cluster, so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters. Before the plan was committed, six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly. Table~\ref{tab:s-transfer} adds CIs, reward, and collapses to the main paper's transfer table. In Env B the endpoint is per-gNB compliance, because cluster-level compliance, which needs all nineteen gNBs to comply at once, stays between 18\% and 36\% for every policy there. Graph attention again adds nothing measurable, since AXIOM transferred from seven gNBs keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\% CI [$-$2.23, 3.81] and $p=0.72$. On the fully-connected layout at nineteen gNBs, AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$.
 
 \begin{table}[!htbp]
-\caption{Zero-shot transfer from seven gNBs on 15 paired seeds, priority-slice compliance with 95\% CIs, reward per gNB per step, and collapsed runs. The main paper's transfer table gives the rule references}
+\caption{Zero-shot transfer from seven gNBs on 15 paired seeds, reward per gNB per step and collapsed runs. The main paper's transfer table gives priority-slice compliance with 95\% CIs. The MLP variant moved from seven gNBs keeps 78.3\% per-gNB priority-slice compliance in Env B at nineteen gNBs, with 95\% CI [75.5, 80.7]}
 \label{tab:s-transfer}
 \centering
-\scriptsize
+\footnotesize
 {\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}lcccccccc@{}}
+\begin{tabular}{@{}lccccc@{}}
 \toprule
-& \multicolumn{3}{c}{AXIOM from 7} & \multicolumn{3}{c}{AXIOM trained at the size} & \multicolumn{2}{c}{MAPPO from 7} \\
-\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(l){8-9}
-Setting, gNBs & Priority SLA, \% & Reward & Collapsed & Priority SLA, \% & Reward & Collapsed & Priority SLA, \% & Reward \\
+& \multicolumn{2}{c}{AXIOM from 7} & \multicolumn{2}{c}{AXIOM at the size} & MAPPO from 7 \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(l){6-6}
+Env, layout, gNBs & Reward & Collapsed & Reward & Collapsed & Reward \\
 \midrule
-Env A hex, 19 & 96.2 [91.6, 99.9] & 4.645 & 0 & 94.6 [86.9, 100.0] & 4.659 & 1 & 64.2 [56.6, 72.2] & 3.989 \\
-Env A hex, 37 & 95.4 [89.6, 99.9] & 4.690 & 0 & 94.8 [87.3, 100.0] & 4.733 & 0 & 61.5 [53.7, 70.2] & 4.134 \\
-Env A ring, 19 & 96.9 [91.3, 99.9] & 4.666 & 0 & 96.8 [92.3, 99.9] & 4.689 & 0 & 64.2 [56.8, 72.4] & 3.989 \\
-Env A ring, 37 & 96.3 [90.3, 99.7] & 4.711 & 0 & 93.2 [85.3, 100.0] & 4.689 & 2 & 61.5 [53.6, 70.2] & 4.134 \\
-Env A fully-connected, 19 & 96.6 [90.6, 100.0] & 4.654 & 0 & 100.0 [99.9, 100.0] & 4.756 & 0 & 64.2 [56.8, 72.3] & 3.989 \\
-Env A fully-connected, 37 & 96.3 [90.1, 100.0] & 4.702 & 0 & 94.4 [85.9, 100.0] & 4.715 & 1 & 61.5 [53.8, 70.0] & 4.134 \\
-Env B hex, 19 & 79.1 [76.6, 80.8] & 4.257 & 0 & 77.3 [74.2, 79.8] & 4.225 & 1 & 72.9 [70.1, 75.6] & 3.898 \\
-\quad MLP variant from 7 & 78.3 [75.5, 80.7] & 4.237 & 0 & & & & & \\
+A, hex, 19 & 4.645 & 0 & 4.659 & 1 & 3.989 \\
+A, hex, 37 & 4.690 & 0 & 4.733 & 0 & 4.134 \\
+A, ring, 19 & 4.666 & 0 & 4.689 & 0 & 3.989 \\
+A, ring, 37 & 4.711 & 0 & 4.689 & 2 & 4.134 \\
+A, fully connected, 19 & 4.654 & 0 & 4.756 & 0 & 3.989 \\
+A, fully connected, 37 & 4.702 & 0 & 4.715 & 1 & 4.134 \\
+B, hex, 19 & 4.257 & 0 & 4.225 & 1 & 3.898 \\
+\quad MLP variant from 7 & 4.237 & 0 & & & \\
 \bottomrule
 \end{tabular}}
 \end{table}
@@ -406,6 +354,15 @@ Tuned local rule, carried over & 84.09 & 84.5\% & 55.7\% & 0 \\
 \end{tabular}
 \end{table}
 
+Fig.~\ref{fig:pergnb} maps the per-gNB compliance of the four learned policies at nineteen gNBs.
+
+\begin{figure}[!htbp]
+\centering
+\includegraphics{figures/fig_pergnb_envb.pdf}
+\caption{Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}
+\label{fig:pergnb}
+\end{figure}
+
 At seven gNBs the tuned rules earn 26.5 to 27.3 per step and beat AXIOM in all 15 seeds under every layout, while AXIOM earns 23.4 to 23.6, no more than the static rule's 23.6. The reward charges each slice's SLA penalty once for the cluster when any gNB violates it, so shedding eMBB at one gNB pays only when the other gNBs also comply. Table~\ref{tab:s-conv} lists three changes on the ring layout. The per-gNB SLA penalty raised AXIOM's compliance by 10.7 points, a learning rate of 0.003 by 14.9, and 900 training episodes by 21.7. The Holm-adjusted $p$ values are 0.007, 0.007, and 0.0004. With 900 episodes for every learner, AXIOM keeps 12.8 to 15.2 points more compliance and earns 0.44 to 0.82 more reward per gNB than each baseline, at Holm-adjusted $p\leq0.0012$. The tuned rule still keeps more compliance than AXIOM in all 15 seeds. At nineteen gNBs the longer budget does not help. After 900 episodes seven of eight seeds still shed only mMTC, against all eight after 300. Under uneven load, with each gNB's multiplier drawn between 75\% and 125\% per seed, AXIOM does not beat the nominally tuned rule at seven gNBs, earning 0.36 more reward per step at $p=0.23$. It still beats every learned baseline there, by 1.18 to 4.28 reward per step at unadjusted $p\leq0.005$. Under the per-gNB SLA penalty every learned baseline kept 13.7 to 18.5 percentage points less per-gNB compliance than AXIOM, in every seed.
 
 \begin{table}[!htbp]
@@ -434,7 +391,7 @@ Fig.~\ref{fig:s-decision} shows what AXIOM learned at seven gNBs on the ring lay
 \begin{figure}[!htbp]
 \centering
 \includegraphics{figures/fig_decision.pdf}
-\caption{What AXIOM learned in Env B at seven gNBs on the ring layout, 15 seeds. a, Share of gNB-steps on which its eMBB head would reject, by the gNB's own URLLC queue, with 95\% CIs over seeds. b, How often each queue level occurs}
+\caption{What AXIOM learned in Env B at seven gNBs on the ring layout, 15 seeds. Share of gNB-steps on which its eMBB head would reject, by the gNB's own URLLC queue, with 95\% CIs over seeds, beside the tuned rule's step at 0.2. The marginal above gives how often each queue level occurs}
 \label{fig:s-decision}
 \end{figure}
 
@@ -510,53 +467,35 @@ Accept all & 93.8\% & 93.9\% & 2.25 & 6.97 & 2.24 & 6.82 \\
 \end{table}
 
 \section*{S9. Reproducing the results}
-Fig.~\ref{fig:repro} sets out what reproducing the results needs and the order of the steps. Every result in both documents comes from one laptop without a graphics processor, and every simulation run fixes its seed.
+Table~\ref{tab:repro} sets out what reproducing the results needs and the order of the steps. Every result in both documents comes from one laptop without a graphics processor, and every simulation run fixes its seed.
 
-\begin{figure}[!htbp]
+\begin{table}[!htbp]
+\caption{Reproducing the results. The hardware and software every run used, and the steps from the stored code to the figures and the manuscript. The live testbed is described in Section S3}
+\label{tab:repro}
 \centering
-\begin{tikzpicture}[
-  font=\fontfamily{phv}\selectfont\scriptsize,
-  need/.style={draw=black!60, rounded corners=2pt, fill=gray!8, align=left, text width=5.2cm, inner sep=4pt, anchor=north west},
-  stp/.style={draw=blue!55!black, rounded corners=2pt, fill=blue!5, align=left, text width=16.0cm, inner sep=4pt, anchor=north west},
-  liv/.style={draw=orange!75!black, rounded corners=2pt, fill=orange!8, align=left, text width=16.0cm, inner sep=4pt, anchor=north west},
-  num/.style={circle, draw=blue!55!black, fill=white, inner sep=1pt, minimum size=0.42cm, font=\fontfamily{phv}\selectfont\footnotesize},
-  hd/.style={font=\fontfamily{phv}\selectfont\footnotesize, anchor=south west, inner sep=1pt},
-  tt/.style={font=\ttfamily\footnotesize},
-  ar/.style={-{Latex[length=1.8mm]}, semithick, blue!55!black}
-]
-\newcommand{\bt}[1]{{\fontfamily{phv}\selectfont #1}}
-% what is needed
-\node[need] (hw) at (0,0) {\bt{Hardware}\\[1pt]
-  One laptop, Intel Core i5-1135G7, 4 cores and 8 threads\\
-  8 GB of memory, 7.4 GiB usable, with 23 GiB of swap\\
-  No graphics processor, every run on the CPU\\
-  Ubuntu 24.04 LTS};
-\node[need] (sw) at ($(hw.north east)+(0.2,0)$) {\bt{Software}\\[1pt]
-  Python 3.12.3, PyTorch 2.13.0 on the CPU\\
-  NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.0, PyYAML 6.0.3\\
-  TeX Live 2023 with pdfLaTeX\\
-  Simulators and learners in \texttt{framework/}, never modified};
-\node[need] (lv) at ($(sw.north east)+(0.2,0)$) {\bt{Live testbed check only}\\[1pt]
-  OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio, band n78, 106 PRBs\\
-  Open5GS core in Docker, 17 containers\\
-  protobuf-c 1.5.2, built from source};
-\node[hd] at ($(hw.north west)+(0,0.05)$) {What is needed};
-% steps
-\node[stp] (s1) at ($(hw.west |- lv.south)+(0.55,-0.75)$) {\bt{Set up.} Request the code, configurations, and stored logs from the corresponding author, and create a Python virtual environment with the packages above. Every job runs from \texttt{framework/} on one thread, with \texttt{OMP\_NUM\_THREADS=1}, \texttt{MKL\_NUM\_THREADS=1}, and \texttt{OPENBLAS\_NUM\_THREADS=1}.};
-\node[stp] (s2) at ($(s1.south west)+(0,-0.3)$) {\bt{Train and evaluate.} One command trains and evaluates one policy on a batch of seeds, for example\\[1pt]
-  \texttt{M63\_BACKLOG\_RESET=1 M64\_AXIOM\_V2=1 python m64\_run.py -{}-arm axiom2 -{}-env A -{}-n 19 -{}-topology ring -{}-seeds 900 901}\\[1pt]
-  Each seed trains for 300 episodes on its own stream and is then evaluated for 50 episodes on the held-out stream 5000 plus the seed. The median training time per seed runs from 73 s to 2{,}088 s, and the main campaigns ran five jobs at a time. The primary seeds are 900 to 929, the replication 1000 to 1009, the pilots 2000 to 2009, and the fresh seeds 3000 onwards.};
-\node[stp] (s3) at ($(s2.south west)+(0,-0.3)$) {\bt{Run the other campaigns.} \texttt{m3\_run\_experiment.py} trains the federated variant with noise multipliers 0, 0.5, 1, 2, and 4, \texttt{m4\_run\_experiment.py} applies the disruptions, \texttt{m73\_run.py} adds 37 gNBs, and \texttt{m70\_run.py} to \texttt{m95} add the follow-up runs.};
-\node[stp] (s4) at ($(s3.south west)+(0,-0.3)$) {\bt{Re-evaluate stored checkpoints.} \texttt{m72\_shift.py} replays AXIOM and the tuned rule under shifted conditions, \texttt{m77\_kpi.py} records served PRBs and backlog, \texttt{m92\_transfer.py} runs checkpoints at a new size, and \texttt{m94\_distil.py} distils AXIOM into trees.};
-\node[stp] (s5) at ($(s4.south west)+(0,-0.3)$) {\bt{Summarise.} Each campaign's \texttt{analysis} script judges every pre-registered criterion in \texttt{docs/PAPER5\_M*\_preregistration.md} and reports whether it holds or fails.};
-\node[stp] (s6) at ($(s5.south west)+(0,-0.3)$) {\bt{Verify.} \texttt{m66\_verify.py} recomputes every results table and key sentence of both documents from the raw logs with its own reader and Holm correction, \texttt{m82\_audit.py} traces the remaining numbers to configurations and code, and \texttt{m66\_ci\_recompute.py} recomputes every bootstrap CI.};
-\node[stp] (s7) at ($(s6.south west)+(0,-0.3)$) {\bt{Redraw and build.} \texttt{paper5\_regen\_wpc\_figures.sh} redraws every plot, \texttt{paper5\_cvd\_check.py} checks each for colour vision, and \texttt{make\_submission.py} writes \texttt{Fig1} to \texttt{Fig11}, \texttt{ESM\_1.pdf}, and the compiled manuscript.};
-\node[hd] at ($(s1.north west)+(-0.55,0.05)$) {Steps};
-\foreach \i/\j in {s1/s2,s2/s3,s3/s4,s4/s5,s5/s6,s6/s7}{\draw[ar] ($(\i.south west)+(0.4,0)$) -- ($(\j.north west)+(0.4,0)$);}
-\foreach \i [count=\k] in {s1,s2,s3,s4,s5,s6,s7}{\node[num] at ($(\i.north west)+(-0.3,-0.25)$) {\k};}
-\end{tikzpicture}
-\caption{Reproducing the results. Top, the hardware and software every run used. Below, the steps from the stored code to the figures and the manuscript, with the live testbed in Section S3}
-\label{fig:repro}
-\end{figure}
+\footnotesize
+{\setlength{\tabcolsep}{3pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.35cm}>{\raggedright\arraybackslash}p{10.35cm}@{}}
+\toprule
+Item & Details \\
+\midrule
+\multicolumn{2}{@{}l}{What is needed} \\
+\cmidrule(r){1-2}
+Hardware & One laptop, Intel Core i5-1135G7, 4 cores and 8 threads. 8 GB of memory, 7.4 GiB usable, with 23 GiB of swap. No graphics processor, every run on the CPU. Ubuntu 24.04 LTS \\
+Software & Python 3.12.3, PyTorch 2.13.0 on the CPU. NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.0, PyYAML 6.0.3. TeX Live 2023 with pdfLaTeX. Simulators and learners in \texttt{framework/}, never modified \\
+Live testbed check only & OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio, band n78, 106 PRBs. Open5GS core in Docker, 17 containers. protobuf-c 1.5.2, built from source \\
+\midrule
+\multicolumn{2}{@{}l}{Steps} \\
+\cmidrule(r){1-2}
+1. Set up & Request the code, configurations, and stored logs from the corresponding author, and create a Python virtual environment with the packages above. Every job runs from \texttt{framework/} on one thread, with \texttt{OMP\_NUM\_THREADS=1}, \texttt{MKL\_NUM\_THREADS=1}, and \texttt{OPENBLAS\_NUM\_THREADS=1}. \\
+2. Train and evaluate & One command trains and evaluates one policy on a batch of seeds, for example \texttt{M63\_BACKLOG\_RESET=1 M64\_AXIOM\_V2=1 python m64\_run.py -{}-arm axiom2 -{}-env A -{}-n 19 -{}-topology ring -{}-seeds 900 901}. Each seed trains for 300 episodes on its own stream and is then evaluated for 50 episodes on the held-out stream 5000 plus the seed. The median training time per seed runs from 73 s to 2{,}088 s, and the main campaigns ran five jobs at a time. The primary seeds are 900 to 929, the replication 1000 to 1009, the pilots 2000 to 2009, and the fresh seeds 3000 onwards. \\
+3. Run the other campaigns & \texttt{m3\_run\_experiment.py} trains the federated variant with noise multipliers 0, 0.5, 1, 2, and 4, \texttt{m4\_run\_experiment.py} applies the disruptions, \texttt{m73\_run.py} adds 37 gNBs, and \texttt{m70\_run.py} to \texttt{m95} add the follow-up runs. \\
+4. Re-evaluate stored checkpoints & \texttt{m72\_shift.py} replays AXIOM and the tuned rule under shifted conditions, \texttt{m77\_kpi.py} records served PRBs and backlog, \texttt{m92\_transfer.py} runs checkpoints at a new size, and \texttt{m94\_distil.py} distils AXIOM into trees. \\
+5. Summarise & Each campaign's \texttt{analysis} script judges every pre-registered criterion in \texttt{docs/PAPER5\_M*\_preregistration.md} and reports whether it holds or fails. \\
+6. Verify & \texttt{m66\_verify.py} recomputes every results table and key sentence of both documents from the raw logs with its own reader and Holm correction, \texttt{m82\_audit.py} traces the remaining numbers to configurations and code, and \texttt{m66\_ci\_recompute.py} recomputes every bootstrap CI. \\
+7. Redraw and build & \texttt{paper5\_regen\_wpc\_figures.sh} redraws every plot, \texttt{paper5\_cvd\_check.py} checks each for colour vision, and \texttt{make\_submission.py} writes \texttt{Fig1} to \texttt{Fig9}, \texttt{ESM\_1.pdf}, \texttt{ESM\_2.csv}, and the compiled manuscript. \\
+\bottomrule
+\end{tabular}}
+\end{table}
 
 \end{document}

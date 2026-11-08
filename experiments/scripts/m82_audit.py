@@ -161,16 +161,20 @@ def run(C):
     A = {a: seeds_of("m65_reviewer/base", a, S30) for a in ("axiom2", "mappo_tuned")}
     A.update({a: seeds_of("m63_reviewer/base", a, S30) for a in ("heuristic", "single_agent_dqn", "independent_dqn")})
     ra = {a: mean(A[a]) for a in A}
-    C.note("M82 Table 4 Env A reward row", f"Env A reward, 3 gNBs & {ra['axiom2']:.2f}, {100 * ra['axiom2'] / ra['heuristic']:.1f}\\% of static rule & {ra['single_agent_dqn']:.2f} & {ra['independent_dqn']:.2f} & {ra['mappo_tuned']:.2f} \\\\" in C.main,
-           {k: round(v, 3) for k, v in ra.items()})
+    # figure audit 2026-11-08: the comparison table (old Table 3) is gone; its Env A 3-gNB rewards are the Env A results table's
+    C.note("M82 Table 4 Env A reward row: the same rewards and the 98.9% share are in the Env A results table",
+           all(f"{lab_} & {ra[a_]:.3f} & [" in C.main for a_, lab_ in (("axiom2", "AXIOM"), ("heuristic", "Static rule"), ("single_agent_dqn", "DQN-SA"),
+                                                              ("independent_dqn", "DQN-I"), ("mappo_tuned", "MAPPO")))
+           and f"& {100 * ra['axiom2'] / ra['heuristic']:.1f} &" in C.main, {k: round(v, 3) for k, v in ra.items()})
     cx = json.load(open(f"{ROOT}/m64/complexity.json")); cx37 = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
     allc = {n_: cx[n_] for n_ in ("3", "7", "19")}; allc["37"] = cx37
     C.note("M82 Table 4 parameter row", all(allc[n_]["axiom2"]["params_execution"] == 7782 and allc[n_]["mappo"]["params_execution"] == 5122 for n_ in allc)
-           and "Parameters at execution & 7,782 at any size & 21,250 to 64,770 & 55,302 to 682,058 & 5,122 \\\\" in C.main, None)
+           and "7,782 at every size" in C.main and "5,122 at every size" in C.main, None)   # now the complexity table (figure audit)
     n7 = {t: {a: seeds_of(f"m64/n7_{t}", a, S15) for a in ARMS} for t in LAY}
     n7p = {a: 100 * float(np.mean([mean(n7[t][a], prio) for t in LAY])) for a in ARMS}
-    C.note("M82 Table 4 Env B 7-gNB priority SLA row", "Env B priority SLA, 7 gNBs & " + " & ".join(f"{n7p[a]:.1f}\\%" for a in ARMS) + " \\\\" in C.main,
-           {k: round(v, 2) for k, v in n7p.items()})
+    # figure audit 2026-11-08: the Env B 7-gNB row left with the comparison table; AXIOM's and DQN-SA's values are quoted in the text
+    C.note("M82 Table 4 Env B 7-gNB priority SLA row: AXIOM and DQN-SA as quoted in the text",
+           f"which keeps more compliance, {n7p['single_agent_dqn']:.1f}\\% against {n7p['axiom2']:.1f}\\%" in C.main, {k: round(v, 2) for k, v in n7p.items()})
     def pooled(n_):
         if n_ == 37:
             rows = {a: [r for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for r in seeds_of(f"m73/A_n37_{t}", a, ss if a == "axiom2" or t == "hex" else []).values()] for a in ARMS}
@@ -227,7 +231,9 @@ def run(C):
         lat = " / ".join(f"{(sa_ms[n_] if a == 'single_agent_dqn' else allc[n_][k]['ms_per_step']):.2f}" for n_ in ("3", "7", "19", "37"))
         tr = (prim_train("m64/n3_fully_connected", a), med_train("m65_scaling/n19_ring", a), med_train("m73/A_n37_ring" if a == "axiom2" else "m73/A_n37_hex", a))
         p_ = (f"{par[0]:,} at every size" if len(set(par)) == 1 else " / ".join(f"{x:,}" for x in par))
-        rows[a] = f"{lab} & {p_} & {lat} & {tr[0]} / {tr[1]} / {tr[2]} \\\\"
+        dsg = {"axiom2": "Shared encoder, per-slice heads", "single_agent_dqn": "One flattened controller", "independent_dqn": "One learner per gNB",
+               "mappo_tuned": "Shared actor, central critic"}[a]
+        rows[a] = f"{lab} & {dsg} & {p_} & {lat} & {tr[0]} / {tr[1]} / {tr[2]} \\\\"
     C.note("M82 complexity table rows recomputed from the measurements", all(r in C.main for r in rows.values()), rows)
     C.note("M82 federation pooled over 30 seeds, ten of them fresh", len(seeds_of("m65_m3", "fl_gat_ctde_sigma0.0", S10)) == 10
            and len(seeds_of("m65_m3_replication", "fl_gat_ctde_sigma0.0", REP)) == 10

@@ -1,0 +1,101 @@
+===== main.tex: labels (fig/tab/alg) =====
+main:162	\label{fig:sysview}	number 1	page 2
+main:185	\label{tab:related}	number 1	page 4
+main:239	\label{tab:params}	number 2	page 7
+main:301	\label{fig:envflow}	number 2	page 8
+main:312	\label{fig:architecture}	number 3	page 9
+main:331	\label{alg:gat-ctde}	number 1	page 10
+main:421	\label{fig:protocol}	number 4	page 12
+main:434	\label{tab:m2-results}	number 3	page 13
+main:461	\label{fig:m6-topology}	number 5	page 13
+main:470	\label{fig:gnb-map}	number 6	page 14
+main:483	\label{tab:transfer}	number 4	page 16
+main:517	\label{tab:envb}	number 5	page 17
+main:544	\label{fig:envb}	number 7	page 17
+main:557	\label{tab:complexity}	number 6	page 19
+main:597	\label{fig:capability}	number 8	page 21
+main:605	\label{fig:regime}	number 9	page 22
+===== main.tex: references =====
+main:86	\ref{fig:sysview}	-> 1
+main:165	\ref{sec:results-ablation}	-> 6.3
+main:165	\ref{sec:litreview}	-> 2
+main:175	\ref{sec:litreview}	-> 2
+main:175	\ref{sec:system-model}	-> 3
+main:175	\ref{sec:methodology}	-> 4
+main:175	\ref{sec:setup}	-> 5
+main:175	\ref{sec:results}	-> 6
+main:175	\ref{sec:discussion}	-> 7
+main:175	\ref{sec:conclusion}	-> 8
+main:207	\ref{sec:results-ablation}	-> 6.3
+main:209	\ref{tab:related}	-> 1
+main:224	\ref{sec:collapse}	-> 5
+main:232	\eqref{eq:reward}	-> 1
+main:266	\ref{fig:envflow}	-> 2
+main:266	\ref{tab:params}	-> 2
+main:287	\eqref{eq:reward}	-> 1
+main:317	\ref{fig:architecture}	-> 3
+main:319	\ref{sec:results-ablation}	-> 6.3
+main:321	\ref{alg:gat-ctde}	-> 1
+main:327	\ref{sec:results-ablation}	-> 6.3
+main:357	\ref{sec:results-static}	-> 6.1
+main:357	\ref{sec:results-envb}	-> 6.4
+main:359	\ref{tab:params}	-> 2
+main:368	\ref{fig:protocol}	-> 4
+main:426	\ref{fig:m6-topology}	-> 5
+main:430	\ref{tab:m2-results}	-> 3
+main:430	\ref{sec:results-verify}	-> 6.6
+main:455	\ref{fig:m6-topology}	-> 5
+main:473	\ref{fig:m6-topology}	-> 5
+main:477	\ref{fig:gnb-map}	-> 6
+main:479	\ref{tab:transfer}	-> 4
+main:513	\ref{tab:envb}	-> 5
+main:513	\ref{fig:envb}	-> 7
+main:553	\ref{fig:m6-topology}	-> 5
+main:574	\ref{tab:complexity}	-> 6
+main:581	\ref{sec:results-envb}	-> 6.4
+main:591	\ref{fig:capability}	-> 8
+main:591	\ref{fig:regime}	-> 9
+main:614	\ref{sec:discussion}	-> 7
+===== supplementary.tex: labels (fig/tab/alg) =====
+supplementary:47	\label{tab:s-acronyms}	number S1	page 1
+supplementary:78	\label{fig:s-forest}	number S1	page 2
+supplementary:88	\label{fig:s-rliable}	number S2	page 3
+supplementary:97	\label{fig:s-rliable-int}	number S3	page 4
+supplementary:151	\label{fig:testbed}	number S4	page 4
+supplementary:195	\label{fig:m3-privacy}	number S5	page 5
+supplementary:206	\label{fig:m4-disruption}	number S6	page 6
+supplementary:214	\label{tab:s-n37}	number S2	page 6
+supplementary:243	\label{tab:s-tuned}	number S3	page 6
+supplementary:261	\label{tab:s-vdn}	number S4	page 6
+supplementary:282	\label{fig:s-layouts}	number S7	page 7
+supplementary:289	\label{tab:s-transfer}	number S5	page 7
+supplementary:316	\label{tab:s-shift}	number S6	page 7
+supplementary:339	\label{tab:s-envb19}	number S7	page 8
+supplementary:363	\label{fig:pergnb}	number S8	page 8
+supplementary:370	\label{tab:s-conv}	number S8	page 8
+supplementary:395	\label{fig:s-decision}	number S9	page 9
+supplementary:402	\label{tab:s-distil}	number S9	page 9
+supplementary:424	\label{tab:s-kpi}	number S10	page 10
+supplementary:474	\label{tab:repro}	number S11	page 10
+===== supplementary.tex: references =====
+supplementary:43	\ref{tab:s-acronyms}	-> S1
+supplementary:72	\ref{fig:s-forest}	-> S1
+supplementary:81	\ref{fig:s-rliable}	-> S2
+supplementary:91	\ref{fig:s-rliable-int}	-> S3
+supplementary:101	\ref{fig:testbed}	-> S4
+supplementary:186	\ref{fig:m3-privacy}	-> S5
+supplementary:186	\eqref{eq:zcdp}	-> 3
+supplementary:198	\ref{fig:m4-disruption}	-> S6
+supplementary:210	\ref{tab:s-n37}	-> S2
+supplementary:239	\ref{tab:s-tuned}	-> S3
+supplementary:239	\ref{tab:s-vdn}	-> S4
+supplementary:276	\ref{fig:s-layouts}	-> S7
+supplementary:285	\ref{tab:s-transfer}	-> S5
+supplementary:312	\ref{tab:s-shift}	-> S6
+supplementary:335	\ref{tab:s-envb19}	-> S7
+supplementary:357	\ref{fig:pergnb}	-> S8
+supplementary:366	\ref{tab:s-conv}	-> S8
+supplementary:389	\ref{fig:s-decision}	-> S9
+supplementary:398	\ref{tab:s-distil}	-> S9
+supplementary:420	\ref{tab:s-kpi}	-> S10
+supplementary:470	\ref{tab:repro}	-> S11

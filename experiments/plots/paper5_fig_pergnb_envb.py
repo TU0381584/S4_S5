@@ -1,6 +1,6 @@
 """Fig: per-gNB priority-slice compliance in Env B at nineteen gNBs (hex), AXIOM against the three learned baselines.
 
-Each hexagon is one gNB at its true position, coloured by the share of evaluation steps on which that gNB meets
+Each hexagon is one gNB at its true position, shaded on cividis by the share of evaluation steps on which that gNB meets
 both the URLLC and the eMBB SLA under the framework's own per-gNB test (the mean of the two compliances), averaged
 over the 15 reported seeds of M75 D. The centre gNB has six coupled neighbours and the highest offered load, since
 the simulator pins its load multiplier at 1.0 while the others draw theirs from [0.9, 1.0]. The same
@@ -26,11 +26,11 @@ import m6_run_experiment as m6  # noqa: E402
 RES = "/home/kmanojp/oranslice_rig/experiments/results"
 SETS = {"reported": ("m75/D_envB_n19_hex", list(range(900, 912)) + [1000, 1001, 1002]),
         "fresh": ("m80/D_envB_n19_hex_fresh", list(range(7000, 7015)))}
-ARMS = [("axiom2", "AXIOM (proposed)"), ("mappo_tuned", "MAPPO"), ("single_agent_dqn", "DQN-SA"), ("independent_dqn", "DQN-I")]
-TAG = dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")
-# inferno, trimmed at both ends so the darkest cells keep their outlines and the palest stay off white;
-# its lightness rises steadily, so it reads in greyscale and for protan, deutan, and tritan readers
-CMAP = mpl.colors.ListedColormap(plt.get_cmap("inferno")(np.linspace(0.08, 0.92, 256)), name="inferno_trim")
+ARMS = [("axiom2", "AXIOM"), ("mappo_tuned", "MAPPO"), ("single_agent_dqn", "DQN-SA"), ("independent_dqn", "DQN-I")]
+# figure audit: the hex template of main Fig. 6 (flat-topped hexagons) on cividis, whose lightness rises steadily
+CMAP = plt.get_cmap("cividis")
+sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
+import axiom_style as S  # noqa: E402
 VMIN, VMAX = 50, 85
 
 
@@ -46,7 +46,7 @@ def per_gnb(cell, arm, seeds):
 
 
 def hexagon(cx, cy, r):
-    return [(cx + r * np.cos(np.radians(30 + 60 * k)), cy + r * np.sin(np.radians(30 + 60 * k))) for k in range(6)]
+    return [(cx + r * np.cos(np.radians(60 * k)), cy + r * np.sin(np.radians(60 * k))) for k in range(6)]   # flat-topped
 
 
 def main():
@@ -63,31 +63,27 @@ def main():
             summary["sets"][name]["arms"][arm] = {"per_gnb": v.round(4).tolist(), "centre": float(v[0]), "others": float(v[1:].mean()),
                                                   "inner_ring": float(v[1:7].mean()), "edge": float(v[~interior].mean()),
                                                   "min": float(v.min()), "max": float(v.max())}
-    fig = plt.figure(figsize=(MAIN_WIDTH_IN, 2.25))
-    w = 0.225
+    fig = S.figure("full", 58)
+    fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / 58.0)
     for k, (arm, label) in enumerate(ARMS):
-        ax = fig.add_axes([0.005 + k * 0.248, 0.19, w, 0.56])
+        ax = fig.add_axes([fw(1 + k * 29.6), fh(15), fw(27.5), fh(26)])
         v = summary["sets"]["reported"]["arms"][arm]["per_gnb"]
         for g, ((q, rr), val) in enumerate(zip(coords, v)):
-            cx, cy = np.sqrt(3) * (q + rr / 2), -1.5 * rr
+            cx, cy = 1.5 * q, np.sqrt(3) * (rr + q / 2)
             ax.add_patch(Polygon(hexagon(cx, cy, 0.97), closed=True, facecolor=CMAP((val - VMIN) / (VMAX - VMIN)),
-                                 edgecolor="#222222" if g == 0 else "white", linewidth=1.6 if g == 0 else 0.6, zorder=3 if g == 0 else 2))
+                                 edgecolor=S.INK if g == 0 else "white", linewidth=1.4 if g == 0 else 0.5, zorder=3 if g == 0 else 2))
         ax.set_aspect("equal")
         ax.autoscale_view()
         ax.axis("off")
-        s = summary["sets"]["reported"]["arms"][arm]
-        ax.set_title(label, fontsize=8.5, color="#0072B2" if arm == "axiom2" else "#222222", pad=24)
-        ax.text(0.5, 1.0, f"centre {s['centre']:.1f}%\nothers {s['others']:.1f}%", transform=ax.transAxes,
-                ha="center", va="bottom", fontsize=8, linespacing=1.1)
-        fig.text(0.005 + k * 0.248, 0.995, "abcd"[k], fontsize=9, va="top")
-        fig.text(0.035 + k * 0.248, 0.997, "Env B", fontsize=8.5, va="top", color=TAG["tc"],
-                 bbox=dict(boxstyle="round,pad=0.25", fc=TAG["fc"], ec=TAG["ec"], lw=0.6))
-    cax = fig.add_axes([0.3, 0.1, 0.4, 0.045])
+        st = summary["sets"]["reported"]["arms"][arm]
+        ax.text(0.5, 1.03, f"{label}\ncentre {st['centre']:.1f}%\nothers {st['others']:.1f}%", transform=ax.transAxes,
+                ha="center", va="bottom", linespacing=1.1, color=S.POLICY[arm]["color"] if arm == "axiom2" else S.INK)
+        fig.text(fw(1 + k * 29.6), fh(57.5), "abcd"[k], fontweight="bold", va="top")
+    cax = fig.add_axes([fw(34.5), fh(9.5), fw(50), fh(2.2)])
     cb = mpl.colorbar.ColorbarBase(cax, cmap=CMAP, norm=mpl.colors.Normalize(VMIN, VMAX), orientation="horizontal")
-    cb.ax.tick_params(labelsize=8, length=2)
-    cb.set_label("Per-gNB priority-slice SLA, %, the centre gNB outlined", fontsize=8)
-    fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.04)
-    fig.savefig(out + ".png", dpi=200, bbox_inches="tight", pad_inches=0.04)
+    cb.ax.tick_params(length=2); cb.outline.set_linewidth(0.5)
+    cb.set_label("Per-gNB priority-slice compliance (%), the centre gNB outlined")
+    print(S.save(fig, out))
     json.dump(summary, open(out + "_summary.json", "w"), indent=1)
     for name in SETS:
         for arm, s in summary["sets"][name]["arms"].items():

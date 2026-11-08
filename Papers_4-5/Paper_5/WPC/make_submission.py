@@ -7,7 +7,8 @@ and supplementary files named ESM_1.pdf and so on. This script
   2. turns every inline TikZ figure into a standalone FigN.tex, compiled to FigN.pdf,
   3. copies every included graphic to FigN.pdf (vector, fonts embedded, which pdflatex includes directly),
   4. writes submission/main.tex, which includes FigN.pdf at its natural size, never wider than 119 mm,
-  5. copies refs.bib, the class and style files and Online Resource 1 as ESM_1.pdf, and compiles the package.
+  5. copies refs.bib, the class and style files and Online Resource 1 as ESM_1.pdf and
+     Online Resource 2 as ESM_2.csv, and compiles the package.
 Run it from this directory after main.pdf and supplementary.pdf are up to date.
 """
 import os
@@ -43,7 +44,8 @@ def tikz_preamble(main):
     macros = pre[start:pre.index("\n\n", pre.index("\\newcommand{\\uephone}")) + 1]
     return ("\\documentclass[border=0pt]{standalone}\n\\usepackage{amsmath,amssymb}\n\\usepackage{xcolor}\n\\usepackage{tikz}\n"
             "\\renewcommand{\\sfdefault}{phv}\n"
-            "\\usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}\n" + macros)
+            "\\usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}\n"
+            "\\usepackage{pifont}\n\\newcommand{\\gyes}{\\checkmark}\n\\newcommand{\\gno}{\\ding{55}}\n" + macros)   # figure-audit glyphs
 
 
 def pdf_width_bp(pdf):
@@ -85,6 +87,12 @@ def main():
             if os.path.exists(path[:-4] + ".tex"):          # a TikZ source drawn as its own document
                 shutil.copy(path[:-4] + ".tex", os.path.join(OUT, name + ".tex"))
             src = os.path.basename(path)
+        # EPS beside every PDF (figure audit): the figure script's own EPS where it wrote one, else a vector conversion
+        eps_src = (path[:-4] + ".eps") if src != "TikZ" else ""
+        if eps_src and os.path.exists(eps_src):
+            shutil.copy(eps_src, os.path.join(OUT, name + ".eps"))
+        else:
+            run(["pdftops", "-eps", name + ".pdf", name + ".eps"], OUT)
         w, h = pdf_width_bp(os.path.join(OUT, name + ".pdf"))
         width = "" if w <= MAX_W_BP + 0.5 else "[width=119mm]"
         new_fig = f"\\begin{{figure}}{opt}\n\\centering\n\\includegraphics{width}{{{name}}}\n{cap}\\end{{figure}}"
@@ -108,6 +116,7 @@ def main():
     for f in ("refs.bib", "sn-jnl.cls", "sn-basic.bst"):
         shutil.copy(os.path.join(HERE, f), OUT)
     shutil.copy(os.path.join(HERE, "supplementary.pdf"), os.path.join(OUT, "ESM_1.pdf"))
+    shutil.copy(os.path.join(HERE, "ESM_2.csv"), os.path.join(OUT, "ESM_2.csv"))   # Online Resource 2 (figure audit)
     for cmd in (["pdflatex", "-interaction=nonstopmode", "main.tex"], ["bibtex", "main"],
                 ["pdflatex", "-interaction=nonstopmode", "main.tex"], ["pdflatex", "-interaction=nonstopmode", "main.tex"]):
         run(cmd, OUT)

@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
 """AXIOM's advantage as the Env A cluster grows from 3 to 7 to 19 gNBs, and to 37 with --with-37.
 
-(a) Priority-slice compliance, the mean of URLLC and eMBB SLA compliance, per
-    learned policy, mean and 95% bootstrap CI over all seeds and layouts.
-(b) Share of trained policies that collapse into accepting every request.
-(c) Parameters used at execution, from the measured complexity table.
+(a) Priority-slice compliance, the mean of URLLC and eMBB SLA compliance, per learned policy and the static rule:
+    one dot per run, the mean and its 95% bootstrap CI over all seeds and layouts.
+(b) Share of trained policies that collapse into accepting every request, with Wilson 95% intervals.
+(c) Reward per gNB per step, mean and 95% bootstrap CI over the same runs (moved here from the
+    retired AXIOM-superiority figure, panel a, in the figure audit).
 
 Data: three gNBs from the 30-seed Env A campaign (m65_n3_view, fully-connected);
 seven gNBs from 15 seeds under each of three layouts (45 cells); nineteen gNBs
 from 30 seeds under each of three layouts (90 cells); thirty-seven gNBs (M73)
 from AXIOM on 30 hex seeds and 15 ring and 15 fully-connected seeds, and the
-layout-independent baselines on the 30 hex seeds. The static rule is reported
-in the text and kept in the summary, not plotted. Every plotted number is
+layout-independent baselines on the 30 hex seeds. The static rule is plotted in (a).
+Drawn at 119 mm with figures/axiom_style.py. Every plotted number is
 written to <out>_summary.json.
 
 Usage: paper5_fig_scaling_trend.py --out Papers_4-5/Paper_5/WPC/figures/fig6_scaling_trend
@@ -20,16 +21,15 @@ import argparse
 import json
 import sys
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
 from m62_analysis import boot_ci  # noqa: E402
 from m66_verify import ROOT, S15, S30, S30_19, prio, seeds_of  # noqa: E402
-from paper5_common import M2_ARM_STYLE, MAIN_WIDTH_IN, panel  # noqa: E402
+sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
+import axiom_style as S  # noqa: E402
+S.setup()
 
 ARMS = ["axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"]
 LABEL = {"axiom2": "AXIOM (proposed)", "single_agent_dqn": "DQN-SA",
@@ -80,6 +80,8 @@ def main():
             summ[arm][n] = {"n_cells": len(rows), "prio_mean": float(np.mean(v)), "prio_ci": [lo, hi],
                             "collapsed": int(sum(r["collapsed"] for r in rows)),
                             "params": comp[str(n)][COMPLEXITY_KEY[arm]]["params_execution"]}
+            rg = [r["reward"] / n for r in rows]
+            summ[arm][n]["reward_per_gnb_mean"] = float(np.mean(rg)); summ[arm][n]["reward_per_gnb_ci"] = list(boot_ci(rg))
     summ["rule"] = {}
     for n in sizes:
         rows = rule_cells(n)
@@ -87,55 +89,72 @@ def main():
         summ["rule"][n] = {"n_cells": len(rows), "prio_mean": float(np.mean(v)), "prio_ci": list(boot_ci(v)),
                            "collapsed": int(sum(r["collapsed"] for r in rows))}
     big = sizes[-1]
-    fig, axs = plt.subplots(1, 3, figsize=(MAIN_WIDTH_IN, 2.2), gridspec_kw={"width_ratios": [1.3, 1, 1]})
-    xs = np.arange(len(sizes))
-    for arm in ARMS:
-        st = M2_ARM_STYLE[arm]
-        emph = arm == "axiom2"
-        kw = dict(color=st["color"], marker=st["marker"], lw=1.8 if emph else 0.9, ms=4.5 if emph else 3,
-                  alpha=1.0 if emph else 0.75, zorder=5 if emph else 3, label=LABEL[arm])
-        m = [summ[arm][n]["prio_mean"] for n in sizes]
-        lo = [summ[arm][n]["prio_ci"][0] for n in sizes]
-        hi = [summ[arm][n]["prio_ci"][1] for n in sizes]
-        axs[0].plot(xs, m, **kw)
-        axs[0].fill_between(xs, lo, hi, color=st["color"], alpha=0.18 if emph else 0.08, lw=0)
-        axs[1].plot(xs, [100 * summ[arm][n]["collapsed"] / summ[arm][n]["n_cells"] for n in sizes], **kw)
-        axs[2].plot(xs, [summ[arm][n]["params"] for n in sizes], **kw)
-    for i, n in enumerate(sizes):
-        if n != big:
-            continue
-        v = summ["axiom2"][n]["prio_mean"]
-        # below the AXIOM band and above every baseline, so no line or band crosses the label
-        axs[0].text(i - 0.12, 82.0, f"{v:.1f}%", ha="right", va="center",
-                    fontsize=8, color=M2_ARM_STYLE["axiom2"]["color"])
     gap19 = summ["axiom2"][19]["prio_mean"] - max(summ[b][19]["prio_mean"] for b in ARMS[1:])
     gap = summ["axiom2"][big]["prio_mean"] - max(summ[b][big]["prio_mean"] for b in ARMS[1:])
-    xg = len(sizes) - 1 + 0.2
-    axs[0].annotate("", xy=(xg, summ["axiom2"][big]["prio_mean"]),
-                    xytext=(xg, max(summ[b][big]["prio_mean"] for b in ARMS[1:])),
-                    arrowprops=dict(arrowstyle="<->", color="#0072B2", lw=1.0))
-    axs[0].text(xg + 0.05, (summ["axiom2"][big]["prio_mean"] + max(summ[b][big]["prio_mean"] for b in ARMS[1:])) / 2,
-                f"{gap:+.0f}\npoints", fontsize=8, color="#0072B2", va="center")
-    axs[0].set_ylabel("Priority-slice SLA, %")
-    axs[0].set_ylim(20 if 37 in sizes else 40, 104)
-    panel(axs[0], "a", env="A")
-    axs[1].set_ylabel("Collapsed runs, %")
-    panel(axs[1], "b", env="A")
-    axs[2].set_ylabel("Parameters at execution")
-    axs[2].set_yscale("log")
-    panel(axs[2], "c")
-    for ax in axs:
-        ax.set_xticks(xs)
-        ax.set_xticklabels([str(n) for n in sizes])
-        ax.set_xlabel("gNBs")
-        ax.set_xlim(-0.3, len(sizes) - 0.45 + (0.35 if ax is axs[0] else 0))
-        ax.grid(True, axis="y", lw=0.4, alpha=0.4)
-        ax.spines[["top", "right"]].set_visible(False)
-    h_, l_ = axs[0].get_legend_handles_labels()
-    fig.legend(h_, l_, loc="lower center", ncol=4, fontsize=8, frameon=False, handlelength=1.6, bbox_to_anchor=(0.5, -0.01))
-    fig.tight_layout(w_pad=0.6, rect=(0, 0.08, 1, 1))
-    fig.savefig(a.out + ".pdf", bbox_inches="tight")
-    fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")
+    for arm in ARMS:   # Wilson 95% interval of the collapsed share, for panel b
+        for n in sizes:
+            k_, n_ = summ[arm][n]["collapsed"], summ[arm][n]["n_cells"]
+            summ[arm][n]["collapsed_wilson"] = [100 * x for x in S.wilson(k_, n_)]
+    fig = S.figure("full", 104)
+    fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / 104.0)
+    axa = fig.add_axes([fw(15), fh(58), fw(101), fh(37)])
+    axb = fig.add_axes([fw(15), fh(10), fw(42), fh(30)])
+    axc = fig.add_axes([fw(74), fh(10), fw(42), fh(30)])
+    order = ["axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn"]
+    dx = {"axiom2": -0.24, "mappo_tuned": -0.08, "single_agent_dqn": 0.08, "independent_dqn": 0.24, "rule": 0.38}
+    xs = {n: i for i, n in enumerate(sizes)}
+    rng = np.random.default_rng(0)
+    # a, compliance: seeds, mean, CI, and the static rule
+    for arm in order + ["rule"]:
+        pol = "rule_static" if arm == "rule" else arm
+        col = S.POLICY[pol]["color"]
+        for n in sizes:
+            rows = rule_cells(n) if arm == "rule" else cells(n, arm)
+            v = [100 * prio(r) for r in rows]
+            x = xs[n] + dx[arm]
+            axa.scatter(x + rng.uniform(-0.035, 0.035, len(v)), v, s=1.2, c=[S.lighten(col, 0.6)], lw=0, zorder=2)
+            m, (lo, hi) = summ[arm][n]["prio_mean"], summ[arm][n]["prio_ci"]
+            axa.plot([x, x], [lo, hi], color=col, lw=0.9, zorder=3)
+            axa.plot([x], [m], zorder=4, **S.marker_kw(pol, 3.6))
+    i37 = xs[big]
+    axa.text(i37 + dx["axiom2"] - 0.07, summ["axiom2"][big]["prio_mean"], f"{summ['axiom2'][big]['prio_mean']:.1f}%", ha="right", va="center",
+             color=S.POLICY["axiom2"]["color"])
+    yb = max(summ[b][big]["prio_mean"] for b in ARMS[1:])
+    xg = i37 + 0.52
+    axa.annotate("", xy=(xg, summ["axiom2"][big]["prio_mean"]), xytext=(xg, yb), arrowprops=dict(arrowstyle="<->", color=S.POLICY["axiom2"]["color"], lw=0.8))
+    axa.text(xg + 0.05, (summ["axiom2"][big]["prio_mean"] + yb) / 2, f"+{gap:.1f} pp", va="center", ha="left", color=S.POLICY["axiom2"]["color"])
+    axa.set_xlim(-0.5, len(sizes) - 0.5 + 0.55); axa.set_ylim(0, 104)
+    axa.set_xticks(range(len(sizes))); axa.set_xticklabels([str(n) for n in sizes]); axa.set_xlabel("gNBs")
+    axa.set_ylabel("Priority-slice\ncompliance (%)")
+    # b, collapsed share with Wilson CIs
+    for arm in order:
+        col = S.POLICY[arm]["color"]
+        for n in sizes:
+            x = xs[n] + dx[arm]; k_, n_ = summ[arm][n]["collapsed"], summ[arm][n]["n_cells"]
+            lo, hi = summ[arm][n]["collapsed_wilson"]
+            axb.plot([x, x], [lo, hi], color=col, lw=0.9, zorder=3)
+            axb.plot([x], [100 * k_ / n_], zorder=4, **S.marker_kw(arm, 3.6))
+    axb.set_xlim(-0.5, len(sizes) - 0.5); axb.set_ylim(-3, 103)
+    axb.set_xticks(range(len(sizes))); axb.set_xticklabels([str(n) for n in sizes]); axb.set_xlabel("gNBs")
+    axb.set_ylabel("Collapsed runs (%)")
+    # c, reward per gNB per step
+    for arm in order:
+        col = S.POLICY[arm]["color"]
+        for n in sizes:
+            x = xs[n] + dx[arm]
+            m, (lo, hi) = summ[arm][n]["reward_per_gnb_mean"], summ[arm][n]["reward_per_gnb_ci"]
+            axc.plot([x, x], [lo, hi], color=col, lw=0.9, zorder=3)
+            axc.plot([x], [m], zorder=4, **S.marker_kw(arm, 3.6))
+    axc.set_xlim(-0.5, len(sizes) - 0.5)
+    axc.set_xticks(range(len(sizes))); axc.set_xticklabels([str(n) for n in sizes]); axc.set_xlabel("gNBs")
+    axc.set_ylabel("Reward per gNB\nper step")
+    for ax_, t_ in ((axa, "a"), (axb, "b"), (axc, "c")):
+        ax_.text(-0.13 if ax_ is not axa else -0.07, 1.02, t_, transform=ax_.transAxes, fontweight="bold", va="bottom", ha="left")
+    from matplotlib.lines import Line2D
+    hs = [Line2D([], [], label=S.POLICY[a_]["label"], **S.marker_kw(a_, 3.6)) for a_ in order + ["rule_static"]]
+    fig.legend(handles=hs, loc="upper center", ncol=5, bbox_to_anchor=(0.55, 1.0), handletextpad=0.2, columnspacing=1.0)
+    facts = S.save(fig, a.out)
+    print(facts)
     json.dump({"gap19_points": gap19, f"gap{big}_points": gap, "arms": summ}, open(a.out + "_summary.json", "w"), indent=1)
     print("rule", {n: (round(summ["rule"][n]["prio_mean"], 2), summ["rule"][n]["collapsed"], summ["rule"][n]["n_cells"]) for n in sizes})
     for arm in ARMS:

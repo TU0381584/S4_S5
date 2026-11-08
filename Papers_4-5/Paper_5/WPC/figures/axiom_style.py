@@ -4,7 +4,8 @@ Tokens follow Fig. 10 (experiments/plots/paper5_fig_capability.py, frozen): Okab
 as filled markers, rules as hollow markers, AXIOM in blue, learned baselines in grey, rules in vermillion; marker
 shape always distinguishes controllers, so no figure depends on colour alone. Maps use cividis.
 
-Limits from the figure-audit brief: widths 84 mm or 174 mm (Fig. 10 keeps its frozen 119 mm), 8 pt sans text and
+Limits from the figure-audit brief: widths 84 mm or full width, kept at 119 mm by the author's decision (the brief's
+174 mm exceeds the text block), 8 pt sans text and
 never below 7 pt, lines at least 0.3 pt, no background tints, PDF and EPS with embedded TrueType fonts.
 NOTE: the sn-jnl text block is 130.7 mm wide (\\textwidth = 372 pt, measured); a 174 mm figure is wider than the
 text block. See CHANGELOG.md, Phase 0.
@@ -24,7 +25,7 @@ from matplotlib.patches import Polygon  # noqa: E402
 
 # ------------------------------------------------------------------ sizes and limits
 MM = 1 / 25.4
-WIDTH_MM = {"col": 84.0, "full": 174.0}
+WIDTH_MM = {"col": 84.0, "full": 119.0}   # author decision 2026-11-08: keep the existing 119 mm, since 174 mm exceeds the 130.7 mm text block
 FIG10_MM = 119.0                     # frozen exception
 TEXTWIDTH_MM = 372.0 / 72.27 * 25.4  # 130.7, measured from sn-jnl
 FONT_PT, MIN_FONT_PT, MIN_LINE_PT = 8.0, 7.0, 0.3
@@ -173,7 +174,15 @@ def check(fig, allow=("col", "full")):
     w_mm = fig.get_size_inches()[0] / MM
     ok_w = [WIDTH_MM[a] if a in WIDTH_MM else FIG10_MM for a in allow]
     assert any(abs(w_mm - w) < 0.05 for w in ok_w), f"width {w_mm:.1f} mm not in {ok_w}"
-    ts = [t for t in fig.findobj(mpl.text.Text) if t.get_visible() and t.get_text().strip()]
+    # tick labels of ticks outside an axis's view are kept by matplotlib but never drawn; leave them out
+    undrawn = set()
+    for ax in fig.axes:
+        for axis, lim in ((ax.xaxis, ax.get_xlim()), (ax.yaxis, ax.get_ylim())):
+            lo, hi = min(lim), max(lim)
+            for tk in axis.get_major_ticks() + axis.get_minor_ticks():
+                if not (lo - 1e-9 <= tk.get_loc() <= hi + 1e-9):
+                    undrawn.update({id(tk.label1), id(tk.label2)})
+    ts = [t for t in fig.findobj(mpl.text.Text) if t.get_visible() and t.get_text().strip() and id(t) not in undrawn]
     small = [(t.get_text(), t.get_fontsize()) for t in ts if t.get_fontsize() < MIN_FONT_PT]
     assert not small, f"text below {MIN_FONT_PT} pt: {small[:5]}"
     thin = [a for a in fig.findobj(mpl.lines.Line2D) if a.get_visible() and a.get_linestyle() not in ("None", "none", "")
@@ -193,7 +202,13 @@ def check(fig, allow=("col", "full")):
 
 def save(fig, stem, allow=("col", "full"), png=True):
     """Check, then write stem.pdf and stem.eps (TrueType embedded) and, for previews, stem.png at 300 dpi."""
-    facts = check(fig, allow)
+    import os
+    try:
+        facts = check(fig, allow)
+    except AssertionError:
+        d = os.path.join(os.path.dirname(os.path.abspath(stem)), "audit_previews"); os.makedirs(d, exist_ok=True)
+        fig.savefig(os.path.join(d, os.path.basename(stem) + "_layoutfail.png"), dpi=200)   # for inspection only
+        raise
     fig.savefig(stem + ".pdf")
     fig.savefig(stem + ".eps")
     if png:
@@ -209,15 +224,19 @@ def caption_colour_words(caption):
 
 def cvd_previews(png):
     """Greyscale (CIE L*) and three CVD simulations (deuteranomaly, protanomaly, tritanomaly; severity 100) of a PNG.
-    Writes <stem>_grey.png, _deut.png, _prot.png, _trit.png next to it."""
+    Writes <stem>_grey.png, _deut.png, _prot.png, _trit.png into audit_previews/ beside it."""
+    import os
     from PIL import Image
     from colorspacious import cspace_convert
+    d = os.path.join(os.path.dirname(os.path.abspath(png)), "audit_previews"); os.makedirs(d, exist_ok=True)
+    stem = os.path.join(d, os.path.basename(png)[:-4])
     im = np.asarray(Image.open(png).convert("RGB")).astype(float) / 255.0
     L = cspace_convert(im, "sRGB1", "CIELab")[..., 0] / 100.0
-    Image.fromarray((np.clip(L, 0, 1) * 255).round().astype(np.uint8)).save(png.replace(".png", "_grey.png"))
+    Image.fromarray((np.clip(L, 0, 1) * 255).round().astype(np.uint8)).save(stem + "_grey.png")
     for t, tag in (("deuteranomaly", "deut"), ("protanomaly", "prot"), ("tritanomaly", "trit")):
         c = cspace_convert(im, {"name": "sRGB1+CVD", "cvd_type": t, "severity": 100}, "sRGB1")
-        Image.fromarray((np.clip(c, 0, 1) * 255).round().astype(np.uint8)).save(png.replace(".png", f"_{tag}.png"))
+        Image.fromarray((np.clip(c, 0, 1) * 255).round().astype(np.uint8)).save(stem + f"_{tag}.png")
+    return stem
 
 
 def token_separation(policies):

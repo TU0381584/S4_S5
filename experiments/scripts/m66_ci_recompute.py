@@ -20,11 +20,11 @@ t3 = [("heuristic", "Static rule"), ("axiom2", "AXIOM"), ("axiom2_mlp", "AXIOM, 
       ("single_agent_dqn_lr1e4", "\\quad at LR $10^{-4}$", ), ("independent_dqn", "DQN-I"), ("independent_dqn_lr1e4", "\\quad at LR $10^{-4}$"), ("mappo_tuned", "MAPPO")]
 for arm, nm in t3:
     v = [r["reward"] for r in A[arm].values()]
-    out.append((f"{sum(v)/len(v):.3f} [", fmt(*boot_ci(v)), "T3 " + arm))
+    out.append((f"{sum(v)/len(v):.3f} & [", fmt(*boot_ci(v)), "T3 " + arm))   # CI in its own column since the figure audit
 B = {a: rows("m64/n3_fully_connected", a, S30) for a in ("rule_accept_all", "rule_static", "rule_local", "rule_neighbour", "axiom2", "axiom2_mlp", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
 for arm, r in B.items():
     v = [x["reward"] for x in r.values()]
-    out.append((f"{sum(v)/len(v):.3f} [", fmt(*boot_ci(v)), "T4 " + arm))
+    out.append((f"{sum(v)/len(v):.3f} & [", fmt(*boot_ci(v)), "T4 " + arm))   # CI in its own column since the figure audit
 def dci(a, b, seeds, label, key):
     d = [a[s]["reward"] - b[s]["reward"] for s in seeds]
     out.append((key, fmt(*boot_ci(d)), label))

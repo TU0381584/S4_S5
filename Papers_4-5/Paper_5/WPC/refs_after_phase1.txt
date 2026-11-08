@@ -1,0 +1,104 @@
+===== main.tex: labels (fig/tab/alg) =====
+main:152	\label{fig:sysview}	number 1	page 2
+main:175	\label{tab:related}	number 1	page 4
+main:226	\label{tab:params}	number 2	page 7
+main:296	\label{fig:envflow}	number 2	page 8
+main:307	\label{fig:architecture}	number 3	page 9
+main:326	\label{alg:gat-ctde}	number 1	page 10
+main:418	\label{fig:protocol}	number 4	page 12
+main:431	\label{tab:m2-results}	number 3	page 13
+main:456	\label{fig:m6-topology}	number 5	page 14
+main:466	\label{fig:gnb-map}	number 6	page 14
+main:479	\label{tab:transfer}	number 4	page 16
+main:509	\label{tab:envb}	number 5	page 17
+main:537	\label{fig:envb}	number 7	page 17
+main:550	\label{tab:complexity}	number 6	page 19
+main:590	\label{fig:capability}	number 8	page 21
+main:598	\label{fig:regime}	number 9	page 22
+===== main.tex: references =====
+main:77	\ref{fig:sysview}	-> 1
+main:155	\ref{sec:results-ablation}	-> 6.3
+main:155	\ref{sec:litreview}	-> 2
+main:165	\ref{sec:litreview}	-> 2
+main:165	\ref{sec:system-model}	-> 3
+main:165	\ref{sec:methodology}	-> 4
+main:165	\ref{sec:setup}	-> 5
+main:165	\ref{sec:results}	-> 6
+main:165	\ref{sec:discussion}	-> 7
+main:165	\ref{sec:conclusion}	-> 8
+main:194	\ref{sec:results-ablation}	-> 6.3
+main:196	\ref{tab:related}	-> 1
+main:211	\ref{sec:collapse}	-> 5
+main:219	\eqref{eq:reward}	-> 1
+main:246	\ref{fig:envflow}	-> 2
+main:246	\ref{tab:params}	-> 2
+main:273	\eqref{eq:reward}	-> 1
+main:273	\ref{alg:gat-ctde}	-> 1
+main:283	\eqref{eq:margin}	-> 2
+main:312	\ref{fig:architecture}	-> 3
+main:314	\ref{sec:results-ablation}	-> 6.3
+main:316	\ref{alg:gat-ctde}	-> 1
+main:322	\ref{sec:results-ablation}	-> 6.3
+main:352	\ref{sec:results-static}	-> 6.1
+main:352	\ref{sec:results-envb}	-> 6.4
+main:354	\ref{tab:params}	-> 2
+main:363	\ref{fig:protocol}	-> 4
+main:423	\ref{fig:m6-topology}	-> 5
+main:423	\ref{tab:complexity}	-> 6
+main:427	\ref{tab:m2-results}	-> 3
+main:427	\ref{sec:results-verify}	-> 6.6
+main:449	\ref{fig:m6-topology}	-> 5
+main:469	\ref{fig:m6-topology}	-> 5
+main:473	\ref{fig:gnb-map}	-> 6
+main:475	\ref{tab:transfer}	-> 4
+main:505	\ref{tab:envb}	-> 5
+main:505	\ref{fig:envb}	-> 7
+main:546	\ref{fig:m6-topology}	-> 5
+main:567	\ref{tab:complexity}	-> 6
+main:574	\ref{sec:results-envb}	-> 6.4
+main:584	\ref{fig:capability}	-> 8
+main:584	\ref{fig:regime}	-> 9
+main:607	\ref{sec:discussion}	-> 7
+===== supplementary.tex: labels (fig/tab/alg) =====
+supplementary:45	\label{tab:s-acronyms}	number S1	page 1
+supplementary:76	\label{fig:s-forest}	number S1	page 2
+supplementary:83	\label{tab:s-rliable}	number S2	page 3
+supplementary:150	\label{fig:s-rliable}	number S2	page 2
+supplementary:204	\label{fig:testbed}	number S3	page 3
+supplementary:248	\label{fig:m3-privacy}	number S4	page 5
+supplementary:259	\label{fig:m4-disruption}	number S5	page 5
+supplementary:267	\label{tab:s-n37}	number S3	page 6
+supplementary:296	\label{tab:s-tuned}	number S4	page 6
+supplementary:314	\label{tab:s-vdn}	number S5	page 6
+supplementary:335	\label{fig:s-layouts}	number S6	page 6
+supplementary:342	\label{tab:s-transfer}	number S6	page 7
+supplementary:369	\label{tab:s-shift}	number S7	page 7
+supplementary:392	\label{tab:s-envb19}	number S8	page 7
+supplementary:416	\label{fig:pergnb}	number S7	page 8
+supplementary:423	\label{tab:s-conv}	number S9	page 8
+supplementary:448	\label{fig:s-decision}	number S8	page 9
+supplementary:455	\label{tab:s-distil}	number S10	page 9
+supplementary:477	\label{tab:s-kpi}	number S11	page 9
+supplementary:569	\label{fig:repro}	number S9	page 10
+===== supplementary.tex: references =====
+supplementary:41	\ref{tab:s-acronyms}	-> S1
+supplementary:70	\ref{fig:s-forest}	-> S1
+supplementary:79	\ref{tab:s-rliable}	-> S2
+supplementary:79	\ref{fig:s-rliable}	-> S2
+supplementary:154	\ref{fig:testbed}	-> S3
+supplementary:239	\ref{fig:m3-privacy}	-> S4
+supplementary:239	\eqref{eq:zcdp}	-> 3
+supplementary:251	\ref{fig:m4-disruption}	-> S5
+supplementary:263	\ref{tab:s-n37}	-> S3
+supplementary:292	\ref{tab:s-tuned}	-> S4
+supplementary:292	\ref{tab:s-vdn}	-> S5
+supplementary:329	\ref{fig:s-layouts}	-> S6
+supplementary:338	\ref{tab:s-transfer}	-> S6
+supplementary:365	\ref{tab:s-shift}	-> S7
+supplementary:388	\ref{tab:s-envb19}	-> S8
+supplementary:410	\ref{fig:pergnb}	-> S7
+supplementary:419	\ref{tab:s-conv}	-> S9
+supplementary:442	\ref{fig:s-decision}	-> S8
+supplementary:451	\ref{tab:s-distil}	-> S10
+supplementary:473	\ref{tab:s-kpi}	-> S11
+supplementary:523	\ref{fig:repro}	-> S9

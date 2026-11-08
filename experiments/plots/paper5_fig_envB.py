@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Env B (M64) results figure: mean reward per step at N=3 for the learned
-policies, per-seed points behind the mean and 95% CI. The rules are reported
-in the text and in Table tab:envb, not plotted. Writes a JSON of every
-plotted number next to the figure.
+"""Main Fig. 7: Env B reward per step at three gNBs, 30 seeds, the four learned policies and the two tuned rules.
+
+Per-seed points (solid tints, so the EPS needs no transparency) behind the mean and its 95% CI. CIs are the paper's
+order-independent bootstrap (m62_analysis.boot_ci), the same intervals Table 5 prints. Learned policies are filled
+markers, rules hollow (figures/axiom_style.py, after Fig. 8); a dashed line marks the tuned local rule's mean.
+Drawn at 84 mm. Every plotted number is written to <out>_summary.json.
 
 Usage: paper5_fig_envB.py --root experiments/results/m64 --out Papers_4-5/Paper_5/WPC/figures/fig11_envB
 """
@@ -11,23 +13,19 @@ import json
 import os
 import sys
 
-import matplotlib
-matplotlib.use("Agg")
-import matplotlib.pyplot as plt
 import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
+sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
 from m62_analysis import boot_ci, eval_log, seed_metrics  # noqa: E402
-from paper5_common import M2_ARM_STYLE, MAIN_WIDTH_IN, RULE_STYLE, env_tag  # noqa: E402,F401
+import axiom_style as S  # noqa: E402
 
-N3_ARMS = ["single_agent_dqn", "independent_dqn", "mappo_tuned", "axiom2"]
-SHORT = {"single_agent_dqn": "DQN-SA", "independent_dqn": "DQN-I",
-         "mappo_tuned": "MAPPO", "axiom2": "AXIOM\n(proposed)"}
-
-
-def style(arm):
-    return RULE_STYLE.get(arm) or M2_ARM_STYLE[arm]
+S.setup()
+ARMS = ["axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn", "rule_local", "rule_neighbour"]
+LABEL = {"axiom2": "AXIOM", "mappo_tuned": "MAPPO", "single_agent_dqn": "DQN-SA", "independent_dqn": "DQN-I",
+         "rule_local": "Tuned local rule", "rule_neighbour": "Tuned neighbour rule"}
+X = {a: x for a, x in zip(ARMS, (0, 1, 2, 3, 4.5, 5.5))}
 
 
 def load(cell, arms, seeds):
@@ -39,42 +37,45 @@ def main():
     ap.add_argument("--root", required=True)
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
-    S30 = list(range(900, 930))
-    d3 = load(f"{a.root}/n3_fully_connected", N3_ARMS, S30)
-    fig, ax = plt.subplots(figsize=(0.72 * MAIN_WIDTH_IN, 2.1))
-    rng = np.random.RandomState(0)
+    d3 = load(f"{a.root}/n3_fully_connected", ARMS, list(range(900, 930)))
+    fig = S.figure("col", 52)
+    ax = fig.add_axes([0.33, 0.19, 0.64, 0.78])
+    rng = np.random.default_rng(0)
     summ = {"n3": {}}
-    for i, arm in enumerate(N3_ARMS):
+    lab_x = []
+    for arm in ARMS:
         rows = d3[arm]
-        st = style(arm)
-        r = [x["reward"] for x in rows]
-        lo, hi = boot_ci(r)
-        m = float(np.mean(r))
-        emph = arm == "axiom2"
-        if emph:
-            ax.axvspan(i - 0.42, i + 0.42, color=st["color"], alpha=0.08, lw=0)
-        ax.scatter(i + rng.uniform(-0.16, 0.16, len(r)), r, s=6, color=st["color"], alpha=0.35, lw=0)
-        ax.errorbar(i, m, yerr=[[m - lo], [hi - m]], fmt=st["marker"], color=st["color"],
-                    ms=6.5 if emph else 5, capsize=3, lw=1.3 if emph else 1.0, mec="white" if emph else st["color"], zorder=5)
-        ax.text(i + 0.24, m, f"{m:.2f}", fontsize=8.5, va="center", ha="left", color=st["color"],
-                fontweight="normal")
+        r = np.array([x["reward"] for x in rows])
+        lo, hi = boot_ci(list(r)); m = float(r.mean())
+        col = S.POLICY[arm]["color"]
+        y = X[arm]
+        ax.scatter(r, y + rng.uniform(-0.2, 0.2, len(r)), s=3, c=[S.lighten(col, 0.6)], lw=0, zorder=2)
+        ax.plot([lo, hi], [y, y], color=col, lw=1.0, zorder=3)
+        ax.plot([m], [y], zorder=4, **S.marker_kw(arm, 4.6))
+        lab_x.append((y, m, col))
         summ["n3"][arm] = {"n": len(rows), "reward": m, "ci": [lo, hi],
-                           "urllc": float(np.mean([x["sla"]["urllc"] for x in rows])),
-                           "embb": float(np.mean([x["sla"]["embb"] for x in rows])),
-                           "collapsed": int(sum(x["collapsed"] for x in rows))}
-    ax.set_xticks(range(len(N3_ARMS)))
-    ax.set_xticklabels([SHORT[x] for x in N3_ARMS], fontsize=8.5)
-    ax.set_xlim(-0.55, len(N3_ARMS) - 0.35)
-    ax.set_ylabel("Reward per step, 3 gNBs", fontsize=8.5)
-    ax.tick_params(axis="y", labelsize=8.5)
-    ax.grid(True, axis="y", lw=0.4, alpha=0.4)
-    ax.spines[["top", "right"]].set_visible(False)
-    env_tag(ax, "B")
-    fig.tight_layout()
-    fig.savefig(a.out + ".pdf", bbox_inches="tight")
-    fig.savefig(a.out + ".png", dpi=200, bbox_inches="tight")
+                           "urllc": float(np.mean([x_["sla"]["urllc"] for x_ in rows])),
+                           "embb": float(np.mean([x_["sla"]["embb"] for x_ in rows])),
+                           "collapsed": int(sum(x_["collapsed"] for x_ in rows))}
+    ref = summ["n3"]["rule_local"]["reward"]
+    ax.axvline(ref, color=S.POLICY["rule_local"]["color"], lw=0.6, ls=(0, (3, 2)), zorder=1)
+    ax.axhline(3.75, color=S.FAINT, lw=0.5, zorder=0)
+    ax.set_yticks([X[a_] for a_ in ARMS]); ax.set_yticklabels([LABEL[a_].replace("\n", " ") for a_ in ARMS])
+    for t, a_ in zip(ax.get_yticklabels(), ARMS):
+        t.set_color(S.POLICY["axiom2"]["color"] if a_ == "axiom2" else S.INK)
+    ax.set_ylim(5.95, -0.6)
+    allr = [x_["reward"] for v_ in d3.values() for x_ in v_]
+    x_hi = np.ceil(max(allr)) + 1.2
+    ax.set_xlim(np.floor(min(allr)) - 0.2, x_hi)
+    for y, m, col in lab_x:   # means in a column at the right, clear of the dots
+        ax.text(x_hi - 0.05, y, f"{m:.2f}", va="center", ha="right", color=col)
+    x_lo = np.floor(min(allr)) - 0.2
+    ax.set_xticks([t_ for t_ in ax.get_xticks() if x_lo <= t_ <= np.ceil(max(allr))]); ax.set_xlim(x_lo, x_hi)
+    ax.set_xlabel("Env B reward per step, three gNBs")
+    ax.tick_params(axis="y", length=0); ax.spines["left"].set_visible(False)
+    facts = S.save(fig, a.out)
     json.dump(summ, open(a.out + "_summary.json", "w"), indent=1)
-    print(json.dumps(summ, indent=1))
+    print(facts, {k: round(v["reward"], 3) for k, v in summ["n3"].items()})
 
 
 if __name__ == "__main__":
