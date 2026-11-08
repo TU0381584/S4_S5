@@ -35,24 +35,36 @@ MIN_GAP_MM = 0.4                     # minimum clearance between two text labels
 OI = {"black": "#000000", "orange": "#E69F00", "sky": "#56B4E9", "green": "#009E73", "yellow": "#F0E442",
       "blue": "#0072B2", "vermillion": "#D55E00", "purple": "#CC79A7", "grey": "#7F7F7F"}
 INK, FAINT = "#222222", "#BBBBBB"
+# colours restored to the paper's pre-audit palette at the author's request (2026-11-09), Okabe-Ito based and checked
+# for colour-vision deficiency; learned controllers keep filled markers and rules hollow ones (shape redundancy)
 POLICY = {
-    # learned controllers: filled markers (as in Fig. 10)
-    "axiom2":           dict(label="AXIOM",      color=OI["blue"],       marker="o", filled=True),
-    "mappo_tuned":      dict(label="MAPPO",      color=OI["grey"],       marker="s", filled=True),
-    "single_agent_dqn": dict(label="DQN-SA",     color=OI["grey"],       marker="^", filled=True),
-    "independent_dqn":  dict(label="DQN-I",      color=OI["grey"],       marker="v", filled=True),
-    "axiom2_mlp":       dict(label="AXIOM-MLP",  color=OI["sky"],        marker="o", filled=True),
-    "vdn":              dict(label="VDN",        color=OI["green"],      marker="<", filled=True),
-    # rules: hollow markers (as in Fig. 10)
-    "rule_static":      dict(label="Static rule", color=OI["vermillion"], marker="D", filled=False),
-    "rule_local":       dict(label="Tuned rule",  color=OI["vermillion"], marker="P", filled=False),
-    "rule_local_transfer": dict(label="Tuned rule", color=OI["vermillion"], marker="P", filled=False),
-    "rule_neighbour":   dict(label="Neighbour-aware rule", color=OI["vermillion"], marker="h", filled=False),
-    "rule_retuned":     dict(label="Re-tuned rule", color=OI["vermillion"], marker="X", filled=False),
-    "rule_accept_all":  dict(label="Accept-all",  color=OI["black"],      marker="o", filled=False),
+    "axiom2":           dict(label="AXIOM",      color=OI["blue"],   marker="o", filled=True),
+    "mappo_tuned":      dict(label="MAPPO",      color=OI["black"],  marker="D", filled=True),
+    "single_agent_dqn": dict(label="DQN-SA",     color=OI["green"],  marker="s", filled=True),
+    "independent_dqn":  dict(label="DQN-I",      color=OI["vermillion"], marker="^", filled=True),
+    "axiom2_mlp":       dict(label="AXIOM-MLP",  color=OI["sky"],    marker="o", filled=True),
+    "vdn":              dict(label="VDN",        color=OI["purple"], marker="<", filled=True),
+    "rule_static":      dict(label="Static rule", color="#5b5a52",   marker="v", filled=False),
+    "rule_local":       dict(label="Tuned rule",  color=OI["purple"],   marker="P", filled=False),
+    "rule_local_transfer": dict(label="Tuned rule", color=OI["purple"], marker="P", filled=False),
+    "rule_neighbour":   dict(label="Neighbour-aware rule", color=OI["sky"], marker="h", filled=False),
+    "rule_retuned":     dict(label="Re-tuned rule", color=OI["purple"], marker="X", filled=False),
+    "rule_accept_all":  dict(label="Accept-all",  color="#c3c2b7",   marker="o", filled=False),
 }
+# environment badges as in the paper's figures before the audit
+ENV_TAG = {"A": dict(fc="#e2e8f0", ec="#5a6b82", tc="#26344a"), "B": dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")}
+INFERNO = mpl.colors.ListedColormap(mpl.colormaps["inferno"](np.linspace(0.08, 0.92, 256)), name="inferno_trim")
+
+
+def env_badge(fig, x, y, env, ha="left", va="center"):
+    """The pre-audit 'Env A' / 'Env B' badge at figure fraction (x, y), 8 pt."""
+    t = ENV_TAG[env]
+    return fig.text(x, y, f"Env {env}", ha=ha, va=va, color=t["tc"],
+                    bbox=dict(boxstyle="round,pad=0.25", fc=t["fc"], ec=t["ec"], lw=0.6))
+
+
 ORDER = ["axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn", "rule_static", "rule_local"]
-MAP_CMAP = "cividis"
+MAP_CMAP = "inferno_trim"   # restored (2026-11-09); its lightness rises steadily, so it is CVD-safe
 CAPTION_COLOUR_WORDS = ("red", "green", "blue", "orange", "yellow", "purple", "violet", "pink", "grey", "gray", "black",
                         "white", "cyan", "magenta", "vermillion", "brown", "teal", "dark", "light", "pale", "colour",
                         "color", "shaded", "tinted")

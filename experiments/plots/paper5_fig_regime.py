@@ -26,7 +26,7 @@ import axiom_style as S  # noqa: E402
 S.setup()
 # figure audit: AXIOM ahead in blue and rule ahead in vermillion at 35% (pre-blended on white, so the EPS needs no
 # transparency), rule ahead also hatched; no significant difference in a light neutral; values printed in every cell
-AX_C, RULE_C, TIE_C = S.lighten("#0072B2", 0.65), S.lighten("#D55E00", 0.65), "#EFEFEF"
+AX_C, RULE_C, TIE_C = S.lighten("#0072B2", 0.15), S.lighten("#E69F00", 0.15), "#DDDDDD"   # pre-audit colours restored (2026-11-09), 85% pre-blended
 LAYOUTS = ("fully_connected", "ring", "hex")
 OUT = "../../Papers_4-5/Paper_5/WPC/figures/fig_regime"
 EXTRA_B = {(7, "0.80"): ("m95/B_shift/n7_ring", "rule_local"), (7, "1.05"): ("m95/B_shift/n7_ring", "rule_local"),
@@ -96,10 +96,10 @@ def draw(ax, tests, sizes, loads, fmt, xlabel, nominal):
                 continue
             fc = {"AXIOM": AX_C, "rule": RULE_C, "tie": TIE_C}[v["verdict"]]
             ax.add_patch(Rectangle((j, y), 1, 1, facecolor=fc, edgecolor="white", lw=1.2,
-                                   hatch="////" if v["verdict"] == "rule" else None, hatchcolor="#D55E00"))
+                                   hatch="////" if v["verdict"] == "rule" else None, hatchcolor="white"))
             if v["verdict"] == "rule":   # keep the printed value legible over the hatching
                 ax.add_patch(Rectangle((j + 0.2, y + 0.3), 0.6, 0.4, facecolor=fc, edgecolor="none", zorder=3))
-            ax.text(j + 0.5, y + 0.5, fmt(v["diff"]), ha="center", va="center", color=S.INK, zorder=4)
+            ax.text(j + 0.5, y + 0.5, fmt(v["diff"]), ha="center", va="center", color="white" if v["verdict"] == "AXIOM" else S.INK, zorder=4)
     ax.set_xlim(0, len(loads))
     ax.set_ylim(0, len(sizes))
     ax.set_xticks([j + 0.5 for j in range(len(loads))])
@@ -126,12 +126,13 @@ def main():
     draw(axA, A, (3, 7, 19, 37), ("1.05", "1.10", "1.20"), lambda d: mn(f"{d:+.1f}"), "Offered load (%)", "1.05")
     draw(axB, B, (3, 7, 19), ("0.80", "1.00", "1.05", "1.10", "1.15", "1.20"), lambda d: mn(f"{d:+.2f}"),
          "Offered load (% of the rule\u2019s tuning load)", "1.00")
-    axA.set_title("Env A, AXIOM minus static rule,\npriority-slice compliance (pp)", loc="left", pad=4)
-    axB.set_title("Env B, AXIOM minus tuned rule,\nreward per gNB per step", loc="left", pad=4)
-    for x_, t_ in ((0.5, "a"), (48, "b")):
+    axA.set_title("AXIOM minus static rule,\npriority-slice compliance (pp)", loc="left", pad=4)
+    axB.set_title("AXIOM minus tuned rule,\nreward per gNB per step", loc="left", pad=4)
+    for x_, t_, e_ in ((0.5, "a", "A"), (48, "b", "B")):
         fig.text(fw(x_), fh(61.5), t_, fontweight="bold", va="top")
+        S.env_badge(fig, fw(x_ + 3.5), fh(61.5), e_, va="top")   # pre-audit badges restored (2026-11-09)
     handles = [Patch(facecolor=AX_C, label="AXIOM ahead"), Patch(facecolor=TIE_C, label="no significant difference"),
-               Patch(facecolor=RULE_C, hatch="////", hatchcolor="#D55E00", label="rule ahead"),
+               Patch(facecolor=RULE_C, hatch="////", hatchcolor="white", label="rule ahead"),
                Patch(facecolor="white", edgecolor="#BBBBBB", ls=(0, (2, 2)), label="not run"),
                Patch(facecolor="white", edgecolor="black", ls=(0, (3, 1.5)), label="tuning load")]
     blank = any((n, L) not in A for n in (3, 7, 19, 37) for L in ("1.05", "1.10", "1.20")) or \

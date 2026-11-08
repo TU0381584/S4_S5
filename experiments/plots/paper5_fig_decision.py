@@ -76,13 +76,14 @@ def main():
             axA.plot(centres, e_, color=COL[b], lw=0.4, ls=STY[b][0], zorder=1)
         axA.plot(centres, y, ls=STY[b][0], marker=STY[b][1], color=COL[b], mec="#0072B2", ms=3.6, lw=1.3, label=f"AXIOM, {lab}", zorder=3)
         axM.stairs(100 * np.array(s_["visits"]), edges, color="#0072B2" if b == "900" else COL[b], ls=STY[b][0], lw=1.1)
-    axA.step([0, 0.2, 0.2, 2.0], [0, 0, 100, 100], where="post", color=S.POLICY["rule_local"]["color"], ls=(0, (3, 2)), lw=1.0, label="Tuned rule")
+    axA.step([0, 0.2, 0.2, 2.0], [0, 0, 100, 100], where="post", color="#555555", ls="--", lw=1.0, label="Tuned rule")   # pre-audit colour
     axA.set_xlim(0, 2.0); axA.set_ylim(-3, 103)
     axA.set_xlabel("gNB\u2019s own URLLC queue (share of budget)")
     axA.set_ylabel("eMBB requests\nshed (%)")
     axM.set_ylabel("gNB-steps\n(%)")
     axM.tick_params(axis="x", labelbottom=False)
     fig.legend(*axA.get_legend_handles_labels(), loc="lower center", bbox_to_anchor=(0.55, 0.0), ncol=3, frameon=False, handlelength=2.2)
+    S.env_badge(fig, fw(1), fh(73.5), "B", va="top")   # pre-audit badge restored (2026-11-09)
     print(S.save(fig, out))
     json.dump(summary, open(out + "_summary.json", "w"), indent=1)
     for b in ("300", "900"):

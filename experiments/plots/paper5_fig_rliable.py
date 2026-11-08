@@ -23,8 +23,9 @@ SUMMARY = "/home/kmanojp/oranslice_rig/experiments/results/m93/m93_summary.json"
 OUT = "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_rliable"
 TABLE = "/home/kmanojp/oranslice_rig/experiments/results/m93/table_rliable.tex"
 # figure-audit tokens: AXIOM blue, learned baselines grey told apart by line style, rules vermillion
-STYLE = {"AXIOM": ("#0072B2", "-", 1.6), "MAPPO": ("#7F7F7F", "-", 1.0), "DQN-SA": ("#7F7F7F", (0, (4, 1.5)), 1.0),
-         "DQN-I": ("#7F7F7F", (0, (1, 1.2)), 1.0), "Static rule": ("#D55E00", "-", 1.0), "Tuned rule": ("#D55E00", (0, (4, 1.5)), 1.0)}
+# pre-audit colours restored (2026-11-09); line styles keep the rules apart without colour
+STYLE = {"AXIOM": ("#0072B2", "-", 1.6), "DQN-SA": ("#009E73", "-", 1.1), "DQN-I": ("#D55E00", "-", 1.1),
+         "MAPPO": ("#000000", "-", 1.1), "Static rule": ("#555555", (0, (4, 1.5)), 1.1), "Tuned rule": ("#CC79A7", (0, (4, 1.5)), 1.1)}
 ORDER = ("Env A, 3 gNBs", "Env A, 7 gNBs", "Env A, 19 gNBs", "Env A, 37 gNBs", "Env B, 3 gNBs", "Env B, 7 gNBs", "Env B, 19 gNBs")
 TAG = {"A": dict(fc="#e2e8f0", ec="#5a6b82", tc="#26344a"), "B": dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")}
 MINUS = "−"
@@ -50,7 +51,11 @@ def figure(d):
                 ax.plot(tau, e_, color=S.lighten(c, 0.45), lw=0.4, ls=ls, zorder=1)
             ax.plot(tau, p["profile"], color=c, ls=ls, lw=lw, zorder=3 if k == "AXIOM" else 2)
         ax.set_xlim(0, 100); ax.set_ylim(0, 1.02); ax.set_xticks([0, 50, 100]); ax.set_yticks([0, 0.5, 1])
-        ax.set_title(name, loc="left", pad=3)
+        env_, size_ = name.split(", ")
+        tg_ = S.ENV_TAG[env_[-1]]
+        ax.text(0.0, 1.05, env_, transform=ax.transAxes, va="bottom", color=tg_["tc"],
+                bbox=dict(boxstyle="round,pad=0.25", fc=tg_["fc"], ec=tg_["ec"], lw=0.6))
+        ax.text(0.30, 1.05, size_, transform=ax.transAxes, va="bottom")
         ax.text(-0.2, 1.08, "abcdefg"[i], transform=ax.transAxes, fontweight="bold", va="bottom")
         if col == 0:
             ax.set_ylabel("Fraction of runs\nabove \u03c4")

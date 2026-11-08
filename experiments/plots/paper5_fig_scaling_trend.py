@@ -150,6 +150,9 @@ def main():
     axc.set_ylabel("Reward per gNB\nper step")
     for ax_, t_ in ((axa, "a"), (axb, "b"), (axc, "c")):
         ax_.text(-0.13 if ax_ is not axa else -0.07, 1.02, t_, transform=ax_.transAxes, fontweight="bold", va="bottom", ha="left")
+        tg_ = S.ENV_TAG["A"]   # pre-audit Env A badge beside each panel letter (restored 2026-11-09)
+        ax_.text(-0.07 if ax_ is not axa else -0.035, 1.02, "Env A", transform=ax_.transAxes, va="bottom", ha="left", color=tg_["tc"],
+                 bbox=dict(boxstyle="round,pad=0.25", fc=tg_["fc"], ec=tg_["ec"], lw=0.6))
     from matplotlib.lines import Line2D
     hs = [Line2D([], [], label=S.POLICY[a_]["label"], **S.marker_kw(a_, 3.6)) for a_ in order + ["rule_static"]]
     fig.legend(handles=hs, loc="upper center", ncol=5, bbox_to_anchor=(0.55, 1.0), handletextpad=0.2, columnspacing=1.0)

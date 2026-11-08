@@ -28,7 +28,8 @@ SETS = {"reported": ("m75/D_envB_n19_hex", list(range(900, 912)) + [1000, 1001, 
         "fresh": ("m80/D_envB_n19_hex_fresh", list(range(7000, 7015)))}
 ARMS = [("axiom2", "AXIOM"), ("mappo_tuned", "MAPPO"), ("single_agent_dqn", "DQN-SA"), ("independent_dqn", "DQN-I")]
 # figure audit: the hex template of main Fig. 6 (flat-topped hexagons) on cividis, whose lightness rises steadily
-CMAP = plt.get_cmap("cividis")
+# inferno restored (2026-11-09), trimmed at both ends as before; its lightness rises steadily, so it is CVD-safe
+CMAP = mpl.colors.ListedColormap(plt.get_cmap("inferno")(np.linspace(0.08, 0.92, 256)), name="inferno_trim")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
 import axiom_style as S  # noqa: E402
 VMIN, VMAX = 50, 85
@@ -79,6 +80,7 @@ def main():
         ax.text(0.5, 1.03, f"{label}\ncentre {st['centre']:.1f}%\nothers {st['others']:.1f}%", transform=ax.transAxes,
                 ha="center", va="bottom", linespacing=1.1, color=S.POLICY[arm]["color"] if arm == "axiom2" else S.INK)
         fig.text(fw(1 + k * 29.6), fh(57.5), "abcd"[k], fontweight="bold", va="top")
+        S.env_badge(fig, fw(4.5 + k * 29.6), fh(57.5), "B", va="top")   # pre-audit badge (restored 2026-11-09)
     cax = fig.add_axes([fw(34.5), fh(9.5), fw(50), fh(2.2)])
     cb = mpl.colorbar.ColorbarBase(cax, cmap=CMAP, norm=mpl.colors.Normalize(VMIN, VMAX), orientation="horizontal")
     cb.ax.tick_params(length=2); cb.outline.set_linewidth(0.5)

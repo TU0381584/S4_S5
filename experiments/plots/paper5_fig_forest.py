@@ -121,10 +121,12 @@ def main():
         ax.set_xlabel(xl)
         ax.grid(True, axis="x", linewidth=0.4, alpha=0.4)
         ax.spines[["top", "right", "left"]].set_visible(False)
-        ax.axhline(blocks[0][2] + 0.35, color="#BBBBBB", lw=0.5, zorder=0)   # divider between Env A and Env B (no tints)
+        for env, a, b in blocks:   # pre-audit environment bands restored (2026-11-09), pre-blended for EPS
+            ax.axhspan(a - 0.35, b + 0.25, color=S.lighten(TAG[env]["fc"], 0.65), lw=0, zorder=0)
     for env, a, b in blocks:
         yfig = 0.2 + 0.74 * (1 - ((a + b) / 2 - (-0.45)) / (y - 0.2 - (-0.45)))
-        fig.text(0.015, yfig, f"Env {env}", va="center")
+        fig.text(0.015, yfig, f"Env {env}", va="center", color=TAG[env]["tc"],
+                 bbox=dict(boxstyle="round,pad=0.25", fc=TAG[env]["fc"], ec=TAG[env]["ec"], lw=0.6))
     for x_, t_ in ((0.005, "a"), (0.6, "b")):
         fig.text(x_ + (0.19 if t_ == "a" else 0.0), 0.995, t_, fontweight="bold", va="top")
     handles = [Line2D([0], [0], color=c, lw=1.0, marker=MARK[b], mfc=c, mec=c, ms=4, label=l) for b, l, c in BASE]

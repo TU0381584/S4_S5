@@ -140,3 +140,21 @@ A cell changed from n.r. only where the paper's own text states the fact; source
 Footnote e added: "Over the number of slices in a single cell, not over cells."
 
 For the author: Sulaiman et al.'s Greedy baseline "accepts all SRs for embedding", close to an accept-all trivial policy. The Related Work sentences "neither study checks for degenerate policies" (Shao, Sulaiman) and "None of these core studies checks its metric against a trivial policy" come from the systematic review and were not changed; please confirm they still hold under the review's definition.
+
+## Colours restored (2026-11-09, author: "restore the colours for the diagrams and figures as before (colour blind passing)")
+
+The pre-audit colour schemes are back on the post-audit layouts; data, captions, layout checks and marker-shape redundancy are unchanged, and Fig. 8 (former Fig. 10) is untouched.
+
+| Figure | Restored |
+|---|---|
+| shared tokens (figures/axiom_style.py) | AXIOM #0072B2 circle, MAPPO black diamond, DQN-SA #009E73 square, DQN-I #D55E00 triangle (paper5_common.M2_ARM_STYLE); learned filled, rules hollow; static rule #5b5a52 (paper5_common.RULE_STYLE); tuned rule Okabe-Ito purple #CC79A7 as in the pre-audit rliable figure and neighbour-aware rule sky #56B4E9, chosen over RULE_STYLE's olive and gold because olive against DQN-I's vermillion fell to dE 6.8 under protanopia; ENV_TAG badges; inferno_trim map |
+| Fig. 1 | core, gNB and slice fills; slice icons and UEs in colour, with the original red, blue and green replaced by Okabe-Ito vermillion, blue and bluish green (the red/green pair is not CVD-safe); border styles kept as a second cue |
+| Fig. 2 | Env A boxes blue, Env B orange, shared grey; lane labels in the Env A and Env B badge colours |
+| Fig. 3, Fig. S5a | original node fills (blue, orange, green, violet) |
+| Fig. 4 | grey steps, blue gates, red dashed failure callouts and connectors |
+| Fig. 5, Fig. 7 | policy colours from the tokens; Env badges; Fig. 7's AXIOM row highlight |
+| Fig. 6, Fig. S8 | inferno_trim; Env badges; Fig. 6's AXIOM frame (and the shared 8 pt style, which Fig. 6 had not applied; its canvas grows to 124 mm for the badge) |
+| Fig. 9 | blue and orange cells at 85%, white hatching on rule cells, grey #DDDDDD neutral, white values on AXIOM cells, Env badges |
+| Figs. S1, S2, S3, S5, S6, S7, S9 | forest Env bands and badges; profile line colours (AXIOM blue, DQN-SA green, DQN-I vermillion, MAPPO black, static grey dashed, tuned purple dashed); interval figure via the tokens; coloured env_tag badges (paper5_common); decision tuned-rule step #555555; testbed fill |
+
+CVD check (CAM02-UCS dE, minimum over deuteranomaly, protanomaly, tritanomaly at full severity): policy tokens at least 11.7 for every pair (AXIOM against DQN-SA under tritanomaly, the original pairing), every pair also differs in marker shape or fill; Fig. 9 cells 26.8 to 50.7; Fig. 1 slice borders 10.0 to 43.9, Fig. 4 borders 46.9. The pastel fills of the diagrams are faint for every reader (dE 1.6 to 10.6) and never the only cue: slices carry icons, labels, positions and border styles, lanes are labelled, gates are diamonds. Fig. 1 rendered under deuteranopia keeps the three slices distinct.

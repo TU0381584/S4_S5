@@ -26,6 +26,8 @@
 \setcounter{totalnumber}{5}
 
 % --- reusable vector icons for the system-view figure ---
+% Okabe-Ito slice colours (CVD-safe), restored with the pre-audit fills (2026-11-09)
+\definecolor{oiV}{HTML}{D55E00}\definecolor{oiB}{HTML}{0072B2}\definecolor{oiG}{HTML}{009E73}
 % figure lettering: 8 pt Helvetica, the journal's minimum (the class's \footnotesize is only 7 pt)
 \newcommand{\figfont}{\sffamily\fontsize{8}{9.6}\selectfont}
 \newcommand{\gnbtower}[1]{%
@@ -89,9 +91,9 @@ Network slicing virtualises the Radio Access Network (RAN) to serve Ultra-Reliab
 \centering
 \begin{tikzpicture}[x=0.62cm,y=0.62cm,
   font=\figfont,
-  core/.style={draw=black!75, ellipse,
+  core/.style={draw=blue!55!black, fill=blue!7, ellipse,
                minimum width=3.4cm, minimum height=1.1cm, align=center},
-  gnb/.style={draw=black!65, rounded corners, minimum width=1.1cm,
+  gnb/.style={draw=black!55, rounded corners, fill=gray!8, minimum width=1.1cm,
               minimum height=0.42cm, align=center, font=\figfont, inner sep=1pt},
   band/.style={draw, rounded corners, minimum width=1.75cm, minimum height=0.55cm},
   ar/.style={-{Latex[length=2.2mm]}, thick},
@@ -125,29 +127,29 @@ Network slicing virtualises the Radio Access Network (RAN) to serve Ultra-Reliab
       at (0.7,4.85) [anchor=south west] {AXIOM cluster graph};
 \draw[ar] (core.south) -- (7.5,4.62) node[pos=0.5, right=1pt, font=\figfont, fill=white, inner sep=1pt] {N2 / N3};
 % --- slice bands with icons + short labels ---
-% slices told apart by icon, label, position, and border style, not by colour (figure audit)
-\node[band, draw=black!75]                       (s1) at (2.5,1.05) {};
-\node[band, draw=black!75, dashed]               (s2) at (7.5,1.05) {};
-\node[band, draw=black!75, densely dotted, thick] (s3) at (12.5,1.05) {};
+% slices: colour (Okabe-Ito, CVD-safe) plus icon, label, position, and border style
+\node[band, fill=oiV!14, draw=oiV!80!black]                    (s1) at (2.5,1.05) {};
+\node[band, fill=oiB!14, draw=oiB!80!black, dashed]           (s2) at (7.5,1.05) {};
+\node[band, fill=oiG!14, draw=oiG!80!black, densely dotted, thick] (s3) at (12.5,1.05) {};
 \node[font=\figfont] at (2.9,1.05) {URLLC};
 \node[font=\figfont] at (7.9,1.05) {eMBB};
 \node[font=\figfont] at (12.9,1.05) {mMTC};
 % URLLC bolt
-\fill[black!75] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)--cycle;
+\fill[oiV!85!black] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)--cycle;
 % eMBB bandwidth bars
-\fill[black!75] (6.34,0.85) rectangle (6.41,1.03);
-\fill[black!75] (6.45,0.85) rectangle (6.52,1.15);
-\fill[black!75] (6.56,0.85) rectangle (6.63,1.27);
+\fill[oiB!85!black] (6.34,0.85) rectangle (6.41,1.03);
+\fill[oiB!85!black] (6.45,0.85) rectangle (6.52,1.15);
+\fill[oiB!85!black] (6.56,0.85) rectangle (6.63,1.27);
 % mMTC sensor grid
-\foreach \a in {-0.14,0,0.14}{\foreach \b in {-0.14,0,0.14}{\fill[black!75] (11.5+\a,1.05+\b) circle (0.03);}}
+\foreach \a in {-0.14,0,0.14}{\foreach \b in {-0.14,0,0.14}{\fill[oiG!85!black] (11.5+\a,1.05+\b) circle (0.03);}}
 \draw[ar] (g2 |- clu.south) -- (7.5,1.9);
 \draw[ar] (7.5,1.86) -- (s1.north);
 \draw[ar] (7.5,1.86) -- (s2.north);
 \draw[ar] (7.5,1.86) -- (s3.north);
 % --- UEs ---
-\uephone{(2.0,0.3)}{gray}  \uephone{(3.0,0.3)}{gray}
-\uephone{(7.0,0.3)}{gray} \uephone{(8.0,0.3)}{gray}
-\uephone{(12.0,0.3)}{gray} \uephone{(13.0,0.3)}{gray}
+\uephone{(2.0,0.3)}{oiV}  \uephone{(3.0,0.3)}{oiV}
+\uephone{(7.0,0.3)}{oiB} \uephone{(8.0,0.3)}{oiB}
+\uephone{(12.0,0.3)}{oiG} \uephone{(13.0,0.3)}{oiG}
 \node[font=\figfont] at (14.55,0.3) {$\cdots$};
 \begin{scope}[opacity=0.55]\uephone{(15.7,0.3)}{gray}\end{scope}
 \node[font=\figfont, anchor=west] at (16.0,0.3) {UE~$M$};
@@ -270,25 +272,32 @@ Each gNB has a budget of $B{=}100$ PRBs in both simulators. The nominal shares a
 \begin{tikzpicture}[
   font=\figfont, x=1cm, y=1cm,
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
-  bx/.style={draw=black!75, rounded corners=2pt, align=center, text width=1.24cm, minimum height=1.05cm, inner sep=1.5pt},
+  bx/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=1.24cm, minimum height=1.05cm, inner sep=1.5pt},
+  bxa/.style={bx, draw=blue!55!black, fill=blue!6},
+  bxb/.style={bx, draw=orange!75!black, fill=orange!12},
   ar/.style={-{Latex[length=1.6mm]}, semithick},
   lane/.style={draw=black!45, dashed, line width=0.4pt},
   ll/.style={font=\figfont, anchor=west, align=left}
 ]
 % three swimlanes: Env A on top, the steps both share in the middle, Env B below
 \foreach \y in {1.0,-1.0}{\draw[lane] (0,\y) -- (12.95,\y);}
-\node[ll] at (0,2.0) {Env A}; \node[ll] at (0,0) {Both}; \node[ll] at (0,-2.0) {Env B};
+% lane labels in the pre-audit environment-tag colours (restored 2026-11-09)
+\definecolor{envAfc}{HTML}{E2E8F0}\definecolor{envAec}{HTML}{5A6B82}\definecolor{envAtc}{HTML}{26344A}
+\definecolor{envBfc}{HTML}{F4EAD6}\definecolor{envBec}{HTML}{9C7A45}\definecolor{envBtc}{HTML}{4F3A15}
+\node[ll, draw=envAec, fill=envAfc, text=envAtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,2.0) {Env A};
+\node[ll] at (0,0) {Both};
+\node[ll, draw=envBec, fill=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B};
 \def\c#1{\fpeval{0.95+1.5*#1}}
-\node[bx] (sa) at (1.75,2.0) {Empty queues, reset ceilings};
-\node[bx] (sb) at (1.75,-2.0) {Same, redraw load phase $\psi_i$};
+\node[bxa] (sa) at (1.75,2.0) {Empty queues, reset ceilings};
+\node[bxb] (sb) at (1.75,-2.0) {Same, redraw load phase $\psi_i$};
 \node[bx] (ob) at (3.25,0) {Observe each gNB's feature row};
 \node[bx] (arv) at (4.75,0) {$N$ requests, at most $4N$ pending};
 \node[bx] (de) at (6.25,0) {Accept or reject, move ceilings};
 \node[bx] (rw) at (7.75,0) {Reward $r_t$ of Eq.~\eqref{eq:reward}};
-\node[bx] (da) at (9.25,2.0) {Drift towards $1.05\times$ share};
-\node[bx] (db) at (9.25,-2.0) {Load follows a 60-step sine};
-\node[bx] (va) at (10.75,2.0) {Scale slices to fit $B$};
-\node[bx] (vb) at (10.75,-2.0) {Budget shrinks with neighbour load};
+\node[bxa] (da) at (9.25,2.0) {Drift towards $1.05\times$ share};
+\node[bxb] (db) at (9.25,-2.0) {Load follows a 60-step sine};
+\node[bxa] (va) at (10.75,2.0) {Scale slices to fit $B$};
+\node[bxb] (vb) at (10.75,-2.0) {Budget shrinks with neighbour load};
 \node[bx] (up) at (12.25,0) {Unserved demand becomes backlog};
 \draw[ar] (sa) -| (ob); \draw[ar] (sb) -| ([xshift=-2.5mm]ob.south);
 \foreach \i/\j in {ob/arv,arv/de,de/rw}{\draw[ar] (\i) -- (\j);}
@@ -376,12 +385,12 @@ Finally, every headline comparison is recomputed on an independent, disjoint see
 \begin{tikzpicture}[
   font=\figfont, x=1cm, y=1cm,
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
-  st/.style={draw=black!75, rounded corners=2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt},
-  gate/.style={draw=black!75, line width=0.7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner sep=0pt},
+  st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt},
+  gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner sep=0pt},
   num/.style={circle, draw=black!75, fill=white, inner sep=0.4pt, minimum size=0.36cm, font=\figfont},
-  fail/.style={draw=black!75, dashed, rounded corners=1pt, align=left, inner sep=2pt},
+  fail/.style={draw=red!60!black, fill=red!5, text=red!40!black, dashed, rounded corners=1pt, align=left, inner sep=2pt},
   ar/.style={-{Latex[length=1.7mm]}, semithick},
-  ct/.style={-{Latex[length=1.4mm]}, densely dotted}
+  ct/.style={-{Latex[length=1.4mm]}, densely dotted, red!60!black}
 ]
 % the protocol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to right; gates are diamonds
 \foreach \i/\x/\y/\s/\t in {1/1.1/0/st/{Pre-registered plan},

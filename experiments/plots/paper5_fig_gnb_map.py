@@ -44,9 +44,11 @@ FLOOR_CAP = {"urllc": (5, 33), "embb": (10, 66), "mmtc": (5, 11)}   # saclb_offl
 ARMS = [("axiom2", "AXIOM"), ("mappo_tuned", "MAPPO"), ("single_agent_dqn", "DQN-SA"), ("independent_dqn", "DQN-I")]
 MAIN_WIDTH_IN = 119.0 / 25.4  # WPC maximum figure width
 # cividis on 0 to 1 (figure audit): lightness rises steadily, so it reads in greyscale and for colour-vision deficiencies
-CMAP = plt.get_cmap("cividis")
+# inferno restored (2026-11-09), trimmed at both ends as before; its lightness rises steadily, so it is CVD-safe
+CMAP = mpl.colors.ListedColormap(plt.get_cmap("inferno")(np.linspace(0.08, 0.92, 256)), name="inferno_trim")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
 import axiom_style as S  # noqa: E402
+S.setup()
 
 
 def gate_openness(path, n):
@@ -111,7 +113,7 @@ def main():
     else:
         coords = hex_cluster_coords(n)
     summary = {"cell": a.cell, "n_gnbs": n, "seeds": S30_19, "arms": {}}
-    H = 118.0
+    H = 124.0
     fig = S.figure("full", H)
     fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / H)
     slots = [(1, 76), (61, 76), (1, 34), (61, 34)]   # 2 x 2, so each header fits on one line at 8 pt
@@ -131,8 +133,13 @@ def main():
         ax = fig.add_axes([fw(x0_), fh(y0_), fw(57), fh(33)])
         draw_cluster(ax, coords, corr, lw=0.3)
         col = S.POLICY[arm]["color"] if arm == "axiom2" else S.INK
+        if arm == "axiom2":   # AXIOM's panel framed in its colour, as before
+            ax.axis("on"); ax.set_xticks([]); ax.set_yticks([])
+            for sp in ax.spines.values():
+                sp.set_visible(True); sp.set_edgecolor(col); sp.set_linewidth(1.2)
         ax.text(0.5, 1.03, f"{label}\nSLA {p_sla:.1f}% \u00b7 collapsed {coll}/{len(rows)}", transform=ax.transAxes,
                 ha="center", va="bottom", color=col, linespacing=1.1)
+    S.env_badge(fig, fw(1), fh(H - 1.5), "A", va="top")   # pre-audit badge (restored 2026-11-09)
     # key: one gNB's hexagon, its three slice sectors labelled
     kax = fig.add_axes([fw(14), fh(1), fw(92), fh(11)])
     draw_cluster(kax, [(0, 0)], np.array([[1.0, 1.0, 1.0]]), r=1.0, lw=0.8)

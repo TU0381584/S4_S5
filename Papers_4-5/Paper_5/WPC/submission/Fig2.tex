@@ -8,6 +8,8 @@
 \newcommand{\gyes}{\checkmark}
 \newcommand{\gno}{\ding{55}}
 % --- reusable vector icons for the system-view figure ---
+% Okabe-Ito slice colours (CVD-safe), restored with the pre-audit fills (2026-11-09)
+\definecolor{oiV}{HTML}{D55E00}\definecolor{oiB}{HTML}{0072B2}\definecolor{oiG}{HTML}{009E73}
 % figure lettering: 8 pt Helvetica, the journal's minimum (the class's \footnotesize is only 7 pt)
 \newcommand{\figfont}{\sffamily\fontsize{8}{9.6}\selectfont}
 \newcommand{\gnbtower}[1]{%
@@ -33,25 +35,32 @@
 \begin{tikzpicture}[
   font=\figfont, x=1cm, y=1cm,
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
-  bx/.style={draw=black!75, rounded corners=2pt, align=center, text width=1.24cm, minimum height=1.05cm, inner sep=1.5pt},
+  bx/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=1.24cm, minimum height=1.05cm, inner sep=1.5pt},
+  bxa/.style={bx, draw=blue!55!black, fill=blue!6},
+  bxb/.style={bx, draw=orange!75!black, fill=orange!12},
   ar/.style={-{Latex[length=1.6mm]}, semithick},
   lane/.style={draw=black!45, dashed, line width=0.4pt},
   ll/.style={font=\figfont, anchor=west, align=left}
 ]
 % three swimlanes: Env A on top, the steps both share in the middle, Env B below
 \foreach \y in {1.0,-1.0}{\draw[lane] (0,\y) -- (12.95,\y);}
-\node[ll] at (0,2.0) {Env A}; \node[ll] at (0,0) {Both}; \node[ll] at (0,-2.0) {Env B};
+% lane labels in the pre-audit environment-tag colours (restored 2026-11-09)
+\definecolor{envAfc}{HTML}{E2E8F0}\definecolor{envAec}{HTML}{5A6B82}\definecolor{envAtc}{HTML}{26344A}
+\definecolor{envBfc}{HTML}{F4EAD6}\definecolor{envBec}{HTML}{9C7A45}\definecolor{envBtc}{HTML}{4F3A15}
+\node[ll, draw=envAec, fill=envAfc, text=envAtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,2.0) {Env A};
+\node[ll] at (0,0) {Both};
+\node[ll, draw=envBec, fill=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B};
 \def\c#1{\fpeval{0.95+1.5*#1}}
-\node[bx] (sa) at (1.75,2.0) {Empty queues, reset ceilings};
-\node[bx] (sb) at (1.75,-2.0) {Same, redraw load phase $\psi_i$};
+\node[bxa] (sa) at (1.75,2.0) {Empty queues, reset ceilings};
+\node[bxb] (sb) at (1.75,-2.0) {Same, redraw load phase $\psi_i$};
 \node[bx] (ob) at (3.25,0) {Observe each gNB's feature row};
 \node[bx] (arv) at (4.75,0) {$N$ requests, at most $4N$ pending};
 \node[bx] (de) at (6.25,0) {Accept or reject, move ceilings};
 \node[bx] (rw) at (7.75,0) {Reward $r_t$ of Eq.~(1)};
-\node[bx] (da) at (9.25,2.0) {Drift towards $1.05\times$ share};
-\node[bx] (db) at (9.25,-2.0) {Load follows a 60-step sine};
-\node[bx] (va) at (10.75,2.0) {Scale slices to fit $B$};
-\node[bx] (vb) at (10.75,-2.0) {Budget shrinks with neighbour load};
+\node[bxa] (da) at (9.25,2.0) {Drift towards $1.05\times$ share};
+\node[bxb] (db) at (9.25,-2.0) {Load follows a 60-step sine};
+\node[bxa] (va) at (10.75,2.0) {Scale slices to fit $B$};
+\node[bxb] (vb) at (10.75,-2.0) {Budget shrinks with neighbour load};
 \node[bx] (up) at (12.25,0) {Unserved demand becomes backlog};
 \draw[ar] (sa) -| (ob); \draw[ar] (sb) -| ([xshift=-2.5mm]ob.south);
 \foreach \i/\j in {ob/arv,arv/de,de/rw}{\draw[ar] (\i) -- (\j);}

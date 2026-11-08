@@ -8,6 +8,8 @@
 \newcommand{\gyes}{\checkmark}
 \newcommand{\gno}{\ding{55}}
 % --- reusable vector icons for the system-view figure ---
+% Okabe-Ito slice colours (CVD-safe), restored with the pre-audit fills (2026-11-09)
+\definecolor{oiV}{HTML}{D55E00}\definecolor{oiB}{HTML}{0072B2}\definecolor{oiG}{HTML}{009E73}
 % figure lettering: 8 pt Helvetica, the journal's minimum (the class's \footnotesize is only 7 pt)
 \newcommand{\figfont}{\sffamily\fontsize{8}{9.6}\selectfont}
 \newcommand{\gnbtower}[1]{%
@@ -33,12 +35,12 @@
 \begin{tikzpicture}[
   font=\figfont, x=1cm, y=1cm,
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
-  st/.style={draw=black!75, rounded corners=2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt},
-  gate/.style={draw=black!75, line width=0.7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner sep=0pt},
+  st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt},
+  gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner sep=0pt},
   num/.style={circle, draw=black!75, fill=white, inner sep=0.4pt, minimum size=0.36cm, font=\figfont},
-  fail/.style={draw=black!75, dashed, rounded corners=1pt, align=left, inner sep=2pt},
+  fail/.style={draw=red!60!black, fill=red!5, text=red!40!black, dashed, rounded corners=1pt, align=left, inner sep=2pt},
   ar/.style={-{Latex[length=1.7mm]}, semithick},
-  ct/.style={-{Latex[length=1.4mm]}, densely dotted}
+  ct/.style={-{Latex[length=1.4mm]}, densely dotted, red!60!black}
 ]
 % the protocol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to right; gates are diamonds
 \foreach \i/\x/\y/\s/\t in {1/1.1/0/st/{Pre-registered plan},

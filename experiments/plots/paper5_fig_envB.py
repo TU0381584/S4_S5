@@ -57,6 +57,9 @@ def main():
                            "urllc": float(np.mean([x_["sla"]["urllc"] for x_ in rows])),
                            "embb": float(np.mean([x_["sla"]["embb"] for x_ in rows])),
                            "collapsed": int(sum(x_["collapsed"] for x_ in rows))}
+    # pre-audit look restored: AXIOM's row highlighted and the Env B badge (2026-11-09)
+    ax.axhspan(X["axiom2"] - 0.45, X["axiom2"] + 0.45, color=S.lighten(S.POLICY["axiom2"]["color"], 0.92), lw=0, zorder=0)
+    S.env_badge(fig, 0.012, 0.975, "B", va="top")
     ref = summ["n3"]["rule_local"]["reward"]
     ax.axvline(ref, color=S.POLICY["rule_local"]["color"], lw=0.6, ls=(0, (3, 2)), zorder=1)
     ax.axhline(3.75, color=S.FAINT, lw=0.5, zorder=0)
