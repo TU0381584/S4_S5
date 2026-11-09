@@ -1,0 +1,360 @@
+{
+ "A": {
+  "A1_fresh40": {
+   "n": 40,
+   "diff": 0.13126924648899338,
+   "wins": 25,
+   "ties": 9,
+   "losses": 6,
+   "p": 0.014302764845800803,
+   "ci": [
+    -0.055656797376449275,
+    0.3308398993119877
+   ],
+   "collapsed_a": 0,
+   "collapsed_b": 0
+  },
+  "A2_pooled80": {
+   "n": 80,
+   "diff": 0.1453404700160275,
+   "wins": 47,
+   "ties": 19,
+   "losses": 14,
+   "p": 0.003839360055432904,
+   "ci": [
+    -0.057508944576247154,
+    0.3617743196206582
+   ],
+   "collapsed_a": 1,
+   "collapsed_b": 0
+  }
+ },
+ "B": {
+  "B1": {
+   "mappo_tuned|load_1.10": {
+    "n": 30,
+    "diff": 1.272994879490465,
+    "wins": 25,
+    "ties": 0,
+    "losses": 5,
+    "p": 3.2391399145126343e-06,
+    "ci": [
+     0.8121956013104229,
+     1.7757335410954396
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 2.915225923061371e-05
+   },
+   "mappo_tuned|load_1.15": {
+    "n": 30,
+    "diff": 0.8362879064721032,
+    "wins": 21,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.00031275488436222076,
+    "ci": [
+     0.3966996026571607,
+     1.3787959869294182
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 0.002502039074897766
+   },
+   "mappo_tuned|load_1.20": {
+    "n": 30,
+    "diff": 0.6081400650985508,
+    "wins": 19,
+    "ties": 0,
+    "losses": 11,
+    "p": 0.04048972204327583,
+    "ci": [
+     0.12499981575819244,
+     1.2212006123604717
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 0.218609981238842
+   },
+   "single_agent_dqn|load_1.10": {
+    "n": 30,
+    "diff": 0.4847321742404847,
+    "wins": 20,
+    "ties": 0,
+    "losses": 10,
+    "p": 0.036434996873140335,
+    "ci": [
+     0.12062736386729743,
+     0.8642460035962064
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 0.218609981238842
+   },
+   "single_agent_dqn|load_1.15": {
+    "n": 30,
+    "diff": 0.09876278149719113,
+    "wins": 16,
+    "ties": 0,
+    "losses": 14,
+    "p": 0.685047073289752,
+    "ci": [
+     -0.19399003234937676,
+     0.4055240633294417
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 1.0
+   },
+   "single_agent_dqn|load_1.20": {
+    "n": 30,
+    "diff": -0.19448267320850243,
+    "wins": 13,
+    "ties": 0,
+    "losses": 17,
+    "p": 0.15188691951334476,
+    "ci": [
+     -0.47820926078935766,
+     0.10883380525715196
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 0.6075476780533791
+   },
+   "independent_dqn|load_1.10": {
+    "n": 30,
+    "diff": 0.4562815931466221,
+    "wins": 20,
+    "ties": 0,
+    "losses": 10,
+    "p": 0.016431212425231934,
+    "ci": [
+     0.13048266786933002,
+     0.7862580410803485
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 0.11501848697662354
+   },
+   "independent_dqn|load_1.15": {
+    "n": 30,
+    "diff": 0.1037255576284364,
+    "wins": 15,
+    "ties": 0,
+    "losses": 15,
+    "p": 0.5978077705949545,
+    "ci": [
+     -0.13087087098898623,
+     0.34736607076661863
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 1.0
+   },
+   "independent_dqn|load_1.20": {
+    "n": 30,
+    "diff": -0.0795444992732092,
+    "wins": 10,
+    "ties": 0,
+    "losses": 20,
+    "p": 0.2988441474735737,
+    "ci": [
+     -0.30081324936329734,
+     0.1540666760729834
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 0.896532442420721
+   }
+  },
+  "B2": {
+   "load_1.10": {
+    "n": 30,
+    "diff": 0.4128720285258801,
+    "wins": 26,
+    "ties": 0,
+    "losses": 4,
+    "p": 0.00013739429414272308,
+    "ci": [
+     0.24038838242314098,
+     0.5922775977116074
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 0.00013739429414272308
+   },
+   "load_1.15": {
+    "n": 30,
+    "diff": 0.3955748007696446,
+    "wins": 24,
+    "ties": 0,
+    "losses": 6,
+    "p": 2.0798295736312866e-05,
+    "ci": [
+     0.24367148534637145,
+     0.5570770902938883
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 6.23948872089386e-05
+   },
+   "load_1.20": {
+    "n": 30,
+    "diff": 0.3637330194105324,
+    "wins": 24,
+    "ties": 0,
+    "losses": 6,
+    "p": 6.286613643169403e-05,
+    "ci": [
+     0.19809600490737855,
+     0.5408224543112187
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 0,
+    "p_holm": 0.00012573227286338806
+   }
+  },
+  "B3_nominal": {
+   "n": 30,
+   "diff": -0.626301773907363,
+   "wins": 4,
+   "ties": 0,
+   "losses": 26,
+   "p": 1.1920928955078125e-06,
+   "ci": [
+    -0.9042117460280321,
+    -0.38787503894434017
+   ],
+   "collapsed_a": 0,
+   "collapsed_b": 0
+  },
+  "tuned_rule": {
+   "tau_c": 0.0,
+   "tau_q": null,
+   "tau_e": 0.2
+  }
+ },
+ "C": {
+  "C1_fresh20": {
+   "n": 20,
+   "diff": 0.9413618930560874,
+   "wins": 16,
+   "ties": 2,
+   "losses": 2,
+   "p": 0.008418773595809824,
+   "ci": [
+    0.14785851571146066,
+    1.5916838578260848
+   ],
+   "collapsed_a": 0,
+   "collapsed_b": 0
+  },
+  "C2_pooled40": {
+   "n": 40,
+   "diff": 0.9369041930879236,
+   "wins": 31,
+   "ties": 2,
+   "losses": 7,
+   "p": 0.0005426022497897747,
+   "ci": [
+    0.4192264524818868,
+    1.4156056980262564
+   ],
+   "collapsed_a": 0,
+   "collapsed_b": 0
+  }
+ },
+ "D": {
+  "D1": {
+   "load_1.10": {
+    "n": 30,
+    "diff": 1.548687693121143,
+    "wins": 8,
+    "ties": 22,
+    "losses": 0,
+    "p": 0.011718685599768628,
+    "ci": [
+     0.43945608371138317,
+     2.8627342921308214
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 2,
+    "p_holm": 0.03515605679930588
+   },
+   "load_1.15": {
+    "n": 30,
+    "diff": 1.6081457862558064,
+    "wins": 7,
+    "ties": 23,
+    "losses": 0,
+    "p": 0.017960477526078766,
+    "ci": [
+     0.47203134018969073,
+     2.974309861525411
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 2,
+    "p_holm": 0.03592095505215753
+   },
+   "load_1.20": {
+    "n": 30,
+    "diff": 1.644627072895074,
+    "wins": 6,
+    "ties": 24,
+    "losses": 0,
+    "p": 0.027707849358079864,
+    "ci": [
+     0.4737009467123196,
+     3.03061894141201
+    ],
+    "collapsed_a": 0,
+    "collapsed_b": 2,
+    "p_holm": 0.03592095505215753
+   }
+  }
+ },
+ "criteria": [
+  {
+   "id": "A1",
+   "criterion": "AXIOM beats DQN-SA, Env A 3 gNBs, 40 fresh seeds",
+   "n": 40,
+   "verdict": "HOLDS"
+  },
+  {
+   "id": "A2",
+   "criterion": "AXIOM beats DQN-SA, Env A 3 gNBs, 80 fresh seeds pooled",
+   "n": 80,
+   "verdict": "HOLDS"
+  },
+  {
+   "id": "B1",
+   "criterion": "AXIOM out-earns MAPPO, DQN-SA and DQN-I at 110-120% load, 3 gNBs, all 9 at Holm p<0.05",
+   "n": 30,
+   "verdict": "FAILS"
+  },
+  {
+   "id": "B2",
+   "criterion": "AXIOM out-earns the tuned rule at 110-120% load, 3 gNBs, all 3 at Holm p<0.05",
+   "n": 30,
+   "verdict": "HOLDS"
+  },
+  {
+   "id": "C1",
+   "criterion": "MLP variant ahead of AXIOM, Env B 7 ring, 20 fresh seeds",
+   "n": 20,
+   "verdict": "HOLDS"
+  },
+  {
+   "id": "C2",
+   "criterion": "MLP variant ahead of AXIOM, Env B 7 ring, 40 fresh seeds pooled",
+   "n": 40,
+   "verdict": "HOLDS"
+  },
+  {
+   "id": "D1",
+   "criterion": "static rule ahead of AXIOM at 110-120% load, Env B 19 gNBs, 30 seeds pooled, all 3 at Holm p<0.05",
+   "n": 30,
+   "verdict": "HOLDS"
+  }
+ ]
+}
