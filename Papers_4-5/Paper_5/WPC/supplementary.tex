@@ -48,7 +48,7 @@ This supplement gives the detail behind the main paper's results for AXIOM, shor
 \centering
 \footnotesize
 {\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.21\textwidth}@{\hspace{1em}}l>{\raggedright\arraybackslash}p{0.21\textwidth}@{\hspace{1em}}l>{\raggedright\arraybackslash}p{0.21\textwidth}@{}}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{0.24\textwidth}@{\hspace{1em}}l>{\raggedright\arraybackslash}p{0.24\textwidth}@{\hspace{1em}}l>{\raggedright\arraybackslash}p{0.24\textwidth}@{}}
 \toprule
 Acronym & Meaning & Acronym & Meaning & Acronym & Meaning \\
 \midrule
@@ -484,7 +484,7 @@ Live testbed check only & OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio, 
 4. Re-evaluate stored checkpoints & \texttt{m72\_shift.py} replays AXIOM and the tuned rule under shifted conditions, \texttt{m77\_kpi.py} records served PRBs and backlog, \texttt{m92\_transfer.py} runs checkpoints at a new size, and \texttt{m94\_distil.py} distils AXIOM into trees. \\
 5. Summarise & Each campaign's \texttt{analysis} script judges every pre-registered criterion in \texttt{docs/PAPER5\_M*\_preregistration.md} and reports whether it holds or fails. \\
 6. Verify & \texttt{m66\_verify.py} recomputes every results table and key sentence of both documents from the raw logs with its own reader and Holm correction, \texttt{m82\_audit.py} traces the remaining numbers to configurations and code, and \texttt{m66\_ci\_recompute.py} recomputes every bootstrap CI. \\
-7. Redraw and build & \texttt{paper5\_regen\_wpc\_figures.sh} redraws every plot, \texttt{paper5\_cvd\_check.py} checks each for colour vision, and \texttt{make\_submission.py} writes \texttt{Fig1} to \texttt{Fig9}, \texttt{ESM\_1.pdf}, \texttt{ESM\_2.csv}, and the compiled manuscript. \\
+7. Redraw and build & \texttt{paper5\_regen\_wpc\_figures.sh} redraws every plot, \texttt{paper5\_cvd\_check.py} checks each for colour vision, and \texttt{make\_submission.py} writes \texttt{Fig1} to \texttt{Fig10}, \texttt{ESM\_1.pdf}, \texttt{ESM\_2.csv}, and the compiled manuscript. \\
 \bottomrule
 \end{tabular}}
 \end{table}

@@ -67,16 +67,19 @@ def run(C):
            and [sl[k]["latency_budget_ms"] for k in ("urllc", "embb", "mmtc")] == [15, 45, 65]
            and [sl[k]["loss_budget_pct"] for k in ("urllc", "embb", "mmtc")] == [0.8, 2.0, 3.5]
            and all(sl[k]["accept_reward"] == 1.0 for k in sl)
-           and "Floor and cap, PRB ratio & 5 to 33, 10 to 66, 5 to 11 & Priority weight $\\omega_k$ & 12.0, 3.5, 0.3" in C.main
-           and "Violation penalty $\\lambda_k$ & 10.0, 5.0, 2.5 & Per-accept reward $R_k$ & 1.0 for every slice" in C.main
-           and "Latency budget & 15, 45, 65 ms & Loss budget & 0.8\\%, 2.0\\%, 3.5\\%" in C.main, None)
+           # 2026-11-10: Table 2 re-laid out as a URLLC / eMBB / mMTC grid; the same values matched in the new layout
+           and "Slice parameter & URLLC & eMBB & mMTC" in C.main
+           and "Floor and cap, PRB ratio & 5 to 33 & 10 to 66 & 5 to 11" in C.main and "Priority weight $\\omega_k$ & 12.0 & 3.5 & 0.3" in C.main
+           and "Violation penalty $\\lambda_k$ & 10.0 & 5.0 & 2.5" in C.main and "Per-accept reward $R_k$ & 1.0 & 1.0 & 1.0" in C.main
+           and "Latency budget (ms) & 15 & 45 & 65" in C.main and "Loss budget (\\%) & 0.8 & 2.0 & 3.5" in C.main, None)
     C.note("M82 Table 2 reward, episode, arrival and gate rows match the configuration",
            cfg["reward"]["congestion_coeff"] == 1.5 and cfg["reward"]["lb_coeff"] == 1.0
            and cfg["episode"]["steps_per_episode"] == 60 and cfg["episode"]["step_seconds"] == 5.0
            and cfg["arrivals"]["synthetic_arrivals_per_step"] == 3 and cfg["arrivals"]["max_pending_per_step"] == 12
            and cfg["arrivals"]["ceiling_step_ratio"] == 5 and cfg["B"] == 100
-           and "Congestion $\\kappa$, balance $\\beta$ & 1.5, 1.0 & Episode & 60 steps of 5 s, queues emptied at start" in C.main
-           and "Requests per step & $N$, uniform slice and gNB, at most $4N$ pending & Demand noise, gate step & $0.005B$ per step, 5 PRB-ratio points per decision" in C.main, None)
+           and "Congestion $\\kappa$, balance $\\beta$ & \multicolumn{3}{>{\\raggedright\\arraybackslash}p{270pt}@{}}{1.5, 1.0}" in C.main and "Episode & \multicolumn{3}{>{\\raggedright\\arraybackslash}p{270pt}@{}}{60 steps of 5 s, queues emptied at start}" in C.main
+           and "Requests per step & \multicolumn{3}{>{\\raggedright\\arraybackslash}p{270pt}@{}}{$N$, uniform slice and gNB, at most $4N$ pending}" in C.main
+           and "Demand noise, gate step & \multicolumn{3}{>{\\raggedright\\arraybackslash}p{270pt}@{}}{$0.005B$ per step, 5 PRB-ratio points per decision}" in C.main, None)
     sbt = open(f"{SC}/shared_budget_kpm_source.py").read()
     cds = open(f"{SC}/coupled_dynamic_kpm_source.py").read()
     C.note("M82 simulator constants in the text match the simulator code",
@@ -128,7 +131,8 @@ def run(C):
            and (mp.CLIP, mp.ENTROPY, mp.GAE_LAMBDA, mp.LR_CRITIC) == (0.2, 0.01, 0.95, 1e-3)
            and "mp.LR_ACTOR, mp.EPOCHS, mp.MINIBATCH = 1e-3, 10, 64" in run_src
            and "IndependentPerGnbDqnPolicy(n, nd, cd_, 2, learning_rate=1e-3)" in run_src
-           and "DQN baselines & Two hidden layers of 128, squared-error loss & MAPPO & Learning rate $10^{-3}$, 10 epochs, minibatch 64, clip 0.2, entropy 0.01, advantage $\\lambda=0.95$" in C.main, None)
+           and "DQN baselines & \multicolumn{3}{>{\\raggedright\\arraybackslash}p{270pt}@{}}{Two hidden layers of 128, squared-error loss}" in C.main
+           and "MAPPO & \multicolumn{3}{>{\\raggedright\\arraybackslash}p{270pt}@{}}{Learning rate $10^{-3}$, 10 epochs, minibatch 64, clip 0.2, entropy 0.01, advantage $\\lambda=0.95$}" in C.main, None)
     gat = open(f"{FW}/marl/gat_encoder.py").read()
     C.note("M82 OR1 LeakyReLU slope 0.2 is the encoder's", "leaky_relu_slope: float = 0.2" in gat
            and "has slope $0.2$ for negative inputs" in C.tex, None)

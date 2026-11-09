@@ -2894,8 +2894,8 @@ def main():
     C.note("Discussion: one 7,782-parameter network trained at seven gNBs serves clusters five times larger",
            37 / 7 >= 5 and "one 7,782-parameter network trained at seven gNBs serves clusters five times larger" in C.main, None)
     C.note("Sec. 3 slice ranking matches the parameter table: URLLC 15 ms and 0.8% budgets, weights 12.0 > 3.5 > 0.3, eMBB the largest ceiling",
-           "Latency budget & 15, 45, 65 ms" in C.main and "Loss budget & 0.8\\%, 2.0\\%, 3.5\\%" in C.main
-           and "Priority weight $\\omega_k$ & 12.0, 3.5, 0.3" in C.main and "Floor and cap, PRB ratio & 5 to 33, 10 to 66, 5 to 11" in C.main
+           "Latency budget (ms) & 15 & 45 & 65" in C.main and "Loss budget (\\%) & 0.8 & 2.0 & 3.5" in C.main   # Table 2 as a slice grid (2026-11-10)
+           and "Priority weight $\\omega_k$ & 12.0 & 3.5 & 0.3" in C.main and "Floor and cap, PRB ratio & 5 to 33 & 10 to 66 & 5 to 11" in C.main
            and "URLLC carries time-critical traffic with the tightest budgets, 15 ms of latency and 0.8\\% loss" in C.main
            and "eMBB frees the most room, since it has the largest PRB ceiling and the next-smallest weight" in C.main, None)
     import shared_budget_kpm_source as sbk_

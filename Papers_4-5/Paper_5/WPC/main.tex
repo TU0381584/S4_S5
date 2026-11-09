@@ -188,7 +188,7 @@ Studies from the review's core sample show the state of each pillar. Learned adm
 \centering
 \footnotesize
 {\setlength{\tabcolsep}{2pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{1.95cm}>{\raggedright\arraybackslash}p{2.75cm}ccccccc@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.45cm}>{\raggedright\arraybackslash}p{3.6cm}ccccccc@{}}
 \toprule
 Work & Problem & \begin{tabular}[b]{@{}c@{}}Multi-\\agent\end{tabular} & \begin{tabular}[b]{@{}c@{}}Graph\\encoder\end{tabular} & \begin{tabular}[b]{@{}c@{}}Feder-\\ated\end{tabular} & \begin{tabular}[b]{@{}c@{}}Max\\cells\end{tabular} & \begin{tabular}[b]{@{}c@{}}Size-\\invariant\\params\end{tabular} & \begin{tabular}[b]{@{}c@{}}Zero-shot\\size\\transfer\end{tabular} & \begin{tabular}[b]{@{}c@{}}Rule\\base-\\lines\end{tabular} \\
 \midrule
@@ -237,30 +237,35 @@ Admission is therefore a decentralised partially observable Markov decision proc
 \end{equation}
 
 \begin{table}[!t]
-\caption{Simulation and training parameters not stated in the text, shared by both environments. Slice values are listed as URLLC, eMBB, mMTC}
+\caption{Simulation and training parameters not stated in the text, shared by both environments}
 \label{tab:params}
 \centering
 \footnotesize
 {\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.29\textwidth}>{\raggedright\arraybackslash}p{0.18\textwidth}>{\raggedright\arraybackslash}p{0.29\textwidth}@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{96pt}*{3}{>{\centering\arraybackslash}p{86pt}}@{}}
 \toprule
-Parameter & Value & Parameter & Value \\
+Slice parameter & URLLC & eMBB & mMTC \\
 \midrule
-\multicolumn{4}{@{}l}{Slices, each value listed as URLLC, eMBB, mMTC} \\
-\cmidrule(r){1-4}
-Floor and cap, PRB ratio & 5 to 33, 10 to 66, 5 to 11 & Priority weight $\omega_k$ & 12.0, 3.5, 0.3 \\
-Violation penalty $\lambda_k$ & 10.0, 5.0, 2.5 & Per-accept reward $R_k$ & 1.0 for every slice \\
-Latency budget & 15, 45, 65 ms & Loss budget & 0.8\%, 2.0\%, 3.5\% \\
+Floor and cap, PRB ratio & 5 to 33 & 10 to 66 & 5 to 11 \\
+Priority weight $\omega_k$ & 12.0 & 3.5 & 0.3 \\
+Violation penalty $\lambda_k$ & 10.0 & 5.0 & 2.5 \\
+Per-accept reward $R_k$ & 1.0 & 1.0 & 1.0 \\
+Latency budget (ms) & 15 & 45 & 65 \\
+Loss budget (\%) & 0.8 & 2.0 & 3.5 \\
 \midrule
 \multicolumn{4}{@{}l}{Simulator} \\
 \cmidrule(r){1-4}
-Congestion $\kappa$, balance $\beta$ & 1.5, 1.0 & Episode & 60 steps of 5 s, queues emptied at start \\
-Requests per step & $N$, uniform slice and gNB, at most $4N$ pending & Demand noise, gate step & $0.005B$ per step, 5 PRB-ratio points per decision \\
+Congestion $\kappa$, balance $\beta$ & \multicolumn{3}{>{\raggedright\arraybackslash}p{270pt}@{}}{1.5, 1.0} \\
+Episode & \multicolumn{3}{>{\raggedright\arraybackslash}p{270pt}@{}}{60 steps of 5 s, queues emptied at start} \\
+Requests per step & \multicolumn{3}{>{\raggedright\arraybackslash}p{270pt}@{}}{$N$, uniform slice and gNB, at most $4N$ pending} \\
+Demand noise, gate step & \multicolumn{3}{>{\raggedright\arraybackslash}p{270pt}@{}}{$0.005B$ per step, 5 PRB-ratio points per decision} \\
 \midrule
 \multicolumn{4}{@{}l}{Learning} \\
 \cmidrule(r){1-4}
-Value-based learners & Adam, learning rate $10^{-3}$, $\epsilon$ from 1.0 to 0.05 at $\times0.985$ per episode, replay 10,000, minibatch 16, warm-up 32, target sync every 10 episodes & AXIOM network & Two-layer, four-head GAT, hidden and output 16, raw-feature skip, per-slice Q-heads of hidden 32, Huber loss, gradient clip 1.0 \\
-DQN baselines & Two hidden layers of 128, squared-error loss & MAPPO & Learning rate $10^{-3}$, 10 epochs, minibatch 64, clip 0.2, entropy 0.01, advantage $\lambda=0.95$ \\
+Value-based learners & \multicolumn{3}{>{\raggedright\arraybackslash}p{270pt}@{}}{Adam, learning rate $10^{-3}$, $\epsilon$ from 1.0 to 0.05 at $\times0.985$ per episode, replay 10,000, minibatch 16, warm-up 32, target sync every 10 episodes} \\
+AXIOM network & \multicolumn{3}{>{\raggedright\arraybackslash}p{270pt}@{}}{Two-layer, four-head GAT, hidden and output 16, raw-feature skip, per-slice Q-heads of hidden 32, Huber loss, gradient clip 1.0} \\
+DQN baselines & \multicolumn{3}{>{\raggedright\arraybackslash}p{270pt}@{}}{Two hidden layers of 128, squared-error loss} \\
+MAPPO & \multicolumn{3}{>{\raggedright\arraybackslash}p{270pt}@{}}{Learning rate $10^{-3}$, 10 epochs, minibatch 64, clip 0.2, entropy 0.01, advantage $\lambda=0.95$} \\
 \botrule
 \end{tabular}}
 \end{table}
@@ -380,33 +385,34 @@ This section describes the campaigns, the baselines, and the statistical tests, 
                             2/4.2/0/st/{Pilot seeds, tuning only},
                             3/7.3/0/st/{Train and evaluate all policies},
                             4/10.75/0/gate/{Gate 1, trivial policies},
-                            5/10.75/-2.15/gate/{Gate 2, correctness metrics},
-                            6/7.3/-2.15/st/{Paired tests, Holm correction},
-                            7/4.2/-2.15/gate/{Gate 3, disjoint replication},
-                            8/1.1/-2.15/st/{Fresh seeds},
-                            9/1.1/-4.2/st/{Independent verifier},
-                            10/4.2/-4.2/st/{Reported result}}{
+                            5/10.75/-2.5/gate/{Gate 2, correctness metrics},
+                            6/7.3/-2.5/st/{Paired tests, Holm correction},
+                            7/4.2/-2.5/gate/{Gate 3, disjoint replication},
+                            8/1.1/-2.5/st/{Fresh seeds},
+                            9/1.1/-5.0/st/{Independent verifier},
+                            10/4.2/-5.0/st/{Reported result}}{
   \node[\s] (p\i) at (\x,\y) {\t};
 }
 \foreach \i in {1,2,3,6,8,9,10}{\node[num] at (p\i.north west) {\i};}
 \foreach \i in {4,5,7}{\node[num] at ($(p\i.north)!0.5!(p\i.west)$) {\i};}
 \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\draw[ar] (p\a) -- (p\b);}
-% failures each check caught, keyed by letter in the caption, at most four words each
-\node[fail, anchor=south west] (f1) at (0.05,0.75) {a\enspace\gno\enspace Screen miscalibrated};
-\node[fail, anchor=south west] (f2) at (3.75,0.75) {b\enspace\gno\enspace Static AXIOM, Env B};
-\node[fail, anchor=south east] (f3) at (12.6,0.75) {c\enspace\gno\enspace Inert simulator};
-\node[fail, anchor=east] (f4) at (9.4,-1.05) {d\enspace\gno\enspace Never-blocking policy};
-\node[fail, anchor=north west] (f5) at (2.35,-3.05) {e\enspace\gno\enspace Backlog carry-over};
-\node[fail, anchor=north west] (f6) at (6.05,-3.05) {f\enspace\gno\enspace Reproduction gap};
-\draw[ct] ([xshift=3mm]p2.north west) -- ([xshift=-3mm]f1.south east);
-\draw[ct] ([xshift=3mm]p2.north) -- ([xshift=3mm]p2.north |- f2.south);
+% failures each check caught, keyed by letter in the caption, at most four words each; callouts kept clear of the
+% flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apart, every callout at least 0.25 cm from a node)
+\node[fail, anchor=south west] (f1) at (0.05,1.1) {a\enspace\gno\enspace Screen miscalibrated};
+\node[fail, anchor=south west] (f2) at (3.75,1.1) {b\enspace\gno\enspace Static AXIOM, Env B};
+\node[fail, anchor=south east] (f3) at (12.6,1.1) {c\enspace\gno\enspace Inert simulator};
+\node[fail, anchor=east] (f4) at (9.4,-1.25) {d\enspace\gno\enspace Never-blocking policy};
+\node[fail, anchor=north west] (f5) at (2.35,-3.6) {e\enspace\gno\enspace Backlog carry-over};
+\node[fail, anchor=north west] (f6) at (6.05,-3.6) {f\enspace\gno\enspace Reproduction gap};
+\draw[ct] ([xshift=-3mm]p2.north) -- ([xshift=-3mm]f1.south east);
+\draw[ct] ([xshift=4mm]p2.north) -- ([xshift=4mm]p2.north |- f2.south);
 \draw[ct] (p4.north) -- (p4.north |- f3.south);
 \draw[ct] (p5.north west) -- (f4.east);
 \draw[ct] (p7.south) -- (p7.south |- f5.north);
 \draw[ct] (p7.south east) -- (f6.west);
 % the live testbed check, outside the offline pipeline
-\node[st, dashed] (lv) at (7.3,-4.2) {Live testbed, direct instrumentation};
-\node[fail, anchor=west] (f7) at (8.8,-4.2) {g\enspace\gyes\enspace Scheduler floor clear};
+\node[st, dashed] (lv) at (7.3,-5.0) {Live testbed, direct instrumentation};
+\node[fail, anchor=west] (f7) at (8.8,-5.0) {g\enspace\gyes\enspace Scheduler floor clear};
 \draw[ct] (lv) -- (f7);
 \end{tikzpicture}
 \caption{Evaluation protocol in ten steps, with the three gates as diamonds. Dashed callouts name what each check found. a, A miscalibrated validation screen led to an amended plan, back to step 1. b, AXIOM stayed static in Env B, which led to faster learning, back to step 3. c, An inert simulator led to the shared-budget rerun, back to step 3. d, A never-blocking policy is counted as collapsed. e, Backlog carried across episodes led to an episode reset and a rerun, back to step 3. f, A reproduction gap led to a retracted claim. g, The live testbed found no scheduler floor, over more than 100{,}000 readings}
@@ -466,7 +472,7 @@ We grow the Env A cluster from three gNBs to seven and nineteen under fully-conn
 \begin{figure}[!htbp]
 \centering
 \includegraphics{figures/fig6_scaling_trend.pdf}
-\caption{Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, one dot per run, with the mean and 95\% CI, beside the static rule. b, Share of trained policies that collapse into accept-all, with Wilson 95\% intervals. c, Reward per gNB per step, mean and 95\% CI. Thin lines join each learned policy's means across sizes}
+\caption{Env A as the cluster grows, all layouts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, one dot per run, with the mean and 95\% CI. b, Share of trained policies that collapse into accept-all, with Wilson 95\% intervals. c, Reward per gNB per step, mean and 95\% CI. Dotted lines join each policy's means across sizes}
 \label{fig:m6-topology}
 \end{figure}
 
@@ -527,7 +533,7 @@ Table~\ref{tab:envb} and Fig.~\ref{fig:envb} report Env B at three gNBs, where s
 \centering
 \footnotesize
 {\setlength{\tabcolsep}{2.0pt}
-\begin{tabular}{@{}>{\raggedright\arraybackslash}p{2.6cm}S[table-format=1.3]cS[table-format=3.1]ccS[table-format=2.1]S[table-format=2.1]S[table-format=2.1]@{}}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.5cm}S[table-format=1.3]cS[table-format=3.1]ccS[table-format=2.1]S[table-format=2.1]S[table-format=2.1]@{}}
 \toprule
 & & & & \multicolumn{2}{c}{W/T/L ($n=30$)} & \multicolumn{3}{c}{Compliance (\%)} \\
 \cmidrule(lr){5-6}\cmidrule(l){7-9}
@@ -573,8 +579,8 @@ In Env A, Fig.~\ref{fig:m6-topology}a and c show AXIOM staying between 4.2 and 4
 \label{tab:complexity}
 \centering
 \footnotesize
-{\setlength{\tabcolsep}{2pt}
-\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{1.68cm}ccc@{}}
+{\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}l>{\raggedright\arraybackslash}p{74pt}>{\centering\arraybackslash}p{80pt}cc@{}}
 \toprule
 Policy & Design & Parameters & ms per step & Training s \\
 \midrule

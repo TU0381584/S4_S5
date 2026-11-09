@@ -118,19 +118,23 @@ def draw(ax, tests, sizes, loads, fmt, xlabel, nominal):
 def main():
     A = classify(env_a_cells())
     B = classify(env_b_cells())
-    fig = S.figure("full", 62)
-    fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / 62.0)
-    axA = fig.add_axes([fw(9), fh(20), fw(30), fh(28)])
-    axB = fig.add_axes([fw(56), fh(20), fw(61), fh(28)])
+    H = 50.0   # compressed vertically (2026-11-10, author request): shorter cells, titles and legend set closer
+    fig = S.figure("full", H)
+    fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / H)
+    axA = fig.add_axes([fw(9), fh(15), fw(30), fh(22.5)])
+    axB = fig.add_axes([fw(56), fh(15), fw(61), fh(22.5)])
     mn = lambda s_: "0.00" if s_ in ("+0.00", "-0.00") else ("0.0" if s_ in ("+0.0", "-0.0") else s_.replace("-", "\u2212"))   # a difference that rounds to zero prints unsigned
     draw(axA, A, (3, 7, 19, 37), ("1.05", "1.10", "1.20"), lambda d: mn(f"{d:+.1f}"), "Offered load (%)", "1.05")
     draw(axB, B, (3, 7, 19), ("0.80", "1.00", "1.05", "1.10", "1.15", "1.20"), lambda d: mn(f"{d:+.2f}"),
          "Offered load (% of the rule\u2019s tuning load)", "1.00")
-    axA.set_title("AXIOM minus static rule,\npriority-slice compliance (pp)", loc="left", pad=4)
-    axB.set_title("AXIOM minus tuned rule,\nreward per gNB per step", loc="left", pad=4)
+    for ax_ in (axA, axB):
+        ax_.xaxis.labelpad = 2
+    titles = (("AXIOM minus static rule,", "priority-slice compliance (pp)"), ("AXIOM minus tuned rule,", "reward per gNB per step"))
     for x_, t_, e_ in ((0.5, "a", "A"), (48, "b", "B")):
-        fig.text(fw(x_), fh(61.5), t_, fontweight="bold", va="top")
-        S.env_badge(fig, fw(x_ + 3.5), fh(61.5), e_, va="top")   # pre-audit badges restored (2026-11-09)
+        fig.text(fw(x_), fh(H - 0.5), t_, fontweight="bold", va="top")
+        S.env_badge(fig, fw(x_ + 3.5), fh(H - 0.5), e_, va="top")   # pre-audit badges restored (2026-11-09)
+    for ax_, (l1_, l2_) in zip((axA, axB), titles):
+        ax_.set_title(f"{l1_}\n{l2_}", loc="left", pad=2.5)
     handles = [Patch(facecolor=AX_C, label="AXIOM ahead"), Patch(facecolor=TIE_C, label="no significant difference"),
                Patch(facecolor=RULE_C, hatch="////", hatchcolor="white", label="rule ahead"),
                Patch(facecolor="white", edgecolor="#BBBBBB", ls=(0, (2, 2)), label="not run"),

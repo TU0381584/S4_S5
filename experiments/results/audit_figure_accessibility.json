@@ -1,0 +1,253 @@
+{
+ "figures": [
+  "Fig1",
+  "Fig2",
+  "Fig3",
+  "Fig4",
+  "Fig5",
+  "Fig6",
+  "Fig7",
+  "Fig8",
+  "Fig9",
+  "Fig10",
+  "OR1_fig_forest",
+  "OR1_fig_rliable",
+  "OR1_fig_rliable_intervals",
+  "OR1_fig_fed_variant",
+  "OR1_fig4_m3_privacy",
+  "OR1_fig5_m4_disruption",
+  "OR1_fig14_layouts",
+  "OR1_fig_decision",
+  "OR1_page4"
+ ],
+ "token_separation": {
+  "axiom2|mappo_tuned": {
+   "colour": 54.4,
+   "grey_dL": 46.0,
+   "deuteranomaly": 52.5,
+   "protanomaly": 56.5,
+   "tritanomaly": 54.8,
+   "shape_differs": true
+  },
+  "axiom2|single_agent_dqn": {
+   "colour": 34.6,
+   "grey_dL": 11.8,
+   "deuteranomaly": 35.0,
+   "protanomaly": 36.7,
+   "tritanomaly": 11.7,
+   "shape_differs": true
+  },
+  "axiom2|independent_dqn": {
+   "colour": 62.4,
+   "grey_dL": 8.2,
+   "deuteranomaly": 56.2,
+   "protanomaly": 49.1,
+   "tritanomaly": 59.4,
+   "shape_differs": true
+  },
+  "axiom2|rule_static": {
+   "colour": 31.0,
+   "grey_dL": 7.9,
+   "deuteranomaly": 30.2,
+   "protanomaly": 29.5,
+   "tritanomaly": 25.1,
+   "shape_differs": true
+  },
+  "axiom2|rule_local": {
+   "colour": 44.2,
+   "grey_dL": 15.1,
+   "deuteranomaly": 28.5,
+   "protanomaly": 14.0,
+   "tritanomaly": 47.3,
+   "shape_differs": true
+  },
+  "axiom2|rule_neighbour": {
+   "colour": 24.6,
+   "grey_dL": 23.9,
+   "deuteranomaly": 25.0,
+   "protanomaly": 24.5,
+   "tritanomaly": 22.4,
+   "shape_differs": true
+  },
+  "axiom2|rule_accept_all": {
+   "colour": 45.5,
+   "grey_dL": 32.3,
+   "deuteranomaly": 46.7,
+   "protanomaly": 40.6,
+   "tritanomaly": 38.1,
+   "shape_differs": true
+  },
+  "mappo_tuned|single_agent_dqn": {
+   "colour": 63.9,
+   "grey_dL": 57.7,
+   "deuteranomaly": 58.9,
+   "protanomaly": 64.2,
+   "tritanomaly": 64.2,
+   "shape_differs": true
+  },
+  "mappo_tuned|independent_dqn": {
+   "colour": 68.1,
+   "grey_dL": 54.2,
+   "deuteranomaly": 67.1,
+   "protanomaly": 56.2,
+   "tritanomaly": 70.2,
+   "shape_differs": true
+  },
+  "mappo_tuned|rule_static": {
+   "colour": 40.4,
+   "grey_dL": 38.1,
+   "deuteranomaly": 40.5,
+   "protanomaly": 40.2,
+   "tritanomaly": 40.2,
+   "shape_differs": true
+  },
+  "mappo_tuned|rule_local": {
+   "colour": 69.2,
+   "grey_dL": 61.0,
+   "deuteranomaly": 66.2,
+   "protanomaly": 62.0,
+   "tritanomaly": 69.8,
+   "shape_differs": true
+  },
+  "mappo_tuned|rule_neighbour": {
+   "colour": 76.0,
+   "grey_dL": 69.8,
+   "deuteranomaly": 73.9,
+   "protanomaly": 78.2,
+   "tritanomaly": 76.8,
+   "shape_differs": true
+  },
+  "mappo_tuned|rule_accept_all": {
+   "colour": 80.8,
+   "grey_dL": 78.2,
+   "deuteranomaly": 80.9,
+   "protanomaly": 80.7,
+   "tritanomaly": 80.7,
+   "shape_differs": true
+  },
+  "single_agent_dqn|independent_dqn": {
+   "colour": 49.8,
+   "grey_dL": 3.6,
+   "deuteranomaly": 22.6,
+   "protanomaly": 20.0,
+   "tritanomaly": 59.9,
+   "shape_differs": true
+  },
+  "single_agent_dqn|rule_static": {
+   "colour": 30.0,
+   "grey_dL": 19.6,
+   "deuteranomaly": 18.5,
+   "protanomaly": 24.3,
+   "tritanomaly": 31.3,
+   "shape_differs": true
+  },
+  "single_agent_dqn|rule_local": {
+   "colour": 48.0,
+   "grey_dL": 3.3,
+   "deuteranomaly": 14.8,
+   "protanomaly": 24.7,
+   "tritanomaly": 46.9,
+   "shape_differs": true
+  },
+  "single_agent_dqn|rule_neighbour": {
+   "colour": 31.5,
+   "grey_dL": 12.1,
+   "deuteranomaly": 31.7,
+   "protanomaly": 33.8,
+   "tritanomaly": 13.7,
+   "shape_differs": true
+  },
+  "single_agent_dqn|rule_accept_all": {
+   "colour": 31.8,
+   "grey_dL": 20.5,
+   "deuteranomaly": 22.3,
+   "protanomaly": 18.6,
+   "tritanomaly": 32.0,
+   "shape_differs": true
+  },
+  "independent_dqn|rule_static": {
+   "colour": 37.0,
+   "grey_dL": 16.1,
+   "deuteranomaly": 32.4,
+   "protanomaly": 24.4,
+   "tritanomaly": 40.7,
+   "shape_differs": true
+  },
+  "independent_dqn|rule_local": {
+   "colour": 31.7,
+   "grey_dL": 6.9,
+   "deuteranomaly": 35.5,
+   "protanomaly": 40.6,
+   "tritanomaly": 16.0,
+   "shape_differs": true
+  },
+  "independent_dqn|rule_neighbour": {
+   "colour": 61.4,
+   "grey_dL": 15.6,
+   "deuteranomaly": 52.4,
+   "protanomaly": 52.7,
+   "tritanomaly": 64.1,
+   "shape_differs": true
+  },
+  "independent_dqn|rule_accept_all": {
+   "colour": 38.5,
+   "grey_dL": 24.0,
+   "deuteranomaly": 31.6,
+   "protanomaly": 37.5,
+   "tritanomaly": 41.5,
+   "shape_differs": true
+  },
+  "rule_static|rule_local": {
+   "colour": 35.0,
+   "grey_dL": 22.9,
+   "deuteranomaly": 27.5,
+   "protanomaly": 26.7,
+   "tritanomaly": 33.9,
+   "shape_differs": true
+  },
+  "rule_static|rule_neighbour": {
+   "colour": 42.3,
+   "grey_dL": 31.7,
+   "deuteranomaly": 40.2,
+   "protanomaly": 42.8,
+   "tritanomaly": 42.0,
+   "shape_differs": true
+  },
+  "rule_static|rule_accept_all": {
+   "colour": 40.5,
+   "grey_dL": 40.1,
+   "deuteranomaly": 40.5,
+   "protanomaly": 40.5,
+   "tritanomaly": 40.4,
+   "shape_differs": true
+  },
+  "rule_local|rule_neighbour": {
+   "colour": 41.4,
+   "grey_dL": 8.8,
+   "deuteranomaly": 17.3,
+   "protanomaly": 16.5,
+   "tritanomaly": 49.3,
+   "shape_differs": true
+  },
+  "rule_local|rule_accept_all": {
+   "colour": 29.1,
+   "grey_dL": 17.2,
+   "deuteranomaly": 18.4,
+   "protanomaly": 26.8,
+   "tritanomaly": 26.7,
+   "shape_differs": true
+  },
+  "rule_neighbour|rule_accept_all": {
+   "colour": 30.4,
+   "grey_dL": 8.4,
+   "deuteranomaly": 29.6,
+   "protanomaly": 25.4,
+   "tritanomaly": 28.3,
+   "shape_differs": true
+  }
+ },
+ "caption_colour_words": {
+  "main": [],
+  "or1": []
+ }
+}

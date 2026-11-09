@@ -108,10 +108,11 @@ def main():
     def trend(ax, val):   # thin colour-matched line through each learned method's plotted points, 3 to 37 gNBs (added 2026-11-10)
         for arm in order:
             ax.plot([xs[n] + dx[arm] for n in sizes], [val(summ[arm][n]) for n in sizes],
-                    color=S.POLICY[arm]["color"], lw=0.45, zorder=2.5, solid_capstyle="round")
+                    color=S.POLICY[arm]["color"], lw=0.3, ls=(0, (1, 4)), zorder=2.5, dash_capstyle="round")
     trend(axa, lambda d: d["prio_mean"])
-    # a, compliance: seeds, mean, CI, and the static rule
-    for arm in order + ["rule"]:
+    # a, compliance: seeds, mean and CI of the four learned policies (static rule no longer drawn, 2026-11-10; its
+    # numbers stay in the summary JSON)
+    for arm in order:
         pol = "rule_static" if arm == "rule" else arm
         col = S.POLICY[pol]["color"]
         for n in sizes:
@@ -162,9 +163,9 @@ def main():
         ax_.text(-0.07 if ax_ is not axa else -0.035, 1.02, "Env A", transform=ax_.transAxes, va="bottom", ha="left", color=tg_["tc"],
                  bbox=dict(boxstyle="round,pad=0.25", fc=tg_["fc"], ec=tg_["ec"], lw=0.6))
     from matplotlib.lines import Line2D
-    hs = [Line2D([], [], label=S.POLICY[a_]["label"], **{**S.marker_kw(a_, 3.6), **({"ls": "-", "lw": 0.45, "color": S.POLICY[a_]["color"]} if a_ in order else {})})
-          for a_ in order + ["rule_static"]]
-    fig.legend(handles=hs, loc="upper center", ncol=5, bbox_to_anchor=(0.55, 1.0), handletextpad=0.2, columnspacing=1.0)
+    hs = [Line2D([], [], label=S.POLICY[a_]["label"], **{**S.marker_kw(a_, 3.6), "ls": (0, (1, 4)), "lw": 0.3, "color": S.POLICY[a_]["color"]})
+          for a_ in order]
+    fig.legend(handles=hs, loc="upper center", ncol=4, bbox_to_anchor=(0.55, 1.0), handletextpad=0.2, columnspacing=1.0)
     facts = S.save(fig, a.out)
     print(facts)
     json.dump({"gap19_points": gap19, f"gap{big}_points": gap, "arms": summ}, open(a.out + "_summary.json", "w"), indent=1)

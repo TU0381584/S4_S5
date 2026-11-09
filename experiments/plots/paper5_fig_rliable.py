@@ -24,8 +24,11 @@ OUT = "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_rliable"
 TABLE = "/home/kmanojp/oranslice_rig/experiments/results/m93/table_rliable.tex"
 # figure-audit tokens: AXIOM blue, learned baselines grey told apart by line style, rules vermillion
 # pre-audit colours restored (2026-11-09); line styles keep the rules apart without colour
-STYLE = {"AXIOM": ("#0072B2", "-", 1.6), "DQN-SA": ("#009E73", "-", 1.1), "DQN-I": ("#D55E00", "-", 1.1),
-         "MAPPO": ("#000000", "-", 1.1), "Static rule": ("#555555", (0, (4, 1.5)), 1.1), "Tuned rule": ("#CC79A7", (0, (4, 1.5)), 1.1)}
+# 2026-11-10 greyscale: DQN-SA and DQN-I are nearly the same lightness (dL 3.6), so every curve now has its own
+# line pattern as well as its colour (Springer artwork guidelines: distinctions must survive black-and-white print)
+STYLE = {"AXIOM": ("#0072B2", "-", 1.6), "DQN-SA": ("#009E73", (0, (1, 1.2)), 1.1), "DQN-I": ("#D55E00", (0, (5, 1.2, 1, 1.2)), 1.1),
+         "MAPPO": ("#000000", "-", 1.1), "Static rule": ("#555555", (0, (4, 1.5)), 1.1),
+         "Tuned rule": ("#CC79A7", (0, (7, 1.5, 1, 1.5, 1, 1.5)), 1.1)}
 ORDER = ("Env A, 3 gNBs", "Env A, 7 gNBs", "Env A, 19 gNBs", "Env A, 37 gNBs", "Env B, 3 gNBs", "Env B, 7 gNBs", "Env B, 19 gNBs")
 TAG = {"A": dict(fc="#e2e8f0", ec="#5a6b82", tc="#26344a"), "B": dict(fc="#f4ead6", ec="#9c7a45", tc="#4f3a15")}
 MINUS = "−"

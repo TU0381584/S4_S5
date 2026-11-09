@@ -113,10 +113,10 @@ def main():
     else:
         coords = hex_cluster_coords(n)
     summary = {"cell": a.cell, "n_gnbs": n, "seeds": S30_19, "arms": {}}
-    H = 124.0
+    H = 66.0   # one row of four clusters (2026-11-10, author request), key and colour bar side by side below
     fig = S.figure("full", H)
     fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / H)
-    slots = [(1, 76), (61, 76), (1, 34), (61, 34)]   # 2 x 2, so each header fits on one line at 8 pt
+    slots = [(1.0, 19.5), (30.5, 19.5), (60.0, 19.5), (89.5, 19.5)]   # each header on three short lines at 8 pt
     for idx, (arm, label) in enumerate(ARMS):
         mats = [gate_openness(p, n) for s in S30_19 if (p := find_eval(a.cell, arm, s))]
         op = np.mean(mats, axis=0)
@@ -130,29 +130,27 @@ def main():
                                 "mean_openness": dict(zip(SLICES, op.mean(axis=0).round(4).tolist())),
                                 "priority_sla_pct": round(p_sla, 2), "collapsed_seeds": coll, "n_eval_seeds": len(rows)}
         x0_, y0_ = slots[idx]
-        ax = fig.add_axes([fw(x0_), fh(y0_), fw(57), fh(33)])
+        ax = fig.add_axes([fw(x0_), fh(y0_), fw(28.5), fh(28.5)])
         draw_cluster(ax, coords, corr, lw=0.3)
         col = S.POLICY[arm]["color"] if arm == "axiom2" else S.INK
         if arm == "axiom2":   # AXIOM's panel framed in its colour, as before
             ax.axis("on"); ax.set_xticks([]); ax.set_yticks([])
             for sp in ax.spines.values():
                 sp.set_visible(True); sp.set_edgecolor(col); sp.set_linewidth(1.2)
-        ax.text(0.5, 1.03, f"{label}\nSLA {p_sla:.1f}% \u00b7 collapsed {coll}/{len(rows)}", transform=ax.transAxes,
+        ax.text(0.5, 1.03, f"{label}\nSLA {p_sla:.1f}%\ncollapsed {coll}/{len(rows)}", transform=ax.transAxes,
                 ha="center", va="bottom", color=col, linespacing=1.1)
-    S.env_badge(fig, fw(1), fh(H - 1.5), "A", va="top")   # pre-audit badge (restored 2026-11-09)
-    # key: one gNB's hexagon, its three slice sectors labelled
-    kax = fig.add_axes([fw(14), fh(1), fw(92), fh(11)])
+    S.env_badge(fig, fw(1), fh(H - 1.0), "A", va="top")   # pre-audit badge (restored 2026-11-09)
+    # key: one gNB's hexagon, its three slice sectors labelled (left half of the bottom row)
+    kax = fig.add_axes([fw(0), fh(0.5), fw(62), fh(16)])
     draw_cluster(kax, [(0, 0)], np.array([[1.0, 1.0, 1.0]]), r=1.0, lw=0.8)
-    for (x0, y0, y1, txt) in ((0.35, 0.55, 0.85, "URLLC gate, correct if open"), (-0.55, 0.0, 0.0, None),
-                              (0.4, -0.45, -0.85, "mMTC gate, correct if shed")):
-        if txt:
-            kax.annotate(txt, xy=(x0, y0), xytext=(1.9, y1), ha="left", va="center",
-                         arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6, shrinkA=1, shrinkB=0))
-    kax.annotate("eMBB gate,\ncorrect if open", xy=(-0.55, 0.0), xytext=(-1.6, 0.0), ha="right", va="center", linespacing=1.0,
+    for (x0, y0, y1, txt) in ((0.35, 0.55, 0.85, "URLLC gate,\ncorrect if open"), (0.4, -0.45, -0.85, "mMTC gate,\ncorrect if shed")):
+        kax.annotate(txt, xy=(x0, y0), xytext=(1.7, y1), ha="left", va="center", linespacing=1.0,
+                     arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6, shrinkA=1, shrinkB=0))
+    kax.annotate("eMBB gate,\ncorrect if open", xy=(-0.55, 0.0), xytext=(-1.5, 0.0), ha="right", va="center", linespacing=1.0,
                  arrowprops=dict(arrowstyle="-", color="#555555", lw=0.6, shrinkA=1, shrinkB=0))
-    kax.set_xlim(-8.0, 14.0); kax.set_ylim(-1.25, 1.25)
-    # shared colour bar under the last two panels
-    cax = fig.add_axes([fw(34.5), fh(25.5), fw(50), fh(2.2)])
+    kax.set_xlim(-6.2, 6.2); kax.set_ylim(-1.6, 1.6)
+    # shared colour bar (right half of the bottom row)
+    cax = fig.add_axes([fw(68), fh(11.5), fw(46), fh(2.2)])
     cb = fig.colorbar(plt.cm.ScalarMappable(cmap=CMAP, norm=plt.Normalize(0, 1)), cax=cax, orientation="horizontal")
     cb.set_ticks([0, 0.5, 1]); cb.set_ticklabels(["wrong", "partial", "correct"]); cb.ax.tick_params(length=2)
     cb.outline.set_linewidth(0.5)

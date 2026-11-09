@@ -47,33 +47,34 @@
                             2/4.2/0/st/{Pilot seeds, tuning only},
                             3/7.3/0/st/{Train and evaluate all policies},
                             4/10.75/0/gate/{Gate 1, trivial policies},
-                            5/10.75/-2.15/gate/{Gate 2, correctness metrics},
-                            6/7.3/-2.15/st/{Paired tests, Holm correction},
-                            7/4.2/-2.15/gate/{Gate 3, disjoint replication},
-                            8/1.1/-2.15/st/{Fresh seeds},
-                            9/1.1/-4.2/st/{Independent verifier},
-                            10/4.2/-4.2/st/{Reported result}}{
+                            5/10.75/-2.5/gate/{Gate 2, correctness metrics},
+                            6/7.3/-2.5/st/{Paired tests, Holm correction},
+                            7/4.2/-2.5/gate/{Gate 3, disjoint replication},
+                            8/1.1/-2.5/st/{Fresh seeds},
+                            9/1.1/-5.0/st/{Independent verifier},
+                            10/4.2/-5.0/st/{Reported result}}{
   \node[\s] (p\i) at (\x,\y) {\t};
 }
 \foreach \i in {1,2,3,6,8,9,10}{\node[num] at (p\i.north west) {\i};}
 \foreach \i in {4,5,7}{\node[num] at ($(p\i.north)!0.5!(p\i.west)$) {\i};}
 \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\draw[ar] (p\a) -- (p\b);}
-% failures each check caught, keyed by letter in the caption, at most four words each
-\node[fail, anchor=south west] (f1) at (0.05,0.75) {a\enspace\gno\enspace Screen miscalibrated};
-\node[fail, anchor=south west] (f2) at (3.75,0.75) {b\enspace\gno\enspace Static AXIOM, Env B};
-\node[fail, anchor=south east] (f3) at (12.6,0.75) {c\enspace\gno\enspace Inert simulator};
-\node[fail, anchor=east] (f4) at (9.4,-1.05) {d\enspace\gno\enspace Never-blocking policy};
-\node[fail, anchor=north west] (f5) at (2.35,-3.05) {e\enspace\gno\enspace Backlog carry-over};
-\node[fail, anchor=north west] (f6) at (6.05,-3.05) {f\enspace\gno\enspace Reproduction gap};
-\draw[ct] ([xshift=3mm]p2.north west) -- ([xshift=-3mm]f1.south east);
-\draw[ct] ([xshift=3mm]p2.north) -- ([xshift=3mm]p2.north |- f2.south);
+% failures each check caught, keyed by letter in the caption, at most four words each; callouts kept clear of the
+% flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apart, every callout at least 0.25 cm from a node)
+\node[fail, anchor=south west] (f1) at (0.05,1.1) {a\enspace\gno\enspace Screen miscalibrated};
+\node[fail, anchor=south west] (f2) at (3.75,1.1) {b\enspace\gno\enspace Static AXIOM, Env B};
+\node[fail, anchor=south east] (f3) at (12.6,1.1) {c\enspace\gno\enspace Inert simulator};
+\node[fail, anchor=east] (f4) at (9.4,-1.25) {d\enspace\gno\enspace Never-blocking policy};
+\node[fail, anchor=north west] (f5) at (2.35,-3.6) {e\enspace\gno\enspace Backlog carry-over};
+\node[fail, anchor=north west] (f6) at (6.05,-3.6) {f\enspace\gno\enspace Reproduction gap};
+\draw[ct] ([xshift=-3mm]p2.north) -- ([xshift=-3mm]f1.south east);
+\draw[ct] ([xshift=4mm]p2.north) -- ([xshift=4mm]p2.north |- f2.south);
 \draw[ct] (p4.north) -- (p4.north |- f3.south);
 \draw[ct] (p5.north west) -- (f4.east);
 \draw[ct] (p7.south) -- (p7.south |- f5.north);
 \draw[ct] (p7.south east) -- (f6.west);
 % the live testbed check, outside the offline pipeline
-\node[st, dashed] (lv) at (7.3,-4.2) {Live testbed, direct instrumentation};
-\node[fail, anchor=west] (f7) at (8.8,-4.2) {g\enspace\gyes\enspace Scheduler floor clear};
+\node[st, dashed] (lv) at (7.3,-5.0) {Live testbed, direct instrumentation};
+\node[fail, anchor=west] (f7) at (8.8,-5.0) {g\enspace\gyes\enspace Scheduler floor clear};
 \draw[ct] (lv) -- (f7);
 \end{tikzpicture}
 \end{document}
