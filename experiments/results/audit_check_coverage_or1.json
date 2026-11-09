@@ -1,0 +1,571 @@
+{
+ "S1. Overview": {
+  "numbers": 4,
+  "uncovered": [
+   {
+    "number": "24",
+    "context": "tabcolsep}{3pt} \\begin{tabular}{@{}l>{\\raggedright\\arraybackslash}p{0.24\\textwidth}@{\\hspace{1em}}l>{\\raggedrigh"
+   },
+   {
+    "number": "24",
+    "context": "sh}p{0.24\\textwidth}@{\\hspace{1em}}l>{\\raggedright\\arraybackslash}p{0.24\\textwidth}@{\\hspace{1em}}l>{\\raggedrigh"
+   },
+   {
+    "number": "24",
+    "context": "sh}p{0.24\\textwidth}@{\\hspace{1em}}l>{\\raggedright\\arraybackslash}p{0.24\\textwidth}@{}} \\toprule Acronym & Meani"
+   }
+  ]
+ },
+ "S2. Verification runs": {
+  "numbers": 32,
+  "uncovered": [
+   {
+    "number": "6.6",
+    "context": "2. Verification runs} The fresh-seed runs of the main paper's Section 6.6 retrained every policy on seeds from 30"
+   },
+   {
+    "number": "95\\%",
+    "context": "ures/fig_forest.pdf} \\caption{AXIOM minus each learned baseline, with 95\\% CIs. Solid lines and filled circles are"
+   },
+   {
+    "number": "95\\%",
+    "context": "ch level $\\tau$. Bands bounded by thin lines are stratified bootstrap 95\\% CIs. a to d, Env A at 3, 7, 19, and 37 "
+   },
+   {
+    "number": "3",
+    "context": "ded by thin lines are stratified bootstrap 95\\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3"
+   },
+   {
+    "number": "7",
+    "context": " by thin lines are stratified bootstrap 95\\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7"
+   },
+   {
+    "number": "19",
+    "context": " thin lines are stratified bootstrap 95\\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, an"
+   },
+   {
+    "number": "37",
+    "context": "nes are stratified bootstrap 95\\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNB"
+   },
+   {
+    "number": "3",
+    "context": "ap 95\\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs} \\label{fig:s-rliable} "
+   },
+   {
+    "number": "7",
+    "context": "95\\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs} \\label{fig:s-rliable} \\en"
+   },
+   {
+    "number": "19",
+    "context": "s. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs} \\label{fig:s-rliable} \\end{figure"
+   },
+   {
+    "number": "2",
+    "context": " counted as one half, with a dashed line at one half. Online Resource 2 lists every value} \\label{fig:s-rliable"
+   }
+  ]
+ },
+ "S3. Live testbed": {
+  "numbers": 48,
+  "uncovered": [
+   {
+    "number": "9",
+    "context": "an 100{,}000 readings.  \\begin{figure}[!htbp] \\centering \\resizebox{0.9\\textwidth}{!}{% \\begin{tikzpicture}[   "
+   },
+   {
+    "number": "8",
+    "context": "  block/.style={draw, thick, rounded corners, align=center, fill=gray!8,                 font=\\footnotesize, in"
+   },
+   {
+    "number": "5",
+    "context": "gn=center, fill=gray!8,                 font=\\footnotesize, inner sep=5pt, text width=3.7cm},   arr/.style={-{L"
+   },
+   {
+    "number": "3.7",
+    "context": "gray!8,                 font=\\footnotesize, inner sep=5pt, text width=3.7cm},   arr/.style={-{Latex[length=2.5mm]"
+   },
+   {
+    "number": "2.5",
+    "context": "esize, inner sep=5pt, text width=3.7cm},   arr/.style={-{Latex[length=2.5mm]}, thick},   lbl/.style={font=\\footno"
+   },
+   {
+    "number": "1",
+    "context": "x[length=2.5mm]}, thick},   lbl/.style={font=\\footnotesize, inner sep=1pt} ] \\node[block, anchor=north] (core) "
+   },
+   {
+    "number": "0,0",
+    "context": "\\footnotesize, inner sep=1pt} ] \\node[block, anchor=north] (core) at (0,0)   {Core network\\\\[2pt]    Open5GS, Doc"
+   },
+   {
+    "number": "2",
+    "context": "p=1pt} ] \\node[block, anchor=north] (core) at (0,0)   {Core network\\\\[2pt]    Open5GS, Docker Compose\\\\    17 c"
+   },
+   {
+    "number": "17",
+    "context": "core) at (0,0)   {Core network\\\\[2pt]    Open5GS, Docker Compose\\\\    17 core-function containers\\\\    MongoDB};"
+   },
+   {
+    "number": "2.2,0",
+    "context": "ngoDB}; \\node[block, anchor=north west] (ran) at ($(core.north east)+(2.2,0)$)   {RAN\\\\[2pt]    OAI gNB (ORANSlice "
+   },
+   {
+    "number": "2",
+    "context": "k, anchor=north west] (ran) at ($(core.north east)+(2.2,0)$)   {RAN\\\\[2pt]    OAI gNB (ORANSlice fork)\\\\    rfs"
+   },
+   {
+    "number": "106",
+    "context": "ice fork)\\\\    rfsim software radio\\\\    no SDR/RF hardware\\\\    n78, 106 PRB, $\\mu{=}1$, TDD-SA}; \\node[block, a"
+   },
+   {
+    "number": "1",
+    "context": "fsim software radio\\\\    no SDR/RF hardware\\\\    n78, 106 PRB, $\\mu{=}1$, TDD-SA}; \\node[block, anchor=north we"
+   },
+   {
+    "number": "2.2,0",
+    "context": "TDD-SA}; \\node[block, anchor=north west] (ues) at ($(ran.north east)+(2.2,0)$)   {UEs + traffic\\\\[2pt]    Up to 6 n"
+   },
+   {
+    "number": "2",
+    "context": "=north west] (ues) at ($(ran.north east)+(2.2,0)$)   {UEs + traffic\\\\[2pt]    Up to 6 native \\texttt{nr-uesoftm"
+   },
+   {
+    "number": "6",
+    "context": "ues) at ($(ran.north east)+(2.2,0)$)   {UEs + traffic\\\\[2pt]    Up to 6 native \\texttt{nr-uesoftmodem} UEs, net"
+   },
+   {
+    "number": "4.6",
+    "context": "LC/mMTC iperf3 UDP flows}; \\node[block, anchor=north east, text width=4.6cm] (ctrl) at ($(ran.south east)+(0,-1.3"
+   },
+   {
+    "number": "0",
+    "context": "k, anchor=north east, text width=4.6cm] (ctrl) at ($(ran.south east)+(0,-1.3)$)   {Control loop (RIC-free)\\\\[2p"
+   },
+   {
+    "number": "1.3",
+    "context": "anchor=north east, text width=4.6cm] (ctrl) at ($(ran.south east)+(0,-1.3)$)   {Control loop (RIC-free)\\\\[2pt]   "
+   },
+   {
+    "number": "2",
+    "context": " (ctrl) at ($(ran.south east)+(0,-1.3)$)   {Control loop (RIC-free)\\\\[2pt]    UDP E2 agent, ports 6600/6655\\\\  "
+   },
+   {
+    "number": "6600",
+    "context": ")+(0,-1.3)$)   {Control loop (RIC-free)\\\\[2pt]    UDP E2 agent, ports 6600/6655\\\\    xApp/orchestrator \\texttt{sli"
+   },
+   {
+    "number": "6655",
+    "context": "-1.3)$)   {Control loop (RIC-free)\\\\[2pt]    UDP E2 agent, ports 6600/6655\\\\    xApp/orchestrator \\texttt{slicing\\"
+   },
+   {
+    "number": "2",
+    "context": "lock, anchor=north] (policy) at (ues.south |- ctrl.north)   {Policy\\\\[2pt]    Single-agent DQN checkpoint, seed"
+   },
+   {
+    "number": "900",
+    "context": " |- ctrl.north)   {Policy\\\\[2pt]    Single-agent DQN checkpoint, seed 900\\\\    18{,}562 parameters\\\\    CPU infer"
+   },
+   {
+    "number": "18{,}562",
+    "context": "north)   {Policy\\\\[2pt]    Single-agent DQN checkpoint, seed 900\\\\    18{,}562 parameters\\\\    CPU inference}; \\draw[a"
+   },
+   {
+    "number": "0",
+    "context": ",}562 parameters\\\\    CPU inference}; \\draw[arr] ($(core.north east)+(0,-0.9)$) -- ($(ran.north west)+(0,-0.9)$"
+   },
+   {
+    "number": "0.9",
+    "context": "62 parameters\\\\    CPU inference}; \\draw[arr] ($(core.north east)+(0,-0.9)$) -- ($(ran.north west)+(0,-0.9)$) nod"
+   },
+   {
+    "number": "0",
+    "context": "ce}; \\draw[arr] ($(core.north east)+(0,-0.9)$) -- ($(ran.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {N"
+   },
+   {
+    "number": "0.9",
+    "context": "; \\draw[arr] ($(core.north east)+(0,-0.9)$) -- ($(ran.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {N2/N3}"
+   },
+   {
+    "number": "2",
+    "context": ")+(0,-0.9)$) -- ($(ran.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {N2/N3}; \\draw[arr] ($(ran.north eas"
+   },
+   {
+    "number": "0",
+    "context": " node[lbl, midway, above=2pt] {N2/N3}; \\draw[arr] ($(ran.north east)+(0,-0.9)$) -- ($(ues.north west)+(0,-0.9)$"
+   },
+   {
+    "number": "0.9",
+    "context": "de[lbl, midway, above=2pt] {N2/N3}; \\draw[arr] ($(ran.north east)+(0,-0.9)$) -- ($(ues.north west)+(0,-0.9)$) nod"
+   },
+   {
+    "number": "0",
+    "context": "/N3}; \\draw[arr] ($(ran.north east)+(0,-0.9)$) -- ($(ues.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {U"
+   },
+   {
+    "number": "0.9",
+    "context": "}; \\draw[arr] ($(ran.north east)+(0,-0.9)$) -- ($(ues.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {Uu / r"
+   },
+   {
+    "number": "2",
+    "context": ")+(0,-0.9)$) -- ($(ues.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {Uu / rfsim}; \\draw[arr] (ran.south)"
+   },
+   {
+    "number": "3",
+    "context": "arr] (ran.south) -- (ran.south |- ctrl.north) node[lbl, midway, right=3pt] {E2 (UDP)}; \\draw[arr] ($(ctrl.north"
+   },
+   {
+    "number": "0",
+    "context": "e[lbl, midway, right=3pt] {E2 (UDP)}; \\draw[arr] ($(ctrl.north east)+(0,-0.9)$) -- ($(policy.north west)+(0,-0."
+   },
+   {
+    "number": "0.9",
+    "context": "bl, midway, right=3pt] {E2 (UDP)}; \\draw[arr] ($(ctrl.north east)+(0,-0.9)$) -- ($(policy.north west)+(0,-0.9)$) "
+   },
+   {
+    "number": "0",
+    "context": "; \\draw[arr] ($(ctrl.north east)+(0,-0.9)$) -- ($(policy.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {s"
+   },
+   {
+    "number": "0.9",
+    "context": "draw[arr] ($(ctrl.north east)+(0,-0.9)$) -- ($(policy.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {state "
+   },
+   {
+    "number": "2",
+    "context": "0,-0.9)$) -- ($(policy.north west)+(0,-0.9)$) node[lbl, midway, above=2pt] {state / action}; \\node[draw, thick,"
+   },
+   {
+    "number": "7",
+    "context": "tate / action}; \\node[draw, thick, dashed, rounded corners, inner sep=7pt, fit=(core)(ran)(ues)(ctrl)(policy)] "
+   },
+   {
+    "number": "2",
+    "context": "y)] (host) {}; \\node[font=\\footnotesize, anchor=south west, inner sep=2pt] at ($(host.north west)+(0,0.05)$)   "
+   },
+   {
+    "number": "0,0.05",
+    "context": "otnotesize, anchor=south west, inner sep=2pt] at ($(host.north west)+(0,0.05)$)   {Single commodity host, CPU-only, "
+   }
+  ]
+ },
+ "S4. Setup, safeguards, and analysis plans": {
+  "numbers": 45,
+  "uncovered": [
+   {
+    "number": "10",
+    "context": " and raising mMTC from 0.3 to 0.6. A second repeats AXIOM in Env B on 10 seeds at learning rates of $3{\\times}10"
+   },
+   {
+    "number": "4",
+    "context": "level, and normalised queue length, and a two-layer network with $H{=}4$ heads produces one embedding per gNB. "
+   },
+   {
+    "number": "1",
+    "context": "quation} \\mathbf{z}_i=\\mathrm{LN}\\!\\Big(\\tfrac{1}{H}\\textstyle\\sum_{h=1}^{H}\\sum_{j\\in\\mathcal{N}_i}\\alpha_{ij}"
+   },
+   {
+    "number": "2",
+    "context": "l{eq:zcdp} \\rho=\\frac{2m}{\\sigma^{2}},\\qquad \\varepsilon(\\delta)=\\rho+2\\sqrt{\\rho\\ln(1/\\delta)}. \\end{equation}"
+   },
+   {
+    "number": "1",
+    "context": "=\\frac{2m}{\\sigma^{2}},\\qquad \\varepsilon(\\delta)=\\rho+2\\sqrt{\\rho\\ln(1/\\delta)}. \\end{equation} We credit no a"
+   },
+   {
+    "number": "5",
+    "context": "s conservative.  The trivial-policy check of the main paper's Section 5 rests on these numbers. In our first si"
+   }
+  ]
+ },
+ "S5. Three gNBs, ablations, federation, and disruption": {
+  "numbers": 56,
+  "uncovered": [
+   {
+    "number": "1000",
+    "context": "ring layout, with 7 of 12 seeds tied. A disjoint replication on seeds 1000 to 1009 is stronger for AXIOM. There it"
+   },
+   {
+    "number": "1009",
+    "context": "out, with 7 of 12 seeds tied. A disjoint replication on seeds 1000 to 1009 is stronger for AXIOM. There it earns 1"
+   },
+   {
+    "number": "40",
+    "context": "re reward per step than DQN-SA, DQN-I, and MAPPO, and pooled over all 40 seeds its margins over the three baseli"
+   },
+   {
+    "number": "95\\%",
+    "context": ".929 for the federated variant. That is a difference of $+0.427$ with 95\\% CI [$-$0.54, 1.51] and $p=0.65$, so fed"
+   },
+   {
+    "number": "10",
+    "context": "client takes 17{,}969 noisy steps over its training run. At $\\delta{=}10^{-5}$ Eq.~\\eqref{eq:zcdp} then gives $\\"
+   },
+   {
+    "number": "5",
+    "context": "t takes 17{,}969 noisy steps over its training run. At $\\delta{=}10^{-5}$ Eq.~\\eqref{eq:zcdp} then gives $\\vare"
+   },
+   {
+    "number": "0.81",
+    "context": "tes instead.  \\begin{figure}[!htbp] \\centering \\includegraphics[scale=0.81]{figures/fig_fed_variant.pdf}\\par\\medsk"
+   },
+   {
+    "number": "10",
+    "context": "oise. b, Paired per-seed federation cost on mean reward per step over 10 seeds, not significant at $p=0.65$. c, "
+   },
+   {
+    "number": "0.65",
+    "context": "ion cost on mean reward per step over 10 seeds, not significant at $p=0.65$. c, Block precision versus DP noise mu"
+   },
+   {
+    "number": "10",
+    "context": "raphics{figures/fig5_m4_disruption.pdf} \\caption{Disruption campaign, 10 seeds per policy, 95\\% CIs. a, b, Norma"
+   },
+   {
+    "number": "95\\%",
+    "context": "m4_disruption.pdf} \\caption{Disruption campaign, 10 seeds per policy, 95\\% CIs. a, b, Normalised reward kept under"
+   }
+  ]
+ },
+ "S6. Scaling to thirty-seven gNBs and stronger baselines": {
+  "numbers": 228,
+  "uncovered": [
+   {
+    "number": "6100",
+    "context": " & 99.98\\% & 177.58 & 0 \\\\ \\midrule \\multicolumn{7}{@{}l}{Fresh seeds 6100 to 6119, hex layout} \\\\ AXIOM & 20 & 95"
+   },
+   {
+    "number": "6119",
+    "context": "\\% & 177.58 & 0 \\\\ \\midrule \\multicolumn{7}{@{}l}{Fresh seeds 6100 to 6119, hex layout} \\\\ AXIOM & 20 & 95.4\\% & 9"
+   },
+   {
+    "number": "30",
+    "context": "gin{table}[!htbp] \\caption{DQN baselines tuned on pilot seeds, Env A, 30 hex seeds. LR is the learning rate, bat"
+   },
+   {
+    "number": "30",
+    "context": "ainst AXIOM and DQN-I, reward per step and priority-slice compliance, 30 seeds per setting} \\label{tab:s-vdn} \\c"
+   },
+   {
+    "number": "95\\%",
+    "context": "ority-slice compliance by layout, per-seed points behind the mean and 95\\% CI. a, Nineteen gNBs, 30 seeds per layo"
+   },
+   {
+    "number": "30",
+    "context": "ayout, per-seed points behind the mean and 95\\% CI. a, Nineteen gNBs, 30 seeds per layout. b, Thirty-seven gNBs,"
+   },
+   {
+    "number": "6.2",
+    "context": "s-layouts} \\end{figure}  The transfer run of the main paper's Section 6.2, M92, also covered AXIOM's MLP variant "
+   },
+   {
+    "number": "15",
+    "context": "  \\begin{table}[!htbp] \\caption{Zero-shot transfer from seven gNBs on 15 paired seeds, reward per gNB per step a"
+   },
+   {
+    "number": "95\\%",
+    "context": " The main paper's transfer table gives priority-slice compliance with 95\\% CIs. The MLP variant moved from seven g"
+   },
+   {
+    "number": "3",
+    "context": "ulticolumn{2}{c}{AXIOM at the size} & MAPPO from 7 \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(l){6-6} Env"
+   },
+   {
+    "number": "5",
+    "context": "XIOM at the size} & MAPPO from 7 \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(l){6-6} Env, layout, gNBs & R"
+   },
+   {
+    "number": "6",
+    "context": " & MAPPO from 7 \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(l){6-6} Env, layout, gNBs & Reward & Collapsed"
+   }
+  ]
+ },
+ "S7. Env B, shifted load, longer training, and convergence": {
+  "numbers": 247,
+  "uncovered": [
+   {
+    "number": "25",
+    "context": "s-shift} lists AXIOM against the rule tuned on nominal conditions, on 25 checkpoints neither retrained nor re-tu"
+   },
+   {
+    "number": "25",
+    "context": " against the rule tuned on nominal conditions, Env B with three gNBs, 25 seeds, reward per step, wins over losse"
+   },
+   {
+    "number": "15",
+    "context": "ping 76.9\\%.  \\begin{table}[!htbp] \\caption{Env B with nineteen gNBs, 15 seeds, hex layout. SLA columns give pri"
+   },
+   {
+    "number": "900",
+    "context": "21.7. The Holm-adjusted $p$ values are 0.007, 0.007, and 0.0004. With 900 episodes for every learner, AXIOM keeps"
+   },
+   {
+    "number": "15",
+    "context": "0.0012$. The tuned rule still keeps more compliance than AXIOM in all 15 seeds. At nineteen gNBs the longer budg"
+   },
+   {
+    "number": "15",
+    "context": " seed.  \\begin{table}[!htbp] \\caption{Env B, seven gNBs, ring layout, 15 seeds, reward per gNB per step, priorit"
+   },
+   {
+    "number": "15",
+    "context": "caption{What AXIOM learned in Env B at seven gNBs on the ring layout, 15 seeds. Share of gNB-steps on which its "
+   },
+   {
+    "number": "95\\%",
+    "context": " which its eMBB head would reject, by the gNB's own URLLC queue, with 95\\% CIs over seeds, beside the tuned rule's"
+   },
+   {
+    "number": "0.2",
+    "context": "RLLC queue, with 95\\% CIs over seeds, beside the tuned rule's step at 0.2. The marginal above gives how often eac"
+   },
+   {
+    "number": "6.3",
+    "context": "-decision} \\end{figure}  The distillation of the main paper's Section 6.3, M94, replays each stored checkpoint on"
+   },
+   {
+    "number": "900",
+    "context": "4 of 30 seeds at three gNBs, at a median of 0.21. At seven gNBs after 900 episodes they do so in 13 of 15 seeds, "
+   },
+   {
+    "number": "3",
+    "context": "trees agree with AXIOM, by tree depth. The last columns run the depth-3 trees as a rule, with 95\\% CIs and Holm"
+   },
+   {
+    "number": "95\\%",
+    "context": "by tree depth. The last columns run the depth-3 trees as a rule, with 95\\% CIs and Holm-adjusted $p$} \\label{tab:s"
+   },
+   {
+    "number": "5",
+    "context": "eward} & \\multicolumn{2}{c}{Rule minus tuned rule} \\\\ \\cmidrule(lr){3-5}\\cmidrule(lr){6-7}\\cmidrule(l){8-9} Che"
+   },
+   {
+    "number": "7",
+    "context": "umn{2}{c}{Rule minus tuned rule} \\\\ \\cmidrule(lr){3-5}\\cmidrule(lr){6-7}\\cmidrule(l){8-9} Checkpoints & Seeds &"
+   },
+   {
+    "number": "9",
+    "context": "nus tuned rule} \\\\ \\cmidrule(lr){3-5}\\cmidrule(lr){6-7}\\cmidrule(l){8-9} Checkpoints & Seeds & 1 & 2 & 3 & Diff"
+   }
+  ]
+ },
+ "S8. Throughput and delay": {
+  "numbers": 160,
+  "uncovered": [
+   {
+    "number": "95",
+    "context": "hare of offered demand and backlog delay in control periods, mean and 95th percentile, per slice} \\label{tab:s-k"
+   },
+   {
+    "number": "5",
+    "context": "ce} \\label{tab:s-kpi} \\centering \\scriptsize \\setlength{\\tabcolsep}{2.5pt} \\begin{tabular}{lcccccc} \\toprule Po"
+   }
+  ]
+ },
+ "S9. Reproducing the results": {
+  "numbers": 55,
+  "uncovered": [
+   {
+    "number": "35",
+    "context": "\\tabcolsep}{3pt} \\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{2.35cm}>{\\raggedright\\arraybackslash}p{10.35"
+   },
+   {
+    "number": "35",
+    "context": "aggedright\\arraybackslash}p{2.35cm}>{\\raggedright\\arraybackslash}p{10.35cm}@{}} \\toprule Item & Details \\\\ \\midr"
+   },
+   {
+    "number": "2",
+    "context": "s \\\\ \\midrule \\multicolumn{2}{@{}l}{What is needed} \\\\ \\cmidrule(r){1-2} Hardware & One laptop, Intel Core i5-1"
+   },
+   {
+    "number": "24.04",
+    "context": "h 23 GiB of swap. No graphics processor, every run on the CPU. Ubuntu 24.04 LTS \\\\ Software & Python 3.12.3, PyTorc"
+   },
+   {
+    "number": "2023",
+    "context": " NumPy 2.5.1, SciPy 1.18.0, Matplotlib 3.11.0, PyYAML 6.0.3. TeX Live 2023 with pdfLaTeX. Simulators and learners "
+   },
+   {
+    "number": "106",
+    "context": "nly & OAI gNB, ORANSlice fork on OAI 2024.w28, rfsim radio, band n78, 106 PRBs. Open5GS core in Docker, 17 contai"
+   },
+   {
+    "number": "2",
+    "context": "rom source \\\\ \\midrule \\multicolumn{2}{@{}l}{Steps} \\\\ \\cmidrule(r){1-2} 1. Set up & Request the code, configur"
+   },
+   {
+    "number": "1",
+    "context": " source \\\\ \\midrule \\multicolumn{2}{@{}l}{Steps} \\\\ \\cmidrule(r){1-2} 1. Set up & Request the code, configurati"
+   },
+   {
+    "number": "1",
+    "context": "rom \\texttt{framework/} on one thread, with \\texttt{OMP\\_NUM\\_THREADS=1}, \\texttt{MKL\\_NUM\\_THREADS=1}, and \\te"
+   },
+   {
+    "number": "1",
+    "context": " thread, with \\texttt{OMP\\_NUM\\_THREADS=1}, \\texttt{MKL\\_NUM\\_THREADS=1}, and \\texttt{OPENBLAS\\_NUM\\_THREADS=1}"
+   },
+   {
+    "number": "1",
+    "context": "=1}, \\texttt{MKL\\_NUM\\_THREADS=1}, and \\texttt{OPENBLAS\\_NUM\\_THREADS=1}. \\\\ 2. Train and evaluate & One comman"
+   },
+   {
+    "number": "2",
+    "context": "exttt{MKL\\_NUM\\_THREADS=1}, and \\texttt{OPENBLAS\\_NUM\\_THREADS=1}. \\\\ 2. Train and evaluate & One command train"
+   },
+   {
+    "number": "1",
+    "context": "e policy on a batch of seeds, for example \\texttt{M63\\_BACKLOG\\_RESET=1 M64\\_AXIOM\\_V2=1 python m64\\_run.py -{}"
+   },
+   {
+    "number": "1",
+    "context": "ch of seeds, for example \\texttt{M63\\_BACKLOG\\_RESET=1 M64\\_AXIOM\\_V2=1 python m64\\_run.py -{}-arm axiom2 -{}-e"
+   },
+   {
+    "number": "19",
+    "context": "=1 M64\\_AXIOM\\_V2=1 python m64\\_run.py -{}-arm axiom2 -{}-env A -{}-n 19 -{}-topology ring -{}-seeds 900 901}. E"
+   },
+   {
+    "number": "900",
+    "context": "_run.py -{}-arm axiom2 -{}-env A -{}-n 19 -{}-topology ring -{}-seeds 900 901}. Each seed trains for 300 episodes"
+   },
+   {
+    "number": "901",
+    "context": ".py -{}-arm axiom2 -{}-env A -{}-n 19 -{}-topology ring -{}-seeds 900 901}. Each seed trains for 300 episodes on "
+   },
+   {
+    "number": "300",
+    "context": "A -{}-n 19 -{}-topology ring -{}-seeds 900 901}. Each seed trains for 300 episodes on its own stream and is then "
+   },
+   {
+    "number": "900",
+    "context": "and the main campaigns ran five jobs at a time. The primary seeds are 900 to 929, the replication 1000 to 1009, t"
+   },
+   {
+    "number": "929",
+    "context": " main campaigns ran five jobs at a time. The primary seeds are 900 to 929, the replication 1000 to 1009, the pilo"
+   },
+   {
+    "number": "3",
+    "context": "o 1009, the pilots 2000 to 2009, and the fresh seeds 3000 onwards. \\\\ 3. Run the other campaigns & \\texttt{m3\\_"
+   },
+   {
+    "number": "37",
+    "context": "un\\_experiment.py} applies the disruptions, \\texttt{m73\\_run.py} adds 37 gNBs, and \\texttt{m70\\_run.py} to \\text"
+   },
+   {
+    "number": "4",
+    "context": ", and \\texttt{m70\\_run.py} to \\texttt{m95} add the follow-up runs. \\\\ 4. Re-evaluate stored checkpoints & \\text"
+   },
+   {
+    "number": "5",
+    "context": " a new size, and \\texttt{m94\\_distil.py} distils AXIOM into trees. \\\\ 5. Summarise & Each campaign's \\texttt{an"
+   },
+   {
+    "number": "6",
+    "context": "R5\\_M*\\_preregistration.md} and reports whether it holds or fails. \\\\ 6. Verify & \\texttt{m66\\_verify.py} recom"
+   },
+   {
+    "number": "7",
+    "context": " and \\texttt{m66\\_ci\\_recompute.py} recomputes every bootstrap CI. \\\\ 7. Redraw and build & \\texttt{paper5\\_reg"
+   }
+  ]
+ }
+}

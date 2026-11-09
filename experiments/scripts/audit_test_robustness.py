@@ -41,9 +41,13 @@ def perm_p(d, rng):
     return (k + 1) / (B + 1)
 
 
+PAIRS = {}
+
+
 def family(name, pairs, rng):
     """pairs: {label: (a_rows, b_rows, f)}; returns per-test Wilcoxon and permutation results with Holm in-family."""
     t = {}
+    PAIRS[name] = pairs
     for lab, (a, b, f) in pairs.items():
         w = paired(a, b, f)
         common = sorted(set(a) & set(b))
@@ -101,12 +105,30 @@ def main():
         pairs[f"{k}|reward"], pairs[f"{k}|compliance"] = (ax, va, R), (ax, va, P)
     F["ablation_shared_head"] = family("SH", pairs, rng)
     n_all = sum(len(v) for v in F.values()); n_agree = sum(t["agree"] for v in F.values() for t in v.values())
-    out = {"families": F, "tests": n_all, "agree": n_agree, "disagreements": {f"{fk}:{k}": t for fk, v in F.items() for k, t in v.items() if not t["agree"]}}
+    # leave-one-seed-out: drop each shared seed in turn from every test of a family, redo Wilcoxon and Holm, and
+    # record whether any verdict changes (the families are re-read so the dropped seed leaves every test at once)
+    loo = {}
+    assert len(PAIRS) == len(F)
+    for (pk, fam_pairs), fk in zip(PAIRS.items(), F):   # both filled in the same order, one entry per family() call
+        base = {k: v["verdict_wilcoxon"] for k, v in F[fk].items()}
+        seeds = sorted(set.union(*[set(a_) & set(b_) for a_, b_, _ in fam_pairs.values()]))
+        flips = []
+        for s0 in seeds:
+            t_ = {k: paired({s: r for s, r in a_.items() if s != s0}, {s: r for s, r in b_.items() if s != s0}, f_) for k, (a_, b_, f_) in fam_pairs.items()}
+            h_ = holm({k: v["p"] for k, v in t_.items()})
+            for k, v in t_.items():
+                vd = ("ahead" if v["diff"] > 0 else "behind") if h_[k] < 0.05 else "n.s."
+                if vd != base[k]:
+                    flips.append({"dropped_seed": str(s0), "test": k, "from": base[k], "to": vd, "holm_p": h_[k]})
+        loo[fk] = {"seeds_dropped": len(seeds), "flips": flips}
+    out = {"leave_one_seed_out": loo, "families": F, "tests": n_all, "agree": n_agree, "disagreements": {f"{fk}:{k}": t for fk, v in F.items() for k, t in v.items() if not t["agree"]}}
     json.dump(out, open(a.out, "w"), indent=1)
     print(f"{n_all} tests in {len(F)} families; Wilcoxon and permutation verdicts agree on {n_agree}")
     for fk, v in F.items():
         print(f"  {fk:38s} {sum(t['agree'] for t in v.values())}/{len(v)} agree; Wilcoxon sig {sum(t['verdict_wilcoxon'] != 'n.s.' for t in v.values())}, "
               f"permutation sig {sum(t['verdict_perm'] != 'n.s.' for t in v.values())}")
+    for fk, v in loo.items():
+        print(f"  LOO {fk:10s} {v['seeds_dropped']} seeds dropped one at a time, {len(v['flips'])} verdict changes", v["flips"][:4])
     for k, t in out["disagreements"].items():
         print("  DISAGREE", k, {x: (round(y, 5) if isinstance(y, float) else y) for x, y in t.items()})
 

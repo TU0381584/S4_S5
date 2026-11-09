@@ -1,4 +1,71 @@
 {
+ "leave_one_seed_out": {
+  "EnvA_3gNB_table3_family": {
+   "seeds_dropped": 30,
+   "flips": [
+    {
+     "dropped_seed": "901",
+     "test": "axiom2_mlp",
+     "from": "n.s.",
+     "to": "ahead",
+     "holm_p": 0.02119798419267982
+    },
+    {
+     "dropped_seed": "901",
+     "test": "single_agent_dqn",
+     "from": "n.s.",
+     "to": "ahead",
+     "holm_p": 0.02119798419267982
+    },
+    {
+     "dropped_seed": "904",
+     "test": "axiom2_mlp",
+     "from": "n.s.",
+     "to": "ahead",
+     "holm_p": 0.01542647211183112
+    },
+    {
+     "dropped_seed": "904",
+     "test": "single_agent_dqn",
+     "from": "n.s.",
+     "to": "ahead",
+     "holm_p": 0.01542647211183112
+    }
+   ]
+  },
+  "EnvB_3gNB_H1_rules": {
+   "seeds_dropped": 30,
+   "flips": []
+  },
+  "EnvB_3gNB_learned": {
+   "seeds_dropped": 30,
+   "flips": []
+  },
+  "EnvB_3gNB_tuned_rule": {
+   "seeds_dropped": 30,
+   "flips": []
+  },
+  "EnvA_7gNB_scaling": {
+   "seeds_dropped": 15,
+   "flips": []
+  },
+  "EnvA_19gNB_scaling": {
+   "seeds_dropped": 30,
+   "flips": []
+  },
+  "EnvA_37gNB_scaling": {
+   "seeds_dropped": 30,
+   "flips": []
+  },
+  "EnvB_19gNB_loadshift_vs_tuned_rule": {
+   "seeds_dropped": 15,
+   "flips": []
+  },
+  "ablation_shared_head": {
+   "seeds_dropped": 33,
+   "flips": []
+  }
+ },
  "families": {
   "EnvA_3gNB_table3_family": {
    "axiom2_mlp": {

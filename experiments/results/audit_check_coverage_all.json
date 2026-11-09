@@ -1,0 +1,1703 @@
+{
+ "Introduction": {
+  "numbers": 127,
+  "uncovered": [
+   {
+    "number": "0.62",
+    "context": " system context.  \\begin{figure}[!b] \\centering \\begin{tikzpicture}[x=0.62cm,y=0.62cm,   font=\\figfont,   core/.st"
+   },
+   {
+    "number": "0.62",
+    "context": "ontext.  \\begin{figure}[!b] \\centering \\begin{tikzpicture}[x=0.62cm,y=0.62cm,   font=\\figfont,   core/.style={draw"
+   },
+   {
+    "number": "55",
+    "context": "picture}[x=0.62cm,y=0.62cm,   font=\\figfont,   core/.style={draw=blue!55!black, fill=blue!7, ellipse,           "
+   },
+   {
+    "number": "7",
+    "context": "0.62cm,   font=\\figfont,   core/.style={draw=blue!55!black, fill=blue!7, ellipse,                minimum width="
+   },
+   {
+    "number": "3.4",
+    "context": "raw=blue!55!black, fill=blue!7, ellipse,                minimum width=3.4cm, minimum height=1.1cm, align=center},"
+   },
+   {
+    "number": "1.1",
+    "context": "l=blue!7, ellipse,                minimum width=3.4cm, minimum height=1.1cm, align=center},   gnb/.style={draw=bl"
+   },
+   {
+    "number": "55",
+    "context": "=3.4cm, minimum height=1.1cm, align=center},   gnb/.style={draw=black!55, rounded corners, fill=gray!8, minimum "
+   },
+   {
+    "number": "8",
+    "context": "lign=center},   gnb/.style={draw=black!55, rounded corners, fill=gray!8, minimum width=1.1cm,               min"
+   },
+   {
+    "number": "1.1",
+    "context": "nb/.style={draw=black!55, rounded corners, fill=gray!8, minimum width=1.1cm,               minimum height=0.42cm,"
+   },
+   {
+    "number": "0.42",
+    "context": "rners, fill=gray!8, minimum width=1.1cm,               minimum height=0.42cm, align=center, font=\\figfont, inner s"
+   },
+   {
+    "number": "1",
+    "context": "        minimum height=0.42cm, align=center, font=\\figfont, inner sep=1pt},   band/.style={draw, rounded corner"
+   },
+   {
+    "number": "1.75",
+    "context": ", inner sep=1pt},   band/.style={draw, rounded corners, minimum width=1.75cm, minimum height=0.55cm},   ar/.style="
+   },
+   {
+    "number": "0.55",
+    "context": "d/.style={draw, rounded corners, minimum width=1.75cm, minimum height=0.55cm},   ar/.style={-{Latex[length=2.2mm]}"
+   },
+   {
+    "number": "2.2",
+    "context": "mum width=1.75cm, minimum height=0.55cm},   ar/.style={-{Latex[length=2.2mm]}, thick},   gedge/.style={dashed, th"
+   },
+   {
+    "number": "75",
+    "context": "ex[length=2.2mm]}, thick},   gedge/.style={dashed, thick, draw=orange!75!black} ] % --- 5G Core (cloud-like elli"
+   },
+   {
+    "number": "5",
+    "context": " thick},   gedge/.style={dashed, thick, draw=orange!75!black} ] % --- 5G Core (cloud-like ellipse) with a small"
+   },
+   {
+    "number": "7.5,6.75",
+    "context": "ke ellipse) with a small server-rack glyph --- \\node[core] (core) at (7.5,6.75) {\\\\[2pt]{\\figfont 5G Core}\\\\[1pt]{\\fig"
+   },
+   {
+    "number": "2",
+    "context": "th a small server-rack glyph --- \\node[core] (core) at (7.5,6.75) {\\\\[2pt]{\\figfont 5G Core}\\\\[1pt]{\\figfont Op"
+   },
+   {
+    "number": "5",
+    "context": "ver-rack glyph --- \\node[core] (core) at (7.5,6.75) {\\\\[2pt]{\\figfont 5G Core}\\\\[1pt]{\\figfont Open5GS core net"
+   },
+   {
+    "number": "1",
+    "context": "yph --- \\node[core] (core) at (7.5,6.75) {\\\\[2pt]{\\figfont 5G Core}\\\\[1pt]{\\figfont Open5GS core network}}; \\be"
+   },
+   {
+    "number": "7.5,7.3",
+    "context": "G Core}\\\\[1pt]{\\figfont Open5GS core network}}; \\begin{scope}[shift={(7.5,7.3)}]   \\foreach \\yy in {0,0.14}{     \\dra"
+   },
+   {
+    "number": "0.14",
+    "context": "core network}}; \\begin{scope}[shift={(7.5,7.3)}]   \\foreach \\yy in {0,0.14}{     \\draw[thick,gray!55!black,fill=gr"
+   },
+   {
+    "number": "55",
+    "context": "}[shift={(7.5,7.3)}]   \\foreach \\yy in {0,0.14}{     \\draw[thick,gray!55!black,fill=gray!18,rounded corners=0.4p"
+   },
+   {
+    "number": "18",
+    "context": "]   \\foreach \\yy in {0,0.14}{     \\draw[thick,gray!55!black,fill=gray!18,rounded corners=0.4pt] (-0.24,\\yy) rect"
+   },
+   {
+    "number": "0.4",
+    "context": " {0,0.14}{     \\draw[thick,gray!55!black,fill=gray!18,rounded corners=0.4pt] (-0.24,\\yy) rectangle (0.24,\\yy+0.1)"
+   },
+   {
+    "number": "0.24",
+    "context": "{     \\draw[thick,gray!55!black,fill=gray!18,rounded corners=0.4pt] (-0.24,\\yy) rectangle (0.24,\\yy+0.1);     \\fil"
+   },
+   {
+    "number": "0.24",
+    "context": "y!55!black,fill=gray!18,rounded corners=0.4pt] (-0.24,\\yy) rectangle (0.24,\\yy+0.1);     \\fill[green!60!black] (0."
+   },
+   {
+    "number": "0.1",
+    "context": "k,fill=gray!18,rounded corners=0.4pt] (-0.24,\\yy) rectangle (0.24,\\yy+0.1);     \\fill[green!60!black] (0.17,\\yy+0"
+   },
+   {
+    "number": "60",
+    "context": " corners=0.4pt] (-0.24,\\yy) rectangle (0.24,\\yy+0.1);     \\fill[green!60!black] (0.17,\\yy+0.05) circle (0.017); "
+   },
+   {
+    "number": "0.17",
+    "context": "4pt] (-0.24,\\yy) rectangle (0.24,\\yy+0.1);     \\fill[green!60!black] (0.17,\\yy+0.05) circle (0.017);     \\fill[ora"
+   },
+   {
+    "number": "0.05",
+    "context": "24,\\yy) rectangle (0.24,\\yy+0.1);     \\fill[green!60!black] (0.17,\\yy+0.05) circle (0.017);     \\fill[orange!75!bl"
+   },
+   {
+    "number": "0.017",
+    "context": "gle (0.24,\\yy+0.1);     \\fill[green!60!black] (0.17,\\yy+0.05) circle (0.017);     \\fill[orange!75!black] (0.10,\\yy+"
+   },
+   {
+    "number": "75",
+    "context": "fill[green!60!black] (0.17,\\yy+0.05) circle (0.017);     \\fill[orange!75!black] (0.10,\\yy+0.05) circle (0.017); "
+   },
+   {
+    "number": "0.10",
+    "context": "60!black] (0.17,\\yy+0.05) circle (0.017);     \\fill[orange!75!black] (0.10,\\yy+0.05) circle (0.017);   } \\end{scop"
+   },
+   {
+    "number": "0.05",
+    "context": " (0.17,\\yy+0.05) circle (0.017);     \\fill[orange!75!black] (0.10,\\yy+0.05) circle (0.017);   } \\end{scope} % --- "
+   },
+   {
+    "number": "0.017",
+    "context": "5) circle (0.017);     \\fill[orange!75!black] (0.10,\\yy+0.05) circle (0.017);   } \\end{scope} % --- gNB towers + la"
+   },
+   {
+    "number": "5",
+    "context": ");   } \\end{scope} % --- gNB towers + labels --- \\foreach \\x/\\i in {2.5/1,7.5/2,12.5/3}{   \\gnbtower{(\\x,3.55)}"
+   },
+   {
+    "number": "1,7.5",
+    "context": "   } \\end{scope} % --- gNB towers + labels --- \\foreach \\x/\\i in {2.5/1,7.5/2,12.5/3}{   \\gnbtower{(\\x,3.55)}   \\no"
+   },
+   {
+    "number": "2,12.5",
+    "context": "end{scope} % --- gNB towers + labels --- \\foreach \\x/\\i in {2.5/1,7.5/2,12.5/3}{   \\gnbtower{(\\x,3.55)}   \\node[gnb]"
+   },
+   {
+    "number": "3",
+    "context": "pe} % --- gNB towers + labels --- \\foreach \\x/\\i in {2.5/1,7.5/2,12.5/3}{   \\gnbtower{(\\x,3.55)}   \\node[gnb] ("
+   },
+   {
+    "number": "3.55",
+    "context": " + labels --- \\foreach \\x/\\i in {2.5/1,7.5/2,12.5/3}{   \\gnbtower{(\\x,3.55)}   \\node[gnb] (g\\i) at (\\x,3.05) {gNB~"
+   },
+   {
+    "number": "3.05",
+    "context": "2.5/1,7.5/2,12.5/3}{   \\gnbtower{(\\x,3.55)}   \\node[gnb] (g\\i) at (\\x,3.05) {gNB~\\i}; } \\draw[gedge] (g1) -- (g2);"
+   },
+   {
+    "number": "9",
+    "context": ") -- (g2); \\draw[gedge] (g2) -- (g3); \\draw[gedge] (g1) to[bend right=9] (g3); % --- further gNBs: the cluster "
+   },
+   {
+    "number": "7",
+    "context": "[bend right=9] (g3); % --- further gNBs: the cluster holds N of them (7, 19, or 37 in the scaling study) --- \\n"
+   },
+   {
+    "number": "19",
+    "context": "nd right=9] (g3); % --- further gNBs: the cluster holds N of them (7, 19, or 37 in the scaling study) --- \\node["
+   },
+   {
+    "number": "37",
+    "context": "t=9] (g3); % --- further gNBs: the cluster holds N of them (7, 19, or 37 in the scaling study) --- \\node[font=\\f"
+   },
+   {
+    "number": "14.55,3.05",
+    "context": " 19, or 37 in the scaling study) --- \\node[font=\\figfont] (gdots) at (14.55,3.05) {$\\cdots$}; \\begin{scope}[opacity=0.55"
+   },
+   {
+    "number": "0.55",
+    "context": "t=\\figfont] (gdots) at (14.55,3.05) {$\\cdots$}; \\begin{scope}[opacity=0.55]\\gnbtower{(16.4,3.55)}\\end{scope} \\node"
+   },
+   {
+    "number": "16.4,3.55",
+    "context": "ts) at (14.55,3.05) {$\\cdots$}; \\begin{scope}[opacity=0.55]\\gnbtower{(16.4,3.55)}\\end{scope} \\node[gnb, dashed] (gN) at"
+   },
+   {
+    "number": "16.4,3.05",
+    "context": "ty=0.55]\\gnbtower{(16.4,3.55)}\\end{scope} \\node[gnb, dashed] (gN) at (16.4,3.05) {gNB~$N$}; \\draw[gedge] (g3) -- (gdots"
+   },
+   {
+    "number": "75",
+    "context": "dge] (g3) -- (gdots); \\draw[gedge] (gdots) -- (gN); \\node[draw=orange!75!black, dashed, thick, rounded corners, "
+   },
+   {
+    "number": "3",
+    "context": "\\node[draw=orange!75!black, dashed, thick, rounded corners, inner sep=3pt,       fit={(0.7,2.3) (17.6,4.6)}] (c"
+   },
+   {
+    "number": "0.7,2.3",
+    "context": "!75!black, dashed, thick, rounded corners, inner sep=3pt,       fit={(0.7,2.3) (17.6,4.6)}] (clu) {}; \\node[font=\\fig"
+   },
+   {
+    "number": "17.6,4.6",
+    "context": " dashed, thick, rounded corners, inner sep=3pt,       fit={(0.7,2.3) (17.6,4.6)}] (clu) {}; \\node[font=\\figfont, text="
+   },
+   {
+    "number": "55",
+    "context": "it={(0.7,2.3) (17.6,4.6)}] (clu) {}; \\node[font=\\figfont, text=orange!55!black, inner sep=1.5pt]       at (0.7,4"
+   },
+   {
+    "number": "1.5",
+    "context": "4.6)}] (clu) {}; \\node[font=\\figfont, text=orange!55!black, inner sep=1.5pt]       at (0.7,4.85) [anchor=south we"
+   },
+   {
+    "number": "0.7,4.85",
+    "context": "\\node[font=\\figfont, text=orange!55!black, inner sep=1.5pt]       at (0.7,4.85) [anchor=south west] {AXIOM cluster gra"
+   },
+   {
+    "number": "7.5,4.62",
+    "context": "[anchor=south west] {AXIOM cluster graph}; \\draw[ar] (core.south) -- (7.5,4.62) node[pos=0.5, right=1pt, font=\\figfont"
+   },
+   {
+    "number": "0.5",
+    "context": " {AXIOM cluster graph}; \\draw[ar] (core.south) -- (7.5,4.62) node[pos=0.5, right=1pt, font=\\figfont, fill=white, "
+   },
+   {
+    "number": "1",
+    "context": "ster graph}; \\draw[ar] (core.south) -- (7.5,4.62) node[pos=0.5, right=1pt, font=\\figfont, fill=white, inner sep"
+   },
+   {
+    "number": "1",
+    "context": "5,4.62) node[pos=0.5, right=1pt, font=\\figfont, fill=white, inner sep=1pt] {N2 / N3}; % --- slice bands with ic"
+   },
+   {
+    "number": "14",
+    "context": "fe) plus icon, label, position, and border style \\node[band, fill=oiV!14, draw=oiV!80!black]                    "
+   },
+   {
+    "number": "80",
+    "context": ", label, position, and border style \\node[band, fill=oiV!14, draw=oiV!80!black]                    (s1) at (2.5,"
+   },
+   {
+    "number": "2.5,1.05",
+    "context": "ode[band, fill=oiV!14, draw=oiV!80!black]                    (s1) at (2.5,1.05) {}; \\node[band, fill=oiB!14, draw=oiB!"
+   },
+   {
+    "number": "14",
+    "context": "black]                    (s1) at (2.5,1.05) {}; \\node[band, fill=oiB!14, draw=oiB!80!black, dashed]           ("
+   },
+   {
+    "number": "80",
+    "context": "             (s1) at (2.5,1.05) {}; \\node[band, fill=oiB!14, draw=oiB!80!black, dashed]           (s2) at (7.5,1"
+   },
+   {
+    "number": "7.5,1.05",
+    "context": "node[band, fill=oiB!14, draw=oiB!80!black, dashed]           (s2) at (7.5,1.05) {}; \\node[band, fill=oiG!14, draw=oiG!"
+   },
+   {
+    "number": "14",
+    "context": "!black, dashed]           (s2) at (7.5,1.05) {}; \\node[band, fill=oiG!14, draw=oiG!80!black, densely dotted, thi"
+   },
+   {
+    "number": "80",
+    "context": "d]           (s2) at (7.5,1.05) {}; \\node[band, fill=oiG!14, draw=oiG!80!black, densely dotted, thick] (s3) at ("
+   },
+   {
+    "number": "12.5,1.05",
+    "context": "band, fill=oiG!14, draw=oiG!80!black, densely dotted, thick] (s3) at (12.5,1.05) {}; \\node[font=\\figfont] at (2.9,1.05)"
+   },
+   {
+    "number": "2.9,1.05",
+    "context": "nsely dotted, thick] (s3) at (12.5,1.05) {}; \\node[font=\\figfont] at (2.9,1.05) {URLLC}; \\node[font=\\figfont] at (7.9,"
+   },
+   {
+    "number": "7.9,1.05",
+    "context": " \\node[font=\\figfont] at (2.9,1.05) {URLLC}; \\node[font=\\figfont] at (7.9,1.05) {eMBB}; \\node[font=\\figfont] at (12.9,"
+   },
+   {
+    "number": "12.9,1.05",
+    "context": "; \\node[font=\\figfont] at (7.9,1.05) {eMBB}; \\node[font=\\figfont] at (12.9,1.05) {mMTC}; % URLLC bolt \\fill[oiV!85!blac"
+   },
+   {
+    "number": "85",
+    "context": "}; \\node[font=\\figfont] at (12.9,1.05) {mMTC}; % URLLC bolt \\fill[oiV!85!black] (1.55,1.31)--(1.42,1.05)--(1.53,"
+   },
+   {
+    "number": "1.55,1.31",
+    "context": "nt=\\figfont] at (12.9,1.05) {mMTC}; % URLLC bolt \\fill[oiV!85!black] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)"
+   },
+   {
+    "number": "1.42,1.05",
+    "context": "at (12.9,1.05) {mMTC}; % URLLC bolt \\fill[oiV!85!black] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)"
+   },
+   {
+    "number": "1.53,1.05",
+    "context": ") {mMTC}; % URLLC bolt \\fill[oiV!85!black] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)"
+   },
+   {
+    "number": "1.48,0.79",
+    "context": "RLLC bolt \\fill[oiV!85!black] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)--cycle; % eM"
+   },
+   {
+    "number": "1.69,1.10",
+    "context": "ll[oiV!85!black] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)--cycle; % eMBB bandwidth "
+   },
+   {
+    "number": "1.58,1.10",
+    "context": "ck] (1.55,1.31)--(1.42,1.05)--(1.53,1.05)--(1.48,0.79)--(1.69,1.10)--(1.58,1.10)--cycle; % eMBB bandwidth bars \\fill[oi"
+   },
+   {
+    "number": "85",
+    "context": "79)--(1.69,1.10)--(1.58,1.10)--cycle; % eMBB bandwidth bars \\fill[oiB!85!black] (6.34,0.85) rectangle (6.41,1.03"
+   },
+   {
+    "number": "6.34,0.85",
+    "context": "1.10)--(1.58,1.10)--cycle; % eMBB bandwidth bars \\fill[oiB!85!black] (6.34,0.85) rectangle (6.41,1.03); \\fill[oiB!85!bl"
+   },
+   {
+    "number": "6.41,1.03",
+    "context": "cle; % eMBB bandwidth bars \\fill[oiB!85!black] (6.34,0.85) rectangle (6.41,1.03); \\fill[oiB!85!black] (6.45,0.85) recta"
+   },
+   {
+    "number": "85",
+    "context": "bars \\fill[oiB!85!black] (6.34,0.85) rectangle (6.41,1.03); \\fill[oiB!85!black] (6.45,0.85) rectangle (6.52,1.15"
+   },
+   {
+    "number": "6.45,0.85",
+    "context": "oiB!85!black] (6.34,0.85) rectangle (6.41,1.03); \\fill[oiB!85!black] (6.45,0.85) rectangle (6.52,1.15); \\fill[oiB!85!bl"
+   },
+   {
+    "number": "6.52,1.15",
+    "context": "85) rectangle (6.41,1.03); \\fill[oiB!85!black] (6.45,0.85) rectangle (6.52,1.15); \\fill[oiB!85!black] (6.56,0.85) recta"
+   },
+   {
+    "number": "85",
+    "context": "03); \\fill[oiB!85!black] (6.45,0.85) rectangle (6.52,1.15); \\fill[oiB!85!black] (6.56,0.85) rectangle (6.63,1.27"
+   },
+   {
+    "number": "6.56,0.85",
+    "context": "oiB!85!black] (6.45,0.85) rectangle (6.52,1.15); \\fill[oiB!85!black] (6.56,0.85) rectangle (6.63,1.27); % mMTC sensor g"
+   },
+   {
+    "number": "6.63,1.27",
+    "context": "85) rectangle (6.52,1.15); \\fill[oiB!85!black] (6.56,0.85) rectangle (6.63,1.27); % mMTC sensor grid \\foreach \\a in {-0"
+   },
+   {
+    "number": "0.14,0,0.14",
+    "context": "6.56,0.85) rectangle (6.63,1.27); % mMTC sensor grid \\foreach \\a in {-0.14,0,0.14}{\\foreach \\b in {-0.14,0,0.14}{\\fill[oi"
+   },
+   {
+    "number": "0.14,0,0.14",
+    "context": "7); % mMTC sensor grid \\foreach \\a in {-0.14,0,0.14}{\\foreach \\b in {-0.14,0,0.14}{\\fill[oiG!85!black] (11.5+\\a,1.05+\\b) "
+   },
+   {
+    "number": "85",
+    "context": "\\foreach \\a in {-0.14,0,0.14}{\\foreach \\b in {-0.14,0,0.14}{\\fill[oiG!85!black] (11.5+\\a,1.05+\\b) circle (0.03);"
+   },
+   {
+    "number": "11.5",
+    "context": " in {-0.14,0,0.14}{\\foreach \\b in {-0.14,0,0.14}{\\fill[oiG!85!black] (11.5+\\a,1.05+\\b) circle (0.03);}} \\draw[ar] "
+   },
+   {
+    "number": "1.05",
+    "context": "14,0,0.14}{\\foreach \\b in {-0.14,0,0.14}{\\fill[oiG!85!black] (11.5+\\a,1.05+\\b) circle (0.03);}} \\draw[ar] (g2 |- c"
+   },
+   {
+    "number": "0.03",
+    "context": "ch \\b in {-0.14,0,0.14}{\\fill[oiG!85!black] (11.5+\\a,1.05+\\b) circle (0.03);}} \\draw[ar] (g2 |- clu.south) -- (7.5"
+   },
+   {
+    "number": "7.5,1.9",
+    "context": "k] (11.5+\\a,1.05+\\b) circle (0.03);}} \\draw[ar] (g2 |- clu.south) -- (7.5,1.9); \\draw[ar] (7.5,1.86) -- (s1.north); \\"
+   },
+   {
+    "number": "7.5,1.86",
+    "context": "circle (0.03);}} \\draw[ar] (g2 |- clu.south) -- (7.5,1.9); \\draw[ar] (7.5,1.86) -- (s1.north); \\draw[ar] (7.5,1.86) --"
+   },
+   {
+    "number": "7.5,1.86",
+    "context": "u.south) -- (7.5,1.9); \\draw[ar] (7.5,1.86) -- (s1.north); \\draw[ar] (7.5,1.86) -- (s2.north); \\draw[ar] (7.5,1.86) --"
+   },
+   {
+    "number": "7.5,1.86",
+    "context": "5,1.86) -- (s1.north); \\draw[ar] (7.5,1.86) -- (s2.north); \\draw[ar] (7.5,1.86) -- (s3.north); % --- UEs --- \\uephone{"
+   },
+   {
+    "number": "2.0,0.3",
+    "context": "2.north); \\draw[ar] (7.5,1.86) -- (s3.north); % --- UEs --- \\uephone{(2.0,0.3)}{oiV}  \\uephone{(3.0,0.3)}{oiV} \\uepho"
+   },
+   {
+    "number": "3.0,0.3",
+    "context": ".86) -- (s3.north); % --- UEs --- \\uephone{(2.0,0.3)}{oiV}  \\uephone{(3.0,0.3)}{oiV} \\uephone{(7.0,0.3)}{oiB} \\uephon"
+   },
+   {
+    "number": "7.0,0.3",
+    "context": " UEs --- \\uephone{(2.0,0.3)}{oiV}  \\uephone{(3.0,0.3)}{oiV} \\uephone{(7.0,0.3)}{oiB} \\uephone{(8.0,0.3)}{oiB} \\uephon"
+   },
+   {
+    "number": "8.0,0.3",
+    "context": "3)}{oiV}  \\uephone{(3.0,0.3)}{oiV} \\uephone{(7.0,0.3)}{oiB} \\uephone{(8.0,0.3)}{oiB} \\uephone{(12.0,0.3)}{oiG} \\uepho"
+   },
+   {
+    "number": "12.0,0.3",
+    "context": ".3)}{oiV} \\uephone{(7.0,0.3)}{oiB} \\uephone{(8.0,0.3)}{oiB} \\uephone{(12.0,0.3)}{oiG} \\uephone{(13.0,0.3)}{oiG} \\node["
+   },
+   {
+    "number": "13.0,0.3",
+    "context": "3)}{oiB} \\uephone{(8.0,0.3)}{oiB} \\uephone{(12.0,0.3)}{oiG} \\uephone{(13.0,0.3)}{oiG} \\node[font=\\figfont] at (14.55,0"
+   },
+   {
+    "number": "14.55,0.3",
+    "context": "e{(12.0,0.3)}{oiG} \\uephone{(13.0,0.3)}{oiG} \\node[font=\\figfont] at (14.55,0.3) {$\\cdots$}; \\begin{scope}[opacity=0.55"
+   },
+   {
+    "number": "0.55",
+    "context": "\\node[font=\\figfont] at (14.55,0.3) {$\\cdots$}; \\begin{scope}[opacity=0.55]\\uephone{(15.7,0.3)}{gray}\\end{scope} \\"
+   },
+   {
+    "number": "15.7,0.3",
+    "context": "font] at (14.55,0.3) {$\\cdots$}; \\begin{scope}[opacity=0.55]\\uephone{(15.7,0.3)}{gray}\\end{scope} \\node[font=\\figfont,"
+   },
+   {
+    "number": "16.0,0.3",
+    "context": "ne{(15.7,0.3)}{gray}\\end{scope} \\node[font=\\figfont, anchor=west] at (16.0,0.3) {UE~$M$}; \\node[font=\\figfont] at (7.5"
+   },
+   {
+    "number": "7.5",
+    "context": "igfont, anchor=west] at (16.0,0.3) {UE~$M$}; \\node[font=\\figfont] at (7.5,-0.5) {User equipment, per-slice traffi"
+   },
+   {
+    "number": "0.5",
+    "context": "t, anchor=west] at (16.0,0.3) {UE~$M$}; \\node[font=\\figfont] at (7.5,-0.5) {User equipment, per-slice traffic}; \\"
+   },
+   {
+    "number": "2.5,0.62",
+    "context": "5,-0.5) {User equipment, per-slice traffic}; \\draw[ar] (s1.south) -- (2.5,0.62); \\draw[ar] (s2.south) -- (7.5,0.62); \\"
+   },
+   {
+    "number": "7.5,0.62",
+    "context": "raffic}; \\draw[ar] (s1.south) -- (2.5,0.62); \\draw[ar] (s2.south) -- (7.5,0.62); \\draw[ar] (s3.south) -- (12.5,0.62); "
+   },
+   {
+    "number": "12.5,0.62",
+    "context": "5,0.62); \\draw[ar] (s2.south) -- (7.5,0.62); \\draw[ar] (s3.south) -- (12.5,0.62); \\end{tikzpicture} \\caption{Conceptual"
+   },
+   {
+    "number": "5",
+    "context": "$N$ gNBs, coordinated by the shared AXIOM encoder and backhauled to a 5G core, serves $M$ user equipment (UE) d"
+   },
+   {
+    "number": "7",
+    "context": "ation (MAPPO), and tuned threshold rules. We also grow the cluster to 7, 19, and 37 gNBs under three layouts. F"
+   },
+   {
+    "number": "19",
+    "context": "on (MAPPO), and tuned threshold rules. We also grow the cluster to 7, 19, and 37 gNBs under three layouts. Furth"
+   },
+   {
+    "number": "37",
+    "context": "O), and tuned threshold rules. We also grow the cluster to 7, 19, and 37 gNBs under three layouts. Further campa"
+   }
+  ]
+ },
+ "Related Work": {
+  "numbers": 10,
+  "uncovered": [
+   {
+    "number": "45",
+    "context": "\\tabcolsep}{2pt} \\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{2.45cm}>{\\raggedright\\arraybackslash}p{3.6cm"
+   },
+   {
+    "number": "6",
+    "context": "raggedright\\arraybackslash}p{2.45cm}>{\\raggedright\\arraybackslash}p{3.6cm}ccccccc@{}} \\toprule Work & Problem &"
+   },
+   {
+    "number": "67",
+    "context": " the works cited in the rest of this section lie outside the review's 67 core studies. They add earlier foundati"
+   }
+  ]
+ },
+ "System Model and Problem Formulation": {
+  "numbers": 151,
+  "uncovered": [
+   {
+    "number": "37",
+    "context": "e consider a cluster of $N$ gNBs, from three in the main campaigns to 37 in the scaling study. Each gNB serves U"
+   },
+   {
+    "number": "1",
+    "context": "  \\;-\\; \\kappa\\, C_t \\lVert \\mathbf{a}_t \\rVert_1       \\;-\\; \\beta\\,(1 - F_t), \\end{equation} where $\\lVert \\m"
+   },
+   {
+    "number": "0,1",
+    "context": "estion level. The congestion coefficient is $\\kappa$, and $F_t\\!\\in\\![0,1]$ is the min-over-max PRB-utilisation f"
+   },
+   {
+    "number": "1",
+    "context": "nd loss channels, \\begin{equation} \\label{eq:margin} m_k = \\min\\!\\Big(1 - \\tilde q_k,\\; 1 - \\tfrac{\\ell_k}{\\ell"
+   },
+   {
+    "number": "1",
+    "context": "\\begin{equation} \\label{eq:margin} m_k = \\min\\!\\Big(1 - \\tilde q_k,\\; 1 - \\tfrac{\\ell_k}{\\ell_k^{\\max}}\\Big), \\"
+   },
+   {
+    "number": "0",
+    "context": "tfrac{\\ell_k}{\\ell_k^{\\max}}\\Big), \\qquad v_k \\Leftrightarrow m_k \\le 0, \\end{equation} with $\\tilde q_k$ the s"
+   },
+   {
+    "number": "1",
+    "context": "text{reject}\\}$, the shared-budget dynamics move the cluster to $s_{t+1}$, and every agent receives the common "
+   },
+   {
+    "number": "60",
+    "context": "cy $\\pi$ that maximises the discounted return over an episode of $T{=}60$ steps, \\begin{equation} \\max_{\\pi}\\;\\m"
+   },
+   {
+    "number": "0",
+    "context": ", \\begin{equation} \\max_{\\pi}\\;\\mathbb{E}_{\\pi}\\Big[\\textstyle\\sum_{t=0}^{T-1}\\gamma^{t} r_t\\Big],\\qquad \\gamma"
+   },
+   {
+    "number": "1",
+    "context": "in{equation} \\max_{\\pi}\\;\\mathbb{E}_{\\pi}\\Big[\\textstyle\\sum_{t=0}^{T-1}\\gamma^{t} r_t\\Big],\\qquad \\gamma=0.95."
+   },
+   {
+    "number": "0.95",
+    "context": "{\\pi}\\Big[\\textstyle\\sum_{t=0}^{T-1}\\gamma^{t} r_t\\Big],\\qquad \\gamma=0.95. \\end{equation}  \\begin{table}[!t] \\cap"
+   },
+   {
+    "number": "4",
+    "context": " & 3.5 \\\\ \\midrule \\multicolumn{4}{@{}l}{Simulator} \\\\ \\cmidrule(r){1-4} Congestion $\\kappa$, balance $\\beta$ &"
+   },
+   {
+    "number": "4",
+    "context": "cision} \\\\ \\midrule \\multicolumn{4}{@{}l}{Learning} \\\\ \\cmidrule(r){1-4} Value-based learners & \\multicolumn{3}"
+   },
+   {
+    "number": "5",
+    "context": "e ceiling at its nominal share. An accept raises a slice's ceiling by 5 PRB-ratio points, up to its cap, and a "
+   },
+   {
+    "number": "5",
+    "context": "iling by 5 PRB-ratio points, up to its cap, and a reject lowers it by 5 points, down to its floor, and relieves"
+   },
+   {
+    "number": "0.005",
+    "context": "e offered PRBs drift 10\\% per step towards their mean, with noise of $0.005B$. Env B keeps all of this and adds two"
+   },
+   {
+    "number": "1",
+    "context": "gin{figure}[!htbp] \\centering \\begin{tikzpicture}[   font=\\figfont, x=1cm, y=1cm,   every node/.append style={e"
+   },
+   {
+    "number": "1",
+    "context": "ure}[!htbp] \\centering \\begin{tikzpicture}[   font=\\figfont, x=1cm, y=1cm,   every node/.append style={execute "
+   },
+   {
+    "number": "10000",
+    "context": "cm,   every node/.append style={execute at begin node={\\hyphenpenalty=10000\\exhyphenpenalty=10000}},   bx/.style={d"
+   },
+   {
+    "number": "10000",
+    "context": "nd style={execute at begin node={\\hyphenpenalty=10000\\exhyphenpenalty=10000}},   bx/.style={draw=black!60, fill=gra"
+   },
+   {
+    "number": "60",
+    "context": "\\hyphenpenalty=10000\\exhyphenpenalty=10000}},   bx/.style={draw=black!60, fill=gray!7, rounded corners=2pt, alig"
+   },
+   {
+    "number": "7",
+    "context": "=10000\\exhyphenpenalty=10000}},   bx/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, tex"
+   },
+   {
+    "number": "2",
+    "context": "lty=10000}},   bx/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=1.24cm, min"
+   },
+   {
+    "number": "1.24",
+    "context": "=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=1.24cm, minimum height=1.05cm, inner sep=1.5"
+   },
+   {
+    "number": "1.05",
+    "context": " rounded corners=2pt, align=center, text width=1.24cm, minimum height=1.05cm, inner sep=1.5pt},   bxa/.style={bx, "
+   },
+   {
+    "number": "1.5",
+    "context": "pt, align=center, text width=1.24cm, minimum height=1.05cm, inner sep=1.5pt},   bxa/.style={bx, draw=blue!55!blac"
+   },
+   {
+    "number": "55",
+    "context": " minimum height=1.05cm, inner sep=1.5pt},   bxa/.style={bx, draw=blue!55!black, fill=blue!6},   bxb/.style={bx, "
+   },
+   {
+    "number": "6",
+    "context": "cm, inner sep=1.5pt},   bxa/.style={bx, draw=blue!55!black, fill=blue!6},   bxb/.style={bx, draw=orange!75!blac"
+   },
+   {
+    "number": "75",
+    "context": "={bx, draw=blue!55!black, fill=blue!6},   bxb/.style={bx, draw=orange!75!black, fill=orange!12},   ar/.style={-{"
+   },
+   {
+    "number": "12",
+    "context": "ck, fill=blue!6},   bxb/.style={bx, draw=orange!75!black, fill=orange!12},   ar/.style={-{Latex[length=1.6mm]}, "
+   },
+   {
+    "number": "1.6",
+    "context": "x, draw=orange!75!black, fill=orange!12},   ar/.style={-{Latex[length=1.6mm]}, semithick},   lane/.style={draw=bl"
+   },
+   {
+    "number": "45",
+    "context": ".style={-{Latex[length=1.6mm]}, semithick},   lane/.style={draw=black!45, dashed, line width=0.4pt},   ll/.style"
+   },
+   {
+    "number": "0.4",
+    "context": "1.6mm]}, semithick},   lane/.style={draw=black!45, dashed, line width=0.4pt},   ll/.style={font=\\figfont, anchor="
+   },
+   {
+    "number": "0",
+    "context": "op, the steps both share in the middle, Env B below \\foreach \\y in {1.0,-1.0}{\\draw[lane] (0,\\y) -- (12.95,\\y);"
+   },
+   {
+    "number": "1.0",
+    "context": " the steps both share in the middle, Env B below \\foreach \\y in {1.0,-1.0}{\\draw[lane] (0,\\y) -- (12.95,\\y);} % l"
+   },
+   {
+    "number": "0",
+    "context": "are in the middle, Env B below \\foreach \\y in {1.0,-1.0}{\\draw[lane] (0,\\y) -- (12.95,\\y);} % lane labels in th"
+   },
+   {
+    "number": "12.95",
+    "context": " middle, Env B below \\foreach \\y in {1.0,-1.0}{\\draw[lane] (0,\\y) -- (12.95,\\y);} % lane labels in the pre-audit en"
+   },
+   {
+    "number": "2026",
+    "context": "y);} % lane labels in the pre-audit environment-tag colours (restored 2026-11-09) \\definecolor{envAfc}{HTML}{E2E8F"
+   },
+   {
+    "number": "11",
+    "context": "% lane labels in the pre-audit environment-tag colours (restored 2026-11-09) \\definecolor{envAfc}{HTML}{E2E8F0}\\"
+   },
+   {
+    "number": "09",
+    "context": "ane labels in the pre-audit environment-tag colours (restored 2026-11-09) \\definecolor{envAfc}{HTML}{E2E8F0}\\def"
+   },
+   {
+    "number": "1.5",
+    "context": "A15} \\node[ll, draw=envAec, fill=envAfc, text=envAtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,2.0) {Env A};"
+   },
+   {
+    "number": "1.4",
+    "context": "aw=envAec, fill=envAfc, text=envAtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,2.0) {Env A}; \\node[ll] at (0,"
+   },
+   {
+    "number": "0,2.0",
+    "context": "fill=envAfc, text=envAtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,2.0) {Env A}; \\node[ll] at (0,0) {Both}; \\n"
+   },
+   {
+    "number": "0,0",
+    "context": "ded corners=1.5pt, inner sep=1.4pt] at (0,2.0) {Env A}; \\node[ll] at (0,0) {Both}; \\node[ll, draw=envBec, fill=en"
+   },
+   {
+    "number": "1.5",
+    "context": "th}; \\node[ll, draw=envBec, fill=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B}"
+   },
+   {
+    "number": "1.4",
+    "context": "aw=envBec, fill=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B}; \\def\\c#1{\\fpeva"
+   },
+   {
+    "number": "0",
+    "context": "fill=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B}; \\def\\c#1{\\fpeval{0.95+1."
+   },
+   {
+    "number": "2.0",
+    "context": "l=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B}; \\def\\c#1{\\fpeval{0.95+1.5*#1}"
+   },
+   {
+    "number": "1",
+    "context": ", rounded corners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B}; \\def\\c#1{\\fpeval{0.95+1.5*#1}} \\node[bxa] (sa) a"
+   },
+   {
+    "number": "95",
+    "context": "rners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B}; \\def\\c#1{\\fpeval{0.95+1.5*#1}} \\node[bxa] (sa) at (1.75,2.0) "
+   },
+   {
+    "number": "1.5",
+    "context": "rs=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B}; \\def\\c#1{\\fpeval{0.95+1.5*#1}} \\node[bxa] (sa) at (1.75,2.0) {Emp"
+   },
+   {
+    "number": "1",
+    "context": "5pt, inner sep=1.4pt] at (0,-2.0) {Env B}; \\def\\c#1{\\fpeval{0.95+1.5*#1}} \\node[bxa] (sa) at (1.75,2.0) {Empty "
+   },
+   {
+    "number": "1.75,2.0",
+    "context": " (0,-2.0) {Env B}; \\def\\c#1{\\fpeval{0.95+1.5*#1}} \\node[bxa] (sa) at (1.75,2.0) {Empty queues, reset ceilings}; \\node["
+   },
+   {
+    "number": "1.75",
+    "context": "sa) at (1.75,2.0) {Empty queues, reset ceilings}; \\node[bxb] (sb) at (1.75,-2.0) {Same, redraw load phase $\\psi_i$"
+   },
+   {
+    "number": "2.0",
+    "context": " (1.75,2.0) {Empty queues, reset ceilings}; \\node[bxb] (sb) at (1.75,-2.0) {Same, redraw load phase $\\psi_i$}; \\n"
+   },
+   {
+    "number": "3.25,0",
+    "context": "at (1.75,-2.0) {Same, redraw load phase $\\psi_i$}; \\node[bx] (ob) at (3.25,0) {Observe each gNB's feature row}; \\nod"
+   },
+   {
+    "number": "4.75,0",
+    "context": "ob) at (3.25,0) {Observe each gNB's feature row}; \\node[bx] (arv) at (4.75,0) {$N$ requests, at most $4N$ pending}; "
+   },
+   {
+    "number": "4",
+    "context": "B's feature row}; \\node[bx] (arv) at (4.75,0) {$N$ requests, at most $4N$ pending}; \\node[bx] (de) at (6.25,0) "
+   },
+   {
+    "number": "6.25,0",
+    "context": " at (4.75,0) {$N$ requests, at most $4N$ pending}; \\node[bx] (de) at (6.25,0) {Accept or reject, move ceilings}; \\no"
+   },
+   {
+    "number": "7.75,0",
+    "context": "de) at (6.25,0) {Accept or reject, move ceilings}; \\node[bx] (rw) at (7.75,0) {Reward $r_t$ of Eq.~\\eqref{eq:reward}"
+   },
+   {
+    "number": "9.25,2.0",
+    "context": "(7.75,0) {Reward $r_t$ of Eq.~\\eqref{eq:reward}}; \\node[bxa] (da) at (9.25,2.0) {Drift towards $1.05\\times$ share}; \\n"
+   },
+   {
+    "number": "1.05",
+    "context": "Eq.~\\eqref{eq:reward}}; \\node[bxa] (da) at (9.25,2.0) {Drift towards $1.05\\times$ share}; \\node[bxb] (db) at (9.25"
+   },
+   {
+    "number": "9.25",
+    "context": "at (9.25,2.0) {Drift towards $1.05\\times$ share}; \\node[bxb] (db) at (9.25,-2.0) {Load follows a 60-step sine}; \\n"
+   },
+   {
+    "number": "2.0",
+    "context": "25,2.0) {Drift towards $1.05\\times$ share}; \\node[bxb] (db) at (9.25,-2.0) {Load follows a 60-step sine}; \\node[b"
+   },
+   {
+    "number": "60",
+    "context": "s $1.05\\times$ share}; \\node[bxb] (db) at (9.25,-2.0) {Load follows a 60-step sine}; \\node[bxa] (va) at (10.75,2"
+   },
+   {
+    "number": "10.75,2.0",
+    "context": "db) at (9.25,-2.0) {Load follows a 60-step sine}; \\node[bxa] (va) at (10.75,2.0) {Scale slices to fit $B$}; \\node[bxb] "
+   },
+   {
+    "number": "10.75",
+    "context": "a] (va) at (10.75,2.0) {Scale slices to fit $B$}; \\node[bxb] (vb) at (10.75,-2.0) {Budget shrinks with neighbour lo"
+   },
+   {
+    "number": "2.0",
+    "context": " at (10.75,2.0) {Scale slices to fit $B$}; \\node[bxb] (vb) at (10.75,-2.0) {Budget shrinks with neighbour load}; "
+   },
+   {
+    "number": "12.25,0",
+    "context": "(10.75,-2.0) {Budget shrinks with neighbour load}; \\node[bx] (up) at (12.25,0) {Unserved demand becomes backlog}; \\dr"
+   },
+   {
+    "number": "2.5",
+    "context": "becomes backlog}; \\draw[ar] (sa) -| (ob); \\draw[ar] (sb) -| ([xshift=-2.5mm]ob.south); \\foreach \\i/\\j in {ob/arv,"
+   },
+   {
+    "number": "12.95,0",
+    "context": "raw[ar] (va) -| (up); \\draw[ar] (vb) -| (up); \\draw[ar] (up.east) -- (12.95,0) -- (12.95,-3.05) -- node[pos=0.5, belo"
+   },
+   {
+    "number": "12.95",
+    "context": "-| (up); \\draw[ar] (vb) -| (up); \\draw[ar] (up.east) -- (12.95,0) -- (12.95,-3.05) -- node[pos=0.5, below, font=\\fi"
+   },
+   {
+    "number": "3.05",
+    "context": "; \\draw[ar] (vb) -| (up); \\draw[ar] (up.east) -- (12.95,0) -- (12.95,-3.05) -- node[pos=0.5, below, font=\\figfont]"
+   },
+   {
+    "number": "0.5",
+    "context": "| (up); \\draw[ar] (up.east) -- (12.95,0) -- (12.95,-3.05) -- node[pos=0.5, below, font=\\figfont] {next step, $T{="
+   },
+   {
+    "number": "60",
+    "context": "(12.95,-3.05) -- node[pos=0.5, below, font=\\figfont] {next step, $T{=}60$ per episode} ([xshift=2.5mm]ob.south |"
+   },
+   {
+    "number": "2.5",
+    "context": "0.5, below, font=\\figfont] {next step, $T{=}60$ per episode} ([xshift=2.5mm]ob.south |- 0,-3.05) -- ([xshift=2.5m"
+   },
+   {
+    "number": "0",
+    "context": "figfont] {next step, $T{=}60$ per episode} ([xshift=2.5mm]ob.south |- 0,-3.05) -- ([xshift=2.5mm]ob.south); \\en"
+   },
+   {
+    "number": "3.05",
+    "context": "font] {next step, $T{=}60$ per episode} ([xshift=2.5mm]ob.south |- 0,-3.05) -- ([xshift=2.5mm]ob.south); \\end{tikz"
+   },
+   {
+    "number": "2.5",
+    "context": "$T{=}60$ per episode} ([xshift=2.5mm]ob.south |- 0,-3.05) -- ([xshift=2.5mm]ob.south); \\end{tikzpicture} \\caption"
+   },
+   {
+    "number": "60",
+    "context": "ture} \\caption{One control step of both simulators, repeated for $T{=}60$ steps per episode. The middle lane hol"
+   }
+  ]
+ },
+ "The AXIOM Architecture": {
+  "numbers": 12,
+  "uncovered": [
+   {
+    "number": "0.81",
+    "context": "red encoder.  \\begin{figure}[!htbp] \\centering \\includegraphics[scale=0.81]{figures/fig_architecture.pdf} \\caption"
+   },
+   {
+    "number": "1",
+    "context": "tralised execution of AXIOM} \\label{alg:gat-ctde} \\begin{algorithmic}[1] \\REQUIRE encoder $f_\\theta$, per-slice"
+   },
+   {
+    "number": "1",
+    "context": "nly}   \\ENDFOR   \\STATE step env, store $(\\mathbf{X}_t, \\mathbf{X}_{t+1}, \\{(i,k,a)\\}, r_t, \\eta_t)$ in $\\mathc"
+   },
+   {
+    "number": "1",
+    "context": "\\mathcal{M}},\\mathbf{A})$     \\STATE per request, $y \\gets r + \\gamma(1{-}\\eta)\\max_{a'} Q_{\\phi_k^-}([\\mathbf{"
+   },
+   {
+    "number": "1.0",
+    "context": "r step, then update $\\theta,\\{\\phi_k\\}$ with gradient norm clipped at 1.0   \\ENDIF   \\STATE every $T_{\\mathrm{s}}"
+   },
+   {
+    "number": "1",
+    "context": "d embedding $\\mathbf{z}_i$ per gNB, and Section S4 of Online Resource 1 gives its attention equations. Every ag"
+   },
+   {
+    "number": "10",
+    "context": "ated input to the heads. This skip connection and a learning rate of $10^{-3}$, both chosen on Env B pilot seeds"
+   },
+   {
+    "number": "3",
+    "context": "input to the heads. This skip connection and a learning rate of $10^{-3}$, both chosen on Env B pilot seeds bef"
+   },
+   {
+    "number": "1",
+    "context": "$\\gamma$ and the minibatch loss are \\begin{equation} y = r + \\gamma\\,(1-\\eta)\\max_{a'} Q_{\\phi_k^-}\\!\\big(\\math"
+   },
+   {
+    "number": "1",
+    "context": "ation} where $Q_{\\phi_k^-}$ is slice $k$'s target Q-head, $\\eta\\in\\{0,1\\}$ the flag that marks an episode's las"
+   },
+   {
+    "number": "1",
+    "context": "ted Training with Differential Privacy} Section S5 of Online Resource 1 shows the federated variant, in which e"
+   },
+   {
+    "number": "1",
+    "context": "rated differential privacy~\\cite{zcdp}. Section S4 of Online Resource 1 gives the clipping, the privacy account"
+   }
+  ]
+ },
+ "Experimental Setup": {
+  "numbers": 134,
+  "uncovered": [
+   {
+    "number": "300",
+    "context": "shared actor and a centralised critic, trained on-policy for the same 300 episodes on the same reward. Its learni"
+   },
+   {
+    "number": "1",
+    "context": "gin{figure}[!htbp] \\centering \\begin{tikzpicture}[   font=\\figfont, x=1cm, y=1cm,   every node/.append style={e"
+   },
+   {
+    "number": "1",
+    "context": "ure}[!htbp] \\centering \\begin{tikzpicture}[   font=\\figfont, x=1cm, y=1cm,   every node/.append style={execute "
+   },
+   {
+    "number": "10000",
+    "context": "cm,   every node/.append style={execute at begin node={\\hyphenpenalty=10000\\exhyphenpenalty=10000}},   st/.style={d"
+   },
+   {
+    "number": "10000",
+    "context": "nd style={execute at begin node={\\hyphenpenalty=10000\\exhyphenpenalty=10000}},   st/.style={draw=black!60, fill=gra"
+   },
+   {
+    "number": "60",
+    "context": "\\hyphenpenalty=10000\\exhyphenpenalty=10000}},   st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, alig"
+   },
+   {
+    "number": "7",
+    "context": "=10000\\exhyphenpenalty=10000}},   st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, tex"
+   },
+   {
+    "number": "2",
+    "context": "lty=10000}},   st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=2.0cm, mini"
+   },
+   {
+    "number": "2.0",
+    "context": "=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt"
+   },
+   {
+    "number": "0.78",
+    "context": ", rounded corners=2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt},   gate/.style={draw="
+   },
+   {
+    "number": "2",
+    "context": "2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt},   gate/.style={draw=blue!55!black, "
+   },
+   {
+    "number": "55",
+    "context": ".0cm, minimum height=0.78cm, inner sep=2pt},   gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, d"
+   },
+   {
+    "number": "6",
+    "context": "=0.78cm, inner sep=2pt},   gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=2.7,"
+   },
+   {
+    "number": "0.7",
+    "context": " sep=2pt},   gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=2.7, align=center, t"
+   },
+   {
+    "number": "2.7",
+    "context": "e={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner"
+   },
+   {
+    "number": "1.55",
+    "context": "ue!6, line width=0.7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner sep=0pt},   num/.style={circle"
+   },
+   {
+    "number": "0",
+    "context": ".7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner sep=0pt},   num/.style={circle, draw=black!75"
+   },
+   {
+    "number": "75",
+    "context": ", text width=1.55cm, inner sep=0pt},   num/.style={circle, draw=black!75, fill=white, inner sep=0.4pt, minimum s"
+   },
+   {
+    "number": "0.4",
+    "context": " sep=0pt},   num/.style={circle, draw=black!75, fill=white, inner sep=0.4pt, minimum size=0.36cm, font=\\figfont},"
+   },
+   {
+    "number": "0.36",
+    "context": "yle={circle, draw=black!75, fill=white, inner sep=0.4pt, minimum size=0.36cm, font=\\figfont},   fail/.style={draw="
+   },
+   {
+    "number": "60",
+    "context": "p=0.4pt, minimum size=0.36cm, font=\\figfont},   fail/.style={draw=red!60!black, fill=red!5, text=red!40!black, d"
+   },
+   {
+    "number": "5",
+    "context": "ze=0.36cm, font=\\figfont},   fail/.style={draw=red!60!black, fill=red!5, text=red!40!black, dashed, rounded cor"
+   },
+   {
+    "number": "40",
+    "context": "ont=\\figfont},   fail/.style={draw=red!60!black, fill=red!5, text=red!40!black, dashed, rounded corners=1pt, ali"
+   },
+   {
+    "number": "1",
+    "context": "=red!60!black, fill=red!5, text=red!40!black, dashed, rounded corners=1pt, align=left, inner sep=2pt},   ar/.st"
+   },
+   {
+    "number": "2",
+    "context": "text=red!40!black, dashed, rounded corners=1pt, align=left, inner sep=2pt},   ar/.style={-{Latex[length=1.7mm]}"
+   },
+   {
+    "number": "1.7",
+    "context": " corners=1pt, align=left, inner sep=2pt},   ar/.style={-{Latex[length=1.7mm]}, semithick},   ct/.style={-{Latex[l"
+   },
+   {
+    "number": "1.4",
+    "context": "tyle={-{Latex[length=1.7mm]}, semithick},   ct/.style={-{Latex[length=1.4mm]}, densely dotted, red!60!black} ] % "
+   },
+   {
+    "number": "60",
+    "context": " semithick},   ct/.style={-{Latex[length=1.4mm]}, densely dotted, red!60!black} ] % the protocol as a serpentine"
+   },
+   {
+    "number": "1",
+    "context": "densely dotted, red!60!black} ] % the protocol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to lef"
+   },
+   {
+    "number": "4",
+    "context": "ly dotted, red!60!black} ] % the protocol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 "
+   },
+   {
+    "number": "5",
+    "context": "!black} ] % the protocol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to ri"
+   },
+   {
+    "number": "8",
+    "context": "k} ] % the protocol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to right; "
+   },
+   {
+    "number": "9",
+    "context": "ol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to right; gates are diamond"
+   },
+   {
+    "number": "10",
+    "context": "a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to right; gates are diamonds \\fore"
+   },
+   {
+    "number": "1.1",
+    "context": "nd 10 left to right; gates are diamonds \\foreach \\i/\\x/\\y/\\s/\\t in {1/1.1/0/st/{Pre-registered plan},            "
+   },
+   {
+    "number": "0",
+    "context": "0 left to right; gates are diamonds \\foreach \\i/\\x/\\y/\\s/\\t in {1/1.1/0/st/{Pre-registered plan},              "
+   },
+   {
+    "number": "2",
+    "context": "/\\t in {1/1.1/0/st/{Pre-registered plan},                             2/4.2/0/st/{Pilot seeds, tuning only},   "
+   },
+   {
+    "number": "4.2",
+    "context": "t in {1/1.1/0/st/{Pre-registered plan},                             2/4.2/0/st/{Pilot seeds, tuning only},       "
+   },
+   {
+    "number": "0",
+    "context": " {1/1.1/0/st/{Pre-registered plan},                             2/4.2/0/st/{Pilot seeds, tuning only},         "
+   },
+   {
+    "number": "3",
+    "context": "   2/4.2/0/st/{Pilot seeds, tuning only},                             3/7.3/0/st/{Train and evaluate all polici"
+   },
+   {
+    "number": "7.3",
+    "context": " 2/4.2/0/st/{Pilot seeds, tuning only},                             3/7.3/0/st/{Train and evaluate all policies},"
+   },
+   {
+    "number": "0",
+    "context": ".2/0/st/{Pilot seeds, tuning only},                             3/7.3/0/st/{Train and evaluate all policies},  "
+   },
+   {
+    "number": "4",
+    "context": "3/0/st/{Train and evaluate all policies},                             4/10.75/0/gate/{Gate 1, trivial policies}"
+   },
+   {
+    "number": "10.75",
+    "context": "0/st/{Train and evaluate all policies},                             4/10.75/0/gate/{Gate 1, trivial policies},     "
+   },
+   {
+    "number": "0",
+    "context": "Train and evaluate all policies},                             4/10.75/0/gate/{Gate 1, trivial policies},       "
+   },
+   {
+    "number": "1",
+    "context": "luate all policies},                             4/10.75/0/gate/{Gate 1, trivial policies},                    "
+   },
+   {
+    "number": "5",
+    "context": "/10.75/0/gate/{Gate 1, trivial policies},                             5/10.75/-2.5/gate/{Gate 2, correctness me"
+   },
+   {
+    "number": "10.75",
+    "context": "0.75/0/gate/{Gate 1, trivial policies},                             5/10.75/-2.5/gate/{Gate 2, correctness metrics}"
+   },
+   {
+    "number": "2.5",
+    "context": "gate/{Gate 1, trivial policies},                             5/10.75/-2.5/gate/{Gate 2, correctness metrics},    "
+   },
+   {
+    "number": "2",
+    "context": "rivial policies},                             5/10.75/-2.5/gate/{Gate 2, correctness metrics},                 "
+   },
+   {
+    "number": "6",
+    "context": "/-2.5/gate/{Gate 2, correctness metrics},                             6/7.3/-2.5/st/{Paired tests, Holm correct"
+   },
+   {
+    "number": "7.3",
+    "context": "2.5/gate/{Gate 2, correctness metrics},                             6/7.3/-2.5/st/{Paired tests, Holm correction}"
+   },
+   {
+    "number": "2.5",
+    "context": "ate/{Gate 2, correctness metrics},                             6/7.3/-2.5/st/{Paired tests, Holm correction},    "
+   },
+   {
+    "number": "7",
+    "context": "/-2.5/st/{Paired tests, Holm correction},                             7/4.2/-2.5/gate/{Gate 3, disjoint replica"
+   },
+   {
+    "number": "4.2",
+    "context": "2.5/st/{Paired tests, Holm correction},                             7/4.2/-2.5/gate/{Gate 3, disjoint replication"
+   },
+   {
+    "number": "2.5",
+    "context": "t/{Paired tests, Holm correction},                             7/4.2/-2.5/gate/{Gate 3, disjoint replication},   "
+   },
+   {
+    "number": "3",
+    "context": ", Holm correction},                             7/4.2/-2.5/gate/{Gate 3, disjoint replication},                "
+   },
+   {
+    "number": "8",
+    "context": "-2.5/gate/{Gate 3, disjoint replication},                             8/1.1/-2.5/st/{Fresh seeds},             "
+   },
+   {
+    "number": "1.1",
+    "context": ".5/gate/{Gate 3, disjoint replication},                             8/1.1/-2.5/st/{Fresh seeds},                 "
+   },
+   {
+    "number": "2.5",
+    "context": "te/{Gate 3, disjoint replication},                             8/1.1/-2.5/st/{Fresh seeds},                      "
+   },
+   {
+    "number": "9",
+    "context": "             8/1.1/-2.5/st/{Fresh seeds},                             9/1.1/-5.0/st/{Independent verifier},    "
+   },
+   {
+    "number": "1.1",
+    "context": "           8/1.1/-2.5/st/{Fresh seeds},                             9/1.1/-5.0/st/{Independent verifier},        "
+   },
+   {
+    "number": "5.0",
+    "context": "      8/1.1/-2.5/st/{Fresh seeds},                             9/1.1/-5.0/st/{Independent verifier},             "
+   },
+   {
+    "number": "10",
+    "context": "    9/1.1/-5.0/st/{Independent verifier},                             10/4.2/-5.0/st/{Reported result}}{   \\node"
+   },
+   {
+    "number": "4.2",
+    "context": " 9/1.1/-5.0/st/{Independent verifier},                             10/4.2/-5.0/st/{Reported result}}{   \\node[\\s]"
+   },
+   {
+    "number": "5.0",
+    "context": "1/-5.0/st/{Independent verifier},                             10/4.2/-5.0/st/{Reported result}}{   \\node[\\s] (p\\i"
+   },
+   {
+    "number": "2,3,6,8,9,10",
+    "context": "rted result}}{   \\node[\\s] (p\\i) at (\\x,\\y) {\\t}; } \\foreach \\i in {1,2,3,6,8,9,10}{\\node[num] at (p\\i.north west) {\\i};} "
+   },
+   {
+    "number": "5,7",
+    "context": "2,3,6,8,9,10}{\\node[num] at (p\\i.north west) {\\i};} \\foreach \\i in {4,5,7}{\\node[num] at ($(p\\i.north)!0.5!(p\\i.w"
+   },
+   {
+    "number": "0.5",
+    "context": "north west) {\\i};} \\foreach \\i in {4,5,7}{\\node[num] at ($(p\\i.north)!0.5!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {"
+   },
+   {
+    "number": "2,2",
+    "context": "de[num] at ($(p\\i.north)!0.5!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[a"
+   },
+   {
+    "number": "3,3",
+    "context": "um] at ($(p\\i.north)!0.5!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[ar] ("
+   },
+   {
+    "number": "4,4",
+    "context": "at ($(p\\i.north)!0.5!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[ar] (p\\a)"
+   },
+   {
+    "number": "5,5",
+    "context": "$(p\\i.north)!0.5!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[ar] (p\\a) -- "
+   },
+   {
+    "number": "6,6",
+    "context": "i.north)!0.5!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[ar] (p\\a) -- (p\\b"
+   },
+   {
+    "number": "7,7",
+    "context": "rth)!0.5!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[ar] (p\\a) -- (p\\b);} "
+   },
+   {
+    "number": "8,8",
+    "context": "!0.5!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[ar] (p\\a) -- (p\\b);} % fa"
+   },
+   {
+    "number": "9,9",
+    "context": "!(p\\i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[ar] (p\\a) -- (p\\b);} % failur"
+   },
+   {
+    "number": "10",
+    "context": "i.west)$) {\\i};} \\foreach \\a/\\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\\draw[ar] (p\\a) -- (p\\b);} % failures "
+   },
+   {
+    "number": "2026",
+    "context": "ion, at most four words each; callouts kept clear of the % flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further "
+   },
+   {
+    "number": "11",
+    "context": "at most four words each; callouts kept clear of the % flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apa"
+   },
+   {
+    "number": "10",
+    "context": "most four words each; callouts kept clear of the % flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apart,"
+   },
+   {
+    "number": "0.35",
+    "context": " words each; callouts kept clear of the % flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apart, every call"
+   },
+   {
+    "number": "0.8",
+    "context": " callouts kept clear of the % flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apart, every callout at leas"
+   },
+   {
+    "number": "0.25",
+    "context": "-11-10: rows 0.35 cm and 0.8 cm further apart, every callout at least 0.25 cm from a node) \\node[fail, anchor=sout"
+   },
+   {
+    "number": "0.05,1.1",
+    "context": "at least 0.25 cm from a node) \\node[fail, anchor=south west] (f1) at (0.05,1.1) {a\\enspace\\gno\\enspace Screen miscalib"
+   },
+   {
+    "number": "3.75,1.1",
+    "context": "nspace Screen miscalibrated}; \\node[fail, anchor=south west] (f2) at (3.75,1.1) {b\\enspace\\gno\\enspace Static AXIOM, E"
+   },
+   {
+    "number": "12.6,1.1",
+    "context": "enspace Static AXIOM, Env B}; \\node[fail, anchor=south east] (f3) at (12.6,1.1) {c\\enspace\\gno\\enspace Inert simulator"
+   },
+   {
+    "number": "9.4",
+    "context": "space\\gno\\enspace Inert simulator}; \\node[fail, anchor=east] (f4) at (9.4,-1.25) {d\\enspace\\gno\\enspace Never-blo"
+   },
+   {
+    "number": "1.25",
+    "context": "\\gno\\enspace Inert simulator}; \\node[fail, anchor=east] (f4) at (9.4,-1.25) {d\\enspace\\gno\\enspace Never-blocking "
+   },
+   {
+    "number": "2.35",
+    "context": "space Never-blocking policy}; \\node[fail, anchor=north west] (f5) at (2.35,-3.6) {e\\enspace\\gno\\enspace Backlog ca"
+   },
+   {
+    "number": "3.6",
+    "context": "Never-blocking policy}; \\node[fail, anchor=north west] (f5) at (2.35,-3.6) {e\\enspace\\gno\\enspace Backlog carry-o"
+   },
+   {
+    "number": "6.05",
+    "context": "\\enspace Backlog carry-over}; \\node[fail, anchor=north west] (f6) at (6.05,-3.6) {f\\enspace\\gno\\enspace Reproducti"
+   },
+   {
+    "number": "3.6",
+    "context": "ce Backlog carry-over}; \\node[fail, anchor=north west] (f6) at (6.05,-3.6) {f\\enspace\\gno\\enspace Reproduction ga"
+   },
+   {
+    "number": "3",
+    "context": "5,-3.6) {f\\enspace\\gno\\enspace Reproduction gap}; \\draw[ct] ([xshift=-3mm]p2.north) -- ([xshift=-3mm]f1.south e"
+   },
+   {
+    "number": "3",
+    "context": "ace Reproduction gap}; \\draw[ct] ([xshift=-3mm]p2.north) -- ([xshift=-3mm]f1.south east); \\draw[ct] ([xshift=4m"
+   },
+   {
+    "number": "4",
+    "context": "ft=-3mm]p2.north) -- ([xshift=-3mm]f1.south east); \\draw[ct] ([xshift=4mm]p2.north) -- ([xshift=4mm]p2.north |-"
+   },
+   {
+    "number": "4",
+    "context": "ift=-3mm]f1.south east); \\draw[ct] ([xshift=4mm]p2.north) -- ([xshift=4mm]p2.north |- f2.south); \\draw[ct] (p4."
+   },
+   {
+    "number": "7.3",
+    "context": "estbed check, outside the offline pipeline \\node[st, dashed] (lv) at (7.3,-5.0) {Live testbed, direct instrumenta"
+   },
+   {
+    "number": "5.0",
+    "context": "d check, outside the offline pipeline \\node[st, dashed] (lv) at (7.3,-5.0) {Live testbed, direct instrumentation}"
+   },
+   {
+    "number": "8.8",
+    "context": "e testbed, direct instrumentation}; \\node[fail, anchor=west] (f7) at (8.8,-5.0) {g\\enspace\\gyes\\enspace Scheduler"
+   },
+   {
+    "number": "5.0",
+    "context": "tbed, direct instrumentation}; \\node[fail, anchor=west] (f7) at (8.8,-5.0) {g\\enspace\\gyes\\enspace Scheduler floo"
+   },
+   {
+    "number": "1",
+    "context": " miscalibrated validation screen led to an amended plan, back to step 1. b, AXIOM stayed static in Env B, which"
+   },
+   {
+    "number": "3",
+    "context": "OM stayed static in Env B, which led to faster learning, back to step 3. c, An inert simulator led to the share"
+   },
+   {
+    "number": "3",
+    "context": "3. c, An inert simulator led to the shared-budget rerun, back to step 3. d, A never-blocking policy is counted "
+   },
+   {
+    "number": "3",
+    "context": "ied across episodes led to an episode reset and a rerun, back to step 3. f, A reproduction gap led to a retract"
+   },
+   {
+    "number": "100{,}000",
+    "context": "d claim. g, The live testbed found no scheduler floor, over more than 100{,}000 readings} \\label{fig:protocol} \\end{fig"
+   },
+   {
+    "number": "10",
+    "context": "ght. Two further runs repeat the DQN baselines at a learning rate of $10^{-4}$.  All learned policies share $\\ga"
+   },
+   {
+    "number": "4",
+    "context": "Two further runs repeat the DQN baselines at a learning rate of $10^{-4}$.  All learned policies share $\\gamma="
+   },
+   {
+    "number": "0.95",
+    "context": " at a learning rate of $10^{-4}$.  All learned policies share $\\gamma=0.95$, the training budget, and the explorat"
+   },
+   {
+    "number": "1",
+    "context": "schedule of Table~\\ref{tab:params}, and Section S4 of Online Resource 1 gives the design of the sensitivity stu"
+   },
+   {
+    "number": "1",
+    "context": "nd before any of its results were read. Section S4 of Online Resource 1 lists the reused results. H1 is that AX"
+   },
+   {
+    "number": "1",
+    "context": " reported whether or not it passes, and Section S4 of Online Resource 1 gives the screen's criteria.  \\label{se"
+   }
+  ]
+ },
+ "Results": {
+  "numbers": 600,
+  "uncovered": [
+   {
+    "number": "95\\%",
+    "context": "ther learner. AXIOM earns 1.110 more reward per step than DQN-I, with 95\\% CI [0.60, 1.65]. It earns 2.685 more th"
+   },
+   {
+    "number": "95\\%",
+    "context": "QN-I, with 95\\% CI [0.60, 1.65]. It earns 2.685 more than MAPPO, with 95\\% CI [2.01, 3.35], and both margins hold "
+   },
+   {
+    "number": "0002",
+    "context": " 95\\% CI [2.01, 3.35], and both margins hold at Holm-adjusted $p\\leq0.0002$. Its margin over DQN-SA, 0.311 with 95"
+   },
+   {
+    "number": "1000",
+    "context": "ection on thirty seeds, at $p=0.066$. A disjoint replication on seeds 1000 to 1009 and the pooled 40 seeds favour "
+   },
+   {
+    "number": "1009",
+    "context": "n thirty seeds, at $p=0.066$. A disjoint replication on seeds 1000 to 1009 and the pooled 40 seeds favour AXIOM mo"
+   },
+   {
+    "number": "40",
+    "context": "p=0.066$. A disjoint replication on seeds 1000 to 1009 and the pooled 40 seeds favour AXIOM more strongly, as Se"
+   },
+   {
+    "number": "1",
+    "context": "40 seeds favour AXIOM more strongly, as Section S5 of Online Resource 1 reports, but fresh seeds in Section~\\re"
+   },
+   {
+    "number": "30",
+    "context": "e lead over DQN-SA.  \\begin{table}[!htbp] \\caption{Env A, three gNBs, 30 seeds per policy, 95\\% bootstrap CIs. R"
+   },
+   {
+    "number": "95\\%",
+    "context": "\\begin{table}[!htbp] \\caption{Env A, three gNBs, 30 seeds per policy, 95\\% bootstrap CIs. Rules above the line, le"
+   },
+   {
+    "number": "8",
+    "context": "el{tab:m2-results} \\centering \\footnotesize {\\setlength{\\tabcolsep}{1.8pt} \\begin{tabular}{@{}lS[table-format=2"
+   },
+   {
+    "number": "2.3",
+    "context": "ize {\\setlength{\\tabcolsep}{1.8pt} \\begin{tabular}{@{}lS[table-format=2.3]cS[table-format=3.1]cS[table-format=1.3"
+   },
+   {
+    "number": "3.1",
+    "context": "colsep}{1.8pt} \\begin{tabular}{@{}lS[table-format=2.3]cS[table-format=3.1]cS[table-format=1.3]cS[table-format=3.1"
+   },
+   {
+    "number": "1.3",
+    "context": "n{tabular}{@{}lS[table-format=2.3]cS[table-format=3.1]cS[table-format=1.3]cS[table-format=3.1]S[table-format=3.1]"
+   },
+   {
+    "number": "3.1",
+    "context": "le-format=2.3]cS[table-format=3.1]cS[table-format=1.3]cS[table-format=3.1]S[table-format=3.1]S[table-format=2.1]@"
+   },
+   {
+    "number": "3.1",
+    "context": "ble-format=3.1]cS[table-format=1.3]cS[table-format=3.1]S[table-format=3.1]S[table-format=2.1]@{}} \\toprule & & & "
+   },
+   {
+    "number": "2.1",
+    "context": "able-format=1.3]cS[table-format=3.1]S[table-format=3.1]S[table-format=2.1]@{}} \\toprule & & & & & & & \\multicolum"
+   },
+   {
+    "number": "10",
+    "context": "e & & & & & & & \\multicolumn{3}{c}{Compliance (\\%)} \\\\ \\cmidrule(l){8-10} Policy & {\\begin{tabular}[b]{@{}c@{}}R"
+   },
+   {
+    "number": "95\\%",
+    "context": "Policy & {\\begin{tabular}[b]{@{}c@{}}Reward\\\\per step\\end{tabular}} & 95\\% CI & {\\begin{tabular}[b]{@{}c@{}}Of sta"
+   },
+   {
+    "number": "18",
+    "context": " gaps on reward and on priority-slice compliance, Holm-correcting the 18 comparisons at each size. Fig.~\\ref{fig"
+   },
+   {
+    "number": "1",
+    "context": "gy} traces the result across sizes, and Section S6 of Online Resource 1 gives the per-slice detail.  \\begin{fig"
+   },
+   {
+    "number": "37",
+    "context": "ts pooled, with the layout-independent baselines run once per seed at 37 gNBs. a, Priority-slice compliance, one"
+   },
+   {
+    "number": "95\\%",
+    "context": "NBs. a, Priority-slice compliance, one dot per run, with the mean and 95\\% CI. b, Share of trained policies that c"
+   },
+   {
+    "number": "95\\%",
+    "context": "all, with Wilson 95\\% intervals. c, Reward per gNB per step, mean and 95\\% CI. Dotted lines join each policy's mea"
+   },
+   {
+    "number": "30",
+    "context": "ap.pdf} \\caption{Decision map of the 37-gNB hex cluster in Env A over 30 seeds. Each hexagon is a gNB at its tru"
+   },
+   {
+    "number": "5",
+    "context": "lines. Its URLLC delay, the mean backlog over the mean served PRBs in 5 s control periods, is 0.08 with a 95th "
+   },
+   {
+    "number": "1",
+    "context": "1 with 95th percentiles of 5.2 to 16.9. Section S8 of Online Resource 1 gives throughput and delay in every set"
+   },
+   {
+    "number": "1",
+    "context": "rails it by 13.6 points at nineteen, as Section S6 of Online Resource 1 reports.  Fig.~\\ref{fig:gnb-map} shows "
+   },
+   {
+    "number": "30",
+    "context": "the slice's floor and cap, averaged over every evaluation step of all 30 seeds. AXIOM keeps the URLLC and eMBB g"
+   },
+   {
+    "number": "15",
+    "context": "held-out stream, and Table~\\ref{tab:transfer} gives the result on the 15 seven-gNB seeds. In Env A on the hex la"
+   },
+   {
+    "number": "15",
+    "context": "on the rest.  \\begin{table}[!htbp] \\caption{Zero-shot transfer on the 15 seven-gNB seeds, priority-slice complia"
+   },
+   {
+    "number": "95\\%",
+    "context": "ot transfer on the 15 seven-gNB seeds, priority-slice compliance with 95\\% CIs. Policies from 7 were trained at se"
+   },
+   {
+    "number": "7",
+    "context": "ven-gNB seeds, priority-slice compliance with 95\\% CIs. Policies from 7 were trained at seven gNBs and run unch"
+   },
+   {
+    "number": "2",
+    "context": "abel{tab:transfer} \\centering \\footnotesize {\\setlength{\\tabcolsep}{2.2pt} \\begin{tabular}{@{}lS[table-format=2"
+   },
+   {
+    "number": "2.2",
+    "context": "ize {\\setlength{\\tabcolsep}{2.2pt} \\begin{tabular}{@{}lS[table-format=2.2]cS[table-format=2.2]cS[table-format=2.1"
+   },
+   {
+    "number": "2.2",
+    "context": "colsep}{2.2pt} \\begin{tabular}{@{}lS[table-format=2.2]cS[table-format=2.2]cS[table-format=2.1]cS[table-format=2.2"
+   },
+   {
+    "number": "2.1",
+    "context": "n{tabular}{@{}lS[table-format=2.2]cS[table-format=2.2]cS[table-format=2.1]cS[table-format=2.2]S[table-format=2.1]"
+   },
+   {
+    "number": "2.2",
+    "context": "le-format=2.2]cS[table-format=2.2]cS[table-format=2.1]cS[table-format=2.2]S[table-format=2.1]@{}} \\toprule & \\mul"
+   },
+   {
+    "number": "2.1",
+    "context": "ble-format=2.2]cS[table-format=2.1]cS[table-format=2.2]S[table-format=2.1]@{}} \\toprule & \\multicolumn{6}{c}{Prio"
+   },
+   {
+    "number": "7",
+    "context": " compliance (\\%)} & \\multicolumn{2}{c}{Rules (\\%)} \\\\ \\cmidrule(lr){2-7}\\cmidrule(l){8-9} & \\multicolumn{2}{c}{"
+   },
+   {
+    "number": "9",
+    "context": " & \\multicolumn{2}{c}{Rules (\\%)} \\\\ \\cmidrule(lr){2-7}\\cmidrule(l){8-9} & \\multicolumn{2}{c}{AXIOM from 7} & \\"
+   },
+   {
+    "number": "3",
+    "context": "IOM at $N$} & \\multicolumn{2}{c}{MAPPO from 7} & & \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7} En"
+   },
+   {
+    "number": "5",
+    "context": "ticolumn{2}{c}{MAPPO from 7} & & \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7} Env, layout, $N$ & {"
+   },
+   {
+    "number": "7",
+    "context": "PO from 7} & & \\\\ \\cmidrule(lr){2-3}\\cmidrule(lr){4-5}\\cmidrule(lr){6-7} Env, layout, $N$ & {Mean} & 95\\% CI & "
+   },
+   {
+    "number": "1",
+    "context": "XIOM's behaviour comes from, as Sections S5 and S7 of Online Resource 1 detail. First, the per-slice Q-heads ma"
+   },
+   {
+    "number": "30",
+    "context": "XIOM at $p<0.0001$.  \\begin{table}[!htbp] \\caption{Env B, three gNBs, 30 seeds per policy, 95\\% bootstrap CIs. R"
+   },
+   {
+    "number": "95\\%",
+    "context": "\\begin{table}[!htbp] \\caption{Env B, three gNBs, 30 seeds per policy, 95\\% bootstrap CIs. Rules above the line, le"
+   },
+   {
+    "number": "0",
+    "context": "} \\label{tab:envb} \\centering \\footnotesize {\\setlength{\\tabcolsep}{2.0pt} \\begin{tabular}{@{}>{\\raggedright\\ar"
+   },
+   {
+    "number": "5",
+    "context": "abcolsep}{2.0pt} \\begin{tabular}{@{}>{\\raggedright\\arraybackslash}p{3.5cm}S[table-format=1.3]cS[table-format=3."
+   },
+   {
+    "number": "1.3",
+    "context": "egin{tabular}{@{}>{\\raggedright\\arraybackslash}p{3.5cm}S[table-format=1.3]cS[table-format=3.1]ccS[table-format=2."
+   },
+   {
+    "number": "3.1",
+    "context": "raggedright\\arraybackslash}p{3.5cm}S[table-format=1.3]cS[table-format=3.1]ccS[table-format=2.1]S[table-format=2.1"
+   },
+   {
+    "number": "2.1",
+    "context": "slash}p{3.5cm}S[table-format=1.3]cS[table-format=3.1]ccS[table-format=2.1]S[table-format=2.1]S[table-format=2.1]@"
+   },
+   {
+    "number": "2.1",
+    "context": "le-format=1.3]cS[table-format=3.1]ccS[table-format=2.1]S[table-format=2.1]S[table-format=2.1]@{}} \\toprule & & & "
+   },
+   {
+    "number": "2.1",
+    "context": "ble-format=3.1]ccS[table-format=2.1]S[table-format=2.1]S[table-format=2.1]@{}} \\toprule & & & & \\multicolumn{2}{c"
+   },
+   {
+    "number": "6",
+    "context": "/L ($n=30$)} & \\multicolumn{3}{c}{Compliance (\\%)} \\\\ \\cmidrule(lr){5-6}\\cmidrule(l){7-9} Policy & {\\begin{tabu"
+   },
+   {
+    "number": "9",
+    "context": "ulticolumn{3}{c}{Compliance (\\%)} \\\\ \\cmidrule(lr){5-6}\\cmidrule(l){7-9} Policy & {\\begin{tabular}[b]{@{}c@{}}R"
+   },
+   {
+    "number": "95\\%",
+    "context": "Policy & {\\begin{tabular}[b]{@{}c@{}}Reward\\\\per step\\end{tabular}} & 95\\% CI & {\\begin{tabular}[b]{@{}c@{}}Of tun"
+   },
+   {
+    "number": "30",
+    "context": "figures/fig11_envB.pdf} \\caption{Env B reward per step at three gNBs, 30 seeds, with per-seed points behind the "
+   },
+   {
+    "number": "95\\%",
+    "context": "tep at three gNBs, 30 seeds, with per-seed points behind the mean and 95\\% CI. Learned policies are filled markers"
+   },
+   {
+    "number": "300",
+    "context": "than DQN-SA, at Holm-adjusted $p=0.011$. This gap mainly reflects the 300-episode budget, within which 28 of AXIO"
+   },
+   {
+    "number": "1",
+    "context": "he static policy after 900 episodes, as Section S7 of Online Resource 1 reports.  At nineteen gNBs, where clust"
+   },
+   {
+    "number": "15",
+    "context": "slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d"
+   },
+   {
+    "number": "1",
+    "context": "up to 115\\% load and beats it at 120\\%. Section S7 of Online Resource 1 adds uneven per-gNB load and a per-gNB "
+   },
+   {
+    "number": "3",
+    "context": "each load.  \\begin{table}[!b] \\caption{Design and model complexity at 3, 7, 19, and 37 gNBs. Parameters used at"
+   },
+   {
+    "number": "7",
+    "context": "h load.  \\begin{table}[!b] \\caption{Design and model complexity at 3, 7, 19, and 37 gNBs. Parameters used at ex"
+   },
+   {
+    "number": "19",
+    "context": "oad.  \\begin{table}[!b] \\caption{Design and model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execut"
+   },
+   {
+    "number": "37",
+    "context": "egin{table}[!b] \\caption{Design and model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, gre"
+   },
+   {
+    "number": "3",
+    "context": " control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout fo"
+   },
+   {
+    "number": "19",
+    "context": "ntrol step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AX"
+   },
+   {
+    "number": "37",
+    "context": "ep on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM} \\la"
+   },
+   {
+    "number": "5",
+    "context": "ions on one central processing unit (CPU) thread stay well inside the 5 s control period of the live testbed. A"
+   },
+   {
+    "number": "24",
+    "context": "d per step than MAPPO at three gNBs and 36\\% more at nineteen gNBs. A 24-configuration tuning grid for MAPPO did"
+   },
+   {
+    "number": "1",
+    "context": " Env B at nineteen gNBs on 15 seeds, as Section S7 of Online Resource 1 reports. A final pre-registered run hel"
+   },
+   {
+    "number": "1",
+    "context": "rted in Section~\\ref{sec:results-envb}. Section S2 of Online Resource 1 compares each reported difference from "
+   },
+   {
+    "number": "1",
+    "context": "nt version, all 663 of its checks pass. Section S2 of Online Resource 1 adds interquartile means and probabilit"
+   },
+   {
+    "number": "1",
+    "context": "tact, with block precision at 0.98, and Section S5 of Online Resource 1 gives the protocol. A live single-gNB O"
+   },
+   {
+    "number": "1",
+    "context": "ever ran short of capacity, however, as Section S3 of Online Resource 1 reports.  "
+   }
+  ]
+ },
+ "Discussion and Limitations": {
+  "numbers": 22,
+  "uncovered": [
+   {
+    "number": "37",
+    "context": "fig_capability.pdf} \\caption{What each controller offers. a, Env A at 37 gNBs, with means, 95\\% bootstrap CIs, a"
+   },
+   {
+    "number": "95\\%",
+    "context": "caption{What each controller offers. a, Env A at 37 gNBs, with means, 95\\% bootstrap CIs, and single seeds as dots"
+   },
+   {
+    "number": "19",
+    "context": " not met. Reward gaps are per step against the tuned rule in Env B at 19 gNBs. Private training is measured for "
+   },
+   {
+    "number": "0.05",
+    "context": "r gNB against the tuned rule. Filled cells differ at Holm-adjusted $p<0.05$, hatched where the rule leads. The das"
+   },
+   {
+    "number": "1",
+    "context": "nged no reported result is disclosed in Section S4 of Online Resource 1.  "
+   }
+  ]
+ },
+ "Conclusion": {
+  "numbers": 20,
+  "uncovered": [
+   {
+    "number": "1",
+    "context": "ful.  \\backmatter  \\bmhead{Supplementary information} Online Resource 1 is a PDF that gives the full verificati"
+   },
+   {
+    "number": "1",
+    "context": "f the Ministry of Higher Education (MOHE), Malaysia, under grant FRGS/1/2024/ICT06/TAYLOR/02/1.  "
+   },
+   {
+    "number": "2024",
+    "context": "the Ministry of Higher Education (MOHE), Malaysia, under grant FRGS/1/2024/ICT06/TAYLOR/02/1.  "
+   },
+   {
+    "number": "02",
+    "context": "gher Education (MOHE), Malaysia, under grant FRGS/1/2024/ICT06/TAYLOR/02/1.  "
+   },
+   {
+    "number": "1",
+    "context": "r Education (MOHE), Malaysia, under grant FRGS/1/2024/ICT06/TAYLOR/02/1.  "
+   }
+  ]
+ },
+ "abstract": {
+  "numbers": 25,
+  "uncovered": [
+   {
+    "number": "5",
+    "context": "Fifth generation (5G) network slicing must admit heterogene"
+   },
+   {
+    "number": "37",
+    "context": "past them, AXIOM overtakes that rule by up to 8.7 reward per step. At 37 gNBs, AXIOM leads the best learned base"
+   },
+   {
+    "number": "5",
+    "context": " rule at 3 gNBs. AXIOM is therefore a viable alternative for scalable 5G slice admission."
+   }
+  ]
+ }
+}
