@@ -1,0 +1,6 @@
+{"note": "Four stored runs drawn with random.Random(20261110) from the M65 scaling and M73 37-gNB launch records, retrained from scratch in fresh processes with the launch environment (OMP/MKL/OPENBLAS threads 1, M63_BACKLOG_RESET=1, M64_AXIOM_V2=1), and compared with the stored evaluation logs.",
+ "runs": [
+  {"cell": "m73/A_n37_hex", "arm": "independent_dqn", "seed": 1001, "stored_reward": 154.732002, "rerun_reward": 154.732002, "blocks": [1949, 1949], "sla_equal": true, "identical": true},
+  {"cell": "m73/A_n37_hex", "arm": "single_agent_dqn", "seed": 923, "stored_reward": 157.042230, "rerun_reward": 157.042230, "blocks": [0, 0], "sla_equal": true, "identical": true, "remark": "a collapsed run that blocks nothing, so the network's initial weights may not matter here"},
+  {"cell": "m65_scaling/n7_hex", "arm": "axiom2", "seed": 902, "stored_reward": 31.314030, "rerun_reward": 31.314030, "blocks": [6358, 6358], "sla_equal": true, "identical": true},
+  {"cell": "m73/A_n37_hex", "arm": "mappo_tuned", "seed": 917, "stored_reward": 140.105608, "rerun_reward": 140.105608, "blocks": [22930, 22930], "sla_equal": true, "identical": true}]}
