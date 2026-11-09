@@ -354,15 +354,6 @@ Tuned local rule, carried over & 84.09 & 84.5\% & 55.7\% & 0 \\
 \end{tabular}
 \end{table}
 
-Fig.~\ref{fig:pergnb} maps the per-gNB compliance of the four learned policies at nineteen gNBs.
-
-\begin{figure}[!htbp]
-\centering
-\includegraphics{figures/fig_pergnb_envb.pdf}
-\caption{Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}
-\label{fig:pergnb}
-\end{figure}
-
 At seven gNBs the tuned rules earn 26.5 to 27.3 per step and beat AXIOM in all 15 seeds under every layout, while AXIOM earns 23.4 to 23.6, no more than the static rule's 23.6. The reward charges each slice's SLA penalty once for the cluster when any gNB violates it, so shedding eMBB at one gNB pays only when the other gNBs also comply. Table~\ref{tab:s-conv} lists three changes on the ring layout. The per-gNB SLA penalty raised AXIOM's compliance by 10.7 points, a learning rate of 0.003 by 14.9, and 900 training episodes by 21.7. The Holm-adjusted $p$ values are 0.007, 0.007, and 0.0004. With 900 episodes for every learner, AXIOM keeps 12.8 to 15.2 points more compliance and earns 0.44 to 0.82 more reward per gNB than each baseline, at Holm-adjusted $p\leq0.0012$. The tuned rule still keeps more compliance than AXIOM in all 15 seeds. At nineteen gNBs the longer budget does not help. After 900 episodes seven of eight seeds still shed only mMTC, against all eight after 300. Under uneven load, with each gNB's multiplier drawn between 75\% and 125\% per seed, AXIOM does not beat the nominally tuned rule at seven gNBs, earning 0.36 more reward per step at $p=0.23$. It still beats every learned baseline there, by 1.18 to 4.28 reward per step at unadjusted $p\leq0.005$. Under the per-gNB SLA penalty every learned baseline kept 13.7 to 18.5 percentage points less per-gNB compliance than AXIOM, in every seed.
 
 \begin{table}[!htbp]

@@ -104,6 +104,12 @@ def main():
     dx = {"axiom2": -0.24, "mappo_tuned": -0.08, "single_agent_dqn": 0.08, "independent_dqn": 0.24, "rule": 0.38}
     xs = {n: i for i, n in enumerate(sizes)}
     rng = np.random.default_rng(0)
+
+    def trend(ax, val):   # thin colour-matched line through each learned method's plotted points, 3 to 37 gNBs (added 2026-11-10)
+        for arm in order:
+            ax.plot([xs[n] + dx[arm] for n in sizes], [val(summ[arm][n]) for n in sizes],
+                    color=S.POLICY[arm]["color"], lw=0.45, zorder=2.5, solid_capstyle="round")
+    trend(axa, lambda d: d["prio_mean"])
     # a, compliance: seeds, mean, CI, and the static rule
     for arm in order + ["rule"]:
         pol = "rule_static" if arm == "rule" else arm
@@ -117,7 +123,7 @@ def main():
             axa.plot([x, x], [lo, hi], color=col, lw=0.9, zorder=3)
             axa.plot([x], [m], zorder=4, **S.marker_kw(pol, 3.6))
     i37 = xs[big]
-    axa.text(i37 + dx["axiom2"] - 0.07, summ["axiom2"][big]["prio_mean"], f"{summ['axiom2'][big]['prio_mean']:.1f}%", ha="right", va="center",
+    axa.text(i37 + dx["axiom2"] - 0.07, summ["axiom2"][big]["prio_mean"] - 3.5, f"{summ['axiom2'][big]['prio_mean']:.1f}%", ha="right", va="top",
              color=S.POLICY["axiom2"]["color"])
     yb = max(summ[b][big]["prio_mean"] for b in ARMS[1:])
     xg = i37 + 0.52
@@ -127,6 +133,7 @@ def main():
     axa.set_xticks(range(len(sizes))); axa.set_xticklabels([str(n) for n in sizes]); axa.set_xlabel("gNBs")
     axa.set_ylabel("Priority-slice\ncompliance (%)")
     # b, collapsed share with Wilson CIs
+    trend(axb, lambda d: 100 * d["collapsed"] / d["n_cells"])
     for arm in order:
         col = S.POLICY[arm]["color"]
         for n in sizes:
@@ -138,6 +145,7 @@ def main():
     axb.set_xticks(range(len(sizes))); axb.set_xticklabels([str(n) for n in sizes]); axb.set_xlabel("gNBs")
     axb.set_ylabel("Collapsed runs (%)")
     # c, reward per gNB per step
+    trend(axc, lambda d: d["reward_per_gnb_mean"])
     for arm in order:
         col = S.POLICY[arm]["color"]
         for n in sizes:
@@ -154,7 +162,8 @@ def main():
         ax_.text(-0.07 if ax_ is not axa else -0.035, 1.02, "Env A", transform=ax_.transAxes, va="bottom", ha="left", color=tg_["tc"],
                  bbox=dict(boxstyle="round,pad=0.25", fc=tg_["fc"], ec=tg_["ec"], lw=0.6))
     from matplotlib.lines import Line2D
-    hs = [Line2D([], [], label=S.POLICY[a_]["label"], **S.marker_kw(a_, 3.6)) for a_ in order + ["rule_static"]]
+    hs = [Line2D([], [], label=S.POLICY[a_]["label"], **{**S.marker_kw(a_, 3.6), **({"ls": "-", "lw": 0.45, "color": S.POLICY[a_]["color"]} if a_ in order else {})})
+          for a_ in order + ["rule_static"]]
     fig.legend(handles=hs, loc="upper center", ncol=5, bbox_to_anchor=(0.55, 1.0), handletextpad=0.2, columnspacing=1.0)
     facts = S.save(fig, a.out)
     print(facts)
