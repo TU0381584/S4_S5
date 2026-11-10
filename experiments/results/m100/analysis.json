@@ -1,0 +1,110 @@
+{
+ "E1_axiom_minus_sharedhead": {
+  "compliance": {
+   "n": 20,
+   "diff": 31.671666666666663,
+   "wins": 17,
+   "ties": 2,
+   "losses": 1,
+   "p": 0.00027641623202831126,
+   "ci": [
+    23.240770833333336,
+    39.80287499999999
+   ],
+   "median": 37.93333333333333,
+   "p_holm": 0.0003928734524246227
+  },
+  "reward": {
+   "n": 20,
+   "diff": 17.187149485325914,
+   "wins": 18,
+   "ties": 2,
+   "losses": 0,
+   "p": 0.00019643672621231134,
+   "ci": [
+    12.827505841758763,
+    21.428328375573425
+   ],
+   "median": 21.281762636412026,
+   "p_holm": 0.0003928734524246227
+  }
+ },
+ "E2_mlp_minus_axiom": {
+  "compliance": {
+   "n": 20,
+   "diff": 7.154999999999999,
+   "wins": 6,
+   "ties": 12,
+   "losses": 2,
+   "p": 0.0687035743228782,
+   "ci": [
+    0.04414583333333334,
+    14.914999999999997
+   ],
+   "median": 0.0,
+   "p_holm": 0.1374071486457564,
+   "verdict": "within chance"
+  },
+  "reward": {
+   "n": 20,
+   "diff": 4.369319954624478,
+   "wins": 6,
+   "ties": 12,
+   "losses": 2,
+   "p": 0.0687035743228782,
+   "ci": [
+    0.5174289118346461,
+    8.428012566076532
+   ],
+   "median": 0.0,
+   "p_holm": 0.1374071486457564,
+   "verdict": "within chance"
+  }
+ },
+ "arms": {
+  "axiom2": {
+   "n": 20,
+   "collapsed": 2,
+   "wilson_pct": [
+    2.7866481213768224,
+    30.10336452284873
+   ],
+   "prio_mean": 91.10083333333333,
+   "reward_mean": 172.2960044528349
+  },
+  "axiom2_mlp": {
+   "n": 20,
+   "collapsed": 0,
+   "wilson_pct": [
+    0.0,
+    16.112515805281937
+   ],
+   "prio_mean": 98.25583333333334,
+   "reward_mean": 176.66532440745934
+  },
+  "sharedhead": {
+   "n": 20,
+   "collapsed": 18,
+   "wilson_pct": [
+    69.89663547715128,
+    97.21335187862319
+   ],
+   "prio_mean": 59.42916666666666,
+   "reward_mean": 155.10885496750896
+  }
+ },
+ "criteria": [
+  {
+   "id": "E1",
+   "criterion": "AXIOM ahead of the shared-head variant on compliance and reward, Env A 37 gNBs hex, 20 seeds, Holm",
+   "n": 20,
+   "verdict": "HOLDS"
+  },
+  {
+   "id": "E2",
+   "criterion": "MLP variant against AXIOM, Env A 37 gNBs hex, 20 seeds, Holm (reported per test)",
+   "n": 20,
+   "verdict": "compliance within chance; reward within chance"
+  }
+ ]
+}
