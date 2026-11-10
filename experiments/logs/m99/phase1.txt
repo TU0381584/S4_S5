@@ -1,0 +1,124 @@
+A_axiom2_9800|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9800
+A_sharedhead_9800|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9800
+A_axiom2_9801|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9801
+A_sharedhead_9801|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9801
+A_axiom2_9802|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9802
+A_sharedhead_9802|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9802
+A_axiom2_9803|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9803
+A_sharedhead_9803|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9803
+A_axiom2_9804|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9804
+A_sharedhead_9804|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9804
+A_axiom2_9805|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9805
+A_sharedhead_9805|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9805
+A_axiom2_9806|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9806
+A_sharedhead_9806|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9806
+A_axiom2_9807|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9807
+A_sharedhead_9807|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9807
+A_axiom2_9808|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9808
+A_sharedhead_9808|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9808
+A_axiom2_9809|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9809
+A_sharedhead_9809|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9809
+A_axiom2_9810|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9810
+A_sharedhead_9810|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9810
+A_axiom2_9811|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9811
+A_sharedhead_9811|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9811
+A_axiom2_9812|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9812
+A_sharedhead_9812|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9812
+A_axiom2_9813|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9813
+A_sharedhead_9813|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9813
+A_axiom2_9814|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9814
+A_sharedhead_9814|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9814
+A_axiom2_9815|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9815
+A_sharedhead_9815|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9815
+A_axiom2_9816|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9816
+A_sharedhead_9816|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9816
+A_axiom2_9817|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9817
+A_sharedhead_9817|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9817
+A_axiom2_9818|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9818
+A_sharedhead_9818|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9818
+A_axiom2_9819|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_n19_ring --seeds 9819
+A_sharedhead_9819|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M70_VARIANT=sharedhead|../experiments/scripts/m70_run.py --arm axiom2 --env A --n 19 --topology ring --out-dir ../experiments/results/m99/A_sharedhead_n19_ring --seeds 9819
+C_axiom2_9840|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9840
+C_mlp_9840|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9840
+C_axiom2_9841|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9841
+C_mlp_9841|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9841
+C_axiom2_9842|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9842
+C_mlp_9842|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9842
+C_axiom2_9843|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9843
+C_mlp_9843|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9843
+C_axiom2_9844|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9844
+C_mlp_9844|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9844
+C_axiom2_9845|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9845
+C_mlp_9845|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9845
+C_axiom2_9846|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9846
+C_mlp_9846|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9846
+C_axiom2_9847|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9847
+C_mlp_9847|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9847
+C_axiom2_9848|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9848
+C_mlp_9848|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9848
+C_axiom2_9849|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9849
+C_mlp_9849|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9849
+C_axiom2_9850|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9850
+C_mlp_9850|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9850
+C_axiom2_9851|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9851
+C_mlp_9851|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9851
+C_axiom2_9852|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9852
+C_mlp_9852|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9852
+C_axiom2_9853|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9853
+C_mlp_9853|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9853
+C_axiom2_9854|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9854
+C_mlp_9854|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9854
+C_axiom2_9855|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9855
+C_mlp_9855|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9855
+C_axiom2_9856|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9856
+C_mlp_9856|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9856
+C_axiom2_9857|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9857
+C_mlp_9857|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9857
+C_axiom2_9858|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9858
+C_mlp_9858|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9858
+C_axiom2_9859|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9859
+C_mlp_9859|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2_mlp --n 7 --topology hex --out-dir ../experiments/results/m99/C_n7_hex --seeds 9859
+B_axiom2_9900|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9900
+B_axiom2_9901|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9901
+B_axiom2_9902|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9902
+B_axiom2_9903|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9903
+B_axiom2_9904|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9904
+B_axiom2_9905|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9905
+B_axiom2_9906|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9906
+B_axiom2_9907|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9907
+B_axiom2_9908|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9908
+B_axiom2_9909|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9909
+B_axiom2_9910|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9910
+B_axiom2_9911|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9911
+B_axiom2_9912|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9912
+B_axiom2_9913|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9913
+B_axiom2_9914|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9914
+B_axiom2_9915|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9915
+B_axiom2_9916|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9916
+B_axiom2_9917|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9917
+B_axiom2_9918|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9918
+B_axiom2_9919|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9919
+B_axiom2_9920|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9920
+B_axiom2_9921|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9921
+B_axiom2_9922|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9922
+B_axiom2_9923|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9923
+B_axiom2_9924|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9924
+B_axiom2_9925|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9925
+B_axiom2_9926|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9926
+B_axiom2_9927|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9927
+B_axiom2_9928|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9928
+B_axiom2_9929|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9929
+B_axiom2_9930|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9930
+B_axiom2_9931|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9931
+B_axiom2_9932|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9932
+B_axiom2_9933|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9933
+B_axiom2_9934|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9934
+B_axiom2_9935|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9935
+B_axiom2_9936|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9936
+B_axiom2_9937|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9937
+B_axiom2_9938|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9938
+B_axiom2_9939|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m64_run.py --arm axiom2 --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9939
+B_single_9900|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m66c_seeded_single.py --arm single_agent_dqn --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9900 9901 9902 9903 9904 9905 9906 9907 9908 9909
+B_single_9910|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m66c_seeded_single.py --arm single_agent_dqn --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9910 9911 9912 9913 9914 9915 9916 9917 9918 9919
+B_single_9920|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m66c_seeded_single.py --arm single_agent_dqn --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9920 9921 9922 9923 9924 9925 9926 9927 9928 9929
+B_single_9930|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m66c_seeded_single.py --arm single_agent_dqn --env A --n 3 --out-dir ../experiments/results/m99/B_A_n3 --seeds 9930 9931 9932 9933 9934 9935 9936 9937 9938 9939
