@@ -1,0 +1,122 @@
+{
+ "F1_fresh20_mlp_minus_axiom": {
+  "compliance": {
+   "n": 20,
+   "diff": 4.197500000000001,
+   "wins": 6,
+   "ties": 10,
+   "losses": 4,
+   "p": 0.6464622026641696,
+   "ci": [
+    -5.989999999999999,
+    13.724541666666662
+   ],
+   "median": 0.0,
+   "p_holm": 0.8471926355320074,
+   "verdict": "within chance"
+  },
+  "reward": {
+   "n": 20,
+   "diff": 2.60798550576465,
+   "wins": 6,
+   "ties": 9,
+   "losses": 5,
+   "p": 0.4235963177660037,
+   "ci": [
+    -3.2055639076313542,
+    8.476763073773608
+   ],
+   "median": 0.0,
+   "p_holm": 0.8471926355320074,
+   "verdict": "within chance"
+  }
+ },
+ "F2_pooled40_mlp_minus_axiom": {
+  "compliance": {
+   "n": 40,
+   "diff": 5.6762500000000005,
+   "wins": 12,
+   "ties": 22,
+   "losses": 6,
+   "p": 0.12209548134133213,
+   "ci": [
+    -0.5497604166666659,
+    11.985854166666666
+   ],
+   "median": 0.0,
+   "p_holm": 0.15323584682334246,
+   "verdict": "within chance"
+  },
+  "reward": {
+   "n": 40,
+   "diff": 3.488652730194564,
+   "wins": 12,
+   "ties": 21,
+   "losses": 7,
+   "p": 0.07661792341167123,
+   "ci": [
+    -0.019342973735109306,
+    7.08213586171699
+   ],
+   "median": 0.0,
+   "p_holm": 0.15323584682334246,
+   "verdict": "within chance"
+  }
+ },
+ "arms_fresh20": {
+  "axiom2": {
+   "n": 20,
+   "collapsed": 3,
+   "wilson_pct": [
+    5.236874589621659,
+    36.041886474075696
+   ],
+   "prio_mean": 90.24166666666667,
+   "reward_mean": 171.29586529707865
+  },
+  "axiom2_mlp": {
+   "n": 20,
+   "collapsed": 0,
+   "wilson_pct": [
+    0.0,
+    16.112515805281937
+   ],
+   "prio_mean": 94.43916666666668,
+   "reward_mean": 173.90385080284335
+  }
+ },
+ "arms_pooled40": {
+  "axiom2": {
+   "n": 40,
+   "collapsed": 5,
+   "wilson_pct": [
+    5.459500250945401,
+    26.1121198388511
+   ],
+   "prio_mean": 90.67125000000001,
+   "reward_mean": 171.79593487495677
+  },
+  "axiom2_mlp": {
+   "n": 40,
+   "collapsed": 0,
+   "wilson_pct": [
+    0.0,
+    8.762160119728664
+   ],
+   "prio_mean": 96.3475,
+   "reward_mean": 175.28458760515133
+  }
+ },
+ "criteria": [
+  {
+   "id": "F1",
+   "n": 20,
+   "verdict": "compliance within chance; reward within chance"
+  },
+  {
+   "id": "F2",
+   "n": 40,
+   "verdict": "compliance within chance; reward within chance"
+  }
+ ]
+}

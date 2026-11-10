@@ -40,3 +40,4 @@ E_mlp_8018 exit 0 11:23:28
 E_sharedhead_8019 exit 0 11:24:18
 E_mlp_8019 exit 0 11:24:50
 ALL DONE 11:24:50
+gzip done 11:26:32
