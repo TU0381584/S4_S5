@@ -12,3 +12,8 @@ Not pre-registered and not a reported result: it reads stored training logs and 
    - On the training stream (seed): 8002 and 8010 block 0; 8000 blocks 4,307 mMTC.
 
 Reading: the collapsed runs learned to shed mMTC but their greedy mMTC decision was unstable at the end of training, and the checkpoint was taken at the last step, in an accepting phase. This is the failure M67 described at three gNBs ("the failure is in which weights training happens to stop on").
+
+4. Instability by encoder (added the same day, before any M103 or M104 result was read). This compares the last three training episodes of the 40 AXIOM and 40 MLP runs at 37 gNBs (M96 and M100 on 8000 to 8019, M101 on 9960 to 9979). A step counts as accepting when 5 or more mMTC requests were admitted in it.
+   - AXIOM switches between shedding and accepting in 34 of 40 runs, with a median of 3 switches; 16% of its steps are accepting, and 8 runs accept on more than 20% of steps.
+   - The MLP switches in 20 of 40 runs, with a median of 0 switches; 6% of its steps are accepting, and 2 runs accept on more than 20% of steps.
+   The graph-attention encoder ends training less settled, which is consistent with its collapsed last checkpoints. M104 tests whether checkpoint selection removes the difference.
