@@ -8,7 +8,8 @@ def run(cell, arm, seed):
     last = max(r["episode"] for r in rows)
     seq = [r["evidence"]["accepted_counts"]["mmtc"] >= 5 for r in rows if r["episode"] > last - 3]
     return sum(a != b for a, b in zip(seq, seq[1:])), sum(seq) / len(seq)
-groups = {"gat (M96+M101)": [("m96/A_fresh/n37_hex", "axiom2", s) for s in range(8000, 8020)] + [("m101/A_n37_hex", "axiom2", s) for s in range(9960, 9980)],
+groups = {"gat (M104)": [("m104/A_n37_hex/gat", "axiom2", s) for s in range(9940, 9960)], "mlp (M104)": [("m104/A_n37_hex/mlp", "axiom2", s) for s in range(9940, 9960)],
+"gat (M96+M101)": [("m96/A_fresh/n37_hex", "axiom2", s) for s in range(8000, 8020)] + [("m101/A_n37_hex", "axiom2", s) for s in range(9960, 9980)],
           "mlp (M100+M101)": [("m100/A_n37_hex", "axiom2_mlp", s) for s in range(8000, 8020)] + [("m101/A_n37_hex", "axiom2_mlp", s) for s in range(9960, 9980)],
           "concat (M103)": [("m103/A_n37_hex/concat", "axiom2", s) for s in range(9980, 10000)],
           "mlp (M103)": [("m103/A_n37_hex/mlp", "axiom2", s) for s in range(9980, 10000)]}
