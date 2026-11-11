@@ -64,3 +64,4 @@ B7_mlp_out32_2101 exit 0 05:50:54
 B7_mlp_out32_2102 exit 0 05:51:08
 B7_mlp_out32_2103 exit 0 05:51:34
 ALL DONE 05:51:34
+gzip done 05:53:17
