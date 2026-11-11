@@ -18,6 +18,6 @@ for g, runs in groups.items():
     sw = [v[0] for v in res.values()]; acc = [v[1] for v in res.values()]
     print(f"{g:18s} n={len(sw)} switching={sum(x>0 for x in sw)} median_sw={st.median(sw)} accept_share={100*st.mean(acc):.0f}% runs>20%={sum(a>0.2 for a in acc)}")
     out[g] = res
-json.dump(out, open(os.path.dirname(__file__) + "/instab.json", "w"), indent=0)
+json.dump(out, open(f"{R}/m104_instability_diag.json", "w"), indent=0)
 for k in [f"m103/A_n37_hex/concat:{s}" for s in (9980, 9983, 9984, 9985, 9986)]:
     print(k, out["concat (M103)"][k])
