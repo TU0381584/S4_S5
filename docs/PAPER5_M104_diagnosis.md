@@ -17,3 +17,8 @@ Reading: the collapsed runs learned to shed mMTC but their greedy mMTC decision 
    - AXIOM switches between shedding and accepting in 34 of 40 runs, with a median of 3 switches; 16% of its steps are accepting, and 8 runs accept on more than 20% of steps.
    - The MLP switches in 20 of 40 runs, with a median of 0 switches; 6% of its steps are accepting, and 2 runs accept on more than 20% of steps.
    The graph-attention encoder ends training less settled, which is consistent with its collapsed last checkpoints. M104 tests whether checkpoint selection removes the difference.
+
+5. The same comparison for M103's concat encoder (added after M103 finished, before any M104 result was read). The script, experiments/scripts/m104_instability_diag.py, recomputes item 4 from the logs. It reproduces the switching counts, accepting shares and runs above 20% exactly. It gives the MLP's median as 0.5 switches; item 4 rounded that to 0.
+   - concat (M103, 9980 to 9999): switches in 19 of 20 runs, median 5; 15% of steps are accepting; 6 runs accept on more than 20% of steps.
+   - mlp (M103, same seeds): switches in 10 of 20 runs, median 0.5; 5% accepting; no run above 20%.
+   Four of concat's five weak runs (9983, 9984, 9985, 9986) switch 5 to 7 times, with 11 to 31% accepting steps. The fifth, 9980, barely accepts at the end of training (1 switch, under 1% accepting), so its evaluation collapse is not this oscillation. Adding a local MLP path beside the GAT therefore did not settle the end-of-training decision.
