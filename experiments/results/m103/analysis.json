@@ -1,0 +1,168 @@
+{
+ "selected": {
+  "attention": "concat",
+  "mlp": "mlp"
+ },
+ "tests": {
+  "B_n7_ring|reward": {
+   "n": 20,
+   "diff": 0.17330707746471727,
+   "wins": 10,
+   "ties": 1,
+   "losses": 9,
+   "p": 0.7172177958043885,
+   "ci": [
+    -0.9639007947770284,
+    1.5418438175478388
+   ],
+   "median": 0.05972040295967673,
+   "p_holm": 1.0,
+   "verdict": "within chance"
+  },
+  "B_n7_ring|compliance": {
+   "n": 20,
+   "diff": -2.518333333333332,
+   "wins": 10,
+   "ties": 1,
+   "losses": 9,
+   "p": 0.7172177958043885,
+   "ci": [
+    -9.220854166666665,
+    4.295166666666665
+   ],
+   "median": 0.02499999999999858,
+   "p_holm": 1.0,
+   "verdict": "within chance"
+  },
+  "B_n7_hex|reward": {
+   "n": 20,
+   "diff": -1.2155727385809134,
+   "wins": 5,
+   "ties": 0,
+   "losses": 15,
+   "p": 0.01068878173828125,
+   "ci": [
+    -1.9811850069420505,
+    -0.40154460407999465
+   ],
+   "median": -1.1789173669061075,
+   "p_holm": 0.05344390869140625,
+   "verdict": "within chance"
+  },
+  "B_n7_hex|compliance": {
+   "n": 20,
+   "diff": -10.841666666666665,
+   "wins": 5,
+   "ties": 0,
+   "losses": 15,
+   "p": 0.0023250579833984375,
+   "ci": [
+    -15.977583333333328,
+    -5.264020833333335
+   ],
+   "median": -15.116666666666664,
+   "p_holm": 0.013950347900390625,
+   "verdict": "MLP ahead"
+  },
+  "A_n37_hex|reward": {
+   "n": 20,
+   "diff": -5.056730187325852,
+   "wins": 3,
+   "ties": 12,
+   "losses": 5,
+   "p": 0.09289194088370532,
+   "ci": [
+    -9.513170329526286,
+    -1.0743421349885012
+   ],
+   "median": 0.0,
+   "p_holm": 0.3715677635348213,
+   "verdict": "within chance"
+  },
+  "A_n37_hex|compliance": {
+   "n": 20,
+   "diff": -8.724166666666667,
+   "wins": 3,
+   "ties": 12,
+   "losses": 5,
+   "p": 0.09289194088370532,
+   "ci": [
+    -16.7216875,
+    -1.6707916666666676
+   ],
+   "median": 0.0,
+   "p_holm": 0.3715677635348213,
+   "verdict": "within chance"
+  }
+ },
+ "arms": {
+  "B_n7_ring": {
+   "concat": {
+    "n": 20,
+    "collapsed": 0,
+    "wilson_pct": [
+     0.0,
+     16.112515805281937
+    ],
+    "reward_mean": 24.856786651342876,
+    "prio_mean": 45.976666666666674
+   },
+   "mlp": {
+    "n": 20,
+    "collapsed": 0,
+    "wilson_pct": [
+     0.0,
+     16.112515805281937
+    ],
+    "reward_mean": 24.683479573878152,
+    "prio_mean": 48.495
+   }
+  },
+  "B_n7_hex": {
+   "concat": {
+    "n": 20,
+    "collapsed": 0,
+    "wilson_pct": [
+     0.0,
+     16.112515805281937
+    ],
+    "reward_mean": 24.912509506554763,
+    "prio_mean": 43.43083333333333
+   },
+   "mlp": {
+    "n": 20,
+    "collapsed": 0,
+    "wilson_pct": [
+     0.0,
+     16.112515805281937
+    ],
+    "reward_mean": 26.128082245135676,
+    "prio_mean": 54.2725
+   }
+  },
+  "A_n37_hex": {
+   "concat": {
+    "n": 20,
+    "collapsed": 4,
+    "wilson_pct": [
+     8.065766257979806,
+     41.60174322518937
+    ],
+    "reward_mean": 172.33031045814525,
+    "prio_mean": 90.48166666666667
+   },
+   "mlp": {
+    "n": 20,
+    "collapsed": 0,
+    "wilson_pct": [
+     0.0,
+     16.112515805281937
+    ],
+    "reward_mean": 177.38704064547113,
+    "prio_mean": 99.20583333333333
+   }
+  }
+ },
+ "attention_beats_mlp": false,
+ "reading": "attention beats the MLP only if ahead on reward in at least one setting and behind on neither measure in any setting"
+}
