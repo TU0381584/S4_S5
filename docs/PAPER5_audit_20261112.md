@@ -51,3 +51,10 @@ Differences that are mathematically equal, or mathematically zero, are sometimes
 
 1. Either keep 0.011 and 0.0012, which are the pre-registered pipeline's values, or switch to the tie-corrected values, 0.012 and 0.0016. Switching means applying tie-aware rounding in m66_verify.paired everywhere, which changes only these two printed numbers, and updating two verifier checks. Keeping them is defensible because the pipeline is pre-registered. Switching is the more exact statistic.
 2. The M98 to M106 wording proposals in the results documents stand as corrected above.
+
+## Decision and change (2026-11-12, after the author chose the corrected statistic)
+
+- m66_verify.paired now rounds paired differences to 1e-9 (tie_round) for the Wilcoxon test and the win/tie/loss counts. The mean stays exact. The verifier's four direct Wilcoxon calls and the two figure scripts that run their own test (paper5_fig_capability.py, paper5_fig4_m3_privacy.py) use the same rounding.
+- Printed values changed: main.tex, Env B at seven gNBs, ring layout, AXIOM against DQN-SA on compliance, Holm p 0.011 to 0.012. OR1 Table S10, row "3 gNBs, 300 episodes", 0.0012 to 0.0016. The two verifier checks of the first value (m66_verify and m82_audit) were updated, not removed.
+- Regenerated: M98 to M106 analysis files (only M106's one p-value changed: 0.0079 to 0.0071, Holm 0.032 to 0.028), all figures (pixel-identical to the committed ones), main.pdf (28 pp), the OR1 (10 pp) and the submission package (only main.tex, main.pdf and ESM_1.pdf differ).
+- Verifier: 663 of 663 checks pass. CI recomputation: 17 intervals the same in the main text and 2 in the OR1.

@@ -36,7 +36,7 @@ from matplotlib.path import Path  # noqa: E402
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/plots")
-from m66_verify import S15, S30_19, holm, paired, prio, seeds_of  # noqa: E402
+from m66_verify import S15, S30_19, holm, paired, prio, seeds_of, tie_round  # noqa: E402
 from paper5_fig_superiority import shift_row  # noqa: E402
 
 ROOT = "/home/kmanojp/oranslice_rig/experiments/results"
@@ -150,7 +150,7 @@ def data():
     for k in range(3000, 3010, 2):
         b_.update(seeds_of(f"m66b_fresh/m3_s{k}", "fl_gat_ctde_sigma0.0", [k, k + 1]))
     fd.update({s: a_[s]["reward"] - b_[s]["reward"] for s in range(3000, 3010)})
-    d["fed_cost"] = summ(fd); d["fed_cost"]["p"] = float(wilcoxon(np.array(list(fd.values()))).pvalue)
+    d["fed_cost"] = summ(fd); d["fed_cost"]["p"] = float(wilcoxon(tie_round(list(fd.values()))).pvalue)
     best = max(("mappo_tuned", "single_agent_dqn", "independent_dqn"), key=lambda a: sla[a]["mean"])
     d["lead37"] = {"points": sla["axiom2"]["mean"] - sla[best]["mean"], "over": best}
     d["params_ratio_dqni"] = d["params"]["independent_dqn"]["37"] / d["params"]["axiom2"]["37"]

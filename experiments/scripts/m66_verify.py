@@ -105,11 +105,20 @@ def holm(pvals):
     return out
 
 
+TIE_DECIMALS = 9   # 2026-11-12, author's choice: differences equal to 1e-9 are ties (docs/PAPER5_audit_20261112.md)
+
+
+def tie_round(d):
+    """Round paired differences so that float noise (about 1e-14) does not break ties or turn a zero into a win."""
+    return np.round(np.asarray(d, dtype=float), TIE_DECIMALS)
+
+
 def paired(a, b, f=lambda r: r["reward"]):
     common = sorted(set(a) & set(b))
-    d = np.array([f(a[s]) - f(b[s]) for s in common])
+    raw = np.array([f(a[s]) - f(b[s]) for s in common], dtype=float)
+    d = tie_round(raw)       # used for the test and the win/tie/loss counts; the mean stays exact
     p = float(wilcoxon(d, zero_method="wilcox", alternative="two-sided").pvalue) if np.any(d != 0) else 1.0
-    return {"n": len(d), "diff": float(d.mean()), "wins": int((d > 0).sum()), "ties": int((d == 0).sum()),
+    return {"n": len(d), "diff": float(raw.mean()), "wins": int((d > 0).sum()), "ties": int((d == 0).sum()),
             "losses": int((d < 0).sum()), "p": p}
 
 
@@ -808,7 +817,7 @@ def main():
             for mname, f in (("reward", lambda r: r["reward"]), ("prio", prio)):
                 fam7[f"{t}|{b}|{mname}"] = paired(n7[t]["axiom2"], n7[t][b], f)
     h7 = holm({k: v["p"] for k, v in fam7.items()})
-    C.note("Env B N=7 ring: single-agent beats AXIOM on priority SLA at p_holm 0.011", round(h7["ring|single_agent_dqn|prio"], 3) == 0.011
+    C.note("Env B N=7 ring: single-agent beats AXIOM on priority SLA at p_holm 0.012 (ties within 1e-9, 2026-11-12; 0.011 before)", round(h7["ring|single_agent_dqn|prio"], 3) == 0.012
            and fam7["ring|single_agent_dqn|prio"]["diff"] < 0, h7["ring|single_agent_dqn|prio"])
     sig_learned = sorted(k for k, v in h7.items() if v < 0.05 and k.split("|")[1] in ("independent_dqn", "single_agent_dqn", "mappo_tuned") and fam7[k]["diff"] > 0)
     C.note("Env B N=7: AXIOM's only significant learned leads are MAPPO reward on fully-connected and ring",
@@ -1385,7 +1394,7 @@ def main():
     C.note("reframe: pooled federation has 30 seeds", len(fd_) == 30, len(fd_))
     C.claim("reframe: pooled federation cost", "the cost is $+0.491$ per step with 95\\% CI", float(np.mean(fd_)), "{:+.3f}")
     ci_claim("pooled federation CI", "the cost is $+0.491$ per step with 95\\% CI [$-$0.08, 1.09]", fd_)
-    C.claim("reframe: pooled federation p", "1.09] and $p=0.14$", float(wilcoxon(np.array(fd_)).pvalue), "{:.2f}")
+    C.claim("reframe: pooled federation p", "1.09] and $p=0.14$", float(wilcoxon(tie_round(fd_)).pvalue), "{:.2f}")
     C.claim("reframe: pooled federation in Table 2", "the cost is $+0.491$ per step", float(np.mean(fd_)), "{:+.2f}")
     eb_ = max(100 * mean(seeds_of("m64/n3_fully_connected", a_, S30), lambda x: x["sla"]["embb"]) for a_ in
               ("rule_accept_all", "rule_static", "rule_local", "rule_neighbour", "axiom2", "axiom2_mlp", "single_agent_dqn", "independent_dqn", "mappo_tuned"))
@@ -1734,7 +1743,7 @@ def main():
         td_[(b_, "r")] = paired(d75_["axiom2"], d75_[b_])
         common_ = sorted(pgv_["axiom2"])
         dd_ = np.array([pgv_["axiom2"][s_] - pgv_[b_][s_] for s_ in common_])
-        td_[(b_, "g")] = {"diff": float(dd_.mean()), "p": float(wilcoxon(dd_).pvalue)}
+        td_[(b_, "g")] = {"diff": float(dd_.mean()), "p": float(wilcoxon(tie_round(dd_)).pvalue)}
     hd_ = holm({k_: v_["p"] for k_, v_ in td_.items()})
     C.note("reframe: M75 D1 AXIOM leads every learned baseline, Holm p<=0.013", all(td_[k_]["diff"] > 0 and hd_[k_] <= 0.013 for k_ in td_)
            and "at Holm-adjusted $p\\leq0.013$" in C.main, {str(k_): round(v_, 5) for k_, v_ in hd_.items()})
@@ -1870,7 +1879,7 @@ def main():
     def pvd_(a_, b_):
         cm_ = sorted(set(a_) & set(b_)); dd_ = np.array([a_[x_] - b_[x_] for x_ in cm_])
         return {"n": len(dd_), "diff": float(dd_.mean()), "wins": int((dd_ > 0).sum()), "ties": int((dd_ == 0).sum()), "losses": int((dd_ < 0).sum()),
-                "p": float(wilcoxon(dd_).pvalue) if np.any(dd_ != 0) else 1.0}
+                "p": float(wilcoxon(tie_round(dd_)).pvalue) if np.any(tie_round(dd_) != 0) else 1.0}
     # d: VDN
     vc_ = {"A3": ("m76/d_vdn/A_n3", "m65_n3_view", S30), "B3": ("m76/d_vdn/B_n3", "m64/n3_fully_connected", S30), "A19": ("m76/d_vdn/A_n19_hex", "m65_scaling/n19_hex", S30_19)}
     vr_ = {k_: (seeds_of(c_, "vdn", ss_), seeds_of(ac_, "axiom2", ss_), seeds_of(ac_, "independent_dqn", ss_)) for k_, (c_, ac_, ss_) in vc_.items()}
@@ -2730,7 +2739,7 @@ def main():
            {"rule": {k_: round(v_["diff"], 3) for k_, v_ in tsr_.items()}, "holm_vs_axiom": hsa_})
     rA_ = {a_: mean(seeds_of("m73/A_n37_hex", a_, S30_19)) for a_ in LRN_ + ("rule_static",)}
     rA_["rule_local"] = mean(rl97_)
-    fdp_ = float(wilcoxon(np.array(fd_)).pvalue)
+    fdp_ = float(wilcoxon(tie_round(fd_)).pvalue)
     # the table, rebuilt from its stated rules
     sg_ = lambda x_: f"{x_:+.1f}".replace("-", "−")
     tbA_ = {"axiom2": ["yes" if min(t37_) >= 90 else "half", f"{min(t37_):.0f}–{max(t37_):.0f}%"],

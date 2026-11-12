@@ -765,7 +765,7 @@
    "independent_dqn|s": 5.1204035755882263e-05,
    "rule_local|r": 7.29784369468689e-05,
    "rule_local|s": 0.00026569515466690063,
-   "rule_neighbour|s": 0.030920006334781647,
+   "rule_neighbour|s": 0.03220717548634079,
    "rule_neighbour|r": 0.06056523136794567
   },
   "formatted": null,
@@ -1600,9 +1600,9 @@
   "ok": true
  },
  {
-  "label": "Env B N=7 ring: single-agent beats AXIOM on priority SLA at p_holm 0.011",
+  "label": "Env B N=7 ring: single-agent beats AXIOM on priority SLA at p_holm 0.012 (ties within 1e-9, 2026-11-12; 0.011 before)",
   "snippet": null,
-  "computed": 0.010986328125,
+  "computed": 0.0115966796875,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -2884,7 +2884,7 @@
    "('A3', 'p')": 0.33944577430914497,
    "('A19', 'r')": 0.4352377201621827,
    "('A19', 'p')": 0.4352377201621827,
-   "('B3', 'p')": 0.739050660169088,
+   "('B3', 'p')": 0.750613194129713,
    "('A3', 'r')": 0.916511907863894
   },
   "formatted": null,
@@ -3893,8 +3893,8 @@
   "label": "reframe: M75 C AXIOM beats every tuned baseline, Holm p<0.001",
   "snippet": null,
   "computed": {
-   "(19, 'independent_dqn', 'p')": 0.0,
    "(19, 'independent_dqn', 'r')": 0.0,
+   "(19, 'independent_dqn', 'p')": 1.21e-05,
    "(37, 'independent_dqn', 'r')": 1.54e-05,
    "(19, 'single_agent_dqn', 'p')": 1.54e-05,
    "(19, 'single_agent_dqn', 'r')": 1.54e-05,
@@ -4128,9 +4128,9 @@
   "computed": {
    "('1.10', 'single_agent_dqn')": 0.0003662109375,
    "('1.10', 'independent_dqn')": 0.0003662109375,
-   "('1.20', 'single_agent_dqn')": 0.0003662109375,
    "('1.20', 'independent_dqn')": 0.0003662109375,
    "('1.10', 'mappo_tuned')": 0.0003662109375,
+   "('1.20', 'single_agent_dqn')": 0.0013066215628302752,
    "('1.20', 'mappo_tuned')": 0.005213241256099401
   },
   "formatted": null,
@@ -6138,8 +6138,8 @@
    "holm": {
     "acc19": 7.62939453125e-06,
     "acc37": 7.62939453125e-06,
-    "mp37": 3.814697265625e-05,
-    "mp19": 3.814697265625e-05
+    "mp37": 0.0003775360857900747,
+    "mp19": 0.0003775360857900747
    }
   },
   "formatted": null,
@@ -6472,7 +6472,7 @@
   "computed": {
    "B3": [
     -0.189,
-    0.0012
+    0.0016
    ],
    "B7_ring_300": [
     0.057,
@@ -6837,9 +6837,9 @@
   "ok": true
  },
  {
-  "label": "M82 Env B 7-gNB ring: AXIOM below DQN-SA in compliance at Holm p=0.011",
+  "label": "M82 Env B 7-gNB ring: AXIOM below DQN-SA in compliance at Holm p=0.012 (ties within 1e-9, 2026-11-12; 0.011 before)",
   "snippet": null,
-  "computed": 0.010986328125,
+  "computed": 0.0115966796875,
   "formatted": null,
   "in_tex": null,
   "ok": true

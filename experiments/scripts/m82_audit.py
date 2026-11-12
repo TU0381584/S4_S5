@@ -269,9 +269,9 @@ def run(C):
            for m, f_ in (("reward", lambda r: r["reward"]), ("prio", prio))
            for _ in [n7[t].setdefault(b, seeds_of(f"m64/n7_{t}", b, S15))]}
     h7 = V.holm({k: v["p"] for k, v in n7r.items()})
-    C.note("M82 Env B 7-gNB ring: AXIOM below DQN-SA in compliance at Holm p=0.011", round(h7[("ring", "single_agent_dqn", "prio")], 3) == 0.011
+    C.note("M82 Env B 7-gNB ring: AXIOM below DQN-SA in compliance at Holm p=0.012 (ties within 1e-9, 2026-11-12; 0.011 before)", round(h7[("ring", "single_agent_dqn", "prio")], 3) == 0.012
            and n7r[("ring", "single_agent_dqn", "prio")]["diff"] < 0
-           and "On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.011$" in C.main, h7[("ring", "single_agent_dqn", "prio")])
+           and "On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.012$" in C.main, h7[("ring", "single_agent_dqn", "prio")])
     sel70 = json.load(open(f"{ROOT}/m70/R3_pilot/selection.json"))
     C.note("M82 the MAPPO tuning grid has 24 configurations in each environment", len(sel70["A"]["grid"]) == 24 and len(sel70["B"]["grid"]) == 24
            and "A 24-configuration MAPPO grid" in C.main and "A grid of 24 MAPPO configurations" in C.tex, None)

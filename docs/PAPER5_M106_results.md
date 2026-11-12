@@ -12,7 +12,7 @@ Pre-registration: docs/PAPER5_M106_preregistration.md (1aeb6fd0). Analysis: expe
 | Cell | Baseline | Measure | Selected: diff, Holm, W/T/L | Last: diff, Holm, W/T/L |
 |---|---|---|---|---|
 | Env A 3 | DQN-SA | reward | +0.037, 0.106, 15/9/6, within chance | +0.510, 0.0046, 21/4/5, ahead |
-| Env A 3 | DQN-SA | compliance | +0.382, 0.047, 8/22/0, ahead | +3.806, 0.032, 11/17/2, ahead |
+| Env A 3 | DQN-SA | compliance | +0.382, 0.047, 8/22/0, ahead | +3.806, 0.028, 11/17/2, ahead |
 | Env A 3 | DQN-I | reward | +0.887, 1.8e-5, 29/1/0, ahead | +1.242, 2.1e-5, 29/1/0, ahead |
 | Env A 3 | DQN-I | compliance | +4.468, 3.1e-4, 22/7/1, ahead | +6.949, 2.8e-4, 22/8/0, ahead |
 | Env B 7 ring | DQN-SA | reward | +0.007, 0.996, 10/0/10, within chance | +0.049, 1, 8/0/12, within chance |
@@ -42,4 +42,4 @@ The paper's three-gNB claim against DQN-SA would then need a qualifier in the ma
 
 ## Audit notes (2026-11-12)
 
-An independent recomputation (experiments/scripts/audit_m102_m106.py) reproduces every test from the raw logs except one p-value. For AXIOM against DQN-SA on compliance at 3 gNBs with last checkpoints, two seeds' differences are mathematically equal but are stored about 1e-14 apart. The pre-registered analysis therefore ranks them as distinct and reports p 0.0079 (Holm 0.032). With the tie recognised, p is 0.0071 (Holm 0.028). The verdict is the same, and no other p-value in M98 to M106 changes when ties are recognised.
+An independent recomputation (experiments/scripts/audit_m102_m106.py) reproduces every test from the raw logs except one p-value. For AXIOM against DQN-SA on compliance at 3 gNBs with last checkpoints, two seeds' differences are mathematically equal but are stored about 1e-14 apart. The pre-registered analysis therefore ranks them as distinct and reports p 0.0079 (Holm 0.032). With the tie recognised, p is 0.0071 (Holm 0.028). The verdict is the same, and no other p-value in M98 to M106 changes when ties are recognised. Since 2026-11-12 the shared test recognises ties, so analysis.json and the table above report the tie-corrected value.

@@ -119,7 +119,7 @@ def main() -> None:
 
     diff_mean = diff_c_minus_f.mean()
     lo, hi = bootstrap_ci(diff_c_minus_f)
-    _w_stat, w_p = stats.wilcoxon(centralized_rewards, fl_no_dp_rewards)
+    _w_stat, w_p = stats.wilcoxon(np.round(np.asarray(centralized_rewards, float) - np.asarray(fl_no_dp_rewards, float), 9))   # ties within 1e-9, as m66_verify.tie_round
     ax1.text(0.5, 0.02,
               f"mean $\\Delta$={diff_mean:+.3f} [{lo:.2f}, {hi:.2f}]\n"
               f"Wilcoxon $p$={w_p:.4f}",
