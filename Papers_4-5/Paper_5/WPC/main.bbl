@@ -1,4 +1,4 @@
-\begin{thebibliography}{48}
+\begin{thebibliography}{49}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -162,10 +162,18 @@ Kunasegran MP, Pang WL, Phang SK (2025{\natexlab{b}}) {SLA}-aware {DRL} for
   Innovations in Engineering (ICRAIE)}, pp 207--212,
   \doi{10.1109/ICRAIE65839.2025.11239148}
 
-\bibitem[{Kunasegran et~al.(2026)Kunasegran, Pang, and Phang}]{ref:access}
-Kunasegran MP, Pang WL, Phang SK (2026) Comprehensive review of optimization
-  techniques for user-centric distributed network slicing in {5G} networks.
-  \emph{IEEE Access} 14:114630--114648. \doi{10.1109/ACCESS.2026.3716911}
+\bibitem[{Kunasegran et~al.(2026{\natexlab{a}})Kunasegran, Pang, and
+  Phang}]{ref:access}
+Kunasegran MP, Pang WL, Phang SK (2026{\natexlab{a}}) Comprehensive review of
+  optimization techniques for user-centric distributed network slicing in {5G}
+  networks. \emph{IEEE Access} 14:114630--114648.
+  \doi{10.1109/ACCESS.2026.3716911}
+
+\bibitem[{Kunasegran et~al.(2026{\natexlab{b}})Kunasegran, Pang, and
+  Phang}]{cacs-paper4}
+Kunasegran MP, Pang WL, Phang SK (2026{\natexlab{b}}) {DQN-QoE} slice admission
+  control for live {OAI} {Open RAN}. In: \emph{2026 International Automatic
+  Control Conference (CACS 2026)}, Taichung, Taiwan, to appear in IEEE Xplore
 
 \bibitem[{Li et~al.(2025)Li, Hao, Yang, and Zhao}]{li2025oacr2}
 Li F, Hao Y, Yang S, Zhao P (2025) {OACR$^{2}$}: Online admission control and
