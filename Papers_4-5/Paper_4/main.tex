@@ -120,14 +120,14 @@ tiers. These are literature-supported work, preliminary simulated
 studies and a proposed but not-yet-validated graph-attention
 multi-agent federated-learning (GAT-MARL-FL) framework, identifying validated deployment as a gap.
 This paper closes that gap for the same formulation. We realise it on
-a real OpenAirInterface (OAI) gNB over its native E2 interface, the
+a real OpenAirInterface (OAI) gNB through an E2 agent, without an
 O-RAN near-real-time RAN Intelligent Controller (RIC)
 \cite{oran-e2ap}. Only the radio channel remains simulated, a mode we
 denote '\textit{rfsim}' throughout, and the reward is centred on QoE rather than
 SLA compliance alone. This paper makes the following
 contributions:
 \begin{enumerate}[itemsep=1pt,topsep=2pt,parsep=0pt,partopsep=0pt]
-\item We deploy a DRL-based SAC policy on a real O-RAN E2 control
+\item We deploy a DRL-based SAC policy on a live O-RAN-style control
 loop and identify a structural difference from existing work
 \cite{mecon-paper1,icraie-paper2}. Only a per-slice resource ceiling
 is exposed, not a per-flow accept/reject primitive, so admission is
@@ -305,9 +305,8 @@ and \texttt{max\_ratio}. Every step is logged to
 \texttt{omega\_log.jsonl}.
 
 Unlike the earlier simulated formulation \cite{mecon-paper1,icraie-paper2},
-the real O-RAN E2 interface exposes only a per-slice ratio ceiling on
-a 0--100 scale rather than a binary accept/reject action
-\cite{oran-e2ap}. An accept decision raises a slice's ceiling toward
+the ORANSlice E2 agent exposes only a per-slice ratio ceiling on
+a 0--100 scale rather than a binary accept/reject action. An accept decision raises a slice's ceiling toward
 a calibrated maximum, and a reject lowers it toward a floor. Ceiling
 values were calibrated by direct measurement, since the scale maps
 nonlinearly onto real PRBs here. The static baseline holds its
@@ -585,7 +584,7 @@ compliance.
 
 \section{Conclusion and Future Work}
 This paper moved an existing simulated DRL-based SAC formulation
-onto a real OAI gNB over its native E2 control loop, with the radio
+onto a real OAI gNB through a RIC-free E2 agent, with the radio
 channel still simulated. A fully powered live evaluation across 128
 episodes per arm confirmed the QoE-aware reward's significant
 compliance advantage over the static baseline, 100.0\% against
@@ -610,8 +609,8 @@ SLA-margin magnitude rather than offered-load levels alone, since
 held-out evaluation of the same checkpoints does not rank-correlate
 with live compliance. We will also extend this deployment toward the
 fully-fledged GAT-MARL-FL framework from our earlier review. This
-single-agent, single-gNB deployment leaves open whether the E2
-interface's per-slice ceiling primitive still suffices once a
+single-agent, single-gNB deployment leaves open whether the ORANSlice
+E2 agent's per-slice ceiling primitive still suffices once a
 graph-attention policy coordinates multiple gNBs, and whether the
 negligible control-loop overhead measured here holds once
 coordination and federated aggregation run on top of it. This leaves
