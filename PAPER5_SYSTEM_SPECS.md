@@ -155,8 +155,7 @@ oranslice_rig/
 ├── Papers_4-5/
 │   ├── Paper_4/            # CACS26 (submitted 2026-08-31)
 │   └── Paper_5/
-│       ├── WPC/            # active manuscript (25 pages as of this writing)
-│       └── IEEE_Access/    # paused, standing instruction not to edit
+│       └── WPC/            # active manuscript (28 pages as of 2026-11-12); the IEEE Access version was removed on 2026-11-12 (in git history)
 ├── framework/
 │   ├── qoe_oran_framework/ # the frozen evaluation-critical package
 │   │   ├── env.py, reward.py, action_mapping.py, mc_runner.py,
