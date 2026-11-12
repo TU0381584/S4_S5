@@ -39,7 +39,7 @@ def eval_log(root: str, arm: str, seed: int):
 
 def slice_compliance(path: str) -> dict:
     acc = {}
-    for line in open(path):
+    for line in (__import__('gzip').open(path, 'rt') if str(path).endswith('.gz') else open(path)):   # .gz since M107
         rec = json.loads(line)
         ev = rec.get("evidence", rec)
         if isinstance(ev, dict) and ev.get("rollup"):

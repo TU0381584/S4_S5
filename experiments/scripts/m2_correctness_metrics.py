@@ -53,7 +53,7 @@ def per_seed_metrics(eval_omega_path: str):
     episode_step_rewards = {}
     mmtc_blocks = 0
     total_blocks = 0
-    with open(eval_omega_path) as fh:
+    with (__import__('gzip').open(eval_omega_path, 'rt') if str(eval_omega_path).endswith('.gz') else open(eval_omega_path)) as fh:   # .gz since M107
         for line in fh:
             rec = json.loads(line)
             ev = rec.get("evidence", rec)

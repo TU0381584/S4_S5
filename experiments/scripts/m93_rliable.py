@@ -36,7 +36,8 @@ TOL = 1e-6
 
 
 def rows(cell, arm, seeds):
-    return [seeds_of(cell, arm, seeds)[s] for s in seeds]
+    d = seeds_of(cell, arm, seeds)        # pooled where the cell is pooled (M107); all runs of the sample
+    return [d[s] for s in sorted(d)]
 
 
 def matrix(columns, n, metric):

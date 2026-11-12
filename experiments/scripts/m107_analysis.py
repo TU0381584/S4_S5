@@ -13,6 +13,8 @@ import numpy as np
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from m66_verify import S15, S30, S30_19, holm, paired, prio, seeds_of, tie_round  # noqa: E402
+import m66_verify  # noqa: E402
+m66_verify.POOL_MODE = "off"   # this script pools by itself; its stored family must read the stored seeds only
 
 E30, E15 = list(range(11000, 11030)), list(range(11000, 11015))
 LAY = ("fully_connected", "ring", "hex")

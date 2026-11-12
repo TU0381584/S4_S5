@@ -5,11 +5,12 @@ text each should read. --apply rewrites main.tex where a printed value differs."
 import argparse, os, re, sys
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 from m62_analysis import boot_ci, eval_log, seed_metrics
+from m66_verify import pooled_paths   # M107: pooled samples, with this script's own parser
 R = "/home/kmanojp/oranslice_rig/experiments/results"
 S30, S10, REP = list(range(900, 930)), list(range(900, 910)), list(range(1000, 1010))
 S30_19 = list(range(900, 912)) + [1000, 1001, 1002] + list(range(912, 927))
 def rows(cell, arm, seeds):
-    return {s: seed_metrics(p) for s in seeds if (p := eval_log(f"{R}/{cell}", arm, s))}
+    return {s: seed_metrics(p) for s, p in pooled_paths(cell, arm, seeds)}
 def fmt(lo, hi, d=2):
     f = lambda v: (f"$-${abs(v):.{d}f}" if v < 0 else f"{v:.{d}f}")
     return f"[{f(lo)}, {f(hi)}]"
@@ -26,7 +27,7 @@ for arm, r in B.items():
     v = [x["reward"] for x in r.values()]
     out.append((f"{sum(v)/len(v):.3f} & [", fmt(*boot_ci(v)), "T4 " + arm))   # CI in its own column since the figure audit
 def dci(a, b, seeds, label, key):
-    d = [a[s]["reward"] - b[s]["reward"] for s in seeds]
+    d = [a[s]["reward"] - b[s]["reward"] for s in sorted(set(a) & set(b))]   # every paired run of the (pooled) samples
     out.append((key, fmt(*boot_ci(d)), label))
 dci(A["axiom2"], A["independent_dqn"], S30, "A3 vs indep", "1.110 more reward per step than DQN-I, with 95\\% CI ")
 dci(A["axiom2"], A["mappo_tuned"], S30, "A3 vs MAPPO", "It earns 2.685 more than MAPPO, with 95\\% CI ")

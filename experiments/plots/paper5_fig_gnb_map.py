@@ -36,7 +36,7 @@ from matplotlib.patches import Polygon, RegularPolygon
 
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/framework")
-from m66_verify import S30_19, find_eval, prio, seeds_of  # noqa: E402
+from m66_verify import S30_19, find_eval, pooled_paths, prio, seeds_of  # noqa: E402
 from qoe_oran_framework.marl.topology import hex_cluster_coords  # noqa: E402
 
 SLICES = ("urllc", "embb", "mmtc")
@@ -118,7 +118,7 @@ def main():
     fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / H)
     slots = [(1.0, 19.5), (30.5, 19.5), (60.0, 19.5), (89.5, 19.5)]   # each header on three short lines at 8 pt
     for idx, (arm, label) in enumerate(ARMS):
-        mats = [gate_openness(p, n) for s in S30_19 if (p := find_eval(a.cell, arm, s))]
+        mats = [gate_openness(p, n) for s, p in pooled_paths(a.cell, arm, S30_19)]   # pooled with M107 seeds where the cell is pooled
         op = np.mean(mats, axis=0)
         corr = op.copy()
         corr[:, 2] = 1 - op[:, 2]

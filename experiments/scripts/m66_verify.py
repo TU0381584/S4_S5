@@ -79,7 +79,44 @@ def read(path):
 CACHE = {}
 
 
-def seeds_of(cell, arm, seeds):
+# ------------------------------------------------------------------ M107 seed extension
+# docs/PAPER5_M107_preregistration.md: the cells plotted in Figs. 5 and 7 are pooled with new seeds. When one of
+# these (cell, arm) pairs is read with its full stored seed list, seeds_of adds the M107 seeds (11000 and up, so the
+# integer keys never collide). A subset of the stored seeds, used to pair with another campaign on the same seeds,
+# is read unchanged. M107_POOL selects the mode: "on" pools; "off" (the default until M107 is analysed) reads the stored seeds only; "probe"
+# returns the stored runs relabelled as seed + 20000, so any code that still indexes the stored seed numbers
+# directly fails loudly instead of silently ignoring the new seeds.
+E30, E15 = list(range(11000, 11030)), list(range(11000, 11015))
+_LAY = ("fully_connected", "ring", "hex")
+_LEARN = ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned")
+POOL = {}
+for _a in _LEARN + ("axiom2_mlp",):
+    POOL[("m65_n3_view", _a)] = ("m107/A_n3", _a)
+POOL[("m65_n3_view", "heuristic")] = ("m107/A_n3", "rule_static")
+for _a in ("axiom2", "axiom2_mlp", "mappo_tuned"):          # m65_n3_view links these from M65 ...
+    POOL[("m65_reviewer/base", _a)] = ("m107/A_n3", _a)
+for _a in ("single_agent_dqn", "independent_dqn"):          # ... and these from M63
+    POOL[("m63_reviewer/base", _a)] = ("m107/A_n3", _a)
+POOL[("m63_reviewer/base", "heuristic")] = ("m107/A_n3", "rule_static")
+for _a in _LEARN + ("axiom2_mlp", "rule_static", "rule_accept_all", "rule_local", "rule_neighbour"):
+    POOL[("m64/n3_fully_connected", _a)] = ("m107/B_n3", _a)
+for _n in (7, 19):
+    for _t in _LAY:
+        for _a in _LEARN:
+            POOL[(f"m65_scaling/n{_n}_{_t}", _a)] = (f"m107/A_n{_n}_{_t}", _a)
+        POOL[(f"m70/R1/A_n{_n}_{_t}", "rule_static")] = (f"m107/A_n{_n}_{_t}", "rule_static")
+for _a in _LEARN + ("rule_static",):
+    POOL[("m73/A_n37_hex", _a)] = ("m107/A_n37_hex", _a)
+for _t in ("ring", "fully_connected"):
+    POOL[(f"m73/A_n37_{_t}", "axiom2")] = (f"m107/A_n37_{_t}", "axiom2")
+for _n in (7, 19, 37):
+    POOL[(f"m75/B_acceptall/n{_n}", "rule_accept_all")] = (f"m107/A_n{_n}_hex", "rule_accept_all")
+EXT_FOR = {frozenset(S30): E30, frozenset(S15): E15, frozenset(S30_19): E30}
+POOL_MODE = os.environ.get("M107_POOL", "off")   # becomes "on" once M107 has finished and been analysed
+POOL_LOG = []        # (cell, arm, n stored seeds, extended?) for every read of a pooled pair
+
+
+def _read_seeds(cell, arm, seeds):
     out = {}
     for s in seeds:
         key = (cell, arm, s)
@@ -88,6 +125,66 @@ def seeds_of(cell, arm, seeds):
             CACHE[key] = read(p) if p else None
         if CACHE[key] is not None:
             out[s] = CACHE[key]
+    return out
+
+
+PROBE_HITS = set()   # call sites that index a pooled sample by a plain stored seed number (probe mode only)
+
+
+class _PSeed(int):
+    """Probe mode: a seed key that came from the sample itself, not from a hard-coded seed list."""
+
+
+class _ProbeDict(dict):
+    """Probe mode: a pooled sample keyed by _PSeed. Looking it up with a plain int means the caller iterated a
+    hard-coded stored seed list instead of the sample's own keys, which would silently skip the new seeds."""
+    def _hit(self, key):
+        if type(key) is int:
+            import traceback
+            st = traceback.extract_stack()
+            fr = st[-3]
+            if fr.name != "paired":       # paired() intersects two samples; its keys may come from either side
+                PROBE_HITS.add((os.path.basename(fr.filename), fr.lineno, fr.line))
+
+    def __getitem__(self, key):
+        self._hit(key)
+        return dict.__getitem__(self, key)
+
+    def get(self, key, default=None):
+        self._hit(key)
+        return dict.get(self, key, default)
+
+
+def pooled_paths(cell, arm, seeds, pool=True):
+    """(seed, evaluation log path) for a sample, with the M107 seeds added exactly when seeds_of would add them;
+    for scripts that read the raw logs with their own parser."""
+    seeds = list(seeds)
+    out = [(s, find_eval(cell, arm, s)) for s in seeds]
+    ext = EXT_FOR.get(frozenset(seeds))
+    if pool and POOL_MODE == "on" and (cell, arm) in POOL and ext is not None:
+        pc, pa = POOL[(cell, arm)]
+        out += [(s, find_eval(pc, pa, s)) for s in ext]
+    return [(s, p) for s, p in out if p]
+
+
+def seeds_of(cell, arm, seeds, pool=True):
+    """pool=False reads exactly the given seeds, for checks about specific stored runs."""
+    seeds = list(seeds)
+    out = _read_seeds(cell, arm, seeds)
+    if not pool or POOL_MODE == "off":
+        return out
+    ext = EXT_FOR.get(frozenset(seeds))
+    if POOL_MODE == "probe":
+        if ext is not None and (cell, arm) in POOL:
+            return _ProbeDict({_PSeed(k): v for k, v in out.items()})
+        return out
+    if (cell, arm) not in POOL:
+        return out
+    POOL_LOG.append((cell, arm, len(seeds), ext is not None))
+    if ext is None:
+        return out
+    pc, pa = POOL[(cell, arm)]
+    out.update(_read_seeds(pc, pa, ext))
     return out
 
 
@@ -995,11 +1092,11 @@ def main():
            ("m66_repro/A_n19_ring", "m65_scaling/n19_ring", "axiom2", range(900, 902)),
            ("m66_repro/B_n7_ring", "m64/n7_ring", "axiom2_mlp", range(900, 903))]
     for fc, sc, arm, ss in v1:
-        x, y = seeds_of(fc, arm, ss), seeds_of(sc, arm, ss)
+        x, y = seeds_of(fc, arm, ss, pool=False), seeds_of(sc, arm, ss, pool=False)   # reruns of specific stored runs
         same = len(x) == len(y) == len(ss) and all(
             x[s]["reward"] == y[s]["reward"] and x[s]["blocks"] == y[s]["blocks"] and x[s]["sla"] == y[s]["sla"] for s in ss)
         C.note(f"V1 rerun {fc}/{arm} identical to stored on {len(ss)} seeds", same, None)
-    x, y = seeds_of("m66_repro/A_n3_oracle_equiv", "rule_static", S30), seeds_of("m65_n3_view", "heuristic", S30)
+    x, y = seeds_of("m66_repro/A_n3_oracle_equiv", "rule_static", S30, pool=False), seeds_of("m65_n3_view", "heuristic", S30, pool=False)
     C.note("V1 static rule identical to stored Env A oracle on 30 seeds",
            len(x) == 30 and all(x[s]["reward"] == y[s]["reward"] for s in S30), None)
     for name, fc, sc in (("m3 sigma0", "m66_repro/m3", "m65_m3"), ("m4 dropout", "m66_repro/m4", "m65_m4")):
@@ -1016,12 +1113,13 @@ def main():
     C.claim("single-agent seed 900 rerun maximum", "earned 7.45 to 9.67 reward per step, against 8.74 stored", max(sa), "{:.2f}")
     C.claim("single-agent seed 900 stored", "against 8.74 stored", seeds_of("m64/n3_fully_connected", "single_agent_dqn", [900])[900]["reward"], "{:.2f}")
     first = {900, 910, 920}
-    ax, sg = seeds_of("m65_n3_view", "axiom2", S30), seeds_of("m65_n3_view", "single_agent_dqn", S30)
+    # about three named stored seeds whose single-agent initialisation was unseeded: the stored sample only
+    ax, sg = seeds_of("m65_n3_view", "axiom2", S30, pool=False), seeds_of("m65_n3_view", "single_agent_dqn", S30, pool=False)
     keep = [s for s in S30 if s not in first]
     C.claim("Env A lead over single-agent without unseeded-init seeds", "moves from $+0.311$ to $+0.241$ per step",
             paired({s: ax[s] for s in keep}, {s: sg[s] for s in keep})["diff"], "{:+.3f}")
     # Env A conclusion: lead over single-agent positive but not significant after Holm over the three baselines
-    exA = {k: paired({s: ax[s] for s in keep}, {s: v for s, v in seeds_of("m65_n3_view", k, S30).items() if s not in first})
+    exA = {k: paired({s: ax[s] for s in keep}, {s: v for s, v in seeds_of("m65_n3_view", k, S30, pool=False).items() if s not in first})
            for k in ("single_agent_dqn", "independent_dqn", "mappo_tuned")}
     hA = holm({k: v["p"] for k, v in exA.items()})
     C.note("Env A N=3 every comparison keeps its direction without unseeded-init seeds",
@@ -1310,7 +1408,7 @@ def main():
         return acc / cnt
     gm = {}
     for arm in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"):
-        mats = [gate_open(p_) for s_ in S30_19 if (p_ := find_eval("m65_scaling/n19_hex", arm, s_))]
+        mats = [gate_open(p_) for s_, p_ in pooled_paths("m65_scaling/n19_hex", arm, S30_19)]
         gm[arm] = (len(mats), np.mean(mats, axis=0))
     ax_ = gm["axiom2"][1]
     C.claim("map AXIOM URLLC gate", "at 1.00 and 0.97, while closing the mMTC gate to 0.08", float(ax_[:, 0].mean()), "{:.2f}")
@@ -1327,7 +1425,7 @@ def main():
     # since M73 the figure shows the 37-gNB hex cluster; the 19-gNB numbers above stay in the text as a comparison
     gm37 = {}
     for arm in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"):
-        mats = [gate_open(p_, 37) for s_ in S30_19 if (p_ := find_eval("m73/A_n37_hex", arm, s_))]
+        mats = [gate_open(p_, 37) for s_, p_ in pooled_paths("m73/A_n37_hex", arm, S30_19)]
         gm37[arm] = (len(mats), np.mean(mats, axis=0))
     a37_ = gm37["axiom2"][1]
     C.claim("reframe: map37 AXIOM URLLC gate", "at 1.00 and 0.98, and closes the mMTC gate to 0.16", float(a37_[:, 0].mean()), "{:.2f}")
@@ -1374,8 +1472,8 @@ def main():
         O_ = seeds_of(c_, o_, ss_)
         for a_ in ("axiom2", "single_agent_dqn", "independent_dqn"):
             A_ = seeds_of(c_, a_, ss_)
-            for s_ in ss_:
-                if s_ in A_ and s_ in O_:
+            for s_ in sorted(set(A_) & set(O_)):       # every run of the (pooled) sample
+                if True:
                     ex_tot += 1
                     e_ = A_[s_]["reward"] - O_[s_]["reward"]
                     if e_ > 1e-9:
@@ -1809,7 +1907,7 @@ def main():
     tp_ = {k_: 100 * mean(v_, prio) for k_, v_ in tcr_.items()}
     C.claim("reframe: M75 C tuned independent at 19", "DQN-I & 19 & $3{\\times}10^{-4}$, 64 & 59.1\\%", tp_[(19, "independent_dqn")], "{:.1f}")
     C.claim("reframe: M75 C tuned independent at 37", "DQN-I & 37 & $10^{-4}$, 64 & 45.5\\%", tp_[(37, "independent_dqn")], "{:.1f}")
-    sa19_, aa19_ = tcr_[(19, "single_agent_dqn")], seeds_of("m75/B_acceptall/n19", "rule_accept_all", S30_19)
+    sa19_, aa19_ = tcr_[(19, "single_agent_dqn")], seeds_of("m75/B_acceptall/n19", "rule_accept_all", S30_19, pool=False)
     C.note("reframe: M75 C tuned single-agent at 19 accepts everything and matches accept-all exactly",
            all(r["collapsed"] for r in sa19_.values()) and len(sa19_) == 30
            and all(sa19_[s_]["reward"] == aa19_[s_]["reward"] and sa19_[s_]["sla"] == aa19_[s_]["sla"] for s_ in S30_19), None)
@@ -2464,8 +2562,8 @@ def main():
     s93_ = json.load(open("/home/kmanojp/oranslice_rig/experiments/results/m93/m93_summary.json"))
     L3_ = ("fully_connected", "ring", "hex")
     def lr93_(cell_, arm_, ss_):
-        d_ = seeds_of(cell_, arm_, ss_)
-        return [d_[s_] for s_ in ss_] if len(d_) == len(ss_) else None
+        d_ = seeds_of(cell_, arm_, ss_)                  # pooled where the cell is pooled (M107)
+        return [d_[s_] for s_ in sorted(d_)] if set(ss_) <= set(d_) else None
     lab93_ = {"AXIOM": "axiom2", "DQN-SA": "single_agent_dqn", "DQN-I": "independent_dqn", "MAPPO": "mappo_tuned"}
     cells93_ = {}
     cells93_["Env A, 3 gNBs"] = (3, {**{k_: [lr93_("m65_reviewer/base" if k_ in ("AXIOM", "MAPPO") else "m63_reviewer/base", v_, S30)]
@@ -2660,7 +2758,7 @@ def main():
     mp92_ = all(C92_[f"A_hex_n{n_}"][f"MAPPO-7to{n_}"][s_]["reward_per_gnb"] == C92_[f"A_{t_}_n{n_}"][f"MAPPO-7to{n_}"][s_]["reward_per_gnb"]
                 for n_ in (19, 37) for t_ in ("ring", "fully_connected") for s_ in S15)
     fc19_ = paired(C92_["A_fully_connected_n19"]["AXIOM-7to19"], C92_["A_fully_connected_n19"]["AXIOM trained at 19"], lambda r_: r_["reward_per_gnb"])
-    tfc_ = seeds_of("m65_scaling/n19_fully_connected", "axiom2", S15); sfc_ = seeds_of("m70/R1/A_n19_fully_connected", "rule_static", S15)
+    tfc_ = seeds_of("m65_scaling/n19_fully_connected", "axiom2", S15, pool=False); sfc_ = seeds_of("m70/R1/A_n19_fully_connected", "rule_static", S15, pool=False)
     C.note("M92 MAPPO identical on all three Env A layouts; at 19 fully-connected AXIOM trained there equals the static rule, transferred trails by 0.10, p 0.068",
            mp92_
            and all(tfc_[x_]["reward"] == sfc_[x_]["reward"] for x_ in S15) and f"{-fc19_['diff']:.2f}" == "0.10" and f"{fc19_['p']:.3f}" == "0.068"
@@ -2686,7 +2784,7 @@ def main():
     sel97_ = json.load(open(f"{ROOT}/m97/A_n37_hex/rule_local_selection.json"))
     rl97_ = seeds_of("m97/A_n37_hex", "rule_local", S30_19)
     k97_ = {int(s_): r_ for f_ in glob.glob(f"{ROOT}/m97/A_n37_hex_kpi/rule_local_cell_*.json") for s_, r_ in json.load(open(f_)).items()}
-    st97_ = seeds_of("m73/A_n37_hex", "rule_static", S30_19)
+    st97_ = seeds_of("m73/A_n37_hex", "rule_static", S30_19, pool=False)   # paired with M97's 30 stored seeds
     C.note("M97 tuned local rule in Env A at 37 gNBs: 30 held-out evaluations, the best of the 95-rule grid kept, every recorder re-run reproduces its log",
            len(rl97_) == 30 and sorted(k97_) == sorted(S30_19) and all(r_["reproduces_stored"] is True for r_ in k97_.values())
            and len(sel97_["grid"]) == 95 and sel97_["train_score"] == max(g_[0] for g_ in sel97_["grid"])
@@ -3000,6 +3098,9 @@ def main():
     import m82_audit
     m82_audit.run(C)
 
+    if POOL_MODE == "probe":
+        json.dump(sorted(PROBE_HITS), open(a.out + ".probe_hits.json", "w"), indent=1)
+        print(f"PROBE: {len(PROBE_HITS)} call sites index a pooled sample by stored seed numbers")
     n_total = len(C.rows) + 1
     C.note(f"text quotes the final check count of {n_total}", f"all {n_total} of its checks pass" in C.tex, n_total)
     rows = C.rows

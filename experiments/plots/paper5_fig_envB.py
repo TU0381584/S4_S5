@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
-"""Main Fig. 7: Env B reward per step at three gNBs, 30 seeds, the four learned policies and the two tuned rules.
+"""Main Fig. 7: Env B reward per step at three gNBs, every seed of the cell (30 stored, pooled with the 30 M107 seeds
+since 2026-11, docs/PAPER5_M107_preregistration.md), the four learned policies and the two tuned rules.
 
 Per-seed points (solid tints, so the EPS needs no transparency) behind the mean and its 95% CI. CIs are the paper's
 order-independent bootstrap (m62_analysis.boot_ci), the same intervals Table 5 prints. Learned policies are filled
@@ -19,6 +20,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/experiments/scripts")
 sys.path.insert(0, "/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures")
 from m62_analysis import boot_ci, eval_log, seed_metrics  # noqa: E402
+from m66_verify import ROOT, S30, pooled_paths  # noqa: E402
 import axiom_style as S  # noqa: E402
 
 S.setup()
@@ -29,7 +31,8 @@ X = {a: x for a, x in zip(ARMS, (0, 1, 2, 3, 4.5, 5.5))}
 
 
 def load(cell, arms, seeds):
-    return {a: [seed_metrics(p) for s in seeds if (p := eval_log(cell, a, s))] for a in arms}
+    rel = os.path.relpath(cell, ROOT)          # pooled_paths adds the M107 seeds when the cell is pooled
+    return {a: [seed_metrics(p) for s, p in pooled_paths(rel, a, seeds)] for a in arms}
 
 
 def main():
@@ -37,7 +40,7 @@ def main():
     ap.add_argument("--root", required=True)
     ap.add_argument("--out", required=True)
     a = ap.parse_args()
-    d3 = load(f"{a.root}/n3_fully_connected", ARMS, list(range(900, 930)))
+    d3 = load(f"{a.root}/n3_fully_connected", ARMS, S30)
     fig = S.figure("col", 52)
     ax = fig.add_axes([0.33, 0.19, 0.64, 0.78])
     rng = np.random.default_rng(0)
