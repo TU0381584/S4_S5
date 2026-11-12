@@ -22,9 +22,9 @@ No verdict moved against AXIOM. All 16 tests that have AXIOM ahead under last ch
 | Env B 19 hex | DQN-SA | +6.53 (10/0/0) | +6.84 (10/0/0) | +4.92 | +5.05 |
 | Env B 19 hex | DQN-I | +8.71 (10/0/0) | +6.97 (10/0/0) | +5.01 | +4.71 |
 | Env A 7 hex | DQN-SA | +3.08 (9/1/0) | +2.70 (9/1/0) | +17.42 | +12.91 |
-| Env A 7 hex | DQN-I | +5.98 (10/0/0) | +4.70 (10/0/0) | +28.74 | +21.97 |
-| Env B 7 ring | DQN-SA | +1.76, within chance | +0.50, within chance | +3.43, within chance | +1.58, within chance |
-| Env B 7 ring | DQN-I | +2.76, within chance | +2.61, ahead | +8.13, within chance | +12.89, ahead |
+| Env A 7 hex | DQN-I | +5.98 (10/0/0) | +4.70 (10/0/0) | +28.74 | +21.96 |
+| Env B 7 ring | DQN-SA | +1.76, within chance | +0.49, within chance | +3.43, within chance | +1.57, within chance |
+| Env B 7 ring | DQN-I | +2.76, within chance | +2.61, ahead | +8.13, within chance | +12.88, ahead |
 
 All other entries are "AXIOM ahead" at Holm 0.039. Ten seeds cannot give a smaller Holm p over 20 tests.
 
@@ -48,3 +48,7 @@ All other entries are "AXIOM ahead" at Holm 0.039. Ten seeds cannot give a small
 2. Adopt selection for every value-based arm and rerun everything (about 700 runs, 1.5 to 2 days). The figures and tables would change as described above. The 3-gNB claim against DQN-SA would become a tie.
 
 The pre-registered rule says the rerun is needed, and this document does not overrule it. The choice is the author's. The manuscript is unchanged.
+
+## Audit notes (2026-11-12)
+
+An independent recomputation (experiments/scripts/audit_m102_m106.py) reproduces every test above from the raw logs, with its own reader and statistics. Four table entries were first rounded from 3-decimal values (for example 21.965 shown as +21.97). They now show the stored values rounded once (+21.96, +0.49, +1.57, +12.88). A sign-flip permutation test agrees with the Wilcoxon verdicts on 39 of 40 tests. The exception is AXIOM against DQN-I on reward in Env B at 7 gNBs with last checkpoints, Holm 0.055 by Wilcoxon and 0.047 by permutation. That is the reward half of trigger 1, so the verdict change there depends on the choice of test. M106 found AXIOM ahead on reward in that cell with either checkpoint.

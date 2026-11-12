@@ -36,6 +36,10 @@ Checkpoint selection mostly helps the baselines, because AXIOM's last checkpoint
 
 ## Proposed wording, if the author keeps the last-checkpoint procedure (option 1 in M105)
 
-A robustness paragraph or OR1 section could say: "Selecting each value-based learner's checkpoint on held-out validation episodes, applied equally to AXIOM and both DQN baselines, leaves every comparison at 7, 19 and 37 gNBs in place and adds AXIOM's compliance lead over DQN-I in Env B at seven gNBs. At three gNBs it lifts the single-agent DQN to within 0.04 reward per step of AXIOM, a difference not significant on 30 fresh seeds."
+A robustness paragraph or OR1 section could say: "Selecting each value-based learner's checkpoint on held-out validation episodes, applied equally to AXIOM and both DQN baselines, leaves every comparison at 7, 19 and 37 gNBs in place and adds AXIOM's compliance lead over DQN-I in Env B at seven gNBs. At three gNBs it lifts the single-agent DQN to within 0.04 reward per step of AXIOM, a difference that is not significant on 30 fresh seeds after Holm correction over the eight tests (raw p 0.036)."
 
 The paper's three-gNB claim against DQN-SA would then need a qualifier in the main text, whichever option is chosen. The manuscript is unchanged.
+
+## Audit notes (2026-11-12)
+
+An independent recomputation (experiments/scripts/audit_m102_m106.py) reproduces every test from the raw logs except one p-value. For AXIOM against DQN-SA on compliance at 3 gNBs with last checkpoints, two seeds' differences are mathematically equal but are stored about 1e-14 apart. The pre-registered analysis therefore ranks them as distinct and reports p 0.0079 (Holm 0.032). With the tie recognised, p is 0.0071 (Holm 0.028). The verdict is the same, and no other p-value in M98 to M106 changes when ties are recognised.

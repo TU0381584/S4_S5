@@ -1,10 +1,10 @@
 # Exploratory diagnosis of AXIOM's collapsed runs at 37 gNBs (2026-11-11)
 
-Not pre-registered and not a reported result: it reads stored training logs and re-evaluates stored checkpoints, and it motivates M104. Scripts: the scratch files collapse_diag.py and collapse_probe.py, whose logic is reproduced below.
+Not pre-registered and not a reported result: it reads stored training logs and re-evaluates stored checkpoints, and it motivates M104. Items 1 to 3 were first computed with scratch scripts that were never committed and were lost when the scratch directory was cleared. On 2026-11-12 they were rebuilt as experiments/scripts/m104_collapse_diag.py (output experiments/results/m104_collapse_diag.json), which reproduces every number in items 1 to 3. Items 4 and 5 come from experiments/scripts/m104_instability_diag.py.
 
 1. Training trajectories. For every AXIOM run at 37 gNBs (M73 hex 30 seeds, M96 8000 to 8019, M101 9960 to 9979; 70 runs, 8 collapsed at evaluation) and every MLP run (M100, M101; 40 runs, none collapsed), the per-episode training rollups give blocked requests by slice. Mean mMTC blocks per episode in the last 50 training episodes: AXIOM healthy 682, AXIOM collapsed 508, MLP 655. Five of the eight collapsed runs (8002, 8010, 9964, 919, 924) blocked 755 to 780 mMTC requests per episode at the end of training, as many as healthy runs. The other three blocked 23 to 123.
 
-2. Final training episode, step by step (episode 300). Runs 8002, 8010 and 919 switch within the episode between steps that block nearly every mMTC request and steps that accept them all. 8002 ends in an accepting phase over its last six steps; 8010 and 919 switch to accepting partway through and stay there. Healthy run 8000 blocks mMTC at every step to the end.
+2. Final training episode, step by step (episode 300). Runs 8002, 8010 and 919 switch within the episode between steps that block nearly every mMTC request and steps that accept nearly all of them (0 to 4 of about 42 pending requests blocked per step, consistent with 5% exploration). 8002 ends in an accepting phase over its last six steps; 8010 and 919 switch to accepting partway through and stay there. Healthy run 8000 blocks mMTC at every step to the end.
 
 3. Re-evaluating the stored checkpoints greedily, 5 episodes each, no learning:
    - On the evaluation stream (5000 + seed): 8002 and 8010 block 0 requests; 8000 blocks 4,338 mMTC requests.
