@@ -1,0 +1,665 @@
+FAIL T3 heuristic has 30 seeds  computed=60 formatted=None in_tex=None
+FAIL T3 heuristic reward  computed=12.849165160762958 formatted=12.849 in_tex=False
+FAIL T3 heuristic URLLC/eMBB/mMTC  computed=99.99666666666668 formatted=100.0 in_tex=False
+PASS T3 heuristic precision
+FAIL T3 axiom2 has 30 seeds  computed=60 formatted=None in_tex=None
+FAIL T3 axiom2 reward  computed=12.74815822697047 formatted=12.748 in_tex=False
+FAIL T3 axiom2 URLLC/eMBB/mMTC  computed=99.86222222222223 formatted=99.9 in_tex=False
+FAIL T3 axiom2 precision  computed=0.9957559837760523 formatted=0.996 in_tex=False
+FAIL T3 axiom2_mlp has 30 seeds  computed=60 formatted=None in_tex=None
+FAIL T3 single_agent_dqn has 30 seeds  computed=60 formatted=None in_tex=None
+FAIL T3 single_agent_dqn reward  computed=12.43664627787952 formatted=12.437 in_tex=False
+FAIL T3 single_agent_dqn URLLC/eMBB/mMTC  computed=99.51944444444443 formatted=99.5 in_tex=False
+FAIL T3 single_agent_dqn precision  computed=0.9896169906796037 formatted=0.990 in_tex=False
+FAIL T3 independent_dqn has 30 seeds  computed=60 formatted=None in_tex=None
+FAIL T3 independent_dqn reward  computed=11.686914618925833 formatted=11.687 in_tex=False
+FAIL T3 independent_dqn URLLC/eMBB/mMTC  computed=99.15222222222224 formatted=99.2 in_tex=False
+FAIL T3 independent_dqn precision  computed=0.9724885282896738 formatted=0.972 in_tex=False
+FAIL T3 mappo_tuned has 30 seeds  computed=60 formatted=None in_tex=None
+FAIL T3 mappo_tuned reward  computed=10.265763657915647 formatted=10.266 in_tex=False
+FAIL T3 mappo_tuned URLLC/eMBB/mMTC  computed=97.94166666666668 formatted=97.9 in_tex=False
+FAIL T3 mappo_tuned precision  computed=0.72753770080592 formatted=0.728 in_tex=False
+FAIL A3 vs indep diff  computed=1.0612436080446337 formatted=1.061 in_tex=True
+FAIL A3 vs mappo diff  computed=2.482394569054821 formatted=2.482 in_tex=True
+FAIL A3 vs single diff  computed=0.3115119490909521 formatted=0.312 in_tex=True
+FAIL A3 vs single p_holm  computed=0.0021403641618492316 formatted=0.002 in_tex=True
+PASS A3 vs indep and MAPPO p_holm <= 0.0002
+FAIL A3 oracle ties  computed=40 formatted=/40/ in_tex=True
+FAIL A3 pct of oracle  computed=99.21390275143378 formatted=99.2 in_tex=True
+FAIL T3 heuristic row reads 100.0 and 5/40/15  computed=(5, 40, 15) formatted=None in_tex=None
+FAIL T3 single_agent_dqn row reads 96.8 and 31/16/13  computed=(31, 16, 13) formatted=None in_tex=None
+FAIL T3 independent_dqn row reads 91.0 and 56/0/4  computed=(56, 0, 4) formatted=None in_tex=None
+FAIL T3 mappo_tuned row reads 79.9 and 58/1/1  computed=(58, 1, 1) formatted=None in_tex=None
+PASS A3 AXIOM earns more than every other learner, so it comes closest to the oracle
+FAIL A3 MLP diff  computed=0.06818928281928706 formatted=0.068 in_tex=True
+FAIL A3 MLP diff in the supplement  computed=0.06818928281928706 formatted=0.068 in_tex=True
+PASS N19 ring AXIOM over MLP
+PASS N19 ring MLP ties
+PASS N19 ring MLP 12 seeds, not significant
+PASS supp N19 ring AXIOM over MLP
+PASS Arep vs single_agent_dqn
+PASS Arep vs independent_dqn
+PASS Arep vs mappo_tuned
+PASS Arep three leads p_holm <= 0.024 (no p bound is quoted in the text)
+FAIL pooled40 vs single_agent_dqn  computed=0.42174885780265103 formatted=0.422 in_tex=True
+FAIL pooled40 vs independent_dqn  computed=1.0237164908908492 formatted=1.024 in_tex=True
+FAIL pooled40 vs mappo_tuned  computed=2.6714701663593465 formatted=2.671 in_tex=True
+PASS pooled40 leads p_holm <= 0.0023
+PASS sens load102 within 0.13 of oracle, n.s.
+PASS sens load107 within 0.13 of oracle, n.s.
+PASS sens weights within 0.13 of oracle, n.s.
+PASS accept-all reward
+PASS accept-all eMBB
+PASS shed-mMTC reward
+FAIL T4 rule_accept_all reward  computed=4.17694809843749 formatted=4.177 in_tex=False
+FAIL T4 rule_accept_all slices  computed=94.93444444444444 formatted=94.9 in_tex=False
+FAIL T4 rule_static reward  computed=6.16229751497571 formatted=6.162 in_tex=False
+FAIL T4 rule_static slices  computed=36.66 formatted=36.7 in_tex=False
+FAIL T4 rule_local reward  computed=9.148878135874702 formatted=9.149 in_tex=False
+FAIL T4 rule_local slices  computed=38.471111111111114 formatted=38.5 in_tex=False
+FAIL T4 rule_neighbour reward  computed=8.9575857996473 formatted=8.958 in_tex=False
+FAIL T4 rule_neighbour slices  computed=88.9838888888889 formatted=89.0 in_tex=False
+FAIL T4 axiom2 reward  computed=8.722551128339392 formatted=8.723 in_tex=False
+FAIL T4 axiom2 slices  computed=42.354444444444454 formatted=42.4 in_tex=False
+FAIL T4 single_agent_dqn reward  computed=7.384503691542995 formatted=7.385 in_tex=False
+FAIL T4 single_agent_dqn slices  computed=40.54333333333334 formatted=40.5 in_tex=False
+FAIL T4 independent_dqn reward  computed=7.601492482854713 formatted=7.601 in_tex=False
+FAIL T4 independent_dqn slices  computed=43.49888888888889 formatted=43.5 in_tex=False
+FAIL T4 mappo_tuned reward  computed=6.921392826051942 formatted=6.921 in_tex=False
+FAIL T4 mappo_tuned slices  computed=55.54611111111111 formatted=55.5 in_tex=False
+FAIL H1 static  computed=2.5602536133636806 formatted=2.560 in_tex=True
+FAIL H1 accept-all  computed=4.545603029901901 formatted=4.546 in_tex=True
+FAIL H1 all 30 seeds won  computed={'rule_static': 60, 'rule_accept_all': 60} formatted=None in_tex=None
+FAIL EnvB static URLLC  computed=61.474444444444444 formatted=61.5 in_tex=True
+FAIL EnvB AXIOM URLLC  computed=95.68333333333334 formatted=95.7 in_tex=True
+FAIL H2 n3 vs independent_dqn  computed=1.121058645484678 formatted=1.121 in_tex=True
+FAIL H2 n3 vs single_agent_dqn  computed=1.3380474367963948 formatted=1.338 in_tex=True
+FAIL H2 n3 vs mappo_tuned  computed=1.801158302287449 formatted=1.801 in_tex=True
+FAIL H2 rule_local gap  computed=0.4263270075353111 formatted=0.426 in_tex=True
+FAIL H2 rule_local seeds  computed=49 formatted=/49 in_tex=True
+FAIL T4 rule_accept_all row reads ] & 45.7 & 60/0/0 & 60/0/0 &  computed=] & 45.7 & 60/0/0 & 60/0/0 & formatted=None in_tex=None
+FAIL T4 rule_static row reads ] & 67.4 & 60/0/0 & 60/0/0 &  computed=] & 67.4 & 60/0/0 & 60/0/0 & formatted=None in_tex=None
+FAIL T4 rule_local row reads ] & 100.0 & 11/0/49 & 10/0/50 &  computed=] & 100.0 & 11/0/49 & 10/0/50 & formatted=None in_tex=None
+FAIL T4 rule_neighbour row reads ] & 97.9 & 26/0/34 & 42/0/18 &  computed=] & 97.9 & 26/0/34 & 42/0/18 & formatted=None in_tex=None
+FAIL T4 single_agent_dqn row reads ] & 80.7 & 56/0/4 & 52/0/8 &  computed=] & 80.7 & 56/0/4 & 52/0/8 & formatted=None in_tex=None
+FAIL T4 independent_dqn row reads ] & 83.1 & 56/0/4 & 53/0/7 &  computed=] & 83.1 & 56/0/4 & 53/0/7 & formatted=None in_tex=None
+FAIL T4 mappo_tuned row reads ] & 75.7 & 56/0/4 & 49/0/11 &  computed=] & 75.7 & 56/0/4 & 49/0/11 & formatted=None in_tex=None
+FAIL T4 AXIOM row reads 95.5 of the tuned rule  computed=None formatted=None in_tex=None
+PASS H2 n3 learned leads all p_holm < 0.0001
+PASS H2 n3 rule_local reward p_holm < 0.0001
+PASS H3 ring MLP wins 10 of 15
+PASS H3 hex MLP wins 10 of 15
+PASS H3 ring diff
+PASS H3 ring p
+PASS H3 hex p
+PASS N7 rules 26.5-27.3 and learned 20.3-24.6
+PASS N7 rules beat AXIOM in all 15 seeds every layout
+PASS N7 AXIOM 23.4-23.6, static 23.6
+PASS N7 all 18 tests significant at stated bound 0.011
+FAIL N7 seed counts  computed={'fully_connected|axiom2': 30, 'fully_connected|single_agent_dqn': 30, 'fully_connected|independent_dqn': 30, 'fully_connected|mappo_tuned': 30, 'ring|axiom2': 30, 'ring|single_agent_dqn': 30, 'ring|independent_dqn': 30, 'ring|mappo_tuned': 30, 'hex|axiom2': 30, 'hex|single_agent_dqn': 30, 'hex|independent_dqn': 30, 'hex|mappo_tuned': 30} formatted=None in_tex=None
+PASS N7 AXIOM URLLC/eMBB 99.8/94.4
+PASS N19 all 18 tests significant at stated bound 0.0001
+FAIL N19 seed counts  computed={'fully_connected|axiom2': 60, 'fully_connected|single_agent_dqn': 60, 'fully_connected|independent_dqn': 60, 'fully_connected|mappo_tuned': 60, 'ring|axiom2': 60, 'ring|single_agent_dqn': 60, 'ring|independent_dqn': 60, 'ring|mappo_tuned': 60, 'hex|axiom2': 60, 'hex|single_agent_dqn': 60, 'hex|independent_dqn': 60, 'hex|mappo_tuned': 60} formatted=None in_tex=None
+FAIL N19 AXIOM pooled  computed=97.42222222222222 formatted=97.4 in_tex=True
+FAIL N19 baselines: Fig. 5a plots the pooled 19-gNB compliance of every policy as recomputed here (Table 3 retired in the figure audit)  computed={'axiom2': 97.42, 'single_agent_dqn': 64.83, 'independent_dqn': 56.51, 'mappo_tuned': 61.27} formatted=None in_tex=None
+FAIL N19 indep and MAPPO pooled 56.4 and 60.6  computed={'axiom2': 0.9742222222222221, 'single_agent_dqn': 0.6482824074074075, 'independent_dqn': 0.5651361111111112, 'mappo_tuned': 0.6126972222222221} formatted=None in_tex=None
+FAIL N19 single collapse: Fig. 5b plots 84 of 90 DQN-SA runs collapsed at 19 gNBs  computed={'axiom2': 2, 'single_agent_dqn': 163, 'independent_dqn': 6, 'mappo_tuned': 0} formatted=None in_tex=None
+FAIL N19 collapse counts 3, 1, 0  computed={'axiom2': 2, 'single_agent_dqn': 163, 'independent_dqn': 6, 'mappo_tuned': 0} formatted=None in_tex=None
+PASS fed central
+PASS fed federated
+PASS fed diff
+PASS fed p
+PASS DP steps
+PASS DP epsilons within 1% of the quoted values
+PASS disruption metric: steps with zero pending requests change the normalised reward
+PASS disruption undisrupted 3.56, 3.65, 3.32
+PASS AXIOM dropout cost 0.46 to 3.37
+PASS AXIOM churn cost 0.38 to 2.46
+PASS normalised-reward definition: text max(n,1) equals code's skip of n=0 steps on every disruption cell
+PASS churn kept 1.88/1.10 vs 2.29/1.72
+PASS AXIOM spike precision 0.98
+FAIL Table 2 Env B reward 8.83/7.49/7.79/6.97  computed={'axiom2': 8.722551128339392, 'single_agent_dqn': 7.384503691542995, 'independent_dqn': 7.601492482854713, 'mappo_tuned': 6.921392826051942} formatted=None in_tex=None
+PASS Table 2 Env B priority SLA at 7 gNBs 35.1/44.3/39.9/35.9
+FAIL Fig 9 percent of oracle 98.9/96.5/90.3/78.0  computed={'axiom2': 99.21390275143378, 'single_agent_dqn': 96.78952774190239, 'independent_dqn': 90.95466104376766, 'mappo_tuned': 79.8944019278688} formatted=None in_tex=None
+FAIL abstract: AXIOM beats static by 39% and accept-all by 103% in Env B  computed=(1.4154706271713942, 2.0882593996325496) formatted=None in_tex=None
+FAIL Env B section 3: tuned rule URLLC 98.9  computed=98.6511111111111 formatted=98.7 in_tex=True
+PASS Env B replication: AXIOM wins 7 or 8 of 10 against each
+PASS original AXIOM 2.37 below in all ten seeds
+PASS LR 3e-3 and wide within 0.19, not significant
+FAIL N7 compliance lead range (17.9, 29.9)  computed=(15.143888888888887, 29.77444444444445) formatted=None in_tex=None
+FAIL N7 reward lead range (3.4, 7.07)  computed=(3.3809858734884726, 7.820869920310623) formatted=None in_tex=None
+FAIL N19 compliance lead range (31.0, 42.1)  computed=(32.07722222222222, 41.40833333333333) formatted=None in_tex=None
+FAIL N19 reward lead range (10.7, 18.6)  computed=(11.411424333253239, 18.41415049705302) formatted=None in_tex=None
+PASS N19 wins 28 to 30 of 30 (compliance)
+FAIL N19 AXIOM URLLC/eMBB 99.4/95.1  computed=(99.5351851851852, 95.30925925925926) formatted=None in_tex=None
+PASS screen fails AXIOM 1/30, 1/45, 5/90 and single 89/90
+PASS AXIOM's one N=19 collapse fails the screen
+PASS Table 5 parameters
+PASS Table 5 AXIOM latency 1.04/1.98/4.79 ms
+FAIL T3 heuristic CI  computed=(np.float64(12.803), np.float64(12.897), 'Static rule & 12.835 & [12.77, 12.91] & 100.0 & 2/22/6 & 1.000 & 0/30 & 100.0 & 100.0 & 36.6 \\\\') formatted=None in_tex=None
+FAIL T3 axiom2 CI  computed=(np.float64(12.629), np.float64(12.846), 'AXIOM & 12.698 & [12.49, 12.86] & 98.9 & -- & 0.992 & 0/30 & 99.8 & 97.9 & 38.9 \\\\') formatted=None in_tex=None
+FAIL T3 single_agent_dqn CI  computed=(np.float64(12.195), np.float64(12.635), 'DQN-SA & 12.387 & [12.11, 12.63] & 96.5 & 15/8/7 & 0.990 & 0/30 & 99.4 & 94.1 & 43.6 \\\\') formatted=None in_tex=None
+FAIL T3 independent_dqn CI  computed=(np.float64(11.388), np.float64(11.96), 'DQN-I & 11.587 & [11.11, 12.02] & 90.3 & 27/0/3 & 0.962 & 0/30 & 99.3 & 86.5 & 40.2 \\\\') formatted=None in_tex=None
+FAIL T3 mappo_tuned CI  computed=(np.float64(9.789), np.float64(10.721), 'MAPPO & 10.013 & [9.30, 10.73] & 78.0 & 29/1/0 & 0.707 & 2/30 & 97.8 & 57.6 & 66.4 \\\\') formatted=None in_tex=None
+FAIL T4 rule_accept_all CI  computed=(np.float64(4.019), np.float64(4.344), 'MISSING') formatted=None in_tex=None
+FAIL T4 rule_static CI  computed=(np.float64(5.93), np.float64(6.399), 'MISSING') formatted=None in_tex=None
+FAIL T4 rule_local CI  computed=(np.float64(9.049), np.float64(9.25), 'MISSING') formatted=None in_tex=None
+FAIL T4 rule_neighbour CI  computed=(np.float64(8.874), np.float64(9.043), 'MISSING') formatted=None in_tex=None
+FAIL T4 axiom2 CI  computed=(np.float64(8.566), np.float64(8.874), 'MISSING') formatted=None in_tex=None
+FAIL T4 single_agent_dqn CI  computed=(np.float64(7.093), np.float64(7.649), 'MISSING') formatted=None in_tex=None
+FAIL T4 independent_dqn CI  computed=(np.float64(7.337), np.float64(7.858), 'MISSING') formatted=None in_tex=None
+FAIL T4 mappo_tuned CI  computed=(np.float64(6.537), np.float64(7.296), 'MISSING') formatted=None in_tex=None
+PASS A3 vs indep CI
+PASS A3 vs MAPPO CI
+PASS A3 vs single CI
+PASS A3 vs MLP CI
+PASS federation cost CI
+FAIL N19 pooled CI  computed=(np.float64(96.01), np.float64(98.671), '[95.2\\%, 99.0\\%]') formatted=None in_tex=None
+FAIL Env B N=3: AXIOM wins 24 to 29 of 30  computed=[56, 53, 56, 52, 56, 49] formatted=None in_tex=None
+PASS Env B N=7 ring: single-agent beats AXIOM on priority SLA at p_holm 0.012 (ties within 1e-9, 2026-11-12; 0.011 before)
+PASS Env B N=7: AXIOM's only significant learned leads are MAPPO reward on fully-connected and ring
+PASS Env A sensitivity: all six leads positive, exactly two significant
+PASS sampled learned seeds trained for exactly 300 episodes
+FAIL Fig 5c plotted reward per gNB matches recomputation from the logs at every size  computed={'AXIOM': {3: 4.249386075656823, 7: 4.516883739089426, 19: 4.709048394113314, 37: 4.727678800582717}, 'DQN-SA': {3: 4.145548759293172, 7: 3.935727580540185, 19: 4.091896197664385, 37: 3.914595190488376}, 'DQN-I': {3: 3.8956382063086124, 7: 3.894400323443105, 19: 4.0225248723827365, 37: 4.02361013176125}, 'MAPPO': {3: 3.421921219305216, 7: 3.4228376684691315, 19: 3.7488933787650285, 37: 3.922295025782297}} formatted=None in_tex=None
+PASS Env A text: AXIOM 4.2 to 4.7 reward per gNB and above 93% at every size, every baseline falls (Fig. 5a and c)
+FAIL Env A text: MAPPO the only learned policy that never collapses at 37 gNBs, AXIOM 6 of 60  computed={'AXIOM': (9, 120), 'DQN-SA': (54, 60), 'DQN-I': (7, 60), 'MAPPO': (0, 60)} formatted=None in_tex=None
+FAIL Env B text by size: falls from 65.1\% at three gNBs  computed=64.13111111111111 formatted=64.1 in_tex=True
+PASS Env B text by size: to 35.1\% at seven
+PASS Env B text by size: and 24.7\% at nineteen
+PASS Env B text by size: it earns 3.36 reward per gNB per step
+PASS Env B text by size: against 3.37 for DQN-SA
+PASS Env B text by size: which keeps more compliance, 44.3\%
+PASS Env B text by size: 44.3\% against 35.1\%
+PASS Env B text: every policy loses compliance with size; AXIOM leads reward per gNB and compliance at 3 and 19; DQN-SA keeps more at 7
+FAIL Fig regime cells match recomputation from the logs, with Holm verdicts per panel  computed=['3|1.05', '37|1.05', '7|1.05', '19|1.05'] formatted=None in_tex=None
+PASS Fig regime agrees with the text: the rule matches or beats AXIOM at nominal load, AXIOM leads every Env B cell from 110% and at 105% only at 19 gNBs, never in Env A
+FAIL Sec. 6.4 text: in Env A at 19 gNBs AXIOM stays within 5.3 points of the static rule under load, above every baseline at each load  computed={'A': {"('AXIOM', '1.05')": 95.19, "('AXIOM', '1.10')": 63.41, "('AXIOM', '1.20')": 21.69, "('DQN-SA', '1.05')": 65.46, "('DQN-SA', '1.10')": 34.31, "('DQN-SA', '1.20')": 17.08, "('DQN-I', '1.05')": 56.88, "('DQN-I', '1.10')": 29.46, "('DQN-I', '1.20')": 15.31, "('MAPPO', '1.05')": 59.08, "('MAPPO', '1.10')": 39.13, "('MAPPO', '1.20')": 19.19, "('Static rule', '1.05')": 99.98, "('Static rule', '1.10')": 65.48, "('Static rule', '1.20')": 21.87}, 'B': {"(3, '0.80')": -0.093, "(3, '1.00')": -0.138, "(3, '1.05')": 0.1, "(3, '1.10')": 0.153, "(3, '1.15')": 0.144, "(3, '1.20')": 0.118, "(7, '1.00')": -0.549, "(7, '1.10')": 0.266, "(7, '1.20')": 0.448, "(19, '1.00')": -0.201, "(19, '1.10')": 0.328, "(19, '1.15')": 0.397, "(19, '1.20')": 0.456}} formatted=None in_tex=None
+PASS V1 rerun m66_repro/B_n3/axiom2 identical to stored on 5 seeds
+PASS V1 rerun m66_repro/B_n3/mappo_tuned identical to stored on 5 seeds
+PASS V1 rerun m66_repro/B_n3/independent_dqn identical to stored on 3 seeds
+PASS V1 rerun m66_repro/B_n3/rule_static identical to stored on 30 seeds
+PASS V1 rerun m66_repro/B_n3/rule_local identical to stored on 30 seeds
+PASS V1 rerun m66_repro/A_n3/axiom2 identical to stored on 5 seeds
+PASS V1 rerun m66_repro/A_n19_ring/axiom2 identical to stored on 2 seeds
+PASS V1 rerun m66_repro/B_n7_ring/axiom2_mlp identical to stored on 3 seeds
+PASS V1 static rule identical to stored Env A oracle on 30 seeds
+PASS V1 rerun m3 sigma0 eval logs identical to stored (2 logs)
+PASS V1 rerun m4 dropout eval logs identical to stored (30 logs)
+PASS Env A N=3 every comparison keeps its direction without unseeded-init seeds
+PASS Env B N=3 single-agent conclusion unchanged without unseeded-init seeds
+PASS every fresh-seed prediction holds
+PASS fresh Env A N=3 fraction of oracle
+PASS fresh Env A N=3 beats DQN-I and MAPPO at Holm p<=0.002
+PASS fresh N=19 AXIOM priority SLA
+PASS fresh N=19 lowest baseline SLA
+PASS fresh N=19 highest baseline SLA
+PASS fresh N=19 all six tests at Holm p<=0.001
+PASS fresh Env B N=3 beats static and accept-all in all 20 seeds
+PASS fresh Env B N=3 leads every learned baseline at Holm p<=0.0002
+PASS fresh Env B N=7 tuned local beats every learned policy at p<=0.004
+PASS reframe: main fresh Env B N=7 MLP lead
+PASS reframe: main fresh Env B N=7 MLP p
+PASS M66b N=19 hex all six tests at Holm p<=0.012
+PASS M66b federated not significant
+PASS M66b N=7 AXIOM leads every baseline under both layouts
+PASS M66b N=7 ring six tests at Holm p<=0.032
+PASS M66b N=7 fully-connected tests all above Holm 0.05
+PASS M66c C1 and C2 all tests Holm p<=0.012
+PASS M66c C3 all tests Holm p<=0.007
+PASS M66c N=7 DQN prio high, pointer
+PASS M66c load107 and weights within 0.6% of oracle
+PASS M66c C4 tuned rule beats every learner at p<=0.004, AXIOM not above static
+PASS M66c C4 MLP earns more than GAT, not significantly
+PASS M66c no disruption gap survives Holm
+PASS M66c every spike precision rounds to 0.97
+PASS M66c DP none survives Holm
+PASS M66c DP steps all 17,969
+PASS M66c Env B original AXIOM loses all ten
+PASS M66c LR 3e-3 and wide not significant
+PASS M66d D1 beats DQN-I and MAPPO at Holm p<=0.0001
+PASS M66d D2 within 0.5% of oracle
+PASS reframe: pre-stated fresh-seed checks total
+PASS reframe: pre-stated fresh-seed checks held
+PASS reframe: failed checks
+PASS reframe: AXIOM leads every baseline in every fresh scaling cell
+PASS reframe: all fresh scaling cells but one at Holm p<=0.032
+PASS reframe: twenty-seed rerun at Holm p<=0.007
+PASS reframe: fresh Env B N=3 beats static and every learner at Holm p<=0.0002
+PASS reframe: fresh N=7 DQN compliance max
+PASS reframe: every baseline below 84% at 7 and 19 gNBs in every sample
+PASS reframe: twenty-seed load rerun within 0.5% and single-agent matches
+PASS reframe: seeded single-agent leaves Env B and N=19 leads unchanged
+PASS reframe: short LR sentence, ten of ten seeds
+PASS reframe: DP drop low
+PASS reframe: DP drop high
+PASS reframe: smallest DP epsilon about 2,600
+PASS reframe: AXIOM spike precision 0.98
+PASS reframe: every AXIOM spike precision rounds to 0.98
+PASS reframe: dropout and churn costs significant for every policy
+PASS reframe: live loss 0.000% in every sample at both loads
+PASS reframe: zero below-floor grants across more than 100,000 readings
+FAIL reframe: map AXIOM sheds mMTC and keeps priority open at every one of 19 gNBs  computed=None formatted=None in_tex=None
+PASS reframe: map37 AXIOM URLLC gate
+FAIL reframe: map37 AXIOM eMBB gate  computed=0.9887571723509222 formatted=0.99 in_tex=True
+FAIL reframe: map37 AXIOM mMTC gate  computed=0.12555905905905915 formatted=0.13 in_tex=True
+FAIL reframe: map37 AXIOM's mean includes three collapsed hex seeds and every gNB keeps priority open, mMTC below 0.2  computed=None formatted=None in_tex=None
+PASS reframe: map37 single-agent every gate open at 0.93 to 0.95
+FAIL reframe: map37 independent mMTC gate  computed=0.9469272022022032 formatted=0.95 in_tex=True
+FAIL reframe: map37 MAPPO eMBB gate  computed=0.8352438706563693 formatted=0.84 in_tex=True
+FAIL reframe: map37 MAPPO mMTC gate  computed=0.5564446946946948 formatted=0.56 in_tex=True
+FAIL reframe: map figure plots the recomputed per-gNB openness  computed=None formatted=None in_tex=None
+PASS reframe: trend every baseline falls from 3 to 19 gNBs
+FAIL reframe: trend figure plots the recomputed compliance  computed=None formatted=None in_tex=None
+FAIL reframe: oracle exceeded count  computed=33 formatted=33 in_tex=True
+FAIL reframe: oracle evaluations total  computed=540 formatted=540 in_tex=True
+PASS reframe: oracle exceeded by at most
+PASS reframe: pooled federation has 30 seeds
+PASS reframe: pooled federation cost
+PASS pooled federation CI
+PASS reframe: pooled federation p
+PASS reframe: pooled federation in Table 2
+PASS no Env B policy keeps eMBB above 37%
+PASS reframe: Env B peak demand exceeds the budget by up to 23.5%
+PASS reframe: parameter table matches the N=3 config
+PASS reframe: N=7 config has N requests per step and at most 4N pending
+PASS reframe: N=19 config has N requests per step and at most 4N pending
+PASS reframe: parameter table demand constants
+FAIL reframe: M70 rule low  computed=99.97166666666666 formatted=99.97 in_tex=True
+PASS reframe: M70 rule high
+PASS reframe: M70 AXIOM within 3 points of the rule at every size
+FAIL reframe: M70 other learners at least 24 points short at 7 and 19 gNBs  computed=21.51 formatted=None in_tex=None
+PASS reframe: conclusion says a known static rule does better
+PASS reframe: M70 shared head collapses
+PASS reframe: M70 shared head compliance
+FAIL reframe: M70 AXIOM same seeds compliance  computed=98.02388888888889 formatted=98.0 in_tex=True
+PASS reframe: M70 shared head loses every seed at Holm p<0.001
+PASS reframe: M70 joint target never significantly different
+PASS reframe: M70 joint target trends better on reward in every cell
+FAIL reframe: M70 MAPPO reported N=19 ring  computed=61.2697222222222 formatted=61.3 in_tex=True
+PASS reframe: M70 MAPPO grid N=19 ring
+PASS reframe: M70 MAPPO lead low
+PASS reframe: M70 MAPPO lead high
+PASS reframe: M70 MAPPO all four at Holm p<0.001
+PASS reframe: M70 seeded single N=7
+PASS reframe: M70 seeded single N=19
+PASS reframe: M70 seeded single beaten under every layout at Holm p<=0.035
+PASS reframe: M72 shift setup reproduces the stored results under nominal load
+PASS reframe: M72 overload lead 1.10
+PASS reframe: M72 overload lead 1.15
+PASS reframe: M72 overload lead 1.20
+PASS reframe: M72 overload wins 21 to 23 of 25 at Holm p<=0.0002
+PASS reframe: M72 lighter load and stronger coupling leave a non-significant rule lead
+PASS reframe: M72 re-tuned rule draws level at 1.10 and 1.15
+PASS reframe: M72 re-tuned rule beats AXIOM at 1.20
+PASS reframe: M72 re-tuned rule lead at 1.20 significant
+PASS reframe: M72 hindsight covers 15 seeds of 95 rules
+PASS M72 hindsight max eMBB
+PASS reframe: M72 VDN ahead in three cells, behind in Env B at seven gNBs
+PASS reframe: M72 VDN test streams disjoint within the experiment
+FAIL reframe: M73 complete, 60 AXIOM runs and 30 seeds per baseline  computed=120 formatted=None in_tex=None
+FAIL reframe: M73 AXIOM pooled priority SLA  computed=94.85444444444444 formatted=94.9 in_tex=True
+FAIL reframe: M73 AXIOM CI low  computed=92.36923958333333 formatted= in_tex=True
+PASS reframe: M73 AXIOM CI high
+FAIL reframe: M73 AXIOM CI exact with the order-independent bootstrap  computed=(92.3556701388889, 97.09888194444446) formatted=None in_tex=None
+FAIL reframe: M73 AXIOM URLLC  computed=97.6875 formatted=97.7 in_tex=True
+FAIL reframe: M73 AXIOM eMBB  computed=92.0213888888889 formatted=92.0 in_tex=True
+FAIL reframe: M73 single_agent_dqn priority SLA  computed=58.514166666666654 formatted=58.5 in_tex=True
+FAIL reframe: M73 table single_agent_dqn  computed=58.514166666666654 formatted=58.5 in_tex=True
+FAIL reframe: M73 mappo_tuned priority SLA  computed=56.34611111111111 formatted=56.3 in_tex=True
+FAIL reframe: M73 table mappo_tuned  computed=56.34611111111111 formatted=56.3 in_tex=True
+FAIL reframe: M73 independent_dqn priority SLA  computed=32.73166666666666 formatted=32.7 in_tex=True
+FAIL reframe: M73 table independent_dqn  computed=32.73166666666666 formatted=32.7 in_tex=True
+FAIL reframe: M73 table AXIOM  computed=94.85444444444444 formatted=94.9 in_tex=True
+FAIL reframe: M73 lead over best baseline  computed=36.340277777777786 formatted=36.3 in_tex=True
+FAIL reframe: M73 rule gap  computed=5.124166666666682 formatted=5.1 in_tex=True
+PASS reframe: M73 static rule inside the quoted 99.96 to 99.99 range
+FAIL reframe: abstract static rule floor at every size  computed=99.97166666666666 formatted=99.97 in_tex=True
+PASS reframe: M73 every baseline falls again from 19 to 37 gNBs
+PASS reframe: M73 all 18 comparisons hold, AXIOM ahead, Holm-adjusted p<0.01
+FAIL reframe: M73 compliance lead low  computed=32.32333333333334 formatted=32.3 in_tex=True
+FAIL reframe: M73 compliance lead high  computed=66.52722222222222 formatted=66.5 in_tex=True
+FAIL reframe: M73 reward lead low  computed=23.00922153045259 formatted=23.0 in_tex=True
+FAIL reframe: M73 reward lead high  computed=30.356354895704442 formatted=30.4 in_tex=True
+FAIL reframe: M73 AXIOM collapses  computed=9 formatted=9 in_tex=True
+FAIL reframe: M73 single-agent collapses  computed=54 formatted=54 in_tex=True
+FAIL reframe: M73 collapsed AXIOM runs keep 59% to 65%  computed=[65.32, 60.38, 60.53, 59.42, 56.73, 62.63, 59.4, 62.35, 60.5] formatted=None in_tex=None
+FAIL reframe: M73 table collapse counts  computed=None formatted=None in_tex=None
+PASS reframe: M73 parameter counts at 37 gNBs
+PASS reframe: M73 grid MAPPO 15 seeds, both p<0.001, 13 and 15 wins
+FAIL M73 supplement table row hex  computed=AXIOM, hex & 30 & 97.7\% & 92.1\% & 94.9\% & 175.20 & 5 \\ formatted=None in_tex=None
+FAIL M73 supplement table row ring  computed=AXIOM, ring & 15 & 96.1\% & 88.6\% & 92.4\% & 173.20 & 3 \\ formatted=None in_tex=None
+FAIL M73 supplement table row fully_connected  computed=AXIOM, fully-connected & 15 & 99.2\% & 95.2\% & 97.2\% & 176.11 & 1 \\ formatted=None in_tex=None
+FAIL M73 supplement table row single_agent_dqn  computed=DQN-SA & 30 & 72.7\% & 44.3\% & 58.5\% & 144.84 & 54 \\ formatted=None in_tex=None
+FAIL M73 supplement table row independent_dqn  computed=DQN-I & 30 & 39.8\% & 25.7\% & 32.7\% & 148.87 & 7 \\ formatted=None in_tex=None
+FAIL M73 supplement table row mappo_tuned  computed=MAPPO & 30 & 66.9\% & 45.8\% & 56.3\% & 145.12 & 0 \\ formatted=None in_tex=None
+PASS reframe: M73 latency at 37 gNBs in the complexity table
+PASS reframe: single-agent latency row matches its measurement
+FAIL reframe: trend figure plots the recomputed 37-gNB compliance  computed=None formatted=None in_tex=None
+PASS reframe: M74 complete, 20 seeds per arm
+PASS reframe: M74 AXIOM priority SLA
+PASS reframe: M74 mappo_tuned priority SLA
+PASS reframe: M74 single_agent_dqn priority SLA
+PASS reframe: M74 independent_dqn priority SLA
+PASS reframe: M74 AXIOM beats every baseline on compliance and reward at Holm p<0.001
+PASS reframe: M74 AXIOM collapses
+PASS reframe: M74 single-agent collapses
+PASS M74 seeds and their streams unused before
+PASS M74 supplement table row axiom2
+PASS M74 supplement table row single_agent_dqn
+PASS M74 supplement table row independent_dqn
+PASS M74 supplement table row mappo_tuned
+FAIL M74 pooled collapse count 4 of 50  computed=None formatted=None in_tex=None
+FAIL reframe: M75 accept-all priority SLA at 7 gNBs  computed=71.21055555555554 formatted=71.2 in_tex=True
+FAIL reframe: M75 accept-all priority SLA at 19 gNBs  computed=66.7888888888889 formatted=66.8 in_tex=True
+PASS reframe: M75 accept-all priority SLA at 37 gNBs
+PASS reframe: M75 every baseline below accept-all at 19 and 37 gNBs, only MAPPO at 7
+PASS reframe: M75 AXIOM above floor low
+FAIL reframe: M75 AXIOM above floor high  computed=32.953888888888905 formatted=33 in_tex=True
+PASS reframe: M75 D complete, 15 seeds per arm with per-gNB records
+PASS reframe: M75 D cluster compliance low
+PASS reframe: M75 D cluster compliance high
+PASS reframe: M75 D1 AXIOM leads every learned baseline, Holm p<=0.013
+PASS reframe: M75 D reward lead low
+PASS reframe: M75 D reward lead high
+PASS reframe: M75 D per-gNB lead low
+PASS reframe: M75 D per-gNB lead high
+PASS reframe: M75 D AXIOM per-gNB
+PASS reframe: M75 D static rule margin
+PASS reframe: M75 D identical to static rule
+PASS M75 D: of the other 6 seeds AXIOM blocks only mMTC in 4, nothing in 1, other slices too in 1
+PASS reframe: M75 D tuned rule margin
+PASS reframe: M75 D tuned rule per-gNB
+PASS reframe: M75 D tuned rule wins every seed
+PASS reframe: M75 comparison-table Env B 19-gNB rewards
+PASS M75 S16 table row axiom2
+PASS M75 S16 table row single_agent_dqn
+PASS M75 S16 table row independent_dqn
+PASS M75 S16 table row mappo_tuned
+PASS M75 S16 table row rule_static
+PASS M75 S16 table row rule_accept_all
+PASS M75 S16 table row rule_local_transfer
+PASS reframe: M75 C AXIOM beats every tuned baseline, Holm p<0.001
+PASS reframe: M75 C lead low
+PASS reframe: M75 C lead high
+PASS reframe: M75 C tuned independent at 19
+PASS reframe: M75 C tuned independent at 37
+PASS reframe: M75 C tuned single-agent at 19 accepts everything and matches accept-all exactly
+FAIL reframe: M75 C no tuned baseline exceeds accept-all  computed={"(19, 'single_agent_dqn')": 67.079, "(19, 'independent_dqn')": 59.093, "(37, 'single_agent_dqn')": 58.514, "(37, 'independent_dqn')": 45.523} formatted=None in_tex=None
+FAIL M75 C supplement: wins 26 to 30 of 30  computed=[28, 28, 30, 30, 54, 55, 28, 29] formatted=None in_tex=None
+FAIL M75 S16 tuned row 19 single_agent_dqn  computed=DQN-SA & 19 & $10^{-4}$, 16 & 67.1\% & 64.7\% & 78.55 & 30 \\ formatted=None in_tex=None
+FAIL M75 S16 tuned row 19 independent_dqn  computed=DQN-I & 19 & $3{\times}10^{-4}$, 64 & 59.1\% & 56.5\% & 77.07 & 11 \\ formatted=None in_tex=None
+FAIL M75 S16 tuned row 37 single_agent_dqn  computed=DQN-SA & 37 & $10^{-3}$, 16, unchanged & 58.5\% & 58.5\% & 144.84 & 54 \\ formatted=None in_tex=None
+FAIL M75 S16 tuned row 37 independent_dqn  computed=DQN-I & 37 & $10^{-4}$, 64 & 45.5\% & 32.7\% & 150.42 & 18 \\ formatted=None in_tex=None
+PASS reframe: MAPPO cost numbers at 37 gNBs
+PASS reframe: MAPPO and AXIOM median training seconds at 37 gNBs
+PASS complexity table training seconds at 3 gNBs match Env B primary seeds
+FAIL reframe: Env B 3 gNBs AXIOM over MAPPO percent  computed=26.023061362850797 formatted=26 in_tex=True
+PASS reframe: Env B 19 gNBs AXIOM over MAPPO percent
+PASS reframe: M76 VDN complete, 30 seeds per cell
+FAIL reframe: M76 VDN ties AXIOM at three gNBs  computed=None formatted=None in_tex=None
+PASS reframe: M76 VDN three-gNB margins not significant after Holm
+PASS reframe: M76 VDN 19-gNB compliance
+FAIL M76 S17 VDN row A3  computed=Env A, 3 gNBs & 12.664 & 12.748 & 11.687 & 99.0\% & 99.0\% & 94.0\% \\ formatted=None in_tex=None
+FAIL M76 S17 VDN row B3  computed=Env B, 3 gNBs & 8.552 & 8.723 & 7.601 & 62.5\% & 64.1\% & 57.6\% \\ formatted=None in_tex=None
+FAIL M76 S17 VDN row A19  computed=Env A, 19 gNBs, hex & 86.428 & 89.364 & 76.428 & 83.4\% & 96.7\% & 56.5\% \\ formatted=None in_tex=None
+PASS reframe: M76 oversubscription Holm p<=0.006, AXIOM ahead
+PASS M76 b1 nominal reproduces M75 D exactly
+PASS reframe: M76 overload at 19 gNBs, margins 6.23/7.55/8.67, 14 of 15, Holm p<0.001
+PASS reframe: M76 tuned rule keeps more per-gNB compliance under overload
+PASS reframe: M76 uneven load AXIOM vs nominal rule
+PASS reframe: M76 uneven load not significant, ties re-tuned rule
+PASS reframe: M76 uneven load AXIOM beats learned baselines 1.18 to 4.28, p<=0.005
+PASS reframe: M76 original-reward AXIOM compliance
+PASS M76 per-gNB penalty raises AXIOM's per-gNB compliance by only 1.9 points
+PASS reframe: M76 per-gNB penalty change not significant, p=0.65
+PASS reframe: Discussion quotes the 1.9-point per-gNB gain at nineteen gNBs on the hex layout, p=0.65
+PASS reframe: M76 per-gNB penalty AXIOM does not beat the static rule
+PASS reframe: M76 per-gNB penalty baselines 13.7 to 18.5 points below AXIOM in every seed
+PASS reframe: M77 every checkable re-run reproduces its stored log
+PASS reframe: M77 AXIOM URLLC served at 37
+PASS reframe: M77 AXIOM eMBB served at 37
+PASS reframe: M77 baseline urllc served range at 37
+PASS reframe: M77 baseline embb served range at 37
+PASS reframe: M77 AXIOM URLLC delay at 37
+PASS reframe: M77 AXIOM URLLC p95 at 37
+PASS reframe: M77 baseline URLLC delay 0.58 to 3.61, p95 5.2 to 16.9 at 37
+PASS reframe: M77 static rule URLLC delay at 37
+PASS reframe: M77 AXIOM URLLC delay Env B 19
+PASS reframe: M77 Env B 19 baseline URLLC delay 2.17 to 2.66
+PASS reframe: M77 tuned rule URLLC delay Env B 19
+PASS M77 S18 row A_n3 rule_static
+PASS M77 S18 row A_n3 independent_dqn
+PASS M77 S18 row A_n3 rule_accept_all
+PASS M77 S18 row A_n3 mappo_tuned
+PASS M77 S18 row A_n3 single_agent_dqn
+PASS M77 S18 row A_n3 axiom2
+PASS M77 S18 row A_n37_hex mappo_tuned
+PASS M77 S18 row A_n37_hex axiom2
+PASS M77 S18 row A_n37_hex single_agent_dqn
+PASS M77 S18 row A_n37_hex rule_static
+PASS M77 S18 row A_n37_hex independent_dqn
+PASS M77 S18 row A_n37_hex rule_accept_all
+PASS M77 S18 row B_n3 rule_static
+PASS M77 S18 row B_n3 independent_dqn
+PASS M77 S18 row B_n3 rule_local_cell
+PASS M77 S18 row B_n3 rule_accept_all
+PASS M77 S18 row B_n3 mappo_tuned
+PASS M77 S18 row B_n3 single_agent_dqn
+PASS M77 S18 row B_n3 axiom2
+PASS M77 S18 row B_n19_hex axiom2
+PASS M77 S18 row B_n19_hex single_agent_dqn
+PASS M77 S18 row B_n19_hex rule_static
+PASS M77 S18 row B_n19_hex mappo_tuned
+PASS M77 S18 row B_n19_hex independent_dqn
+PASS M77 S18 row B_n19_hex rule_accept_all
+PASS M77 S18 row B_n19_hex rule_local_transfer
+PASS evaluation streams disjoint from every training and selection stream
+PASS replication seeds disjoint from primary seeds
+PASS every Env A/B evaluation log has 50 episodes
+FAIL abstract: lead over best learned baseline at 37 gNBs  computed=36.340277777777786 formatted=36.3 in_tex=True
+PASS abstract: fresh-seed lead at 37 gNBs
+FAIL conclusion: lead at 37 gNBs  computed=36.340277777777786 formatted=36.3 in_tex=True
+PASS conclusion: fresh-seed lead at 37 gNBs
+PASS conclusion: URLLC served at 37
+PASS abstract: URLLC delay ratio low
+PASS abstract: URLLC delay ratio high
+PASS conclusion: URLLC delay 0.08 against 0.58 to 3.61
+PASS abstract and conclusion: 7,782 parameters against up to the DQNs' 682,058
+FAIL abstract: Env B over MAPPO at 3 gNBs  computed=26.023061362850797 formatted=26 in_tex=True
+PASS abstract: Env B over MAPPO at 19 gNBs
+FAIL conclusion: Env B over MAPPO at 3 gNBs  computed=26.023061362850797 formatted=26 in_tex=True
+PASS conclusion: Env B over MAPPO at 19 gNBs
+FAIL abstract: Env B over static rule at 3 gNBs  computed=41.54706271713942 formatted=42 in_tex=True
+PASS abstract: the tuned rule out-earns every learner at its tuning conditions in Env B at 3, 7 and 19 gNBs, reported and fresh seeds
+PASS abstract: overload margin over tuned rule
+PASS conclusion: overload margin low
+PASS conclusion: overload margin high
+PASS conclusion: compliance low from 7 to 37 gNBs
+PASS conclusion: compliance high from 7 to 37 gNBs
+FAIL conclusion: percent of oracle at 3 gNBs  computed=99.21390275143378 formatted=99.2 in_tex=True
+PASS conclusion: tuned DQN gap low
+PASS conclusion: tuned DQN gap high
+PASS conclusion: VDN gap at 19 gNBs
+PASS conclusion: static rule earns more than AXIOM at 19 gNBs under coupling
+PASS M78 complexity latency row independent_dqn
+PASS M78 complexity latency row mappo
+PASS M78 Env A 7 gNBs AXIOM URLLC and eMBB
+FAIL M78 Env B 3 gNBs seed wins 24 to 29  computed=[56, 53, 56, 52, 56, 49] formatted=None in_tex=None
+PASS M78 carried-over tuned rule wins every seed at 19 gNBs
+FAIL M78 MAPPO never collapses at 37 gNBs but does at 3  computed=0 formatted=None in_tex=None
+PASS M78 Env A mean demand 95% to 105% of budget
+PASS M78 Env B demand swings 60% to 124% of budget
+PASS M78 S14 table row load_0.80
+PASS M78 S14 table row nominal
+PASS M78 S14 table row load_1.05
+PASS M78 S14 table row load_1.10
+PASS M78 S14 table row load_1.15
+PASS M78 S14 table row load_1.20
+PASS M78 S14 table row coupling_0.30
+PASS M78 S14 table row amplitude_0.50
+PASS M78 S14 re-tuned rule 0.16, 0.12 n.s., 0.62 at 120%
+PASS M78 original simulator accept-all reward
+PASS M78 original simulator accept-all keeps URLLC and eMBB at 100%
+FAIL M78 collapsed 59-65%, others 96.9-98.1% per layout  computed=([65.31666666666666, 60.38333333333333, 60.53333333333334, 59.416666666666664, 56.73333333333333, 62.63333333333333, 59.4, 62.35000000000001, 60.5], [98.05454545454548, 95.80617283950616, 98.4655172413793]) formatted=None in_tex=None
+PASS abstract: the evaluation gap matches the introduction
+PASS abstract: model size fixed as clusters grow
+PASS conclusion: known static and tuned rules match or beat AXIOM where their conditions hold
+PASS M79/M80 Table S-conv row: AXIOM, 300 episodes, as reported
+PASS M79/M80 Table S-conv row: AXIOM, per-gNB SLA penalty
+PASS M79/M80 Table S-conv row: AXIOM, learning rate 0.003
+PASS M79/M80 Table S-conv row: AXIOM, 900 episodes
+PASS M79/M80 Table S-conv row: DQN-SA, 900 episodes
+PASS M79/M80 Table S-conv row: DQN-I, 900 episodes
+PASS M79/M80 Table S-conv row: MAPPO, 900 episodes
+PASS M79/M80 Table S-conv row: Tuned local rule
+PASS M79 three changes raise compliance by 10.7, 14.9, 21.7 points, Holm p 0.007, 0.007, 0.0004
+PASS reframe: Discussion quotes the 10.7-point gain at seven gNBs on the ring layout, Holm p=0.007
+PASS M80 A with 900 episodes AXIOM keeps 12.8-15.2 pts more and earns 0.44-0.82 more per gNB, Holm p<=0.0012
+PASS M80 A main text: AXIOM 55.7% against 40.5-42.9% at 900 episodes, Holm p<=0.0012, below the tuned rule's 60.5%
+PASS M80 B at 19 gNBs 7 of 8 seeds still mMTC-only after 900 episodes, 8 of 8 after 300
+PASS M80 C sixteen further reruns match the stored logs exactly
+PASS M80 D fresh seeds at 19 gNBs: AXIOM +5.90 to +22.00 reward, +6.9 to +11.1 per-gNB pts, Holm p<=0.011, 76.9%
+PASS M81 probe replays every stored evaluation exactly, 15 seeds per budget, 21000 gNB-steps each
+PASS M81 decision figure summary recomputed from the probe records
+PASS M81 11 of 15 seeds never reject eMBB at 300 episodes; at 900, 14 of 15 reject more at a queue of 0.2 or more and one never rejects
+PASS M81 per-gNB map summary recomputed, and the centre gNB is the lowest for every policy in both seed sets
+PASS M81 six inner gNBs have six neighbours like the centre
+PASS M81 inner gNBs trail the edge, low
+PASS M81 inner gNBs trail the edge, high
+PASS M81 reported carried rule over AXIOM at the centre
+PASS M81 reported carried rule over AXIOM elsewhere
+PASS M81 fresh carried rule over AXIOM at the centre
+PASS M81 fresh carried rule over AXIOM elsewhere
+PASS M81 AXIOM's smallest per-gNB lead over a learned baseline, reported
+PASS M81 AXIOM's smallest per-gNB lead over a learned baseline, fresh
+FAIL M81 forest figure, all 84 rows recomputed from the logs with the verifier's own bootstrap  computed=[('A', 3, 'reported', 'single_agent_dqn', 'reward'), ('A', 3, 'reported', 'single_agent_dqn', 'sla'), ('A', 3, 'reported', 'independent_dqn', 'reward'), ('A', 3, 'reported', 'independent_dqn', 'sla'), ('A', 3, 'reported', 'mappo_tuned', 'reward'), ('A', 3, 'reported', 'mappo_tuned', 'sla'), ('A', 7, 'reported', 'single_agent_dqn', 'reward'), ('A', 7, 'reported', 'single_agent_dqn', 'sla'), ('A', 7, 'reported', 'independent_dqn', 'reward'), ('A', 7, 'reported', 'independent_dqn', 'sla'), ('A', 7, 'reported', 'mappo_tuned', 'reward'), ('A', 7, 'reported', 'mappo_tuned', 'sla'), ('A', 19, 'reported', 'single_agent_dqn', 'reward'), ('A', 19, 'reported', 'single_agent_dqn', 'sla'), ('A', 19, 'reported', 'independent_dqn', 'reward'), ('A', 19, 'reported', 'independent_dqn', 'sla'), ('A', 19, 'reported', 'mappo_tuned', 'reward'), ('A', 19, 'reported', 'mappo_tuned', 'sla'), ('A', 37, 'reported', 'single_agent_dqn', 'reward'), ('A', 37, 'reported', 'single_agent_dqn', 'sla'), ('A', 37, 'reported', 'independent_dqn', 'reward'), ('A', 37, 'reported', 'independent_dqn', 'sla'), ('A', 37, 'reported', 'mappo_tuned', 'reward'), ('A', 37, 'reported', 'mappo_tuned', 'sla'), ('B', 3, 'reported', 'single_agent_dqn', 'reward'), ('B', 3, 'reported', 'single_agent_dqn', 'sla'), ('B', 3, 'reported', 'independent_dqn', 'reward'), ('B', 3, 'reported', 'independent_dqn', 'sla'), ('B', 3, 'reported', 'mappo_tuned', 'reward'), ('B', 3, 'reported', 'mappo_tuned', 'sla')] formatted=None in_tex=None
+PASS M81 the three exceptions are Env B compliance, DQN-SA and DQN-I at 7 and MAPPO at 19, and all three fresh CIs span zero
+PASS reframe: M81 main pointer, of 38 reported differences
+PASS reframe: M81 main pointer, 35 hold
+PASS M81 reported Env B 7 compliance deficit to DQN-SA
+PASS M81 reported Env B 7 compliance deficit to DQN-I
+PASS M81 fresh Env B 7 compliance deficit to DQN-SA
+PASS M81 fresh Env B 7 compliance lead over DQN-I
+PASS M81 fresh Env B 19 compliance lead over MAPPO
+PASS Fig. 7 colour scale runs from 50% to 85%, and the text says so
+FAIL M93 Env A, 3 gNBs IQM and P(AXIOM better) recomputed from the logs  computed=[('AXIOM', 'reward', 'iqm'), ('AXIOM', 'prio', 'iqm'), ('DQN-SA', 'reward', 'iqm'), ('DQN-SA', 'reward', 'poi'), ('DQN-SA', 'prio', 'iqm'), ('DQN-SA', 'prio', 'poi'), ('DQN-I', 'reward', 'iqm'), ('DQN-I', 'reward', 'poi'), ('DQN-I', 'prio', 'iqm'), ('DQN-I', 'prio', 'poi'), ('MAPPO', 'reward', 'iqm'), ('MAPPO', 'reward', 'poi'), ('MAPPO', 'prio', 'iqm'), ('MAPPO', 'prio', 'poi'), ('Static rule', 'reward', 'iqm'), ('Static rule', 'reward', 'poi'), ('Static rule', 'prio', 'iqm'), ('Static rule', 'prio', 'poi')] formatted=None in_tex=None
+PASS M93 Online Resource 2 (ESM_2.csv) rows equal the recomputed summary, Env A, 3 gNBs
+FAIL M93 Env A, 7 gNBs IQM and P(AXIOM better) recomputed from the logs  computed=[('AXIOM', 'reward', 'iqm'), ('AXIOM', 'prio', 'iqm'), ('DQN-SA', 'reward', 'iqm'), ('DQN-SA', 'reward', 'poi'), ('DQN-SA', 'prio', 'iqm'), ('DQN-SA', 'prio', 'poi'), ('DQN-I', 'reward', 'iqm'), ('DQN-I', 'reward', 'poi'), ('DQN-I', 'prio', 'iqm'), ('DQN-I', 'prio', 'poi'), ('MAPPO', 'reward', 'iqm'), ('MAPPO', 'reward', 'poi'), ('MAPPO', 'prio', 'iqm'), ('MAPPO', 'prio', 'poi'), ('Static rule', 'reward', 'iqm'), ('Static rule', 'reward', 'poi'), ('Static rule', 'prio', 'iqm'), ('Static rule', 'prio', 'poi')] formatted=None in_tex=None
+PASS M93 Online Resource 2 (ESM_2.csv) rows equal the recomputed summary, Env A, 7 gNBs
+FAIL M93 Env A, 19 gNBs IQM and P(AXIOM better) recomputed from the logs  computed=[('AXIOM', 'reward', 'iqm'), ('AXIOM', 'prio', 'iqm'), ('DQN-SA', 'reward', 'iqm'), ('DQN-SA', 'reward', 'poi'), ('DQN-SA', 'prio', 'iqm'), ('DQN-SA', 'prio', 'poi'), ('DQN-I', 'reward', 'iqm'), ('DQN-I', 'reward', 'poi'), ('DQN-I', 'prio', 'iqm'), ('DQN-I', 'prio', 'poi'), ('MAPPO', 'reward', 'iqm'), ('MAPPO', 'reward', 'poi'), ('MAPPO', 'prio', 'iqm'), ('MAPPO', 'prio', 'poi'), ('Static rule', 'reward', 'iqm'), ('Static rule', 'reward', 'poi'), ('Static rule', 'prio', 'iqm'), ('Static rule', 'prio', 'poi')] formatted=None in_tex=None
+PASS M93 Online Resource 2 (ESM_2.csv) rows equal the recomputed summary, Env A, 19 gNBs
+FAIL M93 Env A, 37 gNBs IQM and P(AXIOM better) recomputed from the logs  computed=[('AXIOM', 'reward', 'iqm'), ('AXIOM', 'prio', 'iqm'), ('DQN-SA', 'reward', 'iqm'), ('DQN-SA', 'reward', 'poi'), ('DQN-SA', 'prio', 'iqm'), ('DQN-SA', 'prio', 'poi'), ('DQN-I', 'reward', 'iqm'), ('DQN-I', 'reward', 'poi'), ('DQN-I', 'prio', 'iqm'), ('DQN-I', 'prio', 'poi'), ('MAPPO', 'reward', 'iqm'), ('MAPPO', 'reward', 'poi'), ('MAPPO', 'prio', 'iqm'), ('MAPPO', 'prio', 'poi'), ('Static rule', 'reward', 'iqm'), ('Static rule', 'reward', 'poi'), ('Static rule', 'prio', 'iqm'), ('Static rule', 'prio', 'poi')] formatted=None in_tex=None
+PASS M93 Online Resource 2 (ESM_2.csv) rows equal the recomputed summary, Env A, 37 gNBs
+FAIL M93 Env B, 3 gNBs IQM and P(AXIOM better) recomputed from the logs  computed=[('AXIOM', 'reward', 'iqm'), ('AXIOM', 'prio', 'iqm'), ('DQN-SA', 'reward', 'iqm'), ('DQN-SA', 'reward', 'poi'), ('DQN-SA', 'prio', 'iqm'), ('DQN-SA', 'prio', 'poi'), ('DQN-I', 'reward', 'iqm'), ('DQN-I', 'reward', 'poi'), ('DQN-I', 'prio', 'iqm'), ('DQN-I', 'prio', 'poi'), ('MAPPO', 'reward', 'iqm'), ('MAPPO', 'reward', 'poi'), ('MAPPO', 'prio', 'iqm'), ('MAPPO', 'prio', 'poi'), ('Static rule', 'reward', 'iqm'), ('Static rule', 'reward', 'poi'), ('Static rule', 'prio', 'iqm'), ('Static rule', 'prio', 'poi'), ('Tuned rule', 'reward', 'iqm'), ('Tuned rule', 'reward', 'poi'), ('Tuned rule', 'prio', 'iqm'), ('Tuned rule', 'prio', 'poi')] formatted=None in_tex=None
+PASS M93 Online Resource 2 (ESM_2.csv) rows equal the recomputed summary, Env B, 3 gNBs
+PASS M93 Env B, 7 gNBs IQM and P(AXIOM better) recomputed from the logs
+PASS M93 Online Resource 2 (ESM_2.csv) rows equal the recomputed summary, Env B, 7 gNBs
+PASS M93 Env B, 19 gNBs IQM and P(AXIOM better) recomputed from the logs
+PASS M93 Online Resource 2 (ESM_2.csv) rows equal the recomputed summary, Env B, 19 gNBs
+PASS M93 all 51 mean-based orderings hold under the IQM, and the text says so
+FAIL M93 AXIOM's Env A IQM compliance 100.0% at every size against means of 93.7% to 98.9%  computed=([100.0, 99.99492753623188, 100.0, 100.0], [99.03861111111111, 97.11555555555555, 97.42222222222222, 94.85444444444444]) formatted=None in_tex=None
+PASS M93 rliable 1.2.0 installed and named in the text
+FAIL M92 main Table 5 rows recomputed from the logs, 15 seeds per arm  computed=['A, hex, 19 & 96.2 & [91.6, 99.9] & 95.2 & [86.9, 100.0] & 64.2 & [56.6, 72.2] & 99.98 & 66.1 \\\\', 'A, hex, 37 & 95.4 & [89.6, 99.9] & 96.5 & [87.3, 100.0] & 61.5 & [53.7, 70.2] & 99.98 & 61.7 \\\\', 'A, ring, 19 & 96.9 & [91.3, 99.9] & 98.0 & [92.3, 99.9] & 64.2 & [56.8, 72.4] & 99.98 & 66.1 \\\\', 'A, ring, 37 & 96.3 & [90.3, 99.7] & 92.4 & [85.3, 100.0] & 61.5 & [53.6, 70.2] & 99.98 & 61.7 \\\\', 'A, fully connected, 19 & 96.6 & [90.6, 100.0] & 98.5 & [99.9, 100.0] & 64.2 & [56.8, 72.3] & 99.98 & 66.1 \\\\', 'A, fully connected, 37 & 96.3 & [90.1, 100.0] & 97.2 & [85.9, 100.0] & 61.5 & [53.8, 70.0] & 99.98 & 61.7 \\\\'] formatted=None in_tex=None
+FAIL M92 main text: hex compliance 96.2/95.4, accept-all 65.9/61.1, MAPPO 64.2/61.5, four leads at Holm p=0.00024  computed={'T1 19': 0.000244140625, 'T1 37': 0.000244140625, 'T2 19': 0.000244140625, 'T2 37': 0.000244140625} formatted=None in_tex=None
+PASS M92 transferred minus trained-at-N: within 3.4 points on all three layouts and in Env B, no paired difference significant, p >= 0.068
+PASS M92 static rule: transferred AXIOM ties it exactly on 9 to 11 of 15 seeds in reward and earns less on the rest
+PASS M92 abstract and contribution 1: transferred AXIOM above 95% in Env A at 19 and 37 gNBs, abstract at most 250 words
+FAIL M92 OR1 Table S6 rows recomputed from the logs and the summary  computed=[('A_hex_n19', 'AXIOM trained at 19', 'mean'), 'A, hex, 19 & 4.645 & 0 & 4.675 & 2 & 3.989 \\\\', ('A_hex_n37', 'AXIOM trained at 37', 'mean'), 'A, hex, 37 & 4.690 & 0 & 4.765 & 0 & 4.134 \\\\', ('A_ring_n19', 'AXIOM trained at 19', 'mean'), 'A, ring, 19 & 4.666 & 0 & 4.708 & 0 & 3.989 \\\\', ('A_ring_n37', 'AXIOM trained at 37', 'mean'), 'A, ring, 37 & 4.711 & 0 & 4.681 & 3 & 4.134 \\\\', ('A_fully_connected_n19', 'AXIOM trained at 19', 'mean'), 'A, fully connected, 19 & 4.654 & 0 & 4.740 & 0 & 3.989 \\\\', ('A_fully_connected_n37', 'AXIOM trained at 37', 'mean'), 'A, fully connected, 37 & 4.702 & 0 & 4.760 & 1 & 4.134 \\\\'] formatted=None in_tex=None
+PASS M92 H-T4: transferred GAT minus MLP +0.80 per-gNB points, p 0.72
+PASS M92 Env B cluster-level compliance between 18% and 36% for every arm
+PASS M92 AXIOM keeps 7,782 execution parameters when transferred, and six stored evaluations reproduced exactly through the loader
+PASS M92 MAPPO identical on all three Env A layouts; at 19 fully-connected AXIOM trained there equals the static rule, transferred trails by 0.10, p 0.068
+PASS M97 tuned local rule in Env A at 37 gNBs: 30 held-out evaluations, the best of the 95-rule grid kept, every recorder re-run reproduces its log
+PASS M97: the tuned rule settles on the static rule's policy (tau_c 0 alone) and matches it in all 30 seeds
+PASS Fig. 10: M96 b and M76 tuned-rule rows at 19 gNBs are identical
+PASS Fig. 10 text: static rule over the tuned rule past its load at 19, lowest
+PASS Fig. 10 text: static rule over the tuned rule past its load at 19, highest
+PASS Fig. 10 text: static rule wins all 15 seeds against the tuned rule at Holm p<0.001, and its 1.8 to 2.0 lead over AXIOM has Holm p>=0.08
+FAIL Fig. 10 strips and table: every plotted mean, N and 95% bootstrap CI recomputed, every table mark and qualifier rebuilt from its rule  computed={'numbers_failing': [0, 1, 2, 3, 4, 23, 24, 25, 26, 27, 31, 32], 'rows_differ': ['Best under\nsteady load']} formatted=None in_tex=None
+PASS Fig. 10 text: only AXIOM among the learned controllers meets both thresholds at 37 gNBs and keeps above 90% after 7 to 37 transfer
+FAIL Fig. 7 (Env B, three gNBs): six policies' means, CIs and seed counts recomputed from the logs, tuned rules included  computed={'axiom2': 8.832, 'mappo_tuned': 6.968, 'single_agent_dqn': 7.495, 'independent_dqn': 7.794, 'rule_local': 9.252, 'rule_neighbour': 9.041} formatted=None in_tex=None
+PASS Fig. 5b collapsed share with Wilson 95% intervals, recomputed
+PASS OR1 interval figure: every plotted IQM and probability of improvement equals the recomputed rliable summary
+PASS Fig. 3 annotation: 7,782 parameters at execution at every cluster size, as the complexity records give
+FAIL Table 1 AXIOM row: evaluated up to 37 cells, the same 7,782 parameters at every size, measured zero-shot transfer, rule baselines  computed=60 formatted=None in_tex=None
+PASS M96 a: on 20 fresh seeds AXIOM from 7 keeps 96.2/95.2% at 19/37 gNBs and beats accept-all and MAPPO from 7 by 27.0 to 33.8 points, Holm p < 0.001
+PASS M96 c: on 15 fresh seeds AXIOM leads the carried rule by 6.84, 8.25, 9.39 at 110-120%, 14 of 15 wins, Holm p < 0.001; the rule leads by 3.33 at nominal
+PASS M96 b: past the tuning load AXIOM out-earns all three learned baselines at 7 and 19 gNBs (Holm p <= 0.008); at 3 gNBs it leads all three only at 110%, and from 115% DQN-SA and DQN-I come within 0.21
+PASS M96 overall in Sec. 6.6: eight of nine pre-registered checks held, the failed one at three gNBs past the tuning load
+PASS Fig. 10 steady load: every learned controller trails the tuned rule at nominal Env B load (the baselines on every seed); AXIOM wins no seed against the static rule at nominal Env A demand
+PASS Sec. 3 threshold choice: 0, 0.5 and 0.8 tie exactly on the training streams in every Env A condition, and the lowest, 0, is kept
+PASS Conclusion: 7,782 parameters against up to 682,058, as in the complexity records
+PASS Sec. 2 review numbers as in the published review: 6,286 records to 67 core studies from 2024 to 2026
+PASS Live probe from the raw iperf3 logs: zero datagrams lost on every slice at one and two UEs per slice, every slice served at 99.9% to 100.4% of its offered rate
+PASS M94 trees: depth chosen by 5-fold cross-validation, 3 for every target
+PASS OR1 S4: exploratory probes on seeds 900 to 904 preceded the load-shift runs, which use 905 to 929
+PASS Discussion: one 7,782-parameter network trained at seven gNBs serves clusters five times larger
+PASS Sec. 3 slice ranking matches the parameter table: URLLC 15 ms and 0.8% budgets, weights 12.0 > 3.5 > 0.3, eMBB the largest ceiling
+FAIL Sec. 5: Env A demand runs 5% above the nominal shares, and shedding mMTC keeps URLLC at full compliance and eMBB at 99.98%  computed=1.05 formatted=None in_tex=None
+PASS Sec. 5: in Env B shedding mMTC alone cannot protect URLLC, the tuned rule that also sheds eMBB does
+PASS M94 held-out fidelity of the depth-3 trees recomputed from the stored trees and replays, 86% to 97%
+PASS M94 OR1 Table S10 rows: rule against AXIOM and the tuned rule recomputed from the logs
+PASS M94 main: the rule ties AXIOM at seven gNBs, trails it by 0.19 at three, never reaches the tuned rule
+PASS M94 eMBB thresholds: first split on the URLLC queue in 24 of 30 seeds at a median 0.21, and 13 of 15 at 0.28, against 0.2
+PASS M94 no URLLC request rejected in any replay, 34 of 60 mMTC trees reject all, held-out replays exact
+PASS M92 and M94 pre-registrations exist and OR1 S4 says M93 has no plan of its own
+PASS M82 Table 2 slice rows match the configuration
+PASS M82 Table 2 reward, episode, arrival and gate rows match the configuration
+PASS M82 simulator constants in the text match the simulator code
+PASS M82 Env A and Env B demand ranges follow from the constants
+PASS M82 AXIOM as trained matches Table 2 and the 7,782 execution parameters
+PASS M82 DQN and MAPPO settings in Table 2 match the code
+PASS M82 OR1 LeakyReLU slope 0.2 is the encoder's
+PASS M82 300 training and 50 evaluation episodes per seed
+FAIL M82 seed sets of the campaigns  computed=None formatted=None in_tex=None
+PASS M82 bootstrap CIs use 10,000 resamples
+FAIL M82 Table 4 Env A reward row: the same rewards and the 98.9% share are in the Env A results table  computed={'axiom2': 12.748, 'mappo_tuned': 10.266, 'heuristic': 12.849, 'single_agent_dqn': 12.437, 'independent_dqn': 11.687} formatted=None in_tex=None
+PASS M82 Table 4 parameter row
+PASS M82 Table 4 Env B 7-gNB priority SLA row: AXIOM and DQN-SA as quoted in the text
+PASS M82 abstract and contributions: AXIOM above 93% and every learned baseline below 84% at 7, 19 and 37 gNBs
+PASS M82 fresh 37-gNB sentence: AXIOM 95.1% against 34.1% to 58.5%
+PASS M82 no baseline closes the 37-gNB mMTC gate below 0.51
+PASS M82 MLP variant wins 10 of 15 seeds on each Env B 7-gNB layout
+PASS M82 AXIOM within 0.13 of the oracle under changed load and weights
+FAIL M82 Env B three-gNB sentences: Holm p<0.0001, tuned rule's 0.2 threshold, 0.420 at p<0.0001  computed={'h1': {'rule_static': 3.259111588623869e-11, 'rule_accept_all': 3.259111588623869e-11}, 'prio': {'single_agent_dqn': 1.290570009292418e-09, 'independent_dqn': 3.5284069334686438e-09, 'mappo_tuned': 1.0202531190939745e-08}, 'loc': {'n': 60, 'diff': 0.4263270075353111, 'wins': 49, 'ties': 0, 'losses': 11, 'p': 8.955437885807495e-09}, 'sel': {'tau_c': 0.0, 'tau_q': None, 'tau_e': 0.2}} formatted=None in_tex=None
+PASS M82 tuned rules beat AXIOM in all 15 seeds at seven gNBs under every layout
+PASS M82 complexity table rows recomputed from the measurements
+PASS M82 federation pooled over 30 seeds, ten of them fresh
+FAIL M82 7-gNB scaling sentence recomputed  computed=At seven gNBs, under every layout, AXIOM keeps 15.1 to 29.8 percentage points more priority-slice compliance than each baseline and earns 3.38 to 7.82 more reward per step. All 18 comparisons hold after Holm correction, at adjusted $p\leq0.011$. formatted=None in_tex=None
+FAIL M82 19-gNB scaling sentence recomputed  computed=Under every layout AXIOM keeps 32.1 to 41.4 percentage points more compliance than every baseline and earns 11.4 to 18.4 more reward per step, winning 56 to 60 of 30 seeds. All 18 comparisons hold after Holm correction, at adjusted $p\leq0.0001$. formatted=None in_tex=None
+PASS M82 37-gNB comparisons hold after Holm correction at p<0.01
+PASS M82 Env B 7-gNB ring: AXIOM below DQN-SA in compliance at Holm p=0.012 (ties within 1e-9, 2026-11-12; 0.011 before)
+PASS M82 the MAPPO tuning grid has 24 configurations in each environment
+PASS M82 fifth and sixth fresh-seed runs: 3 of 3 and 4 of 4 checks held
+PASS M82 fresh-seed runs used 10 to 40 seeds per setting and an 80% baseline bound
+PASS M82 a re-tuned rule ties AXIOM up to 115% load and beats it at 120%
+PASS M82 OR1 eleven rerun settings and the oracle on 30 seeds
+PASS M82 OR1 sensitivity, federated and wide-encoder settings match the code
+PASS M82 OR1 validation screen: five greedy episodes, 90% of blocks on mMTC
+PASS M82 OR1 process records: pilot seeds, M63 timing, probe seeds, earlier mixer's diverging loss
+PASS M82 OR1 disruption windows and spike multipliers
+PASS M82 OR1 thirty-seven-gNB arrivals
+PASS M82 OR1 uneven load range and the 95 local rules
+PASS M82 OR1 baselines up to 83.3% at seven gNBs, above the 80% bound
+PASS M82 OR1 MLP variant: 0.31 at 19 gNBs with 7 of 12 tied; main: fresh lead 1.38 at p=0.006
+PASS M82 OR1 roughly 360 per-round updates
+FAIL M82 OR1 per-slice compliance at 7 and 37 gNBs  computed=At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\% and 94.4\%, against 87.6\% to 94.9\% and 49.3\% to 64.6\% for the baselines, and at thirty-seven at 97.7\% and 92.0\%. formatted=None in_tex=None
+FAIL M82 OR1 Table S2 static-rule row, m73/A_n37_hex  computed=Static rule & 30 & 100.0\% & 100.0\% & 99.98\% & 177.70 & 0 \\ formatted=None in_tex=None
+PASS M82 OR1 Table S2 static-rule row, m74/A_n37_hex
+FAIL M82 OR1 AXIOM's non-collapsed 37-gNB runs keep 96.9% to 98.1% under each layout  computed=[98.05454545454548, 95.80617283950616, 98.4655172413793] formatted=None in_tex=None
+PASS M82 OR1 tuned DQN grid: learning rates 1e-4 to 1e-3, minibatches 16 and 64
+PASS M82 OR1 Table S5 wins, losses and Wilcoxon p
+FAIL M82 OR1 the main campaign reuses M63 baselines at seven gNBs and for 15 of the 30 seeds at nineteen  computed={'7|single_agent_dqn|fully_connected': [15, 30], '7|single_agent_dqn|ring': [15, 30], '7|single_agent_dqn|hex': [15, 30], '7|independent_dqn|fully_connected': [15, 30], '7|independent_dqn|ring': [15, 30], '7|independent_dqn|hex': [15, 30], '19|single_agent_dqn|fully_connected': [15, 60], '19|single_agent_dqn|ring': [15, 60], '19|single_agent_dqn|hex': [15, 60], '19|independent_dqn|fully_connected': [15, 60], '19|independent_dqn|ring': [15, 60], '19|independent_dqn|hex': [15, 60]} formatted=None in_tex=None
+PASS M82 OR1 seven gNBs: tuned rules 26.5 to 27.3, AXIOM 23.4 to 23.6, static rule 23.6
+PASS M82 OR1 Table S7 AXIOM 300-episode row
+PASS M82 OR1 nineteen gNBs: seven of eight seeds still shed only mMTC after 900 episodes
+PASS M82 OR1 the tuned rule's step at 0.2 at seven gNBs
+PASS M82 OR1 fifteen fresh seeds 7000 to 7014 at nineteen gNBs
+PASS M82 OR1 old simulator: accept-all kept URLLC and eMBB at 100% on the 30 held-out seeds
+PASS M82 OR1 delay definition: mean backlog over mean served PRBs, 95th percentile over steps and gNBs
+PASS M82 OR1 Fig. S7 hardware and software match this machine and its packages
+PASS M82 OR1 Fig. S7 step details match the launch records, scripts and specification
+PASS M82 OR1 Fig. S7 names scripts that exist and do what it says
+PASS text quotes the final check count of 663
+
+465 of 663 checks pass

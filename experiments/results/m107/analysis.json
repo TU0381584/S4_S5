@@ -1,0 +1,4085 @@
+{
+ "A3_table3": {
+  "stored": {
+   "single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 0.31102970085825493,
+    "wins": 15,
+    "ties": 8,
+    "losses": 7,
+    "p": 0.022089328068250483,
+    "ci": [
+     -0.007300822340783796,
+     0.6482499989419004
+    ],
+    "p_holm": 0.08835731227300193,
+    "verdict": "within chance"
+   },
+   "single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 2.111111111111111,
+    "wins": 13,
+    "ties": 13,
+    "losses": 4,
+    "p": 0.06150392570318533,
+    "ci": [
+     -0.616180555555556,
+     4.942805555555556
+    ],
+    "p_holm": 0.184511777109556,
+    "verdict": "within chance"
+   },
+   "independent_dqn|reward": {
+    "n": 30,
+    "diff": 1.1101800222827332,
+    "wins": 27,
+    "ties": 0,
+    "losses": 3,
+    "p": 4.4075772166252136e-05,
+    "ci": [
+     0.6097273150893269,
+     1.6494074346453846
+    ],
+    "p_holm": 0.0002644546329975128,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|compliance": {
+    "n": 30,
+    "diff": 5.959444444444444,
+    "wins": 17,
+    "ties": 9,
+    "losses": 4,
+    "p": 0.007065994730893274,
+    "ci": [
+     1.6510972222222215,
+     10.578888888888887
+    ],
+    "p_holm": 0.03532997365446637,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|reward": {
+    "n": 30,
+    "diff": 2.684510394290301,
+    "wins": 29,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.5630832507250074e-06,
+    "ci": [
+     2.029241876136744,
+     3.348833473887977
+    ],
+    "p_holm": 2.050466600580006e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 21.184444444444445,
+    "wins": 27,
+    "ties": 3,
+    "losses": 0,
+    "p": 5.606116527496013e-06,
+    "ci": [
+     15.219972222222223,
+     27.191166666666675
+    ],
+    "p_holm": 3.924281569247209e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|reward": {
+    "n": 30,
+    "diff": -0.13780352053722028,
+    "wins": 2,
+    "ties": 22,
+    "losses": 6,
+    "p": 0.16142946236708333,
+    "ci": [
+     -0.3234026577544349,
+     -5.2993824494329546e-05
+    ],
+    "p_holm": 0.184511777109556,
+    "verdict": "within chance"
+   },
+   "rule_static|compliance": {
+    "n": 30,
+    "diff": -1.133888888888889,
+    "wins": 0,
+    "ties": 26,
+    "losses": 4,
+    "p": 0.06788915486182899,
+    "ci": [
+     -2.835,
+     -0.009444444444444382
+    ],
+    "p_holm": 0.184511777109556,
+    "verdict": "within chance"
+   }
+  },
+  "new": {
+   "single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 0.31199419732364936,
+    "wins": 16,
+    "ties": 8,
+    "losses": 6,
+    "p": 0.017022319445921218,
+    "ci": [
+     0.07129048262514148,
+     0.6527186457490818
+    ],
+    "p_holm": 0.06808927778368487,
+    "verdict": "within chance"
+   },
+   "single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 1.7477777777777779,
+    "wins": 8,
+    "ties": 20,
+    "losses": 2,
+    "p": 0.11412832776223863,
+    "ci": [
+     -0.12002777777777757,
+     4.636722222222222
+    ],
+    "p_holm": 0.22825665552447727,
+    "verdict": "within chance"
+   },
+   "independent_dqn|reward": {
+    "n": 30,
+    "diff": 1.0123071938065347,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 2.551823854446411e-07,
+    "ci": [
+     0.692421349172875,
+     1.370796209449178
+    ],
+    "p_holm": 1.7862766981124878e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|compliance": {
+    "n": 30,
+    "diff": 4.092777777777777,
+    "wins": 19,
+    "ties": 10,
+    "losses": 1,
+    "p": 0.0010188290449538871,
+    "ci": [
+     1.4505277777777759,
+     6.962861111111111
+    ],
+    "p_holm": 0.005094145224769435,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|reward": {
+    "n": 30,
+    "diff": 2.280278743819341,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 1.862645149230957e-08,
+    "ci": [
+     1.732462609698312,
+     2.863254914855053
+    ],
+    "p_holm": 1.4901161193847656e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 17.36722222222222,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 2.551823854446411e-07,
+    "ci": [
+     12.12213888888889,
+     22.822263888888884
+    ],
+    "p_holm": 1.7862766981124878e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|reward": {
+    "n": 30,
+    "diff": -0.0642103470477581,
+    "wins": 3,
+    "ties": 18,
+    "losses": 9,
+    "p": 0.13609738111439368,
+    "ci": [
+     -0.173152037738399,
+     0.0004423343228618708
+    ],
+    "p_holm": 0.22825665552447727,
+    "verdict": "within chance"
+   },
+   "rule_static|compliance": {
+    "n": 30,
+    "diff": -0.7750000000000005,
+    "wins": 0,
+    "ties": 26,
+    "losses": 4,
+    "p": 0.06788915486182899,
+    "ci": [
+     -2.0550000000000006,
+     -0.0022222222222225696
+    ],
+    "p_holm": 0.20366746458548696,
+    "verdict": "within chance"
+   }
+  },
+  "pooled": {
+   "single_agent_dqn|reward": {
+    "n": 60,
+    "diff": 0.3115119490909522,
+    "wins": 31,
+    "ties": 16,
+    "losses": 13,
+    "p": 0.0007134547206164106,
+    "ci": [
+     0.09952797474374721,
+     0.5473568948990196
+    ],
+    "p_holm": 0.0028538188824656424,
+    "verdict": "AXIOM ahead"
+   },
+   "single_agent_dqn|compliance": {
+    "n": 60,
+    "diff": 1.9294444444444445,
+    "wins": 21,
+    "ties": 33,
+    "losses": 6,
+    "p": 0.013791399404687814,
+    "ci": [
+     0.1602777777777781,
+     3.9292013888888886
+    ],
+    "p_holm": 0.03515605679930588,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|reward": {
+    "n": 60,
+    "diff": 1.061243608044634,
+    "wins": 56,
+    "ties": 0,
+    "losses": 4,
+    "p": 6.890099984365577e-09,
+    "ci": [
+     0.7570043775397666,
+     1.3767391316890933
+    ],
+    "p_holm": 4.134059990619346e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|compliance": {
+    "n": 60,
+    "diff": 5.02611111111111,
+    "wins": 36,
+    "ties": 19,
+    "losses": 5,
+    "p": 2.9264623070744518e-05,
+    "ci": [
+     2.429666666666665,
+     7.758104166666667
+    ],
+    "p_holm": 0.00014632311535372257,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|reward": {
+    "n": 60,
+    "diff": 2.4823945690548213,
+    "wins": 58,
+    "ties": 1,
+    "losses": 1,
+    "p": 4.416580379524537e-11,
+    "ci": [
+     2.035419470891675,
+     2.930479274788249
+    ],
+    "p_holm": 3.5332643036196294e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|compliance": {
+    "n": 60,
+    "diff": 19.27583333333333,
+    "wins": 56,
+    "ties": 3,
+    "losses": 1,
+    "p": 2.015382312499416e-10,
+    "ci": [
+     15.273055555555553,
+     23.35226388888889
+    ],
+    "p_holm": 1.4107676187495912e-09,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|reward": {
+    "n": 60,
+    "diff": -0.10100693379248919,
+    "wins": 5,
+    "ties": 40,
+    "losses": 15,
+    "p": 0.04004379807224231,
+    "ci": [
+     -0.20749800071244506,
+     -0.01896191845761064
+    ],
+    "p_holm": 0.04004379807224231,
+    "verdict": "AXIOM behind"
+   },
+   "rule_static|compliance": {
+    "n": 60,
+    "diff": -0.9544444444444447,
+    "wins": 0,
+    "ties": 52,
+    "losses": 8,
+    "p": 0.011718685599768628,
+    "ci": [
+     -1.9842430555555555,
+     -0.1633194444444446
+    ],
+    "p_holm": 0.03515605679930588,
+    "verdict": "AXIOM behind"
+   }
+  },
+  "collapse": {
+   "stored": {
+    "A_n3|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 12.697570166538469,
+     "compliance": 98.85555555555555
+    },
+    "A_n3|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 12.386540465680214,
+     "compliance": 96.74444444444444
+    },
+    "A_n3|independent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 11.587390144255737,
+     "compliance": 92.89611111111113
+    },
+    "A_n3|mappo_tuned": {
+     "n": 30,
+     "collapsed": 2,
+     "reward": 10.013059772248168,
+     "compliance": 77.6711111111111
+    },
+    "A_n3|rule_static": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 12.83537368707569,
+     "compliance": 99.98944444444444
+    }
+   },
+   "new": {
+    "A_n3|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 12.798746287402473,
+     "compliance": 99.22166666666665
+    },
+    "A_n3|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 12.48675209007882,
+     "compliance": 97.4738888888889
+    },
+    "A_n3|independent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 11.786439093595934,
+     "compliance": 95.1288888888889
+    },
+    "A_n3|mappo_tuned": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 10.518467543583126,
+     "compliance": 81.85444444444444
+    },
+    "A_n3|rule_static": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 12.862956634450228,
+     "compliance": 99.99666666666667
+    }
+   },
+   "pooled": {
+    "A_n3|axiom2": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 12.74815822697047,
+     "compliance": 99.03861111111111
+    },
+    "A_n3|single_agent_dqn": {
+     "n": 60,
+     "collapsed": 1,
+     "reward": 12.43664627787952,
+     "compliance": 97.10916666666665
+    },
+    "A_n3|independent_dqn": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 11.686914618925833,
+     "compliance": 94.0125
+    },
+    "A_n3|mappo_tuned": {
+     "n": 60,
+     "collapsed": 3,
+     "reward": 10.265763657915647,
+     "compliance": 79.76277777777776
+    },
+    "A_n3|rule_static": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 12.849165160762958,
+     "compliance": 99.99305555555557
+    }
+   }
+  },
+  "not_replicated_by_new": [],
+  "pooled_verdict_changes": {
+   "single_agent_dqn|reward": [
+    "within chance",
+    "AXIOM ahead"
+   ],
+   "single_agent_dqn|compliance": [
+    "within chance",
+    "AXIOM ahead"
+   ],
+   "rule_static|reward": [
+    "within chance",
+    "AXIOM behind"
+   ],
+   "rule_static|compliance": [
+    "within chance",
+    "AXIOM behind"
+   ]
+  }
+ },
+ "B3_H1_table5": {
+  "stored": {
+   "single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 1.3369261586250398,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 5.587935447692871e-09,
+    "ci": [
+     1.0547318178687168,
+     1.639987254421585
+    ],
+    "p_holm": 6.705522537231445e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 7.5805555555555575,
+    "wins": 26,
+    "ties": 0,
+    "losses": 4,
+    "p": 1.6391277313232422e-07,
+    "ci": [
+     5.604402777777779,
+     9.683347222222226
+    ],
+    "p_holm": 1.475214958190918e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|reward": {
+    "n": 30,
+    "diff": 1.03802758760822,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 2.60770320892334e-08,
+    "ci": [
+     0.7411181071668101,
+     1.3743947667434775
+    ],
+    "p_holm": 2.868473529815674e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|compliance": {
+    "n": 30,
+    "diff": 6.097222222222225,
+    "wins": 27,
+    "ties": 0,
+    "losses": 3,
+    "p": 1.0240807151176453e-05,
+    "ci": [
+     4.2771250000000025,
+     8.12001388888889
+    ],
+    "p_holm": 5.1204035755882263e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|reward": {
+    "n": 30,
+    "diff": 1.8633768606728818,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.5390257835388184e-08,
+    "ci": [
+     1.3447910225319488,
+     2.4075434392980233
+    ],
+    "p_holm": 3.5390257835388184e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 10.82888888888889,
+    "wins": 24,
+    "ties": 0,
+    "losses": 6,
+    "p": 3.7904828786849976e-06,
+    "ci": [
+     7.359444444444449,
+     14.373388888888893
+    ],
+    "p_holm": 2.2742897272109985e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|reward": {
+    "n": 30,
+    "diff": 2.495073558592738,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     2.2352504182802413,
+     2.753695733092722
+    ],
+    "p_holm": 2.60770320892334e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|compliance": {
+    "n": 30,
+    "diff": 15.488333333333337,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.732216233144114e-06,
+    "ci": [
+     13.84993055555556,
+     17.123347222222225
+    ],
+    "p_holm": 1.3857729865152912e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_accept_all|reward": {
+    "n": 30,
+    "diff": 4.475507966138972,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     4.274829666075002,
+     4.672112114758296
+    ],
+    "p_holm": 2.60770320892334e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_accept_all|compliance": {
+    "n": 30,
+    "diff": 29.55666666666667,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.7333066441991056e-06,
+    "ci": [
+     28.176069444444447,
+     30.85891666666667
+    ],
+    "p_holm": 1.3857729865152912e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_local|reward": {
+    "n": 30,
+    "diff": -0.420190861508788,
+    "wins": 8,
+    "ties": 0,
+    "losses": 22,
+    "p": 1.8244609236717224e-05,
+    "ci": [
+     -0.5869751774343309,
+     -0.2638007358085763
+    ],
+    "p_holm": 7.29784369468689e-05,
+    "verdict": "AXIOM behind"
+   },
+   "rule_local|compliance": {
+    "n": 30,
+    "diff": -2.7211111111111097,
+    "wins": 6,
+    "ties": 0,
+    "losses": 24,
+    "p": 8.856505155563354e-05,
+    "ci": [
+     -3.9589166666666618,
+     -1.574444444444445
+    ],
+    "p_holm": 0.00026569515466690063,
+    "verdict": "AXIOM behind"
+   },
+   "rule_neighbour|reward": {
+    "n": 30,
+    "diff": -0.20902110496286902,
+    "wins": 13,
+    "ties": 0,
+    "losses": 17,
+    "p": 0.06056523136794567,
+    "ci": [
+     -0.3855043086666199,
+     -0.04464304847515192
+    ],
+    "p_holm": 0.06056523136794567,
+    "verdict": "within chance"
+   },
+   "rule_neighbour|compliance": {
+    "n": 30,
+    "diff": 1.5622222222222217,
+    "wins": 23,
+    "ties": 0,
+    "losses": 7,
+    "p": 0.016103587743170396,
+    "ci": [
+     0.24551388888888917,
+     2.779999999999998
+    ],
+    "p_holm": 0.03220717548634079,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "new": {
+   "single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 1.3391687149677511,
+    "wins": 27,
+    "ties": 0,
+    "losses": 3,
+    "p": 1.0244548320770264e-07,
+    "ci": [
+     0.94005466028903,
+     1.7864555845477061
+    ],
+    "p_holm": 1.2293457984924316e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 7.44888888888889,
+    "wins": 26,
+    "ties": 0,
+    "losses": 4,
+    "p": 1.6386019768188024e-05,
+    "ci": [
+     5.049972222222224,
+     10.018361111111114
+    ],
+    "p_holm": 6.55440790727521e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|reward": {
+    "n": 30,
+    "diff": 1.2040897033611364,
+    "wins": 27,
+    "ties": 0,
+    "losses": 3,
+    "p": 1.4193356037139893e-06,
+    "ci": [
+     0.8453151964210902,
+     1.5788025573705968
+    ],
+    "p_holm": 1.4193356037139893e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|compliance": {
+    "n": 30,
+    "diff": 6.975555555555556,
+    "wins": 26,
+    "ties": 0,
+    "losses": 4,
+    "p": 3.2391399145126343e-06,
+    "ci": [
+     4.757194444444444,
+     9.257222222222222
+    ],
+    "p_holm": 2.267397940158844e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|reward": {
+    "n": 30,
+    "diff": 1.7389397439020158,
+    "wins": 27,
+    "ties": 0,
+    "losses": 3,
+    "p": 3.855675458908081e-07,
+    "ci": [
+     1.1894821216112172,
+     2.3357555776020464
+    ],
+    "p_holm": 4.241243004798889e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 9.376111111111111,
+    "wins": 25,
+    "ties": 0,
+    "losses": 5,
+    "p": 1.218356192111969e-05,
+    "ci": [
+     5.937777777777779,
+     13.165111111111107
+    ],
+    "p_holm": 6.091780960559845e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|reward": {
+    "n": 30,
+    "diff": 2.6254336681346238,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     2.40077349565194,
+     2.842706337925955
+    ],
+    "p_holm": 2.60770320892334e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|compliance": {
+    "n": 30,
+    "diff": 16.139444444444443,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.7289484360195754e-06,
+    "ci": [
+     14.649388888888886,
+     17.57223611111111
+    ],
+    "p_holm": 1.556053592417618e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_accept_all|reward": {
+    "n": 30,
+    "diff": 4.6156980936648315,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     4.429648685116557,
+     4.790006611110687
+    ],
+    "p_holm": 2.60770320892334e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_accept_all|compliance": {
+    "n": 30,
+    "diff": 29.993333333333332,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.7333066441991056e-06,
+    "ci": [
+     28.724972222222227,
+     31.183347222222228
+    ],
+    "p_holm": 1.556053592417618e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_local|reward": {
+    "n": 30,
+    "diff": -0.4324631535618341,
+    "wins": 3,
+    "ties": 0,
+    "losses": 27,
+    "p": 3.2391399145126343e-06,
+    "ci": [
+     -0.5985328957426765,
+     -0.27450039237403195
+    ],
+    "p_holm": 2.267397940158844e-05,
+    "verdict": "AXIOM behind"
+   },
+   "rule_local|compliance": {
+    "n": 30,
+    "diff": -2.9405555555555556,
+    "wins": 4,
+    "ties": 0,
+    "losses": 26,
+    "p": 6.305643205158674e-05,
+    "ci": [
+     -4.12613888888889,
+     -1.8161111111111123
+    ],
+    "p_holm": 0.0001891692961547602,
+    "verdict": "AXIOM behind"
+   },
+   "rule_neighbour|reward": {
+    "n": 30,
+    "diff": -0.26104823765294993,
+    "wins": 13,
+    "ties": 0,
+    "losses": 17,
+    "p": 0.05768792890012264,
+    "ci": [
+     -0.43996530220823354,
+     -0.09017415170950983
+    ],
+    "p_holm": 0.11537585780024529,
+    "verdict": "within chance"
+   },
+   "rule_neighbour|compliance": {
+    "n": 30,
+    "diff": 0.8677777777777794,
+    "wins": 19,
+    "ties": 0,
+    "losses": 11,
+    "p": 0.15282812491418205,
+    "ci": [
+     -0.45723611111110957,
+     2.1483472222222244
+    ],
+    "p_holm": 0.15282812491418205,
+    "verdict": "within chance"
+   }
+  },
+  "pooled": {
+   "single_agent_dqn|reward": {
+    "n": 60,
+    "diff": 1.338047436796395,
+    "wins": 56,
+    "ties": 0,
+    "losses": 4,
+    "p": 4.4388946978634824e-11,
+    "ci": [
+     1.086245202955158,
+     1.6024401601316802
+    ],
+    "p_holm": 4.4388946978634827e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "single_agent_dqn|compliance": {
+    "n": 60,
+    "diff": 7.514722222222223,
+    "wins": 52,
+    "ties": 0,
+    "losses": 8,
+    "p": 4.3019000309747266e-10,
+    "ci": [
+     5.958812500000003,
+     9.12532638888889
+    ],
+    "p_holm": 3.0113300216823086e-09,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|reward": {
+    "n": 60,
+    "diff": 1.121058645484678,
+    "wins": 56,
+    "ties": 0,
+    "losses": 4,
+    "p": 3.397786095976041e-10,
+    "ci": [
+     0.8781846119546921,
+     1.365136461428594
+    ],
+    "p_holm": 2.7182288767808327e-09,
+    "verdict": "AXIOM ahead"
+   },
+   "independent_dqn|compliance": {
+    "n": 60,
+    "diff": 6.536388888888891,
+    "wins": 53,
+    "ties": 0,
+    "losses": 7,
+    "p": 1.7642034667343219e-09,
+    "ci": [
+     5.05582638888889,
+     8.016944444444444
+    ],
+    "p_holm": 1.0585220800405932e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|reward": {
+    "n": 60,
+    "diff": 1.8011583022874489,
+    "wins": 56,
+    "ties": 0,
+    "losses": 4,
+    "p": 1.4366410357796407e-10,
+    "ci": [
+     1.400846441917438,
+     2.198697391871363
+    ],
+    "p_holm": 1.2929769322016766e-09,
+    "verdict": "AXIOM ahead"
+   },
+   "mappo_tuned|compliance": {
+    "n": 60,
+    "diff": 10.102500000000001,
+    "wins": 49,
+    "ties": 0,
+    "losses": 11,
+    "p": 1.0202531190939745e-08,
+    "ci": [
+     7.520812500000002,
+     12.663958333333337
+    ],
+    "p_holm": 4.4777189429037476e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|reward": {
+    "n": 60,
+    "diff": 2.5602536133636815,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6295557943119345e-11,
+    "ci": [
+     2.3893368757992994,
+     2.7304476126826747
+    ],
+    "p_holm": 2.2788732534786267e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_static|compliance": {
+    "n": 60,
+    "diff": 15.81388888888889,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6277666096275905e-11,
+    "ci": [
+     14.710250000000002,
+     16.88361805555556
+    ],
+    "p_holm": 2.2788732534786267e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_accept_all|reward": {
+    "n": 60,
+    "diff": 4.545603029901901,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6295557943119345e-11,
+    "ci": [
+     4.40890394875895,
+     4.679103496257223
+    ],
+    "p_holm": 2.2788732534786267e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_accept_all|compliance": {
+    "n": 60,
+    "diff": 29.77500000000001,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6285331829622064e-11,
+    "ci": [
+     28.85052777777778,
+     30.660625000000003
+    ],
+    "p_holm": 2.2788732534786267e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "rule_local|reward": {
+    "n": 60,
+    "diff": -0.426327007535311,
+    "wins": 11,
+    "ties": 0,
+    "losses": 49,
+    "p": 8.955437885807495e-09,
+    "ci": [
+     -0.5405778943926927,
+     -0.31219042450172246
+    ],
+    "p_holm": 4.4777189429037476e-08,
+    "verdict": "AXIOM behind"
+   },
+   "rule_local|compliance": {
+    "n": 60,
+    "diff": -2.8308333333333318,
+    "wins": 10,
+    "ties": 0,
+    "losses": 50,
+    "p": 4.146271268457202e-08,
+    "ci": [
+     -3.6586666666666665,
+     -2.0205416666666673
+    ],
+    "p_holm": 1.2438813805371606e-07,
+    "verdict": "AXIOM behind"
+   },
+   "rule_neighbour|reward": {
+    "n": 60,
+    "diff": -0.23503467130790948,
+    "wins": 26,
+    "ties": 0,
+    "losses": 34,
+    "p": 0.006034921570155506,
+    "ci": [
+     -0.3577947010575176,
+     -0.1145508674622485
+    ],
+    "p_holm": 0.012069843140311011,
+    "verdict": "AXIOM behind"
+   },
+   "rule_neighbour|compliance": {
+    "n": 60,
+    "diff": 1.2150000000000005,
+    "wins": 42,
+    "ties": 0,
+    "losses": 18,
+    "p": 0.007208838339418904,
+    "ci": [
+     0.2938333333333316,
+     2.0972361111111106
+    ],
+    "p_holm": 0.012069843140311011,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "collapse": {
+   "stored": {
+    "B_n3|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 8.831805335946738,
+     "compliance": 65.0938888888889
+    },
+    "B_n3|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 7.494879177321698,
+     "compliance": 57.513333333333335
+    },
+    "B_n3|independent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 7.793777748338516,
+     "compliance": 58.99666666666666
+    },
+    "B_n3|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 6.968428475273854,
+     "compliance": 54.265
+    },
+    "B_n3|rule_static": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 6.336731777354,
+     "compliance": 49.60555555555556
+    },
+    "B_n3|rule_accept_all": {
+     "n": 30,
+     "collapsed": 30,
+     "reward": 4.356297369807765,
+     "compliance": 35.537222222222226
+    },
+    "B_n3|rule_local": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 9.251996197455524,
+     "compliance": 67.815
+    },
+    "B_n3|rule_neighbour": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 9.040826440909605,
+     "compliance": 63.53166666666666
+    }
+   },
+   "new": {
+    "B_n3|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 8.613296920732044,
+     "compliance": 63.16833333333334
+    },
+    "B_n3|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 7.274128205764294,
+     "compliance": 55.71944444444445
+    },
+    "B_n3|independent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 7.409207217370908,
+     "compliance": 56.19277777777778
+    },
+    "B_n3|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 6.874357176830029,
+     "compliance": 53.79222222222222
+    },
+    "B_n3|rule_static": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 5.987863252597421,
+     "compliance": 47.028888888888886
+    },
+    "B_n3|rule_accept_all": {
+     "n": 30,
+     "collapsed": 30,
+     "reward": 3.997598827067213,
+     "compliance": 33.175
+    },
+    "B_n3|rule_local": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 9.045760074293877,
+     "compliance": 66.1088888888889
+    },
+    "B_n3|rule_neighbour": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 8.874345158384994,
+     "compliance": 62.30055555555555
+    }
+   },
+   "pooled": {
+    "B_n3|axiom2": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 8.722551128339392,
+     "compliance": 64.13111111111111
+    },
+    "B_n3|single_agent_dqn": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 7.384503691542995,
+     "compliance": 56.61638888888889
+    },
+    "B_n3|independent_dqn": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 7.601492482854713,
+     "compliance": 57.59472222222222
+    },
+    "B_n3|mappo_tuned": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 6.921392826051942,
+     "compliance": 54.0286111111111
+    },
+    "B_n3|rule_static": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 6.16229751497571,
+     "compliance": 48.31722222222222
+    },
+    "B_n3|rule_accept_all": {
+     "n": 60,
+     "collapsed": 60,
+     "reward": 4.17694809843749,
+     "compliance": 34.356111111111105
+    },
+    "B_n3|rule_local": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 9.148878135874702,
+     "compliance": 66.96194444444444
+    },
+    "B_n3|rule_neighbour": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 8.9575857996473,
+     "compliance": 62.916111111111114
+    }
+   }
+  },
+  "not_replicated_by_new": [
+   "rule_neighbour|compliance"
+  ],
+  "pooled_verdict_changes": {
+   "rule_neighbour|reward": [
+    "within chance",
+    "AXIOM behind"
+   ]
+  }
+ },
+ "A7_scaling": {
+  "stored": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 3.8368117976851837,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.00335693359375,
+    "ci": [
+     1.6565501683241304,
+     6.231134801971008
+    ],
+    "p_holm": 0.010498046875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 21.54,
+    "wins": 12,
+    "ties": 1,
+    "losses": 2,
+    "p": 0.005213241256099401,
+    "ci": [
+     10.74886111111111,
+     33.19124999999999
+    ],
+    "p_holm": 0.010498046875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 15,
+    "diff": 4.356356481691634,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00018310546875,
+    "ci": [
+     2.9324851820115723,
+     5.500039456910871
+    ],
+    "p_holm": 0.00164794921875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 22.285555555555554,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.0006103515625,
+    "ci": [
+     14.167722222222219,
+     29.604722222222218
+    ],
+    "p_holm": 0.0030517578125,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 6.815996050643231,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     4.910164594075141,
+     8.81092463311319
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 29.19777777777778,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00030517578125,
+    "ci": [
+     19.85222222222222,
+     37.65127777777778
+    ],
+    "p_holm": 0.0018310546875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 4.151510851756362,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00018310546875,
+    "ci": [
+     2.3349913653274843,
+     6.304205861705444
+    ],
+    "p_holm": 0.00164794921875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 23.075555555555557,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     14.007749999999996,
+     33.37808333333333
+    ],
+    "p_holm": 0.001220703125,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 15,
+    "diff": 4.611977616232057,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     3.6978858158788355,
+     5.495848677492603
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 23.024444444444445,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00018310546875,
+    "ci": [
+     15.940999999999995,
+     29.947777777777777
+    ],
+    "p_holm": 0.00164794921875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 7.071617185183653,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     5.169088674952709,
+     9.04886705993383
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 29.93666666666666,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     22.638249999999992,
+     36.24788888888888
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 3.399044590406683,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.00262451171875,
+    "ci": [
+     1.4505515900459478,
+     5.7316230958773255
+    ],
+    "p_holm": 0.010498046875,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 17.904444444444447,
+    "wins": 12,
+    "ties": 2,
+    "losses": 1,
+    "p": 0.007132413699395206,
+    "ci": [
+     7.286472222222222,
+     29.499027777777776
+    ],
+    "p_holm": 0.010498046875,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 15,
+    "diff": 4.395365451574543,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     3.3149553814400017,
+     5.4149950047451805
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 22.142222222222223,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     14.908861111111115,
+     29.49225
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 6.855005020526139,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     4.8696203073800435,
+     8.905767333092609
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 29.05444444444444,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     20.617527777777777,
+     37.02338888888888
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "new": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 2.9251599492917633,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.00115966796875,
+    "ci": [
+     1.6101411930193572,
+     4.17748712455686
+    ],
+    "p_holm": 0.005889238515130011,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 18.009999999999998,
+    "wins": 13,
+    "ties": 1,
+    "losses": 1,
+    "p": 0.003510363671504142,
+    "ci": [
+     8.71161111111111,
+     27.09008333333332
+    ],
+    "p_holm": 0.013427734375,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 15,
+    "diff": 4.386682785139354,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     3.5070940023459984,
+     5.313994858958929
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 21.22555555555556,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     14.80202777777778,
+     27.79274999999999
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 8.528920385823373,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     6.203290494302957,
+     11.212481788665782
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 29.05111111111111,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     21.746555555555556,
+     36.34011111111111
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 3.387938009684257,
+    "wins": 12,
+    "ties": 0,
+    "losses": 3,
+    "p": 0.05535888671875,
+    "ci": [
+     -0.038271714260897725,
+     8.931345644683281
+    ],
+    "p_holm": 0.1107177734375,
+    "verdict": "within chance"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 7.212222222222222,
+    "wins": 12,
+    "ties": 1,
+    "losses": 2,
+    "p": 0.08428387967828298,
+    "ci": [
+     -4.89225,
+     20.26891666666667
+    ],
+    "p_holm": 0.1107177734375,
+    "verdict": "within chance"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 15,
+    "diff": 3.749423903096815,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.00030517578125,
+    "ci": [
+     2.6465324634716256,
+     4.855054783599248
+    ],
+    "p_holm": 0.00244140625,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 16.526666666666674,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.00335693359375,
+    "ci": [
+     8.417777777777781,
+     24.561166666666665
+    ],
+    "p_holm": 0.013427734375,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 7.891661503780836,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     5.448206973212441,
+     10.68261328818444
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 24.352222222222224,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00042724609375,
+    "ci": [
+     15.13208333333333,
+     33.44136111111111
+    ],
+    "p_holm": 0.00299072265625,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 6.708093460243855,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     2.8563262518379804,
+     12.239907084283585
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 24.10333333333334,
+    "wins": 14,
+    "ties": 1,
+    "losses": 0,
+    "p": 0.0009815397525216685,
+    "ci": [
+     14.033194444444447,
+     35.42444444444445
+    ],
+    "p_holm": 0.005889238515130011,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 15,
+    "diff": 4.644497219411089,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     3.9066440780268925,
+     5.442088579600393
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 22.668888888888887,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     16.77322222222222,
+     28.62463888888889
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 8.786734820095107,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     6.442265221203135,
+     11.516636917243659
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 30.494444444444444,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     22.71875,
+     38.23030555555555
+    ],
+    "p_holm": 0.0010986328125,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "pooled": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 3.380985873488474,
+    "wins": 26,
+    "ties": 0,
+    "losses": 4,
+    "p": 1.218356192111969e-05,
+    "ci": [
+     2.1004238204807364,
+     4.7472119150463685
+    ],
+    "p_holm": 6.091780960559845e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 19.775,
+    "wins": 25,
+    "ties": 2,
+    "losses": 3,
+    "p": 5.5648397659557105e-05,
+    "ci": [
+     12.645361111111107,
+     27.15897222222222
+    ],
+    "p_holm": 0.0001669451929786713,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 30,
+    "diff": 4.3715196334154935,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.5390257835388184e-08,
+    "ci": [
+     3.5497250421107553,
+     5.127265961056849
+    ],
+    "p_holm": 4.246830940246582e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 21.755555555555556,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 8.009374141693115e-08,
+    "ci": [
+     16.60354166666667,
+     26.680569444444448
+    ],
+    "p_holm": 8.810311555862427e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 7.672458218233301,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     6.115656839367448,
+     9.380584189316924
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 29.124444444444446,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 2.351977194551935e-06,
+    "ci": [
+     23.241097222222226,
+     34.71836111111111
+    ],
+    "p_holm": 1.6463840361863543e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 3.7697244307203097,
+    "wins": 26,
+    "ties": 0,
+    "losses": 4,
+    "p": 6.286613643169403e-05,
+    "ci": [
+     1.626845872068884,
+     6.7366602254547985
+    ],
+    "p_holm": 0.0001669451929786713,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 15.143888888888887,
+    "wins": 26,
+    "ties": 1,
+    "losses": 3,
+    "p": 0.0003453871103895158,
+    "ci": [
+     6.913819444444441,
+     23.672652777777767
+    ],
+    "p_holm": 0.0003453871103895158,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 30,
+    "diff": 4.180700759664436,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 9.313225746154785e-09,
+    "ci": [
+     3.4480558891635202,
+     4.9052681173297685
+    ],
+    "p_holm": 1.210719347000122e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 19.775555555555556,
+    "wins": 27,
+    "ties": 0,
+    "losses": 3,
+    "p": 9.98377799987793e-07,
+    "ci": [
+     14.297083333333331,
+     25.152805555555556
+    ],
+    "p_holm": 8.985400199890137e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 7.481639344482245,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     5.915536316641115,
+     9.225710034206784
+    ],
+    "p_holm": 5.21540641784668e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 27.144444444444442,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.1797762823178307e-06,
+    "ci": [
+     21.297624999999996,
+     32.745749999999994
+    ],
+    "p_holm": 1.9078657693906985e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 5.05356902532527,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 2.551823854446411e-07,
+    "ci": [
+     2.7330307497768453,
+     7.94281351352832
+    ],
+    "p_holm": 2.551823854446411e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 21.003888888888888,
+    "wins": 26,
+    "ties": 3,
+    "losses": 1,
+    "p": 2.1146821548574356e-05,
+    "ci": [
+     13.462638888888895,
+     28.847222222222214
+    ],
+    "p_holm": 8.458728619429742e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 30,
+    "diff": 4.5199313354928154,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     3.8556424464196333,
+     5.154947251839249
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 22.40555555555556,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     17.821611111111114,
+     26.96398611111111
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 7.820869920310623,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     6.2155618908424115,
+     9.596198638183445
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 29.77444444444444,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.7333066441991056e-06,
+    "ci": [
+     24.060541666666662,
+     35.430055555555555
+    ],
+    "p_holm": 1.3866453153592845e-05,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "collapse": {
+   "stored": {
+    "A_n7_fully_connected|axiom2": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 31.298696210741912,
+     "compliance": 96.87444444444445
+    },
+    "A_n7_fully_connected|single_agent_dqn": {
+     "n": 15,
+     "collapsed": 1,
+     "reward": 27.461884413056726,
+     "compliance": 75.33444444444446
+    },
+    "A_n7_fully_connected|independent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 26.942339729050275,
+     "compliance": 74.5888888888889
+    },
+    "A_n7_fully_connected|mappo_tuned": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 24.482700160098677,
+     "compliance": 67.67666666666668
+    },
+    "A_n7_ring|axiom2": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 31.554317345282332,
+     "compliance": 97.61333333333333
+    },
+    "A_n7_ring|single_agent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 27.40280649352597,
+     "compliance": 74.53777777777778
+    },
+    "A_n7_ring|independent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 26.942339729050275,
+     "compliance": 74.5888888888889
+    },
+    "A_n7_ring|mappo_tuned": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 24.482700160098677,
+     "compliance": 67.67666666666668
+    },
+    "A_n7_hex|axiom2": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 31.337705180624816,
+     "compliance": 96.73111111111112
+    },
+    "A_n7_hex|single_agent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 27.938660590218138,
+     "compliance": 78.82666666666667
+    },
+    "A_n7_hex|independent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 26.942339729050275,
+     "compliance": 74.5888888888889
+    },
+    "A_n7_hex|mappo_tuned": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 24.482700160098677,
+     "compliance": 67.67666666666668
+    }
+   },
+   "new": {
+    "A_n7_fully_connected|axiom2": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 31.965947584292543,
+     "compliance": 98.24333333333334
+    },
+    "A_n7_fully_connected|single_agent_dqn": {
+     "n": 15,
+     "collapsed": 2,
+     "reward": 29.040787635000772,
+     "compliance": 80.23333333333335
+    },
+    "A_n7_fully_connected|independent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 27.579264799153187,
+     "compliance": 77.01777777777778
+    },
+    "A_n7_fully_connected|mappo_tuned": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 23.43702719846917,
+     "compliance": 69.19222222222221
+    },
+    "A_n7_ring|axiom2": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 31.328688702250005,
+     "compliance": 93.54444444444445
+    },
+    "A_n7_ring|single_agent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 27.940750692565743,
+     "compliance": 86.33222222222223
+    },
+    "A_n7_ring|independent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 27.579264799153187,
+     "compliance": 77.01777777777778
+    },
+    "A_n7_ring|mappo_tuned": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 23.43702719846917,
+     "compliance": 69.19222222222221
+    },
+    "A_n7_hex|axiom2": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 32.22376201856428,
+     "compliance": 99.68666666666668
+    },
+    "A_n7_hex|single_agent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 25.51566855832042,
+     "compliance": 75.58333333333331
+    },
+    "A_n7_hex|independent_dqn": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 27.579264799153187,
+     "compliance": 77.01777777777778
+    },
+    "A_n7_hex|mappo_tuned": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 23.43702719846917,
+     "compliance": 69.19222222222221
+    }
+   },
+   "pooled": {
+    "A_n7_fully_connected|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 31.632321897517215,
+     "compliance": 97.55888888888889
+    },
+    "A_n7_fully_connected|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 3,
+     "reward": 28.251336024028753,
+     "compliance": 77.7838888888889
+    },
+    "A_n7_fully_connected|independent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 27.260802264101724,
+     "compliance": 75.80333333333333
+    },
+    "A_n7_fully_connected|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 23.959863679283917,
+     "compliance": 68.43444444444444
+    },
+    "A_n7_ring|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 31.441503023766163,
+     "compliance": 95.5788888888889
+    },
+    "A_n7_ring|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 27.671778593045858,
+     "compliance": 80.435
+    },
+    "A_n7_ring|independent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 27.260802264101724,
+     "compliance": 75.80333333333333
+    },
+    "A_n7_ring|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 23.959863679283917,
+     "compliance": 68.43444444444444
+    },
+    "A_n7_hex|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 31.78073359959454,
+     "compliance": 98.20888888888888
+    },
+    "A_n7_hex|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 26.727164574269278,
+     "compliance": 77.205
+    },
+    "A_n7_hex|independent_dqn": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 27.260802264101724,
+     "compliance": 75.80333333333333
+    },
+    "A_n7_hex|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 23.959863679283917,
+     "compliance": 68.43444444444444
+    }
+   }
+  },
+  "not_replicated_by_new": [
+   "ring|single_agent_dqn|reward",
+   "ring|single_agent_dqn|compliance"
+  ],
+  "pooled_verdict_changes": {}
+ },
+ "A19_scaling": {
+  "stored": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 11.846703434523539,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     10.322700198726078,
+     13.565643297348169
+    ],
+    "p_holm": 4.470348358154297e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 33.205555555555556,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     28.601027777777777,
+     38.33175
+    ],
+    "p_holm": 4.470348358154297e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 30,
+    "diff": 13.391012280146507,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     12.00405437820779,
+     14.485819450069835
+    ],
+    "p_holm": 4.470348358154297e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 42.12166666666667,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     36.693583333333336,
+     47.070125
+    ],
+    "p_holm": 4.470348358154297e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 18.554790112521403,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     15.747675734078447,
+     21.491099365879453
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 37.84777777777777,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     33.27990277777777,
+     41.95125
+    ],
+    "p_holm": 4.470348358154297e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 10.72158469856339,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 1.30385160446167e-08,
+    "ci": [
+     8.890532600342139,
+     12.650796060028092
+    ],
+    "p_holm": 7.82310962677002e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 30.972777777777775,
+    "wins": 29,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.5630832507250074e-06,
+    "ci": [
+     26.04594444444444,
+     36.42504166666667
+    ],
+    "p_holm": 1.025233300290003e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 30,
+    "diff": 12.26340580729566,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     10.564326568918116,
+     13.769894084141175
+    ],
+    "p_holm": 4.470348358154297e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 39.89277777777777,
+    "wins": 29,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.5630832507250074e-06,
+    "ci": [
+     34.00275,
+     45.38120833333333
+    ],
+    "p_holm": 1.025233300290003e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 17.427183639670552,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     14.797604329659723,
+     20.40235148220341
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 35.61888888888889,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.7333066441991056e-06,
+    "ci": [
+     31.302124999999993,
+     39.72002777777778
+    ],
+    "p_holm": 8.666533220995529e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 11.221667514500462,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "ci": [
+     9.514026007276836,
+     13.023801019121729
+    ],
+    "p_holm": 1.025233300290003e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 31.74611111111111,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "ci": [
+     26.979263888888884,
+     36.99248611111111
+    ],
+    "p_holm": 1.025233300290003e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 30,
+    "diff": 12.773316415753353,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     11.438195894184165,
+     13.947242054596542
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 40.662222222222226,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     36.16881944444445,
+     45.195569444444445
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 17.937094248128247,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     15.08949759946077,
+     20.95035262771135
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 36.38833333333333,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     31.72431944444444,
+     40.58231944444444
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "new": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 11.46999999901489,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     10.007267307379683,
+     12.528456324874632
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 32.62166666666666,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     28.71219444444445,
+     36.08570833333332
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 30,
+    "diff": 13.039291956486624,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 5.587935447692871e-09,
+    "ci": [
+     11.247528711004444,
+     14.580649748285943
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 40.084999999999994,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 9.313225746154785e-09,
+    "ci": [
+     33.67219444444445,
+     46.367305555555554
+    ],
+    "p_holm": 3.725290298461914e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 18.27351088158463,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     15.256455176977525,
+     21.460604477727173
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 34.84666666666667,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     29.071125,
+     40.09958333333332
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 12.101263967943082,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     11.030409086716906,
+     13.441098725350829
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 34.60944444444444,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     31.883805555555554,
+     38.61293055555556
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 30,
+    "diff": 13.697911397030337,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     12.613540463316868,
+     14.825790668914857
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 42.92388888888888,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     38.42551388888888,
+     47.815652777777785
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 18.932130322128344,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     16.151217153742927,
+     21.937159356044482
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 37.68555555555555,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     32.881625,
+     42.24468055555555
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 12.994130780632414,
+    "wins": 29,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.5630832507250074e-06,
+    "ci": [
+     10.43307136674828,
+     17.150256638318762
+    ],
+    "p_holm": 5.126166501450015e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 32.40833333333333,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "ci": [
+     27.273652777777773,
+     37.59470833333333
+    ],
+    "p_holm": 5.126166501450015e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 30,
+    "diff": 13.098743620573272,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     11.812975673680777,
+     14.19158764170165
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 39.7661111111111,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     34.498875000000005,
+     44.8151111111111
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 18.332962545671275,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 3.725290298461914e-09,
+    "ci": [
+     15.120632183378074,
+     21.616330273191156
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 34.52777777777778,
+    "wins": 27,
+    "ties": 0,
+    "losses": 3,
+    "p": 8.009374141693115e-08,
+    "ci": [
+     27.128166666666665,
+     41.12454166666666
+    ],
+    "p_holm": 2.4028122425079346e-07,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "pooled": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 60,
+    "diff": 11.658351716769213,
+    "wins": 58,
+    "ties": 0,
+    "losses": 2,
+    "p": 1.8964365613380834e-11,
+    "ci": [
+     10.62426262254994,
+     12.66459698716253
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 60,
+    "diff": 32.91361111111111,
+    "wins": 58,
+    "ties": 0,
+    "losses": 2,
+    "p": 1.8958452489202902e-11,
+    "ci": [
+     29.899437500000005,
+     35.921722222222215
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 60,
+    "diff": 13.215152118316563,
+    "wins": 58,
+    "ties": 0,
+    "losses": 2,
+    "p": 1.994566564292453e-11,
+    "ci": [
+     12.078090684145327,
+     14.186774723256434
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 60,
+    "diff": 41.10333333333333,
+    "wins": 57,
+    "ties": 0,
+    "losses": 3,
+    "p": 2.2059707532770726e-11,
+    "ci": [
+     36.875215277777784,
+     45.103451388888885
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 60,
+    "diff": 18.414150497053015,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6295557943119345e-11,
+    "ci": [
+     16.309585516200716,
+     20.53247871573369
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 60,
+    "diff": 36.347222222222214,
+    "wins": 58,
+    "ties": 0,
+    "losses": 2,
+    "p": 1.8958452489202902e-11,
+    "ci": [
+     32.70869444444444,
+     39.73363888888889
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 60,
+    "diff": 11.411424333253235,
+    "wins": 58,
+    "ties": 0,
+    "losses": 2,
+    "p": 2.0976628064088716e-11,
+    "ci": [
+     10.292484486545211,
+     12.570808499394527
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 60,
+    "diff": 32.791111111111114,
+    "wins": 59,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.3897074592223747e-11,
+    "ci": [
+     29.72829166666667,
+     36.125277777777775
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 60,
+    "diff": 12.980658602162999,
+    "wins": 59,
+    "ties": 0,
+    "losses": 1,
+    "p": 1.7141493981716166e-11,
+    "ci": [
+     11.92062808722312,
+     13.938493929682128
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 60,
+    "diff": 41.408333333333324,
+    "wins": 59,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.3900953516978203e-11,
+    "ci": [
+     37.65138888888889,
+     45.08798611111111
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 60,
+    "diff": 18.179656980899445,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6295557943119345e-11,
+    "ci": [
+     16.19295715806086,
+     20.259496618710244
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 60,
+    "diff": 36.65222222222222,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6293000864348577e-11,
+    "ci": [
+     33.46846527777778,
+     39.78705555555556
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 60,
+    "diff": 12.107899147566433,
+    "wins": 57,
+    "ties": 2,
+    "losses": 1,
+    "p": 3.6945689265359235e-11,
+    "ci": [
+     10.450421404292737,
+     14.406330107989271
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 60,
+    "diff": 32.07722222222222,
+    "wins": 56,
+    "ties": 2,
+    "losses": 2,
+    "p": 4.100468063994645e-11,
+    "ci": [
+     28.521319444444444,
+     35.76598611111111
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 60,
+    "diff": 12.936030018163311,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6295557943119345e-11,
+    "ci": [
+     12.012340830569237,
+     13.752918923915015
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 60,
+    "diff": 40.21416666666666,
+    "wins": 60,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.6295557943119345e-11,
+    "ci": [
+     36.728,
+     43.595013888888886
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 60,
+    "diff": 18.135028396899763,
+    "wins": 59,
+    "ties": 0,
+    "losses": 1,
+    "p": 1.8030386309636688e-11,
+    "ci": [
+     15.975358272213736,
+     20.3417643638803
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 60,
+    "diff": 35.45805555555555,
+    "wins": 57,
+    "ties": 0,
+    "losses": 3,
+    "p": 3.823987286207749e-11,
+    "ci": [
+     31.068215277777778,
+     39.47060416666667
+    ],
+    "p_holm": 2.932740155582744e-10,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "collapse": {
+   "stored": {
+    "A_n19_fully_connected|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 89.77898409458031,
+     "compliance": 98.48
+    },
+    "A_n19_fully_connected|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 27,
+     "reward": 77.9322806600568,
+     "compliance": 65.27444444444446
+    },
+    "A_n19_fully_connected|independent_dqn": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 76.38797181443383,
+     "compliance": 56.358333333333334
+    },
+    "A_n19_fully_connected|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 71.22419398205894,
+     "compliance": 60.63222222222222
+    },
+    "A_n19_ring|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 88.65137762172948,
+     "compliance": 96.25111111111111
+    },
+    "A_n19_ring|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 28,
+     "reward": 77.9297929231661,
+     "compliance": 65.27833333333334
+    },
+    "A_n19_ring|independent_dqn": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 76.38797181443383,
+     "compliance": 56.358333333333334
+    },
+    "A_n19_ring|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 71.22419398205894,
+     "compliance": 60.63222222222222
+    },
+    "A_n19_hex|axiom2": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 89.16128823018718,
+     "compliance": 97.02055555555556
+    },
+    "A_n19_hex|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 29,
+     "reward": 77.93962071568673,
+     "compliance": 65.27444444444446
+    },
+    "A_n19_hex|independent_dqn": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 76.38797181443383,
+     "compliance": 56.358333333333334
+    },
+    "A_n19_hex|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 71.22419398205894,
+     "compliance": 60.63222222222222
+    }
+   },
+   "new": {
+    "A_n19_fully_connected|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 89.50726529259678,
+     "compliance": 96.7538888888889
+    },
+    "A_n19_fully_connected|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 25,
+     "reward": 78.03726529358188,
+     "compliance": 64.13222222222223
+    },
+    "A_n19_fully_connected|independent_dqn": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 76.46797333611016,
+     "compliance": 56.66888888888889
+    },
+    "A_n19_fully_connected|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 71.23375441101216,
+     "compliance": 61.90722222222223
+    },
+    "A_n19_ring|axiom2": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 90.1658847331405,
+     "compliance": 99.59277777777778
+    },
+    "A_n19_ring|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 27,
+     "reward": 78.0646207651974,
+     "compliance": 64.98333333333333
+    },
+    "A_n19_ring|independent_dqn": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 76.46797333611016,
+     "compliance": 56.66888888888889
+    },
+    "A_n19_ring|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 71.23375441101216,
+     "compliance": 61.90722222222223
+    },
+    "A_n19_hex|axiom2": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 89.56671695668342,
+     "compliance": 96.43499999999999
+    },
+    "A_n19_hex|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 27,
+     "reward": 76.57258617605099,
+     "compliance": 64.02666666666667
+    },
+    "A_n19_hex|independent_dqn": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 76.46797333611016,
+     "compliance": 56.66888888888889
+    },
+    "A_n19_hex|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 71.23375441101216,
+     "compliance": 61.90722222222223
+    }
+   },
+   "pooled": {
+    "A_n19_fully_connected|axiom2": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 89.64312469358858,
+     "compliance": 97.61694444444444
+    },
+    "A_n19_fully_connected|single_agent_dqn": {
+     "n": 60,
+     "collapsed": 52,
+     "reward": 77.98477297681936,
+     "compliance": 64.70333333333333
+    },
+    "A_n19_fully_connected|independent_dqn": {
+     "n": 60,
+     "collapsed": 2,
+     "reward": 76.427972575272,
+     "compliance": 56.51361111111112
+    },
+    "A_n19_fully_connected|mappo_tuned": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 71.22897419653555,
+     "compliance": 61.269722222222214
+    },
+    "A_n19_ring|axiom2": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 89.408631177435,
+     "compliance": 97.92194444444443
+    },
+    "A_n19_ring|single_agent_dqn": {
+     "n": 60,
+     "collapsed": 55,
+     "reward": 77.99720684418178,
+     "compliance": 65.13083333333333
+    },
+    "A_n19_ring|independent_dqn": {
+     "n": 60,
+     "collapsed": 2,
+     "reward": 76.427972575272,
+     "compliance": 56.51361111111112
+    },
+    "A_n19_ring|mappo_tuned": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 71.22897419653555,
+     "compliance": 61.269722222222214
+    },
+    "A_n19_hex|axiom2": {
+     "n": 60,
+     "collapsed": 2,
+     "reward": 89.36400259343533,
+     "compliance": 96.72777777777777
+    },
+    "A_n19_hex|single_agent_dqn": {
+     "n": 60,
+     "collapsed": 56,
+     "reward": 77.25610344586887,
+     "compliance": 64.65055555555556
+    },
+    "A_n19_hex|independent_dqn": {
+     "n": 60,
+     "collapsed": 2,
+     "reward": 76.427972575272,
+     "compliance": 56.51361111111112
+    },
+    "A_n19_hex|mappo_tuned": {
+     "n": 60,
+     "collapsed": 0,
+     "reward": 71.22897419653555,
+     "compliance": 61.269722222222214
+    }
+   }
+  },
+  "not_replicated_by_new": [],
+  "pooled_verdict_changes": {}
+ },
+ "A37_scaling": {
+  "stored": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 19.20068111684549,
+    "wins": 13,
+    "ties": 1,
+    "losses": 1,
+    "p": 0.0012250235420688657,
+    "ci": [
+     14.163491850837136,
+     23.405462163608444
+    ],
+    "p_holm": 0.006125117710344329,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 33.29,
+    "wins": 13,
+    "ties": 1,
+    "losses": 1,
+    "p": 0.0012250235420688657,
+    "ci": [
+     24.88213888888889,
+     39.426666666666655
+    ],
+    "p_holm": 0.006125117710344329,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 15,
+    "diff": 27.53597882506393,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     22.7860753156124,
+     31.44327043930787
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 67.80444444444444,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     56.9798611111111,
+     77.10463888888889
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 25.65395101112427,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00030517578125,
+    "ci": [
+     17.02403597344626,
+     33.80376743215366
+    ],
+    "p_holm": 0.00244140625,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 35.53333333333333,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.0008544921875,
+    "ci": [
+     22.153249999999996,
+     46.99566666666668
+    ],
+    "p_holm": 0.005126953125,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 18.26791840698576,
+    "wins": 13,
+    "ties": 2,
+    "losses": 0,
+    "p": 0.0014737808438751421,
+    "ci": [
+     13.13231791904311,
+     22.80606624164768
+    ],
+    "p_holm": 0.006125117710344329,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 32.026666666666664,
+    "wins": 13,
+    "ties": 2,
+    "losses": 0,
+    "p": 0.0014737808438751421,
+    "ci": [
+     24.122083333333332,
+     38.63341666666666
+    ],
+    "p_holm": 0.006125117710344329,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 15,
+    "diff": 26.603216115204205,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     21.046757079220768,
+     31.523545110915318
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 66.54111111111112,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     53.57311111111112,
+     77.53241666666665
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 24.721188301264547,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.0006103515625,
+    "ci": [
+     15.661293577564296,
+     33.40985039044576
+    ],
+    "p_holm": 0.0042724609375,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 34.269999999999996,
+    "wins": 13,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.00152587890625,
+    "ci": [
+     20.482222222222223,
+     46.43908333333332
+    ],
+    "p_holm": 0.006125117710344329,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 29.506940165592457,
+    "wins": 27,
+    "ties": 3,
+    "losses": 0,
+    "p": 5.606116527496013e-06,
+    "ci": [
+     17.490704074428645,
+     46.10357744304606
+    ],
+    "p_holm": 7.848563138494418e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 34.92333333333333,
+    "wins": 26,
+    "ties": 3,
+    "losses": 1,
+    "p": 7.03341409095573e-06,
+    "ci": [
+     27.753194444444446,
+     42.330111111111115
+    ],
+    "p_holm": 9.143438318242449e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 30,
+    "diff": 25.857733253399196,
+    "wins": 29,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.5630832507250074e-06,
+    "ci": [
+     21.991625084641,
+     29.2810593130112
+    ],
+    "p_holm": 4.100933201160012e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 61.452222222222204,
+    "wins": 28,
+    "ties": 2,
+    "losses": 0,
+    "p": 3.789619441580871e-06,
+    "ci": [
+     52.11326388888889,
+     69.89730555555555
+    ],
+    "p_holm": 5.6844291623713066e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 28.953186921994703,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 5.587935447692871e-09,
+    "ci": [
+     23.019655913881962,
+     35.09725399391628
+    ],
+    "p_holm": 1.0058283805847168e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 36.90888888888889,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 8.009374141693115e-08,
+    "ci": [
+     28.45415277777778,
+     44.75336111111111
+    ],
+    "p_holm": 1.3615936040878296e-06,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "new": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 32.631272947798635,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     21.101145810110733,
+     55.36160622263656
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 41.013333333333335,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     36.31997222222222,
+     48.37238888888889
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 15,
+    "diff": 27.81167223359535,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     25.541316783485847,
+     30.06540211607974
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 65.25,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     56.80813888888889,
+     73.22119444444445
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 33.034545710464265,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     28.52206186420974,
+     37.5108746548308
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 47.20333333333335,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     41.48550000000001,
+     53.06602777777776
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 15,
+    "diff": 27.75052465391942,
+    "wins": 12,
+    "ties": 1,
+    "losses": 2,
+    "p": 0.001887179308509098,
+    "ci": [
+     12.449869024050049,
+     53.17105231485577
+    ],
+    "p_holm": 0.003774358617018196,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 15,
+    "diff": 32.62,
+    "wins": 12,
+    "ties": 1,
+    "losses": 2,
+    "p": 0.001887179308509098,
+    "ci": [
+     21.941083333333335,
+     43.53427777777777
+    ],
+    "p_holm": 0.003774358617018196,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 15,
+    "diff": 22.93092393971613,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00018310546875,
+    "ci": [
+     17.13385327331776,
+     27.878548318843116
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 15,
+    "diff": 56.85666666666667,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.0001220703125,
+    "ci": [
+     43.79991666666666,
+     68.6181111111111
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 15,
+    "diff": 28.153797416585054,
+    "wins": 15,
+    "ties": 0,
+    "losses": 0,
+    "p": 6.103515625e-05,
+    "ci": [
+     22.501030725707484,
+     33.24141627243158
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 15,
+    "diff": 38.81000000000001,
+    "wins": 14,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.00018310546875,
+    "ci": [
+     28.70222222222223,
+     47.42355555555555
+    ],
+    "p_holm": 0.000732421875,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 31.205769625816437,
+    "wins": 28,
+    "ties": 2,
+    "losses": 0,
+    "p": 3.789619441580871e-06,
+    "ci": [
+     18.922922688757765,
+     48.897923986336885
+    ],
+    "p_holm": 5.305467218213219e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 37.89444444444444,
+    "wins": 28,
+    "ties": 2,
+    "losses": 0,
+    "p": 3.789619441580871e-06,
+    "ci": [
+     31.92998611111111,
+     44.195819444444446
+    ],
+    "p_holm": 5.305467218213219e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 30,
+    "diff": 26.787870883816975,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     24.235256527147953,
+     29.131420235342752
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 62.93055555555555,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.7333066441991056e-06,
+    "ci": [
+     55.34101388888889,
+     70.21279166666667
+    ],
+    "p_holm": 2.5999599662986584e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 31.189735057664038,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     27.427641466073748,
+     34.88389798998325
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 40.245000000000005,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     34.77498611111111,
+     45.566722222222225
+    ],
+    "p_holm": 3.3527612686157227e-08,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "pooled": {
+   "fully_connected|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 25.915977032322065,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "ci": [
+     18.268464035673247,
+     38.55986648332259
+    ],
+    "p_holm": 1.1395613248305285e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 37.151666666666664,
+    "wins": 28,
+    "ties": 1,
+    "losses": 1,
+    "p": 2.848903312076321e-06,
+    "ci": [
+     32.03330555555555,
+     42.2290138888889
+    ],
+    "p_holm": 1.1395613248305285e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|reward": {
+    "n": 30,
+    "diff": 27.67382552932964,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     25.099827771161863,
+     29.983471055294483
+    ],
+    "p_holm": 2.2351741790771484e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 66.52722222222222,
+    "wins": 30,
+    "ties": 0,
+    "losses": 0,
+    "p": 1.862645149230957e-09,
+    "ci": [
+     59.88474999999999,
+     73.00004166666668
+    ],
+    "p_holm": 2.2351741790771484e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 29.34424836079427,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 9.313225746154785e-09,
+    "ci": [
+     24.251470701905347,
+     33.97554128259617
+    ],
+    "p_holm": 8.381903171539307e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "fully_connected|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 41.368333333333325,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 2.60770320892334e-08,
+    "ci": [
+     33.78554166666667,
+     48.04063888888888
+    ],
+    "p_holm": 1.825392246246338e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|reward": {
+    "n": 30,
+    "diff": 23.009221530452592,
+    "wins": 25,
+    "ties": 3,
+    "losses": 2,
+    "p": 9.84273064456529e-06,
+    "ci": [
+     14.575727787106777,
+     36.409823195194534
+    ],
+    "p_holm": 1.5742974604935824e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|single_agent_dqn|compliance": {
+    "n": 30,
+    "diff": 32.32333333333334,
+    "wins": 25,
+    "ties": 3,
+    "losses": 2,
+    "p": 7.871487302467912e-06,
+    "ci": [
+     25.72606944444444,
+     38.86944444444445
+    ],
+    "p_holm": 1.5742974604935824e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|reward": {
+    "n": 30,
+    "diff": 24.767070027460175,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 9.313225746154785e-09,
+    "ci": [
+     20.68261106648447,
+     28.430426422747637
+    ],
+    "p_holm": 8.381903171539307e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|independent_dqn|compliance": {
+    "n": 30,
+    "diff": 61.69888888888889,
+    "wins": 29,
+    "ties": 0,
+    "losses": 1,
+    "p": 5.587935447692871e-09,
+    "ci": [
+     52.375527777777776,
+     70.3927222222222
+    ],
+    "p_holm": 5.587935447692871e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|reward": {
+    "n": 30,
+    "diff": 26.437492858924806,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 3.5390257835388184e-08,
+    "ci": [
+     21.201515769052133,
+     31.444510584880152
+    ],
+    "p_holm": 2.123415470123291e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "ring|mappo_tuned|compliance": {
+    "n": 30,
+    "diff": 36.54,
+    "wins": 27,
+    "ties": 0,
+    "losses": 3,
+    "p": 2.0489096641540527e-07,
+    "ci": [
+     28.285833333333336,
+     44.21854166666667
+    ],
+    "p_holm": 1.0244548320770264e-06,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|reward": {
+    "n": 60,
+    "diff": 30.356354895704442,
+    "wins": 55,
+    "ties": 5,
+    "losses": 0,
+    "p": 1.1076151546135735e-10,
+    "ci": [
+     20.857838949043384,
+     42.26692607834373
+    ],
+    "p_holm": 1.550661216459003e-09,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|single_agent_dqn|compliance": {
+    "n": 60,
+    "diff": 36.40888888888889,
+    "wins": 54,
+    "ties": 5,
+    "losses": 1,
+    "p": 1.2369705364211743e-10,
+    "ci": [
+     31.68850694444444,
+     41.362513888888884
+    ],
+    "p_holm": 1.6080616973475265e-09,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|reward": {
+    "n": 60,
+    "diff": 26.322802068608087,
+    "wins": 59,
+    "ties": 1,
+    "losses": 0,
+    "p": 2.3900953516978203e-11,
+    "ci": [
+     24.05632221732067,
+     28.4232130618347
+    ],
+    "p_holm": 4.063162097886294e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|independent_dqn|compliance": {
+    "n": 60,
+    "diff": 62.19138888888889,
+    "wins": 58,
+    "ties": 2,
+    "losses": 0,
+    "p": 3.5048735148052073e-11,
+    "ci": [
+     56.29411805555556,
+     67.76502083333334
+    ],
+    "p_holm": 5.607797623688332e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|reward": {
+    "n": 60,
+    "diff": 30.07146098982937,
+    "wins": 59,
+    "ties": 0,
+    "losses": 1,
+    "p": 1.8030386309636688e-11,
+    "ci": [
+     26.446509966078295,
+     33.651900510436356
+    ],
+    "p_holm": 3.245469535734604e-10,
+    "verdict": "AXIOM ahead"
+   },
+   "hex|mappo_tuned|compliance": {
+    "n": 60,
+    "diff": 38.57694444444444,
+    "wins": 58,
+    "ties": 0,
+    "losses": 2,
+    "p": 3.638913908513072e-11,
+    "ci": [
+     33.58257638888889,
+     43.329006944444444
+    ],
+    "p_holm": 5.607797623688332e-10,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "collapse": {
+   "stored": {
+    "A_n37_fully_connected|axiom2": {
+     "n": 15,
+     "collapsed": 1,
+     "reward": 174.44006742733288,
+     "compliance": 94.42666666666668
+    },
+    "A_n37_hex|single_agent_dqn": {
+     "n": 15,
+     "collapsed": 14,
+     "reward": 155.2393863104874,
+     "compliance": 61.136666666666656
+    },
+    "A_n37_hex|independent_dqn": {
+     "n": 15,
+     "collapsed": 1,
+     "reward": 146.90408860226893,
+     "compliance": 26.622222222222216
+    },
+    "A_n37_hex|mappo_tuned": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 148.78611641620859,
+     "compliance": 58.89333333333333
+    },
+    "A_n37_ring|axiom2": {
+     "n": 15,
+     "collapsed": 2,
+     "reward": 173.50730471747315,
+     "compliance": 93.16333333333334
+    },
+    "A_n37_hex|axiom2": {
+     "n": 30,
+     "collapsed": 3,
+     "reward": 174.20439838757596,
+     "compliance": 93.585
+    }
+   },
+   "new": {
+    "A_n37_fully_connected|axiom2": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 177.77039667323007,
+     "compliance": 99.97333333333333
+    },
+    "A_n37_hex|single_agent_dqn": {
+     "n": 15,
+     "collapsed": 14,
+     "reward": 145.1391237254314,
+     "compliance": 58.96000000000001
+    },
+    "A_n37_hex|independent_dqn": {
+     "n": 15,
+     "collapsed": 1,
+     "reward": 149.95872443963466,
+     "compliance": 34.723333333333336
+    },
+    "A_n37_hex|mappo_tuned": {
+     "n": 15,
+     "collapsed": 0,
+     "reward": 144.73585096276574,
+     "compliance": 52.76999999999999
+    },
+    "A_n37_ring|axiom2": {
+     "n": 15,
+     "collapsed": 1,
+     "reward": 172.88964837935083,
+     "compliance": 91.58
+    },
+    "A_n37_hex|axiom2": {
+     "n": 30,
+     "collapsed": 2,
+     "reward": 176.18835549997266,
+     "compliance": 96.26111111111112
+    }
+   },
+   "pooled": {
+    "A_n37_fully_connected|axiom2": {
+     "n": 30,
+     "collapsed": 1,
+     "reward": 176.10523205028142,
+     "compliance": 97.2
+    },
+    "A_n37_hex|single_agent_dqn": {
+     "n": 30,
+     "collapsed": 28,
+     "reward": 150.18925501795937,
+     "compliance": 60.04833333333333
+    },
+    "A_n37_hex|independent_dqn": {
+     "n": 30,
+     "collapsed": 2,
+     "reward": 148.4314065209518,
+     "compliance": 30.672777777777775
+    },
+    "A_n37_hex|mappo_tuned": {
+     "n": 30,
+     "collapsed": 0,
+     "reward": 146.76098368948718,
+     "compliance": 55.83166666666667
+    },
+    "A_n37_ring|axiom2": {
+     "n": 30,
+     "collapsed": 3,
+     "reward": 173.19847654841197,
+     "compliance": 92.37166666666667
+    },
+    "A_n37_hex|axiom2": {
+     "n": 60,
+     "collapsed": 5,
+     "reward": 175.19637694377437,
+     "compliance": 94.92305555555555
+    }
+   }
+  },
+  "not_replicated_by_new": [],
+  "pooled_verdict_changes": {}
+ }
+}
