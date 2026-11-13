@@ -1,0 +1,365 @@
+A_n7_ring_axiom2_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12000 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12001 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12002 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12003 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12004 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12005 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12006 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12007 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12008 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12009 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12010 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12011 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12012 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12013 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12014 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12015 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12016 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12017 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12018 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12019 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12020 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12021 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12022 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12023 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12024 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12025 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12026 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12027 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12028 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_axiom2_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 7 --topology ring --seeds 12029 --out-dir ../experiments/results/m108/A_n7_ring
+A_n3_axiom2_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12000 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12001 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12002 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12003 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12004 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12005 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12006 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12007 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12008 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12009 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12010 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12011 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12012 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12013 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12014 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12015 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12016 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12017 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12018 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12019 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12020 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12021 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12022 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12023 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12024 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12025 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12026 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12027 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12028 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --env A --n 3 --seeds 12029 --out-dir ../experiments/results/m108/A_n3
+B_n3_axiom2_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12000 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12001 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12002 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12003 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12004 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12005 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12006 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12007 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12008 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12009 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12010 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12011 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12012 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12013 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12014 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12015 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12016 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12017 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12018 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12019 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12020 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12021 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12022 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12023 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12024 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12025 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12026 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12027 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12028 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2 --n 3 --seeds 12029 --out-dir ../experiments/results/m108/B_n3
+A_n3_axiom2_mlp_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12000 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12001 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12002 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12003 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12004 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12005 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12006 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12007 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12008 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12009 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12010 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12011 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12012 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12013 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12014 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12015 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12016 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12017 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12018 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12019 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12020 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12021 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12022 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12023 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12024 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12025 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12026 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12027 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12028 --out-dir ../experiments/results/m108/A_n3
+A_n3_axiom2_mlp_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --env A --n 3 --seeds 12029 --out-dir ../experiments/results/m108/A_n3
+B_n3_axiom2_mlp_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12000 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12001 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12002 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12003 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12004 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12005 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12006 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12007 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12008 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12009 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12010 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12011 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12012 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12013 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12014 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12015 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12016 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12017 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12018 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12019 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12020 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12021 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12022 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12023 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12024 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12025 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12026 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12027 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12028 --out-dir ../experiments/results/m108/B_n3
+B_n3_axiom2_mlp_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm axiom2_mlp --n 3 --seeds 12029 --out-dir ../experiments/results/m108/B_n3
+A_n3_independent_dqn_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12000 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12001 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12002 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12003 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12004 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12005 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12006 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12007 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12008 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12009 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12010 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12011 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12012 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12013 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12014 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12015 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12016 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12017 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12018 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12019 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12020 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12021 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12022 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12023 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12024 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12025 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12026 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12027 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12028 --out-dir ../experiments/results/m108/A_n3
+A_n3_independent_dqn_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --env A --n 3 --seeds 12029 --out-dir ../experiments/results/m108/A_n3
+B_n3_independent_dqn_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12000 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12001 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12002 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12003 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12004 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12005 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12006 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12007 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12008 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12009 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12010 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12011 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12012 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12013 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12014 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12015 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12016 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12017 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12018 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12019 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12020 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12021 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12022 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12023 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12024 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12025 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12026 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12027 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12028 --out-dir ../experiments/results/m108/B_n3
+B_n3_independent_dqn_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm independent_dqn --n 3 --seeds 12029 --out-dir ../experiments/results/m108/B_n3
+A_n7_ring_single_agent_dqn_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12000 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12001 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12002 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12003 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12004 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12005 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12006 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12007 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12008 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12009 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12010 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12011 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12012 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12013 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12014 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12015 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12016 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12017 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12018 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12019 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12020 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12021 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12022 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12023 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12024 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12025 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12026 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12027 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12028 --out-dir ../experiments/results/m108/A_n7_ring
+A_n7_ring_single_agent_dqn_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 7 --topology ring --seeds 12029 --out-dir ../experiments/results/m108/A_n7_ring
+A_n3_single_agent_dqn_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12000 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12001 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12002 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12003 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12004 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12005 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12006 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12007 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12008 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12009 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12010 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12011 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12012 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12013 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12014 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12015 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12016 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12017 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12018 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12019 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12020 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12021 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12022 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12023 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12024 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12025 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12026 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12027 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12028 --out-dir ../experiments/results/m108/A_n3
+A_n3_single_agent_dqn_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --env A --n 3 --seeds 12029 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12000 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12001 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12002 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12003 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12004 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12005 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12006 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12007 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12008 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12009 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12010 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12011 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12012 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12013 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12014 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12015 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12016 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12017 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12018 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12019 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12020 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12021 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12022 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12023 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12024 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12025 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12026 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12027 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12028 --out-dir ../experiments/results/m108/A_n3
+A_n3_mappo_tuned_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --env A --n 3 --seeds 12029 --out-dir ../experiments/results/m108/A_n3
+B_n3_single_agent_dqn_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12000 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12001 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12002 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12003 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12004 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12005 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12006 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12007 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12008 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12009 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12010 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12011 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12012 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12013 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12014 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12015 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12016 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12017 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12018 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12019 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12020 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12021 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12022 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12023 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12024 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12025 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12026 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12027 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12028 --out-dir ../experiments/results/m108/B_n3
+B_n3_single_agent_dqn_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm single_agent_dqn --n 3 --seeds 12029 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12000|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12000 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12001|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12001 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12002|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12002 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12003|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12003 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12004|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12004 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12005|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12005 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12006|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12006 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12007|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12007 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12008|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12008 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12009|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12009 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12010|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12010 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12011|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12011 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12012|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12012 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12013|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12013 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12014|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12014 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12015|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12015 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12016|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12016 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12017|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12017 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12018|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12018 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12019|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12019 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12020|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12020 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12021|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12021 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12022|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12022 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12023|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12023 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12024|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12024 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12025|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12025 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12026|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12026 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12027|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12027 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12028|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12028 --out-dir ../experiments/results/m108/B_n3
+B_n3_mappo_tuned_12029|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm mappo_tuned --n 3 --seeds 12029 --out-dir ../experiments/results/m108/B_n3
+A_n3_rule_static|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm rule_static --env A --n 3 --seeds 12000 12001 12002 12003 12004 12005 12006 12007 12008 12009 12010 12011 12012 12013 12014 12015 12016 12017 12018 12019 12020 12021 12022 12023 12024 12025 12026 12027 12028 12029 --out-dir ../experiments/results/m108/A_n3
+B_n3_rule_static|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm rule_static --n 3 --seeds 12000 12001 12002 12003 12004 12005 12006 12007 12008 12009 12010 12011 12012 12013 12014 12015 12016 12017 12018 12019 12020 12021 12022 12023 12024 12025 12026 12027 12028 12029 --out-dir ../experiments/results/m108/B_n3
+B_n3_rule_accept_all|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1|../experiments/scripts/m107_run.py --arm rule_accept_all --n 3 --seeds 12000 12001 12002 12003 12004 12005 12006 12007 12008 12009 12010 12011 12012 12013 12014 12015 12016 12017 12018 12019 12020 12021 12022 12023 12024 12025 12026 12027 12028 12029 --out-dir ../experiments/results/m108/B_n3
+B_n3_rule_local|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M107_RULE_SELECTION=/home/kmanojp/oranslice_rig/experiments/results/m64/n3_fully_connected/rule_local_selection.json|../experiments/scripts/m107_run.py --arm rule_local --n 3 --seeds 12000 12001 12002 12003 12004 12005 12006 12007 12008 12009 12010 12011 12012 12013 12014 12015 12016 12017 12018 12019 12020 12021 12022 12023 12024 12025 12026 12027 12028 12029 --out-dir ../experiments/results/m108/B_n3
+B_n3_rule_neighbour|M63_BACKLOG_RESET=1 M64_AXIOM_V2=1 M107_RULE_SELECTION=/home/kmanojp/oranslice_rig/experiments/results/m64/n3_fully_connected/rule_neighbour_selection.json|../experiments/scripts/m107_run.py --arm rule_neighbour --n 3 --seeds 12000 12001 12002 12003 12004 12005 12006 12007 12008 12009 12010 12011 12012 12013 12014 12015 12016 12017 12018 12019 12020 12021 12022 12023 12024 12025 12026 12027 12028 12029 --out-dir ../experiments/results/m108/B_n3
