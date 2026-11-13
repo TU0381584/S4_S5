@@ -7,11 +7,11 @@
 (c) Reward per gNB per step, mean and 95% bootstrap CI over the same runs (moved here from the
     retired AXIOM-superiority figure, panel a, in the figure audit).
 
-Data: three gNBs from the 30-seed Env A campaign (m65_n3_view, fully-connected);
-seven gNBs from 15 seeds under each of three layouts (45 cells); nineteen gNBs
-from 30 seeds under each of three layouts (90 cells); thirty-seven gNBs (M73)
-from AXIOM on 30 hex seeds and 15 ring and 15 fully-connected seeds, and the
-layout-independent baselines on the 30 hex seeds. The static rule is plotted in (a).
+Data, each stored sample pooled with its M107 seeds (seeds_of): three gNBs from the 60-seed Env A sample
+(m65_n3_view, fully-connected); seven gNBs from 30 seeds under each of three layouts (90 cells); nineteen gNBs
+from 60 seeds under each of three layouts (180 cells); thirty-seven gNBs (M73) from AXIOM on 60 hex seeds and
+30 ring and 30 fully-connected seeds, and the layout-independent baselines on the 60 hex seeds. The static rule
+is plotted in (a).
 Drawn at 119 mm with figures/axiom_style.py. Every plotted number is
 written to <out>_summary.json.
 

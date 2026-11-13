@@ -148,11 +148,16 @@ def run(C):
     C.note("M82 300 training and 50 evaluation episodes per seed", len(cur["episode_mean_reward"]) == 300 and len(tr_eps) == 300
            and n_eval_eps("m64/n3_fully_connected", "axiom2", 900) == 50 and n_eval_eps("m65_scaling/n19_ring", "axiom2", 900) == 50
            and "Every campaign uses 300 training and 50 evaluation episodes per seed" in C.main, None)
-    C.note("M82 seed sets of the campaigns", have("m64/n3_fully_connected", "axiom2", range(900, 930)) == 30 and have("m65_reviewer/replication", "axiom2", REP) == 10
-           and all(have(f"m65_scaling/n7_{t}", "axiom2", S15) == 15 for t in LAY)
-           and all(have(f"m65_scaling/n19_{t}", "axiom2", S30_19) == 30 for t in LAY)
-           and have("m73/A_n37_hex", "axiom2", S30_19) == 30 and all(have(f"m73/A_n37_{t}", "axiom2", S15) == 15 for t in ("ring", "fully_connected"))
-           and "The three-gNB campaigns use 30 seeds, 900 to 929, with a disjoint replication sample, 1000 to 1009. The scaling campaigns use 15 seeds per layout at seven gNBs, 30 at nineteen, and at thirty-seven 30 on the hex layout and 15 on each other layout." in C.main, None)
+    C.note("M82 seed sets of the campaigns, each Env A and three-gNB sample doubled by M107 (seeds from 11000), Env B scaling at 15",
+           have("m64/n3_fully_connected", "axiom2", range(900, 930)) == 60 and have("m65_reviewer/replication", "axiom2", REP) == 10
+           and have("m64/n3_fully_connected", "axiom2", range(900, 930)) - len(seeds_of("m64/n3_fully_connected", "axiom2", range(900, 930), pool=False)) == 30
+           and all(have(f"m65_scaling/n7_{t}", "axiom2", S15) == 30 for t in LAY)
+           and all(have(f"m65_scaling/n19_{t}", "axiom2", S30_19) == 60 for t in LAY)
+           and have("m73/A_n37_hex", "axiom2", S30_19) == 60 and all(have(f"m73/A_n37_{t}", "axiom2", S15) == 30 for t in ("ring", "fully_connected"))
+           and all(have(f"m64/n7_{t}", "axiom2", S15) == 15 for t in LAY) and have("m75/D_envB_n19_hex", "axiom2", S15) == 15
+           and min(seeds_of("m64/n3_fully_connected", "axiom2", range(900, 930))) == 900 and max(seeds_of("m64/n3_fully_connected", "axiom2", range(900, 930))) == 11029
+           and "The three-gNB campaigns use 60 seeds, 900 to 929 and 11000 to 11029, with a disjoint replication sample, 1000 to 1009. The Env A scaling campaigns use 30 seeds per layout at seven gNBs, 60 at nineteen, and at thirty-seven 60 on the hex layout and 30 on each other layout." in C.main
+           and "The Env B scaling campaigns use 15 seeds per layout." in C.main, None)
     an = open(f"{SC}/m2_correctness_metrics.py").read()
     vf = open(f"{SC}/m66_verify.py").read()
     C.note("M82 bootstrap CIs use 10,000 resamples", "def bootstrap_ci(values, n_boot=10000, alpha=0.05, seed=0):" in an
@@ -166,7 +171,7 @@ def run(C):
     A.update({a: seeds_of("m63_reviewer/base", a, S30) for a in ("heuristic", "single_agent_dqn", "independent_dqn")})
     ra = {a: mean(A[a]) for a in A}
     # figure audit 2026-11-08: the comparison table (old Table 3) is gone; its Env A 3-gNB rewards are the Env A results table's
-    C.note("M82 Table 4 Env A reward row: the same rewards and the 98.9% share are in the Env A results table",
+    C.note("M82 Table 4 Env A reward row: the same rewards and the 99.2% share (98.9% before M107) are in the Env A results table",
            all(f"{lab_} & {ra[a_]:.3f} & [" in C.main for a_, lab_ in (("axiom2", "AXIOM"), ("heuristic", "Static rule"), ("single_agent_dqn", "DQN-SA"),
                                                               ("independent_dqn", "DQN-I"), ("mappo_tuned", "MAPPO")))
            and f"& {100 * ra['axiom2'] / ra['heuristic']:.1f} &" in C.main, {k: round(v, 3) for k, v in ra.items()})
@@ -198,8 +203,8 @@ def run(C):
            and f"{max(fp[a] for a in ARMS[1:]):.1f}" == "58.5" and all(len(f74[a]) == 20 for a in ARMS)
            and "There AXIOM keeps 95.1\\% priority-slice compliance against 34.1\\% to 58.5\\% for the baselines" in C.main, {k: round(v, 2) for k, v in fp.items()})
     gs = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig13_gnb_map_summary.json"))["arms"]
-    C.note("M82 no baseline closes the 37-gNB mMTC gate below 0.51", round(min(gs[a]["mean_openness"]["mmtc"] for a in ARMS[1:]), 2) == 0.51
-           and "No baseline closes the mMTC gate below 0.51" in C.main, {a: gs[a]["mean_openness"] for a in gs})
+    C.note("M82 no baseline closes the 37-gNB mMTC gate below 0.55 (0.51 before M107)", 0.55 <= min(gs[a]["mean_openness"]["mmtc"] for a in ARMS[1:]) < 0.56
+           and "No baseline closes the mMTC gate below 0.55" in C.main, {a: gs[a]["mean_openness"] for a in gs})
     h3 = {t: paired(seeds_of(f"m64/n7_{t}", "axiom2_mlp", S15), seeds_of(f"m64/n7_{t}", "axiom2", S15)) for t in ("ring", "hex")}
     C.note("M82 MLP variant wins 10 of 15 seeds on each Env B 7-gNB layout", all(h3[t]["wins"] == 10 for t in h3)
            and "and wins 10 of 15 seeds in each" in C.main, {t: (h3[t]["wins"], round(h3[t]["diff"], 3)) for t in h3})
@@ -212,11 +217,11 @@ def run(C):
     pr = V.holm({b: paired(B["axiom2"], B[b], prio)["p"] for b in ARMS[1:]})
     loc = paired(B["rule_local"], B["axiom2"])
     sel = json.load(open(f"{ROOT}/m64/n3_fully_connected/rule_local_selection.json"))["selected"]
-    C.note("M82 Env B three-gNB sentences: Holm p<0.0001, tuned rule's 0.2 threshold, 0.420 at p<0.0001",
+    C.note("M82 Env B three-gNB sentences: Holm p<0.0001, tuned rule's 0.2 threshold, 0.426 at p<0.0001 (0.420 before M107)",
            max(h1.values()) < 1e-4 and max(pr.values()) < 1e-4 and all(paired(B["axiom2"], B[b], prio)["diff"] > 0 for b in ARMS[1:])
-           and sel["tau_e"] == 0.2 and f"{loc['diff']:.3f}" == "0.420" and loc["p"] < 1e-4
+           and sel["tau_e"] == 0.2 and f"{loc['diff']:.3f}" == "0.426" and loc["p"] < 1e-4
            and "Both gaps hold at Holm-adjusted $p<0.0001$" in C.main and "and keeps more priority-slice compliance than each, at Holm-adjusted $p<0.0001$" in C.main
-           and "sheds eMBB whenever the URLLC queue passes 0.2" in C.main and "earning 0.420 more than AXIOM at $p<0.0001$" in C.main,
+           and "sheds eMBB whenever the URLLC queue passes 0.2" in C.main and "earning 0.426 more than AXIOM at $p<0.0001$" in C.main,
            {"h1": h1, "prio": pr, "loc": loc, "sel": sel})
     w7 = {(t, r_): paired(seeds_of(f"m64/n7_{t}", r_, S15), seeds_of(f"m64/n7_{t}", "axiom2", S15))["wins"] for t in LAY for r_ in ("rule_local", "rule_neighbour")}
     C.note("M82 tuned rules beat AXIOM in all 15 seeds at seven gNBs under every layout", all(v == 15 for v in w7.values())
@@ -246,15 +251,16 @@ def run(C):
 
     # ---------------- main-text sentences whose numbers earlier checks computed but did not tie to the text
     for n_, ss, txt in ((7, S15, "At seven gNBs, under every layout, AXIOM keeps {s0} to {s1} percentage points more priority-slice compliance than each baseline and earns {r0} to {r1} more reward per step. All 18 comparisons hold after Holm correction, at adjusted $p\\leq{h}$."),
-                        (19, S30_19, "Under every layout AXIOM keeps {s0} to {s1} percentage points more compliance than every baseline and earns {r0} to {r1} more reward per step, winning {w0} to {w1} of 30 seeds. All 18 comparisons hold after Holm correction, at adjusted $p\\leq{h}$.")):
+                        (19, S30_19, "Under every layout AXIOM keeps {s0} to {s1} percentage points more compliance than every baseline and earns {r0} to {r1} more reward per step, winning {w0} to {w1} of {nn} seeds. All 18 comparisons hold after Holm correction, at adjusted $p\\leq{h}$.")):
         D = {t: {a: seeds_of(f"m65_scaling/n{n_}_{t}", a, ss) for a in ARMS} for t in LAY}
         tests = {(t, b, m): paired(D[t]["axiom2"], D[t][b], f_) for t in LAY for b in ARMS[1:] for m, f_ in (("s", prio), ("r", lambda r: r["reward"]))}
         hh = V.holm({k: v["p"] for k, v in tests.items()})
         sd = [100 * v["diff"] for k, v in tests.items() if k[2] == "s"]; rd = [v["diff"] for k, v in tests.items() if k[2] == "r"]
         ws = [v["wins"] for k, v in tests.items() if k[2] == "s"]
         rf = "{:.2f}" if n_ == 7 else "{:.1f}"
-        h = "0.011" if n_ == 7 else "0.0001"
-        t_ = txt.format(s0=f"{min(sd):.1f}", s1=f"{max(sd):.1f}", r0=rf.format(min(rd)), r1=rf.format(max(rd)), w0=min(ws), w1=max(ws), h=h)
+        h = "0.0004" if n_ == 7 else "0.0001"   # 0.011 at seven gNBs before M107
+        t_ = txt.format(s0=f"{min(sd):.1f}", s1=f"{max(sd):.1f}", r0=rf.format(min(rd)), r1=rf.format(max(rd)), w0=min(ws), w1=max(ws), h=h,
+                        nn=len(D["ring"]["axiom2"]))   # 60 seeds per layout at nineteen gNBs with M107
         C.note(f"M82 {n_}-gNB scaling sentence recomputed", t_ in C.main and max(hh.values()) <= float(h) and all(v["diff"] > 0 for v in tests.values()), t_)
     r37 = {t: {a: seeds_of(f"m73/A_n37_{t}", a, S30_19 if t == "hex" else S15) for a in ARMS} for t in LAY}
     for t in ("ring", "fully_connected"):       # the baselines never read the layout and ran once, on the hex seeds
@@ -386,7 +392,7 @@ def run(C):
     t_ = (f"At seven gNBs AXIOM keeps URLLC and eMBB at {s7['axiom2'][0]}\\% and {s7['axiom2'][1]}\\%, against {min(bu_):.1f}\\% to {max(bu_):.1f}\\% "
           f"and {min(be_):.1f}\\% to {max(be_):.1f}\\% for the baselines, and at thirty-seven at {s37[0]}\\% and {s37[1]}\\%.")
     C.note("M82 OR1 per-slice compliance at 7 and 37 gNBs", t_ in C.tex, t_)
-    for cell, ss, n_lab in (("m73/A_n37_hex", S30_19, "30"), ("m74/A_n37_hex", list(range(6100, 6120)), "20")):
+    for cell, ss, n_lab in (("m73/A_n37_hex", S30_19, "60"), ("m74/A_n37_hex", list(range(6100, 6120)), "20")):   # 60 = stored 30 plus M107
         st = seeds_of(cell, "rule_static", ss)
         row = (f"Static rule & {n_lab} & {100 * mean(st, lambda r: r['sla']['urllc']):.1f}\\% & {100 * mean(st, lambda r: r['sla']['embb']):.1f}\\% & "
                f"{100 * mean(st, prio):.2f}\\% & {mean(st):.2f} & {sum(r['collapsed'] for r in st.values())} \\\\")
@@ -394,8 +400,8 @@ def run(C):
     nc = [100 * float(np.mean([prio(r) for r in seeds_of(f"m73/A_n37_{t}", "axiom2", ss).values() if not r["collapsed"]]))
           for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15))]
     h1d = lambda x: str(Decimal(str(round(x, 9))).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP))   # 96.85 -> 96.9
-    C.note("M82 OR1 AXIOM's non-collapsed 37-gNB runs keep 96.9% to 98.1% under each layout", (h1d(min(nc)), h1d(max(nc))) == ("96.9", "98.1")
-           and "while its other runs keep 96.9\\% to 98.1\\% on average under each layout" in C.tex, nc)
+    C.note("M82 OR1 AXIOM's non-collapsed 37-gNB runs keep 95.8% to 98.5% under each layout (96.9% to 98.1% before M107)", (h1d(min(nc)), h1d(max(nc))) == ("95.8", "98.5")
+           and "while its other runs keep 95.8\\% to 98.5\\% on average under each layout" in C.tex, nc)
     f37 = {(b, m): paired(f74["axiom2"], f74[b], fn) for b in ARMS[1:] for m, fn in (("r", lambda r: r["reward"]), ("p", prio))}
     h_f37 = V.holm({k: v["p"] for k, v in f37.items()})
     C.note("M82 OR1 fresh 37 gNBs: 18 to 19 of 20 wins, Holm p<0.001", (min(v["wins"] for v in f37.values()), max(v["wins"] for v in f37.values())) == (18, 19)
@@ -426,7 +432,7 @@ def run(C):
     for n_, ss in ((7, S15), (19, S30_19)):
         for a in ("single_agent_dqn", "independent_dqn"):
             for t in LAY:
-                new, old = seeds_of(f"m65_scaling/n{n_}_{t}", a, ss), seeds_of(f"m63_scaling/n{n_}_{t}", a, ss)
+                new, old = seeds_of(f"m65_scaling/n{n_}_{t}", a, ss, pool=False), seeds_of(f"m63_scaling/n{n_}_{t}", a, ss)   # the stored campaign
                 reuse[(n_, a, t)] = (sum(abs(new[s_]["reward"] - old[s_]["reward"]) < 1e-9 for s_ in new if s_ in old), len(new))
     C.note("M82 OR1 the main campaign reuses M63 baselines at seven gNBs and for 15 of the 30 seeds at nineteen",
            all(v == (15, 15) for k, v in reuse.items() if k[0] == 7) and all(v == (15, 30) for k, v in reuse.items() if k[0] == 19)

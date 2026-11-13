@@ -1,210 +1,210 @@
 [
  {
-  "label": "T3 heuristic has 30 seeds",
+  "label": "T3 heuristic has 60 seeds (30 stored + 30 M107)",
   "snippet": null,
-  "computed": 30,
+  "computed": 60,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
   "label": "T3 heuristic reward",
-  "snippet": "Static rule & 12.835",
-  "computed": 12.83537368707569,
-  "formatted": "12.835",
+  "snippet": "Static rule & 12.849",
+  "computed": 12.849165160762958,
+  "formatted": "12.849",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 heuristic URLLC/eMBB/mMTC",
-  "snippet": "& 100.0 & 100.0 & 36.6 \\\\",
-  "computed": 100.0,
+  "snippet": "& 100.0 & 100.0 & 36.5 \\\\",
+  "computed": 99.99666666666668,
   "formatted": "100.0",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 heuristic precision",
-  "snippet": "& 1.000 & 0/30",
+  "snippet": "& 1.000 & 0/60",
   "computed": 1.0,
   "formatted": "1.000",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "T3 axiom2 has 30 seeds",
+  "label": "T3 axiom2 has 60 seeds (30 stored + 30 M107)",
   "snippet": null,
-  "computed": 30,
+  "computed": 60,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
   "label": "T3 axiom2 reward",
-  "snippet": "AXIOM & 12.698",
-  "computed": 12.697570166538469,
-  "formatted": "12.698",
+  "snippet": "AXIOM & 12.748",
+  "computed": 12.74815822697047,
+  "formatted": "12.748",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 axiom2 URLLC/eMBB/mMTC",
-  "snippet": "& 99.8 & 97.9 & 38.9 \\\\",
-  "computed": 99.80222222222221,
-  "formatted": "99.8",
+  "snippet": "& 99.9 & 98.2 & 40.2 \\\\",
+  "computed": 99.86222222222223,
+  "formatted": "99.9",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 axiom2 precision",
-  "snippet": "& 0.992 & 0/30",
-  "computed": 0.9919773004881999,
-  "formatted": "0.992",
+  "snippet": "& 0.996 & 0/60",
+  "computed": 0.9957559837760523,
+  "formatted": "0.996",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "T3 axiom2_mlp has 30 seeds",
+  "label": "T3 axiom2_mlp has 60 seeds (30 stored + 30 M107)",
   "snippet": null,
-  "computed": 30,
+  "computed": 60,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T3 single_agent_dqn has 30 seeds",
+  "label": "T3 single_agent_dqn has 60 seeds (30 stored + 30 M107)",
   "snippet": null,
-  "computed": 30,
+  "computed": 60,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
   "label": "T3 single_agent_dqn reward",
-  "snippet": "DQN-SA & 12.387",
-  "computed": 12.386540465680214,
-  "formatted": "12.387",
+  "snippet": "DQN-SA & 12.437",
+  "computed": 12.43664627787952,
+  "formatted": "12.437",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 single_agent_dqn URLLC/eMBB/mMTC",
-  "snippet": "& 99.4 & 94.1 & 43.6 \\\\",
-  "computed": 99.43222222222222,
-  "formatted": "99.4",
+  "snippet": "& 99.5 & 94.7 & 42.6 \\\\",
+  "computed": 99.51944444444443,
+  "formatted": "99.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 single_agent_dqn precision",
-  "snippet": "& 0.990 & 0/30",
-  "computed": 0.9900540225100285,
+  "snippet": "& 0.990 & 1/60",
+  "computed": 0.9896169906796037,
   "formatted": "0.990",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "T3 independent_dqn has 30 seeds",
+  "label": "T3 independent_dqn has 60 seeds (30 stored + 30 M107)",
   "snippet": null,
-  "computed": 30,
+  "computed": 60,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
   "label": "T3 independent_dqn reward",
-  "snippet": "DQN-I & 11.587",
-  "computed": 11.587390144255737,
-  "formatted": "11.587",
+  "snippet": "DQN-I & 11.687",
+  "computed": 11.686914618925833,
+  "formatted": "11.687",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 independent_dqn URLLC/eMBB/mMTC",
-  "snippet": "& 99.3 & 86.5 & 40.2 \\\\",
-  "computed": 99.30333333333333,
-  "formatted": "99.3",
+  "snippet": "& 99.2 & 88.9 & 40.4 \\\\",
+  "computed": 99.15222222222224,
+  "formatted": "99.2",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 independent_dqn precision",
-  "snippet": "& 0.962 & 0/30",
-  "computed": 0.9619581546503471,
-  "formatted": "0.962",
+  "snippet": "& 0.972 & 0/60",
+  "computed": 0.9724885282896738,
+  "formatted": "0.972",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "T3 mappo_tuned has 30 seeds",
+  "label": "T3 mappo_tuned has 60 seeds (30 stored + 30 M107)",
   "snippet": null,
-  "computed": 30,
+  "computed": 60,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
   "label": "T3 mappo_tuned reward",
-  "snippet": "MAPPO & 10.013",
-  "computed": 10.013059772248168,
-  "formatted": "10.013",
+  "snippet": "MAPPO & 10.266",
+  "computed": 10.265763657915647,
+  "formatted": "10.266",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 mappo_tuned URLLC/eMBB/mMTC",
-  "snippet": "& 97.8 & 57.6 & 66.4 \\\\",
-  "computed": 97.75444444444446,
-  "formatted": "97.8",
+  "snippet": "& 97.9 & 61.6 & 66.5 \\\\",
+  "computed": 97.94166666666668,
+  "formatted": "97.9",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T3 mappo_tuned precision",
-  "snippet": "& 0.707 & 2/30",
-  "computed": 0.7072498060210034,
-  "formatted": "0.707",
+  "snippet": "& 0.728 & 3/60",
+  "computed": 0.72753770080592,
+  "formatted": "0.728",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "A3 vs indep diff",
-  "snippet": "1.110 more reward per step than DQN-I",
-  "computed": 1.1101800222827332,
-  "formatted": "1.110",
+  "snippet": "1.061 more reward per step than DQN-I",
+  "computed": 1.0612436080446337,
+  "formatted": "1.061",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "A3 vs mappo diff",
-  "snippet": "It earns 2.685 more than MAPPO",
-  "computed": 2.684510394290301,
-  "formatted": "2.685",
+  "snippet": "and 2.482 more than MAPPO",
+  "computed": 2.482394569054821,
+  "formatted": "2.482",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "A3 vs single diff",
-  "snippet": "DQN-SA, 0.311 with 95\\% CI",
-  "computed": 0.31102970085825493,
-  "formatted": "0.311",
+  "snippet": "It earns 0.312 more than DQN-SA, with 95\\% CI",
+  "computed": 0.3115119490909521,
+  "formatted": "0.312",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "A3 vs single p_holm",
-  "snippet": "at $p=0.066$",
-  "computed": 0.06626798420475145,
-  "formatted": "0.066",
+  "label": "A3 vs single p_holm (pooled, M107; 0.066 on the first 30 seeds)",
+  "snippet": "with 95\\% CI [0.10, 0.55], at $p=0.0021$",
+  "computed": 0.0021403641618492316,
+  "formatted": "0.0021",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "A3 vs indep and MAPPO p_holm <= 0.0002",
+  "label": "A3 vs indep and MAPPO p_holm < 0.0001 (pooled, M107; 0.0002 before)",
   "snippet": null,
   "computed": [
-   0.00017630308866500854,
-   1.5378499504350043e-05
+   4.134059990619346e-08,
+   3.091606265667176e-10
   ],
   "formatted": null,
   "in_tex": null,
@@ -212,63 +212,63 @@
  },
  {
   "label": "A3 oracle ties",
-  "snippet": "Static rule & 12.835 & [12.77, 12.91] & 100.0 & 2/22/6 &",
-  "computed": 22,
-  "formatted": "/22/",
+  "snippet": "Static rule & 12.849 & [12.80, 12.90] & 100.0 & 5/40/15 &",
+  "computed": 40,
+  "formatted": "/40/",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "A3 pct of oracle",
-  "snippet": "AXIOM & 12.698 & [12.49, 12.86] & 98.9 & -- &",
-  "computed": 98.92637702729311,
-  "formatted": "98.9",
+  "snippet": "AXIOM & 12.748 & [12.63, 12.85] & 99.2 & -- &",
+  "computed": 99.21390275143378,
+  "formatted": "99.2",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "T3 heuristic row reads 100.0 and 2/22/6",
+  "label": "T3 heuristic row reads 100.0 and 5/40/15",
   "snippet": null,
   "computed": [
-   2,
-   22,
-   6
+   5,
+   40,
+   15
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T3 single_agent_dqn row reads 96.5 and 15/8/7",
+  "label": "T3 single_agent_dqn row reads 96.8 and 31/16/13",
   "snippet": null,
   "computed": [
-   15,
-   8,
-   7
+   31,
+   16,
+   13
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T3 independent_dqn row reads 90.3 and 27/0/3",
+  "label": "T3 independent_dqn row reads 91.0 and 56/0/4",
   "snippet": null,
   "computed": [
-   27,
+   56,
    0,
-   3
+   4
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T3 mappo_tuned row reads 78.0 and 29/1/0",
+  "label": "T3 mappo_tuned row reads 79.9 and 58/1/1",
   "snippet": null,
   "computed": [
-   29,
+   58,
    1,
-   0
+   1
   ],
   "formatted": null,
   "in_tex": null,
@@ -284,23 +284,23 @@
  },
  {
   "label": "A3 MLP diff",
-  "snippet": "which earns 0.058 more reward per step at three gNBs with 95\\% CI",
-  "computed": 0.05754008404107231,
-  "formatted": "0.058",
+  "snippet": "a per-node MLP encoder earns only 0.068 less reward per step than AXIOM at three gNBs, with 95\\% CI",
+  "computed": 0.06818928281928706,
+  "formatted": "0.068",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "A3 MLP diff in the supplement",
-  "snippet": "In Env A it ties AXIOM, which earns 0.058 more reward per step",
-  "computed": 0.05754008404107231,
-  "formatted": "0.058",
+  "snippet": "In Env A AXIOM earns 0.068 more reward per step than the MLP variant at three gNBs",
+  "computed": 0.06818928281928706,
+  "formatted": "0.068",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "N19 ring AXIOM over MLP",
-  "snippet": "and 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied",
+  "snippet": "It earns 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied",
   "computed": 0.3119349026470874,
   "formatted": "0.31",
   "in_tex": true,
@@ -308,7 +308,7 @@
  },
  {
   "label": "N19 ring MLP ties",
-  "snippet": "and 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied",
+  "snippet": "It earns 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied",
   "computed": 7,
   "formatted": "7",
   "in_tex": true,
@@ -480,154 +480,154 @@
  },
  {
   "label": "T4 rule_accept_all reward",
-  "snippet": "Accept all & 4.356 & [",
-  "computed": 4.356297369807765,
-  "formatted": "4.356",
+  "snippet": "Accept all & 4.177 & [",
+  "computed": 4.17694809843749,
+  "formatted": "4.177",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 rule_accept_all slices",
-  "snippet": "& 44.6 & 26.5 & 95.5 \\\\",
-  "computed": 95.54666666666665,
-  "formatted": "95.5",
+  "snippet": "& 43.3 & 25.4 & 94.9 \\\\",
+  "computed": 94.93444444444444,
+  "formatted": "94.9",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 rule_static reward",
-  "snippet": "Shed all mMTC & 6.337 & [",
-  "computed": 6.336731777354,
-  "formatted": "6.337",
+  "snippet": "Shed all mMTC & 6.162 & [",
+  "computed": 6.16229751497571,
+  "formatted": "6.162",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 rule_static slices",
-  "snippet": "& 62.5 & 36.7 & 37.1 \\\\",
-  "computed": 37.14111111111112,
-  "formatted": "37.1",
+  "snippet": "& 61.5 & 35.2 & 36.7 \\\\",
+  "computed": 36.66,
+  "formatted": "36.7",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 rule_local reward",
-  "snippet": "Tuned local rule & 9.252 & [",
-  "computed": 9.251996197455524,
-  "formatted": "9.252",
+  "snippet": "Tuned local rule & 9.149 & [",
+  "computed": 9.148878135874702,
+  "formatted": "9.149",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 rule_local slices",
-  "snippet": "& 98.9 & 36.7 & 39.0 \\\\",
-  "computed": 38.95222222222222,
-  "formatted": "39.0",
+  "snippet": "& 98.7 & 35.3 & 38.5 \\\\",
+  "computed": 38.471111111111114,
+  "formatted": "38.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 rule_neighbour reward",
-  "snippet": "Tuned neighbour-aware rule & 9.041 & [",
-  "computed": 9.040826440909605,
-  "formatted": "9.041",
+  "snippet": "Tuned neighbour-aware rule & 8.958 & [",
+  "computed": 8.9575857996473,
+  "formatted": "8.958",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 rule_neighbour slices",
-  "snippet": "& 98.8 & 28.3 & 90.1 \\\\",
-  "computed": 90.11444444444443,
-  "formatted": "90.1",
+  "snippet": "& 98.7 & 27.1 & 89.0 \\\\",
+  "computed": 88.9838888888889,
+  "formatted": "89.0",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 axiom2 reward",
-  "snippet": "AXIOM & 8.832 & [",
-  "computed": 8.831805335946738,
-  "formatted": "8.832",
+  "snippet": "AXIOM & 8.723 & [",
+  "computed": 8.722551128339392,
+  "formatted": "8.723",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 axiom2 slices",
-  "snippet": "& 95.8 & 34.4 & 40.6 \\\\",
-  "computed": 40.64666666666666,
-  "formatted": "40.6",
+  "snippet": "& 95.7 & 32.6 & 42.4 \\\\",
+  "computed": 42.354444444444454,
+  "formatted": "42.4",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 single_agent_dqn reward",
-  "snippet": "DQN-SA & 7.495 & [",
-  "computed": 7.494879177321698,
-  "formatted": "7.495",
+  "snippet": "DQN-SA & 7.385 & [",
+  "computed": 7.384503691542995,
+  "formatted": "7.385",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 single_agent_dqn slices",
-  "snippet": "& 86.6 & 28.4 & 41.2 \\\\",
-  "computed": 41.23555555555554,
-  "formatted": "41.2",
+  "snippet": "& 86.5 & 26.8 & 40.5 \\\\",
+  "computed": 40.54333333333334,
+  "formatted": "40.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 independent_dqn reward",
-  "snippet": "DQN-I & 7.794 & [",
-  "computed": 7.793777748338516,
-  "formatted": "7.794",
+  "snippet": "DQN-I & 7.601 & [",
+  "computed": 7.601492482854713,
+  "formatted": "7.601",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 independent_dqn slices",
-  "snippet": "& 91.0 & 27.0 & 44.1 \\\\",
-  "computed": 44.102222222222224,
-  "formatted": "44.1",
+  "snippet": "& 89.2 & 25.9 & 43.5 \\\\",
+  "computed": 43.49888888888889,
+  "formatted": "43.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 mappo_tuned reward",
-  "snippet": "MAPPO & 6.968 & [",
-  "computed": 6.968428475273854,
-  "formatted": "6.968",
+  "snippet": "MAPPO & 6.921 & [",
+  "computed": 6.921392826051942,
+  "formatted": "6.921",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "T4 mappo_tuned slices",
-  "snippet": "& 79.7 & 28.9 & 57.9 \\\\",
-  "computed": 57.89222222222222,
-  "formatted": "57.9",
+  "snippet": "& 80.0 & 28.0 & 55.5 \\\\",
+  "computed": 55.54611111111111,
+  "formatted": "55.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H1 static",
-  "snippet": "AXIOM earns 2.495 more reward per step than shedding every mMTC request",
-  "computed": 2.495073558592738,
-  "formatted": "2.495",
+  "snippet": "AXIOM earns 2.560 more reward per step than shedding every mMTC request",
+  "computed": 2.5602536133636806,
+  "formatted": "2.560",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H1 accept-all",
-  "snippet": "and 4.476 more than accept-all",
-  "computed": 4.475507966138972,
-  "formatted": "4.476",
+  "snippet": "and 4.546 more than accept-all",
+  "computed": 4.545603029901901,
+  "formatted": "4.546",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "H1 all 30 seeds won",
+  "label": "H1 all 60 seeds won (30 before M107)",
   "snippet": null,
   "computed": {
-   "rule_static": 30,
-   "rule_accept_all": 30
+   "rule_static": 60,
+   "rule_accept_all": 60
   },
   "formatted": null,
   "in_tex": null,
@@ -635,118 +635,118 @@
  },
  {
   "label": "EnvB static URLLC",
-  "snippet": "leaves URLLC compliance at 62.5\\% at three gNBs",
-  "computed": 62.49777777777778,
-  "formatted": "62.5",
+  "snippet": "leaves URLLC compliance at 61.5\\% at three gNBs",
+  "computed": 61.474444444444444,
+  "formatted": "61.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "EnvB AXIOM URLLC",
-  "snippet": "AXIOM & 8.832 & [8.64, 9.03] & 95.5 & -- & -- & 95.8",
-  "computed": 95.81111111111109,
-  "formatted": "95.8",
+  "snippet": "AXIOM & 8.723 & [8.56, 8.88] & 95.3 & -- & -- & 95.7",
+  "computed": 95.68333333333334,
+  "formatted": "95.7",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H2 n3 vs independent_dqn",
-  "snippet": "by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO",
-  "computed": 1.03802758760822,
-  "formatted": "1.038",
+  "snippet": "by 1.121 reward per step over DQN-I, 1.338 over DQN-SA, and 1.801 over MAPPO",
+  "computed": 1.121058645484678,
+  "formatted": "1.121",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H2 n3 vs single_agent_dqn",
-  "snippet": "by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO",
-  "computed": 1.3369261586250398,
-  "formatted": "1.337",
+  "snippet": "by 1.121 reward per step over DQN-I, 1.338 over DQN-SA, and 1.801 over MAPPO",
+  "computed": 1.3380474367963948,
+  "formatted": "1.338",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H2 n3 vs mappo_tuned",
-  "snippet": "by 1.038 reward per step over DQN-I, 1.337 over DQN-SA, and 1.863 over MAPPO",
-  "computed": 1.8633768606728818,
-  "formatted": "1.863",
+  "snippet": "by 1.121 reward per step over DQN-I, 1.338 over DQN-SA, and 1.801 over MAPPO",
+  "computed": 1.801158302287449,
+  "formatted": "1.801",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H2 rule_local gap",
-  "snippet": "earning 0.420 more than AXIOM at $p<0.0001$",
-  "computed": 0.420190861508788,
-  "formatted": "0.420",
+  "snippet": "earning 0.426 more than AXIOM at $p<0.0001$",
+  "computed": 0.4263270075353111,
+  "formatted": "0.426",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "H2 rule_local seeds",
-  "snippet": "Tuned local rule & 9.252 & [9.12, 9.40] & 100.0 & 8/0/22 &",
-  "computed": 22,
-  "formatted": "/22",
+  "snippet": "Tuned local rule & 9.149 & [9.05, 9.25] & 100.0 & 11/0/49 &",
+  "computed": 49,
+  "formatted": "/49",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "T4 rule_accept_all row reads ] & 47.1 & 30/0/0 & 30/0/0 &",
+  "label": "T4 rule_accept_all row reads ] & 45.7 & 60/0/0 & 60/0/0 &",
   "snippet": null,
-  "computed": "] & 47.1 & 30/0/0 & 30/0/0 &",
+  "computed": "] & 45.7 & 60/0/0 & 60/0/0 &",
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T4 rule_static row reads ] & 68.5 & 30/0/0 & 30/0/0 &",
+  "label": "T4 rule_static row reads ] & 67.4 & 60/0/0 & 60/0/0 &",
   "snippet": null,
-  "computed": "] & 68.5 & 30/0/0 & 30/0/0 &",
+  "computed": "] & 67.4 & 60/0/0 & 60/0/0 &",
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T4 rule_local row reads ] & 100.0 & 8/0/22 & 6/0/24 &",
+  "label": "T4 rule_local row reads ] & 100.0 & 11/0/49 & 10/0/50 &",
   "snippet": null,
-  "computed": "] & 100.0 & 8/0/22 & 6/0/24 &",
+  "computed": "] & 100.0 & 11/0/49 & 10/0/50 &",
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T4 rule_neighbour row reads ] & 97.7 & 13/0/17 & 23/0/7 &",
+  "label": "T4 rule_neighbour row reads ] & 97.9 & 26/0/34 & 42/0/18 &",
   "snippet": null,
-  "computed": "] & 97.7 & 13/0/17 & 23/0/7 &",
+  "computed": "] & 97.9 & 26/0/34 & 42/0/18 &",
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T4 single_agent_dqn row reads ] & 81.0 & 29/0/1 & 26/0/4 &",
+  "label": "T4 single_agent_dqn row reads ] & 80.7 & 56/0/4 & 52/0/8 &",
   "snippet": null,
-  "computed": "] & 81.0 & 29/0/1 & 26/0/4 &",
+  "computed": "] & 80.7 & 56/0/4 & 52/0/8 &",
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T4 independent_dqn row reads ] & 84.2 & 29/0/1 & 27/0/3 &",
+  "label": "T4 independent_dqn row reads ] & 83.1 & 56/0/4 & 53/0/7 &",
   "snippet": null,
-  "computed": "] & 84.2 & 29/0/1 & 27/0/3 &",
+  "computed": "] & 83.1 & 56/0/4 & 53/0/7 &",
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T4 mappo_tuned row reads ] & 75.3 & 29/0/1 & 24/0/6 &",
+  "label": "T4 mappo_tuned row reads ] & 75.7 & 56/0/4 & 49/0/11 &",
   "snippet": null,
-  "computed": "] & 75.3 & 29/0/1 & 24/0/6 &",
+  "computed": "] & 75.7 & 56/0/4 & 49/0/11 &",
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "T4 AXIOM row reads 95.5 of the tuned rule",
+  "label": "T4 AXIOM row reads 95.3 of the tuned rule (95.5 before M107)",
   "snippet": null,
   "computed": null,
   "formatted": null,
@@ -757,16 +757,16 @@
   "label": "H2 n3 learned leads all p_holm < 0.0001",
   "snippet": null,
   "computed": {
-   "single_agent_dqn|r": 5.587935447692871e-08,
-   "independent_dqn|r": 2.3469328880310059e-07,
-   "mappo_tuned|r": 2.8312206268310547e-07,
-   "single_agent_dqn|s": 1.1473894119262695e-06,
-   "mappo_tuned|s": 2.2742897272109985e-05,
-   "independent_dqn|s": 5.1204035755882263e-05,
-   "rule_local|r": 7.29784369468689e-05,
-   "rule_local|s": 0.00026569515466690063,
-   "rule_neighbour|s": 0.03220717548634079,
-   "rule_neighbour|r": 0.06056523136794567
+   "single_agent_dqn|r": 4.4388946978634827e-10,
+   "mappo_tuned|r": 1.2929769322016766e-09,
+   "independent_dqn|r": 2.7182288767808327e-09,
+   "single_agent_dqn|s": 3.0113300216823086e-09,
+   "independent_dqn|s": 1.0585220800405932e-08,
+   "rule_local|r": 4.4777189429037476e-08,
+   "mappo_tuned|s": 4.4777189429037476e-08,
+   "rule_local|s": 1.2438813805371606e-07,
+   "rule_neighbour|r": 0.012069843140311011,
+   "rule_neighbour|s": 0.012069843140311011
   },
   "formatted": null,
   "in_tex": null,
@@ -775,7 +775,7 @@
  {
   "label": "H2 n3 rule_local reward p_holm < 0.0001",
   "snippet": null,
-  "computed": 7.29784369468689e-05,
+  "computed": 4.4777189429037476e-08,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -875,52 +875,15 @@
   "ok": true
  },
  {
-  "label": "N7 all 18 tests significant at stated bound 0.011",
+  "label": "N7 all 18 tests significant at stated bound 0.0004",
   "snippet": null,
-  "computed": 0.010498046875,
+  "computed": 0.0003453871103895158,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "N7 seed counts",
-  "snippet": null,
-  "computed": {
-   "fully_connected|axiom2": 15,
-   "fully_connected|single_agent_dqn": 15,
-   "fully_connected|independent_dqn": 15,
-   "fully_connected|mappo_tuned": 15,
-   "ring|axiom2": 15,
-   "ring|single_agent_dqn": 15,
-   "ring|independent_dqn": 15,
-   "ring|mappo_tuned": 15,
-   "hex|axiom2": 15,
-   "hex|single_agent_dqn": 15,
-   "hex|independent_dqn": 15,
-   "hex|mappo_tuned": 15
-  },
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "N7 AXIOM URLLC/eMBB 99.8/94.4",
-  "snippet": null,
-  "computed": null,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "N19 all 18 tests significant at stated bound 0.0001",
-  "snippet": null,
-  "computed": 1.025233300290003e-05,
-  "formatted": null,
-  "in_tex": null,
-  "ok": true
- },
- {
-  "label": "N19 seed counts",
+  "label": "N7 seed counts, stored plus M107",
   "snippet": null,
   "computed": {
    "fully_connected|axiom2": 30,
@@ -941,10 +904,47 @@
   "ok": true
  },
  {
+  "label": "N7 AXIOM URLLC/eMBB 99.8/94.4",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "N19 all 18 tests significant at stated bound 0.0001",
+  "snippet": null,
+  "computed": 2.932740155582744e-10,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "N19 seed counts, stored plus M107",
+  "snippet": null,
+  "computed": {
+   "fully_connected|axiom2": 60,
+   "fully_connected|single_agent_dqn": 60,
+   "fully_connected|independent_dqn": 60,
+   "fully_connected|mappo_tuned": 60,
+   "ring|axiom2": 60,
+   "ring|single_agent_dqn": 60,
+   "ring|independent_dqn": 60,
+   "ring|mappo_tuned": 60,
+   "hex|axiom2": 60,
+   "hex|single_agent_dqn": 60,
+   "hex|independent_dqn": 60,
+   "hex|mappo_tuned": 60
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "N19 AXIOM pooled",
-  "snippet": "compliance of 97.3\\% with 95\\% CI",
-  "computed": 97.25055555555556,
-  "formatted": "97.3",
+  "snippet": "compliance of 97.4\\% with 95\\% CI",
+  "computed": 97.42222222222222,
+  "formatted": "97.4",
   "in_tex": true,
   "ok": true
  },
@@ -952,35 +952,35 @@
   "label": "N19 baselines: Fig. 5a plots the pooled 19-gNB compliance of every policy as recomputed here (Table 3 retired in the figure audit)",
   "snippet": null,
   "computed": {
-   "axiom2": 97.25,
-   "single_agent_dqn": 65.28,
-   "independent_dqn": 56.36,
-   "mappo_tuned": 60.63
+   "axiom2": 97.42,
+   "single_agent_dqn": 64.83,
+   "independent_dqn": 56.51,
+   "mappo_tuned": 61.27
   },
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "N19 indep and MAPPO pooled 56.4 and 60.6",
+  "label": "N19 indep and MAPPO pooled 56.5 and 61.3 (56.4 and 60.6 before M107)",
   "snippet": null,
   "computed": {
-   "axiom2": 0.9725055555555556,
-   "single_agent_dqn": 0.6527574074074074,
-   "independent_dqn": 0.5635833333333333,
-   "mappo_tuned": 0.6063222222222222
+   "axiom2": 0.9742222222222221,
+   "single_agent_dqn": 0.6482824074074075,
+   "independent_dqn": 0.5651361111111112,
+   "mappo_tuned": 0.6126972222222221
   },
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "N19 single collapse: Fig. 5b plots 84 of 90 DQN-SA runs collapsed at 19 gNBs",
+  "label": "N19 single collapse: Fig. 5b plots 163 of 180 DQN-SA runs collapsed at 19 gNBs (84 of 90 before M107)",
   "snippet": null,
   "computed": {
-   "axiom2": 1,
-   "single_agent_dqn": 84,
-   "independent_dqn": 3,
+   "axiom2": 2,
+   "single_agent_dqn": 163,
+   "independent_dqn": 6,
    "mappo_tuned": 0
   },
   "formatted": null,
@@ -988,12 +988,12 @@
   "ok": true
  },
  {
-  "label": "N19 collapse counts 3, 1, 0",
+  "label": "N19 collapse counts 6, 2, 0 (3, 1, 0 before M107)",
   "snippet": null,
   "computed": {
-   "axiom2": 1,
-   "single_agent_dqn": 84,
-   "independent_dqn": 3,
+   "axiom2": 2,
+   "single_agent_dqn": 163,
+   "independent_dqn": 6,
    "mappo_tuned": 0
   },
   "formatted": null,
@@ -1135,13 +1135,13 @@
   "ok": true
  },
  {
-  "label": "Table 2 Env B reward 8.83/7.49/7.79/6.97",
+  "label": "Table 2 Env B reward 8.72/7.38/7.60/6.92 (8.83/7.49/7.79/6.97 before M107)",
   "snippet": null,
   "computed": {
-   "axiom2": 8.831805335946738,
-   "single_agent_dqn": 7.494879177321698,
-   "independent_dqn": 7.793777748338516,
-   "mappo_tuned": 6.968428475273854
+   "axiom2": 8.722551128339392,
+   "single_agent_dqn": 7.384503691542995,
+   "independent_dqn": 7.601492482854713,
+   "mappo_tuned": 6.921392826051942
   },
   "formatted": null,
   "in_tex": null,
@@ -1161,34 +1161,34 @@
   "ok": true
  },
  {
-  "label": "Fig 9 percent of oracle 98.9/96.5/90.3/78.0",
+  "label": "Fig 9 percent of oracle 99.2/96.8/91.0/79.9 (98.9/96.5/90.3/78.0 before M107)",
   "snippet": null,
   "computed": {
-   "axiom2": 98.92637702729311,
-   "single_agent_dqn": 96.50315423346483,
-   "independent_dqn": 90.2769987594784,
-   "mappo_tuned": 78.01143945135472
+   "axiom2": 99.21390275143378,
+   "single_agent_dqn": 96.78952774190239,
+   "independent_dqn": 90.95466104376766,
+   "mappo_tuned": 79.8944019278688
   },
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "abstract: AXIOM beats static by 39% and accept-all by 103% in Env B",
+  "label": "abstract: AXIOM beats static by 42% and accept-all by 109% in Env B (39% and 103% before M107)",
   "snippet": null,
   "computed": [
-   1.3937476993281535,
-   2.027365119093435
+   1.4154706271713942,
+   2.0882593996325496
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "Env B section 3: tuned rule URLLC 98.9",
-  "snippet": "keeps it at 98.9\\%",
-  "computed": 98.90333333333334,
-  "formatted": "98.9",
+  "label": "Env B section 3: tuned rule URLLC 98.7 (98.9 before M107)",
+  "snippet": "keeps it at 98.7\\%",
+  "computed": 98.6511111111111,
+  "formatted": "98.7",
   "in_tex": true,
   "ok": true
  },
@@ -1245,73 +1245,73 @@
   "ok": true
  },
  {
-  "label": "N7 compliance lead range (17.9, 29.9)",
+  "label": "N7 compliance lead range (15.1, 29.8)",
   "snippet": null,
   "computed": [
-   17.904444444444444,
-   29.93666666666666
+   15.143888888888887,
+   29.77444444444445
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "N7 reward lead range (3.4, 7.07)",
+  "label": "N7 reward lead range (3.38, 7.82)",
   "snippet": null,
   "computed": [
-   3.399044590406683,
-   7.071617185183653
+   3.3809858734884726,
+   7.820869920310623
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "N19 compliance lead range (31.0, 42.1)",
+  "label": "N19 compliance lead range (32.1, 41.4)",
   "snippet": null,
   "computed": [
-   30.972777777777782,
-   42.12166666666666
+   32.07722222222222,
+   41.40833333333333
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "N19 reward lead range (10.7, 18.6)",
+  "label": "N19 reward lead range (11.4, 18.4)",
   "snippet": null,
   "computed": [
-   10.72158469856339,
-   18.554790112521403
+   11.411424333253239,
+   18.41415049705302
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "N19 wins 28 to 30 of 30 (compliance)",
+  "label": "N19 wins 56 to 60 of 60 (compliance; 28 to 30 of 30 before M107)",
   "snippet": null,
   "computed": [
-   29,
-   29,
-   29,
-   29,
-   29,
-   30,
-   28,
-   30,
-   30
+   58,
+   57,
+   58,
+   59,
+   59,
+   60,
+   56,
+   60,
+   57
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "N19 AXIOM URLLC/eMBB 99.4/95.1",
+  "label": "N19 AXIOM URLLC/eMBB 99.5/95.3 (99.4/95.1 before M107)",
   "snippet": null,
   "computed": [
-   99.39037037037036,
-   95.11074074074075
+   99.5351851851852,
+   95.30925925925926
   ],
   "formatted": null,
   "in_tex": null,
@@ -1360,9 +1360,9 @@
   "label": "T3 heuristic CI",
   "snippet": null,
   "computed": [
-   12.772,
-   12.905,
-   "Static rule & 12.835 & [12.77, 12.91] & 100.0 & 2/22/6 & 1.000 & 0/30 & 100.0 & 100.0 & 36.6 \\\\"
+   12.803,
+   12.897,
+   "Static rule & 12.849 & [12.80, 12.90] & 100.0 & 5/40/15 & 1.000 & 0/60 & 100.0 & 100.0 & 36.5 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1372,9 +1372,9 @@
   "label": "T3 axiom2 CI",
   "snippet": null,
   "computed": [
-   12.484,
-   12.861,
-   "AXIOM & 12.698 & [12.49, 12.86] & 98.9 & -- & 0.992 & 0/30 & 99.8 & 97.9 & 38.9 \\\\"
+   12.629,
+   12.846,
+   "AXIOM & 12.748 & [12.63, 12.85] & 99.2 & -- & 0.996 & 0/60 & 99.9 & 98.2 & 40.2 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1384,9 +1384,9 @@
   "label": "T3 single_agent_dqn CI",
   "snippet": null,
   "computed": [
-   12.105,
-   12.626,
-   "DQN-SA & 12.387 & [12.11, 12.63] & 96.5 & 15/8/7 & 0.990 & 0/30 & 99.4 & 94.1 & 43.6 \\\\"
+   12.195,
+   12.635,
+   "DQN-SA & 12.437 & [12.20, 12.64] & 96.8 & 31/16/13 & 0.990 & 1/60 & 99.5 & 94.7 & 42.6 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1396,9 +1396,9 @@
   "label": "T3 independent_dqn CI",
   "snippet": null,
   "computed": [
-   11.106,
-   12.006,
-   "DQN-I & 11.587 & [11.11, 12.02] & 90.3 & 27/0/3 & 0.962 & 0/30 & 99.3 & 86.5 & 40.2 \\\\"
+   11.388,
+   11.96,
+   "DQN-I & 11.687 & [11.39, 11.95] & 91.0 & 56/0/4 & 0.972 & 0/60 & 99.2 & 88.9 & 40.4 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1408,9 +1408,9 @@
   "label": "T3 mappo_tuned CI",
   "snippet": null,
   "computed": [
-   9.271,
-   10.743,
-   "MAPPO & 10.013 & [9.30, 10.73] & 78.0 & 29/1/0 & 0.707 & 2/30 & 97.8 & 57.6 & 66.4 \\\\"
+   9.789,
+   10.721,
+   "MAPPO & 10.266 & [9.79, 10.72] & 79.9 & 58/1/1 & 0.728 & 3/60 & 97.9 & 61.6 & 66.5 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1420,9 +1420,9 @@
   "label": "T4 rule_accept_all CI",
   "snippet": null,
   "computed": [
-   4.135,
-   4.594,
-   "Accept all & 4.356 & [4.13, 4.60] & 47.1 & 30/0/0 & 30/0/0 & 44.6 & 26.5 & 95.5 \\\\"
+   4.019,
+   4.344,
+   "Accept all & 4.177 & [4.01, 4.35] & 45.7 & 60/0/0 & 60/0/0 & 43.3 & 25.4 & 94.9 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1432,9 +1432,9 @@
   "label": "T4 rule_static CI",
   "snippet": null,
   "computed": [
-   6.0,
-   6.676,
-   "Shed all mMTC & 6.337 & [6.00, 6.67] & 68.5 & 30/0/0 & 30/0/0 & 62.5 & 36.7 & 37.1 \\\\"
+   5.93,
+   6.399,
+   "Shed all mMTC & 6.162 & [5.93, 6.40] & 67.4 & 60/0/0 & 60/0/0 & 61.5 & 35.2 & 36.7 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1444,9 +1444,9 @@
   "label": "T4 rule_local CI",
   "snippet": null,
   "computed": [
-   9.119,
-   9.394,
-   "Tuned local rule & 9.252 & [9.12, 9.40] & 100.0 & 8/0/22 & 6/0/24 & 98.9 & 36.7 & 39.0 \\\\"
+   9.049,
+   9.25,
+   "Tuned local rule & 9.149 & [9.05, 9.25] & 100.0 & 11/0/49 & 10/0/50 & 98.7 & 35.3 & 38.5 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1456,9 +1456,9 @@
   "label": "T4 rule_neighbour CI",
   "snippet": null,
   "computed": [
-   8.934,
-   9.153,
-   "Tuned neighbour-aware rule & 9.041 & [8.93, 9.15] & 97.7 & 13/0/17 & 23/0/7 & 98.8 & 28.3 & 90.1 \\\\"
+   8.874,
+   9.043,
+   "Tuned neighbour-aware rule & 8.958 & [8.87, 9.04] & 97.9 & 26/0/34 & 42/0/18 & 98.7 & 27.1 & 89.0 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1468,9 +1468,9 @@
   "label": "T4 axiom2 CI",
   "snippet": null,
   "computed": [
-   8.639,
-   9.032,
-   "AXIOM & 8.832 & [8.64, 9.03] & 95.5 & -- & -- & 95.8 & 34.4 & 40.6 \\\\"
+   8.566,
+   8.874,
+   "AXIOM & 8.723 & [8.56, 8.88] & 95.3 & -- & -- & 95.7 & 32.6 & 42.4 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1480,9 +1480,9 @@
   "label": "T4 single_agent_dqn CI",
   "snippet": null,
   "computed": [
-   7.196,
-   7.774,
-   "DQN-SA & 7.495 & [7.20, 7.77] & 81.0 & 29/0/1 & 26/0/4 & 86.6 & 28.4 & 41.2 \\\\"
+   7.093,
+   7.649,
+   "DQN-SA & 7.385 & [7.09, 7.64] & 80.7 & 56/0/4 & 52/0/8 & 86.5 & 26.8 & 40.5 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1492,9 +1492,9 @@
   "label": "T4 independent_dqn CI",
   "snippet": null,
   "computed": [
-   7.443,
-   8.131,
-   "DQN-I & 7.794 & [7.44, 8.13] & 84.2 & 29/0/1 & 27/0/3 & 91.0 & 27.0 & 44.1 \\\\"
+   7.337,
+   7.858,
+   "DQN-I & 7.601 & [7.34, 7.86] & 83.1 & 56/0/4 & 53/0/7 & 89.2 & 25.9 & 43.5 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1504,9 +1504,9 @@
   "label": "T4 mappo_tuned CI",
   "snippet": null,
   "computed": [
-   6.505,
-   7.45,
-   "MAPPO & 6.968 & [6.47, 7.45] & 75.3 & 29/0/1 & 24/0/6 & 79.7 & 28.9 & 57.9 \\\\"
+   6.537,
+   7.296,
+   "MAPPO & 6.921 & [6.53, 7.30] & 75.7 & 56/0/4 & 49/0/11 & 80.0 & 28.0 & 55.5 \\\\"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1516,9 +1516,9 @@
   "label": "A3 vs indep CI",
   "snippet": null,
   "computed": [
-   0.611,
-   1.653,
-   "[0.60, 1.65]"
+   0.76,
+   1.383,
+   "[0.77, 1.38]"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1528,9 +1528,9 @@
   "label": "A3 vs MAPPO CI",
   "snippet": null,
   "computed": [
-   2.01,
-   3.354,
-   "[2.01, 3.35]"
+   2.037,
+   2.923,
+   "[2.05, 2.94]"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1540,9 +1540,9 @@
   "label": "A3 vs single CI",
   "snippet": null,
   "computed": [
-   -0.013,
-   0.645,
-   "[$-$0.01, 0.64]"
+   0.101,
+   0.547,
+   "[0.10, 0.55]"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1552,9 +1552,9 @@
   "label": "A3 vs MLP CI",
   "snippet": null,
   "computed": [
-   -0.168,
-   0.262,
-   "[$-$0.17, 0.26]"
+   -0.064,
+   0.19,
+   "[$-$0.06, 0.19]"
   ],
   "formatted": null,
   "in_tex": null,
@@ -1564,8 +1564,8 @@
   "label": "federation cost CI",
   "snippet": null,
   "computed": [
-   -0.516,
-   1.497,
+   -0.492,
+   1.534,
    "[$-$0.54, 1.51]"
   ],
   "formatted": null,
@@ -1576,24 +1576,24 @@
   "label": "N19 pooled CI",
   "snippet": null,
   "computed": [
-   95.141,
-   98.969,
-   "[95.2\\%, 99.0\\%]"
+   95.975,
+   98.658,
+   "[96.0\\%, 98.7\\%]"
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "Env B N=3: AXIOM wins 24 to 29 of 30",
+  "label": "Env B N=3: AXIOM wins 49 to 56 of 60 (24 to 29 of 30 before M107), and none of its 60 runs sheds only mMTC",
   "snippet": null,
   "computed": [
-   29,
-   27,
-   29,
-   26,
-   29,
-   24
+   56,
+   53,
+   56,
+   52,
+   56,
+   49
   ],
   "formatted": null,
   "in_tex": null,
@@ -1707,28 +1707,28 @@
   "snippet": null,
   "computed": {
    "AXIOM": {
-    "3": 4.232523388846157,
-    "7": 4.485272320792812,
-    "19": 4.694590349938544,
-    "37": 4.705109249459176
+    "3": 4.249386075656823,
+    "7": 4.516883739089426,
+    "19": 4.709048394113314,
+    "37": 4.727678800582717
    },
    "DQN-SA": {
-    "3": 4.128846821893404,
-    "7": 3.9430167379428958,
-    "19": 4.101784110507187,
-    "37": 3.910742114107664
+    "3": 4.145548759293172,
+    "7": 3.935727580540185,
+    "19": 4.091896197664385,
+    "37": 3.914595190488376
    },
    "DQN-I": {
-    "3": 3.8624633814185794,
-    "7": 3.8489056755786106,
-    "19": 4.020419569180727,
-    "37": 4.009369327950725
+    "3": 3.8956382063086124,
+    "7": 3.894400323443105,
+    "19": 4.0225248723827365,
+    "37": 4.02361013176125
    },
    "MAPPO": {
-    "3": 3.3376865907493896,
-    "7": 3.497528594299811,
-    "19": 3.7486417885294183,
-    "37": 3.9257084179886834
+    "3": 3.421921219305216,
+    "7": 3.4228376684691315,
+    "19": 3.7488933787650285,
+    "37": 3.922295025782297
    }
   },
   "formatted": null,
@@ -1739,34 +1739,34 @@
   "label": "Env A text: AXIOM 4.2 to 4.7 reward per gNB and above 93% at every size, every baseline falls (Fig. 5a and c)",
   "snippet": null,
   "computed": {
-   "3": 4.232523388846157,
-   "7": 4.485272320792812,
-   "19": 4.694590349938544,
-   "37": 4.705109249459176
+   "3": 4.249386075656823,
+   "7": 4.516883739089426,
+   "19": 4.709048394113314,
+   "37": 4.727678800582717
   },
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "Env A text: MAPPO the only learned policy that never collapses at 37 gNBs, AXIOM 6 of 60",
+  "label": "Env A text: MAPPO the only learned policy that never collapses at 37 gNBs, AXIOM 9 of 120 (6 of 60 before M107)",
   "snippet": null,
   "computed": {
    "AXIOM": [
-    6,
-    60
+    9,
+    120
    ],
    "DQN-SA": [
-    26,
-    30
+    54,
+    60
    ],
    "DQN-I": [
-    3,
-    30
+    7,
+    60
    ],
    "MAPPO": [
     0,
-    30
+    60
    ]
   },
   "formatted": null,
@@ -1774,10 +1774,10 @@
   "ok": true
  },
  {
-  "label": "Env B text by size: falls from 65.1\\% at three gNBs",
-  "snippet": "falls from 65.1\\% at three gNBs",
-  "computed": 65.0938888888889,
-  "formatted": "65.1",
+  "label": "Env B text by size: falls from 64.1\\% at three gNBs",
+  "snippet": "falls from 64.1\\% at three gNBs",
+  "computed": 64.13111111111111,
+  "formatted": "64.1",
   "in_tex": true,
   "ok": true
  },
@@ -1835,44 +1835,44 @@
   "computed": {
    "x": {
     "AXIOM": {
-     "3": 2.943935111982246,
+     "3": 2.907517042779796,
      "7": 3.3567426050515796,
      "19": 4.225284100072637
     },
     "DQN-SA": {
-     "3": 2.4982930591072323,
+     "3": 2.461501230514332,
      "7": 3.367137196368847,
      "19": 3.9336188122744002
     },
     "DQN-I": {
-     "3": 2.5979259161128394,
+     "3": 2.5338308276182375,
      "7": 3.233053968644429,
      "19": 3.7475058240151577
     },
     "MAPPO": {
-     "3": 2.3228094917579516,
+     "3": 2.3071309420173143,
      "7": 3.0190900338411875,
      "19": 3.108695863639475
     }
    },
    "y": {
     "AXIOM": {
-     "3": 65.0938888888889,
+     "3": 64.13111111111111,
      "7": 35.099629629629625,
      "19": 24.74666666666667
     },
     "DQN-SA": {
-     "3": 57.513333333333335,
+     "3": 56.61638888888889,
      "7": 44.25629629629629,
      "19": 18.00222222222222
     },
     "DQN-I": {
-     "3": 58.99666666666668,
+     "3": 57.59472222222224,
      "7": 39.94777777777777,
      "19": 16.70333333333333
     },
     "MAPPO": {
-     "3": 54.26500000000001,
+     "3": 54.02861111111111,
      "7": 35.87185185185185,
      "19": 20.8
     }
@@ -1897,7 +1897,7 @@
    "A": {
     "3|1.05": "tie",
     "7|1.05": "rule",
-    "19|1.05": "tie",
+    "19|1.05": "rule",
     "37|1.05": "tie",
     "19|1.10": "tie",
     "3|1.10": "tie",
@@ -2078,9 +2078,9 @@
   "label": "Env B N=3 single-agent conclusion unchanged without unseeded-init seeds",
   "snippet": null,
   "computed": {
-   "mappo_tuned": 4.470348358154297e-08,
-   "single_agent_dqn": 8.940696716308594e-08,
-   "independent_dqn": 2.086162567138672e-07
+   "single_agent_dqn": 4.4287320322339616e-10,
+   "mappo_tuned": 4.706861308078932e-10,
+   "independent_dqn": 1.0743921391604713e-09
   },
   "formatted": null,
   "in_tex": null,
@@ -2578,7 +2578,7 @@
   "ok": true
  },
  {
-  "label": "reframe: map AXIOM sheds mMTC and keeps priority open at every one of 19 gNBs",
+  "label": "reframe: map AXIOM sheds mMTC and keeps priority open at every one of 19 gNBs, over 60 seeds (30 before M107)",
   "snippet": null,
   "computed": null,
   "formatted": null,
@@ -2587,30 +2587,30 @@
  },
  {
   "label": "reframe: map37 AXIOM URLLC gate",
-  "snippet": "at 1.00 and 0.98, and closes the mMTC gate to 0.16",
-  "computed": 0.9961849420849439,
+  "snippet": "at 1.00 and 0.99, and closes the mMTC gate to 0.13",
+  "computed": 0.996212950450452,
   "formatted": "1.00",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: map37 AXIOM eMBB gate",
-  "snippet": "at 1.00 and 0.98, and closes the mMTC gate to 0.16",
-  "computed": 0.9828322072072069,
-  "formatted": "0.98",
+  "snippet": "at 1.00 and 0.99, and closes the mMTC gate to 0.13",
+  "computed": 0.9887571723509222,
+  "formatted": "0.99",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: map37 AXIOM mMTC gate",
-  "snippet": "closes the mMTC gate to 0.16 even with its three collapsed seeds included",
-  "computed": 0.1572764264264265,
-  "formatted": "0.16",
+  "snippet": "closes the mMTC gate to 0.13 even with its five collapsed seeds included",
+  "computed": 0.12555905905905915,
+  "formatted": "0.13",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "reframe: map37 AXIOM's mean includes three collapsed hex seeds and every gNB keeps priority open, mMTC below 0.2",
+  "label": "reframe: map37 AXIOM's mean includes five collapsed hex seeds of 60 (three of 30 before M107) and every gNB keeps priority open, mMTC below 0.2",
   "snippet": null,
   "computed": null,
   "formatted": null,
@@ -2621,9 +2621,9 @@
   "label": "reframe: map37 single-agent every gate open at 0.93 to 0.95",
   "snippet": null,
   "computed": [
-   0.9397,
-   0.9486,
-   0.9334
+   0.9385,
+   0.9461,
+   0.9324
   ],
   "formatted": null,
   "in_tex": null,
@@ -2631,25 +2631,25 @@
  },
  {
   "label": "reframe: map37 independent mMTC gate",
-  "snippet": "DQN-I closes the mMTC gate only to 0.94",
-  "computed": 0.9374577577577585,
-  "formatted": "0.94",
+  "snippet": "DQN-I closes the mMTC gate only to 0.95",
+  "computed": 0.9469272022022032,
+  "formatted": "0.95",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: map37 MAPPO eMBB gate",
-  "snippet": "partly closes the eMBB gate to 0.80",
-  "computed": 0.8042615561990549,
-  "formatted": "0.80",
+  "snippet": "partly closes the eMBB gate to 0.84",
+  "computed": 0.8352438706563693,
+  "formatted": "0.84",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: map37 MAPPO mMTC gate",
-  "snippet": "but leaves mMTC open at 0.51",
-  "computed": 0.5133066066066067,
-  "formatted": "0.51",
+  "snippet": "but leaves mMTC open at 0.56",
+  "computed": 0.5564446946946948,
+  "formatted": "0.56",
   "in_tex": true,
   "ok": true
  },
@@ -2679,17 +2679,17 @@
  },
  {
   "label": "reframe: oracle exceeded count",
-  "snippet": "exceeded it in 28 of 450 seed-level evaluations",
-  "computed": 28,
-  "formatted": "28",
+  "snippet": "exceeded it in 33 of 540 seed-level evaluations",
+  "computed": 33,
+  "formatted": "33",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: oracle evaluations total",
-  "snippet": "exceeded it in 28 of 450 seed-level evaluations",
-  "computed": 450,
-  "formatted": "450",
+  "snippet": "exceeded it in 33 of 540 seed-level evaluations",
+  "computed": 540,
+  "formatted": "540",
   "in_tex": true,
   "ok": true
  },
@@ -2721,8 +2721,8 @@
   "label": "pooled federation CI",
   "snippet": null,
   "computed": [
-   -0.08,
-   1.076,
+   -0.09,
+   1.116,
    "the cost is $+0.491$ per step with 95\\% CI [$-$0.08, 1.09]"
   ],
   "formatted": null,
@@ -2748,7 +2748,7 @@
  {
   "label": "no Env B policy keeps eMBB above 37%",
   "snippet": null,
-  "computed": 36.73,
+  "computed": 35.27,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -2795,16 +2795,16 @@
  },
  {
   "label": "reframe: M70 rule low",
-  "snippet": "keeps 99.96\\% to 99.99\\% at every size",
-  "computed": 99.96277777777777,
-  "formatted": "99.96",
+  "snippet": "keeps 99.97\\% to 99.99\\% at every size",
+  "computed": 99.97166666666666,
+  "formatted": "99.97",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M70 rule high",
-  "snippet": "keeps 99.96\\% to 99.99\\% at every size",
-  "computed": 99.98944444444446,
+  "snippet": "keeps 99.97\\% to 99.99\\% at every size",
+  "computed": 99.99305555555557,
   "formatted": "99.99",
   "in_tex": true,
   "ok": true
@@ -2813,18 +2813,18 @@
   "label": "reframe: M70 AXIOM within 3 points of the rule at every size",
   "snippet": null,
   "computed": {
-   "3": 1.13,
-   "7": 2.91,
-   "19": 2.71
+   "3": 0.95,
+   "7": 2.86,
+   "19": 2.55
   },
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "reframe: M70 other learners at least 24 points short at 7 and 19 gNBs",
+  "label": "reframe: M70 other learners at least 21 points short at 7 and 19 gNBs (24 before M107)",
   "snippet": null,
-  "computed": 23.75,
+  "computed": 21.51,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -3077,33 +3077,33 @@
   "ok": true
  },
  {
-  "label": "reframe: M73 complete, 60 AXIOM runs and 30 seeds per baseline",
+  "label": "reframe: M73 complete, 120 AXIOM runs and 60 seeds per baseline with M107 (60 and 30 before)",
   "snippet": null,
-  "computed": 60,
+  "computed": 120,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
   "label": "reframe: M73 AXIOM pooled priority SLA",
-  "snippet": "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]",
-  "computed": 93.69,
-  "formatted": "93.7",
+  "snippet": "a pooled priority-slice compliance of 94.9\\% with 95\\% CI [92.4\\%, 97.1\\%]",
+  "computed": 94.85444444444444,
+  "formatted": "94.9",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 AXIOM CI low",
-  "snippet": "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]",
-  "computed": 89.8331875,
+  "snippet": "a pooled priority-slice compliance of 94.9\\% with 95\\% CI [92.4\\%, 97.1\\%]",
+  "computed": 92.35979166666665,
   "formatted": "",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 AXIOM CI high",
-  "snippet": "a pooled priority-slice compliance of 93.7\\% with 95\\% CI [89.8\\%, 97.2\\%]",
-  "computed": 96.9942986111111,
+  "snippet": "a pooled priority-slice compliance of 94.9\\% with 95\\% CI [92.4\\%, 97.1\\%]",
+  "computed": 97.08824305555557,
   "formatted": "",
   "in_tex": true,
   "ok": true
@@ -3112,8 +3112,8 @@
   "label": "reframe: M73 AXIOM CI exact with the order-independent bootstrap",
   "snippet": null,
   "computed": [
-   89.78715972222224,
-   97.15975
+   92.3556701388889,
+   97.09888194444446
   ],
   "formatted": null,
   "in_tex": null,
@@ -3121,105 +3121,105 @@
  },
  {
   "label": "reframe: M73 AXIOM URLLC",
-  "snippet": "and at thirty-seven at 96.7\\% and 90.7\\%",
-  "computed": 96.71444444444445,
-  "formatted": "96.7",
+  "snippet": "and at thirty-seven at 97.7\\% and 92.0\\%",
+  "computed": 97.6875,
+  "formatted": "97.7",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 AXIOM eMBB",
-  "snippet": "and at thirty-seven at 96.7\\% and 90.7\\%",
-  "computed": 90.66555555555556,
-  "formatted": "90.7",
+  "snippet": "and at thirty-seven at 97.7\\% and 92.0\\%",
+  "computed": 92.0213888888889,
+  "formatted": "92.0",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 single_agent_dqn priority SLA",
-  "snippet": "DQN-SA & 30 & 73.3\\% & 44.1\\% & 58.7\\%",
-  "computed": 58.66166666666667,
-  "formatted": "58.7",
+  "snippet": "DQN-SA & 60 & 72.7\\% & 44.3\\% & 58.5\\%",
+  "computed": 58.514166666666654,
+  "formatted": "58.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 table single_agent_dqn",
-  "snippet": "DQN-SA & 30 & 73.3\\% & 44.1\\% & 58.7\\%",
-  "computed": 58.66166666666667,
-  "formatted": "58.7",
+  "snippet": "DQN-SA & 60 & 72.7\\% & 44.3\\% & 58.5\\%",
+  "computed": 58.514166666666654,
+  "formatted": "58.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 mappo_tuned priority SLA",
-  "snippet": "MAPPO & 30 & 67.8\\% & 45.6\\% & 56.7\\%",
-  "computed": 56.676111111111105,
-  "formatted": "56.7",
+  "snippet": "MAPPO & 60 & 66.9\\% & 45.8\\% & 56.3\\%",
+  "computed": 56.34611111111111,
+  "formatted": "56.3",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 table mappo_tuned",
-  "snippet": "MAPPO & 30 & 67.8\\% & 45.6\\% & 56.7\\%",
-  "computed": 56.676111111111105,
-  "formatted": "56.7",
+  "snippet": "MAPPO & 60 & 66.9\\% & 45.8\\% & 56.3\\%",
+  "computed": 56.34611111111111,
+  "formatted": "56.3",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 independent_dqn priority SLA",
-  "snippet": "DQN-I & 30 & 38.6\\% & 25.7\\% & 32.1\\%",
-  "computed": 32.13277777777777,
-  "formatted": "32.1",
+  "snippet": "DQN-I & 60 & 39.8\\% & 25.7\\% & 32.7\\%",
+  "computed": 32.73166666666666,
+  "formatted": "32.7",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 table independent_dqn",
-  "snippet": "DQN-I & 30 & 38.6\\% & 25.7\\% & 32.1\\%",
-  "computed": 32.13277777777777,
-  "formatted": "32.1",
+  "snippet": "DQN-I & 60 & 39.8\\% & 25.7\\% & 32.7\\%",
+  "computed": 32.73166666666666,
+  "formatted": "32.7",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 table AXIOM",
-  "snippet": "AXIOM keeps a pooled priority-slice compliance of 93.7\\% with 95\\% CI",
-  "computed": 93.69,
-  "formatted": "93.7",
+  "snippet": "AXIOM keeps a pooled priority-slice compliance of 94.9\\% with 95\\% CI",
+  "computed": 94.85444444444444,
+  "formatted": "94.9",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 lead over best baseline",
-  "snippet": "its lead over the best learned baseline reaches 35.0 points",
-  "computed": 35.02833333333333,
-  "formatted": "35.0",
+  "snippet": "its lead over the best learned baseline reaches 36.3 points",
+  "computed": 36.340277777777786,
+  "formatted": "36.3",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 rule gap",
-  "snippet": "within 6.3 at thirty-seven",
-  "computed": 6.286666666666662,
-  "formatted": "6.3",
+  "snippet": "within 5.1 at thirty-seven",
+  "computed": 5.124166666666682,
+  "formatted": "5.1",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "reframe: M73 static rule inside the quoted 99.96 to 99.99 range",
+  "label": "reframe: M73 static rule inside the quoted 99.97 to 99.99 range (99.96 before M107)",
   "snippet": null,
-  "computed": 99.977,
+  "computed": 99.979,
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
   "label": "reframe: abstract static rule floor at every size",
-  "snippet": "A static rule shedding all machine-type requests keeps at least 99.96\\%",
-  "computed": 99.96277777777777,
-  "formatted": "99.96",
+  "snippet": "A static rule shedding all machine-type requests keeps at least 99.97\\%",
+  "computed": 99.97166666666666,
+  "formatted": "99.97",
   "in_tex": true,
   "ok": true
  },
@@ -3236,23 +3236,23 @@
   "snippet": null,
   "computed": {
    "('hex', 'mappo_tuned', 'r')": 0.0,
+   "('hex', 'independent_dqn', 'r')": 0.0,
+   "('hex', 'independent_dqn', 'p')": 0.0,
    "('hex', 'mappo_tuned', 'p')": 0.0,
-   "('hex', 'independent_dqn', 'r')": 1e-05,
-   "('hex', 'independent_dqn', 'p')": 1e-05,
-   "('hex', 'single_agent_dqn', 'r')": 1e-05,
-   "('hex', 'single_agent_dqn', 'p')": 1e-05,
-   "('ring', 'independent_dqn', 'p')": 0.00073,
-   "('ring', 'independent_dqn', 'r')": 0.00073,
-   "('fully_connected', 'independent_dqn', 'p')": 0.00073,
-   "('fully_connected', 'independent_dqn', 'r')": 0.00073,
-   "('fully_connected', 'mappo_tuned', 'r')": 0.00244,
-   "('ring', 'mappo_tuned', 'r')": 0.00427,
-   "('fully_connected', 'mappo_tuned', 'p')": 0.00513,
-   "('fully_connected', 'single_agent_dqn', 'p')": 0.00613,
-   "('fully_connected', 'single_agent_dqn', 'r')": 0.00613,
-   "('ring', 'single_agent_dqn', 'p')": 0.00613,
-   "('ring', 'single_agent_dqn', 'r')": 0.00613,
-   "('ring', 'mappo_tuned', 'p')": 0.00613
+   "('hex', 'single_agent_dqn', 'r')": 0.0,
+   "('hex', 'single_agent_dqn', 'p')": 0.0,
+   "('fully_connected', 'independent_dqn', 'p')": 0.0,
+   "('fully_connected', 'independent_dqn', 'r')": 0.0,
+   "('ring', 'independent_dqn', 'p')": 0.0,
+   "('ring', 'independent_dqn', 'r')": 0.0,
+   "('fully_connected', 'mappo_tuned', 'r')": 0.0,
+   "('fully_connected', 'mappo_tuned', 'p')": 0.0,
+   "('ring', 'mappo_tuned', 'r')": 0.0,
+   "('ring', 'mappo_tuned', 'p')": 0.0,
+   "('fully_connected', 'single_agent_dqn', 'p')": 1e-05,
+   "('fully_connected', 'single_agent_dqn', 'r')": 1e-05,
+   "('ring', 'single_agent_dqn', 'p')": 2e-05,
+   "('ring', 'single_agent_dqn', 'r')": 2e-05
   },
   "formatted": null,
   "in_tex": null,
@@ -3260,61 +3260,64 @@
  },
  {
   "label": "reframe: M73 compliance lead low",
-  "snippet": "AXIOM keeps 32.0 to 67.8 percentage points more compliance",
-  "computed": 32.026666666666664,
-  "formatted": "32.0",
+  "snippet": "AXIOM keeps 32.3 to 66.5 percentage points more compliance",
+  "computed": 32.32333333333334,
+  "formatted": "32.3",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 compliance lead high",
-  "snippet": "AXIOM keeps 32.0 to 67.8 percentage points more compliance",
-  "computed": 67.80444444444444,
-  "formatted": "67.8",
+  "snippet": "AXIOM keeps 32.3 to 66.5 percentage points more compliance",
+  "computed": 66.52722222222222,
+  "formatted": "66.5",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 reward lead low",
-  "snippet": "and earns 18.3 to 29.5 more reward per step",
-  "computed": 18.26791840698576,
-  "formatted": "18.3",
+  "snippet": "and earns 23.0 to 30.4 more reward per step",
+  "computed": 23.00922153045259,
+  "formatted": "23.0",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 reward lead high",
-  "snippet": "and earns 18.3 to 29.5 more reward per step",
-  "computed": 29.506940165592457,
-  "formatted": "29.5",
+  "snippet": "and earns 23.0 to 30.4 more reward per step",
+  "computed": 30.356354895704442,
+  "formatted": "30.4",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 AXIOM collapses",
-  "snippet": "where AXIOM collapses in 6 of 60 runs",
-  "computed": 6,
-  "formatted": "6",
+  "snippet": "where AXIOM collapses in 9 of 120 runs",
+  "computed": 9,
+  "formatted": "9",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M73 single-agent collapses",
-  "snippet": "58.7\\% & 144.70 & 26 \\\\",
-  "computed": 26,
-  "formatted": "26",
+  "snippet": "58.5\\% & 144.84 & 54 \\\\",
+  "computed": 54,
+  "formatted": "54",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "reframe: M73 collapsed AXIOM runs keep 59% to 65%",
+  "label": "reframe: M73 collapsed AXIOM runs keep 57% to 65% (59% to 65% before M107)",
   "snippet": null,
   "computed": [
    65.32,
    60.38,
    60.53,
+   59.42,
+   56.73,
    62.63,
    59.4,
+   62.35,
    60.5
   ],
   "formatted": null,
@@ -3392,7 +3395,7 @@
  {
   "label": "M73 supplement table row hex",
   "snippet": null,
-  "computed": "AXIOM, hex & 30 & 97.4\\% & 89.8\\% & 93.6\\% & 174.20 & 3 \\\\",
+  "computed": "AXIOM, hex & 60 & 97.7\\% & 92.1\\% & 94.9\\% & 175.20 & 5 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -3400,7 +3403,7 @@
  {
   "label": "M73 supplement table row ring",
   "snippet": null,
-  "computed": "AXIOM, ring & 15 & 93.7\\% & 92.6\\% & 93.2\\% & 173.51 & 2 \\\\",
+  "computed": "AXIOM, ring & 30 & 96.1\\% & 88.6\\% & 92.4\\% & 173.20 & 3 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -3408,7 +3411,7 @@
  {
   "label": "M73 supplement table row fully_connected",
   "snippet": null,
-  "computed": "AXIOM, fully-connected & 15 & 98.4\\% & 90.4\\% & 94.4\\% & 174.44 & 1 \\\\",
+  "computed": "AXIOM, fully-connected & 30 & 99.2\\% & 95.2\\% & 97.2\\% & 176.11 & 1 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -3416,7 +3419,7 @@
  {
   "label": "M73 supplement table row single_agent_dqn",
   "snippet": null,
-  "computed": "DQN-SA & 30 & 73.3\\% & 44.1\\% & 58.7\\% & 144.70 & 26 \\\\",
+  "computed": "DQN-SA & 60 & 72.7\\% & 44.3\\% & 58.5\\% & 144.84 & 54 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -3424,7 +3427,7 @@
  {
   "label": "M73 supplement table row independent_dqn",
   "snippet": null,
-  "computed": "DQN-I & 30 & 38.6\\% & 25.7\\% & 32.1\\% & 148.35 & 3 \\\\",
+  "computed": "DQN-I & 60 & 39.8\\% & 25.7\\% & 32.7\\% & 148.87 & 7 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -3432,7 +3435,7 @@
  {
   "label": "M73 supplement table row mappo_tuned",
   "snippet": null,
-  "computed": "MAPPO & 30 & 67.8\\% & 45.6\\% & 56.7\\% & 145.25 & 0 \\\\",
+  "computed": "MAPPO & 60 & 66.9\\% & 45.8\\% & 56.3\\% & 145.12 & 0 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -3620,24 +3623,24 @@
  },
  {
   "label": "reframe: M75 accept-all priority SLA at 7 gNBs",
-  "snippet": "It keeps 70.9\\%, 67.1\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
-  "computed": 70.86000000000001,
-  "formatted": "70.9",
+  "snippet": "It keeps 71.2\\%, 66.8\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
+  "computed": 71.21055555555554,
+  "formatted": "71.2",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M75 accept-all priority SLA at 19 gNBs",
-  "snippet": "It keeps 70.9\\%, 67.1\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
-  "computed": 67.0788888888889,
-  "formatted": "67.1",
+  "snippet": "It keeps 71.2\\%, 66.8\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
+  "computed": 66.7888888888889,
+  "formatted": "66.8",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M75 accept-all priority SLA at 37 gNBs",
-  "snippet": "It keeps 70.9\\%, 67.1\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
-  "computed": 61.943888888888885,
+  "snippet": "It keeps 71.2\\%, 66.8\\%, and 61.9\\% priority-slice compliance at seven, nineteen, and thirty-seven gNBs",
+  "computed": 61.900555555555535,
   "formatted": "61.9",
   "in_tex": true,
   "ok": true
@@ -3646,18 +3649,18 @@
   "label": "reframe: M75 every baseline below accept-all at 19 and 37 gNBs, only MAPPO at 7",
   "snippet": null,
   "computed": {
-   "(7, 'axiom2')": 97.07,
-   "(7, 'single_agent_dqn')": 76.23,
-   "(7, 'independent_dqn')": 74.59,
-   "(7, 'mappo_tuned')": 67.68,
-   "(19, 'axiom2')": 97.25,
-   "(19, 'single_agent_dqn')": 65.28,
-   "(19, 'independent_dqn')": 56.36,
-   "(19, 'mappo_tuned')": 60.63,
-   "(37, 'axiom2')": 93.69,
-   "(37, 'single_agent_dqn')": 58.66,
-   "(37, 'independent_dqn')": 32.13,
-   "(37, 'mappo_tuned')": 56.68
+   "(7, 'axiom2')": 97.12,
+   "(7, 'single_agent_dqn')": 78.47,
+   "(7, 'independent_dqn')": 75.8,
+   "(7, 'mappo_tuned')": 68.43,
+   "(19, 'axiom2')": 97.42,
+   "(19, 'single_agent_dqn')": 64.83,
+   "(19, 'independent_dqn')": 56.51,
+   "(19, 'mappo_tuned')": 61.27,
+   "(37, 'axiom2')": 94.85,
+   "(37, 'single_agent_dqn')": 58.51,
+   "(37, 'independent_dqn')": 32.73,
+   "(37, 'mappo_tuned')": 56.35
   },
   "formatted": null,
   "in_tex": null,
@@ -3665,17 +3668,17 @@
  },
  {
   "label": "reframe: M75 AXIOM above floor low",
-  "snippet": "AXIOM stays 26 to 32 points above the floor",
-  "computed": 26.212962962962948,
+  "snippet": "AXIOM stays 26 to 33 points above the floor",
+  "computed": 25.905000000000015,
   "formatted": "26",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M75 AXIOM above floor high",
-  "snippet": "AXIOM stays 26 to 32 points above the floor",
-  "computed": 31.746111111111112,
-  "formatted": "32",
+  "snippet": "AXIOM stays 26 to 33 points above the floor",
+  "computed": 32.953888888888905,
+  "formatted": "33",
   "in_tex": true,
   "ok": true
  },
@@ -4043,9 +4046,9 @@
  },
  {
   "label": "reframe: Env B 3 gNBs AXIOM over MAPPO percent",
-  "snippet": "AXIOM earns 27\\% more reward per step than MAPPO at three gNBs",
-  "computed": 26.740273897977463,
-  "formatted": "27",
+  "snippet": "AXIOM earns 26\\% more reward per step than MAPPO at three gNBs",
+  "computed": 26.023061362850797,
+  "formatted": "26",
   "in_tex": true,
   "ok": true
  },
@@ -4669,15 +4672,15 @@
  },
  {
   "label": "abstract: lead over best learned baseline at 37 gNBs",
-  "snippet": "AXIOM leads the best learned baseline by 35.0 to 36.5 points",
-  "computed": 35.02833333333333,
-  "formatted": "35.0",
+  "snippet": "AXIOM leads the best learned baseline by 36.3 to 36.5 points",
+  "computed": 36.340277777777786,
+  "formatted": "36.3",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "abstract: fresh-seed lead at 37 gNBs",
-  "snippet": "AXIOM leads the best learned baseline by 35.0 to 36.5 points",
+  "snippet": "AXIOM leads the best learned baseline by 36.3 to 36.5 points",
   "computed": 36.5375,
   "formatted": "36.5",
   "in_tex": true,
@@ -4685,15 +4688,15 @@
  },
  {
   "label": "conclusion: lead at 37 gNBs",
-  "snippet": "its lead over the best learned baseline reaches 35.0 points, and 36.5 points on 20 fresh seeds",
-  "computed": 35.02833333333333,
-  "formatted": "35.0",
+  "snippet": "its lead over the best learned baseline reaches 36.3 points, and 36.5 points on 20 fresh seeds",
+  "computed": 36.340277777777786,
+  "formatted": "36.3",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "conclusion: fresh-seed lead at 37 gNBs",
-  "snippet": "its lead over the best learned baseline reaches 35.0 points, and 36.5 points on 20 fresh seeds",
+  "snippet": "its lead over the best learned baseline reaches 36.3 points, and 36.5 points on 20 fresh seeds",
   "computed": 36.5375,
   "formatted": "36.5",
   "in_tex": true,
@@ -4745,15 +4748,15 @@
  },
  {
   "label": "abstract: Env B over MAPPO at 3 gNBs",
-  "snippet": "AXIOM earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
-  "computed": 26.740273897977463,
-  "formatted": "27",
+  "snippet": "AXIOM earns 26\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
+  "computed": 26.023061362850797,
+  "formatted": "26",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "abstract: Env B over MAPPO at 19 gNBs",
-  "snippet": "AXIOM earns 27\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
+  "snippet": "AXIOM earns 26\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
   "computed": 35.91822054686071,
   "formatted": "36",
   "in_tex": true,
@@ -4761,15 +4764,15 @@
  },
  {
   "label": "conclusion: Env B over MAPPO at 3 gNBs",
-  "snippet": "AXIOM earns 27\\% to 36\\% more reward than MAPPO at three and nineteen gNBs",
-  "computed": 26.740273897977463,
-  "formatted": "27",
+  "snippet": "AXIOM earns 26\\% to 36\\% more reward than MAPPO at three and nineteen gNBs",
+  "computed": 26.023061362850797,
+  "formatted": "26",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "conclusion: Env B over MAPPO at 19 gNBs",
-  "snippet": "AXIOM earns 27\\% to 36\\% more reward than MAPPO at three and nineteen gNBs",
+  "snippet": "AXIOM earns 26\\% to 36\\% more reward than MAPPO at three and nineteen gNBs",
   "computed": 35.91822054686071,
   "formatted": "36",
   "in_tex": true,
@@ -4777,9 +4780,9 @@
  },
  {
   "label": "abstract: Env B over static rule at 3 gNBs",
-  "snippet": "and 39\\% more than that static rule at 3 gNBs",
-  "computed": 39.37476993281535,
-  "formatted": "39",
+  "snippet": "and 42\\% more than that static rule at 3 gNBs",
+  "computed": 41.54706271713942,
+  "formatted": "42",
   "in_tex": true,
   "ok": true
  },
@@ -4789,7 +4792,7 @@
   "computed": [
    [
     "m64/n3_fully_connected",
-    0.304,
+    0.388,
     5
    ],
    [
@@ -4853,25 +4856,25 @@
  },
  {
   "label": "conclusion: compliance low from 7 to 37 gNBs",
-  "snippet": "keeps priority-slice compliance between 93.7\\% and 97.3\\% from seven to thirty-seven gNBs",
-  "computed": 93.69,
-  "formatted": "93.7",
+  "snippet": "keeps priority-slice compliance between 94.9\\% and 97.4\\% from seven to thirty-seven gNBs",
+  "computed": 94.85444444444444,
+  "formatted": "94.9",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "conclusion: compliance high from 7 to 37 gNBs",
-  "snippet": "keeps priority-slice compliance between 93.7\\% and 97.3\\% from seven to thirty-seven gNBs",
-  "computed": 97.25055555555555,
-  "formatted": "97.3",
+  "snippet": "keeps priority-slice compliance between 94.9\\% and 97.4\\% from seven to thirty-seven gNBs",
+  "computed": 97.42222222222222,
+  "formatted": "97.4",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "conclusion: percent of oracle at 3 gNBs",
-  "snippet": "it reaches 98.9\\% of the static shed-mMTC rule's reward at three gNBs",
-  "computed": 98.92637702729311,
-  "formatted": "98.9",
+  "snippet": "it reaches 99.2\\% of the static shed-mMTC rule's reward at three gNBs",
+  "computed": 99.21390275143378,
+  "formatted": "99.2",
   "in_tex": true,
   "ok": true
  },
@@ -4927,23 +4930,23 @@
   "label": "M78 Env A 7 gNBs AXIOM URLLC and eMBB",
   "snippet": null,
   "computed": [
-   99.75333333333334,
-   94.39259259259258
+   99.78888888888889,
+   94.44222222222223
   ],
   "formatted": null,
   "in_tex": null,
   "ok": true
  },
  {
-  "label": "M78 Env B 3 gNBs seed wins 24 to 29",
+  "label": "M78 Env B 3 gNBs seed wins 49 to 56 of 60 (24 to 29 of 30 before M107)",
   "snippet": null,
   "computed": [
-   29,
-   27,
-   29,
-   26,
-   29,
-   24
+   56,
+   53,
+   56,
+   52,
+   56,
+   49
   ],
   "formatted": null,
   "in_tex": null,
@@ -4965,7 +4968,7 @@
   "ok": true
  },
  {
-  "label": "M78 MAPPO never collapses at 37 gNBs but does at 3",
+  "label": "M78 MAPPO never collapses at 37 gNBs but does at 3, 3 of 60 (2 of 30 before M107)",
   "snippet": null,
   "computed": 0,
   "formatted": null,
@@ -5084,21 +5087,24 @@
   "ok": true
  },
  {
-  "label": "M78 collapsed 59-65%, others 96.9-98.1% per layout",
+  "label": "M78 collapsed 57-65%, others 95.8-98.5% per layout (59-65% and 96.9-98.1% before M107)",
   "snippet": null,
   "computed": [
    [
     65.31666666666666,
     60.38333333333333,
     60.53333333333334,
+    59.416666666666664,
+    56.73333333333333,
     62.63333333333333,
     59.4,
+    62.35000000000001,
     60.5
    ],
    [
-    97.0858024691358,
-    98.10897435897435,
-    96.85
+    98.05454545454548,
+    95.80617283950616,
+    98.4655172413793
    ]
   ],
   "formatted": null,
@@ -5533,9 +5539,23 @@
   "ok": true
  },
  {
-  "label": "M81 the three exceptions are Env B compliance, DQN-SA and DQN-I at 7 and MAPPO at 19, and all three fresh CIs span zero",
+  "label": "M81 the five exceptions are Env A at 3 gNBs against DQN-SA on both measures (new with M107) and Env B compliance, DQN-SA and DQN-I at 7 and MAPPO at 19, and all five fresh CIs span zero",
   "snippet": null,
   "computed": [
+   [
+    "A",
+    3,
+    "reported",
+    "single_agent_dqn",
+    "reward"
+   ],
+   [
+    "A",
+    3,
+    "reported",
+    "single_agent_dqn",
+    "sla"
+   ],
    [
     "B",
     7,
@@ -5563,16 +5583,16 @@
   "ok": true
  },
  {
-  "label": "reframe: M81 main pointer, of 38 reported differences",
-  "snippet": "and 35 of the 38 whose CI excludes zero hold",
-  "computed": 38,
-  "formatted": "38",
+  "label": "reframe: M81 main pointer, of 40 reported differences (38 before M107)",
+  "snippet": "and 35 of the 40 whose CI excludes zero hold",
+  "computed": 40,
+  "formatted": "40",
   "in_tex": true,
   "ok": true
  },
  {
   "label": "reframe: M81 main pointer, 35 hold",
-  "snippet": "and 35 of the 38 whose CI excludes zero hold",
+  "snippet": "and 35 of the 40 whose CI excludes zero hold",
   "computed": 35,
   "formatted": "35",
   "in_tex": true,
@@ -5750,20 +5770,20 @@
   "ok": true
  },
  {
-  "label": "M93 AXIOM's Env A IQM compliance 100.0% at every size against means of 93.7% to 98.9%",
+  "label": "M93 AXIOM's Env A IQM compliance 100.0% at every size against means of 94.9% to 99.0% (93.7% to 98.9% before M107)",
   "snippet": null,
   "computed": [
    [
     100.0,
-    99.9768115942029,
+    99.99492753623188,
     100.0,
-    99.99722222222223
+    100.0
    ],
    [
-    98.85555555555555,
-    97.07296296296295,
-    97.25055555555555,
-    93.69
+    99.03861111111111,
+    97.11555555555555,
+    97.42222222222222,
+    94.85444444444444
    ]
   ],
   "formatted": null,
@@ -6073,12 +6093,12 @@
   "label": "Fig. 7 (Env B, three gNBs): six policies' means, CIs and seed counts recomputed from the logs, tuned rules included",
   "snippet": null,
   "computed": {
-   "axiom2": 8.832,
-   "mappo_tuned": 6.968,
-   "single_agent_dqn": 7.495,
-   "independent_dqn": 7.794,
-   "rule_local": 9.252,
-   "rule_neighbour": 9.041
+   "axiom2": 8.723,
+   "mappo_tuned": 6.921,
+   "single_agent_dqn": 7.385,
+   "independent_dqn": 7.601,
+   "rule_local": 9.149,
+   "rule_neighbour": 8.958
   },
   "formatted": null,
   "in_tex": null,
@@ -6116,7 +6136,7 @@
  {
   "label": "Table 1 AXIOM row: evaluated up to 37 cells, the same 7,782 parameters at every size, measured zero-shot transfer, rule baselines",
   "snippet": null,
-  "computed": 30,
+  "computed": 60,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -6428,7 +6448,7 @@
   "ok": true
  },
  {
-  "label": "Sec. 5: Env A demand runs 5% above the nominal shares, and shedding mMTC keeps URLLC at full compliance and eMBB at 99.98%",
+  "label": "Sec. 5: Env A demand runs 5% above the nominal shares, and shedding mMTC keeps URLLC and eMBB above 99.98% on average (M107: one new seed keeps URLLC at 99.8%, so no longer full compliance)",
   "snippet": null,
   "computed": 1.05,
   "formatted": null,
@@ -6439,8 +6459,8 @@
   "label": "Sec. 5: in Env B shedding mMTC alone cannot protect URLLC, the tuned rule that also sheds eMBB does",
   "snippet": null,
   "computed": [
-   0.6249777777777777,
-   0.9890333333333333
+   0.6147444444444444,
+   0.9865111111111111
   ],
   "formatted": null,
   "in_tex": null,
@@ -6597,7 +6617,7 @@
   "ok": true
  },
  {
-  "label": "M82 seed sets of the campaigns",
+  "label": "M82 seed sets of the campaigns, each Env A and three-gNB sample doubled by M107 (seeds from 11000), Env B scaling at 15",
   "snippet": null,
   "computed": null,
   "formatted": null,
@@ -6613,14 +6633,14 @@
   "ok": true
  },
  {
-  "label": "M82 Table 4 Env A reward row: the same rewards and the 98.9% share are in the Env A results table",
+  "label": "M82 Table 4 Env A reward row: the same rewards and the 99.2% share (98.9% before M107) are in the Env A results table",
   "snippet": null,
   "computed": {
-   "axiom2": 12.698,
-   "mappo_tuned": 10.013,
-   "heuristic": 12.835,
-   "single_agent_dqn": 12.387,
-   "independent_dqn": 11.587
+   "axiom2": 12.748,
+   "mappo_tuned": 10.266,
+   "heuristic": 12.849,
+   "single_agent_dqn": 12.437,
+   "independent_dqn": 11.687
   },
   "formatted": null,
   "in_tex": null,
@@ -6653,21 +6673,21 @@
   "computed": {
    "7": {
     "axiom2": 97.1,
-    "single_agent_dqn": 76.2,
-    "independent_dqn": 74.6,
-    "mappo_tuned": 67.7
+    "single_agent_dqn": 78.5,
+    "independent_dqn": 75.8,
+    "mappo_tuned": 68.4
    },
    "19": {
-    "axiom2": 97.3,
-    "single_agent_dqn": 65.3,
-    "independent_dqn": 56.4,
-    "mappo_tuned": 60.6
+    "axiom2": 97.4,
+    "single_agent_dqn": 64.8,
+    "independent_dqn": 56.5,
+    "mappo_tuned": 61.3
    },
    "37": {
-    "axiom2": 93.7,
-    "single_agent_dqn": 58.7,
-    "independent_dqn": 32.1,
-    "mappo_tuned": 56.7
+    "axiom2": 94.9,
+    "single_agent_dqn": 58.5,
+    "independent_dqn": 32.7,
+    "mappo_tuned": 56.3
    }
   },
   "formatted": null,
@@ -6688,28 +6708,28 @@
   "ok": true
  },
  {
-  "label": "M82 no baseline closes the 37-gNB mMTC gate below 0.51",
+  "label": "M82 no baseline closes the 37-gNB mMTC gate below 0.55 (0.51 before M107)",
   "snippet": null,
   "computed": {
    "axiom2": {
     "urllc": 0.9962,
-    "embb": 0.9828,
-    "mmtc": 0.1573
+    "embb": 0.9888,
+    "mmtc": 0.1256
    },
    "mappo_tuned": {
-    "urllc": 0.9489,
-    "embb": 0.8043,
-    "mmtc": 0.5133
+    "urllc": 0.9486,
+    "embb": 0.8352,
+    "mmtc": 0.5564
    },
    "single_agent_dqn": {
-    "urllc": 0.9397,
-    "embb": 0.9486,
-    "mmtc": 0.9334
+    "urllc": 0.9385,
+    "embb": 0.9461,
+    "mmtc": 0.9324
    },
    "independent_dqn": {
-    "urllc": 0.9811,
-    "embb": 0.9753,
-    "mmtc": 0.9375
+    "urllc": 0.9833,
+    "embb": 0.9775,
+    "mmtc": 0.9469
    }
   },
   "formatted": null,
@@ -6746,25 +6766,25 @@
   "ok": true
  },
  {
-  "label": "M82 Env B three-gNB sentences: Holm p<0.0001, tuned rule's 0.2 threshold, 0.420 at p<0.0001",
+  "label": "M82 Env B three-gNB sentences: Holm p<0.0001, tuned rule's 0.2 threshold, 0.426 at p<0.0001 (0.420 before M107)",
   "snippet": null,
   "computed": {
    "h1": {
-    "rule_static": 3.725290298461914e-09,
-    "rule_accept_all": 3.725290298461914e-09
+    "rule_static": 3.259111588623869e-11,
+    "rule_accept_all": 3.259111588623869e-11
    },
    "prio": {
-    "single_agent_dqn": 4.917383193969727e-07,
-    "mappo_tuned": 7.580965757369995e-06,
-    "independent_dqn": 1.0240807151176453e-05
+    "single_agent_dqn": 1.290570009292418e-09,
+    "independent_dqn": 3.5284069334686438e-09,
+    "mappo_tuned": 1.0202531190939745e-08
    },
    "loc": {
-    "n": 30,
-    "diff": 0.420190861508788,
-    "wins": 22,
+    "n": 60,
+    "diff": 0.4263270075353111,
+    "wins": 49,
     "ties": 0,
-    "losses": 8,
-    "p": 1.8244609236717224e-05
+    "losses": 11,
+    "p": 8.955437885807495e-09
    },
    "sel": {
     "tau_c": 0.0,
@@ -6815,7 +6835,7 @@
  {
   "label": "M82 7-gNB scaling sentence recomputed",
   "snippet": null,
-  "computed": "At seven gNBs, under every layout, AXIOM keeps 17.9 to 29.9 percentage points more priority-slice compliance than each baseline and earns 3.40 to 7.07 more reward per step. All 18 comparisons hold after Holm correction, at adjusted $p\\leq0.011$.",
+  "computed": "At seven gNBs, under every layout, AXIOM keeps 15.1 to 29.8 percentage points more priority-slice compliance than each baseline and earns 3.38 to 7.82 more reward per step. All 18 comparisons hold after Holm correction, at adjusted $p\\leq0.0004$.",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -6823,7 +6843,7 @@
  {
   "label": "M82 19-gNB scaling sentence recomputed",
   "snippet": null,
-  "computed": "Under every layout AXIOM keeps 31.0 to 42.1 percentage points more compliance than every baseline and earns 10.7 to 18.6 more reward per step, winning 28 to 30 of 30 seeds. All 18 comparisons hold after Holm correction, at adjusted $p\\leq0.0001$.",
+  "computed": "Under every layout AXIOM keeps 32.1 to 41.4 percentage points more compliance than every baseline and earns 11.4 to 18.4 more reward per step, winning 56 to 60 of 60 seeds. All 18 comparisons hold after Holm correction, at adjusted $p\\leq0.0001$.",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -7011,7 +7031,7 @@
  {
   "label": "M82 OR1 per-slice compliance at 7 and 37 gNBs",
   "snippet": null,
-  "computed": "At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\\% and 94.4\\%, against 87.0\\% to 94.2\\% and 48.4\\% to 61.0\\% for the baselines, and at thirty-seven at 96.7\\% and 90.7\\%.",
+  "computed": "At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\\% and 94.4\\%, against 87.6\\% to 94.9\\% and 49.3\\% to 64.6\\% for the baselines, and at thirty-seven at 97.7\\% and 92.0\\%.",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -7019,7 +7039,7 @@
  {
   "label": "M82 OR1 Table S2 static-rule row, m73/A_n37_hex",
   "snippet": null,
-  "computed": "Static rule & 30 & 100.0\\% & 100.0\\% & 99.98\\% & 177.58 & 0 \\\\",
+  "computed": "Static rule & 60 & 100.0\\% & 100.0\\% & 99.98\\% & 177.70 & 0 \\\\",
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -7033,12 +7053,12 @@
   "ok": true
  },
  {
-  "label": "M82 OR1 AXIOM's non-collapsed 37-gNB runs keep 96.9% to 98.1% under each layout",
+  "label": "M82 OR1 AXIOM's non-collapsed 37-gNB runs keep 95.8% to 98.5% under each layout (96.9% to 98.1% before M107)",
   "snippet": null,
   "computed": [
-   97.0858024691358,
-   98.10897435897435,
-   96.85
+   98.05454545454548,
+   95.80617283950616,
+   98.4655172413793
   ],
   "formatted": null,
   "in_tex": null,

@@ -154,7 +154,9 @@ def main():
     cb = fig.colorbar(plt.cm.ScalarMappable(cmap=CMAP, norm=plt.Normalize(0, 1)), cax=cax, orientation="horizontal")
     cb.set_ticks([0, 0.5, 1]); cb.set_ticklabels(["wrong", "partial", "correct"]); cb.ax.tick_params(length=2)
     cb.outline.set_linewidth(0.5)
-    cb.set_label("Gate correctness, mean of 30 seeds")
+    ns_ = {v["n_seeds"] for v in summary["arms"].values()}
+    assert len(ns_) == 1, ns_
+    cb.set_label(f"Gate correctness, mean of {ns_.pop()} seeds")
     print(S.save(fig, a.out))
     json.dump(summary, open(a.out + "_summary.json", "w"), indent=1)
     for arm, v in summary["arms"].items():

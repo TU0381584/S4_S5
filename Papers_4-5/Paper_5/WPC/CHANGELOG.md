@@ -187,3 +187,18 @@ CVD check (CAM02-UCS dE, minimum over deuteranomaly, protanomaly, tritanomaly at
 - Check coverage (new experiments/scripts/audit_check_coverage.py): every result number in the abstract, discussion and conclusion lies inside text that m66_verify.py or m82_audit.py matches. The uncovered numbers are labels and conventions (5G, 95% CI, p < 0.05, "Online Resource 1", grant codes). In Results and OR1 the uncovered numbers are seed counts, settings, figure coordinates and section numbers. Two result-like numbers were checked by hand: "Holm-adjusted p <= 0.0002" for Table 3 (0.00018 and 0.000015) and the 24-configuration MAPPO grid (m70_select_mappo.py asserts 24 rows). The live checkpoint's 18,562 parameters were recounted from checkpoint.pt (13-128-128-2).
 - Reproduction (experiments/results/audit_reproduction_20261110.json): four stored runs drawn at random (DQN-I, DQN-SA and MAPPO at 37 gNBs, AXIOM at 7 gNBs hex) were retrained from scratch in fresh processes. Each reproduced its stored reward, blocks and per-slice SLA compliance exactly.
 - References: all 46 DOIs in refs.bib resolve (Crossref), and each registered title, year, volume and first author matches the bib entry. The one flagged difference (gong2026femaddpg) is a Crossref record with given and family names swapped for every author; the bib's 'Gong, Yu' is correct. QMIX (JMLR) and Agarwal et al. (NeurIPS 2021) have no DOI by their venues' practice. All 48 entries are cited.
+
+## M107 seed extension pooled into the paper (2026-11-14)
+
+The author asked for more per-seed points in Figs. 5 and 7 and chose to pool new seeds. The run was pre-registered as M107 (426a3281), and 1,005 of 1,005 jobs exited 0. Every Env A cell plotted in Fig. 5 and the Env B three-gNB cell now has twice its seeds: 60 at three and nineteen gNBs, 30 per layout at seven, and at thirty-seven 60 on hex and 30 on ring and fully connected. Results, deviations and decisions are in docs/PAPER5_M107_results.md.
+
+- Tables 3 and 4, Figs. 5, 6, 7 and 10, the OR1 rliable figures, the forest figure, the layouts figure, Table S-n37 and Online Resource 2 (ESM_2.csv) were regenerated from the pooled seeds.
+- Changed verdicts, worded in the text as the pre-registration requires:
+  - Env A at three gNBs, AXIOM's lead over DQN-SA is now significant, at p = 0.0021.
+  - AXIOM's 0.068 lead over the MLP encoder is now significant in the paired test, at p = 0.015, though its mean CI spans zero.
+  - The static rule's 0.101 lead over AXIOM is now significant, at p = 0.040.
+  - In Env B at three gNBs, the tuned neighbour rule out-earns AXIOM, at p = 0.012.
+  - In Fig. 10a, the static rule leads on compliance at nineteen gNBs.
+- The new seeds alone do not reproduce two secondary leads, over DQN-SA at seven gNBs on the ring layout and on compliance over the neighbour rule in Env B. The verification section reports both.
+- The 30+10 replication and the campaigns paired seed by seed with these cells keep their stored comparisons: M74, M75 C, M76 VDN, M92, the M70 MAPPO grid and the M63 reuse audit.
+- Verifier checks were rewritten to the pooled values, none deleted, and the verifier passes 663/663 with --supp. CI recompute matches 19 intervals in the main paper and 2 in OR1. The main paper is 29 pp and OR1 10 pp, with no overfull boxes. The submission package was rebuilt.
