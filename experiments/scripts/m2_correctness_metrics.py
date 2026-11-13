@@ -95,7 +95,8 @@ def main() -> None:
             # output under dqn/offline_eval/rep_0/ -- the two new marl
             # policies (gat_ctde, independent_dqn) write flat eval/omega_log.jsonl.
             nested_path = seed_dir / "dqn" / "offline_eval" / "rep_0" / "omega_log.jsonl"
-            path = flat_path if flat_path.exists() else nested_path
+            path = next((p for p in (flat_path, Path(str(flat_path) + ".gz"), nested_path, Path(str(nested_path) + ".gz"))
+                         if p.exists()), nested_path)   # eval logs may be stored gzipped (2026-11-14)
             if not path.exists():
                 continue
             mrps, mmtc_b, total_b = per_seed_metrics(str(path))

@@ -32,8 +32,9 @@ def eval_log(root: str, arm: str, seed: int):
             f"{root}/{arm}/seed{seed}/eval/dqn/offline_eval/rep_0/omega_log.jsonl",
             f"{root}/{arm}/seed{seed}/eval/lb_only/offline_eval/rep_0/omega_log.jsonl"]
     for p in pats:
-        if Path(p).exists():
-            return p
+        for q in (p, p + ".gz"):   # eval logs may be stored gzipped (2026-11-14)
+            if Path(q).exists():
+                return q
     return None
 
 

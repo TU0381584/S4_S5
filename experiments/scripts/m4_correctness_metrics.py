@@ -51,6 +51,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from m2_correctness_metrics import bootstrap_ci, per_seed_metrics  # noqa: E402
 
 
+
+def _gz(p):
+    """The plain log if present, else its lossless .gz copy (eval logs gzipped 2026-11-14)."""
+    return p if Path(p).exists() or not Path(p + ".gz").exists() else p + ".gz"
+
 def per_seed_metrics_normalized(eval_omega_path: str):
     """Returns (mean_reward_per_pending_request, mmtc_blocks, total_blocks).
     Same block-counting as per_seed_metrics; reward is normalized per
@@ -58,7 +63,7 @@ def per_seed_metrics_normalized(eval_omega_path: str):
     episode_step_ratios = {}
     mmtc_blocks = 0
     total_blocks = 0
-    with open(eval_omega_path) as fh:
+    with (__import__('gzip').open(eval_omega_path, 'rt') if str(eval_omega_path).endswith('.gz') else open(eval_omega_path)) as fh:   # .gz since 2026-11-14
         for line in fh:
             rec = json.loads(line)
             ev = rec.get("evidence", rec)
@@ -92,14 +97,14 @@ def baseline_eval_path(arm: str, seed: int, m2_campaign_dir: str = DEFAULT_M2_CA
     Defaults point at the committed campaigns; override both to compare
     against a fresh from-scratch reproduction's own baseline instead."""
     if arm == "fl_gat_ctde_sigma0.0":
-        return f"{m3_campaign_dir}/fl_gat_ctde_sigma0.0/seed{seed}/eval/omega_log.jsonl"
+        return _gz(f"{m3_campaign_dir}/fl_gat_ctde_sigma0.0/seed{seed}/eval/omega_log.jsonl")
     if arm == "single_agent_dqn":
-        return f"{m2_campaign_dir}/single_agent_dqn/seed{seed}/eval/dqn/offline_eval/rep_0/omega_log.jsonl"
-    return f"{m2_campaign_dir}/{arm}/seed{seed}/eval/omega_log.jsonl"
+        return _gz(f"{m2_campaign_dir}/single_agent_dqn/seed{seed}/eval/dqn/offline_eval/rep_0/omega_log.jsonl")
+    return _gz(f"{m2_campaign_dir}/{arm}/seed{seed}/eval/omega_log.jsonl")
 
 
 def disrupted_eval_path(m4_campaign_dir: str, arm: str, severity_label: str, seed: int) -> str:
-    return f"{m4_campaign_dir}/{arm}/{severity_label}/seed{seed}/eval/omega_log.jsonl"
+    return _gz(f"{m4_campaign_dir}/{arm}/{severity_label}/seed{seed}/eval/omega_log.jsonl")
 
 
 def main() -> None:

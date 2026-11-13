@@ -154,6 +154,8 @@ def eval_omega_path(campaign_dir: str, arm_or_tag: str, seed: int) -> Path:
     convention)."""
     base = Path(campaign_dir) / arm_or_tag / f"seed{seed}" / "eval"
     flat = base / "omega_log.jsonl"
-    if flat.exists():
-        return flat
-    return base / "dqn" / "offline_eval" / "rep_0" / "omega_log.jsonl"
+    nested = base / "dqn" / "offline_eval" / "rep_0" / "omega_log.jsonl"
+    for p in (flat, Path(str(flat) + ".gz"), nested, Path(str(nested) + ".gz")):   # eval logs may be stored gzipped (2026-11-14)
+        if p.exists():
+            return p
+    return nested

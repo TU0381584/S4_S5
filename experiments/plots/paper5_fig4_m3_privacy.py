@@ -38,6 +38,12 @@ from scipy import stats
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 from m2_correctness_metrics import per_seed_metrics  # noqa: E402
+
+
+def _gz(p):
+    """The plain log if present, else its lossless .gz copy (eval logs gzipped 2026-11-14)."""
+    q = Path(str(p) + ".gz")
+    return p if p.exists() or not q.exists() else q
 from paper5_common import M3_STYLE, STATUS_COLORS, bootstrap_ci, SUPP_WIDTH_IN, panel  # noqa: E402
 
 
@@ -56,14 +62,14 @@ def main() -> None:
 
     centralized_rewards = []
     for seed in seeds:
-        path = Path(args.m2_campaign_dir) / "gat_ctde" / f"seed{seed}" / "eval" / "omega_log.jsonl"
+        path = _gz(Path(args.m2_campaign_dir) / "gat_ctde" / f"seed{seed}" / "eval" / "omega_log.jsonl")
         mrps, _, _ = per_seed_metrics(str(path))
         centralized_rewards.append(mrps)
     centralized_rewards = np.array(centralized_rewards)
 
     fl_no_dp_rewards = []
     for seed in seeds:
-        path = Path(args.m3_campaign_dir) / "fl_gat_ctde_sigma0.0" / f"seed{seed}" / "eval" / "omega_log.jsonl"
+        path = _gz(Path(args.m3_campaign_dir) / "fl_gat_ctde_sigma0.0" / f"seed{seed}" / "eval" / "omega_log.jsonl")
         mrps, _, _ = per_seed_metrics(str(path))
         fl_no_dp_rewards.append(mrps)
     fl_no_dp_rewards = np.array(fl_no_dp_rewards)
@@ -74,7 +80,7 @@ def main() -> None:
         sigma = float(sigma_key)
         rewards, precisions = [], []
         for seed in seeds:
-            path = Path(args.m3_campaign_dir) / f"fl_gat_ctde_sigma{sigma}" / f"seed{seed}" / "eval" / "omega_log.jsonl"
+            path = _gz(Path(args.m3_campaign_dir) / f"fl_gat_ctde_sigma{sigma}" / f"seed{seed}" / "eval" / "omega_log.jsonl")
             if not path.exists():
                 continue
             mrps, mmtc_b, total_b = per_seed_metrics(str(path))

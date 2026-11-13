@@ -655,8 +655,8 @@ def main():
     C.claim("sens weights vs single", "1.264 at $p=0.041$", paired(ax, sg)["diff"], "{:.3f}")
 
     # ---------------- accept-all on Env A
-    acc = {s: read(p) for s in S30 if os.path.exists(p := f"{ROOT}/m63_reviewer/accept_all/tau2.0/seed{s}/lb_only/offline_eval/rep_0/omega_log.jsonl")}
-    shed = {s: read(p) for s in S30 if os.path.exists(p := f"{ROOT}/m63_reviewer/accept_all/tau0.0/seed{s}/lb_only/offline_eval/rep_0/omega_log.jsonl")}
+    acc = {s: read(p) for s in S30 if (p := next((q for q in (f"{ROOT}/m63_reviewer/accept_all/tau2.0/seed{s}/lb_only/offline_eval/rep_0/omega_log.jsonl" + z for z in ("", ".gz")) if os.path.exists(q)), None))}
+    shed = {s: read(p) for s in S30 if (p := next((q for q in (f"{ROOT}/m63_reviewer/accept_all/tau0.0/seed{s}/lb_only/offline_eval/rep_0/omega_log.jsonl" + z for z in ("", ".gz")) if os.path.exists(q)), None))}
     C.claim("accept-all reward", "accepting every request now earns 9.89", mean(acc), "{:.2f}")
     C.claim("accept-all eMBB", "eMBB compliance fall to 56.8\\%", 100 * mean(acc, lambda x: x["sla"]["embb"]), "{:.1f}")
     C.claim("shed-mMTC reward", "shedding every mMTC request earns 12.84", mean(shed), "{:.2f}")
