@@ -2657,7 +2657,7 @@ def main():
         C.note(f"M93 {name_} IQM and P(AXIOM better) recomputed from the logs", not bad_ and set(S_) == set(pol_), bad_)
         # figure audit Phase 2.5: OR1 Table S2 became Online Resource 2, ESM_2.csv, at full precision
         import csv as csv_
-        esm2_ = {(r_["setting"], r_["policy"]): r_ for r_ in csv_.DictReader(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/ESM_2.csv"))}
+        esm2_ = {(r_["setting"], r_["policy"]): r_ for r_ in csv_.DictReader(l_ for l_ in open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/ESM_2.csv") if not l_.startswith("#"))}
         badc_ = []
         for k_, p_ in S_.items():
             r_ = esm2_.get((name_, k_))

@@ -6,7 +6,8 @@ layouts exactly as Fig. 9 of the main paper pools them (m66_verify.envA_rows_ an
 static rule (both environments) and the tuned local rule (Env B; at 19 gNBs the rule tuned at 7 gNBs and carried
 over, as in the paper). For every policy this computes, with rliable 1.2.0 (Agarwal et al., NeurIPS 2021):
   - the interquartile mean (IQM) of reward per gNB per step and of priority-slice SLA compliance, each with a
-    stratified bootstrap 95% percentile CI (10,000 resamples, RandomState(0)); where every policy has the same
+    stratified bootstrap 95% percentile CI (10,000 resamples, numpy global seed 0 before every call, since
+    rliable 1.2.0 draws its resamples from np.random and ignores random_state; before 2026-11-14 every run differed slightly); where every policy has the same
     seeds on each layout (Env A and Env B at 7 gNBs, Env A at 19) the layouts are the strata, otherwise the
     setting is one stratum;
   - the probability of improvement P(AXIOM > policy) on both metrics, with its CI;
@@ -126,6 +127,7 @@ def main():
         R = res["settings"][name] = {"n_gnbs": n, "strata": len(next(iter(pol.values()))), "policies": {}}
         for metric in ("reward", "prio"):
             sd = {k: matrix(v, n, metric) for k, v in pol.items()}
+            np.random.seed(0)   # rliable 1.2.0 resamples with the global np.random.choice and ignores random_state (2026-11-14)
             pt, ci = library.get_interval_estimates(sd, lambda x: np.array([metrics.aggregate_iqm(x)]), reps=REPS,
                                                     random_state=np.random.RandomState(0))
             for k in pol:
@@ -138,6 +140,7 @@ def main():
                 if abs(iqm_np - pt[k][0]) > TOL:
                     mism.append((name, k, metric, "iqm", iqm_np, float(pt[k][0])))
             pairs = {k: [sd["AXIOM"], sd[k]] for k in pol if k != "AXIOM"}
+            np.random.seed(0)   # rliable 1.2.0 resamples with the global np.random.choice and ignores random_state (2026-11-14)
             ppt, pci = library.get_interval_estimates(pairs, metrics.probability_of_improvement, reps=REPS,
                                                       random_state=np.random.RandomState(0))
             for k in pairs:
@@ -150,6 +153,7 @@ def main():
                     mism.append((name, k, metric, "poi", pn, float(np.ravel(ppt[k])[0])))
             if metric == "prio":
                 taus = np.linspace(0, 100, 201)
+                np.random.seed(0)   # rliable 1.2.0 resamples with the global np.random.choice and ignores random_state (2026-11-14)
                 prof, prof_ci = library.create_performance_profile(sd, taus, reps=2000)
                 R["profile_tau"] = taus.tolist()
                 for k in pol:

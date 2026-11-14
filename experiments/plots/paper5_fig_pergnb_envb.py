@@ -85,6 +85,9 @@ def main():
     cb = mpl.colorbar.ColorbarBase(cax, cmap=CMAP, norm=mpl.colors.Normalize(VMIN, VMAX), orientation="horizontal")
     cb.ax.tick_params(length=2); cb.outline.set_linewidth(0.5)
     cb.set_label("Per-gNB priority-slice compliance (%), the centre gNB outlined")
+    cb.solids.set_rasterized(False)                 # vector colour bar, no bitmap in the PDF or EPS (2026-11-14)
+    cb.solids.set_edgecolor("face")                 # no hairline seams between the vector colour-bar cells
+    mpl.rcParams["savefig.bbox"] = "standard"       # exactly 119 x 58 mm; paper5_common's tight box padded it to 119.6 x 61.7
     print(S.save(fig, out))
     json.dump(summary, open(out + "_summary.json", "w"), indent=1)
     for name in SETS:

@@ -12,36 +12,38 @@
 \definecolor{oiV}{HTML}{D55E00}\definecolor{oiB}{HTML}{0072B2}\definecolor{oiG}{HTML}{009E73}
 % figure lettering: 8 pt Helvetica, the journal's minimum (the class's \footnotesize is only 7 pt)
 \newcommand{\figfont}{\sffamily\fontsize{8}{9.6}\selectfont}
-\newcommand{\gnbtower}[1]{%
-  \begin{scope}[shift={#1}]
-    \draw[thick,gray!45!black,fill=gray!12] (-0.15,0)--(0,0.82)--(0.15,0)--cycle;
-    \draw[gray!55!black] (-0.095,0.28)--(0.095,0.28) (-0.065,0.46)--(0.065,0.46) (-0.035,0.63)--(0.035,0.63);
-    \fill[gray!55] (-0.12,0.64) rectangle (-0.03,0.84);
-    \fill[gray!55] (0.03,0.64) rectangle (0.12,0.84);
-    \draw[blue!55!black] (0.17,0.72) arc (-55:55:0.13);
-    \draw[blue!55!black] (0.22,0.68) arc (-55:55:0.21);
-    \draw[blue!55!black] (-0.17,0.72) arc (235:125:0.13);
-    \draw[blue!55!black] (-0.22,0.68) arc (235:125:0.21);
+% optional first argument: strength in percent, mixed with white (a solid tint, since EPS has no transparency; 2026-11-14)
+\newcommand{\gnbtower}[2][100]{%
+  \begin{scope}[shift={#2}]
+    \draw[thick,gray!45!black!#1,fill=gray!12!white!#1] (-0.15,0)--(0,0.82)--(0.15,0)--cycle;
+    \draw[gray!55!black!#1] (-0.095,0.28)--(0.095,0.28) (-0.065,0.46)--(0.065,0.46) (-0.035,0.63)--(0.035,0.63);
+    \fill[gray!55!white!#1] (-0.12,0.64) rectangle (-0.03,0.84);
+    \fill[gray!55!white!#1] (0.03,0.64) rectangle (0.12,0.84);
+    \draw[blue!55!black!#1] (0.17,0.72) arc (-55:55:0.13);
+    \draw[blue!55!black!#1] (0.22,0.68) arc (-55:55:0.21);
+    \draw[blue!55!black!#1] (-0.17,0.72) arc (235:125:0.13);
+    \draw[blue!55!black!#1] (-0.22,0.68) arc (235:125:0.21);
   \end{scope}
 }
-\newcommand{\uephone}[2]{%
-  \begin{scope}[shift={#1}]
-    \draw[thick,#2!65!black,fill=#2!14,rounded corners=1pt] (-0.12,-0.2) rectangle (0.12,0.2);
-    \fill[#2!30] (-0.08,-0.09) rectangle (0.08,0.13);
-    \fill[#2!65!black] (0,-0.15) circle (0.016);
+\newcommand{\uephone}[3][100]{%
+  \begin{scope}[shift={#2}]
+    \draw[thick,#3!65!black!#1,fill=#3!14!white!#1,rounded corners=1pt] (-0.12,-0.2) rectangle (0.12,0.2);
+    \fill[#3!30!white!#1] (-0.08,-0.09) rectangle (0.08,0.13);
+    \fill[#3!65!black!#1] (0,-0.15) circle (0.016);
   \end{scope}
 }
 \begin{document}
 \begin{tikzpicture}[
-  font=\figfont, x=1cm, y=1cm,
+  font=\figfont, x=0.92cm, y=1cm,
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
-  st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt},
-  gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner sep=0pt},
+  st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=1.9cm, minimum height=0.78cm, inner sep=2pt},
+  gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=1.9, align=center, text width=1.5cm, inner sep=0pt},
   num/.style={circle, draw=black!75, fill=white, inner sep=0.4pt, minimum size=0.36cm, font=\figfont},
   fail/.style={draw=red!60!black, fill=red!5, text=red!40!black, dashed, rounded corners=1pt, align=left, inner sep=2pt},
   ar/.style={-{Latex[length=1.7mm]}, semithick},
   ct/.style={-{Latex[length=1.4mm]}, densely dotted, red!60!black}
 ]
+% 119 mm at 8 pt (2026-11-14): x unit 0.92 cm, narrower boxes and taller diamonds
 % the protocol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to right; gates are diamonds
 \foreach \i/\x/\y/\s/\t in {1/1.1/0/st/{Pre-registered plan},
                             2/4.2/0/st/{Pilot seeds, tuning only},
@@ -55,14 +57,14 @@
                             10/4.2/-5.0/st/{Reported result}}{
   \node[\s] (p\i) at (\x,\y) {\t};
 }
-\foreach \i in {1,2,3,6,8,9,10}{\node[num] at (p\i.north west) {\i};}
+\foreach \i in {1,2,3,6,8,9,10}{\node[num] at ([shift={(-0.06,0.04)}]p\i.north west) {\i};}
 \foreach \i in {4,5,7}{\node[num] at ($(p\i.north)!0.5!(p\i.west)$) {\i};}
 \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\draw[ar] (p\a) -- (p\b);}
 % failures each check caught, keyed by letter in the caption, at most four words each; callouts kept clear of the
 % flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apart, every callout at least 0.25 cm from a node)
 \node[fail, anchor=south west] (f1) at (0.05,1.1) {a\enspace\gno\enspace Screen miscalibrated};
-\node[fail, anchor=south west] (f2) at (3.75,1.1) {b\enspace\gno\enspace Static AXIOM, Env B};
-\node[fail, anchor=south east] (f3) at (12.6,1.1) {c\enspace\gno\enspace Inert simulator};
+\node[fail, anchor=south west] (f2) at (3.88,1.1) {b\enspace\gno\enspace Static AXIOM, Env B};
+\node[fail, anchor=south east] (f3) at (12.4,1.1) {c\enspace\gno\enspace Inert simulator};
 \node[fail, anchor=east] (f4) at (9.4,-1.25) {d\enspace\gno\enspace Never-blocking policy};
 \node[fail, anchor=north west] (f5) at (2.35,-3.6) {e\enspace\gno\enspace Backlog carry-over};
 \node[fail, anchor=north west] (f6) at (6.05,-3.6) {f\enspace\gno\enspace Reproduction gap};
@@ -73,8 +75,8 @@
 \draw[ct] (p7.south) -- (p7.south |- f5.north);
 \draw[ct] (p7.south east) -- (f6.west);
 % the live testbed check, outside the offline pipeline
-\node[st, dashed] (lv) at (7.3,-5.0) {Live testbed, direct instrumentation};
-\node[fail, anchor=west] (f7) at (8.8,-5.0) {g\enspace\gyes\enspace Scheduler floor clear};
+\node[st, dashed, text width=2.0cm] (lv) at (7.3,-5.0) {Live testbed, direct instrumentation};
+\node[fail, anchor=west] (f7) at (8.6,-5.0) {g\enspace\gyes\enspace Scheduler floor clear};
 \draw[ct] (lv) -- (f7);
 \end{tikzpicture}
 \end{document}

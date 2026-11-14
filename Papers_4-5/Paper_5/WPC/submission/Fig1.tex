@@ -12,23 +12,24 @@
 \definecolor{oiV}{HTML}{D55E00}\definecolor{oiB}{HTML}{0072B2}\definecolor{oiG}{HTML}{009E73}
 % figure lettering: 8 pt Helvetica, the journal's minimum (the class's \footnotesize is only 7 pt)
 \newcommand{\figfont}{\sffamily\fontsize{8}{9.6}\selectfont}
-\newcommand{\gnbtower}[1]{%
-  \begin{scope}[shift={#1}]
-    \draw[thick,gray!45!black,fill=gray!12] (-0.15,0)--(0,0.82)--(0.15,0)--cycle;
-    \draw[gray!55!black] (-0.095,0.28)--(0.095,0.28) (-0.065,0.46)--(0.065,0.46) (-0.035,0.63)--(0.035,0.63);
-    \fill[gray!55] (-0.12,0.64) rectangle (-0.03,0.84);
-    \fill[gray!55] (0.03,0.64) rectangle (0.12,0.84);
-    \draw[blue!55!black] (0.17,0.72) arc (-55:55:0.13);
-    \draw[blue!55!black] (0.22,0.68) arc (-55:55:0.21);
-    \draw[blue!55!black] (-0.17,0.72) arc (235:125:0.13);
-    \draw[blue!55!black] (-0.22,0.68) arc (235:125:0.21);
+% optional first argument: strength in percent, mixed with white (a solid tint, since EPS has no transparency; 2026-11-14)
+\newcommand{\gnbtower}[2][100]{%
+  \begin{scope}[shift={#2}]
+    \draw[thick,gray!45!black!#1,fill=gray!12!white!#1] (-0.15,0)--(0,0.82)--(0.15,0)--cycle;
+    \draw[gray!55!black!#1] (-0.095,0.28)--(0.095,0.28) (-0.065,0.46)--(0.065,0.46) (-0.035,0.63)--(0.035,0.63);
+    \fill[gray!55!white!#1] (-0.12,0.64) rectangle (-0.03,0.84);
+    \fill[gray!55!white!#1] (0.03,0.64) rectangle (0.12,0.84);
+    \draw[blue!55!black!#1] (0.17,0.72) arc (-55:55:0.13);
+    \draw[blue!55!black!#1] (0.22,0.68) arc (-55:55:0.21);
+    \draw[blue!55!black!#1] (-0.17,0.72) arc (235:125:0.13);
+    \draw[blue!55!black!#1] (-0.22,0.68) arc (235:125:0.21);
   \end{scope}
 }
-\newcommand{\uephone}[2]{%
-  \begin{scope}[shift={#1}]
-    \draw[thick,#2!65!black,fill=#2!14,rounded corners=1pt] (-0.12,-0.2) rectangle (0.12,0.2);
-    \fill[#2!30] (-0.08,-0.09) rectangle (0.08,0.13);
-    \fill[#2!65!black] (0,-0.15) circle (0.016);
+\newcommand{\uephone}[3][100]{%
+  \begin{scope}[shift={#2}]
+    \draw[thick,#3!65!black!#1,fill=#3!14!white!#1,rounded corners=1pt] (-0.12,-0.2) rectangle (0.12,0.2);
+    \fill[#3!30!white!#1] (-0.08,-0.09) rectangle (0.08,0.13);
+    \fill[#3!65!black!#1] (0,-0.15) circle (0.016);
   \end{scope}
 }
 \begin{document}
@@ -61,7 +62,7 @@
 \draw[gedge] (g1) to[bend right=9] (g3);
 % --- further gNBs: the cluster holds N of them (7, 19, or 37 in the scaling study) ---
 \node[font=\figfont] (gdots) at (14.55,3.05) {$\cdots$};
-\begin{scope}[opacity=0.55]\gnbtower{(16.4,3.55)}\end{scope}
+\gnbtower[55]{(16.4,3.55)}
 \node[gnb, dashed] (gN) at (16.4,3.05) {gNB~$N$};
 \draw[gedge] (g3) -- (gdots); \draw[gedge] (gdots) -- (gN);
 \node[draw=orange!75!black, dashed, thick, rounded corners, inner sep=3pt,
@@ -94,7 +95,7 @@
 \uephone{(7.0,0.3)}{oiB} \uephone{(8.0,0.3)}{oiB}
 \uephone{(12.0,0.3)}{oiG} \uephone{(13.0,0.3)}{oiG}
 \node[font=\figfont] at (14.55,0.3) {$\cdots$};
-\begin{scope}[opacity=0.55]\uephone{(15.7,0.3)}{gray}\end{scope}
+\uephone[55]{(15.7,0.3)}{gray}
 \node[font=\figfont, anchor=west] at (16.0,0.3) {UE~$M$};
 \node[font=\figfont] at (7.5,-0.5) {User equipment, per-slice traffic};
 \draw[ar] (s1.south) -- (2.5,0.62);

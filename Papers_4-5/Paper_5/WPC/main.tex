@@ -30,23 +30,24 @@
 \definecolor{oiV}{HTML}{D55E00}\definecolor{oiB}{HTML}{0072B2}\definecolor{oiG}{HTML}{009E73}
 % figure lettering: 8 pt Helvetica, the journal's minimum (the class's \footnotesize is only 7 pt)
 \newcommand{\figfont}{\sffamily\fontsize{8}{9.6}\selectfont}
-\newcommand{\gnbtower}[1]{%
-  \begin{scope}[shift={#1}]
-    \draw[thick,gray!45!black,fill=gray!12] (-0.15,0)--(0,0.82)--(0.15,0)--cycle;
-    \draw[gray!55!black] (-0.095,0.28)--(0.095,0.28) (-0.065,0.46)--(0.065,0.46) (-0.035,0.63)--(0.035,0.63);
-    \fill[gray!55] (-0.12,0.64) rectangle (-0.03,0.84);
-    \fill[gray!55] (0.03,0.64) rectangle (0.12,0.84);
-    \draw[blue!55!black] (0.17,0.72) arc (-55:55:0.13);
-    \draw[blue!55!black] (0.22,0.68) arc (-55:55:0.21);
-    \draw[blue!55!black] (-0.17,0.72) arc (235:125:0.13);
-    \draw[blue!55!black] (-0.22,0.68) arc (235:125:0.21);
+% optional first argument: strength in percent, mixed with white (a solid tint, since EPS has no transparency; 2026-11-14)
+\newcommand{\gnbtower}[2][100]{%
+  \begin{scope}[shift={#2}]
+    \draw[thick,gray!45!black!#1,fill=gray!12!white!#1] (-0.15,0)--(0,0.82)--(0.15,0)--cycle;
+    \draw[gray!55!black!#1] (-0.095,0.28)--(0.095,0.28) (-0.065,0.46)--(0.065,0.46) (-0.035,0.63)--(0.035,0.63);
+    \fill[gray!55!white!#1] (-0.12,0.64) rectangle (-0.03,0.84);
+    \fill[gray!55!white!#1] (0.03,0.64) rectangle (0.12,0.84);
+    \draw[blue!55!black!#1] (0.17,0.72) arc (-55:55:0.13);
+    \draw[blue!55!black!#1] (0.22,0.68) arc (-55:55:0.21);
+    \draw[blue!55!black!#1] (-0.17,0.72) arc (235:125:0.13);
+    \draw[blue!55!black!#1] (-0.22,0.68) arc (235:125:0.21);
   \end{scope}
 }
-\newcommand{\uephone}[2]{%
-  \begin{scope}[shift={#1}]
-    \draw[thick,#2!65!black,fill=#2!14,rounded corners=1pt] (-0.12,-0.2) rectangle (0.12,0.2);
-    \fill[#2!30] (-0.08,-0.09) rectangle (0.08,0.13);
-    \fill[#2!65!black] (0,-0.15) circle (0.016);
+\newcommand{\uephone}[3][100]{%
+  \begin{scope}[shift={#2}]
+    \draw[thick,#3!65!black!#1,fill=#3!14!white!#1,rounded corners=1pt] (-0.12,-0.2) rectangle (0.12,0.2);
+    \fill[#3!30!white!#1] (-0.08,-0.09) rectangle (0.08,0.13);
+    \fill[#3!65!black!#1] (0,-0.15) circle (0.016);
   \end{scope}
 }
 
@@ -71,7 +72,7 @@
 
 \affil{\orgdiv{School of Engineering, Faculty of Innovation and Technology}, \orgname{Taylor's University}, \orgaddress{\city{Subang Jaya}, \postcode{47500}, \state{Selangor}, \country{Malaysia}}}
 
-\abstract{Fifth generation (5G) network slicing must admit heterogeneous requests across cooperating base stations under strict per-slice guarantees. Multi-agent learning can adapt these decisions to changing load, yet learned controllers are rarely tested against trivial policies or on independent seeds. We present AXIOM, short for Adaptive Cross-cell Integrated Orchestration of Multi-slice admission. Its encoder, shared by every gNodeB (gNB), feeds one decision head per slice, keeping its size fixed as clusters grow. A pre-registered protocol with both checks compares it with single-agent and independent deep Q-networks (DQN), multi-agent proximal policy optimisation (MAPPO), value decomposition, and tuned rules, under static and coupled time-varying load. At 7, 19, and 37 gNBs, AXIOM keeps Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) service-level compliance above 93\%, even when trained only at 7 gNBs, while every learned baseline stays below 84\%. A static rule shedding all machine-type requests keeps at least 99.97\%, and a tuned rule beats every learner at its tuning conditions. When load rises 10\% to 20\% past them, AXIOM overtakes that rule by up to 8.7 reward per step. At 37 gNBs, AXIOM leads the best learned baseline by 36.3 to 36.5 points, with a URLLC backlog delay 7 to 44 times shorter than the learned baselines and 7,782 parameters against up to 682,058. Under coupling, AXIOM earns 26\% to 36\% more reward than MAPPO at 3 and 19 gNBs, and 42\% more than that static rule at 3 gNBs. AXIOM is therefore a viable alternative for scalable 5G slice admission.}
+\abstract{Fifth generation (5G) network slicing must admit heterogeneous requests across cooperating base stations under per-slice guarantees. Multi-agent learning can adapt to changing load, yet learned controllers are rarely tested against trivial policies or on independent seeds. We present AXIOM, short for Adaptive Cross-cell Integrated Orchestration of Multi-slice admission. Its encoder, shared by every gNodeB (gNB), feeds per-slice decision heads, keeping its size fixed as clusters grow. A pre-registered protocol with both checks compares it with single-agent and independent deep Q-networks (DQN), multi-agent proximal policy optimisation (MAPPO), value decomposition, and tuned rules, under static and coupled time-varying load. At 7, 19, and 37 gNBs, AXIOM keeps Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) service-level compliance above 93\%, even when trained only at 7 gNBs, while every learned baseline stays below 84\%. A static rule shedding all machine-type requests keeps at least 99.97\%, and a tuned rule beats every learner at its tuning conditions. When load rises 10\% to 20\% past them, AXIOM overtakes that rule by up to 8.7 reward per step. At 37 gNBs, AXIOM leads the best learned baseline by 36.3 to 36.5 points, with a URLLC backlog delay 7 to 44 times shorter than the learned baselines and 7,782 parameters against up to 682,058. Under coupling, AXIOM earns 26\% to 36\% more reward than MAPPO at 3 and 19 gNBs, and 42\% more than that static rule at 3 gNBs. AXIOM is therefore viable for scalable 5G slice admission.}
 
 \keywords{Network Slicing, Slice Admission Control, Multi-Agent Reinforcement Learning, Graph Neural Networks, Open RAN}
 
@@ -118,7 +119,7 @@ Network slicing virtualises the Radio Access Network (RAN) to serve Ultra-Reliab
 \draw[gedge] (g1) to[bend right=9] (g3);
 % --- further gNBs: the cluster holds N of them (7, 19, or 37 in the scaling study) ---
 \node[font=\figfont] (gdots) at (14.55,3.05) {$\cdots$};
-\begin{scope}[opacity=0.55]\gnbtower{(16.4,3.55)}\end{scope}
+\gnbtower[55]{(16.4,3.55)}
 \node[gnb, dashed] (gN) at (16.4,3.05) {gNB~$N$};
 \draw[gedge] (g3) -- (gdots); \draw[gedge] (gdots) -- (gN);
 \node[draw=orange!75!black, dashed, thick, rounded corners, inner sep=3pt,
@@ -151,7 +152,7 @@ Network slicing virtualises the Radio Access Network (RAN) to serve Ultra-Reliab
 \uephone{(7.0,0.3)}{oiB} \uephone{(8.0,0.3)}{oiB}
 \uephone{(12.0,0.3)}{oiG} \uephone{(13.0,0.3)}{oiG}
 \node[font=\figfont] at (14.55,0.3) {$\cdots$};
-\begin{scope}[opacity=0.55]\uephone{(15.7,0.3)}{gray}\end{scope}
+\uephone[55]{(15.7,0.3)}{gray}
 \node[font=\figfont, anchor=west] at (16.0,0.3) {UE~$M$};
 \node[font=\figfont] at (7.5,-0.5) {User equipment, per-slice traffic};
 \draw[ar] (s1.south) -- (2.5,0.62);
@@ -284,32 +285,33 @@ Each gNB has a budget of $B{=}100$ PRBs in both simulators. The nominal shares a
   lane/.style={draw=black!45, dashed, line width=0.4pt},
   ll/.style={font=\figfont, anchor=west, align=left}
 ]
-% three swimlanes: Env A on top, the steps both share in the middle, Env B below
-\foreach \y in {1.0,-1.0}{\draw[lane] (0,\y) -- (12.95,\y);}
+% three swimlanes: Env A on top, the steps both share in the middle, Env B below; lane labels sit inside the
+% lanes so the figure fits the journal's 119 mm width at 8 pt (2026-11-14)
+\foreach \y in {1.0,-1.0}{\draw[lane] (0,\y) -- (11.85,\y);}
 % lane labels in the pre-audit environment-tag colours (restored 2026-11-09)
 \definecolor{envAfc}{HTML}{E2E8F0}\definecolor{envAec}{HTML}{5A6B82}\definecolor{envAtc}{HTML}{26344A}
 \definecolor{envBfc}{HTML}{F4EAD6}\definecolor{envBec}{HTML}{9C7A45}\definecolor{envBtc}{HTML}{4F3A15}
-\node[ll, draw=envAec, fill=envAfc, text=envAtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,2.0) {Env A};
-\node[ll] at (0,0) {Both};
-\node[ll, draw=envBec, fill=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (0,-2.0) {Env B};
+\node[ll, anchor=center, draw=envAec, fill=envAfc, text=envAtc, rounded corners=1.5pt, inner sep=1.4pt] at (4.4,2.0) {Env A};
+\node[ll, anchor=center] at (0.70,0) {Both};
+\node[ll, anchor=center, draw=envBec, fill=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (4.4,-2.0) {Env B};
 \def\c#1{\fpeval{0.95+1.5*#1}}
-\node[bxa] (sa) at (1.75,2.0) {Empty queues, reset ceilings};
-\node[bxb] (sb) at (1.75,-2.0) {Same, redraw load phase $\psi_i$};
-\node[bx] (ob) at (3.25,0) {Observe each gNB's feature row};
-\node[bx] (arv) at (4.75,0) {$N$ requests, at most $4N$ pending};
-\node[bx] (de) at (6.25,0) {Accept or reject, move ceilings};
-\node[bx] (rw) at (7.75,0) {Reward $r_t$ of Eq.~\eqref{eq:reward}};
-\node[bxa] (da) at (9.25,2.0) {Drift towards $1.05\times$ share};
-\node[bxb] (db) at (9.25,-2.0) {Load follows a 60-step sine};
-\node[bxa] (va) at (10.75,2.0) {Scale slices to fit $B$};
-\node[bxb] (vb) at (10.75,-2.0) {Budget shrinks with neighbour load};
-\node[bx] (up) at (12.25,0) {Unserved demand becomes backlog};
+\node[bxa] (sa) at (0.70,2.0) {Empty queues, reset ceilings};
+\node[bxb] (sb) at (0.70,-2.0) {Same, redraw load phase $\psi_i$};
+\node[bx] (ob) at (2.19,0) {Observe each gNB's feature row};
+\node[bx] (arv) at (3.68,0) {$N$ requests, at most $4N$ pending};
+\node[bx] (de) at (5.17,0) {Accept or reject, move ceilings};
+\node[bx] (rw) at (6.66,0) {Reward $r_t$ of Eq.~\eqref{eq:reward}};
+\node[bxa] (da) at (8.15,2.0) {Drift towards $1.05\times$ share};
+\node[bxb] (db) at (8.15,-2.0) {Load follows a 60-step sine};
+\node[bxa] (va) at (9.64,2.0) {Scale slices to fit $B$};
+\node[bxb] (vb) at (9.64,-2.0) {Budget shrinks with neighbour load};
+\node[bx] (up) at (11.13,0) {Unserved demand becomes backlog};
 \draw[ar] (sa) -| (ob); \draw[ar] (sb) -| ([xshift=-2.5mm]ob.south);
 \foreach \i/\j in {ob/arv,arv/de,de/rw}{\draw[ar] (\i) -- (\j);}
 \draw[ar] (rw) |- (da); \draw[ar] (rw) |- (db);
 \draw[ar] (da) -- (va); \draw[ar] (db) -- (vb);
 \draw[ar] (va) -| (up); \draw[ar] (vb) -| (up);
-\draw[ar] (up.east) -- (12.95,0) -- (12.95,-3.05) -- node[pos=0.5, below, font=\figfont] {next step, $T{=}60$ per episode} ([xshift=2.5mm]ob.south |- 0,-3.05) -- ([xshift=2.5mm]ob.south);
+\draw[ar] (up.east) -- (11.85,0) -- (11.85,-3.05) -- node[pos=0.5, below, font=\figfont] {next step, $T{=}60$ per episode} ([xshift=2.5mm]ob.south |- 0,-3.05) -- ([xshift=2.5mm]ob.south);
 \end{tikzpicture}
 \caption{One control step of both simulators, repeated for $T{=}60$ steps per episode. The middle lane holds the steps both share, and the outer lanes the steps where Env A and Env B differ. The text gives each step in full}
 \label{fig:envflow}
@@ -321,7 +323,7 @@ This section presents the AXIOM architecture, its training rule, and its federat
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[scale=0.81]{figures/fig_architecture.pdf}
+\includegraphics{figures/fig_architecture.pdf}
 \caption{AXIOM architecture. A shared graph-attention encoder produces one embedding per gNB, and per-slice Q-heads read that gNB's embedding and raw features. Training on every agent's requests is centralised, and each gNB acts on its own row}
 \label{fig:architecture}
 \end{figure}
@@ -371,15 +373,16 @@ This section describes the campaigns, the baselines, and the statistical tests, 
 \begin{figure}[!htbp]
 \centering
 \begin{tikzpicture}[
-  font=\figfont, x=1cm, y=1cm,
+  font=\figfont, x=0.92cm, y=1cm,
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
-  st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=2.0cm, minimum height=0.78cm, inner sep=2pt},
-  gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=2.7, align=center, text width=1.55cm, inner sep=0pt},
+  st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=1.9cm, minimum height=0.78cm, inner sep=2pt},
+  gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=1.9, align=center, text width=1.5cm, inner sep=0pt},
   num/.style={circle, draw=black!75, fill=white, inner sep=0.4pt, minimum size=0.36cm, font=\figfont},
   fail/.style={draw=red!60!black, fill=red!5, text=red!40!black, dashed, rounded corners=1pt, align=left, inner sep=2pt},
   ar/.style={-{Latex[length=1.7mm]}, semithick},
   ct/.style={-{Latex[length=1.4mm]}, densely dotted, red!60!black}
 ]
+% 119 mm at 8 pt (2026-11-14): x unit 0.92 cm, narrower boxes and taller diamonds
 % the protocol as a serpentine: steps 1 to 4 left to right, 5 to 8 right to left, 9 and 10 left to right; gates are diamonds
 \foreach \i/\x/\y/\s/\t in {1/1.1/0/st/{Pre-registered plan},
                             2/4.2/0/st/{Pilot seeds, tuning only},
@@ -393,14 +396,14 @@ This section describes the campaigns, the baselines, and the statistical tests, 
                             10/4.2/-5.0/st/{Reported result}}{
   \node[\s] (p\i) at (\x,\y) {\t};
 }
-\foreach \i in {1,2,3,6,8,9,10}{\node[num] at (p\i.north west) {\i};}
+\foreach \i in {1,2,3,6,8,9,10}{\node[num] at ([shift={(-0.06,0.04)}]p\i.north west) {\i};}
 \foreach \i in {4,5,7}{\node[num] at ($(p\i.north)!0.5!(p\i.west)$) {\i};}
 \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\draw[ar] (p\a) -- (p\b);}
 % failures each check caught, keyed by letter in the caption, at most four words each; callouts kept clear of the
 % flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apart, every callout at least 0.25 cm from a node)
 \node[fail, anchor=south west] (f1) at (0.05,1.1) {a\enspace\gno\enspace Screen miscalibrated};
-\node[fail, anchor=south west] (f2) at (3.75,1.1) {b\enspace\gno\enspace Static AXIOM, Env B};
-\node[fail, anchor=south east] (f3) at (12.6,1.1) {c\enspace\gno\enspace Inert simulator};
+\node[fail, anchor=south west] (f2) at (3.88,1.1) {b\enspace\gno\enspace Static AXIOM, Env B};
+\node[fail, anchor=south east] (f3) at (12.4,1.1) {c\enspace\gno\enspace Inert simulator};
 \node[fail, anchor=east] (f4) at (9.4,-1.25) {d\enspace\gno\enspace Never-blocking policy};
 \node[fail, anchor=north west] (f5) at (2.35,-3.6) {e\enspace\gno\enspace Backlog carry-over};
 \node[fail, anchor=north west] (f6) at (6.05,-3.6) {f\enspace\gno\enspace Reproduction gap};
@@ -411,8 +414,8 @@ This section describes the campaigns, the baselines, and the statistical tests, 
 \draw[ct] (p7.south) -- (p7.south |- f5.north);
 \draw[ct] (p7.south east) -- (f6.west);
 % the live testbed check, outside the offline pipeline
-\node[st, dashed] (lv) at (7.3,-5.0) {Live testbed, direct instrumentation};
-\node[fail, anchor=west] (f7) at (8.8,-5.0) {g\enspace\gyes\enspace Scheduler floor clear};
+\node[st, dashed, text width=2.0cm] (lv) at (7.3,-5.0) {Live testbed, direct instrumentation};
+\node[fail, anchor=west] (f7) at (8.6,-5.0) {g\enspace\gyes\enspace Scheduler floor clear};
 \draw[ct] (lv) -- (f7);
 \end{tikzpicture}
 \caption{Evaluation protocol in ten steps, with the three gates as diamonds. Dashed callouts name what each check found. a, A miscalibrated validation screen led to an amended plan, back to step 1. b, AXIOM stayed static in Env B, which led to faster learning, back to step 3. c, An inert simulator led to the shared-budget rerun, back to step 3. d, A never-blocking policy is counted as collapsed. e, Backlog carried across episodes led to an episode reset and a rerun, back to step 3. f, A reproduction gap led to a retracted claim. g, The live testbed found no scheduler floor, over more than 100{,}000 readings}
@@ -575,7 +578,7 @@ The rule's lead holds only under its tuning conditions. When the load rises to 1
 In Env A, Fig.~\ref{fig:m6-topology}a and c show AXIOM staying between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. MAPPO is the only learned policy that never collapses at thirty-seven gNBs, where AXIOM collapses in 9 of 120 runs. In Env B every policy loses compliance as the cluster grows, and AXIOM's cluster-level priority-slice compliance falls from 64.1\% at three gNBs to 35.1\% at seven and 24.7\% at nineteen. AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs. At seven gNBs it earns 3.36 reward per gNB per step against 3.37 for DQN-SA, which keeps more compliance, 44.3\% against 35.1\%. That gap reflects the training budget, as shown above. In Env A at nineteen gNBs AXIOM stays within 5.3 points of the static rule as offered load rises from 105\% to 120\% of the nominal shares, and every baseline stays below AXIOM at each load.
 
 \begin{table}[!b]
-\caption{Design and model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one CPU thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}
+\caption{Design and model complexity at 3, 7, 19, and 37 gNBs. Parameters used at execution, greedy inference time per control step on one central processing unit (CPU) thread, and median training time per seed at 3, 19, and 37 gNBs, on the ring layout for AXIOM}
 \label{tab:complexity}
 \centering
 \footnotesize
@@ -593,7 +596,7 @@ MAPPO & Shared actor, central critic & 5,122 at every size & 0.19 / 0.20 / 0.22 
 \end{table}
 \subsection{Model Complexity}
 
-Table~\ref{tab:complexity} sets out the cost of each policy. AXIOM's shared encoder keeps its parameter count fixed as the cluster grows, while the DQN baselines grow with it. Its greedy decisions on one central processing unit (CPU) thread stay well inside the 5 s control period of the live testbed. Against MAPPO, the cheapest learner, the extra cost buys the most where the environment is dynamic. In Env B AXIOM earns 26\% more reward per step than MAPPO at three gNBs and 36\% more at nineteen gNBs. A 24-configuration tuning grid for MAPPO did not close the gap in any setting where it was tested.
+Table~\ref{tab:complexity} sets out the cost of each policy. AXIOM's shared encoder keeps its parameter count fixed as the cluster grows, while the DQN baselines grow with it. Its greedy decisions on one CPU thread stay well inside the 5 s control period of the live testbed. Against MAPPO, the cheapest learner, the extra cost buys the most where the environment is dynamic. In Env B AXIOM earns 26\% more reward per step than MAPPO at three gNBs and 36\% more at nineteen gNBs. A 24-configuration tuning grid for MAPPO did not close the gap in any setting where it was tested.
 
 \subsection{Reproducibility and Fresh-Seed Verification}
 \label{sec:results-verify}
@@ -601,7 +604,7 @@ We checked the results in three ways, with every pass criterion fixed before the
 
 Second, four further runs retrained every policy on fresh seeds, 10 to 40 per setting, and 81 of their 90 pre-stated checks held. The nine checks that failed concern secondary margins rather than any headline result. On fresh seeds the DQN baselines reached up to 83.3\% compliance at seven gNBs, above the 80\% bound we had set, and AXIOM's small lead over DQN-SA in Env A at three gNBs did not recur. A fifth fresh-seed run held all three of its checks at thirty-seven gNBs on 20 seeds. A sixth held all four in Env B at nineteen gNBs on 15 seeds, as Section S7 of Online Resource 1 reports. A final pre-registered run held eight of its nine checks. It replicated the transfer and load-shift results on fresh seeds, and the one check that failed, at three gNBs past the tuning load, is reported in Section~\ref{sec:results-envb}. Section S2 of Online Resource 1 compares each reported difference from a learned baseline with its fresh-seed counterpart, and 35 of the 40 whose CI excludes zero hold. The pre-registered extension that doubled the main samples also served as a replication. On its new seeds alone every headline lead recurred except two secondary ones, AXIOM's lead over DQN-SA at seven gNBs on the ring layout and its compliance lead over the tuned neighbour-aware rule in Env B at three gNBs, and both still hold in the pooled samples.
 
-Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 663 of its checks pass. Section S2 of Online Resource 1 adds interquartile means and probabilities of improvement~\cite{agarwal2021precipice}, and all 51 orderings that this paper draws from means hold under them.
+Third, a script written independently of the analysis pipeline, with its own log reader and Holm correction, recomputes the numbers in every results table and the key results sentences from the raw logs. In the current version, all 663 of its checks pass. Section S2 of Online Resource 1 and Online Resource 2 add interquartile means and probabilities of improvement~\cite{agarwal2021precipice}, and all 51 orderings that this paper draws from means hold under them.
 
 \subsection{Federation, Privacy, Disruption, and Live Deployment}
 \label{sec:results-m8}
@@ -640,7 +643,7 @@ Three directions for future work follow from these limits. First, extending our 
 \backmatter
 
 \bmhead{Supplementary information}
-Online Resource 1 is a PDF that gives the full verification results, the live testbed check, additional setup details, and additional results.
+Online Resource 1 is a PDF that gives the full verification results, the live testbed check, additional setup details, and additional results. Online Resource 2 is a CSV file that lists, for every setting and policy, the interquartile means of reward and of priority-slice compliance and the probability that AXIOM improves on each baseline, each with its 95\% CI.
 
 \bmhead{Acknowledgements}
 This work was supported by the Fundamental Research Grant Scheme

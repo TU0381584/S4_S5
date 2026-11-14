@@ -202,3 +202,13 @@ The author asked for more per-seed points in Figs. 5 and 7 and chose to pool new
 - The new seeds alone do not reproduce two secondary leads, over DQN-SA at seven gNBs on the ring layout and on compliance over the neighbour rule in Env B. The verification section reports both.
 - The 30+10 replication and the campaigns paired seed by seed with these cells keep their stored comparisons: M74, M75 C, M76 VDN, M92, the M70 MAPPO grid and the M63 reuse audit.
 - Verifier checks were rewritten to the pooled values, none deleted, and the verifier passes 663/663 with --supp. CI recompute matches 19 intervals in the main paper and 2 in OR1. The main paper is 29 pp and OR1 10 pp, with no overfull boxes. The submission package was rebuilt.
+
+## WPC guideline audit (2026-11-14)
+
+The author asked for strict adherence to the WPC guidelines and chose to apply every fix found. Details are in docs/PAPER5_CHANGELOG.md, AJ.2 to AJ.5.
+
+- Abstract cut to 243 words. CPU is spelled out at first use. Online Resource 2 is cited in the text and described under Supplementary information, and its CSV opens with the article, journal, authors and corresponding-author lines Springer asks for.
+- Figs. 1 and 9 are now fully vector in EPS, because transparency is replaced by solid tints. The colour bars of Figs. 6 and 8 are vector. Fig. 8 is exactly 119 mm wide.
+- Figs. 2, 3 and 4 were redrawn to fit 119 mm at natural size, so their lettering is no longer scaled below 8 pt.
+- m93 is now seeded, because rliable ignored its random_state. OR1's rliable intervals and ESM_2 moved by at most 0.01 at the printed digit, and every point estimate is unchanged.
+- Verifier 663/663 with --supp, m82 57/57, CI recompute 19 + 2 same. Main 29 pp, OR1 10 pp. The submission package was rebuilt, and no figure file holds a raster image.

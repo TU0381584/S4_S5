@@ -226,7 +226,8 @@ def strip(fig, rect):
 
 def dots(ax, a, vals, rng):
     v = np.asarray(list(vals), float)
-    ax.scatter(v, Y[a] + rng.uniform(-0.22, 0.22, len(v)), s=1.4, c=COLOR[a], alpha=0.35, lw=0, zorder=2)
+    tint = 1 - 0.35 * (1 - np.array(mpl.colors.to_rgb(COLOR[a])))   # the former alpha 0.35 as a solid tint, since EPS
+    ax.scatter(v, Y[a] + rng.uniform(-0.22, 0.22, len(v)), s=1.4, c=[tint], lw=0, zorder=2)   # has no transparency (2026-11-14)
 
 
 def mean_ci(ax, a, s):
@@ -337,6 +338,7 @@ def main():
     fig = draw(d, rows)
     check_layout(fig)
     fig.savefig(OUT + ".pdf")
+    fig.savefig(OUT + ".eps")   # vector EPS for the submission, written by the script (2026-11-14)
     fig.savefig(OUT + ".png", dpi=300)
     drop = ("sla37", "delay37", "transfer37", "past19", "steady19", "rewardA37")
     slim = {k: ({a: {x: y for x, y in v.items() if x != "per_seed"} for a, v in d[k].items()} if k in drop else d[k]) for k in d}

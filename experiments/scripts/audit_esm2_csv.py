@@ -15,6 +15,17 @@ COLS = ["setting", "policy", "runs",
         "iqm_priority_slice_compliance_pct", "iqm_compliance_ci95_low", "iqm_compliance_ci95_high",
         "p_axiom_better_reward", "p_reward_ci95_low", "p_reward_ci95_high",
         "p_axiom_better_compliance", "p_compliance_ci95_low", "p_compliance_ci95_high"]
+# Springer asks every supplementary file to name the article, journal, authors and corresponding author (2026-11-14);
+# '#' lines without commas, so spreadsheet tools show each in one cell and pandas reads it with comment="#"
+HEADER = ["# Online Resource 2",
+          "# Article: AXIOM: A Shared Controller for Scalable Multi-Agent 5G Slice Admission",
+          "# Journal: Wireless Personal Communications",
+          "# Authors: Manoj Prasad Kunasegran; Wai Leong Pang; Swee King Phang",
+          "# Corresponding author: Wai Leong Pang; waileong.pang@taylors.edu.my; School of Engineering; Faculty of "
+          "Innovation and Technology; Taylor's University; 47500 Subang Jaya; Selangor; Malaysia",
+          "# Content: rliable interquartile means (IQM) of reward per gNB per step and of priority-slice compliance (%) "
+          "and the probability that AXIOM improves on each baseline; 95% stratified bootstrap CIs over 10000 resamples; "
+          "one row per setting and policy; empty cells for AXIOM against itself"]
 
 
 def rows():
@@ -30,7 +41,9 @@ def rows():
 
 
 if __name__ == "__main__":
+    assert all("," not in h for h in HEADER)
     with open(OUT, "w", newline="") as f:
+        f.write("\r\n".join(HEADER) + "\r\n")   # csv.writer ends rows with CRLF too
         w = csv.writer(f)
         w.writerow(COLS)
         n = 0

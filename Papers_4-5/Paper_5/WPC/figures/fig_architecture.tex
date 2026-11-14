@@ -3,12 +3,16 @@
 % into the paper body. Mirrors Papers_4-5/Paper_4/figures/fig1_architecture.tex's
 % style conventions (box/arrow styles, font, palette).
 \documentclass[tikz,border=2pt]{standalone}
+\usepackage{fix-cm}
 \usepackage{amsmath}
 \usetikzlibrary{arrows.meta,positioning,fit,backgrounds}
 
 \renewcommand{\sfdefault}{phv}
+% drawn at its printed size (2026-11-14): the whole picture at 0.8, so 10 pt text prints at 8 pt and,
+% with these math sizes, sub- and superscripts at 6 pt; the paper includes it unscaled
+\DeclareMathSizes{10}{10}{7.5}{6}
 \begin{document}
-\begin{tikzpicture}[
+\begin{tikzpicture}[scale=0.8, every node/.append style={transform shape},
   font=\sffamily\normalsize,
   box/.style={draw, rounded corners, minimum height=0.7cm, align=center, inner xsep=4pt, inner ysep=4pt},
   node1/.style={box, fill=blue!12, minimum width=1.0cm},
@@ -18,10 +22,10 @@
   qhead/.style={box, fill=green!12, minimum width=1.5cm, minimum height=0.55cm},
   client/.style={box, fill=violet!10, minimum width=1.8cm},
   server/.style={box, fill=orange!14, minimum width=2.0cm},
-  arrow/.style={-{Latex[length=2.6mm, width=1.9mm]}, thick},
+  arrow/.style={-{Latex[length=2.1mm, width=1.5mm]}, thick},
   train/.style={box, fill=gray!10, minimum width=4.0cm},
   obs/.style={box, fill=blue!6, align=left},
-  dashedarrow/.style={-{Latex[length=2.6mm, width=1.9mm]}, thick, dashed},
+  dashedarrow/.style={-{Latex[length=2.1mm, width=1.5mm]}, thick, dashed},
 ]
 
 % ===== AXIOM per-agent pipeline =====

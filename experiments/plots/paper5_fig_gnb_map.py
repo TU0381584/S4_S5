@@ -154,6 +154,8 @@ def main():
     cb = fig.colorbar(plt.cm.ScalarMappable(cmap=CMAP, norm=plt.Normalize(0, 1)), cax=cax, orientation="horizontal")
     cb.set_ticks([0, 0.5, 1]); cb.set_ticklabels(["wrong", "partial", "correct"]); cb.ax.tick_params(length=2)
     cb.outline.set_linewidth(0.5)
+    cb.solids.set_rasterized(False)   # vector colour bar; rasterised it printed at 100 dpi (2026-11-14)
+    cb.solids.set_edgecolor("face")   # no hairline seams between the vector colour-bar cells
     ns_ = {v["n_seeds"] for v in summary["arms"].values()}
     assert len(ns_) == 1, ns_
     cb.set_label(f"Gate correctness, mean of {ns_.pop()} seeds")
