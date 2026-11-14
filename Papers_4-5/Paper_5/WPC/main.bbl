@@ -1,4 +1,4 @@
-\begin{thebibliography}{49}
+\begin{thebibliography}{58}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -51,7 +51,7 @@ Asdikian JP, Amro A, Mehyeddine L, Natalino C, Sbeity I, Maier G, Monti P,
 Barlacchi G, De~Nadai M, Larcher R, Casella A, Chitic C, Torrisi G, Antonelli
   F, Vespignani A, Pentland A, Lepri B (2015) A multi-source dataset of urban
   life in the city of {Milan} and the province of {Trentino}. \emph{Scientific
-  Data} 2:150055. \doi{10.1038/sdata.2015.55}
+  Data} 2(1):150055. \doi{10.1038/sdata.2015.55}
 
 \bibitem[{Bega et~al.(2020)Bega, Gramaglia, Banchs, Sciancalepore, and
   Costa-P{\'e}rez}]{bega2020market}
@@ -73,12 +73,12 @@ Bun M, Steinke T (2016) Concentrated differential privacy: Simplifications,
   (TCC)}, pp 635--658, \doi{10.1007/978-3-662-53641-4_24}
 
 \bibitem[{Cheng et~al.(2024)Cheng, D'Oro, Gangula, Velumani, Villa, Bonati,
-  Polese, and Melodia}]{cheng2024oranslice}
-Cheng H, D'Oro S, Gangula R, Velumani S, Villa D, Bonati L, Polese M, Melodia T
-  (2024) {ORANSlice}: An open source {5G} network slicing platform for {O-RAN}.
-  In: \emph{Proceedings of the 30th Annual International Conference on Mobile
-  Computing and Networking (ACM MobiCom)}, pp 2297--2302,
-  \doi{10.1145/3636534.3701544}
+  Polese, Melodia, Arrobo, and Maciocco}]{cheng2024oranslice}
+Cheng H, D'Oro S, Gangula R, Velumani S, Villa D, Bonati L, Polese M, Melodia
+  T, Arrobo G, Maciocco C (2024) {ORANSlice}: An open source {5G} network
+  slicing platform for {O-RAN}. In: \emph{Proceedings of the 30th Annual
+  International Conference on Mobile Computing and Networking (ACM MobiCom)},
+  pp 2297--2302, \doi{10.1145/3636534.3701544}
 
 \bibitem[{Doanis and Spyropoulos(2024)}]{doanis2024madqn}
 Doanis P, Spyropoulos T (2024) Sample-efficient multi-agent {DQNs} for scalable
@@ -92,6 +92,10 @@ Doherty M, Matzner R, Sadeghi R, Bayvel P, Beghelli A (2025) Reinforcement
   learning for dynamic resource allocation in optical networks: Hype or hope?
   \emph{Journal of Optical Communications and Networking} 17(9):D1.
   \doi{10.1364/JOCN.559990}
+
+\bibitem[{Efron(1979)}]{efron1979bootstrap}
+Efron B (1979) Bootstrap methods: Another look at the jackknife. \emph{The
+  Annals of Statistics} 7(1):1--26. \doi{10.1214/aos/1176344552}
 
 \bibitem[{Fatehi et~al.(2026)Fatehi, Ghourtani, Sonee, Yadav, Russo, Ahmadi,
   and Calinescu}]{fatehi2026attentionmarl}
@@ -108,12 +112,25 @@ Gong Y, Gong P, Jiang H, Xie W, Wang C, Xu P (2026) Intelligent resource
   using federated multiagent {DDPG} algorithm. \emph{China Communications}
   23(1):273--289. \doi{10.23919/JCC.fa.2022-0187.202601}
 
+\bibitem[{Gupta et~al.(2017)Gupta, Egorov, and
+  Kochenderfer}]{gupta2017cooperative}
+Gupta JK, Egorov M, Kochenderfer M (2017) Cooperative multi-agent control using
+  deep reinforcement learning. In: \emph{Autonomous Agents and Multiagent
+  Systems}. Lecture Notes in Computer Science, Springer International
+  Publishing, p 66--83, \doi{10.1007/978-3-319-71682-4_5}
+
 \bibitem[{Hao et~al.(2024)Hao, She, Yeoh, Liu, Vucetic, and
   Li}]{hao2024hybridtask}
 Hao X, She C, Yeoh PL, Liu Y, Vucetic B, Li Y (2024) Hybrid-task meta-learning:
   A {GNN} approach for scalable and transferable bandwidth allocation.
   \emph{IEEE Transactions on Wireless Communications} 23(12):19820--19835.
   \doi{10.1109/TWC.2024.3487533}
+
+\bibitem[{van Hasselt et~al.(2016)van Hasselt, Guez, Hessel, Mnih, and
+  Silver}]{vanhasselt2016popart}
+van Hasselt H, Guez A, Hessel M, Mnih V, Silver D (2016) Learning values across
+  many orders of magnitude. In: \emph{Advances in Neural Information Processing
+  Systems (NeurIPS)}
 
 \bibitem[{Henderson et~al.(2018)Henderson, Islam, Bachman, Pineau, Precup, and
   Meger}]{henderson2018matters}
@@ -194,11 +211,27 @@ Lim WYB, Luong NC, Hoang DT, Jiao Y, Liang YC, Yang Q, Niyato D, Miao C (2020)
   \emph{IEEE Communications Surveys \& Tutorials} 22(3):2031--2063.
   \doi{10.1109/COMST.2020.2986024}
 
+\bibitem[{McMahan et~al.(2017)McMahan, Moore, Ramage, Hampson, and {Ag{\"u}era
+  y Arcas}}]{mcmahan2017fedavg}
+McMahan B, Moore E, Ramage D, Hampson S, {Ag{\"u}era y Arcas} B (2017)
+  Communication-efficient learning of deep networks from decentralized data.
+  In: \emph{Proceedings of the 20th International Conference on Artificial
+  Intelligence and Statistics (AISTATS)}, pp 1273--1282
+
 \bibitem[{Ming et~al.(2024)Ming, Yu, and Taleb}]{ming2024fedslice}
 Ming Z, Yu H, Taleb T (2024) Federated deep reinforcement learning for
   prediction-based network slice mobility in {6G} mobile networks. \emph{IEEE
   Transactions on Mobile Computing} 23(12):11937--11953.
   \doi{10.1109/TMC.2024.3404125}
+
+\bibitem[{Mnih et~al.(2015)Mnih, Kavukcuoglu, Silver, Rusu, Veness, Bellemare,
+  Graves, Riedmiller, Fidjeland, Ostrovski, Petersen, Beattie, Sadik,
+  Antonoglou, King, Kumaran, Wierstra, Legg, and Hassabis}]{mnih2015dqn}
+Mnih V, Kavukcuoglu K, Silver D, Rusu AA, Veness J, Bellemare MG, Graves A,
+  Riedmiller M, Fidjeland AK, Ostrovski G, Petersen S, Beattie C, Sadik A,
+  Antonoglou I, King H, Kumaran D, Wierstra D, Legg S, Hassabis D (2015)
+  Human-level control through deep reinforcement learning. \emph{Nature}
+  518(7540):529--533. \doi{10.1038/nature14236}
 
 \bibitem[{Mohajer et~al.(2026)Mohajer, Mirzaei, Darabi, and
   Fernando}]{mohajer2026pronto}
@@ -212,6 +245,11 @@ Ojijo MO, Ramotsoela D, Oginga RA (2024) Slice admission control in {5G}
   wireless communication with multi-dimensional state space and distributed
   action space: A sequential twin actor-critic approach. \emph{Computer
   Networks} 255:110878. \doi{10.1016/j.comnet.2024.110878}
+
+\bibitem[{Oliehoek and Amato(2016)}]{oliehoek2016decpomdp}
+Oliehoek FA, Amato C (2016) A Concise Introduction to Decentralized {POMDPs}.
+  SpringerBriefs in Intelligent Systems, Springer International Publishing,
+  \doi{10.1007/978-3-319-28929-8}
 
 \bibitem[{Phyu et~al.(2025)Phyu, Naboulsi, and Stanica}]{phyu2025icecream}
 Phyu HP, Naboulsi D, Stanica R (2025) {ICE-CREAM}: Multi-agent fully
@@ -246,6 +284,11 @@ Rashid T, Samvelyan M, Schroeder~de Witt C, Farquhar G, Foerster J, Whiteson S
 Raza MR, Natalino C, {\"O}hlen P, Wosinska L, Monti P (2019) Reinforcement
   learning for slicing in a {5G} flexible {RAN}. \emph{Journal of Lightwave
   Technology} 37(20):5161--5169. \doi{10.1109/JLT.2019.2924345}
+
+\bibitem[{Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and
+  Klimov}]{schulman2017ppo}
+Schulman J, Wolski F, Dhariwal P, Radford A, Klimov O (2017) Proximal policy
+  optimization algorithms. ArXiv:1707.06347
 
 \bibitem[{Shao et~al.(2021)Shao, Li, Hu, Wu, Zhao, and Zhang}]{shao2021gatmarl}
 Shao Y, Li R, Hu B, Wu Y, Zhao Z, Zhang H (2021) Graph attention network-based
@@ -299,6 +342,16 @@ Tsampazi M, D'Oro S, Polese M, Bonati L, Poitau G, Healy M, Alavirad M, Melodia
   T (2025) {PandORA}: Automated design and comprehensive evaluation of deep
   reinforcement learning agents for {Open RAN}. \emph{IEEE Transactions on
   Mobile Computing} 24(4):3223--3240. \doi{10.1109/TMC.2024.3505781}
+
+\bibitem[{Veli{\v{c}}kovi{\'c} et~al.(2018)Veli{\v{c}}kovi{\'c}, Cucurull,
+  Casanova, Romero, Li{\`o}, and Bengio}]{velickovic2018gat}
+Veli{\v{c}}kovi{\'c} P, Cucurull G, Casanova A, Romero A, Li{\`o} P, Bengio Y
+  (2018) Graph attention networks. In: \emph{International Conference on
+  Learning Representations (ICLR)}, arXiv:1710.10903
+
+\bibitem[{Wilcoxon(1945)}]{wilcoxon1945}
+Wilcoxon F (1945) Individual comparisons by ranking methods. \emph{Biometrics
+  Bulletin} 1(6):80. \doi{10.2307/3001968}
 
 \bibitem[{Wu et~al.(2021)Wu, Pan, Chen, Long, Zhang, and Yu}]{wu2021gnnsurvey}
 Wu Z, Pan S, Chen F, Long G, Zhang C, Yu PS (2021) A comprehensive survey on
