@@ -176,7 +176,7 @@ We credit no amplification by subsampling, because minibatches come from a repla
 
 The trivial-policy check of the main paper's Section 5 rests on these numbers. In our first simulator, where every slice was served against its own ceiling, accepting every request earned 14.45 reward per step and kept URLLC and eMBB at 100\% SLA compliance. Over the same 30 held-out seeds in the shared-budget simulator, accepting every request now earns 9.89 reward per step and lets eMBB compliance fall to 56.8\%, whereas shedding every mMTC request earns 12.84.
 
-The main campaign reuses Env A results of DQN-SA, DQN-I, and the static rule from an earlier rerun, M63. They cover three gNBs on the primary and replication seeds, the sensitivity study, seven gNBs, and 15 of the 30 seeds at nineteen gNBs. Two development stages are disclosed, although neither changed a reported result. A protocol, M67, tested checkpoint selection and both encoders on new seeds and left AXIOM unchanged, and exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S7 before its reported runs. M92, the zero-shot transfer of Section S6, and M94, the distillation of Section S7, were each committed before their runs. M93, the summary of Section S2, reanalyses stored logs only and has no plan of its own. The main paper's Statements and Declarations describe how an artificial intelligence assistant was used.
+The main campaign reuses Env A results of DQN-SA, DQN-I, and the static rule from an earlier rerun. They cover three gNBs on the primary and replication seeds, the sensitivity study, seven gNBs, and 15 of the 30 seeds at nineteen gNBs. Two development stages are disclosed, although neither changed a reported result. A further protocol tested checkpoint selection and both encoders on new seeds and left AXIOM unchanged, and exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S7 before its reported runs. The plans of the zero-shot transfer of Section S6 and of the distillation of Section S7 were each committed before their runs. The summary of Section S2 reanalyses stored logs only and has no plan of its own. Section 5 and the Statements and Declarations of the main paper describe how an artificial intelligence assistant was used.
 
 \section*{S5. Three gNBs, ablations, federation, and disruption}
 The MLP variant reads only a gNB's own features. In Env A AXIOM earns 0.068 more reward per step than the MLP variant at three gNBs, with 95\% CI [$-$0.06, 0.19], a gap that only the paired test on 60 seeds finds significant, at Holm-adjusted $p=0.015$. It earns 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied. A disjoint replication on seeds 1000 to 1009 is stronger for AXIOM. There it earns 1.083, 0.799, and 3.806 more reward per step than DQN-SA, DQN-I, and MAPPO, and pooled over all 40 seeds its margins over the three baselines are 0.504, 1.032, and 2.965 reward per step at Holm-adjusted $p\leq0.0023$.
@@ -282,7 +282,7 @@ Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results 
 \label{fig:s-layouts}
 \end{figure}
 
-The transfer run of the main paper's Section 6.2, M92, also covered AXIOM's MLP variant in Env B. The stored network also holds a mixer left from an earlier training design. No current loss uses it and its input grows with the cluster, so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters. Before the plan was committed, six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly. Table~\ref{tab:s-transfer} adds CIs, reward, and collapses to the main paper's transfer table. In Env B the endpoint is per-gNB compliance, because cluster-level compliance, which needs all nineteen gNBs to comply at once, stays between 18\% and 36\% for every policy there. Here graph attention adds nothing measurable, since AXIOM transferred from seven gNBs keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\% CI [$-$2.23, 3.81] and $p=0.72$. On the fully-connected layout at nineteen gNBs, AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$.
+The transfer run of the main paper's Section 6.2 also covered AXIOM's MLP variant in Env B. The stored network also holds a mixer left from an earlier training design. No current loss uses it and its input grows with the cluster, so the loader copies every other parameter and AXIOM keeps its 7,782 execution parameters. Before the plan was committed, six stored evaluations were rerun through the same loader at their own size, and each reproduced exactly. Table~\ref{tab:s-transfer} adds CIs, reward, and collapses to the main paper's transfer table. In Env B the endpoint is per-gNB compliance, because cluster-level compliance, which needs all nineteen gNBs to comply at once, stays between 18\% and 36\% for every policy there. Here graph attention adds nothing measurable, since AXIOM transferred from seven gNBs keeps 0.80 points more per-gNB compliance than its MLP variant, with 95\% CI [$-$2.23, 3.81] and $p=0.72$. On the fully-connected layout at nineteen gNBs, AXIOM trained at that size makes exactly the static rule's decisions on every seed, so the transferred policy trails it by 0.10 reward per gNB, at $p=0.068$.
 
 \begin{table}[!htbp]
 \caption{Zero-shot transfer from seven gNBs on 15 paired seeds, reward per gNB per step and collapsed runs. The main paper's transfer table gives priority-slice compliance with 95\% CIs. The MLP variant moved from seven gNBs keeps 78.3\% per-gNB priority-slice compliance in Env B at nineteen gNBs, with 95\% CI [75.5, 80.7]}
@@ -386,7 +386,7 @@ Fig.~\ref{fig:s-decision} shows what AXIOM learned at seven gNBs on the ring lay
 \label{fig:s-decision}
 \end{figure}
 
-The distillation of the main paper's Section 6.3, M94, replays each stored checkpoint on its training and held-out streams, and the held-out replays reproduce the stored evaluations exactly. Each request gives four features, the gNB's URLLC queue, its congestion level, the requesting slice's PRB share, and the mean congestion of its neighbours. One tree per slice is fitted on training-stream decisions at the depth that 5-fold cross-validation selects, which was 3 for every target, and Table~\ref{tab:s-distil} gives the result. AXIOM rejected no URLLC request in any replay, and 34 of the 60 mMTC trees reject every request. The eMBB trees split first on the URLLC queue in 24 of 30 seeds at three gNBs, at a median of 0.21. At seven gNBs after 900 episodes they do so in 13 of 15 seeds, at a median of 0.28, against the tuned rule's 0.2.
+The distillation of the main paper's Section 6.3 replays each stored checkpoint on its training and held-out streams, and the held-out replays reproduce the stored evaluations exactly. Each request gives four features, the gNB's URLLC queue, its congestion level, the requesting slice's PRB share, and the mean congestion of its neighbours. One tree per slice is fitted on training-stream decisions at the depth that 5-fold cross-validation selects, which was 3 for every target, and Table~\ref{tab:s-distil} gives the result. AXIOM rejected no URLLC request in any replay, and 34 of the 60 mMTC trees reject every request. The eMBB trees split first on the URLLC queue in 24 of 30 seeds at three gNBs, at a median of 0.21. At seven gNBs after 900 episodes they do so in 13 of 15 seeds, at a median of 0.28, against the tuned rule's 0.2.
 
 \begin{table}[!htbp]
 \caption{AXIOM distilled into one decision tree per slice in Env B. Fidelity is the share of held-out decisions on which the trees agree with AXIOM, by tree depth. The last columns run the depth-3 trees as a rule, with 95\% CIs and Holm-adjusted $p$}
@@ -407,18 +407,18 @@ Checkpoints & Seeds & 1 & 2 & 3 & Difference & $p$ & Difference & $p$ \\
 \end{tabular}}
 \end{table}
 
-\section*{S8. Throughput and delay}
-Table~\ref{tab:s-kpi} lists throughput, the share of offered demand that is served, and delay, the mean backlog over the mean served PRBs in 5 s control periods, with the 95th percentile over steps and gNBs. This delay is a queueing proxy from the fluid model, not packet latency. Each re-run with a stored log reproduced it exactly, and the Env A accept-all rows, which have no stored log, are marked unchecked.
+\section*{S8. Throughput and normalised backlog}
+Table~\ref{tab:s-kpi} lists throughput, the share of offered demand that is served, and normalised backlog, the mean backlog over the mean PRBs served per 5 s control period, with the 95th percentile over steps and gNBs. It is a queueing proxy from the fluid model, not packet latency or delay. Each re-run with a stored log reproduced it exactly, and the Env A accept-all rows, which have no stored log, are marked unchecked.
 
 \begin{table}[!htbp]
-\caption{Served share of offered demand and backlog delay in control periods, mean and 95th percentile, per slice}
+\caption{Served share of offered demand and normalised backlog, mean and 95th percentile, per slice}
 \label{tab:s-kpi}
 \centering
 \scriptsize
 \setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{lcccccc}
 \toprule
-Policy & URLLC served & eMBB served & URLLC delay & p95 & eMBB delay & p95 \\
+Policy & URLLC served & eMBB served & URLLC backlog & p95 & eMBB backlog & p95 \\
 \midrule
 \multicolumn{7}{l}{Env A, three gNBs} \\
 AXIOM & 99.8\% & 99.7\% & 0.11 & 0.66 & 0.11 & 0.47 \\

@@ -185,7 +185,7 @@
  },
  {
   "label": "A3 vs single diff",
-  "snippet": "It earns 0.312 more than DQN-SA, with 95\\% CI",
+  "snippet": "Pooled, it earns 0.312 more than DQN-SA, with 95\\% CI",
   "computed": 0.3115119490909521,
   "formatted": "0.312",
   "in_tex": true,
@@ -284,7 +284,7 @@
  },
  {
   "label": "A3 MLP diff",
-  "snippet": "a per-node MLP encoder earns only 0.068 less reward per step than AXIOM at three gNBs, with 95\\% CI",
+  "snippet": "a per-node MLP encoder earns 0.068 less reward per step than AXIOM, with 95\\% CI",
   "computed": 0.06818928281928706,
   "formatted": "0.068",
   "in_tex": true,
@@ -300,7 +300,7 @@
  },
  {
   "label": "A3 static rule over AXIOM p_holm (pooled)",
-  "snippet": "a small gap that the added seeds make significant, at $p=0.040$",
+  "snippet": "Pooled, the static rule earns 0.101 more than AXIOM, with 95\\% CI [0.02, 0.21], at $p=0.040$",
   "computed": 0.04004379807224231,
   "formatted": "0.040",
   "in_tex": true,
@@ -308,7 +308,7 @@
  },
  {
   "label": "A3 MLP p_holm (pooled), main",
-  "snippet": "though on 60 seeds the paired test finds this gap significant, at Holm-adjusted $p=0.015$",
+  "snippet": "The paired test finds this gap significant only in the pooled sample, at Holm-adjusted $p=0.015$",
   "computed": 0.015179274075141927,
   "formatted": "0.015",
   "in_tex": true,
@@ -324,7 +324,7 @@
  },
  {
   "label": "A3 vs single on the first 30 seeds, Table 3 family",
-  "snippet": "On the first 30 seeds it was 0.311 and missed correction, at $p=0.066$",
+  "snippet": "AXIOM's lead over DQN-SA is 0.311 on the original seeds, at $p=0.066$",
   "computed": 0.06626798420475145,
   "formatted": "0.066",
   "in_tex": true,
@@ -332,18 +332,172 @@
  },
  {
   "label": "A3 vs single on the 30 added seeds alone, diff",
-  "snippet": "and the 30 added seeds alone give 0.312 at",
+  "snippet": "and 0.312 on the added seeds, at $p=0.051$",
   "computed": 0.31199419732364936,
   "formatted": "0.312",
   "in_tex": true,
   "ok": true
  },
  {
-  "label": "A3 vs single on the 30 added seeds alone, Holm p over the extended baselines",
-  "snippet": "and the 30 added seeds alone give 0.312 at $p=0.051$",
+  "label": "A3 vs single on the original seeds, diff",
+  "snippet": "AXIOM's lead over DQN-SA is 0.311 on the original seeds, at $p=0.066$",
+  "computed": 0.31102970085825493,
+  "formatted": "0.311",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 vs single on the added seeds alone, Holm p over the extended baselines",
+  "snippet": "and 0.312 on the added seeds, at $p=0.051$",
   "computed": 0.05106695833776365,
   "formatted": "0.051",
   "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 static rule lead on the original seeds",
+  "snippet": "The static rule's lead over AXIOM is 0.138 on the original seeds, at $p=0.16$",
+  "computed": 0.13780352053722028,
+  "formatted": "0.138",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 static rule lead on the original seeds, Holm p",
+  "snippet": "is 0.138 on the original seeds, at $p=0.16$",
+  "computed": 0.16142946236708333,
+  "formatted": "0.16",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 static rule lead on the added seeds",
+  "snippet": "and 0.064 on the added seeds, at $p=0.18$",
+  "computed": 0.0642103470477581,
+  "formatted": "0.064",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 static rule lead on the added seeds, Holm p",
+  "snippet": "and 0.064 on the added seeds, at $p=0.18$",
+  "computed": 0.18199024589344798,
+  "formatted": "0.18",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 MLP Holm p on the original seeds",
+  "snippet": "against $p=0.087$ on the original seeds and $p=0.18$ on the added seeds",
+  "computed": 0.08746577523342944,
+  "formatted": "0.087",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 MLP Holm p on the added seeds",
+  "snippet": "against $p=0.087$ on the original seeds and $p=0.18$ on the added seeds",
+  "computed": 0.18199024589344798,
+  "formatted": "0.18",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 sample-dependent verdicts: DQN-SA, static rule and MLP significant only pooled",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M108 A3 has 30 confirmation seeds per policy",
+  "snippet": null,
+  "computed": {
+   "axiom2": 30,
+   "axiom2_mlp": 30,
+   "rule_static": 30,
+   "single_agent_dqn": 30,
+   "independent_dqn": 30,
+   "mappo_tuned": 30
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "M108 A3 lead over DQN-SA",
+  "snippet": "On the confirmation seeds the lead is 0.521, at $p=0.0040$",
+  "computed": 0.5206237527515909,
+  "formatted": "0.521",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 A3 lead over DQN-SA, Holm p",
+  "snippet": "On the confirmation seeds the lead is 0.521, at $p=0.0040$",
+  "computed": 0.003973612574398523,
+  "formatted": "0.0040",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 A3 static rule lead",
+  "snippet": "On the confirmation seeds its lead is 0.019, at $p=0.33$",
+  "computed": 0.018855626501338325,
+  "formatted": "0.019",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 A3 static rule lead, Holm p",
+  "snippet": "On the confirmation seeds its lead is 0.019, at $p=0.33$",
+  "computed": 0.32698934959801507,
+  "formatted": "0.33",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 A3 lead over the MLP encoder",
+  "snippet": "On the confirmation seeds AXIOM leads the MLP encoder by 0.473, at $p=0.0062$",
+  "computed": 0.4734536760634661,
+  "formatted": "0.473",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 A3 lead over the MLP encoder, Holm p",
+  "snippet": "On the confirmation seeds AXIOM leads the MLP encoder by 0.473, at $p=0.0062$",
+  "computed": 0.006180163848721334,
+  "formatted": "0.0062",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 A7 ring lead over DQN-SA, reward",
+  "snippet": "with AXIOM ahead of DQN-SA by 1.94 reward per step and 11.8 points of compliance",
+  "computed": 1.9387956648707658,
+  "formatted": "1.94",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 A7 ring lead over DQN-SA, compliance",
+  "snippet": "with AXIOM ahead of DQN-SA by 1.94 reward per step and 11.8 points of compliance",
+  "computed": 11.77777777777778,
+  "formatted": "11.8",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 A7 ring both p < 0.001 on 30 seeds",
+  "snippet": null,
+  "computed": [
+   9.98377799987793e-07,
+   4.0999581814844626e-05
+  ],
+  "formatted": null,
+  "in_tex": null,
   "ok": true
  },
  {
@@ -861,6 +1015,102 @@
   "ok": true
  },
  {
+  "label": "H2 n3 neighbour rule reward gap, original seeds",
+  "snippet": "The reward gap is 0.209 on the original seeds, at $p=0.061$",
+  "computed": 0.20902110496286902,
+  "formatted": "0.209",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 neighbour rule reward gap, original seeds, Holm p",
+  "snippet": "The reward gap is 0.209 on the original seeds, at $p=0.061$",
+  "computed": 0.06056523136794567,
+  "formatted": "0.061",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 neighbour rule reward gap, added seeds",
+  "snippet": "0.261 on the added seeds, at $p=0.12$",
+  "computed": 0.26104823765294993,
+  "formatted": "0.261",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 neighbour rule reward gap, added seeds, Holm p",
+  "snippet": "0.261 on the added seeds, at $p=0.12$",
+  "computed": 0.11537585780024529,
+  "formatted": "0.12",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 compliance lead over the neighbour rule, original seeds",
+  "snippet": "The compliance lead is 1.6 points on the original seeds, at $p=0.032$",
+  "computed": 1.5622222222222204,
+  "formatted": "1.6",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 compliance lead over the neighbour rule, original seeds, Holm p",
+  "snippet": "is 1.6 points on the original seeds, at $p=0.032$",
+  "computed": 0.03220717548634079,
+  "formatted": "0.032",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 compliance lead over the neighbour rule, added seeds",
+  "snippet": "0.9 on the added seeds, at $p=0.15$",
+  "computed": 0.8677777777777778,
+  "formatted": "0.9",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 compliance lead over the neighbour rule, added seeds, Holm p",
+  "snippet": "0.9 on the added seeds, at $p=0.15$",
+  "computed": 0.15282812491418205,
+  "formatted": "0.15",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 B3 neighbour rule reward gap",
+  "snippet": "and 0.240 on the confirmation seeds, at $p=0.15$",
+  "computed": 0.23993796449457994,
+  "formatted": "0.240",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 B3 neighbour rule reward gap, Holm p",
+  "snippet": "and 0.240 on the confirmation seeds, at $p=0.15$",
+  "computed": 0.14648814871907234,
+  "formatted": "0.15",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 B3 compliance lead over the neighbour rule",
+  "snippet": "and 1.5 on the confirmation seeds, at $p=0.077$",
+  "computed": 1.529444444444444,
+  "formatted": "1.5",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "M108 B3 compliance lead over the neighbour rule, Holm p",
+  "snippet": "and 1.5 on the confirmation seeds, at $p=0.077$",
+  "computed": 0.07683683559298515,
+  "formatted": "0.077",
+  "in_tex": true,
+  "ok": true
+ },
+ {
   "label": "Fig. 1 budgets and shares match Table 2 and Section 3, and the figure has no bold or transparency",
   "snippet": null,
   "computed": null,
@@ -900,7 +1150,7 @@
  },
  {
   "label": "H3 ring diff",
-  "snippet": "keeps 1.12 and 0.95 more reward",
+  "snippet": "by 1.12 and 0.95 reward per step on the ring and hex layouts",
   "computed": 1.1237900872103694,
   "formatted": "1.12",
   "in_tex": true,
@@ -2268,7 +2518,7 @@
  },
  {
   "label": "reframe: main fresh Env B N=7 MLP lead",
-  "snippet": "On ten fresh ring-layout seeds, however, the MLP encoder led by 1.38 reward per step at $p=0.006$",
+  "snippet": "On ten fresh ring-layout seeds, however, the MLP encoder led AXIOM by 1.38 reward per step at $p=0.006$",
   "computed": 1.381149460855213,
   "formatted": "1.38",
   "in_tex": true,
@@ -2276,7 +2526,7 @@
  },
  {
   "label": "reframe: main fresh Env B N=7 MLP p",
-  "snippet": "On ten fresh ring-layout seeds, however, the MLP encoder led by 1.38 reward per step at $p=0.006$",
+  "snippet": "On ten fresh ring-layout seeds, however, the MLP encoder led AXIOM by 1.38 reward per step at $p=0.006$",
   "computed": 0.005859375,
   "formatted": "0.006",
   "in_tex": true,
@@ -2613,7 +2863,7 @@
  },
  {
   "label": "reframe: smallest DP epsilon about 2,600",
-  "snippet": "$\\varepsilon$ of about 2{,}600 or more",
+  "snippet": "its $\\varepsilon$ is about 2{,}600 or more",
   "computed": 2600.0,
   "formatted": "2600",
   "in_tex": true,
@@ -4799,19 +5049,23 @@
   "ok": true
  },
  {
-  "label": "abstract: URLLC delay ratio low",
-  "snippet": "with a URLLC backlog delay 7 to 44 times shorter than the learned baselines",
-  "computed": 7.0177495329612025,
-  "formatted": "7",
-  "in_tex": true,
+  "label": "abstract: URLLC backlog ratio is still 7 to 44 and is no longer quoted as a delay",
+  "snippet": null,
+  "computed": [
+   43.9277192431859,
+   9.234438016848825,
+   7.0177495329612025
+  ],
+  "formatted": null,
+  "in_tex": null,
   "ok": true
  },
  {
-  "label": "abstract: URLLC delay ratio high",
-  "snippet": "with a URLLC backlog delay 7 to 44 times shorter than the learned baselines",
-  "computed": 43.9277192431859,
-  "formatted": "44",
-  "in_tex": true,
+  "label": "abstract: no delay claim, MAPPO parameters beside the DQNs",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
   "ok": true
  },
  {
@@ -6023,7 +6277,7 @@
     96.59222222222222,
     96.28
    ],
-   246
+   249
   ],
   "formatted": null,
   "in_tex": null,
@@ -7894,9 +8148,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 674",
+  "label": "text quotes the final check count of 704",
   "snippet": null,
-  "computed": 674,
+  "computed": 704,
   "formatted": null,
   "in_tex": null,
   "ok": true

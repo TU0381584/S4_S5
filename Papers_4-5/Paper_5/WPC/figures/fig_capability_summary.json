@@ -444,30 +444,30 @@
    }
   ],
   [
-   "Private training",
+   "Federated training\ntested",
    {
     "axiom2": [
      "yes",
      "FedAvg"
     ],
     "mappo_tuned": [
-     "no",
-     "pooled"
+     "none",
+     "not tested"
     ],
     "single_agent_dqn": [
-     "no",
-     "pooled"
+     "none",
+     "not tested"
     ],
     "independent_dqn": [
-     "yes",
-     "local"
+     "none",
+     "not tested"
     ],
     "rule_static": [
-     "yes",
+     "none",
      "no model"
     ],
     "rule_local": [
-     "yes",
+     "none",
      "no model"
     ]
    }

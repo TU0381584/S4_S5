@@ -190,11 +190,13 @@ def table(d):
         else:
             s[a] = ["no", sgn(st[a]["mean"]) + "/step"]
     f = d["fed_cost"]
-    v = {"axiom2": ["yes" if f["p"] >= 0.05 else "half", "FedAvg"], "mappo_tuned": ["no", "pooled"],
-         "single_agent_dqn": ["no", "pooled"], "independent_dqn": ["yes", "local"],
-         "rule_static": ["yes", "no model"], "rule_local": ["yes", "no model"]}
+    # 2026-11-15: the row states only what was tested. DP noise gave no meaningful guarantee (epsilon >= 2,600), so no
+    # cell claims privacy; only AXIOM's federated variant was run.
+    v = {"axiom2": ["yes" if f["p"] >= 0.05 else "half", "FedAvg"], "mappo_tuned": ["none", "not tested"],
+         "single_agent_dqn": ["none", "not tested"], "independent_dqn": ["none", "not tested"],
+         "rule_static": ["none", "no model"], "rule_local": ["none", "no model"]}
     return [["Transfers without\nretraining", t], ["Beats tuned rule\npast its load", p], ["Best under\nsteady load", s],
-            ["Private training", v]]
+            ["Federated training\ntested", v]]
 
 
 # ------------------------------------------------------------------ drawing
@@ -266,7 +268,7 @@ def draw(d, rows):
     ax.set_xscale("log"); ax.set_xlim(5e-3, 100)
     ax.set_xticks([0.01, 1, 100]); ax.set_xticklabels(["0.01", "1", "100"]); ax.xaxis.set_minor_formatter(mpl.ticker.NullFormatter())
     ax.axvline(DELAY_OK, **dash)
-    ax.set_xlabel("URLLC delay\n(control periods)")
+    ax.set_xlabel("URLLC normalised\nbacklog")
 
     ax, P = axs[2], d["params"]
     for a in LEARNED:

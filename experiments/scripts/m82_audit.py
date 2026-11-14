@@ -71,7 +71,7 @@ def run(C):
            and "Slice parameter & URLLC & eMBB & mMTC" in C.main
            and "Floor and cap, PRB ratio & 5 to 33 & 10 to 66 & 5 to 11" in C.main and "Priority weight $\\omega_k$ & 12.0 & 3.5 & 0.3" in C.main
            and "Violation penalty $\\lambda_k$ & 10.0 & 5.0 & 2.5" in C.main and "Per-accept reward $R_k$ & 1.0 & 1.0 & 1.0" in C.main
-           and "Latency budget (ms) & 15 & 45 & 65" in C.main and "Loss budget (\\%) & 0.8 & 2.0 & 3.5" in C.main, None)
+           and "Nominal latency target (ms) & 15 & 45 & 65" in C.main and "Nominal loss target (\\%) & 0.8 & 2.0 & 3.5" in C.main, None)
     C.note("M82 Table 2 reward, episode, arrival and gate rows match the configuration",
            cfg["reward"]["congestion_coeff"] == 1.5 and cfg["reward"]["lb_coeff"] == 1.0
            and cfg["episode"]["steps_per_episode"] == 60 and cfg["episode"]["step_seconds"] == 5.0
@@ -365,7 +365,7 @@ def run(C):
            f"{t19['diff']:.2f}" == "0.31" and t19["ties"] == 7 and t19["n"] == 12
            and f"{f7['diff']:.2f}" == "1.38" and f"{f7['p']:.3f}" == "0.006"
            and "0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied" in C.tex
-           and "the MLP encoder led by 1.38 reward per step at $p=0.006$" in C.main, (t19, f7))
+           and "the MLP encoder led AXIOM by 1.38 reward per step at $p=0.006$" in C.main, (t19, f7))
     brep = {a: seeds_of("m64/n3_replication", a, REP) for a in ARMS}
     wr = [paired(brep["axiom2"], brep[b])["wins"] for b in ARMS[1:]]
     C.note("M82 OR1 Env B replication: AXIOM wins 7 or 8 of 10 against each", sorted(set(wr)) in ([7, 8], [7], [8])
@@ -466,7 +466,7 @@ def run(C):
     m77s = open(f"{SC}/m77_kpi.py").read() if os.path.exists(f"{SC}/m77_kpi.py") else ""
     C.note("M82 OR1 delay definition: mean backlog over mean served PRBs, 95th percentile over steps and gNBs",
            '"delay_steps": float(bl.mean() / sv.mean())' in m77s and '"delay_steps_p95": float(np.percentile(ratio, 95))' in m77s
-           and "the mean backlog over the mean served PRBs in 5 s control periods, with the 95th percentile over steps and gNBs" in C.tex, None)
+           and "the mean backlog over the mean PRBs served per 5 s control period, with the 95th percentile over steps and gNBs" in C.tex, None)
 
 
     # ---------------- Online Resource 1, Section S9: the reproducibility figure against this machine and its packages

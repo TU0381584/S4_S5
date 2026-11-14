@@ -41,7 +41,7 @@ dci(cr, fr, REP, "federation replication", "$+0.968$, with 95\\% CI ")
 pr = [100 * 0.5 * (r["sla"]["urllc"] + r["sla"]["embb"]) for t in ("fully_connected", "ring", "hex") for r in rows(f"m65_scaling/n19_{t}", "axiom2", S30_19).values()]
 lo, hi = boot_ci(pr)
 out.append(("97.4\\% with 95\\% CI ", f"[{lo:.1f}\\%, {hi:.1f}\\%]", "N19 pooled"))
-dci(A["heuristic"], A["axiom2"], S30, "A3 static over AXIOM", "The static rule earns 0.101 more than AXIOM, with 95\\% CI ")   # M107 pooled verdict
+dci(A["heuristic"], A["axiom2"], S30, "A3 static over AXIOM", "Pooled, the static rule earns 0.101 more than AXIOM, with 95\\% CI ")   # M107 pooled verdict
 p37 = [100 * 0.5 * (r["sla"]["urllc"] + r["sla"]["embb"]) for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for r in rows(f"m73/A_n37_{t}", "axiom2", ss).values()]
 lo, hi = boot_ci(p37)
 out.append(("94.9\\% with 95\\% CI ", f"[{lo:.1f}\\%, {hi:.1f}\\%]", "N37 pooled"))
