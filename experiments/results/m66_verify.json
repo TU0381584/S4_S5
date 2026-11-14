@@ -299,6 +299,54 @@
   "ok": true
  },
  {
+  "label": "A3 static rule over AXIOM p_holm (pooled)",
+  "snippet": "a small gap that the added seeds make significant, at $p=0.040$",
+  "computed": 0.04004379807224231,
+  "formatted": "0.040",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 MLP p_holm (pooled), main",
+  "snippet": "though on 60 seeds the paired test finds this gap significant, at Holm-adjusted $p=0.015$",
+  "computed": 0.015179274075141927,
+  "formatted": "0.015",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 MLP p_holm (pooled), supplement",
+  "snippet": "a gap that only the paired test on 60 seeds finds significant, at Holm-adjusted $p=0.015$",
+  "computed": 0.015179274075141927,
+  "formatted": "0.015",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 vs single on the first 30 seeds, Table 3 family",
+  "snippet": "On the first 30 seeds it was 0.311 and missed correction, at $p=0.066$",
+  "computed": 0.06626798420475145,
+  "formatted": "0.066",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 vs single on the 30 added seeds alone, diff",
+  "snippet": "and the 30 added seeds alone give 0.312 at",
+  "computed": 0.31199419732364936,
+  "formatted": "0.312",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "A3 vs single on the 30 added seeds alone, Holm p over the extended baselines",
+  "snippet": "and the 30 added seeds alone give 0.312 at $p=0.051$",
+  "computed": 0.05106695833776365,
+  "formatted": "0.051",
+  "in_tex": true,
+  "ok": true
+ },
+ {
   "label": "N19 ring AXIOM over MLP",
   "snippet": "It earns 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied",
   "computed": 0.3119349026470874,
@@ -776,6 +824,46 @@
   "label": "H2 n3 rule_local reward p_holm < 0.0001",
   "snippet": null,
   "computed": 4.4777189429037476e-08,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 neighbour rule reward lead",
+  "snippet": "The tuned neighbour-aware rule also out-earns AXIOM, by 0.235 per step",
+  "computed": 0.23503467130790948,
+  "formatted": "0.235",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 neighbour rule reward p_holm",
+  "snippet": "by 0.235 per step at $p=0.012$",
+  "computed": 0.012069843140311011,
+  "formatted": "0.012",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 AXIOM compliance lead over the neighbour rule",
+  "snippet": "while AXIOM keeps 1.2 points more priority-slice compliance than it",
+  "computed": 1.214999999999999,
+  "formatted": "1.2",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "H2 n3 AXIOM compliance lead over the neighbour rule p_holm",
+  "snippet": "priority-slice compliance than it, at $p=0.012$",
+  "computed": 0.012069843140311011,
+  "formatted": "0.012",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "Fig. 1 budgets and shares match Table 2 and Section 3, and the figure has no bold or transparency",
+  "snippet": null,
+  "computed": null,
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -5935,7 +6023,7 @@
     96.59222222222222,
     96.28
    ],
-   243
+   246
   ],
   "formatted": null,
   "in_tex": null,
@@ -7806,9 +7894,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 663",
+  "label": "text quotes the final check count of 674",
   "snippet": null,
-  "computed": 663,
+  "computed": 674,
   "formatted": null,
   "in_tex": null,
   "ok": true

@@ -212,3 +212,12 @@ The author asked for strict adherence to the WPC guidelines and chose to apply e
 - Figs. 2, 3 and 4 were redrawn to fit 119 mm at natural size, so their lettering is no longer scaled below 8 pt.
 - m93 is now seeded, because rliable ignored its random_state. OR1's rliable intervals and ESM_2 moved by at most 0.01 at the printed digit, and every point estimate is unchanged.
 - Verifier 663/663 with --supp, m82 57/57, CI recompute 19 + 2 same. Main 29 pp, OR1 10 pp. The submission package was rebuilt, and no figure file holds a raster image.
+
+## Stale-content, style and compliance audit (2026-11-15)
+
+The author asked for a check of both documents for stale results and text, a rewording of AI-sounding text in the voice of their IEEE Access review, a full reverification, and strict WPC compliance. Details are in docs/PAPER5_CHANGELOG.md, AM.1 to AM.5.
+
+- Stale items fixed. The Introduction now says attention "adds little", since the pooled samples make the MLP gap significant. The transfer study is described as using the 15 original seven-gNB seeds. OR1 S9 now lists the seed extension, its script and its parallelism, and the swap is 8 GiB, not 23 GiB. Fig. 1's caption no longer cites Table 2 ahead of Table 1.
+- Fig. 1 now meets WPC limits at 118.8 mm wide, with no bold, no transparency and a vector EPS. Its labels use the paper's own terms.
+- Style. "Rather than" was cut from 15 uses to 4 and "therefore" removed from main prose. Stock phrases were replaced, overlong sentences split, and the pre-registration caveat is stated once.
+- Six prose values that no check covered are now checked, and all recompute equal. Verifier 674/674 with --supp, m82 57/57, CI recompute 21 + 2 same. Five extension runs retrained from scratch reproduce exactly, and every figure regenerates pixel-identical.

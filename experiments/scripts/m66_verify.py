@@ -612,6 +612,19 @@ def main():
            and "AXIOM never collapses and comes closer to the static rule's reward than any other learner" in C.main, None)
     C.claim("A3 MLP diff", "a per-node MLP encoder earns only 0.068 less reward per step than AXIOM at three gNBs, with 95\\% CI", fam["axiom2_mlp"]["diff"], "{:.3f}")
     C.claim("A3 MLP diff in the supplement", "In Env A AXIOM earns 0.068 more reward per step than the MLP variant at three gNBs", fam["axiom2_mlp"]["diff"], "{:.3f}")
+    # 2026-11-15 coverage audit: p values of the Table 3 family quoted in prose that no check matched before
+    C.claim("A3 static rule over AXIOM p_holm (pooled)", "a small gap that the added seeds make significant, at $p=0.040$", h["heuristic"], "{:.3f}")
+    C.claim("A3 MLP p_holm (pooled), main", "though on 60 seeds the paired test finds this gap significant, at Holm-adjusted $p=0.015$", h["axiom2_mlp"], "{:.3f}")
+    C.claim("A3 MLP p_holm (pooled), supplement", "a gap that only the paired test on 60 seeds finds significant, at Holm-adjusted $p=0.015$", h["axiom2_mlp"], "{:.3f}")
+    first_ = {b: paired({k: v for k, v in A["axiom2"].items() if k < 11000}, {k: v for k, v in A[b].items() if k < 11000}) for b in fam}
+    C.claim("A3 vs single on the first 30 seeds, Table 3 family", "On the first 30 seeds it was 0.311 and missed correction, at $p=0.066$",
+            holm({k: v["p"] for k, v in first_.items()})["single_agent_dqn"], "{:.3f}")
+    # the added seeds alone: Holm over the five baselines the extension re-ran (the two learning-rate variants were not extended)
+    added_ = {b: paired({k: v for k, v in A["axiom2"].items() if k >= 11000}, {k: v for k, v in A[b].items() if k >= 11000})
+              for b in ("axiom2_mlp", "heuristic", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
+    C.claim("A3 vs single on the 30 added seeds alone, diff", "and the 30 added seeds alone give 0.312 at", added_["single_agent_dqn"]["diff"], "{:.3f}")
+    C.claim("A3 vs single on the 30 added seeds alone, Holm p over the extended baselines", "and the 30 added seeds alone give 0.312 at $p=0.051$",
+            holm({k: v["p"] for k, v in added_.items()})["single_agent_dqn"], "{:.3f}")
     ax19m_ = seeds_of("m65_scaling/n19_ring", "axiom2", range(900, 912)); ml19_ = seeds_of("m65_scaling_mlp/n19_ring", "axiom2_mlp", range(900, 912))
     d19m_ = paired(ax19m_, ml19_)
     C.claim("N19 ring AXIOM over MLP", "It earns 0.31 more at nineteen gNBs on the ring layout, with 7 of 12 seeds tied", d19m_["diff"], "{:.2f}")
@@ -705,6 +718,18 @@ def main():
     C.note("H2 n3 learned leads all p_holm < 0.0001", all(hB[f"{b}|{m}"] < 1e-4 for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned") for m in "rs"),
            {k: v for k, v in hB.items()})
     C.note("H2 n3 rule_local reward p_holm < 0.0001", hB["rule_local|r"] < 1e-4, hB["rule_local|r"])
+    # 2026-11-15 coverage audit: the neighbour-aware rule sentence of Section 6.4
+    C.claim("H2 n3 neighbour rule reward lead", "The tuned neighbour-aware rule also out-earns AXIOM, by 0.235 per step", -famB["rule_neighbour|r"]["diff"], "{:.3f}")
+    C.claim("H2 n3 neighbour rule reward p_holm", "by 0.235 per step at $p=0.012$", hB["rule_neighbour|r"], "{:.3f}")
+    C.claim("H2 n3 AXIOM compliance lead over the neighbour rule", "while AXIOM keeps 1.2 points more priority-slice compliance than it", 100 * famB["rule_neighbour|s"]["diff"], "{:.1f}")
+    C.claim("H2 n3 AXIOM compliance lead over the neighbour rule p_holm", "priority-slice compliance than it, at $p=0.012$", hB["rule_neighbour|s"], "{:.3f}")
+    # Fig. 1 (figures/fig1_axiom.tex) prints the slice budgets and PRB shares; they must match Table 2 and Section 3
+    f1_ = open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig1_axiom.tex").read()
+    C.note("Fig. 1 budgets and shares match Table 2 and Section 3, and the figure has no bold or transparency",
+           all(x in f1_ for x in ("{15\\,ms, 0.8\\,\\% loss}", "{45\\,ms, 2.0\\,\\% loss}", "{65\\,ms, 3.5\\,\\% loss}", "{PRB share 30/60/10, $B=100$}"))
+           and "Latency budget (ms) & 15 & 45 & 65" in C.main and "Loss budget (\\%) & 0.8 & 2.0 & 3.5" in C.main
+           and "The nominal shares are 30, 60, and 10 PRBs for URLLC, eMBB, and mMTC" in C.main and "budget of $B{=}100$ PRBs" in C.main
+           and "opacity" not in f1_ and "bfseries" not in f1_, None)
 
     # ---------------- Env B, N=7 and H3
     for t in ("ring", "hex"):
@@ -2457,7 +2482,7 @@ def main():
            and f"{min(v_['diff'] for v_ in tDg_.values()):.1f}" == "6.9" and f"{max(v_['diff'] for v_ in tDg_.values()):.1f}" == "11.1"
            and max(list(hDr_.values()) + list(hDg_.values())) <= 0.011
            and f"{float(np.mean([r['pergnb'] for r in d19_['axiom2'].values()])):.1f}" == "76.9"
-           and "AXIOM earned 5.90 to 22.00 more reward per step than each learned baseline and kept 6.9 to 11.1 points more per-gNB priority-slice compliance, at Holm-adjusted $p\\leq0.011$, keeping 76.9\\%" in C.tex,
+           and "AXIOM kept 76.9\\% per-gNB priority-slice compliance. It earned 5.90 to 22.00 more reward per step than each learned baseline and kept 6.9 to 11.1 points more per-gNB priority-slice compliance, at Holm-adjusted $p\\leq0.011$" in C.tex,
            {"reward": tDr_, "pergnb": tDg_})
     C.note("M80 D static rule +0.87 and tied in 13 of 15; carried rule wins all 15 by 3.33; DQN-SA collapses 15 of 15; all four checks hold",
            st19_["diff"] > 0 and f"{st19_['diff']:.2f}" == "0.87" and st19_["ties"] == 13 and lt19_["wins"] == 15 and f"{lt19_['diff']:.2f}" == "3.33"
@@ -3037,7 +3062,7 @@ def main():
            len(lv_) == 9 and {v_[0] for v_ in lv_.values()} == {"embb", "urllc", "mmtc"} and all(v_[2] == 0 and v_[3] > 2000 for v_ in lv_.values())
            and all(0.999 <= v_[1] <= 1.005 for v_ in lv_.values())
            and "with 0.000\\% loss at one and at two UEs per slice" in C.main
-           and "A capacity probe showed every slice served at essentially 100\\% of offered demand" in C.tex,
+           and "A capacity probe showed every slice served at about 100\\% of offered demand" in C.tex,
            {k_: (v_[0], round(100 * v_[1], 2), v_[2], v_[3]) for k_, v_ in lv_.items()})
     C.note("M94 trees: depth chosen by 5-fold cross-validation, 3 for every target",
            "KFold(5, shuffle=True, random_state=0)" in open(f"{ROOT}/../scripts/m94_distil.py").read()

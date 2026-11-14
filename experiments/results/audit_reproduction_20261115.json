@@ -1,0 +1,95 @@
+{
+ "note": "Five stored M107 seed-extension runs retrained from scratch in fresh processes on 2026-11-15 with their launch commands from experiments/logs/m107/phase1.txt (OMP/MKL/OPENBLAS threads 1, M63_BACKLOG_RESET=1, M64_AXIOM_V2=1). Four drawn with random.Random(20261114).sample over every learned job except the unseeded DQN-SA, and one AXIOM job added with random.Random(20261115).choice over the AXIOM jobs because the first draw held none. Compared on reward, blocks, mMTC blocks and the SHA-256 of the full decompressed evaluation log.",
+ "runs": [
+  {
+   "cell": "A_n19_fully_connected",
+   "arm": "axiom2",
+   "seed": 11017,
+   "stored_reward": 91.002168677068,
+   "rerun_reward": 91.002168677068,
+   "blocks": [
+    21983,
+    21983
+   ],
+   "mmtc_blocks": [
+    21983,
+    21983
+   ],
+   "eval_log_sha256_equal": true,
+   "eval_log_bytes": 27220919,
+   "identical": true
+  },
+  {
+   "cell": "A_n19_ring",
+   "arm": "independent_dqn",
+   "seed": 11006,
+   "stored_reward": 73.18445638674241,
+   "rerun_reward": 73.18445638674241,
+   "blocks": [
+    3094,
+    3094
+   ],
+   "mmtc_blocks": [
+    2463,
+    2463
+   ],
+   "eval_log_sha256_equal": true,
+   "eval_log_bytes": 23046583,
+   "identical": true
+  },
+  {
+   "cell": "A_n37_hex",
+   "arm": "mappo_tuned",
+   "seed": 11005,
+   "stored_reward": 128.1391560218732,
+   "rerun_reward": 128.1391560218732,
+   "blocks": [
+    50088,
+    50088
+   ],
+   "mmtc_blocks": [
+    25558,
+    25558
+   ],
+   "eval_log_sha256_equal": true,
+   "eval_log_bytes": 30096548,
+   "identical": true
+  },
+  {
+   "cell": "B_n3",
+   "arm": "independent_dqn",
+   "seed": 11011,
+   "stored_reward": 7.095796740972081,
+   "rerun_reward": 7.095796740972081,
+   "blocks": [
+    4787,
+    4787
+   ],
+   "mmtc_blocks": [
+    3387,
+    3387
+   ],
+   "eval_log_sha256_equal": true,
+   "eval_log_bytes": 8043812,
+   "identical": true
+  },
+  {
+   "cell": "B_n3",
+   "arm": "mappo_tuned",
+   "seed": 11016,
+   "stored_reward": 8.056959437554125,
+   "rerun_reward": 8.056959437554125,
+   "blocks": [
+    4283,
+    4283
+   ],
+   "mmtc_blocks": [
+    2414,
+    2414
+   ],
+   "eval_log_sha256_equal": true,
+   "eval_log_bytes": 7960907,
+   "identical": true
+  }
+ ]
+}

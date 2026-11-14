@@ -493,19 +493,25 @@ def run(C):
     C.note("M82 OR1 Fig. S7 step details match the launch records, scripts and specification",
            "export OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 M63_BACKLOG_RESET=1 M64_AXIOM_V2=1" in runcmd
            and "cd /home/kmanojp/oranslice_rig/framework" in runcmd and "xargs -0 -P 5" in chain
-           and "5000 + seed, 50 episodes" in open(f"{SC}/m77_kpi.py").read() and "23 GiB" in spec
+           and "5000 + seed, 50 episodes" in open(f"{SC}/m77_kpi.py").read()
+           # swap: the 2026-09-03 spec recorded 23 GiB; /swap.img was recreated at 8 GiB on 2026-09-08, before every reported campaign (2026-11-15)
+           and abs(sum(int(l_.split()[2]) for l_ in open("/proc/swaps").read().splitlines()[1:]) / 2**20 - 8) < 0.1
            and (prim_train("m64/n3_fully_connected", "mappo_tuned"), med_train("m73/A_n37_hex", "independent_dqn")) == (73, 2088)
            and "ORANSlice.gnb.sa.band78.fr1.106PRB.usrpx310.conf --sa --rfsim" in rrs and "ip netns exec ue2ns ./nr-uesoftmodem" in rrs
-           and "docker_open5gs/5g-sa-deploy-slicing.yaml" in spec and "listen port 6600, gNB-side port 6655" in spec and "iperf3" in spec and "Drive iperf3 UDP traffic on every slice" in C.tex
+           and "docker_open5gs/5g-sa-deploy-slicing.yaml" in spec and "listen port 6600, gNB-side port 6655" in spec and "iperf3" in spec and "It drives iperf3 UDP traffic on every slice" in C.tex
            and "health-checking the rig before every batch" in lea and "full stack restart if unhealthy" in lea
            and 'ap.add_argument("mode", choices=["eval", "retune"])' in open(f"{SC}/m72_shift.py").read()
            and all(ex(f"{SC}/{x}") for x in ("m62_shared_env.py", "m3_run_experiment.py", "m4_run_experiment.py", "m70_run.py", "m75_run.py", "m76_run.py",
                                              "m63_validation_screen.py", "m81_decision_probe.py", "m64_analysis.py", "m62_analysis.py", "m66_v1v2.py", "m82_audit.py"))
            and ex("/home/kmanojp/oranslice_rig/experiments/plots/paper5_cvd_check.py")
-           and "Every job runs from \\texttt{framework/} on one thread" in C.tex and "the main campaigns ran five jobs at a time" in C.tex
-           and "evaluated for 50 episodes on the held-out stream 5000 plus the seed" in C.tex and "8 GB of memory, 7.4 GiB usable, with 23 GiB of swap" in C.tex
+           and "Every job runs from \\texttt{framework/} on one thread" in C.tex and "the main campaigns ran five jobs at a time and the seed extension six" in C.tex
+           and "xargs -0 -P6" in open("/home/kmanojp/oranslice_rig/experiments/logs/m107/run_all.sh").read()
+           and "evaluated for 50 episodes on the held-out stream 5000 plus the seed" in C.tex and "8 GB of memory, 7.4 GiB usable, with 8 GiB of swap" in C.tex
            and "The median training time per seed runs from 73 s to 2{,}088 s" in C.tex
-           and "the replication 1000 to 1009, the pilots 2000 to 2009, and the fresh seeds 3000 onwards" in C.tex
+           and "the replication 1000 to 1009, the pilots 2000 to 2009, the fresh seeds 3000 onwards, and the seed extension 11000 onwards" in C.tex
+           and os.path.isdir("/home/kmanojp/oranslice_rig/experiments/results/m107/A_n3/axiom2/seed11000")
+           and "\\texttt{m70\\_run.py} to \\texttt{m97} add the follow-up runs, and \\texttt{m107\\_run.py} adds the seed extension" in C.tex
+           and os.path.exists(f"{SC}/m107_run.py")
            and "with noise multipliers 0, 0.5, 1, 2, and 4" in C.tex and "on ports 6600 and 6655" in C.tex, None)
     C.note("M82 OR1 Fig. S7 names scripts that exist and do what it says", os.path.exists("/home/kmanojp/oranslice_rig/experiments/plots/paper5_regen_wpc_figures.sh")
            and os.path.exists("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/make_submission.py")
