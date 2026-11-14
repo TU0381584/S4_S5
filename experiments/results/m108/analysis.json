@@ -1,0 +1,1126 @@
+{
+ "families": {
+  "A3": {
+   "m108": {
+    "reward": {
+     "single_agent_dqn": {
+      "n": 30,
+      "diff": 0.5206237527515909,
+      "wins": 16,
+      "ties": 10,
+      "losses": 4,
+      "p": 0.0013245375247995077,
+      "ci": [
+       0.2454111513825895,
+       0.8449209514539233
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.003973612574398523,
+      "verdict": "AXIOM ahead"
+     },
+     "independent_dqn": {
+      "n": 30,
+      "diff": 0.9391291186378278,
+      "wins": 29,
+      "ties": 1,
+      "losses": 0,
+      "p": 2.5630832507250074e-06,
+      "ci": [
+       0.6831539363709566,
+       1.2110443878197186
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.025233300290003e-05,
+      "verdict": "AXIOM ahead"
+     },
+     "mappo_tuned": {
+      "n": 30,
+      "diff": 2.8921766482220383,
+      "wins": 29,
+      "ties": 0,
+      "losses": 1,
+      "p": 5.587935447692871e-09,
+      "ci": [
+       2.0312963842500675,
+       3.8327581541462887
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 2.7939677238464355e-08,
+      "verdict": "AXIOM ahead"
+     },
+     "axiom2_mlp": {
+      "n": 30,
+      "diff": 0.4734536760634661,
+      "wins": 14,
+      "ties": 13,
+      "losses": 3,
+      "p": 0.003090081924360667,
+      "ci": [
+       0.17593720081841624,
+       0.8542004935037607
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.006180163848721334,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_static": {
+      "n": 30,
+      "diff": -0.018855626501338325,
+      "wins": 3,
+      "ties": 22,
+      "losses": 5,
+      "p": 0.32698934959801507,
+      "ci": [
+       -0.05845664053479886,
+       0.011338265679792929
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.32698934959801507,
+      "verdict": "within chance"
+     }
+    },
+    "compliance": {
+     "single_agent_dqn": {
+      "n": 30,
+      "diff": 4.111666666666666,
+      "wins": 13,
+      "ties": 15,
+      "losses": 2,
+      "p": 0.0012063162374292998,
+      "ci": [
+       1.768861111111111,
+       6.865555555555553
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.004351020505067238,
+      "verdict": "AXIOM ahead"
+     },
+     "independent_dqn": {
+      "n": 30,
+      "diff": 4.195555555555554,
+      "wins": 15,
+      "ties": 13,
+      "losses": 2,
+      "p": 0.0010877551262668094,
+      "ci": [
+       1.9682638888888893,
+       6.621708333333331
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.004351020505067238,
+      "verdict": "AXIOM ahead"
+     },
+     "mappo_tuned": {
+      "n": 30,
+      "diff": 19.987222222222222,
+      "wins": 29,
+      "ties": 0,
+      "losses": 1,
+      "p": 1.30385160446167e-08,
+      "ci": [
+       14.28438888888889,
+       25.752819444444448
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 6.51925802230835e-08,
+      "verdict": "AXIOM ahead"
+     },
+     "axiom2_mlp": {
+      "n": 30,
+      "diff": 3.223333333333334,
+      "wins": 10,
+      "ties": 17,
+      "losses": 3,
+      "p": 0.015906444101703374,
+      "ci": [
+       0.9049166666666669,
+       6.23847222222222
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.03181288820340675,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_static": {
+      "n": 30,
+      "diff": -0.125,
+      "wins": 0,
+      "ties": 26,
+      "losses": 4,
+      "p": 0.06788915486182899,
+      "ci": [
+       -0.3483472222222223,
+       -0.00277777777777762
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.06788915486182899,
+      "verdict": "within chance"
+     }
+    }
+   },
+   "all": {
+    "reward": {
+     "single_agent_dqn": {
+      "n": 90,
+      "diff": 0.3812158836444984,
+      "wins": 47,
+      "ties": 26,
+      "losses": 17,
+      "p": 3.696540602879841e-06,
+      "ci": [
+       0.2095000721022829,
+       0.5676767711119997
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.1089621808639523e-05,
+      "verdict": "AXIOM ahead"
+     },
+     "independent_dqn": {
+      "n": 90,
+      "diff": 1.020538778242365,
+      "wins": 85,
+      "ties": 1,
+      "losses": 4,
+      "p": 1.0380826542336431e-13,
+      "ci": [
+       0.7969540132020485,
+       1.2500578495716426
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 4.1523306169345724e-13,
+      "verdict": "AXIOM ahead"
+     },
+     "mappo_tuned": {
+      "n": 90,
+      "diff": 2.618988595443893,
+      "wins": 87,
+      "ties": 1,
+      "losses": 2,
+      "p": 5.55236910340442e-16,
+      "ci": [
+       2.205227451461463,
+       3.0485345577240457
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 2.77618455170221e-15,
+      "verdict": "AXIOM ahead"
+     },
+     "axiom2_mlp": {
+      "n": 90,
+      "diff": 0.2032774139006801,
+      "wins": 41,
+      "ties": 38,
+      "losses": 11,
+      "p": 9.003988256227892e-05,
+      "ci": [
+       0.06413883290031887,
+       0.3561348802322776
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.00018007976512455785,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_static": {
+      "n": 90,
+      "diff": -0.0736231646954389,
+      "wins": 8,
+      "ties": 62,
+      "losses": 20,
+      "p": 0.02277772703207994,
+      "ci": [
+       -0.1462015309326989,
+       -0.01725118931979793
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.02277772703207994,
+      "verdict": "AXIOM behind"
+     }
+    },
+    "compliance": {
+     "single_agent_dqn": {
+      "n": 90,
+      "diff": 2.6568518518518514,
+      "wins": 34,
+      "ties": 48,
+      "losses": 8,
+      "p": 5.977043984610292e-05,
+      "ci": [
+       1.1871620370370366,
+       4.2570694444444435
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.00017931131953830877,
+      "verdict": "AXIOM ahead"
+     },
+     "independent_dqn": {
+      "n": 90,
+      "diff": 4.749259259259257,
+      "wins": 51,
+      "ties": 32,
+      "losses": 7,
+      "p": 1.2360481707972716e-07,
+      "ci": [
+       2.850337962962962,
+       6.711300925925926
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 4.944192683189086e-07,
+      "verdict": "AXIOM ahead"
+     },
+     "mappo_tuned": {
+      "n": 90,
+      "diff": 19.512962962962963,
+      "wins": 85,
+      "ties": 3,
+      "losses": 2,
+      "p": 2.9394368881085297e-15,
+      "ci": [
+       16.22368518518519,
+       22.822875
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.469718444054265e-14,
+      "verdict": "AXIOM ahead"
+     },
+     "axiom2_mlp": {
+      "n": 90,
+      "diff": 0.9831481481481481,
+      "wins": 27,
+      "ties": 55,
+      "losses": 8,
+      "p": 0.004841395340011627,
+      "ci": [
+       -0.18741203703703785,
+       2.2215
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.004841395340011627,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_static": {
+      "n": 90,
+      "diff": -0.6779629629629631,
+      "wins": 0,
+      "ties": 78,
+      "losses": 12,
+      "p": 0.0022090203462313877,
+      "ci": [
+       -1.3785370370370367,
+       -0.14814351851851854
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.004418040692462775,
+      "verdict": "AXIOM behind"
+     }
+    }
+   }
+  },
+  "B3": {
+   "m108": {
+    "reward": {
+     "single_agent_dqn": {
+      "n": 30,
+      "diff": 0.915187498224238,
+      "wins": 26,
+      "ties": 0,
+      "losses": 4,
+      "p": 6.917864084243774e-06,
+      "ci": [
+       0.5470853498214726,
+       1.3071778128597777
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 2.0753592252731323e-05,
+      "verdict": "AXIOM ahead"
+     },
+     "independent_dqn": {
+      "n": 30,
+      "diff": 1.1961707302488207,
+      "wins": 27,
+      "ties": 0,
+      "losses": 3,
+      "p": 2.0489096641540527e-07,
+      "ci": [
+       0.8440910049247696,
+       1.5563400459565488
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.2293457984924316e-06,
+      "verdict": "AXIOM ahead"
+     },
+     "mappo_tuned": {
+      "n": 30,
+      "diff": 1.478948826663363,
+      "wins": 27,
+      "ties": 0,
+      "losses": 3,
+      "p": 3.2391399145126343e-06,
+      "ci": [
+       0.989051160836201,
+       1.9899611856013648
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.2956559658050537e-05,
+      "verdict": "AXIOM ahead"
+     },
+     "axiom2_mlp": {
+      "n": 30,
+      "diff": -0.002318247191187665,
+      "wins": 15,
+      "ties": 0,
+      "losses": 15,
+      "p": 0.9515264742076397,
+      "ci": [
+       -0.32618775941495515,
+       0.33817309732515993
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.9515264742076397,
+      "verdict": "within chance"
+     },
+     "rule_static": {
+      "n": 30,
+      "diff": 2.160967948844028,
+      "wins": 29,
+      "ties": 0,
+      "losses": 1,
+      "p": 3.725290298461914e-09,
+      "ci": [
+       1.7848545198816894,
+       2.5238131535705493
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 2.60770320892334e-08,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_accept_all": {
+      "n": 30,
+      "diff": 4.275008243973492,
+      "wins": 30,
+      "ties": 0,
+      "losses": 0,
+      "p": 1.862645149230957e-09,
+      "ci": [
+       3.9836944157639254,
+       4.543741029697179
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.4901161193847656e-08,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_local": {
+      "n": 30,
+      "diff": -0.4718030121386962,
+      "wins": 4,
+      "ties": 0,
+      "losses": 26,
+      "p": 1.4193356037139893e-06,
+      "ci": [
+       -0.6669217221012212,
+       -0.29435212094099833
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 7.096678018569946e-06,
+      "verdict": "AXIOM behind"
+     },
+     "rule_neighbour": {
+      "n": 30,
+      "diff": -0.23993796449457994,
+      "wins": 11,
+      "ties": 0,
+      "losses": 19,
+      "p": 0.07324407435953617,
+      "ci": [
+       -0.42851700229040707,
+       -0.06900274049343899
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.14648814871907234,
+      "verdict": "within chance"
+     }
+    },
+    "compliance": {
+     "single_agent_dqn": {
+      "n": 30,
+      "diff": 5.487777777777776,
+      "wins": 24,
+      "ties": 0,
+      "losses": 6,
+      "p": 0.00011987523070899234,
+      "ci": [
+       3.1249861111111095,
+       7.972833333333331
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.000359625692126977,
+      "verdict": "AXIOM ahead"
+     },
+     "independent_dqn": {
+      "n": 30,
+      "diff": 7.08333333333333,
+      "wins": 26,
+      "ties": 0,
+      "losses": 4,
+      "p": 6.3355657527936515e-06,
+      "ci": [
+       4.955541666666666,
+       9.311680555555554
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 3.801339451676191e-05,
+      "verdict": "AXIOM ahead"
+     },
+     "mappo_tuned": {
+      "n": 30,
+      "diff": 8.57,
+      "wins": 26,
+      "ties": 0,
+      "losses": 4,
+      "p": 1.597777009010315e-05,
+      "ci": [
+       5.483222222222223,
+       11.737319444444443
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 7.988885045051575e-05,
+      "verdict": "AXIOM ahead"
+     },
+     "axiom2_mlp": {
+      "n": 30,
+      "diff": 0.20333333333333267,
+      "wins": 15,
+      "ties": 0,
+      "losses": 15,
+      "p": 0.8612088871452444,
+      "ci": [
+       -2.025624999999999,
+       2.515055555555552
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.8612088871452444,
+      "verdict": "within chance"
+     },
+     "rule_static": {
+      "n": 30,
+      "diff": 13.688888888888888,
+      "wins": 29,
+      "ties": 0,
+      "losses": 1,
+      "p": 2.1226911309848548e-06,
+      "ci": [
+       11.295541666666663,
+       15.950055555555554
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.4858837916893984e-05,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_accept_all": {
+      "n": 30,
+      "diff": 28.65,
+      "wins": 30,
+      "ties": 0,
+      "losses": 0,
+      "p": 1.7333066441991056e-06,
+      "ci": [
+       26.881111111111114,
+       30.252277777777778
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.3866453153592845e-05,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_local": {
+      "n": 30,
+      "diff": -2.899444444444446,
+      "wins": 7,
+      "ties": 0,
+      "losses": 23,
+      "p": 2.6885420083999634e-05,
+      "ci": [
+       -4.279444444444442,
+       -1.6665694444444503
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.00010754168033599854,
+      "verdict": "AXIOM behind"
+     },
+     "rule_neighbour": {
+      "n": 30,
+      "diff": 1.5294444444444433,
+      "wins": 21,
+      "ties": 0,
+      "losses": 9,
+      "p": 0.03841841779649258,
+      "ci": [
+       0.27052777777777665,
+       2.688916666666666
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.07683683559298515,
+      "verdict": "within chance"
+     }
+    }
+   },
+   "all": {
+    "reward": {
+     "single_agent_dqn": {
+      "n": 90,
+      "diff": 1.1970941239390094,
+      "wins": 82,
+      "ties": 0,
+      "losses": 8,
+      "p": 6.00016361663791e-15,
+      "ci": [
+       0.9857941971541999,
+       1.4230641166128684
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 3.6000981699827455e-14,
+      "verdict": "AXIOM ahead"
+     },
+     "independent_dqn": {
+      "n": 90,
+      "diff": 1.1460960070727253,
+      "wins": 83,
+      "ties": 0,
+      "losses": 7,
+      "p": 1.1683554929408161e-14,
+      "ci": [
+       0.9482648686693209,
+       1.3495447535711143
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 5.84177746470408e-14,
+      "verdict": "AXIOM ahead"
+     },
+     "mappo_tuned": {
+      "n": 90,
+      "diff": 1.6937551437460874,
+      "wins": 83,
+      "ties": 0,
+      "losses": 7,
+      "p": 2.898808838758461e-14,
+      "ci": [
+       1.3851797029932065,
+       2.0129474854978886
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.1595235355033845e-13,
+      "verdict": "AXIOM ahead"
+     },
+     "axiom2_mlp": {
+      "n": 90,
+      "diff": -0.02606361045948707,
+      "wins": 42,
+      "ties": 0,
+      "losses": 48,
+      "p": 0.6478948305339449,
+      "ci": [
+       -0.1894816200633101,
+       0.14230811763380008
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.6478948305339449,
+      "verdict": "within chance"
+     },
+     "rule_static": {
+      "n": 90,
+      "diff": 2.4271583918571307,
+      "wins": 89,
+      "ties": 0,
+      "losses": 1,
+      "p": 1.8034059447633587e-16,
+      "ci": [
+       2.2521382767788096,
+       2.597934140557169
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.3950320133673695e-15,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_accept_all": {
+      "n": 90,
+      "diff": 4.4554047679257645,
+      "wins": 90,
+      "ties": 0,
+      "losses": 0,
+      "p": 1.7437900167092118e-16,
+      "ci": [
+       4.316742357317253,
+       4.587293303731922
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.3950320133673695e-15,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_local": {
+      "n": 90,
+      "diff": -0.44148567573643943,
+      "wins": 15,
+      "ties": 0,
+      "losses": 75,
+      "p": 6.957253941384588e-13,
+      "ci": [
+       -0.5439284068675995,
+       -0.34243628460140124
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 2.0871761824153763e-12,
+      "verdict": "AXIOM behind"
+     },
+     "rule_neighbour": {
+      "n": 90,
+      "diff": -0.23666910237013294,
+      "wins": 37,
+      "ties": 0,
+      "losses": 53,
+      "p": 0.0012421944251650688,
+      "ci": [
+       -0.339668110199079,
+       -0.1350098759411158
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.0024843888503301376,
+      "verdict": "AXIOM behind"
+     }
+    },
+    "compliance": {
+     "single_agent_dqn": {
+      "n": 90,
+      "diff": 6.839074074074074,
+      "wins": 76,
+      "ties": 0,
+      "losses": 14,
+      "p": 1.8480909897795293e-13,
+      "ci": [
+       5.542402777777779,
+       8.228152777777778
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 9.240454948897647e-13,
+      "verdict": "AXIOM ahead"
+     },
+     "independent_dqn": {
+      "n": 90,
+      "diff": 6.718703703703703,
+      "wins": 79,
+      "ties": 0,
+      "losses": 11,
+      "p": 6.672130891050262e-14,
+      "ci": [
+       5.512546296296297,
+       7.947625
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 4.003278534630157e-13,
+      "verdict": "AXIOM ahead"
+     },
+     "mappo_tuned": {
+      "n": 90,
+      "diff": 9.591666666666669,
+      "wins": 75,
+      "ties": 0,
+      "losses": 15,
+      "p": 2.9710192907260823e-12,
+      "ci": [
+       7.603685185185184,
+       11.609662037037035
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.188407716290433e-11,
+      "verdict": "AXIOM ahead"
+     },
+     "axiom2_mlp": {
+      "n": 90,
+      "diff": 0.08074074074074168,
+      "wins": 44,
+      "ties": 1,
+      "losses": 45,
+      "p": 0.9282792322160975,
+      "ci": [
+       -1.0265046296296285,
+       1.2161157407407417
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.9282792322160975,
+      "verdict": "within chance"
+     },
+     "rule_static": {
+      "n": 90,
+      "diff": 15.105555555555558,
+      "wins": 89,
+      "ties": 0,
+      "losses": 1,
+      "p": 1.862956515553351e-16,
+      "ci": [
+       13.987564814814816,
+       16.180569444444444
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.3945461806376188e-15,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_accept_all": {
+      "n": 90,
+      "diff": 29.400000000000006,
+      "wins": 90,
+      "ties": 0,
+      "losses": 0,
+      "p": 1.7431827257970235e-16,
+      "ci": [
+       28.51806481481482,
+       30.222101851851853
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 1.3945461806376188e-15,
+      "verdict": "AXIOM ahead"
+     },
+     "rule_local": {
+      "n": 90,
+      "diff": -2.8537037037037036,
+      "wins": 17,
+      "ties": 0,
+      "losses": 73,
+      "p": 1.5429183790866352e-11,
+      "ci": [
+       -3.585388888888887,
+       -2.153143518518518
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 4.628755137259905e-11,
+      "verdict": "AXIOM behind"
+     },
+     "rule_neighbour": {
+      "n": 90,
+      "diff": 1.3198148148148148,
+      "wins": 63,
+      "ties": 0,
+      "losses": 27,
+      "p": 0.0006837315719239815,
+      "ci": [
+       0.5822083333333331,
+       2.0298194444444446
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 0.001367463143847963,
+      "verdict": "AXIOM ahead"
+     }
+    }
+   }
+  },
+  "A7ring": {
+   "m108": {
+    "reward": {
+     "single_agent_dqn": {
+      "n": 30,
+      "diff": 1.9387956648707658,
+      "wins": 28,
+      "ties": 0,
+      "losses": 2,
+      "p": 9.98377799987793e-07,
+      "ci": [
+       1.2560240077681732,
+       2.6653300952320476
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 9.98377799987793e-07,
+      "verdict": "AXIOM ahead"
+     }
+    },
+    "compliance": {
+     "single_agent_dqn": {
+      "n": 30,
+      "diff": 11.777777777777779,
+      "wins": 23,
+      "ties": 4,
+      "losses": 3,
+      "p": 4.0999581814844626e-05,
+      "ci": [
+       7.613055555555556,
+       16.093722222222212
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 4.0999581814844626e-05,
+      "verdict": "AXIOM ahead"
+     }
+    }
+   },
+   "all": {
+    "reward": {
+     "single_agent_dqn": {
+      "n": 60,
+      "diff": 2.8542600477955378,
+      "wins": 54,
+      "ties": 0,
+      "losses": 6,
+      "p": 2.0286336315328898e-08,
+      "ci": [
+       1.704605493622289,
+       4.398187720259092
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 2.0286336315328898e-08,
+      "verdict": "AXIOM ahead"
+     }
+    },
+    "compliance": {
+     "single_agent_dqn": {
+      "n": 60,
+      "diff": 13.460833333333333,
+      "wins": 49,
+      "ties": 5,
+      "losses": 6,
+      "p": 9.442662350154417e-08,
+      "ci": [
+       8.84915972222222,
+       18.24502777777778
+      ],
+      "collapsed_axiom": 0,
+      "p_holm": 9.442662350154417e-08,
+      "verdict": "AXIOM ahead"
+     }
+    }
+   }
+  }
+ },
+ "targets": {
+  "T1 Env A 3 gNBs, AXIOM ahead of DQN-SA on reward": {
+   "want": "AXIOM ahead",
+   "m108": {
+    "n": 30,
+    "diff": 0.5206237527515909,
+    "wins": 16,
+    "ties": 10,
+    "losses": 4,
+    "p": 0.0013245375247995077,
+    "ci": [
+     0.2454111513825895,
+     0.8449209514539233
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.003973612574398523,
+    "verdict": "AXIOM ahead"
+   },
+   "all_pooled": {
+    "n": 90,
+    "diff": 0.3812158836444984,
+    "wins": 47,
+    "ties": 26,
+    "losses": 17,
+    "p": 3.696540602879841e-06,
+    "ci": [
+     0.2095000721022829,
+     0.5676767711119997
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 1.1089621808639523e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "status": "confirmed"
+  },
+  "T2 Env A 3 gNBs, AXIOM ahead of the MLP encoder on reward": {
+   "want": "AXIOM ahead",
+   "m108": {
+    "n": 30,
+    "diff": 0.4734536760634661,
+    "wins": 14,
+    "ties": 13,
+    "losses": 3,
+    "p": 0.003090081924360667,
+    "ci": [
+     0.17593720081841624,
+     0.8542004935037607
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.006180163848721334,
+    "verdict": "AXIOM ahead"
+   },
+   "all_pooled": {
+    "n": 90,
+    "diff": 0.2032774139006801,
+    "wins": 41,
+    "ties": 38,
+    "losses": 11,
+    "p": 9.003988256227892e-05,
+    "ci": [
+     0.06413883290031887,
+     0.3561348802322776
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.00018007976512455785,
+    "verdict": "AXIOM ahead"
+   },
+   "status": "confirmed"
+  },
+  "T3 Env A 3 gNBs, static rule ahead of AXIOM on reward": {
+   "want": "AXIOM behind",
+   "m108": {
+    "n": 30,
+    "diff": -0.018855626501338325,
+    "wins": 3,
+    "ties": 22,
+    "losses": 5,
+    "p": 0.32698934959801507,
+    "ci": [
+     -0.05845664053479886,
+     0.011338265679792929
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.32698934959801507,
+    "verdict": "within chance"
+   },
+   "all_pooled": {
+    "n": 90,
+    "diff": -0.0736231646954389,
+    "wins": 8,
+    "ties": 62,
+    "losses": 20,
+    "p": 0.02277772703207994,
+    "ci": [
+     -0.1462015309326989,
+     -0.01725118931979793
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.02277772703207994,
+    "verdict": "AXIOM behind"
+   },
+   "status": "same direction, within chance"
+  },
+  "T4 Env B 3 gNBs, neighbour rule ahead of AXIOM on reward": {
+   "want": "AXIOM behind",
+   "m108": {
+    "n": 30,
+    "diff": -0.23993796449457994,
+    "wins": 11,
+    "ties": 0,
+    "losses": 19,
+    "p": 0.07324407435953617,
+    "ci": [
+     -0.42851700229040707,
+     -0.06900274049343899
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.14648814871907234,
+    "verdict": "within chance"
+   },
+   "all_pooled": {
+    "n": 90,
+    "diff": -0.23666910237013294,
+    "wins": 37,
+    "ties": 0,
+    "losses": 53,
+    "p": 0.0012421944251650688,
+    "ci": [
+     -0.339668110199079,
+     -0.1350098759411158
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.0024843888503301376,
+    "verdict": "AXIOM behind"
+   },
+   "status": "same direction, within chance"
+  },
+  "T5 Env B 3 gNBs, AXIOM ahead of the neighbour rule on compliance": {
+   "want": "AXIOM ahead",
+   "m108": {
+    "n": 30,
+    "diff": 1.5294444444444433,
+    "wins": 21,
+    "ties": 0,
+    "losses": 9,
+    "p": 0.03841841779649258,
+    "ci": [
+     0.27052777777777665,
+     2.688916666666666
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.07683683559298515,
+    "verdict": "within chance"
+   },
+   "all_pooled": {
+    "n": 90,
+    "diff": 1.3198148148148148,
+    "wins": 63,
+    "ties": 0,
+    "losses": 27,
+    "p": 0.0006837315719239815,
+    "ci": [
+     0.5822083333333331,
+     2.0298194444444446
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 0.001367463143847963,
+    "verdict": "AXIOM ahead"
+   },
+   "status": "same direction, within chance"
+  },
+  "T6 Env A 7 gNBs ring, AXIOM ahead of DQN-SA on reward": {
+   "want": "AXIOM ahead",
+   "m108": {
+    "n": 30,
+    "diff": 1.9387956648707658,
+    "wins": 28,
+    "ties": 0,
+    "losses": 2,
+    "p": 9.98377799987793e-07,
+    "ci": [
+     1.2560240077681732,
+     2.6653300952320476
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 9.98377799987793e-07,
+    "verdict": "AXIOM ahead"
+   },
+   "all_pooled": {
+    "n": 60,
+    "diff": 2.8542600477955378,
+    "wins": 54,
+    "ties": 0,
+    "losses": 6,
+    "p": 2.0286336315328898e-08,
+    "ci": [
+     1.704605493622289,
+     4.398187720259092
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 2.0286336315328898e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "status": "confirmed"
+  },
+  "T7 Env A 7 gNBs ring, AXIOM ahead of DQN-SA on compliance": {
+   "want": "AXIOM ahead",
+   "m108": {
+    "n": 30,
+    "diff": 11.777777777777779,
+    "wins": 23,
+    "ties": 4,
+    "losses": 3,
+    "p": 4.0999581814844626e-05,
+    "ci": [
+     7.613055555555556,
+     16.093722222222212
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 4.0999581814844626e-05,
+    "verdict": "AXIOM ahead"
+   },
+   "all_pooled": {
+    "n": 60,
+    "diff": 13.460833333333333,
+    "wins": 49,
+    "ties": 5,
+    "losses": 6,
+    "p": 9.442662350154417e-08,
+    "ci": [
+     8.84915972222222,
+     18.24502777777778
+    ],
+    "collapsed_axiom": 0,
+    "p_holm": 9.442662350154417e-08,
+    "verdict": "AXIOM ahead"
+   },
+   "status": "confirmed"
+  }
+ }
+}
