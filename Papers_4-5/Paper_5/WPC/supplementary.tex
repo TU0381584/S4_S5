@@ -97,6 +97,43 @@ Fig.~\ref{fig:s-rliable-int} sets the same interquartile means and probabilities
 \label{fig:s-rliable-int}
 \end{figure}
 
+Table~\ref{tab:s-split} lists every three-gNB comparison of the main paper on the original seeds, the added seeds, the pooled sample, and the confirmation seeds. The $p$ values are Holm-adjusted within each sample's own family. That family is the main paper's on the original and pooled seeds, and on the added and confirmation seeds it holds only the comparisons that those runs repeated. For the scaling study it gives the smallest of the nine compliance leads at each size, with the largest adjusted $p$ among them. At seven gNBs the added seeds alone leave the smallest lead, over DQN-SA on the ring layout, within chance. The confirmation seeds then gave AXIOM 11.8 points more compliance than DQN-SA on that layout, at $p<0.001$.
+
+\begin{table}[!htbp]
+\caption{AXIOM minus each policy by sample. Reward per step at three gNBs, and the smallest priority-slice compliance lead in points at seven and nineteen gNBs. HL is the Hodges-Lehmann estimate and $r$ the matched-pairs rank-biserial correlation, both on the pooled sample}
+\label{tab:s-split}
+\centering
+\scriptsize
+{\setlength{\tabcolsep}{2.6pt}
+\begin{tabular}{@{}lcccccccccc@{}}
+\toprule
+& \multicolumn{2}{c}{Original} & \multicolumn{2}{c}{Added} & \multicolumn{4}{c}{Pooled} & \multicolumn{2}{c}{Confirmation} \\
+\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-9}\cmidrule(l){10-11}
+Policy & Mean & $p$ & Mean & $p$ & Mean & HL & $r$ & $p$ & Mean & $p$ \\
+\midrule
+\multicolumn{11}{@{}l}{Env A, three gNBs, 30, 30, 60, and 30 seeds} \\
+DQN-SA & 0.311 & 0.066 & 0.312 & 0.051 & 0.312 & 0.092 & 0.59 & 0.0021 & 0.521 & 0.0040 \\
+DQN-I & 1.110 & 0.0002 & 1.012 & $<$0.0001 & 1.061 & 0.857 & 0.86 & $<$0.0001 & 0.939 & $<$0.0001 \\
+MAPPO & 2.685 & $<$0.0001 & 2.280 & $<$0.0001 & 2.482 & 2.510 & 0.99 & $<$0.0001 & 2.892 & $<$0.0001 \\
+MLP encoder & 0.058 & 0.087 & 0.079 & 0.18 & 0.068 & 0.022 & 0.52 & 0.015 & 0.473 & 0.0062 \\
+Static rule & $-$0.138 & 0.16 & $-$0.064 & 0.18 & $-$0.101 & 0.000 & $-$0.52 & 0.040 & $-$0.019 & 0.33 \\
+\midrule
+\multicolumn{11}{@{}l}{Env B, three gNBs, 30, 30, 60, and 30 seeds} \\
+DQN-SA & 1.337 & $<$0.0001 & 1.339 & $<$0.0001 & 1.338 & 1.244 & 0.98 & $<$0.0001 & 0.915 & $<$0.0001 \\
+DQN-I & 1.038 & $<$0.0001 & 1.204 & $<$0.0001 & 1.121 & 1.076 & 0.93 & $<$0.0001 & 1.196 & $<$0.0001 \\
+MAPPO & 1.863 & $<$0.0001 & 1.739 & $<$0.0001 & 1.801 & 1.808 & 0.95 & $<$0.0001 & 1.479 & $<$0.0001 \\
+Shed all mMTC & 2.495 & $<$0.0001 & 2.625 & $<$0.0001 & 2.560 & 2.578 & 1.00 & $<$0.0001 & 2.161 & $<$0.0001 \\
+Accept all & 4.476 & $<$0.0001 & 4.616 & $<$0.0001 & 4.546 & 4.577 & 1.00 & $<$0.0001 & 4.275 & $<$0.0001 \\
+Tuned local rule & $-$0.420 & $<$0.0001 & $-$0.432 & $<$0.0001 & $-$0.426 & $-$0.406 & $-$0.85 & $<$0.0001 & $-$0.472 & $<$0.0001 \\
+Tuned neighbour-aware rule & $-$0.209 & 0.061 & $-$0.261 & 0.12 & $-$0.235 & $-$0.206 & $-$0.41 & 0.012 & $-$0.240 & 0.15 \\
+\midrule
+\multicolumn{11}{@{}l}{Env A scaling, smallest compliance lead over three layouts and three baselines} \\
+7 gNBs & 17.9 & 0.010 & 7.2 & 0.11 & 15.1 & 13.7 & 0.76 & 0.0003 & & \\
+19 gNBs & 31.0 & $<$0.0001 & 32.4 & $<$0.0001 & 32.1 & 32.7 & 0.98 & $<$0.0001 & & \\
+\bottomrule
+\end{tabular}}
+\end{table}
+
 \section*{S3. Live testbed}
 Every live measurement comes from the single-host, software-radio O-RAN stack of Fig.~\ref{fig:testbed}, which runs without a near-real-time RIC because the ORANSlice fork cited in the main paper applies slicing control through a lightweight UDP E2 agent. It is the stack on which our recently presented conference paper, cited in the main paper and due to be published in IEEE Xplore, deployed its single-gNB DQN admission controller. AXIOM itself is not deployed there, since its multi-gNB policy needs at least two live gNBs and our two-gNB attempt did not sustain traffic. A single-agent DQN checkpoint instead exercises the control path, PRB-ratio actuation, and real-time inference at one and at two UEs per slice. A capacity probe showed every slice served at about 100\% of offered demand, so the rig never ran short of capacity and shows the pipeline working, not admission under contention. The rig starts the Open5GS core with Docker Compose and the gNB with \texttt{nr-softmodem} on the rfsim radio, and attaches up to six UEs. It runs the checkpoint through the UDP E2 agent on ports 6600 and 6655. It drives iperf3 UDP traffic on every slice to load the rig. A scheduler-configuration error that granted fewer PRBs than the gNB scheduler's five-PRB floor was fixed at the root. Instrumentation then confirmed zero below-floor grants across more than 100{,}000 readings.
 

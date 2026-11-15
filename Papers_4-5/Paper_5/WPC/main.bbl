@@ -1,4 +1,4 @@
-\begin{thebibliography}{58}
+\begin{thebibliography}{60}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
@@ -138,10 +138,20 @@ Henderson P, Islam R, Bachman P, Pineau J, Precup D, Meger D (2018) Deep
   reinforcement learning that matters. In: \emph{Proceedings of the AAAI
   Conference on Artificial Intelligence}, \doi{10.1609/aaai.v32i1.11694}
 
+\bibitem[{Hodges and Lehmann(1963)}]{hodges1963estimates}
+Hodges JL, Lehmann EL (1963) Estimates of location based on rank tests.
+  \emph{The Annals of Mathematical Statistics} 34(2):598--611.
+  \doi{10.1214/aoms/1177704172}
+
 \bibitem[{Kamal and Abdulkafi(2026)}]{kamal2026ddqn}
 Kamal YB, Abdulkafi AA (2026) Reinforcement learning double deep {Q}-network
   techniques for {NextG} network. \emph{Wireless Personal Communications}
   146(6):3175--3197. \doi{10.1007/s11277-026-12048-7}
+
+\bibitem[{Kerby(2014)}]{kerby2014simple}
+Kerby DS (2014) The simple difference formula: An approach to teaching
+  nonparametric correlation. \emph{Comprehensive Psychology} 3:11.IT.3.1.
+  \doi{10.2466/11.IT.3.1}
 
 \bibitem[{Khani et~al.(2024)Khani, Jamali, Sohrabi, Sadr, and
   Ghaffari}]{khani2024sacsurvey}

@@ -121,3 +121,24 @@ Item numbers follow the gate brief (2.1 delay, 2.2 privacy, 2.3 attention, 2.4 r
 | 2.79 | 2.10 | main.tex Sec. 6.3 | `against $p=0.088$ on the original seeds` | `against $p=0.087$ on the original seeds` | my rounding slip: the value is 0.08747 |
 | 2.80 | 2.x | main.tex Sec. 6.6 | `all 674 of its checks pass` | `all 704 of its checks pass` | check count after the new checks |
 | 2.81 | 2.1/2.2 | figures/fig_capability.*, figures/fig1_axiom.pdf | previous figures | regenerated: Fig. 9a axis "URLLC normalised backlog", Fig. 9b row "Federated training tested" with only AXIOM marked; Fig. 1 slice panels read "target" | figures follow items 1 and 2 |
+
+## Gate 3
+
+Re-analysis from the stored logs only. No run was repeated. Item 3.1 (per-gNB compliance in Env A) is blocked and nothing was changed for it.
+
+| # | Item | File | Old | New | Reason |
+|---|---|---|---|---|---|
+| 3.01 | 3.2, 3.3 | experiments/scripts/gate3_reanalysis.py | (none) | new script: training reward per episode from the training logs, and per-slice acceptance ratios from the evaluation logs | data for the learning curves and the admission metrics |
+| 3.02 | 3.4, 3.5 | experiments/scripts/gate3_effects.py | (none) | new script: Hodges-Lehmann estimate, matched-pairs rank-biserial correlation, and every comparison on the original, added, pooled and confirmation seeds | effect sizes and the split-sample table |
+| 3.03 | 3.2 | experiments/plots/paper5_fig_learning.py, figures/fig_learning.* | (none) | new figure, 119 x 86 mm: training reward per gNB per step over 300 episodes, mean and 95% CI band, Env A at 3, 19 and 37 gNBs and Env B at 3 and 7 gNBs | learning curves |
+| 3.04 | 3.2 | paper5_regen_wpc_figures.sh | (none) | runs paper5_fig_learning.py | new figure in the regeneration script |
+| 3.05 | 3.2 | main.tex Sec. 6, opening | (none) | new paragraph and Fig. (fig:learning): MAPPO rises fastest then stays flat; AXIOM 4.53 and 4.55 over the last 20 episodes at 19 and 37 gNBs against 3.32 to 3.89; DQN-I ends 0.19 and 0.23 below its own best level; AXIOM and DQN-SA end level in Env B at 7 gNBs | learning curves reported |
+| 3.06 | 3.2 | main.tex Sec. 6 | `Both DQN baselines end those runs below their own best level` (drafted, never committed) | `DQN-I ends those runs 0.19 and 0.23 below its own best level` | the verifier showed DQN-SA ends only 0.03 and 0.07 below its best, so the claim was limited to DQN-I |
+| 3.07 | 3.3, 3.4 | main.tex Sec. 6.1 | (none) | new Table (tab:effects): per-slice acceptance ratio of every policy of Tables 3 and 4, and for each comparison with AXIOM the mean difference, Hodges-Lehmann estimate, rank-biserial correlation and Holm p | admission metrics and effect sizes |
+| 3.08 | 3.3, 3.4 | main.tex Sec. 6.1 | (none) | sentences introducing the two effect sizes with their sources, the static rule's Hodges-Lehmann lead of zero (40 of 60 seeds tie), and mMTC acceptance of 5.5% for AXIOM against 15.8% to 60.9% | results of the new table stated |
+| 3.09 | 3.4 (2.11) | main.tex Sec. 6.3 | (none) | `The Hodges-Lehmann estimate of the pooled gap is 0.022, with a rank-biserial correlation of 0.52.` | Hodges-Lehmann estimate for the MLP comparison, promised in Gate 2 item 11 |
+| 3.10 | 3.3 | main.tex Sec. 6.4 | (none) | sentences on Env B admission: AXIOM and the tuned local rule admit about two thirds of eMBB requests and little mMTC, the static rule admits every eMBB request | admission metrics for Env B |
+| 3.11 | 3.5 | supplementary.tex S2 | (none) | new Table (tab:s-split) and paragraph: every three-gNB comparison by sample, and the smallest compliance lead at 7 and 19 gNBs by sample | split-sample table |
+| 3.12 | 3.4 | refs.bib | (none) | hodges1963estimates, kerby2014simple | sources of the two effect sizes; records fetched from Crossref |
+| 3.13 | all | m66_verify.py | (none) | 31 new checks: every row of both new tables recomputed with an independent implementation of the two effect sizes, the request balance of every evaluation log, the learning-curve means against the raw training logs, and each new sentence | every new number traces to a log |
+| 3.14 | all | main.tex Sec. 6.6 | `all 704 of its checks pass` | `all 735 of its checks pass` | check count |

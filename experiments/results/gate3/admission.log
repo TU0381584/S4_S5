@@ -1,0 +1,13 @@
+A3 axiom2 60 balanced {'urllc': 100.0, 'embb': 99.5, 'mmtc': 5.5}
+A3 mappo_tuned 60 balanced {'urllc': 99.5, 'embb': 84.8, 'mmtc': 60.9}
+A3 heuristic 60 balanced {'urllc': 100.0, 'embb': 100.0, 'mmtc': 0.0}
+A3 single_agent_dqn 60 balanced {'urllc': 100.0, 'embb': 98.8, 'mmtc': 15.8}
+A3 independent_dqn 60 balanced {'urllc': 100.0, 'embb': 98.1, 'mmtc': 40.1}
+B3 rule_accept_all 60 balanced {'urllc': 100.0, 'embb': 100.0, 'mmtc': 100.0}
+B3 rule_static 60 balanced {'urllc': 100.0, 'embb': 100.0, 'mmtc': 0.0}
+B3 rule_local 60 balanced {'urllc': 100.0, 'embb': 68.2, 'mmtc': 0.0}
+B3 rule_neighbour 60 balanced {'urllc': 100.0, 'embb': 55.8, 'mmtc': 72.7}
+B3 axiom2 60 balanced {'urllc': 100.0, 'embb': 66.7, 'mmtc': 6.7}
+B3 single_agent_dqn 60 balanced {'urllc': 100.0, 'embb': 64.1, 'mmtc': 7.3}
+B3 independent_dqn 60 balanced {'urllc': 100.0, 'embb': 66.8, 'mmtc': 20.6}
+B3 mappo_tuned 60 balanced {'urllc': 100.0, 'embb': 67.2, 'mmtc': 37.2}

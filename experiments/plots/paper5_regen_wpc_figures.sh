@@ -16,6 +16,7 @@ $PY $P/paper5_fig_envB.py --root $R/m64 --out $F/fig11_envB
 (cd $P && $PY paper5_fig_pergnb_envb.py)
 # (Fig. 9, paper5_fig_superiority.py, retired in the figure audit; the module stays for shift_row and LOAD_B)
 (cd $P && $PY paper5_fig_regime.py)
+(cd $P && $PY paper5_fig_learning.py)     # learning curves, from experiments/results/gate3/curves.json (gate3_reanalysis.py curves)
 (cd $P && $PY paper5_fig_capability.py)   # Fig. 10, strips and table; needs M97 and the M76/M96 load-shift logs
 
 # Online Resource 1

@@ -247,6 +247,25 @@ def paired(a, b, f=lambda r: r["reward"]):
             "losses": int((d < 0).sum()), "p": p}
 
 
+def hodges_lehmann(a, b, f=lambda r: r["reward"]):
+    """Median of the Walsh averages of the paired differences (Gate 3)."""
+    d = [f(a[s]) - f(b[s]) for s in sorted(set(a) & set(b))]
+    w = [(d[i] + d[j]) / 2.0 for i in range(len(d)) for j in range(i, len(d))]
+    return float(np.median(w))
+
+
+def rank_biserial(a, b, f=lambda r: r["reward"]):
+    """Matched-pairs rank-biserial correlation, exact ties dropped as in paired() (Gate 3)."""
+    from scipy.stats import rankdata
+    d = tie_round(np.array([f(a[s]) - f(b[s]) for s in sorted(set(a) & set(b))], dtype=float))
+    d = d[d != 0]
+    if len(d) == 0:
+        return 0.0
+    r = rankdata(np.abs(d))
+    pos, neg = sum(x for x, y in zip(r, d) if y > 0), sum(x for x, y in zip(r, d) if y < 0)
+    return float((pos - neg) / (pos + neg))
+
+
 def mean(rows, f=lambda r: r["reward"]):
     return float(np.mean([f(r) for r in rows.values()]))
 
@@ -776,6 +795,142 @@ def main():
     C.claim("M108 B3 neighbour rule reward gap, Holm p", "and 0.240 on the confirmation seeds, at $p=0.15$", hr_["rule_neighbour"], "{:.2f}")
     C.claim("M108 B3 compliance lead over the neighbour rule", "and 1.5 on the confirmation seeds, at $p=0.077$", 100 * cs_["rule_neighbour"]["diff"], "{:.1f}")
     C.claim("M108 B3 compliance lead over the neighbour rule, Holm p", "and 1.5 on the confirmation seeds, at $p=0.077$", hs_["rule_neighbour"], "{:.3f}")
+    # ---------------- Gate 3: admission metrics, effect sizes and the split-sample table, recomputed here from the evaluation logs
+    def pf_(p_):
+        return "$<$0.0001" if p_ < 0.0001 else (f"{p_:.4f}" if p_ < 0.01 else f"{p_:.3f}" if p_ < 0.1 else f"{p_:.2f}")
+    def sg_(x_, nd_=3):
+        return ("$-$" if x_ < 0 else "") + f"{abs(x_):.{nd_}f}"
+    def acc_(cell_, arm_):
+        """Per-slice acceptance ratio, mean over seeds of accepted / (accepted + blocked), with the request balance checked."""
+        out_ = {"urllc": [], "embb": [], "mmtc": []}; bal_ = True
+        for s_, p_ in pooled_paths(cell_, arm_, S30):
+            ac_, bk_, pd_ = {}, {}, 0
+            for l_ in (gzip.open(p_, "rt") if p_.endswith(".gz") else open(p_)):
+                ev_ = json.loads(l_).get("evidence", {})
+                if ev_.get("rollup"):
+                    for k_, v_ in ev_.get("episode_block_by_slice", {}).items():
+                        bk_[k_] = bk_.get(k_, 0) + v_
+                elif "accepted_counts" in ev_:
+                    pd_ += ev_["n_pending"]
+                    for k_, v_ in ev_["accepted_counts"].items():
+                        ac_[k_] = ac_.get(k_, 0) + v_
+            bal_ = bal_ and sum(ac_.values()) + sum(bk_.values()) == pd_
+            for k_ in out_:
+                out_[k_].append(ac_.get(k_, 0) / max(1, ac_.get(k_, 0) + bk_.get(k_, 0)))
+        return {k_: 100 * float(np.mean(v_)) for k_, v_ in out_.items()}, bal_, len(out_["urllc"])
+    NM_ = {"single_agent_dqn": "DQN-SA", "independent_dqn": "DQN-I", "mappo_tuned": "MAPPO", "axiom2_mlp": "MLP encoder", "heuristic": "Static rule",
+           "rule_static": "Shed all mMTC", "rule_accept_all": "Accept all", "rule_local": "Tuned local rule", "rule_neighbour": "Tuned neighbour-aware rule"}
+    h1h_ = holm({k: v["p"] for k, v in h1.items()})
+    for env_, cellf_, order_, src_, pv_ in (
+            ("A", lambda a_: "m65_reviewer/base" if a_ in ("axiom2", "mappo_tuned") else "m63_reviewer/base",
+             ("heuristic", "axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"), A, lambda b_: h[b_]),
+            ("B", lambda a_: "m64/n3_fully_connected",
+             ("rule_accept_all", "rule_static", "rule_local", "rule_neighbour", "axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned"), B,
+             lambda b_: h1h_[b_] if b_ in h1h_ else hB[b_ + "|r"])):
+        for a_ in order_:
+            ar_, bal_, n_ = acc_(cellf_(a_), a_)
+            cells_ = f"{ar_['urllc']:.1f} & {ar_['embb']:.1f} & {ar_['mmtc']:.1f}"
+            if a_ == "axiom2":
+                row_ = f"AXIOM & {cells_} & -- & -- & -- & -- \\\\"
+            else:
+                x_ = paired(src_["axiom2"], src_[a_])
+                row_ = (f"{NM_[a_]} & {cells_} & {sg_(x_['diff'])} & {sg_(hodges_lehmann(src_['axiom2'], src_[a_]))} & "
+                        f"{sg_(rank_biserial(src_['axiom2'], src_[a_]), 2)} & {pf_(pv_(a_))} \\\\")
+            C.note(f"Gate 3 Table effects, Env {env_}, {a_}: acceptance, mean, HL, r and Holm p recomputed; requests balance on {n_} seeds",
+                   bal_ and n_ == 60 and row_ in C.main, row_)
+    # learning curves (Fig. learning): the plotted means against curves.json, and curves.json against the raw training logs
+    cv_ = json.load(open(f"{ROOT}/gate3/curves.json")); ls_ = json.load(open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig_learning_summary.json"))["panels"]
+    def l20_(k_, a_):
+        return float(np.mean(np.array([v_ for v_ in cv_[k_]["arms"][a_]["runs"].values()], dtype=float).mean(axis=0)[-20:]))
+    def best_(k_, a_):
+        mu_ = np.array([v_ for v_ in cv_[k_]["arms"][a_]["runs"].values()], dtype=float).mean(axis=0)
+        return float(max(np.convolve(mu_, np.ones(20) / 20, mode="valid")))
+    LR4_ = ("axiom2", "mappo_tuned", "single_agent_dqn", "independent_dqn")
+    ok_ = all(abs(ls_[k_][a_]["last20_mean"] - l20_(k_, a_)) < 1e-9 and ls_[k_][a_]["episodes"] == 300 and not cv_[k_]["arms"][a_]["missing"]
+              and ls_[k_][a_]["n_seeds"] == (15 if k_ == "B7ring" else 60) for k_ in ls_ for a_ in LR4_)
+    raw_ok_ = True
+    for k_, cell_, n_, sd_ in (("A19hex", "m65_scaling/n19_hex", 19, S30_19), ("B3", "m64/n3_fully_connected", 3, S30)):
+        for s_, p_ in pooled_paths(cell_, "axiom2", sd_)[:2]:
+            tp_ = p_.split("/eval/")[0] + "/train/omega_log.jsonl"; tp_ = tp_ if os.path.exists(tp_) else tp_ + ".gz"
+            ep_ = {}
+            for l_ in (gzip.open(tp_, "rt") if tp_.endswith(".gz") else open(tp_)):
+                r_ = json.loads(l_); ev_ = r_.get("evidence", {})
+                if not ev_.get("rollup") and "reward" in ev_:
+                    ep_.setdefault(r_["episode"], []).append(ev_["reward"])
+            raw_ok_ = raw_ok_ and np.allclose([np.mean(ep_[e_]) / n_ for e_ in sorted(ep_)], cv_[k_]["arms"]["axiom2"]["runs"][str(s_)], atol=1e-12)
+    bl_ = [l20_(k_, a_) for k_ in ("A19hex", "A37hex") for a_ in LR4_[1:]]
+    C.note("Gate 3 Fig. learning: plotted means equal curves.json, curves.json equals the raw training logs on four sampled runs, full seed counts",
+           ok_ and raw_ok_, None)
+    C.note("Gate 3 Fig. learning text: AXIOM 4.53 and 4.55 over the last 20 episodes at 19 and 37 gNBs against 3.32 to 3.89; DQNs end below their best, AXIOM at its best; Env B 7 level",
+           f"{l20_('A19hex', 'axiom2'):.2f}" == "4.53" and f"{l20_('A37hex', 'axiom2'):.2f}" == "4.55" and f"{min(bl_):.2f}" == "3.32" and f"{max(bl_):.2f}" == "3.89"
+           and [f"{best_(k_, 'independent_dqn') - l20_(k_, 'independent_dqn'):.2f}" for k_ in ("A19hex", "A37hex")] == ["0.19", "0.23"]
+           and all(l20_(k_, "axiom2") > best_(k_, "axiom2") - 0.01 for k_ in ("A19hex", "A37hex"))
+           and abs(l20_("B7ring", "axiom2") - l20_("B7ring", "single_agent_dqn")) < 0.02
+           and "AXIOM earns 4.53 and 4.55 reward per gNB per step, against 3.32 to 3.89 for the baselines" in C.main
+           and "DQN-I ends those runs 0.19 and 0.23 below its own best level, whereas AXIOM is still at its best" in C.main
+           and "at seven gNBs AXIOM and DQN-SA end level" in C.main,
+           {k_: {a_: (round(l20_(k_, a_), 3), round(best_(k_, a_), 3)) for a_ in LR4_} for k_ in cv_})
+    C.note("Gate 3 text: static rule HL zero with 40 ties, AXIOM mMTC acceptance 5.5% against 15.8% to 60.9%, MLP HL 0.022 and r 0.52",
+           f"{hodges_lehmann(A['axiom2'], A['heuristic']):.3f}" in ("0.000", "-0.000") and fam["heuristic"]["ties"] == 40
+           and "The static rule's Hodges-Lehmann lead is zero, since 40 of the 60 seeds tie" in C.main
+           and "AXIOM admits 5.5\\% of mMTC requests, against 15.8\\% to 60.9\\% for the learned baselines" in C.main
+           and f"{hodges_lehmann(A['axiom2'], A['axiom2_mlp']):.3f}" == "0.022" and f"{rank_biserial(A['axiom2'], A['axiom2_mlp']):.2f}" == "0.52"
+           and "The Hodges-Lehmann estimate of the pooled gap is 0.022, with a rank-biserial correlation of 0.52" in C.main, None)
+    # split-sample table of Online Resource 1
+    def fam_(src_, arms_, sel_):
+        t_ = {b_: paired({k: v for k, v in src_["axiom2"].items() if sel_(k)}, {k: v for k, v in src_[b_].items() if sel_(k)}) for b_ in arms_}
+        t_ = {b_: v for b_, v in t_.items() if v["n"] > 0}
+        hh_ = holm({b_: v["p"] for b_, v in t_.items()})
+        return {b_: (t_[b_]["diff"], hh_[b_]) for b_ in t_}
+    oA_, aA_ = fam_(A, tuple(fam), lambda k: k < 11000), fam_(A, tuple(fam), lambda k: k >= 11000)
+    cA_ = dict(c3_); cA_["heuristic"] = cA_["rule_static"]
+    for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned", "axiom2_mlp", "heuristic"):
+        cb2_ = "rule_static" if b_ == "heuristic" else b_
+        row_ = (f"{NM_[b_]} & {sg_(oA_[b_][0])} & {pf_(oA_[b_][1])} & {sg_(aA_[b_][0])} & {pf_(aA_[b_][1])} & {sg_(fam[b_]['diff'])} & "
+                f"{sg_(hodges_lehmann(A['axiom2'], A[b_]))} & {sg_(rank_biserial(A['axiom2'], A[b_]), 2)} & {pf_(h[b_])} & {sg_(cf_[cb2_]['diff'])} & {pf_(hc_[cb2_])} \\\\")
+        C.note(f"Gate 3 OR1 split-sample row, Env A, {b_}", row_ in C.tex, row_)
+    def rowB_(sel_):
+        x_ = {k: v for k, v in B["axiom2"].items() if sel_(k)}; t_ = {}
+        for b_ in ("independent_dqn", "single_agent_dqn", "mappo_tuned", "rule_local", "rule_neighbour"):
+            y_ = {k: v for k, v in B[b_].items() if sel_(k)}; t_[b_ + "|r"] = paired(x_, y_); t_[b_ + "|s"] = paired(x_, y_, prio)
+        hh_ = holm({k: v["p"] for k, v in t_.items()})
+        res_ = {b_: (t_[b_ + "|r"]["diff"], hh_[b_ + "|r"]) for b_ in ("independent_dqn", "single_agent_dqn", "mappo_tuned", "rule_local", "rule_neighbour")}
+        t1_ = {b_: paired(x_, {k: v for k, v in B[b_].items() if sel_(k)}) for b_ in ("rule_static", "rule_accept_all")}
+        h1_ = holm({b_: v["p"] for b_, v in t1_.items()})
+        res_.update({b_: (t1_[b_]["diff"], h1_[b_]) for b_ in t1_})
+        return res_
+    oB_, aB_, pB_ = rowB_(lambda k: k < 11000), rowB_(lambda k: k >= 11000), rowB_(lambda k: True)
+    for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned", "rule_static", "rule_accept_all", "rule_local", "rule_neighbour"):
+        row_ = (f"{NM_[b_]} & {sg_(oB_[b_][0])} & {pf_(oB_[b_][1])} & {sg_(aB_[b_][0])} & {pf_(aB_[b_][1])} & {sg_(pB_[b_][0])} & "
+                f"{sg_(hodges_lehmann(B['axiom2'], B[b_]))} & {sg_(rank_biserial(B['axiom2'], B[b_]), 2)} & {pf_(pB_[b_][1])} & {sg_(cr_[b_]['diff'])} & {pf_(hr_[b_])} \\\\")
+        C.note(f"Gate 3 OR1 split-sample row, Env B, {b_}", row_ in C.tex, row_)
+    for n_, sd_ in ((7, S15), (19, S30_19)):
+        D_ = {t_: {a_: seeds_of(f"m65_scaling/n{n_}_{t_}", a_, sd_) for a_ in ("axiom2", "single_agent_dqn", "independent_dqn", "mappo_tuned")}
+              for t_ in ("fully_connected", "ring", "hex")}
+        cells_, where_ = [], {}
+        for nm_, sel_ in (("original", lambda k: k < 11000), ("added", lambda k: k >= 11000), ("pooled", lambda k: True)):
+            t_ = {}
+            for l_ in D_:
+                for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"):
+                    x_ = {k: v for k, v in D_[l_]["axiom2"].items() if sel_(k)}; y_ = {k: v for k, v in D_[l_][b_].items() if sel_(k)}
+                    t_[(l_, b_, "s")] = paired(x_, y_, prio); t_[(l_, b_, "r")] = paired(x_, y_)
+                    if nm_ == "pooled":
+                        t_[(l_, b_, "s")]["hl"], t_[(l_, b_, "s")]["rb"] = hodges_lehmann(x_, y_, prio), rank_biserial(x_, y_, prio)
+            hh_ = holm({k: v["p"] for k, v in t_.items()})
+            ks_ = [k for k in t_ if k[2] == "s"]
+            kmin_ = min(ks_, key=lambda k: t_[k]["diff"]); where_[nm_] = kmin_[:2]
+            cells_ += [f"{100 * t_[kmin_]['diff']:.1f}"]
+            if nm_ == "pooled":
+                cells_ += [f"{100 * min(t_[k]['hl'] for k in ks_):.1f}", sg_(min(t_[k]["rb"] for k in ks_), 2)]
+            cells_ += [pf_(max(hh_[k] for k in ks_))]
+        row_ = f"{n_} gNBs & " + " & ".join(cells_) + " & & \\\\"
+        C.note(f"Gate 3 OR1 split-sample row, Env A scaling at {n_} gNBs", row_ in C.tex, (row_, where_))
+        if n_ == 7:
+            C.note("Gate 3 OR1: at seven gNBs the smallest lead on the added seeds is over DQN-SA on the ring layout",
+                   where_["added"] == ("ring", "single_agent_dqn")
+                   and "At seven gNBs the added seeds alone leave the smallest lead, over DQN-SA on the ring layout, within chance" in C.tex
+                   and "The confirmation seeds then gave AXIOM 11.8 points more compliance than DQN-SA on that layout, at $p<0.001$" in C.tex
+                   and f"{100 * s7_['diff']:.1f}" == "11.8" and s7_["p"] < 0.001, where_)
     # Fig. 1 (figures/fig1_axiom.tex) prints the slice budgets and PRB shares; they must match Table 2 and Section 3
     f1_ = open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/figures/fig1_axiom.tex").read()
     C.note("Fig. 1 budgets and shares match Table 2 and Section 3, and the figure has no bold or transparency",

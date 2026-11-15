@@ -1111,6 +1111,390 @@
   "ok": true
  },
  {
+  "label": "Gate 3 Table effects, Env A, heuristic: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "Static rule & 100.0 & 100.0 & 0.0 & $-$0.101 & 0.000 & $-$0.52 & 0.040 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env A, axiom2: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "AXIOM & 100.0 & 99.5 & 5.5 & -- & -- & -- & -- \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env A, single_agent_dqn: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "DQN-SA & 100.0 & 98.8 & 15.8 & 0.312 & 0.092 & 0.59 & 0.0021 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env A, independent_dqn: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "DQN-I & 100.0 & 98.1 & 40.1 & 1.061 & 0.857 & 0.86 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env A, mappo_tuned: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "MAPPO & 99.5 & 84.8 & 60.9 & 2.482 & 2.510 & 0.99 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env B, rule_accept_all: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "Accept all & 100.0 & 100.0 & 100.0 & 4.546 & 4.577 & 1.00 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env B, rule_static: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "Shed all mMTC & 100.0 & 100.0 & 0.0 & 2.560 & 2.578 & 1.00 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env B, rule_local: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "Tuned local rule & 100.0 & 68.2 & 0.0 & $-$0.426 & $-$0.406 & $-$0.85 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env B, rule_neighbour: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "Tuned neighbour-aware rule & 100.0 & 55.8 & 72.7 & $-$0.235 & $-$0.206 & $-$0.41 & 0.012 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env B, axiom2: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "AXIOM & 100.0 & 66.7 & 6.7 & -- & -- & -- & -- \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env B, single_agent_dqn: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "DQN-SA & 100.0 & 64.1 & 7.3 & 1.338 & 1.244 & 0.98 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env B, independent_dqn: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "DQN-I & 100.0 & 66.8 & 20.6 & 1.121 & 1.076 & 0.93 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Table effects, Env B, mappo_tuned: acceptance, mean, HL, r and Holm p recomputed; requests balance on 60 seeds",
+  "snippet": null,
+  "computed": "MAPPO & 100.0 & 67.2 & 37.2 & 1.801 & 1.808 & 0.95 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Fig. learning: plotted means equal curves.json, curves.json equals the raw training logs on four sampled runs, full seed counts",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 Fig. learning text: AXIOM 4.53 and 4.55 over the last 20 episodes at 19 and 37 gNBs against 3.32 to 3.89; DQNs end below their best, AXIOM at its best; Env B 7 level",
+  "snippet": null,
+  "computed": {
+   "A3": {
+    "axiom2": [
+     4.099,
+     4.12
+    ],
+    "mappo_tuned": [
+     3.054,
+     3.131
+    ],
+    "single_agent_dqn": [
+     4.0,
+     4.036
+    ],
+    "independent_dqn": [
+     3.889,
+     3.912
+    ]
+   },
+   "A19hex": {
+    "axiom2": [
+     4.529,
+     4.529
+    ],
+    "mappo_tuned": [
+     3.32,
+     3.497
+    ],
+    "single_agent_dqn": [
+     3.887,
+     3.913
+    ],
+    "independent_dqn": [
+     3.749,
+     3.943
+    ]
+   },
+   "A37hex": {
+    "axiom2": [
+     4.546,
+     4.546
+    ],
+    "mappo_tuned": [
+     3.39,
+     3.433
+    ],
+    "single_agent_dqn": [
+     3.869,
+     3.938
+    ],
+    "independent_dqn": [
+     3.799,
+     4.03
+    ]
+   },
+   "B3": {
+    "axiom2": [
+     2.759,
+     2.772
+    ],
+    "mappo_tuned": [
+     2.023,
+     2.075
+    ],
+    "single_agent_dqn": [
+     2.481,
+     2.528
+    ],
+    "independent_dqn": [
+     2.465,
+     2.509
+    ]
+   },
+   "B7ring": {
+    "axiom2": [
+     3.32,
+     3.372
+    ],
+    "mappo_tuned": [
+     2.316,
+     2.64
+    ],
+    "single_agent_dqn": [
+     3.331,
+     3.331
+    ],
+    "independent_dqn": [
+     3.134,
+     3.146
+    ]
+   }
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 text: static rule HL zero with 40 ties, AXIOM mMTC acceptance 5.5% against 15.8% to 60.9%, MLP HL 0.022 and r 0.52",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env A, single_agent_dqn",
+  "snippet": null,
+  "computed": "DQN-SA & 0.311 & 0.066 & 0.312 & 0.051 & 0.312 & 0.092 & 0.59 & 0.0021 & 0.521 & 0.0040 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env A, independent_dqn",
+  "snippet": null,
+  "computed": "DQN-I & 1.110 & 0.0002 & 1.012 & $<$0.0001 & 1.061 & 0.857 & 0.86 & $<$0.0001 & 0.939 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env A, mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 2.685 & $<$0.0001 & 2.280 & $<$0.0001 & 2.482 & 2.510 & 0.99 & $<$0.0001 & 2.892 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env A, axiom2_mlp",
+  "snippet": null,
+  "computed": "MLP encoder & 0.058 & 0.087 & 0.079 & 0.18 & 0.068 & 0.022 & 0.52 & 0.015 & 0.473 & 0.0062 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env A, heuristic",
+  "snippet": null,
+  "computed": "Static rule & $-$0.138 & 0.16 & $-$0.064 & 0.18 & $-$0.101 & 0.000 & $-$0.52 & 0.040 & $-$0.019 & 0.33 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env B, single_agent_dqn",
+  "snippet": null,
+  "computed": "DQN-SA & 1.337 & $<$0.0001 & 1.339 & $<$0.0001 & 1.338 & 1.244 & 0.98 & $<$0.0001 & 0.915 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env B, independent_dqn",
+  "snippet": null,
+  "computed": "DQN-I & 1.038 & $<$0.0001 & 1.204 & $<$0.0001 & 1.121 & 1.076 & 0.93 & $<$0.0001 & 1.196 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env B, mappo_tuned",
+  "snippet": null,
+  "computed": "MAPPO & 1.863 & $<$0.0001 & 1.739 & $<$0.0001 & 1.801 & 1.808 & 0.95 & $<$0.0001 & 1.479 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env B, rule_static",
+  "snippet": null,
+  "computed": "Shed all mMTC & 2.495 & $<$0.0001 & 2.625 & $<$0.0001 & 2.560 & 2.578 & 1.00 & $<$0.0001 & 2.161 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env B, rule_accept_all",
+  "snippet": null,
+  "computed": "Accept all & 4.476 & $<$0.0001 & 4.616 & $<$0.0001 & 4.546 & 4.577 & 1.00 & $<$0.0001 & 4.275 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env B, rule_local",
+  "snippet": null,
+  "computed": "Tuned local rule & $-$0.420 & $<$0.0001 & $-$0.432 & $<$0.0001 & $-$0.426 & $-$0.406 & $-$0.85 & $<$0.0001 & $-$0.472 & $<$0.0001 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env B, rule_neighbour",
+  "snippet": null,
+  "computed": "Tuned neighbour-aware rule & $-$0.209 & 0.061 & $-$0.261 & 0.12 & $-$0.235 & $-$0.206 & $-$0.41 & 0.012 & $-$0.240 & 0.15 \\\\",
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env A scaling at 7 gNBs",
+  "snippet": null,
+  "computed": [
+   "7 gNBs & 17.9 & 0.010 & 7.2 & 0.11 & 15.1 & 13.7 & 0.76 & 0.0003 & & \\\\",
+   {
+    "original": [
+     "hex",
+     "single_agent_dqn"
+    ],
+    "added": [
+     "ring",
+     "single_agent_dqn"
+    ],
+    "pooled": [
+     "ring",
+     "single_agent_dqn"
+    ]
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1: at seven gNBs the smallest lead on the added seeds is over DQN-SA on the ring layout",
+  "snippet": null,
+  "computed": {
+   "original": [
+    "hex",
+    "single_agent_dqn"
+   ],
+   "added": [
+    "ring",
+    "single_agent_dqn"
+   ],
+   "pooled": [
+    "ring",
+    "single_agent_dqn"
+   ]
+  },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Gate 3 OR1 split-sample row, Env A scaling at 19 gNBs",
+  "snippet": null,
+  "computed": [
+   "19 gNBs & 31.0 & $<$0.0001 & 32.4 & $<$0.0001 & 32.1 & 32.7 & 0.98 & $<$0.0001 & & \\\\",
+   {
+    "original": [
+     "ring",
+     "single_agent_dqn"
+    ],
+    "added": [
+     "hex",
+     "single_agent_dqn"
+    ],
+    "pooled": [
+     "hex",
+     "single_agent_dqn"
+    ]
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
   "label": "Fig. 1 budgets and shares match Table 2 and Section 3, and the figure has no bold or transparency",
   "snippet": null,
   "computed": null,
@@ -8148,9 +8532,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 704",
+  "label": "text quotes the final check count of 735",
   "snippet": null,
-  "computed": 704,
+  "computed": 735,
   "formatted": null,
   "in_tex": null,
   "ok": true
