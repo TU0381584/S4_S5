@@ -142,3 +142,14 @@ Re-analysis from the stored logs only. No run was repeated. Item 3.1 (per-gNB co
 | 3.12 | 3.4 | refs.bib | (none) | hodges1963estimates, kerby2014simple | sources of the two effect sizes; records fetched from Crossref |
 | 3.13 | all | m66_verify.py | (none) | 31 new checks: every row of both new tables recomputed with an independent implementation of the two effect sizes, the request balance of every evaluation log, the learning-curve means against the raw training logs, and each new sentence | every new number traces to a log |
 | 3.14 | all | main.tex Sec. 6.6 | `all 704 of its checks pass` | `all 735 of its checks pass` | check count |
+
+## Gate 4
+
+New experiments, pre-registered as M109. No manuscript text changes in this gate until the results are reviewed.
+
+| # | Item | File | Old | New | Reason |
+|---|---|---|---|---|---|
+| 4.01 | all | experiments/scripts/m109_arms.py | (none) | new arms: parity DQN-SA and DQN-I (Huber loss, LayerNorm), a parameter-shared MLP Q-network, QMIX on the shared agent network | Gate 4 items 1, 2 and 4, in new files only |
+| 4.02 | all | experiments/scripts/m109_run.py | (none) | runner: m64_run.py with one variant swapped in at run time, plus evaluation of the checkpoints saved at 300 and 900 episodes | Gate 4 items 1 to 4; framework and earlier runners untouched |
+| 4.03 | all | experiments/scripts/m109_analysis.py, experiments/logs/m109/jobs.txt, run_all.sh, run_one.sh | (none) | analysis with the pre-registered families and stop rule; 240 jobs; restart-safe launcher | committed before any run |
+| 4.04 | all | docs/PAPER5_M109_preregistration.md | (none) | pre-registration of the reduced design (about 70 CPU-hours, 10 fresh seeds 13000 to 13009, 5 for the budget study) | committed before launch |
