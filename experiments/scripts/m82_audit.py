@@ -92,7 +92,7 @@ def run(C):
            and "Each gNB has a budget of $B{=}100$ PRBs in both simulators. The nominal shares are 30, 60, and 10 PRBs for URLLC, eMBB, and mMTC. Each slice's mean offered demand is 105\\% of its share, scaled by a fixed per-gNB multiplier $m_i$ between 0.9 and 1.0." in C.main
            and "$0.95\\,(1+0.3\\sin(2\\pi(s+\\psi_i)/60))$" in C.main and "$B_i(t)=B\\,(1-0.15\\,\\bar u_{\\mathcal{N}(i)}(t-1))$" in C.main
            and "offered PRBs drift 10\\% per step towards" in C.main
-           and "whose load the simulator fixes at the nominal level while it draws every other gNB's from 90\\% to 100\\% of it" in C.main, None)
+           and "whose load the simulator fixes at the nominal level while it draws every other gNB's from 90\\% to 100\\% of it" in C.tex, None)
     from decimal import Decimal, ROUND_HALF_UP
     hu = lambda x: int(Decimal(str(round(100 * x, 6))).quantize(Decimal("1"), rounding=ROUND_HALF_UP))   # 94.5 -> 95, 123.5 -> 124
     C.note("M82 Env A and Env B demand ranges follow from the constants", (hu(0.9 * 1.05), hu(1.0 * 1.05)) == (95, 105)
@@ -178,12 +178,12 @@ def run(C):
     cx = json.load(open(f"{ROOT}/m64/complexity.json")); cx37 = json.load(open(f"{ROOT}/m73/complexity_n37.json"))["37"]
     allc = {n_: cx[n_] for n_ in ("3", "7", "19")}; allc["37"] = cx37
     C.note("M82 Table 4 parameter row", all(allc[n_]["axiom2"]["params_execution"] == 7782 and allc[n_]["mappo"]["params_execution"] == 5122 for n_ in allc)
-           and "7,782 at every size" in C.main and "5,122 at every size" in C.main, None)   # now the complexity table (figure audit)
+           and "7,782 at every size" in C.tex and "5,122 at every size" in C.tex, None)   # now the complexity table (figure audit)
     n7 = {t: {a: seeds_of(f"m64/n7_{t}", a, S15) for a in ARMS} for t in LAY}
     n7p = {a: 100 * float(np.mean([mean(n7[t][a], prio) for t in LAY])) for a in ARMS}
     # figure audit 2026-11-08: the Env B 7-gNB row left with the comparison table; AXIOM's and DQN-SA's values are quoted in the text
     C.note("M82 Table 4 Env B 7-gNB priority SLA row: AXIOM and DQN-SA as quoted in the text",
-           f"which keeps more compliance, {n7p['single_agent_dqn']:.1f}\\% against {n7p['axiom2']:.1f}\\%" in C.main, {k: round(v, 2) for k, v in n7p.items()})
+           f"which keeps more compliance, {n7p['single_agent_dqn']:.1f}\\% against {n7p['axiom2']:.1f}\\%" in C.tex, {k: round(v, 2) for k, v in n7p.items()})
     def pooled(n_):
         if n_ == 37:
             rows = {a: [r for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for r in seeds_of(f"m73/A_n37_{t}", a, ss if a == "axiom2" or t == "hex" else []).values()] for a in ARMS}
@@ -194,8 +194,8 @@ def run(C):
     pl = {n_: pooled(n_) for n_ in (7, 19, 37)}
     C.note("M82 abstract and contributions: AXIOM above 93% and every learned baseline below 84% at 7, 19 and 37 gNBs",
            min(pl[n_]["axiom2"] for n_ in pl) > 93 and max(pl[n_][a] for n_ in pl for a in ARMS[1:]) < 84
-           and "At 7, 19, and 37 gNBs, AXIOM keeps Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) service-level compliance above 93\\%, even when trained only at 7 gNBs, while every learned baseline stays below 84\\%" in C.main
-           and "AXIOM keeps priority-slice compliance above 93\\% at 7, 19, and 37 gNBs, while both DQN baselines and MAPPO stay below 84\\%" in C.main,
+           and "At 7, 19, and 37 gNBs, AXIOM keeps Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) cluster-level service compliance above 93\\%, even when trained only at 7 gNBs, while every learned baseline stays below 84\\%" in C.main
+           and "AXIOM keeps cluster-level priority-slice compliance above 93\\% at 7, 19, and 37 gNBs, while both DQN baselines and MAPPO stay below 84\\%" in C.main,
            {n_: {a: round(v, 1) for a, v in pl[n_].items()} for n_ in pl})
     f74 = {a: seeds_of("m74/A_n37_hex", a, list(range(6100, 6120))) for a in ARMS}
     fp = {a: 100 * mean(f74[a], prio) for a in ARMS}
@@ -243,7 +243,7 @@ def run(C):
         dsg = {"axiom2": "Shared encoder, per-slice heads", "single_agent_dqn": "One flattened controller", "independent_dqn": "One learner per gNB",
                "mappo_tuned": "Shared actor, central critic"}[a]
         rows[a] = f"{lab} & {dsg} & {p_} & {lat} & {tr[0]} / {tr[1]} / {tr[2]} \\\\"
-    C.note("M82 complexity table rows recomputed from the measurements", all(r in C.main for r in rows.values()), rows)
+    C.note("M82 complexity table rows recomputed from the measurements", all(r in C.tex for r in rows.values()), rows)
     C.note("M82 federation pooled over 30 seeds, ten of them fresh", len(seeds_of("m65_m3", "fl_gat_ctde_sigma0.0", S10)) == 10
            and len(seeds_of("m65_m3_replication", "fl_gat_ctde_sigma0.0", REP)) == 10
            and "Pooled over all 30 federated seeds, ten of them fresh" in C.main, None)
@@ -285,7 +285,7 @@ def run(C):
     d80 = [c_ for c_ in m80a["criteria"] if re.match(r"D\d ", c_["label"])]
     C.note("M82 fifth and sixth fresh-seed runs: 3 of 3 and 4 of 4 checks held", (m74a["n_judged"], m74a["n_fail"]) == (3, 0)
            and len(d80) == 4 and all(c_["holds"] for c_ in d80)
-           and "A fifth fresh-seed run held all three of its checks at thirty-seven gNBs on 20 seeds. A sixth held all four in Env B at nineteen gNBs on 15 seeds" in C.main, None)
+           and "A fifth held all three of its checks at thirty-seven gNBs on 20 seeds, and a sixth all four in Env B at nineteen gNBs on 15 seeds" in C.main, None)
     mb = json.load(open(f"{ROOT}/m66b_analysis.json")); mc = json.load(open(f"{ROOT}/m66c_analysis.json"))
     bounds = [c_["label"] for c_ in mb["criteria"] + mc["criteria"] if "<= 80%" in c_["label"]]
     sizes = {"m66_fresh/A_n3": 20, "m66_fresh/A_n19_ring": 15, "m66_fresh/B_n7_ring": 10, "m66b_fresh/A_n7_ring": 10, "m66d_fresh/D1_A_n3": 40}

@@ -4,7 +4,7 @@ This lists what the public deposit holds and how it is built. Nothing has been u
 
 ## Build
 
-`bash experiments/scripts/make_archive.sh <staging_dir>` writes the archive to a staging directory and finishes with SHA256SUMS over every file. It records the source commit in SOURCE_COMMIT.txt. It needs about 90 GB of free space for tier 2, because the stored logs total 92 GB and the one campaign tested, m66c_fresh, shrank only from 1.4 GB to 1.26 GB. The laptop has 11 GB free, so only the console logs of tier 2 and tier 1 are staged in ~/archive_staging, and the rest of tier 2 waits for an external drive or for a larger disk.
+`bash experiments/scripts/make_archive.sh <staging_dir>` writes the archive to a staging directory and finishes with SHA256SUMS over every file. It records the source commit in SOURCE_COMMIT.txt. It needs about 34 GB of free space for tier 2, the size of experiments/results now that its logs are gzipped, since gzipped logs do not shrink further. The M108 and M109 logs were gzipped on 2026-11-16, which brought the results directory from 92 GB to about 33 GB and free space to 71 GB, so tier 2 can now be staged on this laptop. Only tier 1 and the console logs are staged in ~/archive_staging so far.
 
 ## Contents
 
@@ -36,6 +36,7 @@ Each file was committed before the runs it governs. The hash and timestamp are t
 | docs/PAPER5_M107_preregistration.md | 426a3281 | 2026-11-12T20:39:47+08:00 |
 | docs/PAPER5_M108_preregistration.md | bb57af09 | 2026-11-14T06:14:36+08:00 |
 | docs/PAPER5_M109_preregistration.md | 497c86d6 | 2026-11-16T00:05:29+08:00 |
+| docs/PAPER5_M110_preregistration.md | d59ee624 | 2026-11-16T20:43:14+08:00 |
 | docs/PAPER5_M45_PF21_preregistration.md | 3239be0b | 2026-09-14T20:19:40+08:00 |
 | docs/PAPER5_M63_preregistration.md | 85f2aa92 | 2026-10-15T14:29:06+08:00 |
 | docs/PAPER5_M64_preregistration.md | cfc6c151 | 2026-10-16T13:55:08+08:00 |

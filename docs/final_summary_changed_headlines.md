@@ -12,7 +12,9 @@ Every row comes from an entry of CHANGELOG_WPC.md (Gate and number in the last c
 | Env B, three gNBs, AXIOM compliance lead over the neighbour rule | pooled only | confirmation seeds leave it within chance | same | 2.39 |
 | Differential privacy | "weak formal guarantee" | "no meaningful privacy guarantee", epsilon about 2,600 or more | wording matched to the number | 2.40 |
 | Live testbed | "never jointly validated in a live deployment" | "we found none jointly validated", and the main paper states AXIOM was not deployed live | absolute claims limited to what was checked | 2.07, 5.03 |
-| Verification | 674 checks | 735 checks, all pass | checks added for every new table and sentence | Gates 2, 3, 5 |
+| Scaling lead in Env A | compliance above 93 % against below 84 % for every learned baseline, stated without naming the metric | the same values named as cluster-level, with the per-gNB lead over the closest baseline stated: 4.2, 3.9 and 5.0 points at 7, 19 and 37 gNBs (cluster level 18.6, 32.6, 36.3) | M110 re-evaluated all 1,620 stored runs per gNB; the pre-registered 5-point rule holds at 37 gNBs and not at 19 | 7.03 to 7.06 |
+| Abstract | AXIOM earns 42 % more than the static rule in Env B at 3 gNBs | clause removed | room for the per-gNB sentence within 250 words | 7.04 |
+| Verification | 674 checks | 756 checks, all pass | checks added for every new table and sentence | Gates 2, 3, 5 and after |
 
 ## Added by the review
 
@@ -20,6 +22,6 @@ Every row comes from an entry of CHANGELOG_WPC.md (Gate and number in the last c
 - A fourth sample, 30 confirmation seeds, reported on its own and pooled into no estimate.
 - A paragraph on what the model omits relative to standard slice-admission formulations.
 
-## Run but not yet in the paper
+## Reported in Online Resource 1 since the gates
 
-M109 (240 jobs, fresh seeds 13000 to 13009, results in docs/PAPER5_M109_results.md) leaves every number above unchanged. Parity baselines with Huber loss and LayerNorm and a parameter-shared MLP baseline stay 29 to 71 points below AXIOM at 19 and 37 gNBs, and QMIX matches AXIOM at 19 gNBs but fails the pre-registered stability rule in all 10 seeds. How to report these awaits the authors.
+M109 (240 jobs, fresh seeds 13000 to 13009) is in Section S6 with every arm. It changes none of the numbers above. Parity baselines with Huber loss and LayerNorm and a parameter-shared MLP baseline stay 29 to 71 points below AXIOM at 19 and 37 gNBs at cluster level, and QMIX matches AXIOM at 19 gNBs but fails the pre-registered stability rule in all 10 seeds.

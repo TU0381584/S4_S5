@@ -29,7 +29,7 @@ In Env B at 3 gNBs AXIOM reaches 65.6 % and the parameter-shared baseline 64.8 %
 - P1, parity baselines: AXIOM is ahead of parity DQN-SA and DQN-I on compliance and reward at 7, 19 and 37 gNBs (all 12 comparisons, Holm p 0.0234, rank-biserial 1.00 for all but ties). The lead over the original DQN baselines is not an artefact of their loss or normalisation.
 - P2, parameter-shared baseline: AXIOM is ahead at 7, 19 and 37 gNBs on both measures (Holm p 0.0156 to 0.0195). In Env B at 3 gNBs the compliance difference is within chance (+0.8 points, p 0.375) and the reward lead is small (+0.346, p 0.027). Parameter sharing alone does not explain the scaling result in Env A.
 - P3, ablations: the MLP encoder is within chance of AXIOM at 7, 19 and 37 gNBs on both measures. The shared head is within chance at 7 and 19 gNBs and falls behind at 37 gNBs (compliance +38.1 points, reward +21.1, Holm p 0.0234). With 10 seeds the 19-gNB MLP gap (3.8 reward) cannot be told from chance.
-- P5, QMIX at 19 gNBs: within chance of AXIOM on both measures (compliance -0.04, reward -0.29, Holm p 1.0). By the pre-registered rule 0 of 10 seeds are stable: every loss is finite, but the last-20-episode mean loss is 4 to 5 times the lowest 20-episode mean in all 10 seeds.
+- P5, QMIX at 19 gNBs: within chance of AXIOM on both measures (compliance -0.04, reward -0.29, Holm p 1.0). By the pre-registered rule 0 of 10 seeds are stable: every loss is finite, but the last-20-episode mean loss is 4.2 to 6.0 times the lowest 20-episode mean in all 10 seeds.
 
 ## Training budget (5 seeds, descriptive, 19 gNBs in Env A)
 

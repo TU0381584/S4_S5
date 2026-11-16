@@ -1,0 +1,23 @@
+{
+ "n": 19,
+ "topology": "fully_connected",
+ "arm": "mappo_tuned",
+ "seed": 11014,
+ "stored_eval": "/home/kmanojp/oranslice_rig/experiments/results/m107/A_n19_fully_connected/mappo_tuned/seed11014/eval/omega_log.jsonl.gz",
+ "checkpoint": "/home/kmanojp/oranslice_rig/experiments/results/m107/A_n19_fully_connected/mappo_tuned/seed11014/train/checkpoint.pt",
+ "exact": true,
+ "reward": 73.2546168550678,
+ "stored_reward": 73.2546168550678,
+ "cluster_sla": {
+  "urllc": 0.7756666666666666,
+  "embb": 0.439,
+  "mmtc": 0.5076666666666667
+ },
+ "per_gnb_mean": {
+  "urllc": 0.9841578947368422,
+  "embb": 0.8742280701754386,
+  "mmtc": 0.9088421052631579
+ },
+ "steps": 3000,
+ "eval_seconds": 15.6
+}

@@ -1,0 +1,23 @@
+{
+ "n": 37,
+ "topology": "hex",
+ "arm": "single_agent_dqn",
+ "seed": 906,
+ "stored_eval": "/home/kmanojp/oranslice_rig/experiments/results/m73/A_n37_hex/single_agent_dqn/seed906/eval/dqn/offline_eval/rep_0/omega_log.jsonl.gz",
+ "checkpoint": "/home/kmanojp/oranslice_rig/experiments/results/m73/A_n37_hex/single_agent_dqn/seed906/train/dqn/offline_train/rep_0/checkpoint.pt",
+ "exact": true,
+ "reward": 141.6536144685125,
+ "stored_reward": 141.6536144685125,
+ "cluster_sla": {
+  "urllc": 0.7203333333333333,
+  "embb": 0.4396666666666667,
+  "mmtc": 0.9573333333333334
+ },
+ "per_gnb_mean": {
+  "urllc": 0.982054054054054,
+  "embb": 0.9218108108108108,
+  "mmtc": 0.9975225225225225
+ },
+ "steps": 3000,
+ "eval_seconds": 59.0
+}

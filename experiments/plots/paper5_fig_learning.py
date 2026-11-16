@@ -32,8 +32,8 @@ def band(m, reps=10000, chunk=500):
 
 def main():
     d = json.load(open(SRC))
-    fig = S.figure("full", 86)
-    W, H, x0, y0, gx, gy = 0.245, 0.335, 0.115, 0.115, 0.06, 0.135
+    fig = S.figure("full", 74)
+    W, H, x0, y0, gx, gy = 0.245, 0.315, 0.115, 0.14, 0.06, 0.15
     pos = [(x0 + i * (W + gx), y0 + H + gy) for i in range(3)] + [(x0 + i * (W + gx), y0) for i in range(2)]
     summ = {}
     for (key, letter, env, title), (px, py) in zip(PANELS, pos):

@@ -1,0 +1,23 @@
+{
+ "n": 7,
+ "topology": "ring",
+ "arm": "independent_dqn",
+ "seed": 11013,
+ "stored_eval": "/home/kmanojp/oranslice_rig/experiments/results/m107/A_n7_ring/independent_dqn/seed11013/eval/omega_log.jsonl.gz",
+ "checkpoint": "/home/kmanojp/oranslice_rig/experiments/results/m107/A_n7_ring/independent_dqn/seed11013/train/checkpoint.pt",
+ "exact": true,
+ "reward": 27.086799984974117,
+ "stored_reward": 27.086799984974117,
+ "cluster_sla": {
+  "urllc": 0.9113333333333334,
+  "embb": 0.5396666666666667,
+  "mmtc": 0.98
+ },
+ "per_gnb_mean": {
+  "urllc": 0.9869047619047618,
+  "embb": 0.8980952380952382,
+  "mmtc": 0.997
+ },
+ "steps": 3000,
+ "eval_seconds": 10.1
+}
