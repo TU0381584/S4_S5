@@ -181,3 +181,10 @@ New experiments, pre-registered as M109. No manuscript text changes in this gate
 | 6.01 | order | main.tex | Sec. 5 summary paragraph | "Fig.~6 shows how the four learned policies compare as the cluster grows." | sentence removed | Fig. 6 was cited before Fig. 5; it is cited in its own subsection |
 | 6.02 | docs | docs/final_summary_changed_headlines.md | new | (none) | one-page summary of changed headline numbers | requested by the gate |
 | 6.03 | docs | docs/cover_letter_draft.md | new | (none) | draft cover letter, three sentences on contribution and three on limits; originality, concurrent submission and reviewer statements left to the authors | requested by the gate |
+
+## After the gates (2026-11-16, author requests)
+
+| # | Item | File | Place | Old | New | Reason |
+|---|---|---|---|---|---|---|
+| 7.01 | per-gNB check | docs/PAPER5_M110_preregistration.md, experiments/scripts/m110_pergnb.py, m110_analysis.py, experiments/logs/m110/ | new | (none) | pre-registration, runner, analysis and job list for the per-gNB re-evaluation of 1,620 stored Env A runs | author asked for the check that Gate 3 could not answer from logs |
+| 7.02 | disk | experiments/logs/disk/gzip_m108_m109_20261116.list | new | M108 and M109 logs plain (65 GB) | 1,305 logs gzipped with hash verification, plain copies removed with the author's approval, 71 GB free | author asked to free space |
