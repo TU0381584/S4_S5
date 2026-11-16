@@ -1,0 +1,991 @@
+{
+ "summary": {
+  "A7 AXIOM": {
+   "n": 10,
+   "priority_sla": 99.75,
+   "reward": 32.07738382828572,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    99.4,
+    100.0
+   ]
+  },
+  "A7 parity DQN-SA": {
+   "n": 10,
+   "priority_sla": 92.34833333333334,
+   "reward": 30.696225920025178,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    88.79475,
+    95.81337500000001
+   ]
+  },
+  "A7 parity DQN-I": {
+   "n": 10,
+   "priority_sla": 68.46333333333334,
+   "reward": 27.063608801758612,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    60.80658333333333,
+    77.07004166666665
+   ]
+  },
+  "A7 parameter-shared": {
+   "n": 10,
+   "priority_sla": 91.785,
+   "reward": 29.504133498734195,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    85.9015,
+    97.063375
+   ]
+  },
+  "A7 MLP encoder": {
+   "n": 10,
+   "priority_sla": 99.995,
+   "reward": 32.055457717078355,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    99.985,
+    100.0
+   ]
+  },
+  "A7 shared head": {
+   "n": 10,
+   "priority_sla": 98.40333333333334,
+   "reward": 31.997469770680233,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    95.725,
+    100.0
+   ]
+  },
+  "A19 AXIOM": {
+   "n": 10,
+   "priority_sla": 96.17999999999999,
+   "reward": 89.05596996251847,
+   "collapsed": 1,
+   "priority_sla_ci": [
+    88.53999999999999,
+    100.0
+   ]
+  },
+  "A19 parity DQN-SA": {
+   "n": 10,
+   "priority_sla": 67.23666666666666,
+   "reward": 78.85108734896824,
+   "collapsed": 8,
+   "priority_sla_ci": [
+    64.41658333333334,
+    70.13666666666667
+   ]
+  },
+  "A19 parity DQN-I": {
+   "n": 10,
+   "priority_sla": 53.108333333333334,
+   "reward": 76.47666507870231,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    48.90333333333333,
+    58.28004166666666
+   ]
+  },
+  "A19 parameter-shared": {
+   "n": 10,
+   "priority_sla": 66.80333333333334,
+   "reward": 78.62484798086159,
+   "collapsed": 10,
+   "priority_sla_ci": [
+    64.749875,
+    68.930125
+   ]
+  },
+  "A19 MLP encoder": {
+   "n": 10,
+   "priority_sla": 89.62166666666667,
+   "reward": 85.26776637620817,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    80.245,
+    97.48833333333333
+   ]
+  },
+  "A19 shared head": {
+   "n": 10,
+   "priority_sla": 83.515,
+   "reward": 85.10300249699664,
+   "collapsed": 2,
+   "priority_sla_ci": [
+    73.45991666666667,
+    93.18845833333333
+   ]
+  },
+  "A37 AXIOM": {
+   "n": 10,
+   "priority_sla": 99.99,
+   "reward": 177.71474007609297,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    99.97,
+    100.0
+   ]
+  },
+  "A37 parity DQN-SA": {
+   "n": 10,
+   "priority_sla": 61.22500000000001,
+   "reward": 156.47536081433577,
+   "collapsed": 9,
+   "priority_sla_ci": [
+    58.666625,
+    64.06833333333333
+   ]
+  },
+  "A37 parity DQN-I": {
+   "n": 10,
+   "priority_sla": 28.581666666666667,
+   "reward": 144.20830049291726,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    22.751583333333333,
+    35.63704166666667
+   ]
+  },
+  "A37 parameter-shared": {
+   "n": 10,
+   "priority_sla": 61.89666666666667,
+   "reward": 156.5553340410396,
+   "collapsed": 10,
+   "priority_sla_ci": [
+    59.77,
+    64.44175
+   ]
+  },
+  "A37 MLP encoder": {
+   "n": 10,
+   "priority_sla": 99.92166666666667,
+   "reward": 176.39787333128908,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    99.76499999999999,
+    100.0
+   ]
+  },
+  "A37 shared head": {
+   "n": 10,
+   "priority_sla": 61.89666666666667,
+   "reward": 156.5878225612616,
+   "collapsed": 8,
+   "priority_sla_ci": [
+    59.77,
+    64.44175
+   ]
+  },
+  "B3 AXIOM": {
+   "n": 10,
+   "priority_sla": 65.61166666666666,
+   "reward": 8.928300257388901,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    63.648333333333326,
+    67.483375
+   ]
+  },
+  "B3 parameter-shared": {
+   "n": 10,
+   "priority_sla": 64.83166666666666,
+   "reward": 8.582455432451969,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    62.98979166666666,
+    66.82837500000001
+   ]
+  },
+  "A19 QMIX": {
+   "n": 10,
+   "priority_sla": 99.865,
+   "reward": 89.3438166649028,
+   "collapsed": 0,
+   "priority_sla_ci": [
+    99.68070833333331,
+    100.0
+   ]
+  }
+ },
+ "families": {
+  "P1 parity": {
+   "A7 parity DQN-SA sla": {
+    "n": 10,
+    "diff": 0.07401666666666665,
+    "wins": 9,
+    "ties": 1,
+    "losses": 0,
+    "p": 0.00390625,
+    "ci": [
+     0.03929958333333332,
+     0.11029999999999998
+    ],
+    "hl": 0.07091666666666663,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A7 parity DQN-SA reward": {
+    "n": 10,
+    "diff": 1.3811579082605434,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     0.8658024773858654,
+     1.914607118604619
+    ],
+    "hl": 1.4064224087111015,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A7 parity DQN-I sla": {
+    "n": 10,
+    "diff": 0.3128666666666667,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     0.22779958333333328,
+     0.38783375000000003
+    ],
+    "hl": 0.32225,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A7 parity DQN-I reward": {
+    "n": 10,
+    "diff": 5.013775026527105,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     3.9826387409021344,
+     5.938138146550937
+    ],
+    "hl": 5.109313874222757,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A19 parity DQN-SA sla": {
+    "n": 10,
+    "diff": 0.2894333333333333,
+    "wins": 9,
+    "ties": 1,
+    "losses": 0,
+    "p": 0.00390625,
+    "ci": [
+     0.21451124999999996,
+     0.34243375
+    ],
+    "hl": 0.3101666666666666,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A19 parity DQN-SA reward": {
+    "n": 10,
+    "diff": 10.204882613550229,
+    "wins": 9,
+    "ties": 1,
+    "losses": 0,
+    "p": 0.00390625,
+    "ci": [
+     7.727774674692996,
+     11.765037334580262
+    ],
+    "hl": 11.22339948663685,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A19 parity DQN-I sla": {
+    "n": 10,
+    "diff": 0.43071666666666675,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     0.34431666666666666,
+     0.4987666666666667
+    ],
+    "hl": 0.4613333333333334,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A19 parity DQN-I reward": {
+    "n": 10,
+    "diff": 12.579304883816151,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     9.65225314000943,
+     14.575788003689345
+    ],
+    "hl": 13.498222583539238,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A37 parity DQN-SA sla": {
+    "n": 10,
+    "diff": 0.38765,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     0.3592329166666667,
+     0.41319999999999996
+    ],
+    "hl": 0.3918333333333333,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A37 parity DQN-SA reward": {
+    "n": 10,
+    "diff": 21.239379261757186,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     20.50795947949611,
+     21.790207525028748
+    ],
+    "hl": 21.551895330974943,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A37 parity DQN-I sla": {
+    "n": 10,
+    "diff": 0.7140833333333333,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     0.6433320833333334,
+     0.7724841666666667
+    ],
+    "hl": 0.7391666666666666,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A37 parity DQN-I reward": {
+    "n": 10,
+    "diff": 33.5064395831757,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     29.517195473443312,
+     37.47905763114772
+    ],
+    "hl": 33.211704787531346,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "P2 parameter-shared": {
+   "A7 parameter-shared sla": {
+    "n": 10,
+    "diff": 0.07964999999999998,
+    "wins": 9,
+    "ties": 0,
+    "losses": 1,
+    "p": 0.005859375,
+    "ci": [
+     0.025866249999999993,
+     0.13942374999999985
+    ],
+    "hl": 0.07724999999999999,
+    "rb": 0.9272727272727272,
+    "p_holm": 0.01953125,
+    "verdict": "AXIOM ahead"
+   },
+   "A7 parameter-shared reward": {
+    "n": 10,
+    "diff": 2.573250329551522,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     1.8896111356436494,
+     3.3134259914826734
+    ],
+    "hl": 2.503855081419484,
+    "rb": 1.0,
+    "p_holm": 0.015625,
+    "verdict": "AXIOM ahead"
+   },
+   "A19 parameter-shared sla": {
+    "n": 10,
+    "diff": 0.2937666666666666,
+    "wins": 9,
+    "ties": 1,
+    "losses": 0,
+    "p": 0.00390625,
+    "ci": [
+     0.22021333333333332,
+     0.3407675
+    ],
+    "hl": 0.3198333333333333,
+    "rb": 1.0,
+    "p_holm": 0.01953125,
+    "verdict": "AXIOM ahead"
+   },
+   "A19 parameter-shared reward": {
+    "n": 10,
+    "diff": 10.431121981656869,
+    "wins": 9,
+    "ties": 1,
+    "losses": 0,
+    "p": 0.00390625,
+    "ci": [
+     7.961431760118861,
+     11.852730504472918
+    ],
+    "hl": 11.441637546018796,
+    "rb": 1.0,
+    "p_holm": 0.01953125,
+    "verdict": "AXIOM ahead"
+   },
+   "A37 parameter-shared sla": {
+    "n": 10,
+    "diff": 0.38093333333333335,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     0.35555,
+     0.40211708333333335
+    ],
+    "hl": 0.3903333333333334,
+    "rb": 1.0,
+    "p_holm": 0.015625,
+    "verdict": "AXIOM ahead"
+   },
+   "A37 parameter-shared reward": {
+    "n": 10,
+    "diff": 21.159406035053347,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     20.461569157547597,
+     21.67582122348486
+    ],
+    "hl": 21.487038539224258,
+    "rb": 1.0,
+    "p_holm": 0.015625,
+    "verdict": "AXIOM ahead"
+   },
+   "B3 parameter-shared sla": {
+    "n": 10,
+    "diff": 0.007799999999999996,
+    "wins": 7,
+    "ties": 0,
+    "losses": 3,
+    "p": 0.375,
+    "ci": [
+     -0.0036833333333333384,
+     0.021150833333333344
+    ],
+    "hl": 0.004666666666666763,
+    "rb": 0.34545454545454546,
+    "p_holm": 0.375,
+    "verdict": "within chance"
+   },
+   "B3 parameter-shared reward": {
+    "n": 10,
+    "diff": 0.34584482493693375,
+    "wins": 8,
+    "ties": 0,
+    "losses": 2,
+    "p": 0.013671875,
+    "ci": [
+     0.14704102244071826,
+     0.568410879375558
+    ],
+    "hl": 0.32710187480989106,
+    "rb": 0.8545454545454545,
+    "p_holm": 0.02734375,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "P3 ablations": {
+   "A7 MLP encoder sla": {
+    "n": 10,
+    "diff": -0.0024500000000000077,
+    "wins": 1,
+    "ties": 7,
+    "losses": 2,
+    "p": 0.5,
+    "ci": [
+     -0.005950000000000011,
+     9.999999999998899e-05
+    ],
+    "hl": 0.0,
+    "rb": -0.6666666666666666,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A7 MLP encoder reward": {
+    "n": 10,
+    "diff": 0.021926111207363163,
+    "wins": 1,
+    "ties": 7,
+    "losses": 2,
+    "p": 1.0,
+    "ci": [
+     -0.3134355454298511,
+     0.45071312587711354
+    ],
+    "hl": 0.0,
+    "rb": 0.0,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A7 shared head sla": {
+    "n": 10,
+    "diff": 0.01346666666666666,
+    "wins": 2,
+    "ties": 7,
+    "losses": 1,
+    "p": 0.5,
+    "ci": [
+     -0.00043333333333335223,
+     0.03761666666666667
+    ],
+    "hl": 0.0,
+    "rb": 0.6666666666666666,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A7 shared head reward": {
+    "n": 10,
+    "diff": 0.07991405760548922,
+    "wins": 3,
+    "ties": 6,
+    "losses": 1,
+    "p": 0.625,
+    "ci": [
+     -0.1637304066980711,
+     0.36713462358704696
+    ],
+    "hl": 0.0,
+    "rb": 0.4,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A19 MLP encoder sla": {
+    "n": 10,
+    "diff": 0.06558333333333333,
+    "wins": 4,
+    "ties": 5,
+    "losses": 1,
+    "p": 0.4375,
+    "ci": [
+     -0.06290000000000005,
+     0.18761666666666668
+    ],
+    "hl": 0.07591666666666669,
+    "rb": 0.4666666666666667,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A19 MLP encoder reward": {
+    "n": 10,
+    "diff": 3.788203586310304,
+    "wins": 4,
+    "ties": 5,
+    "losses": 1,
+    "p": 0.4375,
+    "ci": [
+     -1.9359196492379653,
+     10.850123000872452
+    ],
+    "hl": 2.521793392850924,
+    "rb": 0.4666666666666667,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A19 shared head sla": {
+    "n": 10,
+    "diff": 0.12664999999999998,
+    "wins": 7,
+    "ties": 2,
+    "losses": 1,
+    "p": 0.1484375,
+    "ci": [
+     -0.02288375000000003,
+     0.25753916666666654
+    ],
+    "hl": 0.16075,
+    "rb": 0.6111111111111112,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A19 shared head reward": {
+    "n": 10,
+    "diff": 3.952967465521837,
+    "wins": 6,
+    "ties": 2,
+    "losses": 2,
+    "p": 0.1953125,
+    "ci": [
+     -0.9190531131472328,
+     8.394430632070607
+    ],
+    "hl": 4.074524675534832,
+    "rb": 0.5555555555555556,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A37 MLP encoder sla": {
+    "n": 10,
+    "diff": 0.0006833333333333358,
+    "wins": 1,
+    "ties": 8,
+    "losses": 1,
+    "p": 1.0,
+    "ci": [
+     -0.00030000000000000024,
+     0.0023500000000000075
+    ],
+    "hl": 0.0,
+    "rb": 0.3333333333333333,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A37 MLP encoder reward": {
+    "n": 10,
+    "diff": 1.316866744803886,
+    "wins": 1,
+    "ties": 8,
+    "losses": 1,
+    "p": 1.0,
+    "ci": [
+     -0.01023297040961495,
+     3.960833204821273
+    ],
+    "hl": 0.0,
+    "rb": 0.3333333333333333,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A37 shared head sla": {
+    "n": 10,
+    "diff": 0.38093333333333335,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     0.35555,
+     0.40211708333333335
+    ],
+    "hl": 0.3903333333333334,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   },
+   "A37 shared head reward": {
+    "n": 10,
+    "diff": 21.126917514831383,
+    "wins": 10,
+    "ties": 0,
+    "losses": 0,
+    "p": 0.001953125,
+    "ci": [
+     20.40808548959376,
+     21.67721907308256
+    ],
+    "hl": 21.487038539224258,
+    "rb": 1.0,
+    "p_holm": 0.0234375,
+    "verdict": "AXIOM ahead"
+   }
+  },
+  "P5 QMIX": {
+   "A19 QMIX sla": {
+    "n": 10,
+    "diff": -0.036850000000000015,
+    "wins": 1,
+    "ties": 8,
+    "losses": 1,
+    "p": 1.0,
+    "ci": [
+     -0.11330000000000004,
+     0.002749999999999997
+    ],
+    "hl": 0.0,
+    "rb": -0.3333333333333333,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   },
+   "A19 QMIX reward": {
+    "n": 10,
+    "diff": -0.2878467023843413,
+    "wins": 4,
+    "ties": 4,
+    "losses": 2,
+    "p": 0.6875,
+    "ci": [
+     -3.569402277262644,
+     2.182543814353332
+    ],
+    "hl": 0.06499607235687677,
+    "rb": 0.23809523809523808,
+    "p_holm": 1.0,
+    "verdict": "within chance"
+   }
+  }
+ },
+ "stop_rule": {
+  "A19 parity DQN-SA": {
+   "gap_points": 28.943333333333328,
+   "within_5_points": false
+  },
+  "A19 parity DQN-I": {
+   "gap_points": 43.07166666666666,
+   "within_5_points": false
+  },
+  "A19 parameter-shared": {
+   "gap_points": 29.37666666666665,
+   "within_5_points": false
+  },
+  "A37 parity DQN-SA": {
+   "gap_points": 38.764999999999986,
+   "within_5_points": false
+  },
+  "A37 parity DQN-I": {
+   "gap_points": 71.40833333333333,
+   "within_5_points": false
+  },
+  "A37 parameter-shared": {
+   "gap_points": 38.09333333333333,
+   "within_5_points": false
+  },
+  "triggered": false
+ },
+ "budget": {
+  "axiom2": {
+   "300": {
+    "n": 5,
+    "priority_sla": 100.0,
+    "reward": 90.11480110624227,
+    "collapsed": 0,
+    "priority_sla_ci": [
+     100.0,
+     100.0
+    ]
+   },
+   "900": {
+    "n": 5,
+    "priority_sla": 88.93,
+    "reward": 86.24726338987185,
+    "collapsed": 1,
+    "priority_sla_ci": [
+     74.07000000000001,
+     100.0
+    ]
+   },
+   "1500": {
+    "n": 5,
+    "priority_sla": 100.0,
+    "reward": 90.28721127820002,
+    "collapsed": 0,
+    "priority_sla_ci": [
+     100.0,
+     100.0
+    ]
+   }
+  },
+  "single_agent_dqn": {
+   "300": {
+    "n": 5,
+    "priority_sla": 65.17999999999999,
+    "reward": 78.16354968919072,
+    "collapsed": 4,
+    "priority_sla_ci": [
+     63.60666666666667,
+     66.89666666666668
+    ]
+   },
+   "900": {
+    "n": 5,
+    "priority_sla": 65.17999999999999,
+    "reward": 78.27873164457617,
+    "collapsed": 5,
+    "priority_sla_ci": [
+     63.60666666666667,
+     66.89666666666668
+    ]
+   },
+   "1500": {
+    "n": 5,
+    "priority_sla": 65.17999999999999,
+    "reward": 78.27873164457617,
+    "collapsed": 5,
+    "priority_sla_ci": [
+     63.60666666666667,
+     66.89666666666668
+    ]
+   }
+  },
+  "independent_dqn": {
+   "300": {
+    "n": 5,
+    "priority_sla": 50.95666666666666,
+    "reward": 75.70170073731069,
+    "collapsed": 0,
+    "priority_sla_ci": [
+     46.093333333333334,
+     55.95999999999999
+    ]
+   },
+   "900": {
+    "n": 5,
+    "priority_sla": 49.01000000000001,
+    "reward": 77.21325779537823,
+    "collapsed": 0,
+    "priority_sla_ci": [
+     37.519999999999996,
+     60.50000000000001
+    ]
+   },
+   "1500": {
+    "n": 5,
+    "priority_sla": 32.54,
+    "reward": 71.3226190961283,
+    "collapsed": 0,
+    "priority_sla_ci": [
+     18.926666666666662,
+     46.663333333333334
+    ]
+   }
+  },
+  "mappo_tuned": {
+   "300": {
+    "n": 5,
+    "priority_sla": 57.32666666666667,
+    "reward": 69.60534733342526,
+    "collapsed": 0,
+    "priority_sla_ci": [
+     42.510000000000005,
+     72.46666666666667
+    ]
+   },
+   "900": {
+    "n": 5,
+    "priority_sla": 56.47,
+    "reward": 66.67963963510827,
+    "collapsed": 0,
+    "priority_sla_ci": [
+     44.153333333333336,
+     67.60000000000001
+    ]
+   },
+   "1500": {
+    "n": 5,
+    "priority_sla": 57.07666666666667,
+    "reward": 63.16872953255906,
+    "collapsed": 0,
+    "priority_sla_ci": [
+     43.553333333333335,
+     70.60133333333332
+    ]
+   }
+  }
+ },
+ "qmix": {
+  "per_seed": {
+   "13000": {
+    "finite": true,
+    "last20": 38.021383801102644,
+    "best20": 7.283697918663765,
+    "stable": false
+   },
+   "13001": {
+    "finite": true,
+    "last20": 35.69481601655484,
+    "best20": 7.582641544739404,
+    "stable": false
+   },
+   "13002": {
+    "finite": true,
+    "last20": 34.5782197068135,
+    "best20": 8.026383833141848,
+    "stable": false
+   },
+   "13003": {
+    "finite": true,
+    "last20": 39.65357891519865,
+    "best20": 6.6361909459411415,
+    "stable": false
+   },
+   "13004": {
+    "finite": true,
+    "last20": 36.00972872674465,
+    "best20": 8.298095263715448,
+    "stable": false
+   },
+   "13005": {
+    "finite": true,
+    "last20": 34.168798949321115,
+    "best20": 6.7254812710004295,
+    "stable": false
+   },
+   "13006": {
+    "finite": true,
+    "last20": 36.93352128307025,
+    "best20": 7.479249274740958,
+    "stable": false
+   },
+   "13007": {
+    "finite": true,
+    "last20": 38.24431848327319,
+    "best20": 7.116317358383503,
+    "stable": false
+   },
+   "13008": {
+    "finite": true,
+    "last20": 33.97214765369892,
+    "best20": 7.3932041697324005,
+    "stable": false
+   },
+   "13009": {
+    "finite": true,
+    "last20": 34.338407622377076,
+    "best20": 8.105795074591692,
+    "stable": false
+   }
+  },
+  "stable_seeds": 0,
+  "n": 10
+ }
+}

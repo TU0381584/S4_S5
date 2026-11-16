@@ -153,3 +153,5 @@ New experiments, pre-registered as M109. No manuscript text changes in this gate
 | 4.02 | all | experiments/scripts/m109_run.py | (none) | runner: m64_run.py with one variant swapped in at run time, plus evaluation of the checkpoints saved at 300 and 900 episodes | Gate 4 items 1 to 4; framework and earlier runners untouched |
 | 4.03 | all | experiments/scripts/m109_analysis.py, experiments/logs/m109/jobs.txt, run_all.sh, run_one.sh | (none) | analysis with the pre-registered families and stop rule; 240 jobs; restart-safe launcher | committed before any run |
 | 4.04 | all | docs/PAPER5_M109_preregistration.md | (none) | pre-registration of the reduced design (about 70 CPU-hours, 10 fresh seeds 13000 to 13009, 5 for the budget study) | committed before launch |
+| 4.05 | all | experiments/results/m109/analysis.json | (none) | pre-registered analysis of all 240 jobs; stop rule not triggered | Gate 4 results |
+| 4.06 | all | docs/PAPER5_M109_results.md | (none) | results note; manuscript unchanged | Gate 4 results |
