@@ -155,3 +155,21 @@ New experiments, pre-registered as M109. No manuscript text changes in this gate
 | 4.04 | all | docs/PAPER5_M109_preregistration.md | (none) | pre-registration of the reduced design (about 70 CPU-hours, 10 fresh seeds 13000 to 13009, 5 for the budget study) | committed before launch |
 | 4.05 | all | experiments/results/m109/analysis.json | (none) | pre-registered analysis of all 240 jobs; stop rule not triggered | Gate 4 results |
 | 4.06 | all | docs/PAPER5_M109_results.md | (none) | results note; manuscript unchanged | Gate 4 results |
+
+## Gate 5
+
+| # | Item | File | Place | Old | New | Reason |
+|---|---|---|---|---|---|---|
+| 5.01 | 1 | main.tex | Sec. 4.2 | subsection "Federated Training with Differential Privacy" | removed; its content stays in Sections S4 and S5 of Online Resource 1 | federation and privacy moved out of the main paper |
+| 5.02 | 1 | main.tex | Sec. 4 opening | "its training rule, and its federated variant" | "and its training rule" | matches 5.01 |
+| 5.03 | 1 | main.tex | Sec. 6.8 | long paragraph on federation, DP-SGD, disruption and the live check | one paragraph stating each outcome, defining DP-SGD and zero-concentrated DP there, with "AXIOM was not deployed live" and "never ran short of capacity, so it says nothing about decisions under contention" | one short paragraph with each outcome and the live-rig limit |
+| 5.04 | 1 | figures/fig1_axiom.tex, .pdf | 5G Core box | "Open5GS core network" | "Context only, not simulated" | core is not part of the evaluated system |
+| 5.05 | 1 | main.tex | Fig. 1 caption | "backhauled to a 5G core, serves" | "backhauled to a 5G core that is shown as context only and not simulated, serves" | matches 5.04 |
+| 5.06 | 2 | main.tex | Fig. 4 | six red failure callouts (a to f), the live-testbed node and callout g, caption items a to g | protocol only (ten steps, three gates); caption states the gate logic and points to Section S4 | simplify Fig. 4 to the protocol |
+| 5.07 | 2 | main.tex | Sec. 5 safeguards paragraph | "places them in the evaluation protocol with the failure each one caught" | "places them in the evaluation protocol" | matches 5.06 |
+| 5.08 | 2 | supplementary.tex | end of S4 | (none) | paragraph listing the failures the gates caught, same wording content as the old caption | list moved to the supplement |
+| 5.09 | 3 | main.tex | Sec. 3, before the reward paragraph | (none) | paragraph on omitted features: holding times and departures, blocking probability, revenue, channel, and why | requested by the gate |
+| 5.10 | 4 | main.tex | contribution list | four items | unchanged: the four items already match the evidence, and the M109 results support them without changing a number | the author has not yet decided how to report M109 |
+| 5.11 | 5 | experiments/scripts/make_archive.sh, docs/archive_manifest.md | new | (none) | staging script and manifest, tier 1 and console logs staged in ~/archive_staging, nothing uploaded | archive preparation |
+| 5.12 | 5 | main.tex | Declarations | Data and Code availability "on reasonable request" | deposited under the DOI given by macro archivedoi, currently "DOI TO BE INSERTED" | the authors mint the DOI |
+| 5.13 | all | experiments/scripts/m66_verify.py | check 'reframe: AXIOM spike precision 0.98' | quoted "..., and Section S5" | quoted "... 0.98. AXIOM was not deployed live" | quoted sentence reworded in 5.03; the 0.98 is still recomputed from the logs |

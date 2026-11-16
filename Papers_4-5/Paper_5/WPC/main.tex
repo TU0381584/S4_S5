@@ -56,6 +56,7 @@
 \newcommand{\gno}{\ding{55}}
 \newcommand{\gpart}{\LEFTcircle}
 \newcommand{\gnr}{n.r.}
+\newcommand{\archivedoi}{DOI TO BE INSERTED}
 \begin{document}
 \hypersetup{pdftitle={AXIOM: A Shared Controller for Scalable Multi-Agent 5G Slice Admission},
   pdfauthor={Manoj Prasad Kunasegran, Wai Leong Pang, Swee King Phang},
@@ -91,7 +92,7 @@ Network slicing virtualises the Radio Access Network (RAN) to serve Ultra-Reliab
 \begin{figure}[!b]
 \centering
 \includegraphics{figures/fig1_axiom.pdf}
-\caption{Conceptual system view. A cluster of $N$ gNBs, coordinated by the shared AXIOM encoder and backhauled to a 5G core, serves $M$ user equipment (UE) devices in three slices, each with its own nominal latency and loss target. AXIOM is evaluated offline, and the live rig runs one gNB}
+\caption{Conceptual system view. A cluster of $N$ gNBs, coordinated by the shared AXIOM encoder and backhauled to a 5G core that is shown as context only and not simulated, serves $M$ user equipment (UE) devices in three slices, each with its own nominal latency and loss target. AXIOM is evaluated offline, and the live rig runs one gNB}
 \label{fig:sysview}
 \end{figure}
 
@@ -146,6 +147,8 @@ Robustness studies~\cite{tashman2026adversarial,fatehi2026attentionmarl} test di
 \section{System Model and Problem Formulation}
 \label{sec:system-model}
 This section formulates slice admission across a gNB cluster as a decentralised decision problem and describes the two simulators that evaluate it. We consider a cluster of $N$ gNBs, from three in the main campaigns to 37 in the scaling study. Each gNB serves URLLC, eMBB, and mMTC under a shared per-gNB Physical Resource Block (PRB) budget $B$. At each control step every gNB holds zero or more pending requests, each tagged with a slice, and its agent accepts or rejects each one, conditioned on the cluster state. Each decision moves the slice's PRB-ratio ceiling, the control that the ORANSlice fork of OpenAirInterface (OAI) exposes to xApps, the external control applications of O-RAN. The binary action matches our single-gNB work, so any coordination benefit comes from the architecture. At three gNBs the cluster is treated as fully connected, a modelling choice, and the scaling study adds ring and hex-grid layouts. The model works at the PRB level and abstracts the radio channel. Channel quality changes how many PRBs a slice needs for the same traffic, and the model folds this into the per-step demand noise. A channel-aware extension that maps the signal-to-interference-plus-noise ratio to PRB demand is left to future work.
+
+The model leaves out several features of standard slice-admission formulations. It has no session holding times or departures, so an accepted request does not occupy resources until it ends, and it reports no blocking probability or operator revenue. Each step brings $N$ new requests, each decided once, and an accept or a reject moves a slice's PRB-ratio ceiling by a fixed amount. It also has no radio channel, as noted above. We made these choices because the question here is how one controller trades the slices against each other under a shared budget at every control step, and the pre-registered comparisons controlled demand, backlog, and ceilings only. Departure processes, revenue terms, and channel models would each add a source of variation that those comparisons did not control. Whether the results carry over to long-lived sessions or measured channels is left open.
 
 The step reward follows our earlier formulations~\cite{mecon-paper1,icraie-paper2}. It combines a per-slice service term net of SLA-violation penalties with a congestion charge on admitted volume and a load-imbalance penalty. For slice $k$, $\omega_k$ is the priority weight and $R_k$ the per-accept reward. Its admitted count is $n_k$ and its violation penalty $\lambda_k$, and $\mathbf{1}[v_k]$ flags an SLA violation in that step. With these terms, the reward of step $t$ is then
 \begin{equation}
@@ -249,7 +252,7 @@ Each gNB has a budget of $B{=}100$ PRBs in both simulators. The nominal shares a
 
 \section{The AXIOM Architecture}
 \label{sec:methodology}
-This section presents the AXIOM architecture, its training rule, and its federated variant. AXIOM differs from its DQN baselines in what each policy sees and shares. AXIOM trains one encoder over the whole cluster from every agent's experience, a form of parameter sharing~\cite{gupta2017cooperative}, and reads out one Q-head per slice. DQN-SA is one controller over a flattened joint state, and DQN-I gives each gNB its own learner over local features only. In effect, the two baselines are ablations that remove the shared encoder.
+This section presents the AXIOM architecture and its training rule. AXIOM differs from its DQN baselines in what each policy sees and shares. AXIOM trains one encoder over the whole cluster from every agent's experience, a form of parameter sharing~\cite{gupta2017cooperative}, and reads out one Q-head per slice. DQN-SA is one controller over a flattened joint state, and DQN-I gives each gNB its own learner over local features only. In effect, the two baselines are ablations that remove the shared encoder.
 
 \begin{figure}[!htbp]
 \centering
@@ -293,9 +296,6 @@ y = r + \gamma\,(1-\eta)\max_{a'} Q_{\phi_k^-}\!\big(\mathbf{z}_i'\big)[a'],
 \end{equation}
 where $Q_{\phi_k^-}$ is slice $k$'s target Q-head, $\eta\in\{0,1\}$ the flag that marks an episode's last step, $\mathcal{M}$ the minibatch of requests, and $\ell_\delta$ the Huber loss. Section~\ref{sec:results-ablation} shows that a summed per-step target works as well, so the per-request scheme simplifies training and is not the source of AXIOM's advantage.
 
-\subsection{Federated Training with Differential Privacy}
-Section S5 of Online Resource 1 shows the federated variant, in which each gNB holds a private copy of the network, trains only on its own requests, and every $N_{\mathrm{loc}}$ local steps sends its weights for FedAvg~\cite{mcmahan2017fedavg}, as surveyed for mobile edge networks in~\cite{lim2020flmec}. Each client can add differential privacy through a differentially private stochastic gradient descent (DP-SGD) step~\cite{dpsgd}, which clips its minibatch gradient and adds Gaussian noise of multiplier $\sigma$. The privacy loss is accounted for with zero-concentrated differential privacy~\cite{zcdp}. Section S4 of Online Resource 1 gives the clipping, the privacy accounting, and its assumptions.
-
 \section{Experimental Setup}
 \label{sec:setup}
 This section describes the campaigns, the baselines, and the statistical tests, followed by the safeguards that protect every reported result. The protocol follows established practice for evaluating reinforcement learning~\cite{henderson2018matters,agarwal2021precipice}, with many seeds, interval estimates, and paired tests, and adds trivial-policy checks specific to slice admission. Every campaign uses 300 training and 50 evaluation episodes per seed, where a seed fixes one network initialisation and one environment stream, and each seed is evaluated on a held-out stream. The three-gNB campaigns use 60 seeds, 900 to 929 and 11000 to 11029, with a disjoint replication sample, 1000 to 1009. The Env A scaling campaigns use 30 seeds per layout at seven gNBs, 60 at nineteen, and at thirty-seven 60 on the hex layout and 30 on each other layout. Half of each of these samples, the seeds from 11000, was added by a later pre-registered extension with unchanged settings, and every result for these settings uses all their seeds. The extension was decided after the original seeds had been analysed. Where a verdict depends on the sample, we report the original seeds, the added seeds, and the pooled sample separately. A further pre-registered sample of 30 confirmation seeds, 12000 to 12029, tests those verdicts on its own and is pooled into no estimate. The Env B scaling campaigns use 15 seeds per layout. MAPPO~\cite{yu2022mappo} is a published multi-agent baseline that extends proximal policy optimisation~\cite{schulman2017ppo} with a shared actor and a centralised critic, trained on-policy for the same 300 episodes on the same reward. Its learning rate, epochs, and minibatch size were tuned on pilot seeds, because untuned it collapsed in four of five pilot seeds.
@@ -329,26 +329,8 @@ This section describes the campaigns, the baselines, and the statistical tests, 
 \foreach \i in {1,2,3,6,8,9,10}{\node[num] at ([shift={(-0.06,0.04)}]p\i.north west) {\i};}
 \foreach \i in {4,5,7}{\node[num] at ($(p\i.north)!0.5!(p\i.west)$) {\i};}
 \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\draw[ar] (p\a) -- (p\b);}
-% failures each check caught, keyed by letter in the caption, at most four words each; callouts kept clear of the
-% flowchart (2026-11-10: rows 0.35 cm and 0.8 cm further apart, every callout at least 0.25 cm from a node)
-\node[fail, anchor=south west] (f1) at (0.05,1.1) {a\enspace\gno\enspace Screen miscalibrated};
-\node[fail, anchor=south west] (f2) at (3.88,1.1) {b\enspace\gno\enspace Static AXIOM, Env B};
-\node[fail, anchor=south east] (f3) at (12.4,1.1) {c\enspace\gno\enspace Inert simulator};
-\node[fail, anchor=east] (f4) at (9.4,-1.25) {d\enspace\gno\enspace Never-blocking policy};
-\node[fail, anchor=north west] (f5) at (2.35,-3.6) {e\enspace\gno\enspace Backlog carry-over};
-\node[fail, anchor=north west] (f6) at (6.05,-3.6) {f\enspace\gno\enspace Reproduction gap};
-\draw[ct] ([xshift=-3mm]p2.north) -- ([xshift=-3mm]f1.south east);
-\draw[ct] ([xshift=4mm]p2.north) -- ([xshift=4mm]p2.north |- f2.south);
-\draw[ct] (p4.north) -- (p4.north |- f3.south);
-\draw[ct] (p5.north west) -- (f4.east);
-\draw[ct] (p7.south) -- (p7.south |- f5.north);
-\draw[ct] (p7.south east) -- (f6.west);
-% the live testbed check, outside the offline pipeline
-\node[st, dashed, text width=2.0cm] (lv) at (7.3,-5.0) {Live testbed, direct instrumentation};
-\node[fail, anchor=west] (f7) at (8.6,-5.0) {g\enspace\gyes\enspace Scheduler floor clear};
-\draw[ct] (lv) -- (f7);
 \end{tikzpicture}
-\caption{Evaluation protocol in ten steps, with the three gates as diamonds. Dashed callouts name what each check found. a, A miscalibrated validation screen led to an amended plan, back to step 1. b, AXIOM stayed static in Env B, which led to faster learning, back to step 3. c, An inert simulator led to the shared-budget rerun, back to step 3. d, A never-blocking policy is counted as collapsed. e, Backlog carried across episodes led to an episode reset and a rerun, back to step 3. f, A reproduction gap led to a retracted claim. g, The live testbed found no scheduler floor, over more than 100{,}000 readings}
+\caption{Evaluation protocol in ten steps, with the three gates as diamonds. Each gate must pass before the next step, and a failure returns the work to an earlier step. Section S4 of Online Resource 1 lists the failures that the gates caught}
 \label{fig:protocol}
 \end{figure}
 
@@ -365,7 +347,7 @@ Anthropic's Claude Opus 5.5, used through the Claude Code tool, helped write the
 A pre-registered validation screen checks every trained checkpoint on its own training stream before evaluation. Every seed is reported whether or not it passes, and Section S4 of Online Resource 1 gives the screen's criteria.
 
 \label{sec:collapse}
-Three safeguards protect the results, and Fig.~\ref{fig:protocol} places them in the evaluation protocol with the failure each one caught. A trivial-policy check evaluates accept-all and one-slice shedding before any learned policy is trusted, and it exposed an earlier simulator in which accepting every request was optimal.
+Three safeguards protect the results, and Fig.~\ref{fig:protocol} places them in the evaluation protocol. A trivial-policy check evaluates accept-all and one-slice shedding before any learned policy is trusted, and it exposed an earlier simulator in which accepting every request was optimal.
 
 Correctness-aware metrics form the second safeguard of the evaluation. Block precision $\pi = b_{\text{mMTC}}/b$ is the share of a policy's $b$ blocked requests that target mMTC, and a seed that never blocks counts as a collapse, not as a success. Per-slice SLA compliance then shows whether shedding protects URLLC and eMBB, whereas all-slice compliance scores a correct policy and a failed one alike, because correct shedding gives up mMTC's SLA by design.
 
@@ -581,7 +563,7 @@ Third, a script written independently of the analysis pipeline, with its own log
 
 \subsection{Federation, Privacy, Disruption, and Live Deployment}
 \label{sec:results-m8}
-Federated training costs AXIOM little reward per step on average. Pooled over all 30 federated seeds, ten of them fresh, the cost is $+0.491$ per step with 95\% CI [$-$0.08, 1.09] and $p=0.14$. Even so, a cost of up to about one reward per step cannot be excluded. Per-step DP-SGD noise lowers reward by 0.77 to 1.25 per step without a significant drop, but it gives no meaningful privacy guarantee, since its $\varepsilon$ is about 2{,}600 or more. Under gNB dropout and agent churn every policy loses reward significantly, and no gap between AXIOM and any baseline survives Holm correction at ten seeds. Demand spikes leave AXIOM's decisions largely intact, with block precision at 0.98, and Section S5 of Online Resource 1 gives the protocol. A live single-gNB OAI testbed built on ORANSlice~\cite{cheng2024oranslice} confirmed the control path that AXIOM would use, with 0.000\% loss at one and at two UEs per slice. It never ran short of capacity, however, as Section S3 of Online Resource 1 reports.
+Four further checks, whose protocols are in Sections S3 to S5 of Online Resource 1, support no claim for AXIOM and are stated here for completeness. Federated training, in which each gNB trains a private copy and shares its weights through FedAvg~\cite{mcmahan2017fedavg,lim2020flmec}, costs AXIOM little reward per step on average. Pooled over all 30 federated seeds, ten of them fresh, the cost is $+0.491$ per step with 95\% CI [$-$0.08, 1.09] and $p=0.14$, so a cost of up to about one reward per step cannot be excluded. Adding differential privacy through differentially private stochastic gradient descent (DP-SGD)~\cite{dpsgd}, with the privacy loss accounted by zero-concentrated differential privacy~\cite{zcdp}, lowers reward by 0.77 to 1.25 per step without a significant drop. It gives no meaningful privacy guarantee, since its $\varepsilon$ is about 2{,}600 or more. Under gNB dropout and agent churn every policy loses reward significantly, and no gap between AXIOM and any baseline survives Holm correction at ten seeds. Demand spikes leave AXIOM's decisions largely intact, with block precision at 0.98. AXIOM was not deployed live. A live single-gNB OAI testbed built on ORANSlice~\cite{cheng2024oranslice} confirmed the control path that AXIOM would use, with 0.000\% loss at one and at two UEs per slice, but it never ran short of capacity, so it says nothing about decisions under contention.
 
 \section{Discussion and Limitations}
 \label{sec:discussion}
@@ -633,9 +615,9 @@ this manuscript unless otherwise indicated.
 \item Competing interests: The authors declare no competing interests.
 \item Ethics approval and consent to participate: Not applicable, since this study involves no human participants, animal subjects, or identifiable patient data. All reported results are either offline simulation campaigns or measurements from a laboratory radio testbed.
 \item Consent for publication: Not applicable, since this manuscript contains no personal data or identifying information about any individual.
-\item Data availability: The experiment logs, checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request. They are not yet publicly archived because the research is ongoing and the dataset is not yet complete.
+\item Data availability: The stored evaluation logs, trained checkpoints, and campaign result files underlying this paper's findings are deposited in a public repository under the DOI \archivedoi. The deposit includes the pre-registration files with the commit hash and timestamp of each, and a manifest with SHA-256 checksums.
 \item Materials availability: Not applicable, since this study involves no physical or biological materials.
-\item Code availability: The framework and experiment scripts used to produce this paper's results are available from the corresponding author on reasonable request. They include the reproducibility manifest and the analysis scripts that independently re-derive every table and figure in this paper.
+\item Code availability: The framework, the experiment scripts, and the three verification scripts that recompute every table value and key result sentence of this paper from the stored logs are deposited under the DOI \archivedoi, together with the scripts that regenerate every plotted figure.
 \item Use of artificial intelligence tools: Anthropic's Claude Opus 5.5, used through the Claude Code tool, helped write the experiment and analysis scripts and edit the text. The authors checked its outputs and take full responsibility for them.
 \item Author contributions: M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
 \end{itemize}
