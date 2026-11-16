@@ -355,7 +355,7 @@ Finally, every headline comparison is recomputed on an independent, disjoint see
 
 \section{Results}
 \label{sec:results}
-We summarise per-slice compliance as priority-slice compliance, the mean of URLLC and eMBB compliance, and call a trained policy collapsed when it accepts every request. Fig.~\ref{fig:m6-topology} shows how the four learned policies compare as the cluster grows. Throughout, a reward margin is a difference in mean reward per step, a compliance margin is in percentage points, and a load level is a percentage of the nominal offered demand.
+We summarise per-slice compliance as priority-slice compliance, the mean of URLLC and eMBB compliance, and call a trained policy collapsed when it accepts every request. Throughout, a reward margin is a difference in mean reward per step, a compliance margin is in percentage points, and a load level is a percentage of the nominal offered demand.
 
 Fig.~\ref{fig:learning} shows how each learned policy trains. MAPPO rises fastest and then stays flat, while the value-based learners climb more slowly as their exploration decays. Over the last 20 training episodes at nineteen and thirty-seven gNBs AXIOM earns 4.53 and 4.55 reward per gNB per step, against 3.32 to 3.89 for the baselines. DQN-I ends those runs 0.19 and 0.23 below its own best level, whereas AXIOM is still at its best. In Env B the curves are closer together, and at seven gNBs AXIOM and DQN-SA end level.
 

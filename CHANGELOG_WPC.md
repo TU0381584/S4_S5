@@ -173,3 +173,11 @@ New experiments, pre-registered as M109. No manuscript text changes in this gate
 | 5.11 | 5 | experiments/scripts/make_archive.sh, docs/archive_manifest.md | new | (none) | staging script and manifest, tier 1 and console logs staged in ~/archive_staging, nothing uploaded | archive preparation |
 | 5.12 | 5 | main.tex | Declarations | Data and Code availability "on reasonable request" | deposited under the DOI given by macro archivedoi, currently "DOI TO BE INSERTED" | the authors mint the DOI |
 | 5.13 | all | experiments/scripts/m66_verify.py | check 'reframe: AXIOM spike precision 0.98' | quoted "..., and Section S5" | quoted "... 0.98. AXIOM was not deployed live" | quoted sentence reworded in 5.03; the 0.98 is still recomputed from the logs |
+
+## Gate 6
+
+| # | Item | File | Place | Old | New | Reason |
+|---|---|---|---|---|---|---|
+| 6.01 | order | main.tex | Sec. 5 summary paragraph | "Fig.~6 shows how the four learned policies compare as the cluster grows." | sentence removed | Fig. 6 was cited before Fig. 5; it is cited in its own subsection |
+| 6.02 | docs | docs/final_summary_changed_headlines.md | new | (none) | one-page summary of changed headline numbers | requested by the gate |
+| 6.03 | docs | docs/cover_letter_draft.md | new | (none) | draft cover letter, three sentences on contribution and three on limits; originality, concurrent submission and reviewer statements left to the authors | requested by the gate |
