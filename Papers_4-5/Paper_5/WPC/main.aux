@@ -1,0 +1,171 @@
+\relax 
+\bibstyle{sn-basic}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\Newlabel{1}{1}
+\citation{wang2024drlsurvey}
+\citation{mecon-paper1}
+\citation{icraie-paper2}
+\citation{cacs-paper4}
+\citation{gronauer2022marl}
+\citation{jiang2022graphsurvey}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{2}{section.1}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Conceptual system view. A cluster of $N$ gNBs, coordinated by the shared AXIOM encoder, serves $M$ user equipment (UE) devices in three slices. The 5G core is shown as context only and is not simulated. AXIOM is evaluated offline, and the live rig runs one gNB}}{3}{figure.1}\protected@file@percent }
+\newlabel{fig:sysview}{{1}{3}{Conceptual system view. A cluster of $N$ gNBs, coordinated by the shared AXIOM encoder, serves $M$ user equipment (UE) devices in three slices. The 5G core is shown as context only and is not simulated. AXIOM is evaluated offline, and the live rig runs one gNB}{figure.1}{}}
+\citation{ref:access}
+\citation{cacs-paper4}
+\citation{ojijo2024sac}
+\citation{tao2025dtac}
+\citation{doanis2024madqn}
+\citation{li2026scalablemarl}
+\citation{phyu2025icecream}
+\citation{hao2024hybridtask}
+\citation{ahmadi2024generalizable}
+\citation{amiri2024vnf}
+\citation{ming2024fedslice}
+\citation{mohajer2026pronto}
+\citation{bouroudi2025gnnmarl}
+\citation{tsampazi2025pandora}
+\citation{sulaiman2023coordinated}
+\citation{ahmadi2024generalizable}
+\citation{zangooei2024flexible}
+\citation{mohajer2026pronto}
+\citation{bouroudi2025gnnmarl}
+\citation{polese2023oran}
+\citation{polese2023coloran}
+\citation{tsampazi2023xapps}
+\citation{khani2024sacsurvey}
+\citation{li2025oacr2}
+\citation{gronauer2022marl}
+\citation{yu2022mappo}
+\citation{zangooei2024flexible}
+\citation{kulkarni2024actor}
+\citation{kamal2026ddqn}
+\citation{alqahtani2025dynamic}
+\citation{krishnamoorthy2026federated}
+\citation{sirma2025relay}
+\citation{doherty2025hype}
+\citation{asdikian2025verifying}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{4}{section.2}\protected@file@percent }
+\newlabel{sec:litreview}{{2}{4}{Related Work}{section.2}{}}
+\citation{sulaiman2023coordinated}
+\citation{tashman2026adversarial,fatehi2026attentionmarl}
+\citation{zhang2022federatedoran}
+\citation{yasin2025dpfl}
+\citation{gong2026femaddpg}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Closest prior work}}{5}{table.1}\protected@file@percent }
+\newlabel{tab:related}{{1}{5}{Closest prior work}{table.1}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}System Model and Problem Formulation}{5}{section.3}\protected@file@percent }
+\newlabel{sec:system-model}{{3}{5}{System Model and Problem Formulation}{section.3}{}}
+\citation{mecon-paper1,icraie-paper2}
+\citation{gronauer2022marl}
+\newlabel{eq:reward}{{1}{6}{System Model and Problem Formulation}{equation.3.1}{}}
+\newlabel{eq:margin}{{2}{6}{System Model and Problem Formulation}{equation.3.2}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Simulation and training parameters not stated in the text, shared by both environments}}{7}{table.2}\protected@file@percent }
+\newlabel{tab:params}{{2}{7}{Simulation and training parameters not stated in the text, shared by both environments}{table.2}{}}
+\citation{gronauer2022marl}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces One control step of both simulators, repeated for $T{=}60$ steps per episode. The middle lane holds the steps both share, and the outer lanes the steps where Env A and Env B differ. The text gives each step in full}}{8}{figure.2}\protected@file@percent }
+\newlabel{fig:envflow}{{2}{8}{One control step of both simulators, repeated for $T{=}60$ steps per episode. The middle lane holds the steps both share, and the outer lanes the steps where Env A and Env B differ. The text gives each step in full}{figure.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}The AXIOM Architecture}{8}{section.4}\protected@file@percent }
+\newlabel{sec:methodology}{{4}{8}{The AXIOM Architecture}{section.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Shared Encoder, Decentralised Q-Heads}{8}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:methodology-perslice}{{4.1}{8}{Shared Encoder, Decentralised Q-Heads}{subsection.4.1}{}}
+\citation{patterson2024empirical}
+\citation{yu2022mappo}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces AXIOM architecture. A shared graph-attention encoder produces one embedding per gNB, and per-slice Q-heads read that gNB's embedding and raw features. Training on every agent's requests is centralised, and each gNB acts on its own row}}{9}{figure.3}\protected@file@percent }
+\newlabel{fig:architecture}{{3}{9}{AXIOM architecture. A shared graph-attention encoder produces one embedding per gNB, and per-slice Q-heads read that gNB's embedding and raw features. Training on every agent's requests is centralised, and each gNB acts on its own row}{figure.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Experimental Setup}{9}{section.5}\protected@file@percent }
+\newlabel{sec:setup}{{5}{9}{Experimental Setup}{section.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Evaluation protocol in ten steps, with the three gates as diamonds. Each dashed callout names one failure that its check caught, handled before the reported runs. The live testbed check sits outside the offline pipeline. Section S4 of Online Resource 1 lists every failure}}{10}{figure.4}\protected@file@percent }
+\newlabel{fig:protocol}{{4}{10}{Evaluation protocol in ten steps, with the three gates as diamonds. Each dashed callout names one failure that its check caught, handled before the reported runs. The live testbed check sits outside the offline pipeline. Section S4 of Online Resource 1 lists every failure}{figure.4}{}}
+\newlabel{sec:collapse}{{5}{11}{Experimental Setup}{figure.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Results}{11}{section.6}\protected@file@percent }
+\newlabel{sec:results}{{6}{11}{Results}{section.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Training reward per gNB per step, mean over seeds with 95\% CI bands. a to c, Env A at 3, 19, and 37 gNBs, 75 seeds, hex layout at the two larger sizes. d, e, Env B at 3 gNBs, 60 seeds, and at 7 gNBs on the ring layout, 15 seeds. Training includes exploration}}{12}{figure.5}\protected@file@percent }
+\newlabel{fig:learning}{{5}{12}{Training reward per gNB per step, mean over seeds with 95\% CI bands. a to c, Env A at 3, 19, and 37 gNBs, 75 seeds, hex layout at the two larger sizes. d, e, Env B at 3 gNBs, 60 seeds, and at 7 gNBs on the ring layout, 15 seeds. Training includes exploration}{figure.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.1}Static Load, Three gNBs}{12}{subsection.6.1}\protected@file@percent }
+\newlabel{sec:results-static}{{6.1}{12}{Static Load, Three gNBs}{subsection.6.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Env A, three gNBs, 75 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it. W/T/L counts the seeds where AXIOM earns more, the same, or less. Precision averages the seeds that block at all}}{13}{table.3}\protected@file@percent }
+\newlabel{tab:m2-results}{{3}{13}{Env A, three gNBs, 75 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it. W/T/L counts the seeds where AXIOM earns more, the same, or less. Precision averages the seeds that block at all}{table.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.2}Cluster-Size Scaling}{13}{subsection.6.2}\protected@file@percent }
+\citation{gronauer2022marl}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Env A as the cluster grows, all layouts pooled. a, Priority-slice compliance, one dot per run, with the mean and 95\% CI. b, Share of trained policies that collapse into accept-all, with Wilson 95\% intervals. c, Reward per gNB per step, mean and 95\% CI}}{14}{figure.6}\protected@file@percent }
+\newlabel{fig:m6-topology}{{6}{14}{Env A as the cluster grows, all layouts pooled. a, Priority-slice compliance, one dot per run, with the mean and 95\% CI. b, Share of trained policies that collapse into accept-all, with Wilson 95\% intervals. c, Reward per gNB per step, mean and 95\% CI}{figure.6}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Decision map of the 37-gNB hex cluster in Env A over 75 seeds. Each hexagon is a gNB, split into its URLLC, eMBB, and mMTC admission gates on the correctness scale below. Headers give each policy's priority-slice compliance and its collapsed seeds}}{15}{figure.7}\protected@file@percent }
+\newlabel{fig:gnb-map}{{7}{15}{Decision map of the 37-gNB hex cluster in Env A over 75 seeds. Each hexagon is a gNB, split into its URLLC, eMBB, and mMTC admission gates on the correctness scale below. Headers give each policy's priority-slice compliance and its collapsed seeds}{figure.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Zero-shot transfer on the 15 original seven-gNB seeds, priority-slice compliance with 95\% CIs. Policies from 7 were trained at seven gNBs and run unchanged, and AXIOM at $N$ was trained at the target size. Env B gives per-gNB compliance}}{16}{table.4}\protected@file@percent }
+\newlabel{tab:transfer}{{4}{16}{Zero-shot transfer on the 15 original seven-gNB seeds, priority-slice compliance with 95\% CIs. Policies from 7 were trained at seven gNBs and run unchanged, and AXIOM at $N$ was trained at the target size. Env B gives per-gNB compliance}{table.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Ablations and Sensitivity}{16}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:results-ablation}{{6.3}{16}{Ablations and Sensitivity}{subsection.6.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Time-Varying Load with Inter-Cell Coupling}{16}{subsection.6.4}\protected@file@percent }
+\newlabel{sec:results-envb}{{6.4}{16}{Time-Varying Load with Inter-Cell Coupling}{subsection.6.4}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Env B, three gNBs, 60 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it. W/T/L counts the seeds where AXIOM does better, the same, or worse}}{17}{table.5}\protected@file@percent }
+\newlabel{tab:envb}{{5}{17}{Env B, three gNBs, 60 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it. W/T/L counts the seeds where AXIOM does better, the same, or worse}{table.5}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Env B reward per step at three gNBs, 60 seeds, with per-seed points behind the mean and 95\% CI. Learned policies are filled markers and rules hollow. The dashed line marks the tuned local rule's mean}}{17}{figure.8}\protected@file@percent }
+\newlabel{fig:envb}{{8}{17}{Env B reward per step at three gNBs, 60 seeds, with per-seed points behind the mean and 95\% CI. Learned policies are filled markers and rules hollow. The dashed line marks the tuned local rule's mean}{figure.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}}{18}{figure.9}\protected@file@percent }
+\newlabel{fig:pergnb}{{9}{18}{Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}{figure.9}{}}
+\citation{wen2023flsurvey}
+\citation{elouadrhiri2022dp}
+\citation{cheng2024oranslice}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Model Complexity}{19}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Reproducibility and Fresh-Seed Verification}{19}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:results-verify}{{6.6}{19}{Reproducibility and Fresh-Seed Verification}{subsection.6.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Federation, Privacy, Disruption, and Live Deployment}{19}{subsection.6.7}\protected@file@percent }
+\newlabel{sec:results-m8}{{6.7}{19}{Federation, Privacy, Disruption, and Live Deployment}{subsection.6.7}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{20}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{20}{Discussion and Limitations}{section.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces What each controller offers. a, Env A at 37 gNBs, with means, 95\% CIs, and single seeds as dots, dashed lines at 90\% compliance and a normalised backlog of 0.5, and n/t for a value not tested. b, Four capabilities, met, partly met, or not met, with reward gaps per step against the tuned rule in Env B at 19 gNBs. Federated training was tested for AXIOM only, without a meaningful privacy guarantee}}{21}{figure.10}\protected@file@percent }
+\newlabel{fig:capability}{{10}{21}{What each controller offers. a, Env A at 37 gNBs, with means, 95\% CIs, and single seeds as dots, dashed lines at 90\% compliance and a normalised backlog of 0.5, and n/t for a value not tested. b, Four capabilities, met, partly met, or not met, with reward gaps per step against the tuned rule in Env B at 19 gNBs. Federated training was tested for AXIOM only, without a meaningful privacy guarantee}{figure.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Where AXIOM beats or trails a rule tuned once at nominal load, the dashed box. a, Env A priority-slice compliance against the static rule. b, Env B reward per gNB against the tuned rule. Filled cells differ at Holm-adjusted $p<0.05$, hatched where the rule leads}}{21}{figure.11}\protected@file@percent }
+\newlabel{fig:regime}{{11}{21}{Where AXIOM beats or trails a rule tuned once at nominal load, the dashed box. a, Env A priority-slice compliance against the static rule. b, Env B reward per gNB against the tuned rule. Filled cells differ at Holm-adjusted $p<0.05$, hatched where the rule leads}{figure.11}{}}
+\citation{cacs-paper4}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{22}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{22}{Conclusion}{section.8}{}}
+\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{22}{section*.2}\protected@file@percent }
+\bibdata{refs}
+\bibcite{ahmadi2024generalizable}{{1}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
+\bibcite{alqahtani2025dynamic}{{2}{2025}{{AlQahtani}}{{}}}
+\bibcite{amiri2024vnf}{{3}{2024}{{Amiri et~al.}}{{Amiri, Wang, Shojafar, and Tafazolli}}}
+\bibcite{asdikian2025verifying}{{4}{2025}{{Asdikian et~al.}}{{Asdikian, Amro, Mehyeddine, Natalino, Sbeity, Maier, Monti, Troia, and Ayoub}}}
+\bibcite{bouroudi2025gnnmarl}{{5}{2025}{{Bouroudi et~al.}}{{Bouroudi, Outtagarts, and Hadjadj-Aoul}}}
+\bibcite{cheng2024oranslice}{{6}{2024}{{Cheng et~al.}}{{Cheng, D'Oro, Gangula, Velumani, Villa, Bonati, Polese, Melodia, Arrobo, and Maciocco}}}
+\bibcite{doanis2024madqn}{{7}{2024}{{Doanis and Spyropoulos}}{{}}}
+\bibcite{doherty2025hype}{{8}{2025}{{Doherty et~al.}}{{Doherty, Matzner, Sadeghi, Bayvel, and Beghelli}}}
+\bibcite{elouadrhiri2022dp}{{9}{2022}{{El~Ouadrhiri and Abdelhadi}}{{}}}
+\bibcite{fatehi2026attentionmarl}{{10}{2026}{{Fatehi et~al.}}{{Fatehi, Ghourtani, Sonee, Yadav, Russo, Ahmadi, and Calinescu}}}
+\bibcite{gong2026femaddpg}{{11}{2026}{{Gong et~al.}}{{Gong, Gong, Jiang, Xie, Wang, and Xu}}}
+\bibcite{gronauer2022marl}{{12}{2022}{{Gronauer and Diepold}}{{}}}
+\bibcite{hao2024hybridtask}{{13}{2024}{{Hao et~al.}}{{Hao, She, Yeoh, Liu, Vucetic, and Li}}}
+\bibcite{jiang2022graphsurvey}{{14}{2022}{{Jiang}}{{}}}
+\bibcite{kamal2026ddqn}{{15}{2026}{{Kamal and Abdulkafi}}{{}}}
+\bibcite{khani2024sacsurvey}{{16}{2024}{{Khani et~al.}}{{Khani, Jamali, Sohrabi, Sadr, and Ghaffari}}}
+\bibcite{krishnamoorthy2026federated}{{17}{2026}{{Krishnamoorthy et~al.}}{{Krishnamoorthy, Gireesh~Babu, Gite, Khadidos, Khadidos, Mirza, and Selvarajan}}}
+\bibcite{kulkarni2024actor}{{18}{2024}{{Kulkarni et~al.}}{{Kulkarni, Venkatesan, and Kulkarni}}}
+\bibcite{mecon-paper1}{{19}{2025{}}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
+\bibcite{icraie-paper2}{{20}{2025{}}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
+\bibcite{ref:access}{{21}{2026{}}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
+\bibcite{cacs-paper4}{{22}{2026{}}{{Kunasegran et~al.}}{{Kunasegran, Pang, and Phang}}}
+\bibcite{li2025oacr2}{{23}{2025}{{Li et~al.}}{{Li, Hao, Yang, and Zhao}}}
+\bibcite{li2026scalablemarl}{{24}{2026}{{Li et~al.}}{{Li, Wang, Min, Wang, and Wang}}}
+\bibcite{ming2024fedslice}{{25}{2024}{{Ming et~al.}}{{Ming, Yu, and Taleb}}}
+\bibcite{mohajer2026pronto}{{26}{2026}{{Mohajer et~al.}}{{Mohajer, Mirzaei, Darabi, and Fernando}}}
+\bibcite{ojijo2024sac}{{27}{2024}{{Ojijo et~al.}}{{Ojijo, Ramotsoela, and Oginga}}}
+\bibcite{patterson2024empirical}{{28}{2024}{{Patterson et~al.}}{{Patterson, Neumann, White, and White}}}
+\bibcite{phyu2025icecream}{{29}{2025}{{Phyu et~al.}}{{Phyu, Naboulsi, and Stanica}}}
+\bibcite{polese2023coloran}{{30}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
+\bibcite{polese2023oran}{{31}{2023{}}{{Polese et~al.}}{{Polese, Bonati, D'Oro, Basagni, and Melodia}}}
+\bibcite{sirma2025relay}{{32}{2025}{{Sirma et~al.}}{{Sirma, Kavak, and Inner}}}
+\bibcite{sulaiman2023coordinated}{{33}{2023}{{Sulaiman et~al.}}{{Sulaiman, Moayyedi, Ahmadi, Salahuddin, Boutaba, and Saleh}}}
+\bibcite{tao2025dtac}{{34}{2025}{{Tao et~al.}}{{Tao, Xu, and You}}}
+\bibcite{tashman2026adversarial}{{35}{2026}{{Tashman and Cherkaoui}}{{}}}
+\bibcite{tsampazi2023xapps}{{36}{2023}{{Tsampazi et~al.}}{{Tsampazi, D'Oro, Polese, Bonati, Poitau, Healy, and Melodia}}}
+\bibcite{tsampazi2025pandora}{{37}{2025}{{Tsampazi et~al.}}{{Tsampazi, D'Oro, Polese, Bonati, Poitau, Healy, Alavirad, and Melodia}}}
+\bibcite{wang2024drlsurvey}{{38}{2024}{{Wang et~al.}}{{Wang, Wang, Liang, Zhao, Huang, Xu, Dai, and Miao}}}
+\bibcite{wen2023flsurvey}{{39}{2023}{{Wen et~al.}}{{Wen, Zhang, Lan, Cui, Cai, and Zhang}}}
+\bibcite{yasin2025dpfl}{{40}{2025}{{Yasin et~al.}}{{Yasin, Yu, and Wang}}}
+\bibcite{yu2022mappo}{{41}{2022}{{Yu et~al.}}{{Yu, Velu, Vinitsky, Gao, Wang, Bayen, and Wu}}}
+\bibcite{zangooei2024flexible}{{42}{2024}{{Zangooei et~al.}}{{Zangooei, Golkarifard, Rouili, Saha, and Boutaba}}}
+\bibcite{zhang2022federatedoran}{{43}{2022}{{Zhang et~al.}}{{Zhang, Zhou, and Erol-Kantarci}}}
+\gdef \@abspage@last{27}

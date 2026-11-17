@@ -118,11 +118,11 @@ def draw(ax, tests, sizes, loads, fmt, xlabel, nominal):
 def main():
     A = classify(env_a_cells())
     B = classify(env_b_cells())
-    H = 50.0   # compressed vertically (2026-11-10, author request): shorter cells, titles and legend set closer
+    H = 42.0   # compressed vertically (2026-11-10, again 2026-11-18, author requests): shorter cells, titles and legend set closer
     fig = S.figure("full", H)
     fw, fh = (lambda mm: mm / 119.0), (lambda mm: mm / H)
-    axA = fig.add_axes([fw(9), fh(15), fw(30), fh(22.5)])
-    axB = fig.add_axes([fw(56), fh(15), fw(61), fh(22.5)])
+    axA = fig.add_axes([fw(9), fh(14.5), fw(30), fh(17)])
+    axB = fig.add_axes([fw(56), fh(14.5), fw(61), fh(17)])
     mn = lambda s_: "0.00" if s_ in ("+0.00", "-0.00") else ("0.0" if s_ in ("+0.0", "-0.0") else s_.replace("-", "\u2212"))   # a difference that rounds to zero prints unsigned
     draw(axA, A, (3, 7, 19, 37), ("1.05", "1.10", "1.20"), lambda d: mn(f"{d:+.1f}"), "Offered load (%)", "1.05")
     draw(axB, B, (3, 7, 19), ("0.80", "1.00", "1.05", "1.10", "1.15", "1.20"), lambda d: mn(f"{d:+.2f}"),

@@ -1,4 +1,4 @@
-# Archive manifest (prepared, not uploaded)
+# Archive manifest (prepared, not uploaded; on 2026-11-18 the authors decided to give no DOI for now and to share data and code on request, so this file only describes what can be shared)
 
 This lists what the public deposit holds and how it is built. Nothing has been uploaded. The DOI that the authors mint replaces the macro archivedoi in Papers_4-5/Paper_5/WPC/main.tex.
 

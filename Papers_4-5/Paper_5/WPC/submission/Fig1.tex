@@ -118,7 +118,7 @@
       minimum width=50.7mm, minimum height=14mm] (core) at (29,91.5) {};
 \pic at ($(core.west)+(4,-2.6)$) {server=core};
 \node[ttl, text=core, anchor=north west] at ($(core.north west)+(13.5,-2.2)$) {5G Core};
-\node[lbl, anchor=north west] at ($(core.north west)+(13.5,-6.6)$) {Open5GS core network};
+\node[lbl, anchor=north west] at ($(core.north west)+(13.5,-6.6)$) {Context only, not simulated};
 \node[draw=clus, line width=0.7pt, fill=clus!5, rounded corners=2.2mm,
       minimum width=59.7mm, minimum height=21mm, anchor=north east] (ctl) at (129,99.5) {};
 \node[ttl, text=clus, anchor=north west] at ($(ctl.north west)+(2.2,-1.4)$) {AXIOM controller};
@@ -165,9 +165,9 @@
   \node[ttl, text=#2, anchor=west] at ($(p#4.north west)+(6.0,-3.0)$) {#4};
   \node[lbl, anchor=west] at ($(p#4.north west)+(6.0,-7.0)$) {#6};
 }
-\slicepanel{0.5}{urllc}{solid}{URLLC}{bolt}{15\,ms, 0.8\,\% loss}
-\slicepanel{41}{embb}{dash pattern=on 3pt off 1.6pt}{eMBB}{bars}{45\,ms, 2.0\,\% loss}
-\slicepanel{81.5}{mmtc}{dash pattern=on 0.9pt off 1.2pt}{mMTC}{dots}{65\,ms, 3.5\,\% loss}
+\slicepanel{0.5}{urllc}{solid}{URLLC}{bolt}{target 15\,ms, 0.8\,\%}
+\slicepanel{41}{embb}{dash pattern=on 3pt off 1.6pt}{eMBB}{bars}{target 45\,ms, 2.0\,\%}
+\slicepanel{81.5}{mmtc}{dash pattern=on 0.9pt off 1.2pt}{mMTC}{dots}{target 65\,ms, 3.5\,\%}
 \begin{scope}[every pic/.style={scale=0.9}]
 \pic at (2.3,17.0) {car=urllc};
 \pic at (19,18.9) {drone=urllc};
@@ -190,7 +190,7 @@
   \draw[->, ink, line width=0.7pt] (\px+3.5,44)--(\px+3.5,35);}
 \node[lbl, anchor=east] at (14.5,39.5) {requests};
 \node[lbl, anchor=west] at (23.5,39.5) {accept / reject};
-\node[lbl] at (64.5,7.6) {User equipment UE\,1 \ldots\ UE\,$M$, per-slice traffic};
+\node[lbl] at (64.5,7.6) {User equipment UE\,1 \ldots\ UE\,$M$, with nominal latency and loss targets per slice};
 \draw[mute!60, line width=0.3pt] (0.5,4.8)--(128.5,4.8);
 \draw[clus, line width=0.9pt, dash pattern=on 2.2pt off 1.4pt] (1,1.9)--(7,1.9);
 \node[lbl, anchor=west] at (8,1.9) {neighbour edge};

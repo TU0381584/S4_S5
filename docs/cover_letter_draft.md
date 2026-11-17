@@ -6,7 +6,7 @@ We submit "AXIOM: A Shared Controller for Scalable Multi-Agent 5G Slice Admissio
 
 The findings have limits that the paper states. Both simulators are synthetic, with no radio channel or measured traffic, and the live single-gNB testbed never reached contention, so AXIOM was not deployed live. Graph attention gave no consistent benefit, and a tuned threshold rule earns more than every learned policy at its tuning conditions, so AXIOM's contribution is a design that scales and not a new learning principle. Our learned baselines are standard multi-agent methods and ablations, since we did not reimplement a published slice-admission controller.
 
-Declarations on funding, competing interests, the use of an AI tool and data availability are in the manuscript. The authors need to add any statement on originality, concurrent submission and suggested reviewers themselves.
+Declarations on funding, competing interests, the use of an AI tool, and data and code availability on request are in the manuscript. The authors need to add any statement on originality, concurrent submission and suggested reviewers themselves.
 
 Sincerely,
 The authors

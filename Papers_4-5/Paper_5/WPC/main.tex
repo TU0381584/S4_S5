@@ -56,7 +56,6 @@
 \newcommand{\gno}{\ding{55}}
 \newcommand{\gpart}{\LEFTcircle}
 \newcommand{\gnr}{n.r.}
-\newcommand{\archivedoi}{DOI TO BE INSERTED}
 \begin{document}
 \hypersetup{pdftitle={AXIOM: A Shared Controller for Scalable Multi-Agent 5G Slice Admission},
   pdfauthor={Manoj Prasad Kunasegran, Wai Leong Pang, Swee King Phang},
@@ -331,8 +330,6 @@ All learned policies share $\gamma=0.95$, the training budget, and the explorati
 
 The settings, seeds, and four hypotheses of the final campaign were fixed in a pre-registration committed to the project's version-control history before any of its runs. Every later campaign was pre-registered the same way. The Env A baselines that this campaign reuses come from an earlier rerun whose plan was committed one minute after that rerun was launched and before any of its results were read. Section S4 of Online Resource 1 lists the reused results. H1 is that AXIOM beats both trivial rules in Env B, and H2 compares it with every learned baseline and tuned rule in Env B. H3 asks whether graph attention beats a per-node MLP encoder in Env B at seven gNBs, and H4 compares AXIOM with every baseline at nineteen gNBs in Env A.
 
-Anthropic's Claude Opus 5.5, used through the Claude Code tool, helped write the experiment and analysis scripts and edit the text. The authors checked its outputs and take full responsibility for them.
-
 \label{sec:collapse}
 Three safeguards protect the results, and Fig.~\ref{fig:protocol} places them in the evaluation protocol. A pre-registered validation screen also checks every trained checkpoint on its own training stream, every seed is reported whether or not it passes, and Section S4 of Online Resource 1 gives its criteria. A trivial-policy check evaluates accept-all and one-slice shedding before any learned policy is trusted, and it exposed an earlier simulator in which accepting every request was optimal. Correctness-aware metrics form the second safeguard. Block precision $\pi = b_{\text{mMTC}}/b$ is the share of a policy's $b$ blocked requests that target mMTC, and a seed that never blocks counts as a collapse, not as a success. Per-slice SLA compliance then shows whether shedding protects URLLC and eMBB, whereas all-slice compliance scores a correct policy and a failed one alike, because correct shedding gives up mMTC's SLA by design. Finally, every headline comparison is recomputed on an independent, disjoint seed sample. This caught queue backlog carried over between episodes, and every result here comes from the corrected simulator, which empties all queues at the start of each episode.
 
@@ -538,11 +535,11 @@ Online Resource 1 is a PDF that gives the full verification results, the live te
 \item Funding: This work was supported by the Fundamental Research Grant Scheme (FRGS), Ministry of Higher Education (MOHE), Malaysia, under grant number FRGS/1/2024/ICT06/TAYLOR/02/1.
 \item Competing interests: The authors declare no competing interests.
 \item Ethics approval, consent to participate, and consent for publication: Not applicable, since this study involves no human participants, animal subjects, or personal data. All reported results are offline simulation campaigns or measurements from a laboratory radio testbed.
-\item Data availability: The stored evaluation logs, trained checkpoints, and campaign result files underlying this paper's findings are deposited in a public repository under the DOI \archivedoi. The deposit includes the pre-registration files with the commit hash and timestamp of each, and a manifest with SHA-256 checksums.
+\item Data availability: The raw evaluation logs, trained checkpoints, and campaign result files underlying this paper's findings are available from the corresponding author on reasonable request. Online Resource 1 gives most of the supporting data.
 \item Materials availability: Not applicable.
-\item Code availability: The framework, the experiment scripts, and the three verification scripts that recompute every table value and key result sentence of this paper from the stored logs are deposited under the DOI \archivedoi, together with the scripts that regenerate every plotted figure.
-\item Use of artificial intelligence tools: Anthropic's Claude Opus 5.5, used through the Claude Code tool, helped write the experiment and analysis scripts and edit the text. The authors checked its outputs and take full responsibility for them.
-\item Author contributions: M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
+\item Code availability: The framework, the experiment scripts, and the verification scripts that recompute every table value and key result sentence of this paper from the stored logs are available from the corresponding author on reasonable request.
+\item Use of artificial intelligence tools: Visual Studio IDE with an Opus-based agent was used for experimental scripting and analysis and for transposing code and data into the research text. The authors checked its outputs and take full responsibility for them.
+\item Author contributions: M.\ P.\ Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W.\ L.\ Pang: conceptualisation, funding acquisition, supervision, writing (review and editing). S.\ K.\ Phang: supervision, writing (review and editing).
 \end{itemize}
 
 \bibliography{refs}
