@@ -304,6 +304,9 @@ def mean(rows, f=lambda r: r["reward"]):
 # main-only (reframe:) claims whose sentences the author asked to move into Online Resource 1 when the
 # results were condensed on 2026-10-30; these must still be found, now in the supplement
 MOVED_TO_SUPP = {
+    "reframe: M70 rule low", "reframe: M70 rule high",   # the sentence is in OR1 S6 since 2026-11-17
+    "reframe: abstract static rule floor at every size",   # sentence moved to OR1 S6 on 2026-11-17 (page budget)
+    "reframe: M75 C lead low", "reframe: M75 C lead high", "conclusion: tuned DQN gap low", "conclusion: tuned DQN gap high",   # sentence moved to OR1 S6 on 2026-11-17 (page budget)
     "reframe: M73 AXIOM URLLC", "reframe: M73 AXIOM eMBB",   # the 37-gNB URLLC/eMBB sentence sits in OR1 S6
     "reframe: fresh N=7 DQN compliance max",   # sentence moved to OR1 S2 on 2026-11-17
     # 2026-11-16 page cut: these sentences moved verbatim to OR1 (S7, S8)
@@ -1678,9 +1681,9 @@ def main():
     hdp_ = holm({k: v["p"] for k, v in dp_.items()})
     C.note("reframe: no DP drop survives Holm", all(v >= 0.05 for v in hdp_.values()) and "None of these drops survives Holm correction at ten seeds" in C.tex, hdp_)
     eps_min = min(v[1] for v in eps.values()) if eps else None
-    C.claim("reframe: smallest DP epsilon about 2,600", "its $\\varepsilon$ is about 2{,}600 or more", float(f"{eps_min:.2g}") if eps_min else None, "{:,.0f}".replace(",", "{,}") if False else "{:.0f}", tol=0.5)
+    C.claim("reframe: smallest DP epsilon about 2,600", "$\\varepsilon$ of about 2{,}600 or more", float(f"{eps_min:.2g}") if eps_min else None, "{:,.0f}".replace(",", "{,}") if False else "{:.0f}", tol=0.5)
     m4s = json.load(open(f"{ROOT}/m65_m4/m4_summary.json"))["cells"]
-    C.claim("reframe: AXIOM spike precision 0.98", "with block precision at 0.98. AXIOM was evaluated offline", 
+    C.claim("reframe: AXIOM spike precision 0.98", "block precision at 0.98. AXIOM was evaluated offline", 
             float(np.mean([m4s[f"gat_ctde|spike|{v}"]["precision_mean"] for v in (1, 2, 3)])), "{:.2f}")
     C.note("reframe: every AXIOM spike precision rounds to 0.98",
            all(round(m4s[f"gat_ctde|spike|{v}"]["precision_mean"], 2) == 0.98 for v in (1, 2, 3)), None)
@@ -2210,10 +2213,10 @@ def main():
             tc_[(n_, a_, "r")] = paired(axc_, b_)
     hc_ = holm({k_: v_["p"] for k_, v_ in tc_.items()})
     C.note("reframe: M75 C AXIOM beats every tuned baseline, Holm p<0.001", len(tc_) == 8 and all(tc_[k_]["diff"] > 0 and hc_[k_] < 0.001 for k_ in tc_)
-           and "AXIOM beats each tuned baseline on compliance and on reward at Holm-adjusted $p<0.001$" in C.main, {str(k_): round(v_, 7) for k_, v_ in hc_.items()})
+           and "winning 26 to 30 of 30 seeds at Holm-adjusted $p<0.001$, by 29.9 to 48.1 points of compliance" in C.tex, {str(k_): round(v_, 7) for k_, v_ in hc_.items()})
     cp_ = [v_["diff"] for k_, v_ in tc_.items() if k_[2] == "p"]
-    C.claim("reframe: M75 C lead low", "by 29.9 to 48.1 points", min(cp_), "{:.1f}")
-    C.claim("reframe: M75 C lead high", "by 29.9 to 48.1 points", max(cp_), "{:.1f}")
+    C.claim("reframe: M75 C lead low", "by 29.9 to 48.1 points of compliance", min(cp_), "{:.1f}")
+    C.claim("reframe: M75 C lead high", "by 29.9 to 48.1 points of compliance", max(cp_), "{:.1f}")
     C.note("reframe: M75 C new settings in three of four cells", sum(not v_["is_current"] for v_ in sel75_.values()) == 3
            and "selected new settings in three of the four combinations of baseline and size" in C.tex, {k_: v_["selected"] for k_, v_ in sel75_.items()})
     tp_ = {k_: 100 * mean(v_, prio) for k_, v_ in tcr_.items()}
@@ -2485,8 +2488,8 @@ def main():
     C.claim("conclusion: compliance low from 7 to 37 gNBs", "keeps priority-slice compliance between 94.2\\% and 97.7\\% from seven to thirty-seven gNBs", min(cps_), "{:.1f}")
     C.claim("conclusion: compliance high from 7 to 37 gNBs", "keeps priority-slice compliance between 94.2\\% and 97.7\\% from seven to thirty-seven gNBs", max(cps_), "{:.1f}")
     C.claim("conclusion: percent of oracle at 3 gNBs", "it reaches 98.9\\% of the static shed-mMTC rule's reward at three gNBs", 100 * mean(A["axiom2"]) / mean(A["heuristic"]), "{:.1f}")
-    C.claim("conclusion: tuned DQN gap low", "by 29.9 to 48.1 points", min(cp_), "{:.1f}")
-    C.claim("conclusion: tuned DQN gap high", "by 29.9 to 48.1 points", max(cp_), "{:.1f}")
+    C.claim("conclusion: tuned DQN gap low", "by 29.9 to 48.1 points of compliance", min(cp_), "{:.1f}")
+    C.claim("conclusion: tuned DQN gap high", "by 29.9 to 48.1 points of compliance", max(cp_), "{:.1f}")
     C.claim("conclusion: VDN gap at 19 gNBs", "trails it by 13.6 points at nineteen", dv_[("A19", "p")]["diff"], "{:.1f}")
     C.note("conclusion: static rule earns more than AXIOM at 19 gNBs under coupling",
            mean(seeds_of("m75/D_envB_n19_hex", "rule_static", S15)) > mean(seeds_of("m75/D_envB_n19_hex", "axiom2", S15))
@@ -3199,7 +3202,7 @@ def main():
     C.note("Fig. 10 text: only AXIOM among the learned controllers meets both thresholds at 37 gNBs and keeps above 90% after 7 to 37 transfer",
            thr_ == ["axiom2"] and min(t37_) > 90 and np.mean(tv_["mappo_tuned"]) < 90
            and "Among the learned controllers, only AXIOM meets both service thresholds at 37 gNBs and keeps above 90\\% compliance when moved there from seven gNBs without retraining" in C.main
-           and "Dashed lines mark 90\\% compliance and a normalised backlog of 0.5, and n/t marks a value not tested" in C.tex
+           and "dashed lines at 90\\% compliance and a normalised backlog of 0.5, and n/t for a value not tested" in C.tex
            and "Federated training was tested for AXIOM only, without a meaningful privacy guarantee" in C.tex
            and "AXIOM alone meets seven of its eight criteria" not in C.main, thr_)
     # ---------------- figure audit Phase 3: new or redrawn figure outputs checked against the logs and summaries

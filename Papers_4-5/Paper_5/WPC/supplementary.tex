@@ -80,7 +80,7 @@ Fig.~\ref{fig:s-forest} sets each reported comparison with a learned baseline be
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[scale=0.5]{figures/fig_forest.pdf}
+\includegraphics[scale=0.85]{figures/fig_forest.pdf}
 \caption{AXIOM minus each learned baseline, with 95\% CIs. Solid lines and filled circles are the reported runs, dashed lines and hollow diamonds the fresh seeds. a, Reward per gNB. b, Cluster-level priority-slice compliance}
 \label{fig:s-forest}
 \end{figure}
@@ -90,10 +90,10 @@ Online Resource 2, a CSV file, gives the interquartile means of reward per gNB p
 
 \begin{figure}[!htbp]
 \centering
-\begin{minipage}[t]{0.36\textwidth}\centering
+\begin{minipage}[t]{0.5\textwidth}\centering
 \includegraphics[width=\linewidth]{figures/fig_rliable.pdf}
-\end{minipage}\hspace{0.05\textwidth}
-\begin{minipage}[t]{0.36\textwidth}\centering
+\end{minipage}\hfill
+\begin{minipage}[t]{0.5\textwidth}\centering
 \includegraphics[width=\linewidth]{figures/fig_rliable_intervals.pdf}
 \end{minipage}
 \caption{Left. Performance profiles of priority-slice compliance, the fraction of runs above each level $\tau$. Bands bounded by thin lines are stratified bootstrap 95\% CIs. a to d, Env A at 3, 7, 19, and 37 gNBs. e to g, Env B at 3, 7, and 19 gNBs}
@@ -208,7 +208,7 @@ Every live measurement comes from the single-host, software-radio O-RAN stack of
 
 \begin{figure}[!htbp]
 \centering
-\resizebox{0.46\textwidth}{!}{%
+\resizebox{0.8\textwidth}{!}{%
 \begin{tikzpicture}[
   block/.style={draw, thick, rounded corners, align=center, fill=gray!8,
                 font=\footnotesize, inner sep=5pt, text width=3.7cm},
@@ -284,54 +284,9 @@ The trivial-policy check of the main paper's Section 5 rests on these numbers. I
 
 The main campaign reuses Env A results of DQN-SA, DQN-I, and the static rule from an earlier rerun. They cover three gNBs on the primary and replication seeds, the sensitivity study, seven gNBs, and 15 of the 30 seeds at nineteen gNBs. Two development stages are disclosed, although neither changed a reported result. A further protocol tested checkpoint selection and both encoders on new seeds and left AXIOM unchanged, and exploratory probes on seeds 900 to 904 suggested the load-shift effect of Section S7 before its reported runs. The plans of the zero-shot transfer of Section S6 and of the distillation of Section S7 were each committed before their runs. A second seed extension of the Env A cells, 15 seeds per cell, was decided after the first extension and the per-gNB re-evaluation had been analysed, and its plan was committed before its runs. The summary of Section S2 reanalyses stored logs only and has no plan of its own. Section 5 and the Statements and Declarations of the main paper describe how an artificial intelligence assistant was used.
 
-Failures caught by the evaluation protocol of Fig.~3 of the main paper are as follows. A miscalibrated validation screen led to an amended plan, and the work returned to step 1. AXIOM stayed static in Env B, which led to faster learning, and the work returned to step 3. An inert simulator led to the shared-budget rerun, back to step 3. A never-blocking policy is counted as collapsed. Backlog carried across episodes led to an episode reset and a rerun, back to step 3. A reproduction gap led to a retracted claim. The live testbed, which sits outside the offline pipeline, found no scheduler floor, over more than 100{,}000 readings.
+Failures caught by the evaluation protocol of Fig.~4 of the main paper are as follows. A miscalibrated validation screen led to an amended plan, and the work returned to step 1. AXIOM stayed static in Env B, which led to faster learning, and the work returned to step 3. An inert simulator led to the shared-budget rerun, back to step 3. A never-blocking policy is counted as collapsed. Backlog carried across episodes led to an episode reset and a rerun, back to step 3. A reproduction gap led to a retracted claim. The live testbed, which sits outside the offline pipeline, found no scheduler floor, over more than 100{,}000 readings.
 
-Fig.~\ref{fig:envflow} traces one control step of both simulators, and Algorithm~\ref{alg:gat-ctde} gives AXIOM's training loop.
-
-\begin{figure}[!htbp]
-\centering
-\resizebox{0.48\textwidth}{!}{%
-\begin{tikzpicture}[
-  font=\figfont, x=1cm, y=1cm,
-  every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
-  bx/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=1.24cm, minimum height=1.05cm, inner sep=1.5pt},
-  bxa/.style={bx, draw=blue!55!black, fill=blue!6},
-  bxb/.style={bx, draw=orange!75!black, fill=orange!12},
-  ar/.style={-{Latex[length=1.6mm]}, semithick},
-  lane/.style={draw=black!45, dashed, line width=0.4pt},
-  ll/.style={font=\figfont, anchor=west, align=left}
-]
-% three swimlanes: Env A on top, the steps both share in the middle, Env B below; lane labels sit inside the
-% lanes so the figure fits the journal's 119 mm width at 8 pt (2026-11-14)
-\foreach \y in {1.0,-1.0}{\draw[lane] (0,\y) -- (11.85,\y);}
-% lane labels in the pre-audit environment-tag colours (restored 2026-11-09)
-\definecolor{envAfc}{HTML}{E2E8F0}\definecolor{envAec}{HTML}{5A6B82}\definecolor{envAtc}{HTML}{26344A}
-\definecolor{envBfc}{HTML}{F4EAD6}\definecolor{envBec}{HTML}{9C7A45}\definecolor{envBtc}{HTML}{4F3A15}
-\node[ll, anchor=center, draw=envAec, fill=envAfc, text=envAtc, rounded corners=1.5pt, inner sep=1.4pt] at (4.4,2.0) {Env A};
-\node[ll, anchor=center] at (0.70,0) {Both};
-\node[ll, anchor=center, draw=envBec, fill=envBfc, text=envBtc, rounded corners=1.5pt, inner sep=1.4pt] at (4.4,-2.0) {Env B};
-\def\c#1{\fpeval{0.95+1.5*#1}}
-\node[bxa] (sa) at (0.70,2.0) {Empty queues, reset ceilings};
-\node[bxb] (sb) at (0.70,-2.0) {Same, redraw load phase $\psi_i$};
-\node[bx] (ob) at (2.19,0) {Observe each gNB's feature row};
-\node[bx] (arv) at (3.68,0) {$N$ requests, at most $4N$ pending};
-\node[bx] (de) at (5.17,0) {Accept or reject, move ceilings};
-\node[bx] (rw) at (6.66,0) {Reward $r_t$, Eq. 1 of the main paper};
-\node[bxa] (da) at (8.15,2.0) {Drift towards $1.05\times$ share};
-\node[bxb] (db) at (8.15,-2.0) {Load follows a 60-step sine};
-\node[bxa] (va) at (9.64,2.0) {Scale slices to fit $B$};
-\node[bxb] (vb) at (9.64,-2.0) {Budget shrinks with neighbour load};
-\node[bx] (up) at (11.13,0) {Unserved demand becomes backlog};
-\draw[ar] (sa) -| (ob); \draw[ar] (sb) -| ([xshift=-2.5mm]ob.south);
-\foreach \i/\j in {ob/arv,arv/de,de/rw}{\draw[ar] (\i) -- (\j);}
-\draw[ar] (rw) |- (da); \draw[ar] (rw) |- (db);
-\draw[ar] (da) -- (va); \draw[ar] (db) -- (vb);
-\draw[ar] (va) -| (up); \draw[ar] (vb) -| (up);
-\draw[ar] (up.east) -- (11.85,0) -- (11.85,-3.05) -- node[pos=0.5, below, font=\figfont] {next step, $T{=}60$ per episode} ([xshift=2.5mm]ob.south |- 0,-3.05) -- ([xshift=2.5mm]ob.south);
-\end{tikzpicture}}
-\caption{One control step of both simulators, repeated for $T{=}60$ steps per episode. The middle lane holds the steps both share, and the outer lanes the steps where Env A and Env B differ. The text gives each step in full}
-\label{fig:envflow}
-\end{figure}
+Algorithm~\ref{alg:gat-ctde} gives AXIOM's training loop.
 
 \begin{algorithm}[!htbp]
 \caption{Centralised training and decentralised execution of AXIOM}
@@ -363,8 +318,8 @@ Fig.~\ref{fig:m3-privacy}b and c show the federated campaign. With federation an
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[scale=0.5]{figures/fig_fed_variant.pdf}\hfill
-\includegraphics[scale=0.7]{figures/fig4_m3_privacy.pdf}
+\includegraphics[scale=0.75]{figures/fig_fed_variant.pdf}\hfill
+\includegraphics[scale=0.8]{figures/fig4_m3_privacy.pdf}
 \caption{Federated training in Env A. a, The federated variant, each gNB a client synchronised by periodic federated
 averaging with optional privacy noise. b, Paired per-seed federation cost on mean reward per step over 10 seeds, not
 significant at $p=0.65$. c, Block precision versus DP noise multiplier $\sigma$, over the seeds that block}
@@ -375,7 +330,7 @@ Each policy's frozen Env A checkpoint also faced three disruptions. A gNB dropou
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[scale=0.52]{figures/fig5_m4_disruption.pdf}
+\includegraphics[scale=0.8]{figures/fig5_m4_disruption.pdf}
 \caption{Disruption campaign, 10 seeds per policy, 95\% CIs. a, b, Normalised
 reward kept under dropout and churn, with the undisrupted level at the tick marked None.
 c, Block precision under demand spikes}
@@ -383,7 +338,7 @@ c, Block precision under demand spikes}
 \end{figure}
 
 \section*{S6. Scaling to thirty-seven gNBs and stronger baselines}
-In the gate map of the main paper's thirty-seven-gNB cluster, DQN-SA leaves every admission gate open at 0.92 to 0.93 and DQN-I closes the mMTC gate only to 0.95. MAPPO there partly closes the eMBB gate to 0.84 but leaves mMTC open at 0.58. At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\% and 95.6\%, against 88.3\% to 95.0\% and 51.5\% to 68.1\% for the baselines, and at thirty-seven at 96.9\% and 91.4\%.7\% and 92.0\%. The thirty-seven-gNB configuration extends the smaller ones, with 37 arrivals per step and at most 148 pending requests, and Table~\ref{tab:s-n37} lists every policy. AXIOM's nine collapsed runs keep 57\% to 65\% priority-slice compliance, while its other runs keep 96.1\% to 97.8\% on average under each layout.
+The static rule that sheds every mMTC request keeps 99.97\% to 99.99\% at every size. In the gate map of the main paper's thirty-seven-gNB cluster, DQN-SA leaves every admission gate open at 0.92 to 0.93 and DQN-I closes the mMTC gate only to 0.95. MAPPO there partly closes the eMBB gate to 0.84 but leaves mMTC open at 0.58. At seven gNBs AXIOM keeps URLLC and eMBB at 99.8\% and 95.6\%, against 88.3\% to 95.0\% and 51.5\% to 68.1\% for the baselines, and at thirty-seven at 96.9\% and 91.4\%.7\% and 92.0\%. The thirty-seven-gNB configuration extends the smaller ones, with 37 arrivals per step and at most 148 pending requests, and Table~\ref{tab:s-n37} lists every policy. AXIOM's nine collapsed runs keep 57\% to 65\% priority-slice compliance, while its other runs keep 96.1\% to 97.8\% on average under each layout.
 
 \begin{table}[!htbp]
 \caption{Env A with thirty-seven gNBs, reported and fresh seeds. Priority-slice compliance is the mean of URLLC and eMBB compliance, and collapse counts policies that accept every request}
@@ -412,7 +367,7 @@ Static rule & 20 & 100.0\% & 100.0\% & 99.97\% & 177.68 & 0 \\
 \end{tabular}
 \end{table}
 
-The DQN baselines were also tuned on pilot seeds over learning rates from $10^{-4}$ to $10^{-3}$ and minibatches of 16 and 64, as Table~\ref{tab:s-tuned} lists. No tuned baseline exceeds the accept-all floor at either size, and AXIOM beats each one on compliance and reward in every setting, winning 26 to 30 of 30 seeds at Holm-adjusted $p<0.001$. VDN, which trains DQN-I's per-gNB networks on one joint target, ties AXIOM at three gNBs but falls behind at nineteen, as Table~\ref{tab:s-vdn} shows.
+The DQN baselines were also tuned on pilot seeds over learning rates from $10^{-4}$ to $10^{-3}$ and minibatches of 16 and 64, as Table~\ref{tab:s-tuned} lists. No tuned baseline exceeds the accept-all floor at either size, and AXIOM beats each one on compliance and reward in every setting, winning 26 to 30 of 30 seeds at Holm-adjusted $p<0.001$, by 29.9 to 48.1 points of compliance. VDN, which trains DQN-I's per-gNB networks on one joint target, ties AXIOM at three gNBs but falls behind at nineteen, as Table~\ref{tab:s-vdn} shows.
 
 \begin{table}[!htbp]
 \begin{minipage}[t]{0.49\textwidth}\centering
@@ -500,7 +455,7 @@ Fig.~\ref{fig:s-layouts} gives the per-layout view of the Env A scaling results 
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[scale=0.52]{figures/fig14_layouts.pdf}
+\includegraphics[scale=0.8]{figures/fig14_layouts.pdf}
 \caption{Env A priority-slice compliance by layout, per-seed points behind the mean and 95\% CI. a, Nineteen gNBs, 75 seeds per layout. b, Thirty-seven gNBs, where the baselines never read the layout and ran once, on the hex seeds}
 \label{fig:s-layouts}
 \end{figure}
@@ -629,7 +584,7 @@ Fig.~\ref{fig:s-decision} shows what AXIOM learned at seven gNBs on the ring lay
 
 \begin{figure}[!htbp]
 \centering
-\includegraphics[scale=0.5]{figures/fig_decision.pdf}
+\includegraphics[scale=0.85]{figures/fig_decision.pdf}
 \caption{What AXIOM learned in Env B at seven gNBs on the ring layout, 15 seeds. Share of gNB-steps on which its eMBB head would reject, by the gNB's own URLLC queue, with 95\% CIs over seeds, beside the tuned rule's step at 0.2. The marginal above gives how often each queue level occurs}
 \label{fig:s-decision}
 \end{figure}
@@ -655,23 +610,7 @@ Checkpoints & Seeds & 1 & 2 & 3 & Difference & $p$ & Difference & $p$ \\
 \end{tabular}}
 \end{table}
 
-Fig.~\ref{fig:pergnb} maps this per-gNB compliance for the four learned policies. Each hexagon is one gNB, shaded from dark at 50\% to light at 85\% by the mean share of evaluation steps on which it meets the URLLC and eMBB SLAs. The policies only admit or reject requests where they arrive, so the colours show how well each gNB copes with its own offered load. Every policy keeps the least at the centre gNB, whose load the simulator fixes at the nominal level while it draws every other gNB's from 90\% to 100\% of it. The six inner gNBs have as many neighbours but trail the edge by only 0.5 to 1.8 points. AXIOM keeps more than every learned baseline at each of the nineteen gNBs, by at least 3.8 points, and by at least 4.3 points on the 15 fresh seeds. The carried-over rule leads AXIOM by 13.0 points at the centre and 6.9 points elsewhere, and by 13.2 and 7.0 points on the fresh seeds.
-
-\begin{figure}[!htbp]
-\centering
-\begin{minipage}[t]{0.45\textwidth}\centering
-\includegraphics[width=\linewidth]{figures/fig_pergnb_envb.pdf}
-\end{minipage}\hspace{0.05\textwidth}
-\begin{minipage}[t]{0.42\textwidth}\centering
-\includegraphics[width=\linewidth]{figures/fig_capability.pdf}
-\end{minipage}
-\caption{Left. Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}
-\label{fig:pergnb}
-\caption{Right. What each controller offers. a, Env A at 37 gNBs, with means, 95\% bootstrap CIs, and single seeds as dots. Dashed lines mark 90\% compliance and a normalised backlog of 0.5, and n/t marks a value not tested. b, Four capabilities, met, partly met, or not met. Reward gaps are per step against the tuned rule in Env B at 19 gNBs. Federated training was tested for AXIOM only, without a meaningful privacy guarantee}
-\label{fig:capability}
-\end{figure}
-
-Across sizes, panels a and c of the main paper's scaling figure show AXIOM staying between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. MAPPO is the only learned policy that never collapses at thirty-seven gNBs, where AXIOM collapses in 13 of 165 runs. In Env B every policy loses compliance as the cluster grows, and AXIOM's cluster-level priority-slice compliance falls from 64.1\% at three gNBs to 35.1\% at seven and 24.7\% at nineteen. AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs. At seven gNBs it earns 3.36 reward per gNB per step against 3.37 for DQN-SA, which keeps more compliance, 44.3\% against 35.1\%. On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.012$. That gap reflects the training budget. In Env A at nineteen gNBs AXIOM stays within 5.3 points of the static rule as offered load rises from 105\% to 120\% of the nominal shares, and every baseline stays below AXIOM at each load. Past the tuning load at nineteen gNBs AXIOM out-earns the carried tuned rule. On 15 fresh seeds it leads that rule by 6.84, 8.25, and 9.39 at the same loads, again winning 14 of 15 seeds at Holm-adjusted $p<0.001$, while the rule leads by 3.33 at nominal load. Fig.~\ref{fig:capability} compares what each controller offers.
+Across sizes, panels a and c of the main paper's scaling figure show AXIOM staying between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. MAPPO is the only learned policy that never collapses at thirty-seven gNBs, where AXIOM collapses in 13 of 165 runs. In Env B every policy loses compliance as the cluster grows, and AXIOM's cluster-level priority-slice compliance falls from 64.1\% at three gNBs to 35.1\% at seven and 24.7\% at nineteen. AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs. At seven gNBs it earns 3.36 reward per gNB per step against 3.37 for DQN-SA, which keeps more compliance, 44.3\% against 35.1\%. On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.012$. That gap reflects the training budget. In Env A at nineteen gNBs AXIOM stays within 5.3 points of the static rule as offered load rises from 105\% to 120\% of the nominal shares, and every baseline stays below AXIOM at each load. Past the tuning load at nineteen gNBs AXIOM out-earns the carried tuned rule. On 15 fresh seeds it leads that rule by 6.84, 8.25, and 9.39 at the same loads, again winning 14 of 15 seeds at Holm-adjusted $p<0.001$, while the rule leads by 3.33 at nominal load.
 
 
 

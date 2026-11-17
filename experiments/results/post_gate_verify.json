@@ -3247,7 +3247,7 @@
  },
  {
   "label": "reframe: smallest DP epsilon about 2,600",
-  "snippet": "its $\\varepsilon$ is about 2{,}600 or more",
+  "snippet": "$\\varepsilon$ of about 2{,}600 or more",
   "computed": 2600.0,
   "formatted": "2600",
   "in_tex": true,
@@ -3255,7 +3255,7 @@
  },
  {
   "label": "reframe: AXIOM spike precision 0.98",
-  "snippet": "with block precision at 0.98. AXIOM was evaluated offline",
+  "snippet": "block precision at 0.98. AXIOM was evaluated offline",
   "computed": 0.9796397858262882,
   "formatted": "0.98",
   "in_tex": true,
@@ -4649,7 +4649,7 @@
  },
  {
   "label": "reframe: M75 C lead low",
-  "snippet": "by 29.9 to 48.1 points",
+  "snippet": "by 29.9 to 48.1 points of compliance",
   "computed": 29.941666666666663,
   "formatted": "29.9",
   "in_tex": true,
@@ -4657,7 +4657,7 @@
  },
  {
   "label": "reframe: M75 C lead high",
-  "snippet": "by 29.9 to 48.1 points",
+  "snippet": "by 29.9 to 48.1 points of compliance",
   "computed": 48.06166666666665,
   "formatted": "48.1",
   "in_tex": true,
@@ -5622,7 +5622,7 @@
  },
  {
   "label": "conclusion: tuned DQN gap low",
-  "snippet": "by 29.9 to 48.1 points",
+  "snippet": "by 29.9 to 48.1 points of compliance",
   "computed": 29.941666666666663,
   "formatted": "29.9",
   "in_tex": true,
@@ -5630,7 +5630,7 @@
  },
  {
   "label": "conclusion: tuned DQN gap high",
-  "snippet": "by 29.9 to 48.1 points",
+  "snippet": "by 29.9 to 48.1 points of compliance",
   "computed": 48.06166666666665,
   "formatted": "48.1",
   "in_tex": true,
