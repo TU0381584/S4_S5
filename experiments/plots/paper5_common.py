@@ -91,10 +91,10 @@ M2_ARM_STYLE: Dict[str, dict] = {
 # M64/M65 arms: AXIOM v2 reuses AXIOM's style; MAPPO and the rules get their own.
 M2_ARM_STYLE["axiom2"] = dict(M2_ARM_STYLE["gat_ctde"])
 M2_ARM_STYLE["axiom2_mlp"] = {"color": "#56B4E9", "marker": "o", "label": "AXIOM, MLP encoder"}
-M2_ARM_STYLE["mappo_tuned"] = {"color": "#000000", "marker": "D", "label": "MAPPO"}
+M2_ARM_STYLE["mappo_tuned"] = {"color": "#5A5A5A", "marker": "D", "label": "MAPPO"}
 M2_ARM_STYLE["axiom"] = {"color": "#9aa0a6", "marker": "o", "label": "AXIOM, original"}
 RULE_STYLE = {
-    "rule_static": {"color": "#5b5a52", "marker": "v", "label": "Rule, shed all mMTC"},
+    "rule_static": {"color": "#000000", "marker": "v", "label": "Rule, shed all mMTC"},
     "rule_accept_all": {"color": "#c3c2b7", "marker": "^", "label": "Rule, accept all"},
     "rule_local": {"color": "#8a7a3a", "marker": "<", "label": "Rule, tuned local"},
     "rule_neighbour": {"color": "#b39a3c", "marker": ">", "label": "Rule, tuned neighbour-aware"},

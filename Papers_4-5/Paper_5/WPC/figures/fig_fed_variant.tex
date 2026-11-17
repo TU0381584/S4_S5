@@ -9,7 +9,7 @@
 \renewcommand{\sfdefault}{phv}
 \begin{document}
 \begin{tikzpicture}[
-  font=\sffamily\normalsize,
+  font=\normalsize,
   box/.style={draw, rounded corners, minimum height=0.7cm, align=center, inner xsep=4pt, inner ysep=4pt},
   node1/.style={box, fill=blue!12, minimum width=1.0cm},
   node2/.style={box, fill=blue!12, minimum width=1.0cm},
@@ -23,7 +23,7 @@
 ]
 
 % ===== Federated training loop =====
-\node[font=\sffamily] (righttitle) at (2.6,3.0) {a};
+\node[font=\normalsize] (righttitle) at (2.6,3.0) {a};
 
 \node[client, minimum width=1.9cm] (c1) at (3.8,2.2) {Client 0\\\normalsize local AXIOM};
 \node[client, minimum width=1.9cm] (c2) at (6.25,2.2) {Client 1\\\normalsize local AXIOM};
@@ -37,10 +37,10 @@
 
 \draw[dashedarrow] (server.west) .. controls +(-0.7,0.2) and +(-0.4,-0.7) .. (c1.west);
 \draw[dashedarrow] (server.east) .. controls +(0.7,0.2) and +(0.4,-0.7) .. (c3.east);
-\node[font=\sffamily\normalsize, align=right, anchor=east] at (6.15,1.12) {clip +\\privacy\\noise};
-\node[font=\sffamily\normalsize] at (8.95,-0.35) {broadcast};
+\node[font=\normalsize, align=right, anchor=east] at (6.15,1.12) {clip +\\privacy\\noise};
+\node[font=\normalsize] at (8.95,-0.35) {broadcast};
 
-\node[below=0.35cm of server, font=\sffamily\normalsize, align=center] {every $N_{\mathrm{loc}}$ local steps};
+\node[below=0.35cm of server, font=\normalsize, align=center] {every $N_{\mathrm{loc}}$ local steps};
 
 \end{tikzpicture}
 \end{document}

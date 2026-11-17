@@ -5,7 +5,7 @@ as filled markers, rules as hollow markers, AXIOM in blue, learned baselines in 
 shape always distinguishes controllers, so no figure depends on colour alone. Maps use cividis.
 
 Limits from the figure-audit brief: widths 84 mm or full width, kept at 119 mm by the author's decision (the brief's
-174 mm exceeds the text block), 8 pt sans text and
+174 mm exceeds the text block), 8 pt text in the body font (Latin Modern Roman since 2026-11-17, at the author's request) and
 never below 7 pt, lines at least 0.3 pt, no background tints, PDF and EPS with embedded TrueType fonts.
 NOTE: the sn-jnl text block is 130.7 mm wide (\\textwidth = 372 pt, measured); a 174 mm figure is wider than the
 text block. See CHANGELOG.md, Phase 0.
@@ -39,12 +39,12 @@ INK, FAINT = "#222222", "#BBBBBB"
 # for colour-vision deficiency; learned controllers keep filled markers and rules hollow ones (shape redundancy)
 POLICY = {
     "axiom2":           dict(label="AXIOM",      color=OI["blue"],   marker="o", filled=True),
-    "mappo_tuned":      dict(label="MAPPO",      color=OI["black"],  marker="D", filled=True),
+    "mappo_tuned":      dict(label="MAPPO",      color="#5A5A5A", marker="D", filled=True),   # grey at the author's request (2026-11-17); #5A5A5A keeps it apart from green and blue under colour-vision simulation and in greyscale
     "single_agent_dqn": dict(label="DQN-SA",     color=OI["green"],  marker="s", filled=True),
     "independent_dqn":  dict(label="DQN-I",      color=OI["vermillion"], marker="^", filled=True),
     "axiom2_mlp":       dict(label="AXIOM-MLP",  color=OI["sky"],    marker="o", filled=True),
     "vdn":              dict(label="VDN",        color=OI["purple"], marker="<", filled=True),
-    "rule_static":      dict(label="Static rule", color="#5b5a52",   marker="v", filled=False),
+    "rule_static":      dict(label="Static rule", color=OI["black"], marker="v", filled=False),   # black, so that grey is MAPPO's alone
     "rule_local":       dict(label="Tuned rule",  color=OI["purple"],   marker="P", filled=False),
     "rule_local_transfer": dict(label="Tuned rule", color=OI["purple"], marker="P", filled=False),
     "rule_neighbour":   dict(label="Neighbour-aware rule", color=OI["sky"], marker="h", filled=False),
@@ -70,12 +70,24 @@ CAPTION_COLOUR_WORDS = ("red", "green", "blue", "orange", "yellow", "purple", "v
                         "color", "shaded", "tinted")
 
 
+def register_fonts():
+    """The body text of the manuscript is Computer Modern; figures/fonts holds Latin Modern Roman (the same design)
+    converted to TrueType so that it embeds as Type 42 in PDF and EPS (fonts/otf2ttf.py)."""
+    import glob
+    import os
+    from matplotlib import font_manager as fm
+    for f in sorted(glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts", "LMRomanTT-*.ttf"))):
+        fm.fontManager.addfont(f)
+
+
+register_fonts()
+
+
 def setup():
     mpl.rcParams.update({
-        "font.family": "sans-serif", "font.sans-serif": ["Liberation Sans", "Arial", "DejaVu Sans"],
+        "font.family": "serif", "font.serif": ["LM Roman TT"],
         "font.size": FONT_PT, "axes.titlesize": FONT_PT, "axes.labelsize": FONT_PT, "xtick.labelsize": FONT_PT,
-        "ytick.labelsize": FONT_PT, "legend.fontsize": FONT_PT, "mathtext.fontset": "custom",
-        "mathtext.rm": "Liberation Sans", "mathtext.it": "Liberation Sans:italic", "mathtext.bf": "Liberation Sans:bold",
+        "ytick.labelsize": FONT_PT, "legend.fontsize": FONT_PT, "mathtext.fontset": "cm",
         "pdf.fonttype": 42, "ps.fonttype": 42, "lines.linewidth": 0.6, "axes.linewidth": 0.6, "patch.linewidth": 0.6,
         "xtick.major.width": 0.6, "ytick.major.width": 0.6, "xtick.minor.width": 0.4, "ytick.minor.width": 0.4,
         "xtick.major.size": 2.5, "ytick.major.size": 2.5, "xtick.minor.size": 1.5, "ytick.minor.size": 1.5,

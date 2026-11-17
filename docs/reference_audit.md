@@ -77,3 +77,22 @@ Every DOI was resolved through the doi.org handle API and its Crossref record fe
 ## Cannot verify
 
 - cacs-paper4, the authors' own CACS 2026 paper. It has no DOI and no public record yet. Left untouched.
+
+## 2026-11-17: references restricted to 2022 onwards
+
+The author asked that every reference be dated 2022 or later, be indexed in Scopus, and be neither a preprint nor an arXiv paper, with the authors' CACS 2026 paper exempt. The reference list went from 60 to 43 entries. Scopus itself could not be queried from here, so indexing is not confirmed for any entry and remains for the author to check. The new entries are journal articles from IEEE, Springer, Elsevier and JMLR.
+
+Removed without substitute (the method or source is named in the text): wilcoxon1945, efron1979bootstrap, hodges1963estimates, kerby2014simple, schulman2017ppo (arXiv), vanhasselt2016popart, bega2020market, raza2019slicing, barlacchi2015milan, shao2021gatmarl (with its row of Table 1 and its sentence in Section 2), agarwal2021precipice.
+
+Substituted:
+
+| Removed | Substitute | Record checked |
+|---|---|---|
+| mnih2015dqn | wang2024drlsurvey, Deep Reinforcement Learning: A Survey, IEEE TNNLS 35(4), 5064-5078, 2024 | Crossref 10.1109/TNNLS.2022.3207346 |
+| gupta2017cooperative, rashid2020qmix, sunehag2018vdn, oliehoek2016decpomdp | gronauer2022marl, Multi-agent deep reinforcement learning: a survey, Artificial Intelligence Review 55(2), 895-943, 2022 (online 2021-04-15) | Crossref 10.1007/s10462-021-09996-w |
+| velickovic2018gat, wu2021gnnsurvey | jiang2022graphsurvey, Graph-based deep learning for communication networks: A survey, Computer Communications 185, 40-54, 2022 | Crossref 10.1016/j.comcom.2021.12.015 |
+| mcmahan2017fedavg, lim2020flmec | wen2023flsurvey, A survey on federated learning: challenges and applications, Int. J. Machine Learning and Cybernetics 14(2), 513-535, 2023 | Crossref 10.1007/s13042-022-01647-y |
+| dpsgd, zcdp | elouadrhiri2022dp, Differential Privacy for Deep and Federated Learning: A Survey, IEEE Access 10, 22359-22380, 2022 | Crossref 10.1109/ACCESS.2022.3151670 |
+| henderson2018matters | patterson2024empirical, Empirical Design in Reinforcement Learning, JMLR 25(318), 1-63, 2024 | jmlr.org/papers/v25/23-0183.html (no DOI) |
+
+Each substitute's record was fetched and matches. Their full texts were not read, so the author should confirm that each survey covers the point it is cited for. Primary sources added in Gate 1 are among the removed entries, which reverses that gate's reviewer advice at the author's instruction.

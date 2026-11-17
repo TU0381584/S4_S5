@@ -475,7 +475,7 @@
  },
  {
   "label": "M108 A7 ring lead over DQN-SA, reward",
-  "snippet": "with AXIOM ahead of DQN-SA by 1.94 reward per step and 11.8 points of compliance",
+  "snippet": "by 1.94 reward per step and 11.8 points of compliance",
   "computed": 1.9387956648707658,
   "formatted": "1.94",
   "in_tex": true,
@@ -483,7 +483,7 @@
  },
  {
   "label": "M108 A7 ring lead over DQN-SA, compliance",
-  "snippet": "with AXIOM ahead of DQN-SA by 1.94 reward per step and 11.8 points of compliance",
+  "snippet": "by 1.94 reward per step and 11.8 points of compliance",
   "computed": 11.77777777777778,
   "formatted": "11.8",
   "in_tex": true,
@@ -877,7 +877,7 @@
  },
  {
   "label": "H2 rule_local gap",
-  "snippet": "earning 0.426 more than AXIOM at $p<0.0001$",
+  "snippet": "earns 0.426 more than AXIOM at $p<0.0001$",
   "computed": 0.4263270075353111,
   "formatted": "0.426",
   "in_tex": true,
@@ -984,7 +984,7 @@
  },
  {
   "label": "H2 n3 neighbour rule reward lead",
-  "snippet": "The tuned neighbour-aware rule also out-earns AXIOM, by 0.235 per step",
+  "snippet": "The tuned neighbour-aware rule out-earns AXIOM by 0.235 per step",
   "computed": 0.23503467130790948,
   "formatted": "0.235",
   "in_tex": true,
@@ -3094,7 +3094,7 @@
  },
  {
   "label": "reframe: failed checks",
-  "snippet": "The nine checks that failed",
+  "snippet": "the nine checks that failed",
   "computed": 9,
   "formatted": "nine",
   "in_tex": true,
@@ -3255,7 +3255,7 @@
  },
  {
   "label": "reframe: AXIOM spike precision 0.98",
-  "snippet": "with block precision at 0.98. AXIOM was not deployed live",
+  "snippet": "with block precision at 0.98. AXIOM was evaluated offline",
   "computed": 0.9796397858262882,
   "formatted": "0.98",
   "in_tex": true,
@@ -3939,7 +3939,7 @@
  },
  {
   "label": "reframe: abstract static rule floor at every size",
-  "snippet": "A static rule shedding all machine-type requests keeps at least 99.97\\%",
+  "snippet": "The static rule that sheds every mMTC request keeps 99.97\\% to 99.99\\% at every size",
   "computed": 99.97166666666666,
   "formatted": "99.97",
   "in_tex": true,
@@ -4485,7 +4485,7 @@
  },
  {
   "label": "reframe: M75 D static rule margin",
-  "snippet": "The static rule still earns 1.31 more per step",
+  "snippet": "which earn 1.31 and 3.81 more per step",
   "computed": 1.3081758141530306,
   "formatted": "1.31",
   "in_tex": true,
@@ -4521,7 +4521,7 @@
  },
  {
   "label": "reframe: M75 D tuned rule margin",
-  "snippet": "carried over from seven gNBs earns 3.81 more and wins every seed",
+  "snippet": "which earn 1.31 and 3.81 more per step",
   "computed": 3.8141086518388345,
   "formatted": "3.81",
   "in_tex": true,
@@ -5394,7 +5394,7 @@
  },
  {
   "label": "abstract: lead over best learned baseline at 37 gNBs",
-  "snippet": "AXIOM leads the best learned baseline by 36.3 to 36.5 points",
+  "snippet": "its lead over the best learned baseline reaches 36.3 points, and 36.5 points on 20 fresh seeds",
   "computed": 36.340277777777786,
   "formatted": "36.3",
   "in_tex": true,
@@ -5402,7 +5402,7 @@
  },
  {
   "label": "abstract: fresh-seed lead at 37 gNBs",
-  "snippet": "AXIOM leads the best learned baseline by 36.3 to 36.5 points",
+  "snippet": "its lead over the best learned baseline reaches 36.3 points, and 36.5 points on 20 fresh seeds",
   "computed": 36.5375,
   "formatted": "36.5",
   "in_tex": true,
@@ -5474,7 +5474,7 @@
  },
  {
   "label": "abstract: Env B over MAPPO at 3 gNBs",
-  "snippet": "AXIOM earns 26\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
+  "snippet": "earns 26\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
   "computed": 26.023061362850797,
   "formatted": "26",
   "in_tex": true,
@@ -5482,7 +5482,7 @@
  },
  {
   "label": "abstract: Env B over MAPPO at 19 gNBs",
-  "snippet": "AXIOM earns 26\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
+  "snippet": "earns 26\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs",
   "computed": 35.91822054686071,
   "formatted": "36",
   "in_tex": true,
@@ -5501,6 +5501,14 @@
   "snippet": "AXIOM earns 26\\% to 36\\% more reward than MAPPO at three and nineteen gNBs",
   "computed": 35.91822054686071,
   "formatted": "36",
+  "in_tex": true,
+  "ok": true
+ },
+ {
+  "label": "abstract: Env B over static rule at 3 gNBs",
+  "snippet": "and 42\\% more than the static rule at 3 gNBs",
+  "computed": 41.54706271713942,
+  "formatted": "42",
   "in_tex": true,
   "ok": true
  },
@@ -6653,7 +6661,7 @@
     96.59222222222222,
     96.28
    ],
-   245
+   250
   ],
   "formatted": null,
   "in_tex": null,
@@ -7582,6 +7590,167 @@
     ]
    }
   },
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframing: AXIOM reaches 95.3% and 95.5% of the tuned rule's reward in Env B at 3 and 19 gNBs, 98.4% of the static rule's at 19, 85.5% to 86.4% at 7",
+  "snippet": null,
+  "computed": [
+   95.34011710284356,
+   95.46449725651809,
+   98.39661884675895,
+   [
+    85.46970820472842,
+    85.95326371942544,
+    86.41825157331047
+   ]
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframing: abstract, contribution 3 and conclusion round these shares to 85% to 95% and 95%",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframing: AXIOM trained at 7 gNBs stays within 5 points of the static rule's compliance at 19 and 37 gNBs in Env A, every layout",
+  "snippet": null,
+  "computed": [
+   3.77,
+   4.62,
+   3.04,
+   3.67,
+   3.37,
+   3.71
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "reframing: static rule leaves URLLC at 61.5% in Env B at 3 gNBs and AXIOM earns 42% more",
+  "snippet": null,
+  "computed": null,
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "Fig. learning text: MAPPO has the highest first-20-episode mean and the lowest last-20-episode mean in every panel; epsilon reaches 0.05 near episode 200",
+  "snippet": null,
+  "computed": [
+   199,
+   {
+    "A3": {
+     "independent_dqn": [
+      -0.6,
+      3.89
+     ],
+     "single_agent_dqn": [
+      -0.57,
+      4.0
+     ],
+     "mappo_tuned": [
+      1.68,
+      3.05
+     ],
+     "axiom2": [
+      -0.6,
+      4.1
+     ]
+    },
+    "A19hex": {
+     "independent_dqn": [
+      1.85,
+      3.75
+     ],
+     "single_agent_dqn": [
+      1.78,
+      3.89
+     ],
+     "mappo_tuned": [
+      2.74,
+      3.32
+     ],
+     "axiom2": [
+      1.87,
+      4.53
+     ]
+    },
+    "A37hex": {
+     "independent_dqn": [
+      2.18,
+      3.8
+     ],
+     "single_agent_dqn": [
+      2.06,
+      3.87
+     ],
+     "mappo_tuned": [
+      2.7,
+      3.39
+     ],
+     "axiom2": [
+      2.16,
+      4.55
+     ]
+    },
+    "B3": {
+     "independent_dqn": [
+      -0.7,
+      2.47
+     ],
+     "single_agent_dqn": [
+      -0.67,
+      2.48
+     ],
+     "mappo_tuned": [
+      0.71,
+      2.02
+     ],
+     "axiom2": [
+      -0.68,
+      2.76
+     ]
+    },
+    "B7ring": {
+     "independent_dqn": [
+      0.9,
+      3.13
+     ],
+     "single_agent_dqn": [
+      0.89,
+      3.33
+     ],
+     "mappo_tuned": [
+      2.12,
+      2.32
+     ],
+     "axiom2": [
+      0.92,
+      3.32
+     ]
+    }
+   }
+  ],
+  "formatted": null,
+  "in_tex": null,
+  "ok": true
+ },
+ {
+  "label": "references: every entry of the reference list is dated 2022 or later and none is an arXiv preprint",
+  "snippet": null,
+  "computed": [
+   43,
+   2022
+  ],
   "formatted": null,
   "in_tex": null,
   "ok": true
@@ -8854,9 +9023,9 @@
   "ok": true
  },
  {
-  "label": "text quotes the final check count of 756",
+  "label": "text quotes the final check count of 763",
   "snippet": null,
-  "computed": 756,
+  "computed": 763,
   "formatted": null,
   "in_tex": null,
   "ok": true

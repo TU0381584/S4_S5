@@ -1,24 +1,10 @@
-\begin{thebibliography}{60}
+\begin{thebibliography}{43}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{{#1}}
 \providecommand{\urlprefix}{URL }
 \providecommand{\doi}[1]{\url{https://doi.org/#1}}
 \providecommand{\eprint}[2][]{\url{#2}}
  \bibcommenthead
-
-\bibitem[{Abadi et~al.(2016)Abadi, Chu, Goodfellow, McMahan, Mironov, Talwar,
-  and Zhang}]{dpsgd}
-Abadi M, Chu A, Goodfellow I, McMahan HB, Mironov I, Talwar K, Zhang L (2016)
-  Deep learning with differential privacy. In: \emph{Proceedings of the 2016
-  ACM SIGSAC Conference on Computer and Communications Security (CCS)}, pp
-  308--318, \doi{10.1145/2976749.2978318}
-
-\bibitem[{Agarwal et~al.(2021)Agarwal, Schwarzer, Castro, Courville, and
-  Bellemare}]{agarwal2021precipice}
-Agarwal R, Schwarzer M, Castro PS, Courville A, Bellemare M (2021) Deep
-  reinforcement learning at the edge of the statistical precipice. In:
-  \emph{Advances in Neural Information Processing Systems (NeurIPS)}, pp
-  29304--29320
 
 \bibitem[{Ahmadi et~al.(2024)Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba,
   and Saleh}]{ahmadi2024generalizable}
@@ -46,31 +32,12 @@ Asdikian JP, Amro A, Mehyeddine L, Natalino C, Sbeity I, Maier G, Monti P,
   International Conference on Network and Service Management (CNSM)}, pp 1--6,
   \doi{10.23919/CNSM67658.2025.11297450}
 
-\bibitem[{Barlacchi et~al.(2015)Barlacchi, De~Nadai, Larcher, Casella, Chitic,
-  Torrisi, Antonelli, Vespignani, Pentland, and Lepri}]{barlacchi2015milan}
-Barlacchi G, De~Nadai M, Larcher R, Casella A, Chitic C, Torrisi G, Antonelli
-  F, Vespignani A, Pentland A, Lepri B (2015) A multi-source dataset of urban
-  life in the city of {Milan} and the province of {Trentino}. \emph{Scientific
-  Data} 2(1):150055. \doi{10.1038/sdata.2015.55}
-
-\bibitem[{Bega et~al.(2020)Bega, Gramaglia, Banchs, Sciancalepore, and
-  Costa-P{\'e}rez}]{bega2020market}
-Bega D, Gramaglia M, Banchs A, Sciancalepore V, Costa-P{\'e}rez X (2020) A
-  machine learning approach to {5G} infrastructure market optimization.
-  \emph{IEEE Transactions on Mobile Computing} 19(3):498--512.
-  \doi{10.1109/TMC.2019.2896950}
-
 \bibitem[{Bouroudi et~al.(2025)Bouroudi, Outtagarts, and
   Hadjadj-Aoul}]{bouroudi2025gnnmarl}
 Bouroudi A, Outtagarts A, Hadjadj-Aoul Y (2025) {GNN}-based multi-agent {DRL}
   for energy-efficient multi-domain {6G} resource orchestration. In:
   \emph{Proceedings of the IEEE Global Communications Conference (GLOBECOM)},
   pp 4457--4462, \doi{10.1109/GLOBECOM59602.2025.11432814}
-
-\bibitem[{Bun and Steinke(2016)}]{zcdp}
-Bun M, Steinke T (2016) Concentrated differential privacy: Simplifications,
-  extensions, and lower bounds. In: \emph{Theory of Cryptography Conference
-  (TCC)}, pp 635--658, \doi{10.1007/978-3-662-53641-4_24}
 
 \bibitem[{Cheng et~al.(2024)Cheng, D'Oro, Gangula, Velumani, Villa, Bonati,
   Polese, Melodia, Arrobo, and Maciocco}]{cheng2024oranslice}
@@ -93,9 +60,10 @@ Doherty M, Matzner R, Sadeghi R, Bayvel P, Beghelli A (2025) Reinforcement
   \emph{Journal of Optical Communications and Networking} 17(9):D1.
   \doi{10.1364/JOCN.559990}
 
-\bibitem[{Efron(1979)}]{efron1979bootstrap}
-Efron B (1979) Bootstrap methods: Another look at the jackknife. \emph{The
-  Annals of Statistics} 7(1):1--26. \doi{10.1214/aos/1176344552}
+\bibitem[{El~Ouadrhiri and Abdelhadi(2022)}]{elouadrhiri2022dp}
+El~Ouadrhiri A, Abdelhadi A (2022) Differential privacy for deep and federated
+  learning: A survey. \emph{IEEE Access} 10:22359--22380.
+  \doi{10.1109/ACCESS.2022.3151670}
 
 \bibitem[{Fatehi et~al.(2026)Fatehi, Ghourtani, Sonee, Yadav, Russo, Ahmadi,
   and Calinescu}]{fatehi2026attentionmarl}
@@ -112,12 +80,10 @@ Gong Y, Gong P, Jiang H, Xie W, Wang C, Xu P (2026) Intelligent resource
   using federated multiagent {DDPG} algorithm. \emph{China Communications}
   23(1):273--289. \doi{10.23919/JCC.fa.2022-0187.202601}
 
-\bibitem[{Gupta et~al.(2017)Gupta, Egorov, and
-  Kochenderfer}]{gupta2017cooperative}
-Gupta JK, Egorov M, Kochenderfer M (2017) Cooperative multi-agent control using
-  deep reinforcement learning. In: \emph{Autonomous Agents and Multiagent
-  Systems}. Lecture Notes in Computer Science, Springer International
-  Publishing, p 66--83, \doi{10.1007/978-3-319-71682-4_5}
+\bibitem[{Gronauer and Diepold(2022)}]{gronauer2022marl}
+Gronauer S, Diepold K (2022) Multi-agent deep reinforcement learning: A survey.
+  \emph{Artificial Intelligence Review} 55(2):895--943.
+  \doi{10.1007/s10462-021-09996-w}
 
 \bibitem[{Hao et~al.(2024)Hao, She, Yeoh, Liu, Vucetic, and
   Li}]{hao2024hybridtask}
@@ -126,32 +92,14 @@ Hao X, She C, Yeoh PL, Liu Y, Vucetic B, Li Y (2024) Hybrid-task meta-learning:
   \emph{IEEE Transactions on Wireless Communications} 23(12):19820--19835.
   \doi{10.1109/TWC.2024.3487533}
 
-\bibitem[{van Hasselt et~al.(2016)van Hasselt, Guez, Hessel, Mnih, and
-  Silver}]{vanhasselt2016popart}
-van Hasselt H, Guez A, Hessel M, Mnih V, Silver D (2016) Learning values across
-  many orders of magnitude. In: \emph{Advances in Neural Information Processing
-  Systems (NeurIPS)}
-
-\bibitem[{Henderson et~al.(2018)Henderson, Islam, Bachman, Pineau, Precup, and
-  Meger}]{henderson2018matters}
-Henderson P, Islam R, Bachman P, Pineau J, Precup D, Meger D (2018) Deep
-  reinforcement learning that matters. In: \emph{Proceedings of the AAAI
-  Conference on Artificial Intelligence}, \doi{10.1609/aaai.v32i1.11694}
-
-\bibitem[{Hodges and Lehmann(1963)}]{hodges1963estimates}
-Hodges JL, Lehmann EL (1963) Estimates of location based on rank tests.
-  \emph{The Annals of Mathematical Statistics} 34(2):598--611.
-  \doi{10.1214/aoms/1177704172}
+\bibitem[{Jiang(2022)}]{jiang2022graphsurvey}
+Jiang W (2022) Graph-based deep learning for communication networks: A survey.
+  \emph{Computer Communications} 185:40--54. \doi{10.1016/j.comcom.2021.12.015}
 
 \bibitem[{Kamal and Abdulkafi(2026)}]{kamal2026ddqn}
 Kamal YB, Abdulkafi AA (2026) Reinforcement learning double deep {Q}-network
   techniques for {NextG} network. \emph{Wireless Personal Communications}
   146(6):3175--3197. \doi{10.1007/s11277-026-12048-7}
-
-\bibitem[{Kerby(2014)}]{kerby2014simple}
-Kerby DS (2014) The simple difference formula: An approach to teaching
-  nonparametric correlation. \emph{Comprehensive Psychology} 3:11.IT.3.1.
-  \doi{10.2466/11.IT.3.1}
 
 \bibitem[{Khani et~al.(2024)Khani, Jamali, Sohrabi, Sadr, and
   Ghaffari}]{khani2024sacsurvey}
@@ -214,34 +162,11 @@ Li Y, Wang H, Min G, Wang X, Wang C (2026) A flexible and scalable multi-agent
   \emph{IEEE Transactions on Mobile Computing} 25(5):7258--7273.
   \doi{10.1109/TMC.2025.3642213}
 
-\bibitem[{Lim et~al.(2020)Lim, Luong, Hoang, Jiao, Liang, Yang, Niyato, and
-  Miao}]{lim2020flmec}
-Lim WYB, Luong NC, Hoang DT, Jiao Y, Liang YC, Yang Q, Niyato D, Miao C (2020)
-  Federated learning in mobile edge networks: A comprehensive survey.
-  \emph{IEEE Communications Surveys \& Tutorials} 22(3):2031--2063.
-  \doi{10.1109/COMST.2020.2986024}
-
-\bibitem[{McMahan et~al.(2017)McMahan, Moore, Ramage, Hampson, and {Ag{\"u}era
-  y Arcas}}]{mcmahan2017fedavg}
-McMahan B, Moore E, Ramage D, Hampson S, {Ag{\"u}era y Arcas} B (2017)
-  Communication-efficient learning of deep networks from decentralized data.
-  In: \emph{Proceedings of the 20th International Conference on Artificial
-  Intelligence and Statistics (AISTATS)}, pp 1273--1282
-
 \bibitem[{Ming et~al.(2024)Ming, Yu, and Taleb}]{ming2024fedslice}
 Ming Z, Yu H, Taleb T (2024) Federated deep reinforcement learning for
   prediction-based network slice mobility in {6G} mobile networks. \emph{IEEE
   Transactions on Mobile Computing} 23(12):11937--11953.
   \doi{10.1109/TMC.2024.3404125}
-
-\bibitem[{Mnih et~al.(2015)Mnih, Kavukcuoglu, Silver, Rusu, Veness, Bellemare,
-  Graves, Riedmiller, Fidjeland, Ostrovski, Petersen, Beattie, Sadik,
-  Antonoglou, King, Kumaran, Wierstra, Legg, and Hassabis}]{mnih2015dqn}
-Mnih V, Kavukcuoglu K, Silver D, Rusu AA, Veness J, Bellemare MG, Graves A,
-  Riedmiller M, Fidjeland AK, Ostrovski G, Petersen S, Beattie C, Sadik A,
-  Antonoglou I, King H, Kumaran D, Wierstra D, Legg S, Hassabis D (2015)
-  Human-level control through deep reinforcement learning. \emph{Nature}
-  518(7540):529--533. \doi{10.1038/nature14236}
 
 \bibitem[{Mohajer et~al.(2026)Mohajer, Mirzaei, Darabi, and
   Fernando}]{mohajer2026pronto}
@@ -256,10 +181,11 @@ Ojijo MO, Ramotsoela D, Oginga RA (2024) Slice admission control in {5G}
   action space: A sequential twin actor-critic approach. \emph{Computer
   Networks} 255:110878. \doi{10.1016/j.comnet.2024.110878}
 
-\bibitem[{Oliehoek and Amato(2016)}]{oliehoek2016decpomdp}
-Oliehoek FA, Amato C (2016) A Concise Introduction to Decentralized {POMDPs}.
-  SpringerBriefs in Intelligent Systems, Springer International Publishing,
-  \doi{10.1007/978-3-319-28929-8}
+\bibitem[{Patterson et~al.(2024)Patterson, Neumann, White, and
+  White}]{patterson2024empirical}
+Patterson A, Neumann S, White M, White A (2024) Empirical design in
+  reinforcement learning. \emph{Journal of Machine Learning Research}
+  25(318):1--63
 
 \bibitem[{Phyu et~al.(2025)Phyu, Naboulsi, and Stanica}]{phyu2025icecream}
 Phyu HP, Naboulsi D, Stanica R (2025) {ICE-CREAM}: Multi-agent fully
@@ -282,30 +208,6 @@ Polese M, Bonati L, D'Oro S, Basagni S, Melodia T (2023{\natexlab{b}})
   research challenges. \emph{IEEE Communications Surveys \& Tutorials}
   25(2):1376--1411. \doi{10.1109/COMST.2023.3239220}
 
-\bibitem[{Rashid et~al.(2020)Rashid, Samvelyan, Schroeder~de Witt, Farquhar,
-  Foerster, and Whiteson}]{rashid2020qmix}
-Rashid T, Samvelyan M, Schroeder~de Witt C, Farquhar G, Foerster J, Whiteson S
-  (2020) Monotonic value function factorisation for deep multi-agent
-  reinforcement learning. \emph{Journal of Machine Learning Research}
-  21(178):1--51
-
-\bibitem[{Raza et~al.(2019)Raza, Natalino, {\"O}hlen, Wosinska, and
-  Monti}]{raza2019slicing}
-Raza MR, Natalino C, {\"O}hlen P, Wosinska L, Monti P (2019) Reinforcement
-  learning for slicing in a {5G} flexible {RAN}. \emph{Journal of Lightwave
-  Technology} 37(20):5161--5169. \doi{10.1109/JLT.2019.2924345}
-
-\bibitem[{Schulman et~al.(2017)Schulman, Wolski, Dhariwal, Radford, and
-  Klimov}]{schulman2017ppo}
-Schulman J, Wolski F, Dhariwal P, Radford A, Klimov O (2017) Proximal policy
-  optimization algorithms. ArXiv:1707.06347
-
-\bibitem[{Shao et~al.(2021)Shao, Li, Hu, Wu, Zhao, and Zhang}]{shao2021gatmarl}
-Shao Y, Li R, Hu B, Wu Y, Zhao Z, Zhang H (2021) Graph attention network-based
-  multi-agent reinforcement learning for slicing resource management in dense
-  cellular network. \emph{IEEE Transactions on Vehicular Technology}
-  70(10):10792--10803. \doi{10.1109/TVT.2021.3103416}
-
 \bibitem[{Sirma et~al.(2025)Sirma, Kavak, and Inner}]{sirma2025relay}
 Sirma M, Kavak A, Inner AB (2025) Optimizing relay selection in {D2D}
   communication for next-generation wireless networks using multi-agent
@@ -318,14 +220,6 @@ Sulaiman M, Moayyedi A, Ahmadi M, Salahuddin MA, Boutaba R, Saleh A (2023)
   Coordinated slicing and admission control using multi-agent deep
   reinforcement learning. \emph{IEEE Transactions on Network and Service
   Management} 20(2):1110--1124. \doi{10.1109/TNSM.2022.3222589}
-
-\bibitem[{Sunehag et~al.(2018)Sunehag, Lever, Gruslys, Czarnecki, Zambaldi,
-  Jaderberg, Lanctot, Sonnerat, Leibo, Tuyls, and Graepel}]{sunehag2018vdn}
-Sunehag P, Lever G, Gruslys A, Czarnecki WM, Zambaldi V, Jaderberg M, Lanctot
-  M, Sonnerat N, Leibo JZ, Tuyls K, Graepel T (2018) Value-decomposition
-  networks for cooperative multi-agent learning based on team reward. In:
-  \emph{Proceedings of the 17th International Conference on Autonomous Agents
-  and MultiAgent Systems (AAMAS)}, pp 2085--2087, \doi{10.65109/jsrc7365}
 
 \bibitem[{Tao et~al.(2025)Tao, Xu, and You}]{tao2025dtac}
 Tao Z, Xu W, You X (2025) Digital twin-accelerated online deep reinforcement
@@ -353,20 +247,17 @@ Tsampazi M, D'Oro S, Polese M, Bonati L, Poitau G, Healy M, Alavirad M, Melodia
   reinforcement learning agents for {Open RAN}. \emph{IEEE Transactions on
   Mobile Computing} 24(4):3223--3240. \doi{10.1109/TMC.2024.3505781}
 
-\bibitem[{Veli{\v{c}}kovi{\'c} et~al.(2018)Veli{\v{c}}kovi{\'c}, Cucurull,
-  Casanova, Romero, Li{\`o}, and Bengio}]{velickovic2018gat}
-Veli{\v{c}}kovi{\'c} P, Cucurull G, Casanova A, Romero A, Li{\`o} P, Bengio Y
-  (2018) Graph attention networks. In: \emph{International Conference on
-  Learning Representations (ICLR)}, arXiv:1710.10903
+\bibitem[{Wang et~al.(2024)Wang, Wang, Liang, Zhao, Huang, Xu, Dai, and
+  Miao}]{wang2024drlsurvey}
+Wang X, Wang S, Liang X, Zhao D, Huang J, Xu X, Dai B, Miao Q (2024) Deep
+  reinforcement learning: A survey. \emph{IEEE Transactions on Neural Networks
+  and Learning Systems} 35(4):5064--5078. \doi{10.1109/TNNLS.2022.3207346}
 
-\bibitem[{Wilcoxon(1945)}]{wilcoxon1945}
-Wilcoxon F (1945) Individual comparisons by ranking methods. \emph{Biometrics
-  Bulletin} 1(6):80. \doi{10.2307/3001968}
-
-\bibitem[{Wu et~al.(2021)Wu, Pan, Chen, Long, Zhang, and Yu}]{wu2021gnnsurvey}
-Wu Z, Pan S, Chen F, Long G, Zhang C, Yu PS (2021) A comprehensive survey on
-  graph neural networks. \emph{IEEE Transactions on Neural Networks and
-  Learning Systems} 32(1):4--24. \doi{10.1109/TNNLS.2020.2978386}
+\bibitem[{Wen et~al.(2023)Wen, Zhang, Lan, Cui, Cai, and
+  Zhang}]{wen2023flsurvey}
+Wen J, Zhang Z, Lan Y, Cui Z, Cai J, Zhang W (2023) A survey on federated
+  learning: Challenges and applications. \emph{International Journal of Machine
+  Learning and Cybernetics} 14(2):513--535. \doi{10.1007/s13042-022-01647-y}
 
 \bibitem[{Yasin et~al.(2025)Yasin, Yu, and Wang}]{yasin2025dpfl}
 Yasin TV, Yu CM, Wang LC (2025) Differential privacy federated edge

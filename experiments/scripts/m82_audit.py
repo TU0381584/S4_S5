@@ -221,11 +221,11 @@ def run(C):
            max(h1.values()) < 1e-4 and max(pr.values()) < 1e-4 and all(paired(B["axiom2"], B[b], prio)["diff"] > 0 for b in ARMS[1:])
            and sel["tau_e"] == 0.2 and f"{loc['diff']:.3f}" == "0.426" and loc["p"] < 1e-4
            and "Both gaps hold at Holm-adjusted $p<0.0001$" in C.main and "and keeps more priority-slice compliance than each, at Holm-adjusted $p<0.0001$" in C.main
-           and "sheds eMBB whenever the URLLC queue passes 0.2" in C.main and "earning 0.426 more than AXIOM at $p<0.0001$" in C.main,
+           and "sheds eMBB whenever the URLLC queue passes 0.2" in C.main and "earns 0.426 more than AXIOM at $p<0.0001$" in C.main,
            {"h1": h1, "prio": pr, "loc": loc, "sel": sel})
     w7 = {(t, r_): paired(seeds_of(f"m64/n7_{t}", r_, S15), seeds_of(f"m64/n7_{t}", "axiom2", S15))["wins"] for t in LAY for r_ in ("rule_local", "rule_neighbour")}
     C.note("M82 tuned rules beat AXIOM in all 15 seeds at seven gNBs under every layout", all(v == 15 for v in w7.values())
-           and "At seven gNBs the tuned rules beat AXIOM in all 15 seeds under every layout" in C.main, w7)
+           and "beat AXIOM in all 15 seeds under every layout" in C.tex, w7)
     def med_train(cell, arm):
         v = [r["train_seconds"] for f_ in glob.glob(f"{ROOT}/{cell}/{arm}_*.json") for r in json.load(open(f_)).values() if isinstance(r, dict) and "train_seconds" in r]
         return round(float(np.median(v)))
@@ -277,7 +277,7 @@ def run(C):
     h7 = V.holm({k: v["p"] for k, v in n7r.items()})
     C.note("M82 Env B 7-gNB ring: AXIOM below DQN-SA in compliance at Holm p=0.012 (ties within 1e-9, 2026-11-12; 0.011 before)", round(h7[("ring", "single_agent_dqn", "prio")], 3) == 0.012
            and n7r[("ring", "single_agent_dqn", "prio")]["diff"] < 0
-           and "On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.012$" in C.main, h7[("ring", "single_agent_dqn", "prio")])
+           and "On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.012$" in C.tex, h7[("ring", "single_agent_dqn", "prio")])
     sel70 = json.load(open(f"{ROOT}/m70/R3_pilot/selection.json"))
     C.note("M82 the MAPPO tuning grid has 24 configurations in each environment", len(sel70["A"]["grid"]) == 24 and len(sel70["B"]["grid"]) == 24
            and "A 24-configuration MAPPO grid" in C.main and "A grid of 24 MAPPO configurations" in C.tex, None)
@@ -291,11 +291,11 @@ def run(C):
     sizes = {"m66_fresh/A_n3": 20, "m66_fresh/A_n19_ring": 15, "m66_fresh/B_n7_ring": 10, "m66b_fresh/A_n7_ring": 10, "m66d_fresh/D1_A_n3": 40}
     seen = {c_: len(seeds_of(c_, "axiom2", range(3000, 4040))) for c_ in sizes}
     C.note("M82 fresh-seed runs used 10 to 40 seeds per setting and an 80% baseline bound", seen == sizes and len(bounds) > 0
-           and "retrained every policy on fresh seeds, 10 to 40 per setting" in C.main and "above the 80\\% bound we had set" in C.main, (seen, bounds[:2]))
+           and "retrained every policy on fresh seeds, 10 to 40 per setting" in C.main and "above the 80\\% bound we had set" in C.tex, (seen, bounds[:2]))
     rt = {sh: paired(V_shift("n3", sh, "axiom2"), V_shift("n3", sh, "rule_retuned")) for sh in ("load_1.10", "load_1.15", "load_1.20")}
     C.note("M82 a re-tuned rule ties AXIOM up to 115% load and beats it at 120%", all(rt[k]["p"] >= 0.05 for k in ("load_1.10", "load_1.15"))
            and rt["load_1.20"]["diff"] < 0 and rt["load_1.20"]["p"] < 0.05
-           and "A re-tuned rule ties AXIOM up to 115\\% load and beats it at 120\\%" in C.main
+           and "only a rule re-tuned on the shifted streams ties AXIOM up to 115\\% load and leads it at 120\\%" in C.main
            and f"Against it AXIOM trails by {-rt['load_1.10']['diff']:.2f} and {-rt['load_1.15']['diff']:.2f} per step at 110\\% and 115\\% load, which is not significant, and by {-rt['load_1.20']['diff']:.2f} at 120\\% load" in C.tex,
            {k: (round(v["diff"], 3), round(v["p"], 4)) for k, v in rt.items()})
 
@@ -356,7 +356,7 @@ def run(C):
     crit = mb["criteria"] + mc["criteria"]
     hi_b = [float(re.search(r"([\d.]+)%", c_["detail"]).group(1)) for c_ in crit if "<= 80%" in c_["label"] and re.search(r"([\d.]+)%", c_["detail"])]
     C.note("M82 OR1 baselines up to 83.3% at seven gNBs, above the 80% bound", f"{max(hi_b):.1f}" == "83.3"
-           and "reached up to 83.3\\% compliance at seven gNBs, above the 80\\% bound we had set" in C.main, hi_b)
+           and "reached up to 83.3\\% compliance at seven gNBs, above the 80\\% bound we had set" in C.tex, hi_b)
     m19a, m19m = seeds_of("m65_scaling/n19_ring", "axiom2", range(900, 912)), seeds_of("m65_scaling_mlp/n19_ring", "axiom2_mlp", range(900, 912))
     t19 = paired(m19a, m19m)
     b3 = paired(seeds_of("m64/n3_fully_connected", "axiom2_mlp", S30), seeds_of("m64/n3_fully_connected", "axiom2", S30))

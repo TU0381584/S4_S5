@@ -158,9 +158,9 @@ def main():
     axc.set_xticks(range(len(sizes))); axc.set_xticklabels([str(n) for n in sizes]); axc.set_xlabel("gNBs")
     axc.set_ylabel("Reward per gNB\nper step")
     for ax_, t_ in ((axa, "a"), (axb, "b"), (axc, "c")):
-        ax_.text(-0.13 if ax_ is not axa else -0.07, 1.02, t_, transform=ax_.transAxes, fontweight="bold", va="bottom", ha="left")
+        ax_.text(-0.13 if ax_ is not axa else -0.07, 1.06, t_, transform=ax_.transAxes, fontweight="bold", va="bottom", ha="left")
         tg_ = S.ENV_TAG["A"]   # pre-audit Env A badge beside each panel letter (restored 2026-11-09)
-        ax_.text(-0.07 if ax_ is not axa else -0.035, 1.02, "Env A", transform=ax_.transAxes, va="bottom", ha="left", color=tg_["tc"],
+        ax_.text(-0.07 if ax_ is not axa else -0.035, 1.06, "Env A", transform=ax_.transAxes, va="bottom", ha="left", color=tg_["tc"],
                  bbox=dict(boxstyle="round,pad=0.25", fc=tg_["fc"], ec=tg_["ec"], lw=0.6))
     from matplotlib.lines import Line2D
     hs = [Line2D([], [], label=S.POLICY[a_]["label"], **{**S.marker_kw(a_, 3.6), "ls": (0, (1, 4)), "lw": 0.3, "color": S.POLICY[a_]["color"]})

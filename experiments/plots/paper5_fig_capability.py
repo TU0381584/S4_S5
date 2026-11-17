@@ -167,7 +167,7 @@ def table(d):
     t = {"axiom2": ["yes" if min(rng) >= SLA_OK else "half", f"{min(rng):.0f}–{max(rng):.0f}%"],
          "mappo_tuned": ["yes" if tr["mappo_tuned"]["mean"] >= SLA_OK else "half", f"{tr['mappo_tuned']['mean']:.1f}%"],
          "single_agent_dqn": ["no", "fixed input"], "independent_dqn": ["no", "fixed input"],
-         "rule_static": ["yes", "size-free"], "rule_local": ["yes", "7→19, Env B"]}
+         "rule_static": ["yes", "size-free"], "rule_local": ["yes", "from 7"]}
     W, past = d["past_wins"], d["past19"]
     p = {}
     for a in LEARNED + ("rule_static",):
