@@ -12,9 +12,10 @@ Every row comes from an entry of CHANGELOG_WPC.md (Gate and number in the last c
 | Env B, three gNBs, AXIOM compliance lead over the neighbour rule | pooled only | confirmation seeds leave it within chance | same | 2.39 |
 | Differential privacy | "weak formal guarantee" | "no meaningful privacy guarantee", epsilon about 2,600 or more | wording matched to the number | 2.40 |
 | Live testbed | "never jointly validated in a live deployment" | "we found none jointly validated", and the main paper states AXIOM was not deployed live | absolute claims limited to what was checked | 2.07, 5.03 |
-| Scaling lead in Env A | compliance above 93 % against below 84 % for every learned baseline, stated without naming the metric | the same values named as cluster-level, with the per-gNB lead over the closest baseline stated: 4.2, 3.9 and 5.0 points at 7, 19 and 37 gNBs (cluster level 18.6, 32.6, 36.3) | M110 re-evaluated all 1,620 stored runs per gNB; the pre-registered 5-point rule holds at 37 gNBs and not at 19 | 7.03 to 7.06 |
+| Scaling lead in Env A | compliance above 93 % against below 84 % for every learned baseline, stated without naming the metric | the same values named as cluster-level, with the per-gNB lead over the closest baseline stated: 4.2, 3.9 and 4.99 points at 7, 19 and 37 gNBs (cluster level 16.9, 31.8, 36.3) | M110 re-evaluated all stored runs per gNB (2,130 with M111); the pre-registered 5-point rule is missed at both 19 and 37 gNBs | 7.03 to 7.06, 9.04 |
+| Env A, three gNBs (second extension, M111) | AXIOM ahead of DQN-SA in reward (0.312, p 0.0021) and compliance, ahead of the MLP encoder in reward, static rule ahead within chance | pooled on 75 seeds: ahead of DQN-SA in reward only (0.230, p 0.0097), compliance lead 1.3 points within chance, MLP encoder within chance, static rule ahead (0.138, p 0.007), AXIOM at 98.9 % of the static rule's reward | 15 more seeds per Env A cell, pooled; the 15 newest alone do not reproduce the leads over DQN-SA and the MLP encoder | 9.01, 9.02 |
 | Abstract | AXIOM earns 42 % more than the static rule in Env B at 3 gNBs | clause removed | room for the per-gNB sentence within 250 words | 7.04 |
-| Verification | 674 checks | 756 checks, all pass | checks added for every new table and sentence | Gates 2, 3, 5 and after |
+| Verification | 674 checks | 769 checks, all pass | checks added for every new table and sentence | Gates 2, 3, 5 and after |
 
 ## Added by the review
 

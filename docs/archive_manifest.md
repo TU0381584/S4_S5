@@ -37,6 +37,7 @@ Each file was committed before the runs it governs. The hash and timestamp are t
 | docs/PAPER5_M108_preregistration.md | bb57af09 | 2026-11-14T06:14:36+08:00 |
 | docs/PAPER5_M109_preregistration.md | 497c86d6 | 2026-11-16T00:05:29+08:00 |
 | docs/PAPER5_M110_preregistration.md | d59ee624 | 2026-11-16T20:43:14+08:00 |
+| docs/PAPER5_M111_preregistration.md | 8f45623e | 2026-11-17T01:08:41+08:00 |
 | docs/PAPER5_M45_PF21_preregistration.md | 3239be0b | 2026-09-14T20:19:40+08:00 |
 | docs/PAPER5_M63_preregistration.md | 85f2aa92 | 2026-10-15T14:29:06+08:00 |
 | docs/PAPER5_M64_preregistration.md | cfc6c151 | 2026-10-16T13:55:08+08:00 |

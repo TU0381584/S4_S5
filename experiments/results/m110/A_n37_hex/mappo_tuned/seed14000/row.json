@@ -1,0 +1,23 @@
+{
+ "n": 37,
+ "topology": "hex",
+ "arm": "mappo_tuned",
+ "seed": 14000,
+ "stored_eval": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n37_hex/mappo_tuned/seed14000/eval/omega_log.jsonl",
+ "checkpoint": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n37_hex/mappo_tuned/seed14000/train/checkpoint.pt",
+ "exact": true,
+ "reward": 137.74235750831207,
+ "stored_reward": 137.74235750831207,
+ "cluster_sla": {
+  "urllc": 0.7536666666666667,
+  "embb": 0.541,
+  "mmtc": 0.3023333333333333
+ },
+ "per_gnb_mean": {
+  "urllc": 0.982882882882883,
+  "embb": 0.7896486486486486,
+  "mmtc": 0.482
+ },
+ "steps": 3000,
+ "eval_seconds": 25.7
+}

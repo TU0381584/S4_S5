@@ -1,0 +1,23 @@
+{
+ "n": 19,
+ "topology": "hex",
+ "arm": "independent_dqn",
+ "seed": 14014,
+ "stored_eval": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n19_hex/independent_dqn/seed14014/eval/omega_log.jsonl",
+ "checkpoint": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n19_hex/independent_dqn/seed14014/train/checkpoint.pt",
+ "exact": true,
+ "reward": 77.1759936654219,
+ "stored_reward": 77.1759936654219,
+ "cluster_sla": {
+  "urllc": 0.828,
+  "embb": 0.38866666666666666,
+  "mmtc": 0.49166666666666664
+ },
+ "per_gnb_mean": {
+  "urllc": 0.9891754385964913,
+  "embb": 0.9319122807017544,
+  "mmtc": 0.9727894736842105
+ },
+ "steps": 3000,
+ "eval_seconds": 25.3
+}

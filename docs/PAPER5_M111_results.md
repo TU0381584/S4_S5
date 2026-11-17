@@ -27,6 +27,8 @@ All 54 comparisons of AXIOM with a learned baseline (three sizes, three layouts,
 
 The new-seed column has 15 pairs, so a within-chance verdict there is weak evidence, but several leads (over DQN-SA and MLP encoder) change sign on the new seeds alone. Holm families are those of M107.
 
-## What follows
+## Pooled into the paper (author decision of 2026-11-17: pool into all estimates)
 
-Per the pre-registration the manuscript changes only after the author has seen this. Still to do once the author agrees: pool the new seeds into every Env A number, Fig. 5, Table 3, the per-gNB table and the verifier checks, re-evaluate the new checkpoints per gNB with m110_pergnb.py (about 2 CPU-hours), recompute the 5-point rule, and disclose the second extension in Section 5 and Online Resource 1.
+The manuscript now reports the pooled sample for every Env A cell: 75 runs at three gNBs, 45 per layout at seven gNBs, 75 per layout at nineteen, and 75 (hex) or 45 (ring, fully connected) at thirty-seven. The three Table 3 verdicts above are in the text. The 15 newest seeds are reported on their own in OR1 (Table tab:s-new). The per-gNB re-evaluation was extended to the 510 new checkpoints (all exact, 2,130 runs in total). Pooled, AXIOM's per-gNB lead over the closest baseline is 4.25, 3.93 and 4.99 points at 7, 19 and 37 gNBs, so the pre-registered 5-point rule of M110 is now missed at both 19 and 37 gNBs (by 1.07 and 0.01 points); at three gNBs the lead over DQN-SA is 0.59 points at Holm p 0.049.
+
+Scaling numbers that changed: AXIOM's pooled cluster-level compliance is 97.7, 96.9 and 94.2 % at 7, 19 and 37 gNBs (97.7 % at 7 gNBs was 97.1), its lead over the closest baseline is 16.9, 31.8 and 36.3 points, and AXIOM collapses in 13 of 165 runs at 37 gNBs. Every comparison verdict at 7, 19 and 37 gNBs is unchanged.

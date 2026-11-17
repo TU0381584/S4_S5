@@ -16,7 +16,8 @@ import numpy as np
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from m66_verify import S15, S30, S30_19, holm, paired, prio, seeds_of, tie_round  # noqa: E402
 import m66_verify  # noqa: E402
-assert m66_verify.POOL_MODE == "on"   # the current sample is the paper's: stored seeds plus the M107 seeds
+assert m66_verify.POOL_MODE == "on"
+m66_verify.POOL2_ON = False   # the current sample is the paper's before M111: stored seeds plus the M107 seeds
 
 X15 = list(range(14000, 14015))   # new seeds, never used before; evaluation streams 19000 to 19014
 E30 = E15 = X15                   # every cell gets the same 15 new seeds

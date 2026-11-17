@@ -30,21 +30,21 @@ for arm, r in B.items():
 def dci(a, b, seeds, label, key):
     d = [a[s]["reward"] - b[s]["reward"] for s in sorted(set(a) & set(b))]   # every paired run of the (pooled) samples
     out.append((key, fmt(*boot_ci(d)), label))
-dci(A["axiom2"], A["independent_dqn"], S30, "A3 vs indep", "1.061 more reward per step than DQN-I, with 95\\% CI ")
-dci(A["axiom2"], A["mappo_tuned"], S30, "A3 vs MAPPO", "2.482 more than MAPPO, with 95\\% CI ")
-dci(A["axiom2"], A["single_agent_dqn"], S30, "A3 vs single", "0.312 more than DQN-SA, with 95\\% CI ")
-dci(A["axiom2"], A["axiom2_mlp"], S30, "A3 vs MLP", "0.068 more reward per step than the MLP variant at three gNBs, with 95\\% CI ")
+dci(A["axiom2"], A["independent_dqn"], S30, "A3 vs indep", "0.998 more reward per step than DQN-I, with 95\\% CI ")
+dci(A["axiom2"], A["mappo_tuned"], S30, "A3 vs MAPPO", "2.462 more than MAPPO, with 95\\% CI ")
+dci(A["axiom2"], A["single_agent_dqn"], S30, "A3 vs single", "0.230 more than DQN-SA, with 95\\% CI ")
+dci(A["axiom2"], A["axiom2_mlp"], S30, "A3 vs MLP", "0.048 more reward per step than the MLP variant at three gNBs, with 95\\% CI ")
 cen = rows("m65_reviewer/base", "axiom2", S10); fed = rows("m65_m3", "fl_gat_ctde_sigma0.0", S10)
 dci(cen, fed, S10, "federation", "$+0.427$ with 95\\% CI ")
 cr = rows("m65_reviewer/replication", "axiom2", REP); fr = rows("m65_m3_replication", "fl_gat_ctde_sigma0.0", REP)
 dci(cr, fr, REP, "federation replication", "$+0.968$, with 95\\% CI ")
 pr = [100 * 0.5 * (r["sla"]["urllc"] + r["sla"]["embb"]) for t in ("fully_connected", "ring", "hex") for r in rows(f"m65_scaling/n19_{t}", "axiom2", S30_19).values()]
 lo, hi = boot_ci(pr)
-out.append(("97.4\\% with 95\\% CI ", f"[{lo:.1f}\\%, {hi:.1f}\\%]", "N19 pooled"))
-dci(A["heuristic"], A["axiom2"], S30, "A3 static over AXIOM", "Pooled, the static rule earns 0.101 more than AXIOM, with 95\\% CI ")   # M107 pooled verdict
+out.append(("96.9\\% with 95\\% CI ", f"[{lo:.1f}\\%, {hi:.1f}\\%]", "N19 pooled"))
+dci(A["heuristic"], A["axiom2"], S30, "A3 static over AXIOM", "Pooled, the static rule earns 0.138 more than AXIOM, with 95\\% CI ")   # M107 pooled verdict
 p37 = [100 * 0.5 * (r["sla"]["urllc"] + r["sla"]["embb"]) for t, ss in (("hex", S30_19), ("ring", S15), ("fully_connected", S15)) for r in rows(f"m73/A_n37_{t}", "axiom2", ss).values()]
 lo, hi = boot_ci(p37)
-out.append(("94.9\\% with 95\\% CI ", f"[{lo:.1f}\\%, {hi:.1f}\\%]", "N37 pooled"))
+out.append(("94.2\\% with 95\\% CI ", f"[{lo:.1f}\\%, {hi:.1f}\\%]", "N37 pooled"))
 ap = argparse.ArgumentParser(); ap.add_argument("--tex"); ap.add_argument("--apply", action="store_true"); a = ap.parse_args()
 tex = open(a.tex).read() if a.tex else ""
 changes = 0

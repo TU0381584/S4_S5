@@ -8,8 +8,6 @@ P=$ROOT/experiments/plots
 F=$ROOT/Papers_4-5/Paper_5/WPC/figures
 PY=$ROOT/venv/bin/python
 export MATPLOTLIBRC=$P
-# figure lettering in the body font: Latin Modern Roman as TrueType (figures/fonts), visible to every script
-mkdir -p $HOME/.local/share/fonts && cp $F/fonts/LMRomanTT-*.ttf $HOME/.local/share/fonts/ && rm -f $HOME/.cache/matplotlib/fontlist-*.json
 
 # main paper
 $PY $P/paper5_fig_scaling_trend.py --with-37 --out $F/fig6_scaling_trend

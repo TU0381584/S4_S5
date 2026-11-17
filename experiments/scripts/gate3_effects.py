@@ -46,7 +46,7 @@ def family(base, arms, sel, f=lambda r: r["reward"]):
     return t
 
 
-ORIG, ADDED, ALL = (lambda k: k < 11000), (lambda k: k >= 11000), (lambda k: True)
+ORIG, ADDED, ALL = (lambda k: k < 11000), (lambda k: 11000 <= k < 12000), (lambda k: True)
 
 
 def main():

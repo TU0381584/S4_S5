@@ -1,0 +1,23 @@
+{
+ "n": 7,
+ "topology": "ring",
+ "arm": "axiom2",
+ "seed": 14003,
+ "stored_eval": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n7_ring/axiom2/seed14003/eval/omega_log.jsonl",
+ "checkpoint": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n7_ring/axiom2/seed14003/train/checkpoint.pt",
+ "exact": true,
+ "reward": 32.13745562693663,
+ "stored_reward": 32.13745562693663,
+ "cluster_sla": {
+  "urllc": 1.0,
+  "embb": 1.0,
+  "mmtc": 0.3353333333333333
+ },
+ "per_gnb_mean": {
+  "urllc": 1.0,
+  "embb": 1.0,
+  "mmtc": 0.44985714285714284
+ },
+ "steps": 3000,
+ "eval_seconds": 13.7
+}

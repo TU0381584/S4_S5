@@ -1,0 +1,23 @@
+{
+ "n": 37,
+ "topology": "fully_connected",
+ "arm": "axiom2",
+ "seed": 14010,
+ "stored_eval": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n37_fully_connected/axiom2/seed14010/eval/omega_log.jsonl",
+ "checkpoint": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n37_fully_connected/axiom2/seed14010/train/checkpoint.pt",
+ "exact": true,
+ "reward": 168.31772871758412,
+ "stored_reward": 168.31772871758412,
+ "cluster_sla": {
+  "urllc": 1.0,
+  "embb": 0.121,
+  "mmtc": 0.30166666666666664
+ },
+ "per_gnb_mean": {
+  "urllc": 1.0,
+  "embb": 0.8643693693693694,
+  "mmtc": 0.46088288288288287
+ },
+ "steps": 3000,
+ "eval_seconds": 61.9
+}

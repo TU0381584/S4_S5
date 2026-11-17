@@ -1,0 +1,23 @@
+{
+ "n": 19,
+ "topology": "hex",
+ "arm": "axiom2",
+ "seed": 14013,
+ "stored_eval": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n19_hex/axiom2/seed14013/eval/omega_log.jsonl",
+ "checkpoint": "/home/kmanojp/oranslice_rig/experiments/results/m111/A_n19_hex/axiom2/seed14013/train/checkpoint.pt",
+ "exact": true,
+ "reward": 78.92099716220584,
+ "stored_reward": 78.92099716220584,
+ "cluster_sla": {
+  "urllc": 0.8433333333333333,
+  "embb": 0.495,
+  "mmtc": 0.8926666666666666
+ },
+ "per_gnb_mean": {
+  "urllc": 0.9901929824561403,
+  "embb": 0.9433684210526315,
+  "mmtc": 0.9889298245614034
+ },
+ "steps": 3000,
+ "eval_seconds": 30.2
+}
