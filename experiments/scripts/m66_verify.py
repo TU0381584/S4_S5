@@ -678,7 +678,7 @@ def main():
     C.claim("A3 MLP diff", "a per-node MLP encoder earns 0.048 less reward per step than AXIOM, with 95\\% CI", fam["axiom2_mlp"]["diff"], "{:.3f}")
     C.claim("A3 MLP diff in the supplement", "In Env A AXIOM earns 0.048 more reward per step than the MLP variant at three gNBs", fam["axiom2_mlp"]["diff"], "{:.3f}")
     # 2026-11-15 coverage audit: p values of the Table 3 family quoted in prose that no check matched before
-    C.claim("A3 static rule over AXIOM p_holm (pooled)", "Pooled, the static rule earns 0.138 more than AXIOM, with 95\\% CI [0.06, 0.24], at $p=0.007$", h["heuristic"], "{:.3f}")
+    C.claim("A3 static rule over AXIOM p_holm (pooled)", "Pooled, the static rule earns 0.138 more than AXIOM, with 95\\% CI [0.06, 0.24], at $p=0.0066$", h["heuristic"], "{:.4f}")
     C.claim("A3 MLP p_holm (pooled), main", "The paired test finds this gap significant only in the pooled sample, at Holm-adjusted $p=0.019$", h["axiom2_mlp"], "{:.3f}")
     C.claim("A3 MLP p_holm (pooled), supplement", "a gap that only the paired test on 75 seeds finds significant, at Holm-adjusted $p=0.019$", h["axiom2_mlp"], "{:.3f}")
     first_ = {b: paired({k: v for k, v in A["axiom2"].items() if k < 11000}, {k: v for k, v in A[b].items() if k < 11000}) for b in fam}
@@ -1392,8 +1392,8 @@ def main():
     gapA_ = max(eA_[("Static rule", L_)] - eA_[("AXIOM", L_)] for L_ in ("1.05", "1.10", "1.20"))
     C.note("Sec. 6.4 text: in Env A at 19 gNBs AXIOM stays within 5.3 points of the static rule under load, above every baseline at each load",
            not badl_ and len(eA_) == 15 and len(fB_) == 13
-           and f"{gapA_:.1f}" == "5.3" and all(eA_[(k_, L_)] < eA_[("AXIOM", L_)] for k_ in ("DQN-SA", "DQN-I", "MAPPO") for L_ in ("1.05", "1.10", "1.20"))
-           and "In Env A at nineteen gNBs AXIOM stays within 5.3 points of the static rule as offered load rises from 105\\% to 120\\% of the nominal shares, and every baseline stays below AXIOM at each load" in C.tex,
+           and [f"{-ta_[k_]['diff']:.1f}" for k_ in ("19|1.05", "19|1.10", "19|1.20")] == ["3.1", "2.1", "0.2"] and f"{-ta_['37|1.05']['diff']:.1f}" == "5.2" and all(eA_[(k_, L_)] < eA_[("AXIOM", L_)] for k_ in ("DQN-SA", "DQN-I", "MAPPO") for L_ in ("1.05", "1.10", "1.20"))
+           and "In Env A at nineteen gNBs AXIOM stays within 3.1 points of the static rule at 105\\% of the nominal shares (all layouts pooled), 2.1 at 110\\%, and 0.2 at 120\\% (hex layout), and every baseline stays below AXIOM at each load" in C.tex and "within 5.8 at thirty-seven, or 5.2 on the hex layout alone," in C.main,
            {"A": {str(k_): round(v_, 2) for k_, v_ in eA_.items()}, "B": {str(k_): round(v_, 3) for k_, v_ in fB_.items()}})
 
     # ---------------- M66 verification subsection: V1 reruns and V2 fresh seeds
@@ -1655,7 +1655,7 @@ def main():
         for n_, ss in ((7, S15_), (19, S30_19)):
             allbase += [100 * mean(seeds_of(f"m65_scaling/n{n_}_{t_}", b, ss), prio) for b in ("independent_dqn", "single_agent_dqn", "mappo_tuned")]
     C.note("reframe: every baseline below 84% at 7 and 19 gNBs in every sample", max(allbase) < 84 and
-           "while every learned baseline stays below 84\\%" in C.tex and "stay below 84\\%" in C.tex, round(max(allbase), 2))
+           "while DQN-SA, DQN-I, and MAPPO stay below 84\\%" in C.main and "stay below 84\\%" in C.tex, round(max(allbase), 2))
     a3f = paired(seeds_of("m66_fresh/A_n3", "axiom2", list(range(3000, 3020))), seeds_of("m66_fresh/A_n3", "single_agent_dqn", list(range(3000, 3020))))
     a3d = paired(seeds_of("m66d_fresh/D1_A_n3", "axiom2", list(range(4000, 4040))), seeds_of("m66d_fresh/D1_A_n3", "single_agent_dqn", list(range(4000, 4040))))
     C.claim("reframe: fresh 20-seed single-agent gap", "at margins of $-0.021$ and $0.159$ reward per step", a3f["diff"], "{:+.3f}".replace("+", "") if a3f["diff"] < 0 else "{:+.3f}")
@@ -2015,6 +2015,12 @@ def main():
     gap37_ = float(np.mean(p37_)) - max(bp_[b_] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
     C.claim("reframe: M73 lead over best baseline", "its lead over the best learned baseline reaches 36.3 points", gap37_, "{:.1f}")
     C.claim("reframe: M73 rule gap", "within 5.8 at thirty-seven", bp_["rule_static"] - float(np.mean(p37_)), "{:.1f}")
+    col37_ = [100 * prio(r_) for t_, ss_ in (("hex", S30_19), ("ring", S15), ("fully_connected", S15))
+              for r_ in seeds_of(f"m73/A_n37_{t_}", "axiom2", ss_).values() if r_["collapsed"]]
+    C.note("OR1 S6 (2026-11-18): AXIOM's 13 collapsed runs of 165 at 37 gNBs keep 56% to 67%, as the main paper says",
+           len(col37_) == 13 and round(min(col37_)) == 56 and round(max(col37_)) == 67
+           and "AXIOM's 13 collapsed runs of 165 keep 56\\% to 67\\% priority-slice compliance" in C.tex
+           and "even its collapsed runs keep 56\\% to 67\\%" in C.main, (len(col37_), round(min(col37_), 1), round(max(col37_), 1)))
     C.note("reframe: M73 static rule inside the quoted 99.97 to 99.99 range (99.96 before M107)", 99.965 <= bp_["rule_static"] < 99.995, round(bp_["rule_static"], 3))
     C.claim("reframe: abstract static rule floor at every size", "The static rule that sheds every mMTC request keeps 99.97\\% to 99.99\\% at every size",
             min(min(rule_.values()), bp_["rule_static"]), "{:.2f}")
@@ -2456,7 +2462,7 @@ def main():
     C.note("abstract: URLLC backlog ratio is still 7 to 44 and is no longer quoted as a delay", f"{min(rat_):.0f}" == "7" and f"{max(rat_):.0f}" == "44"
            and "times shorter" not in C.main, rat_)
     C.note("abstract: no delay claim, MAPPO parameters beside the DQNs", "backlog delay" not in C.main
-           and "It uses 7,782 parameters at every size, against 5,122 for MAPPO and up to 682,058 for the DQNs" in C.main, None)
+           and "AXIOM uses 7,782 parameters at every size, against 5,122 for MAPPO and up to 682,058 for the DQNs" in C.main, None)
     C.note("conclusion: URLLC delay 0.08 against 0.58 to 3.61", f"{km_('A_n37_hex', 'axiom2', 'urllc', 'delay_steps'):.2f}" == "0.08"
            and f"{min(dl_):.2f}" == "0.58" and f"{max(dl_):.2f}" == "3.61"
            and "is 0.08 with a 95th percentile of 0.42, whereas the baselines reach 0.58 to 3.61" in C.tex, rat_)
@@ -2464,13 +2470,13 @@ def main():
            and max(cx37_[k_]["params_execution"] for k_ in ("single_agent_dqn", "independent_dqn", "mappo")) == 682058
            and (cx37_["single_agent_dqn"]["params_execution"], cx37_["independent_dqn"]["params_execution"]) == (64770, 682058)
            and cx37_["mappo"]["params_execution"] == 5122     # Gate 2 item 7: MAPPO's smaller count is stated beside the DQNs'
-           and "It uses 7,782 parameters at every size, against 5,122 for MAPPO and up to 682,058 for the DQNs." in C.main
+           and "AXIOM uses 7,782 parameters at every size, against 5,122 for MAPPO and up to 682,058 for the DQNs." in C.main
            and "with 7,782 parameters against 5,122 for MAPPO and up to 682,058 for DQN-I." in C.main, None)
-    for lab_, snip_ in (("abstract", "earns 26\\% to 36\\% more reward than MAPPO at 3 and 19 gNBs"),
+    for lab_, snip_ in (("abstract", "earns 26\\% to 36\\% more than MAPPO at 3 and 19 gNBs"),
                         ("conclusion", "AXIOM earns 26\\% to 36\\% more reward than MAPPO at three and nineteen gNBs")):
         C.claim(f"{lab_}: Env B over MAPPO at 3 gNBs", snip_, 100 * (b3a_ / b3m_ - 1), "{:.0f}")
         C.claim(f"{lab_}: Env B over MAPPO at 19 gNBs", snip_, 100 * (a19_ / m19_ - 1), "{:.0f}")
-    C.claim("abstract: Env B over static rule at 3 gNBs", "and 42\\% more than the static rule at 3 gNBs", 100 * (mean(B["axiom2"]) / mean(B["rule_static"]) - 1), "{:.0f}")
+    C.claim("abstract: Env B over static rule at 3 gNBs", "and earns 42\\% more than the static rule at 3 gNBs", 100 * (mean(B["axiom2"]) / mean(B["rule_static"]) - 1), "{:.0f}")
     ov_ = [tb1_[k_]["diff"] for k_ in ("load_1.10", "load_1.15", "load_1.20")]
     tr5_ = []
     for c_, ss_, rl_ in (("m64/n3_fully_connected", S30, "rule_local"), ("m64/n7_fully_connected", S15, "rule_local"), ("m64/n7_ring", S15, "rule_local"),
@@ -2480,8 +2486,8 @@ def main():
         tr5_.append((c_, mean(seeds_of(c_, rl_, ss_)) - max(lr_), len(lr_)))
     C.note("abstract: the tuned rule out-earns every learner at its tuning conditions in Env B at 3, 7 and 19 gNBs, reported and fresh seeds",
            all(d_ > 0 and n_ >= 4 for _, d_, n_ in tr5_) and A["heuristic"] and mean(A["heuristic"]) > max(mean(A[k_]) for k_ in ("axiom2", "axiom2_mlp", "single_agent_dqn", "independent_dqn", "mappo_tuned"))
-           and "When load rises 10\\% to 20\\% past the rule's tuning conditions, AXIOM overtakes that rule by up to 8.7 reward per step without retraining" in C.main, [(c_, round(d_, 3), n_) for c_, d_, n_ in tr5_])
-    C.claim("abstract: overload margin over tuned rule", "AXIOM overtakes that rule by up to 8.7 reward per step", max(ov_), "{:.1f}")
+           and "When load rises 10\\% to 20\\% past the rule's tuning conditions, AXIOM overtakes it by up to 8.7 reward per step without retraining" in C.main, [(c_, round(d_, 3), n_) for c_, d_, n_ in tr5_])
+    C.claim("abstract: overload margin over tuned rule", "AXIOM overtakes it by up to 8.7 reward per step", max(ov_), "{:.1f}")
     C.claim("conclusion: overload margin low", "AXIOM overtakes that rule at nineteen gNBs by 6.2 to 8.7 reward per step without retraining", min(ov_), "{:.1f}")
     C.claim("conclusion: overload margin high", "AXIOM overtakes that rule at nineteen gNBs by 6.2 to 8.7 reward per step without retraining", max(ov_), "{:.1f}")
     cps_ = [figtr37_["arms"]["axiom2"][n_]["prio_mean"] for n_ in ("7", "19", "37")]
@@ -2555,7 +2561,7 @@ def main():
         v_ = m72b_["tests"][k_]
         fm_ = lambda x: f"$-${abs(x):.3f}" if x < 0 else f"{x:.3f}"
         row_ = f"{lab_} & {fm_(v_['means']['axiom2'])} & {fm_(v_['means']['rule_local'])} & " + ("$-$" if v_["diff"] < 0 else "+") + f"{abs(v_['diff']):.3f} & {v_['wins']}/{v_['losses']} & "
-        row_ += f"{v_['p']:.2g} \\\\"          # the p column, unadjusted Wilcoxon
+        row_ += ("$<0.0001$" if v_["p"] < 1e-4 else f"{v_['p']:.4f}" if v_["p"] < 1e-3 else f"{v_['p']:.2g}") + " \\\\"          # the p column, unadjusted Wilcoxon
         ind_ = sh_t_.get(k_)                            # the verifier's own paired test, where it recomputes this shift
         C.note(f"M78 S14 table row {k_}", row_ in C.tex and (ind_ is None or (abs(ind_["p"] - v_["p"]) < 1e-12 and abs(ind_["diff"] - v_["diff"]) < 1e-9)), row_)
     rt_ = m72b_["retuned"]
@@ -3037,7 +3043,7 @@ def main():
     tA92_ = [mu92_(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"]) for k_ in KA92_]
     ab92_ = C.main[C.main.index("\\abstract{") + 10:]; ab92_ = ab92_[:ab92_.index("}\n")]
     C.note("M92 abstract and contribution 1: transferred AXIOM above 95% in Env A at 19 and 37 gNBs, abstract at most 250 words",
-           min(tA92_) > 95 and len(ab92_.split()) <= 250 and "even when trained only at 7 gNBs, while every learned baseline stays below 84\\%" in ab92_
+           min(tA92_) > 95 and len(ab92_.split()) <= 250 and "when trained only at 7 gNBs, while the DQN and MAPPO baselines stay below 84\\%" in ab92_
            and "A policy trained at seven gNBs runs unchanged at 19 and 37 gNBs and keeps above 95\\% priority-slice compliance there in Env A" in C.main,
            (tA92_, len(ab92_.split())))
     fm92_ = lambda x_, nd_: f"{x_:.{nd_}f}".replace("-", "$-$")
@@ -3201,7 +3207,7 @@ def main():
     thr_ = [a_ for a_ in LRN_ if np.mean(sv_[a_]) >= 90 and np.mean(dv_[a_]) < 0.5]
     C.note("Fig. 10 text: only AXIOM among the learned controllers meets both thresholds at 37 gNBs and keeps above 90% after 7 to 37 transfer",
            thr_ == ["axiom2"] and min(t37_) > 90 and np.mean(tv_["mappo_tuned"]) < 90
-           and "Among the learned controllers, only AXIOM meets both service thresholds at 37 gNBs and keeps above 90\\% compliance when moved there from seven gNBs without retraining" in C.main
+           and "Among the learned controllers of Fig.~\\ref{fig:capability}, only AXIOM meets both service thresholds at 37 gNBs and keeps above 90\\% compliance when moved there from seven gNBs without retraining" in C.main
            and "dashed lines at 90\\% compliance and a normalised backlog of 0.5, and n/t for a value not tested" in C.tex
            and "Federated training was tested for AXIOM only, without a meaningful privacy guarantee" in C.tex
            and "AXIOM alone meets seven of its eight criteria" not in C.main, thr_)
@@ -3337,7 +3343,7 @@ def main():
            abs(sbk_.LOAD_FACTOR - 1.05) < 1e-12
            and 100 * mean(seeds_of("m63_reviewer/base", "heuristic", S30), lambda r_: r_["sla"]["urllc"]) > 99.98
            and 100 * mean(seeds_of("m63_reviewer/base", "heuristic", S30), lambda r_: r_["sla"]["embb"]) > 99.98
-           and "In Env A, where demand runs 5\\% above the nominal shares, removing mMTC frees enough PRBs to keep URLLC and eMBB compliance above 99.98\\% on average" in C.main,
+           and "In Env A, where demand runs 5\\% above the nominal shares, removing mMTC frees enough PRBs to keep URLLC and eMBB compliance at 99.97\\% or more on average" in C.main,
            sbk_.LOAD_FACTOR)
     sm7_ = seeds_of("m64/n3_fully_connected", "rule_static", S30); lc7_ = seeds_of("m64/n3_fully_connected", "rule_local", S30)
     C.note("Sec. 5: in Env B shedding mMTC alone cannot protect URLLC, the tuned rule that also sheds eMBB does",
@@ -3553,7 +3559,7 @@ def main():
     C.note("M110 decision rule (5 points and Holm p < 0.05 at 19 and at 37 gNBs): missed at both sizes once the M111 seeds are pooled; abstract and conclusion quote 3.9 to 5.0 points per gNB",
            lead_pg_[19] < 5 and lead_pg_[37] < 5 and f"{5 - lead_pg_[19]:.1f}" == "1.1" and f"{5 - lead_pg_[37]:.2f}" == "0.01"
            and "the pre-registered 5-point rule for the per-gNB lead, which is missed at nineteen and thirty-seven gNBs, by 1.1 points and by 0.01 points" in C.main
-           and "Per gNB, its lead over the closest baseline is 3.9 to 5.0 points" in C.main
+           and "Per gNB, its lead over the closest of them is 3.9 to 5.0 points" in C.main
            and "per gNB its lead over the closest baseline is 3.9 to 5.0 points" in C.main
            and "so by that rule the scaling lead is not met per gNB at either size, by 1.1 points at nineteen and by 0.01 points at thirty-seven" in C.tex, lead_pg_)
     C.note("M110 OR1: AXIOM leads every learned baseline per gNB at 7, 19 and 37 gNBs (Holm p < 0.001) and DQN-SA by 0.59 points at 3 gNBs (Holm p 0.049); closest lead 3.93 at 19 and 4.99 at 37",
@@ -3596,7 +3602,7 @@ def main():
            and "$\\epsilon$ from 1.0 to 0.05 at $\\times0.985$ per episode" in C.main
            and "MAPPO rises fastest because it has no exploration schedule and samples from its own policy from the first episode" in C.main
            and "which starts at 1.0 and reaches its floor of 0.05 only near episode 200" in C.main
-           and "MAPPO then plateaus below them" in C.main and "In evaluation at three gNBs it still admits 60.9\\% of mMTC requests, against 5.5\\% for AXIOM" in C.main,
+           and "MAPPO then plateaus below them" in C.main and "In evaluation at three gNBs it still admits 60.7\\% of mMTC requests, against 7.6\\% for AXIOM" in C.main,
            (eps_floor_, {k_: {a_: (round(x_["first20_mean"], 2), round(x_["last20_mean"], 2)) for a_, x_ in v_.items()} for k_, v_ in lsm_.items()}))
     bbl_ = open("/home/kmanojp/oranslice_rig/Papers_4-5/Paper_5/WPC/main.bbl").read()
     yrs_ = [int(y_) for y_ in re.findall(r"\((\d{4})\)", bbl_)]

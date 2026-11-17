@@ -50,6 +50,16 @@ def _jsonable(d):
     return d
 
 
+
+def _p_matches(token, p):
+    """OR1 Table S12 prints p as <0.0001 or to the shown decimals (changed from raw 2-digit values on 2026-11-18)."""
+    token = token.strip()
+    if token.startswith("$<"):
+        return p < float(token.strip("$<"))
+    v = float(token)
+    return round(p, len(token.split(".")[-1])) == v or bool(np.isclose(v, p, rtol=0.06))
+
+
 def run(C):
     C.supp_only = C.tex[len(C.main):]
     _note = C.note
@@ -147,7 +157,7 @@ def run(C):
     have = lambda cell, arm, ss: len(seeds_of(cell, arm, ss))
     C.note("M82 300 training and 50 evaluation episodes per seed", len(cur["episode_mean_reward"]) == 300 and len(tr_eps) == 300
            and n_eval_eps("m64/n3_fully_connected", "axiom2", 900) == 50 and n_eval_eps("m65_scaling/n19_ring", "axiom2", 900) == 50
-           and "Every campaign uses 300 training and 50 evaluation episodes per seed" in C.main, None)
+           and "Unless stated otherwise, every campaign uses 300 training and 50 evaluation episodes per seed" in C.main, None)
     C.note("M82 seed sets of the campaigns, each Env A and three-gNB sample doubled by M107 (seeds from 11000), Env B scaling at 15",
            have("m64/n3_fully_connected", "axiom2", range(900, 930)) == 60 and have("m65_reviewer/replication", "axiom2", REP) == 10
            and have("m64/n3_fully_connected", "axiom2", range(900, 930)) - len(seeds_of("m64/n3_fully_connected", "axiom2", range(900, 930), pool=False)) == 30
@@ -156,7 +166,7 @@ def run(C):
            and have("m73/A_n37_hex", "axiom2", S30_19) == 75 and all(have(f"m73/A_n37_{t}", "axiom2", S15) == 45 for t in ("ring", "fully_connected"))
            and all(have(f"m64/n7_{t}", "axiom2", S15) == 15 for t in LAY) and have("m75/D_envB_n19_hex", "axiom2", S15) == 15
            and min(seeds_of("m64/n3_fully_connected", "axiom2", range(900, 930))) == 900 and max(seeds_of("m64/n3_fully_connected", "axiom2", range(900, 930))) == 11029
-           and "The Env B three-gNB campaigns use 60 seeds, 900 to 929 and 11000 to 11029, with a disjoint replication sample, 1000 to 1009. The Env A campaigns use the same 60 seeds at three gNBs, 45 seeds per layout at seven gNBs, 75 at nineteen, and at thirty-seven 75 on the hex layout and 45 on each other layout. A first pre-registered extension added the seeds from 11000 with unchanged settings, and a second added 15 seeds, 14000 to 14014, to every Env A cell." in C.main
+           and "The Env B three-gNB campaigns use 60 seeds, 900 to 929 and 11000 to 11029, with a disjoint replication sample, 1000 to 1009. The Env A campaigns use the same 60 seeds plus 15 more, 75 in all, at three gNBs, 45 seeds per layout at seven gNBs, 75 at nineteen, and at thirty-seven 75 on the hex layout and 45 on each other layout. A first pre-registered extension added the seeds from 11000 with unchanged settings, and a second added 15 seeds, 14000 to 14014, to every Env A cell." in C.main
            and "The Env B scaling campaigns use 15 seeds per layout." in C.main, None)
     an = open(f"{SC}/m2_correctness_metrics.py").read()
     vf = open(f"{SC}/m66_verify.py").read()
@@ -194,7 +204,7 @@ def run(C):
     pl = {n_: pooled(n_) for n_ in (7, 19, 37)}
     C.note("M82 abstract and contributions: AXIOM above 93% and every learned baseline below 84% at 7, 19 and 37 gNBs",
            min(pl[n_]["axiom2"] for n_ in pl) > 93 and max(pl[n_][a] for n_ in pl for a in ARMS[1:]) < 84
-           and "At 7, 19, and 37 gNBs, AXIOM keeps Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) cluster-level service compliance above 93\\%, even when trained only at 7 gNBs, while every learned baseline stays below 84\\%" in C.main
+           and "At 7, 19, and 37 gNBs, AXIOM keeps the mean cluster-level compliance of Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) above 93\\% when trained only at 7 gNBs, while the DQN and MAPPO baselines stay below 84\\%" in C.main
            and "AXIOM keeps cluster-level priority-slice compliance above 93\\% at 7, 19, and 37 gNBs, while both DQN baselines and MAPPO stay below 84\\%" in C.main,
            {n_: {a: round(v, 1) for a, v in pl[n_].items()} for n_ in pl})
     f74 = {a: seeds_of("m74/A_n37_hex", a, list(range(6100, 6120))) for a in ARMS}
@@ -422,7 +432,7 @@ def run(C):
         if not t["n"]:
             bad.append((sh, "no data")); continue
         line = [l for l in C.tex.splitlines() if l.startswith(lab + " & ")]
-        if not line or f"& {t['wins']}/{t['losses']} & " not in line[0] or not np.isclose(float(line[0].split("&")[-1].strip(" \\\\")), t["p"], rtol=0.06):
+        if not line or f"& {t['wins']}/{t['losses']} & " not in line[0] or not _p_matches(line[0].split("&")[-1].strip(" \\\\"), t["p"]):
             bad.append((sh, t["wins"], t["losses"], t["p"], line[:1]))
     C.note("M82 OR1 Table S5 wins, losses and Wilcoxon p", not bad, bad)
 
@@ -508,9 +518,9 @@ def run(C):
            and "xargs -0 -P6" in open("/home/kmanojp/oranslice_rig/experiments/logs/m107/run_all.sh").read()
            and "evaluated for 50 episodes on the held-out stream 5000 plus the seed" in C.tex and "8 GB of memory, 7.4 GiB usable, with 8 GiB of swap" in C.tex
            and "The median training time per seed runs from 73 s to 2{,}088 s" in C.tex
-           and "the replication 1000 to 1009, the pilots 2000 to 2009, the fresh seeds 3000 onwards, and the seed extension 11000 onwards" in C.tex
+           and "the replication 1000 to 1009, the pilots 2000 to 2009, the fresh seeds 3000 onwards, the seed extension 11000 onwards, the confirmation seeds 12000 to 12029, the parity seeds 13000 to 13009, the second extension 14000 to 14014, and the fresh seeds 6100 to 6119 and 7000 to 7014" in C.tex
            and os.path.isdir("/home/kmanojp/oranslice_rig/experiments/results/m107/A_n3/axiom2/seed11000")
-           and "\\texttt{m70\\_run.py} to \\texttt{m97} add the follow-up runs, and \\texttt{m107\\_run.py} adds the seed extension" in C.tex
+           and "\\texttt{m70\\_run.py} to \\texttt{m104\\_run.py} add the follow-up runs, \\texttt{m107\\_run.py} adds the seed extension, and \\texttt{m109\\_run.py} the parity run" in C.tex
            and os.path.exists(f"{SC}/m107_run.py")
            and "with noise multipliers 0, 0.5, 1, 2, and 4" in C.tex and "on ports 6600 and 6655" in C.tex, None)
     C.note("M82 OR1 Fig. S7 names scripts that exist and do what it says", os.path.exists("/home/kmanojp/oranslice_rig/experiments/plots/paper5_regen_wpc_figures.sh")

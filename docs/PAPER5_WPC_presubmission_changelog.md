@@ -45,3 +45,19 @@ V1 text 4.2/3.9/4.99 is the paired hex lead; Table S8 caption said 1,620 runs bu
 - S S8: duplicate definition of normalised backlog removed. E7.
 - S S4 Eqs (1) and (2): attention logits renamed e (epsilon kept for DP); N_i includes i; the second equation reads h_j^(1) and is stated to be the final layer. Self-loops are on by default (framework topology.py). E8.
 - S Table S17: Fig1 to Fig11; "m97" -> m104_run.py, plus m109_run.py; seed list extended. m97 is an analysis script, not a runner. E9.
+
+## Phase 2 (author approved the recommendations)
+- S Table S8 caption: "1,620 stored runs" -> "2,130", with a note that the 37-gNB AXIOM cell pools three layouts (165 runs) against hex-only baselines (75 runs). P1.
+- S S6 text: the 37-gNB lead of 4.99 is stated as the paired hex value. The abstract, Sec 6.2 and Sec 8 keep "3.9 to 5.0". P1.
+- S S6: "AXIOM's nine collapsed runs keep 57% to 65%" -> "13 collapsed runs of 165 keep 56% to 67%", the same as the main paper. P2 (the stale sentence was found in the rendered PDF).
+- P3: no change. Accept-all is 67.08% and 61.94% on the 30 hex seeds, and no tuned baseline is above it.
+- S S7: "within 5.3 points ... 105% to 120%" -> "within 3.1 points at 105% (all layouts pooled), 2.1 at 110%, and 0.2 at 120% (hex layout)". P4.
+- M Sec 6.2: "within 5.8 at thirty-seven" -> "within 5.8 at thirty-seven, or 5.2 on the hex layout alone". P4.
+- M Fig. 11 caption: sentence on which layout each cell uses. P4.
+- S S5: new paragraph with the shared-head (9 of 15, 65.9% vs 96.8%, Holm p 0.0004), joint-target (Holm p >= 0.26) and sensitivity (gaps -0.07, -0.13, -0.12) numbers; federation pooled over 30 seeds (+0.491, CI [-0.08, 1.09], p = 0.14) and DP-SGD drops (1.02, 1.07, 0.77, 1.25; Holm p 0.63) after the zCDP paragraph; S3: 14 and 48 loss readings, all 0.000%. P5.
+- S S2: new Table S-failed with the nine failed fresh-seed checks (criterion, value, threshold), cited from S2. P6.
+- P7: none of the 58 DOIs fails, so nothing was edited.
+
+## Phase 3 verifier updates (strings changed only where the new value is proven)
+- m66_verify.py: p of the static rule over AXIOM now 0.0066 (printed to 4 decimals); the "within 5.3" check now tests 3.1 / 2.1 / 0.2 and 5.2 from the same paired cells as Fig. 11a; quoted abstract, Sec 6, Sec 7 and Sec 5 sentences updated to the new wording; S12 p-value format; new check for the 13 collapsed runs and the 56-67% range (770 checks now; main.tex quotes 770).
+- m82_audit.py: Table S12 p parser accepts "<0.0001" and 4-decimal values (round-to-printed-digits instead of 6% relative tolerance); quoted strings for seeds, abstract and Table S17 updated.
