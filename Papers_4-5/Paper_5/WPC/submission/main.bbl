@@ -15,7 +15,7 @@ Ahmadi M, Moayyedi A, Sulaiman M, Salahuddin MA, Boutaba R, Saleh A (2024)
 
 \bibitem[{AlQahtani(2025)}]{alqahtani2025dynamic}
 AlQahtani SA (2025) Dynamic slice allocation in {5G} cloud {RAN}.
-  \emph{Wireless Personal Communications} 143(3-4):427--467.
+  \emph{Wireless Personal Communications} 143(3--4):427--467.
   \doi{10.1007/s11277-025-11835-y}
 
 \bibitem[{Amiri et~al.(2024)Amiri, Wang, Shojafar, and
@@ -185,7 +185,7 @@ Ojijo MO, Ramotsoela D, Oginga RA (2024) Slice admission control in {5G}
   White}]{patterson2024empirical}
 Patterson A, Neumann S, White M, White A (2024) Empirical design in
   reinforcement learning. \emph{Journal of Machine Learning Research}
-  25(318):1--63
+  25(318):1--63. \urlprefix\url{https://jmlr.org/papers/v25/23-0183.html}
 
 \bibitem[{Phyu et~al.(2025)Phyu, Naboulsi, and Stanica}]{phyu2025icecream}
 Phyu HP, Naboulsi D, Stanica R (2025) {ICE-CREAM}: Multi-agent fully
@@ -212,7 +212,7 @@ Polese M, Bonati L, D'Oro S, Basagni S, Melodia T (2023{\natexlab{b}})
 Sirma M, Kavak A, Inner AB (2025) Optimizing relay selection in {D2D}
   communication for next-generation wireless networks using multi-agent
   reinforcement learning: A novel approach. \emph{Wireless Personal
-  Communications} 140(3-4):945--969. \doi{10.1007/s11277-025-11753-z}
+  Communications} 140(3--4):945--969. \doi{10.1007/s11277-025-11753-z}
 
 \bibitem[{Sulaiman et~al.(2023)Sulaiman, Moayyedi, Ahmadi, Salahuddin, Boutaba,
   and Saleh}]{sulaiman2023coordinated}
