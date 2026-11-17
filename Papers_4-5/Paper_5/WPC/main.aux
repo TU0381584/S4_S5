@@ -92,12 +92,12 @@
 \citation{gronauer2022marl}
 \@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Env A as the cluster grows, all layouts pooled. a, Priority-slice compliance, one dot per run, with the mean and 95\% CI. b, Share of trained policies that collapse into accept-all, with Wilson 95\% intervals. c, Reward per gNB per step, mean and 95\% CI}}{14}{figure.6}\protected@file@percent }
 \newlabel{fig:m6-topology}{{6}{14}{Env A as the cluster grows, all layouts pooled. a, Priority-slice compliance, one dot per run, with the mean and 95\% CI. b, Share of trained policies that collapse into accept-all, with Wilson 95\% intervals. c, Reward per gNB per step, mean and 95\% CI}{figure.6}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Ablations and Sensitivity}{15}{subsection.6.3}\protected@file@percent }
+\newlabel{sec:results-ablation}{{6.3}{15}{Ablations and Sensitivity}{subsection.6.3}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Decision map of the 37-gNB hex cluster in Env A over 75 seeds. Each hexagon is a gNB, split into its URLLC, eMBB, and mMTC admission gates on the correctness scale below. Headers give each policy's priority-slice compliance and its collapsed seeds}}{15}{figure.7}\protected@file@percent }
 \newlabel{fig:gnb-map}{{7}{15}{Decision map of the 37-gNB hex cluster in Env A over 75 seeds. Each hexagon is a gNB, split into its URLLC, eMBB, and mMTC admission gates on the correctness scale below. Headers give each policy's priority-slice compliance and its collapsed seeds}{figure.7}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Zero-shot transfer on the 15 original seven-gNB seeds, priority-slice compliance with 95\% CIs. Policies from 7 were trained at seven gNBs and run unchanged, and AXIOM at $N$ was trained at the target size. Env B gives per-gNB compliance}}{16}{table.4}\protected@file@percent }
 \newlabel{tab:transfer}{{4}{16}{Zero-shot transfer on the 15 original seven-gNB seeds, priority-slice compliance with 95\% CIs. Policies from 7 were trained at seven gNBs and run unchanged, and AXIOM at $N$ was trained at the target size. Env B gives per-gNB compliance}{table.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.3}Ablations and Sensitivity}{16}{subsection.6.3}\protected@file@percent }
-\newlabel{sec:results-ablation}{{6.3}{16}{Ablations and Sensitivity}{subsection.6.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.4}Time-Varying Load with Inter-Cell Coupling}{16}{subsection.6.4}\protected@file@percent }
 \newlabel{sec:results-envb}{{6.4}{16}{Time-Varying Load with Inter-Cell Coupling}{subsection.6.4}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Env B, three gNBs, 60 seeds per policy, 95\% bootstrap CIs. Rules above the line, learned policies below it. W/T/L counts the seeds where AXIOM does better, the same, or worse}}{17}{table.5}\protected@file@percent }
@@ -106,27 +106,27 @@
 \newlabel{fig:envb}{{8}{17}{Env B reward per step at three gNBs, 60 seeds, with per-seed points behind the mean and 95\% CI. Learned policies are filled markers and rules hollow. The dashed line marks the tuned local rule's mean}{figure.8}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}}{18}{figure.9}\protected@file@percent }
 \newlabel{fig:pergnb}{{9}{18}{Per-gNB priority-slice compliance in Env B at nineteen gNBs on the hex layout, mean of 15 seeds. a, AXIOM. b, MAPPO. c, DQN-SA. d, DQN-I. The centre gNB is outlined}{figure.9}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Model Complexity}{18}{subsection.6.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Reproducibility and Fresh-Seed Verification}{18}{subsection.6.6}\protected@file@percent }
+\newlabel{sec:results-verify}{{6.6}{18}{Reproducibility and Fresh-Seed Verification}{subsection.6.6}{}}
 \citation{wen2023flsurvey}
 \citation{elouadrhiri2022dp}
 \citation{cheng2024oranslice}
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.5}Model Complexity}{19}{subsection.6.5}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {6.6}Reproducibility and Fresh-Seed Verification}{19}{subsection.6.6}\protected@file@percent }
-\newlabel{sec:results-verify}{{6.6}{19}{Reproducibility and Fresh-Seed Verification}{subsection.6.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {6.7}Federation, Privacy, Disruption, and Live Deployment}{19}{subsection.6.7}\protected@file@percent }
 \newlabel{sec:results-m8}{{6.7}{19}{Federation, Privacy, Disruption, and Live Deployment}{subsection.6.7}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{20}{section.7}\protected@file@percent }
-\newlabel{sec:discussion}{{7}{20}{Discussion and Limitations}{section.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces What each controller offers. a, Env A at 37 gNBs, with means, 95\% CIs, and single seeds as dots, dashed lines at 90\% compliance and a normalised backlog of 0.5, and n/t for a value not tested. b, Four capabilities, met, partly met, or not met, with reward gaps per step against the tuned rule in Env B at 19 gNBs. Federated training was tested for AXIOM only, without a meaningful privacy guarantee}}{21}{figure.10}\protected@file@percent }
-\newlabel{fig:capability}{{10}{21}{What each controller offers. a, Env A at 37 gNBs, with means, 95\% CIs, and single seeds as dots, dashed lines at 90\% compliance and a normalised backlog of 0.5, and n/t for a value not tested. b, Four capabilities, met, partly met, or not met, with reward gaps per step against the tuned rule in Env B at 19 gNBs. Federated training was tested for AXIOM only, without a meaningful privacy guarantee}{figure.10}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {7}Discussion and Limitations}{19}{section.7}\protected@file@percent }
+\newlabel{sec:discussion}{{7}{19}{Discussion and Limitations}{section.7}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces What each controller offers. a, Env A at 37 gNBs, with means, 95\% CIs, and single seeds as dots, dashed lines at 90\% compliance and a normalised backlog of 0.5, and n/t for a value not tested. b, Four capabilities, met, partly met, or not met, with reward gaps per step against the tuned rule in Env B at 19 gNBs. Federated training was tested for AXIOM only, without a meaningful privacy guarantee}}{20}{figure.10}\protected@file@percent }
+\newlabel{fig:capability}{{10}{20}{What each controller offers. a, Env A at 37 gNBs, with means, 95\% CIs, and single seeds as dots, dashed lines at 90\% compliance and a normalised backlog of 0.5, and n/t for a value not tested. b, Four capabilities, met, partly met, or not met, with reward gaps per step against the tuned rule in Env B at 19 gNBs. Federated training was tested for AXIOM only, without a meaningful privacy guarantee}{figure.10}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Where AXIOM beats or trails a rule tuned once at nominal load, the dashed box. a, Env A priority-slice compliance against the static rule. b, Env B reward per gNB against the tuned rule. Filled cells differ at Holm-adjusted $p<0.05$, hatched where the rule leads}}{21}{figure.11}\protected@file@percent }
 \newlabel{fig:regime}{{11}{21}{Where AXIOM beats or trails a rule tuned once at nominal load, the dashed box. a, Env A priority-slice compliance against the static rule. b, Env B reward per gNB against the tuned rule. Filled cells differ at Holm-adjusted $p<0.05$, hatched where the rule leads}{figure.11}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{21}{section.8}\protected@file@percent }
+\newlabel{sec:conclusion}{{8}{21}{Conclusion}{section.8}{}}
 \citation{cacs-paper4}
-\@writefile{toc}{\contentsline {section}{\numberline {8}Conclusion}{22}{section.8}\protected@file@percent }
-\newlabel{sec:conclusion}{{8}{22}{Conclusion}{section.8}{}}
-\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{22}{section*.2}\protected@file@percent }
 \bibdata{refs}
 \bibcite{ahmadi2024generalizable}{{1}{2024}{{Ahmadi et~al.}}{{Ahmadi, Moayyedi, Sulaiman, Salahuddin, Boutaba, and Saleh}}}
 \bibcite{alqahtani2025dynamic}{{2}{2025}{{AlQahtani}}{{}}}
+\@writefile{toc}{\contentsline {subparagraph}{Supplementary information}{22}{section*.2}\protected@file@percent }
 \bibcite{amiri2024vnf}{{3}{2024}{{Amiri et~al.}}{{Amiri, Wang, Shojafar, and Tafazolli}}}
 \bibcite{asdikian2025verifying}{{4}{2025}{{Asdikian et~al.}}{{Asdikian, Amro, Mehyeddine, Natalino, Sbeity, Maier, Monti, Troia, and Ayoub}}}
 \bibcite{bouroudi2025gnnmarl}{{5}{2025}{{Bouroudi et~al.}}{{Bouroudi, Outtagarts, and Hadjadj-Aoul}}}

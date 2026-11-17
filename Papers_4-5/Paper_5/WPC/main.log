@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.8.1)  18 NOV 2026 00:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.8.1)  18 NOV 2026 01:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -870,7 +870,7 @@ zlibrarycalc.code.tex
 File: tikzlibrarycalc.code.tex 2023-01-15 v3.1.10 (3.1.10)
 )
 Package translations Info: No language package found. I am going to use `englis
-h' as default language. on input line 59.
+h' as default language. on input line 62.
 
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
@@ -880,24 +880,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 (./main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 59.
-LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 62.
+LaTeX Font Info:    ... okay on input line 62.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -964,13 +964,13 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Info: Redefining \S on input line 59.
-LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 59.
+LaTeX Info: Redefining \S on input line 62.
+LaTeX Font Info:    Redeclaring symbol font `AMSa' on input line 62.
 LaTeX Font Info:    Overwriting symbol font `AMSa' in version `normal'
-(Font)                  U/msa/m/n --> U/msa/m/n on input line 59.
+(Font)                  U/msa/m/n --> U/msa/m/n on input line 62.
 LaTeX Font Info:    Overwriting symbol font `AMSa' in version `bold'
-(Font)                  U/msa/m/n --> U/msa/m/n on input line 59.
-Package hyperref Info: Link coloring ON on input line 59.
+(Font)                  U/msa/m/n --> U/msa/m/n on input line 62.
+Package hyperref Info: Link coloring ON on input line 62.
 
 (./main.out) (./main.out)
 \@outlinefile=\write4
@@ -983,20 +983,20 @@ File: translations-basic-dictionary-english.trsl (english translation file `tra
 nslations-basic-dictionary')
 )
 Package translations Info: loading dictionary `translations-basic-dictionary' f
-or `english'. on input line 59.
-LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 80.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 80.
+or `english'. on input line 62.
+LaTeX Font Info:    Calculating math sizes for size <12.045> on input line 83.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 83.
 
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 80.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 83.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 80
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 83
 .
 
 (/usr/share/texlive/texmf-dist/tex/latex/wasysym/uwasy.fd
@@ -1004,31 +1004,31 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 )
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8.43146> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 80.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 83.
 
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <8.43146> not available
-(Font)              size <8> substituted on input line 80.
+(Font)              size <8> substituted on input line 83.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6.02249> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 80.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 83.
 
-LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 80
+LaTeX Font Info:    Calculating math sizes for size <11.04124> on input line 83
 .
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <7.72884> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 80.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 83.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <5.52061> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 80.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 83.
 
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <5.52061> not available
-(Font)              size <6> substituted on input line 80.
+(Font)              size <6> substituted on input line 83.
 
-LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 80
+LaTeX Font Info:    Calculating math sizes for size <10.03749> on input line 83
 .
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1042,7 +1042,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <figures/fig1_axiom.pdf, id=94, 338.13626pt x 287.61551pt>
 File: figures/fig1_axiom.pdf Graphic file (type pdf)
 <use figures/fig1_axiom.pdf>
-Package pdftex.def Info: figures/fig1_axiom.pdf  used on input line 95.
+Package pdftex.def Info: figures/fig1_axiom.pdf  used on input line 98.
 (pdftex.def)             Requested size: 338.13542pt x 287.6148pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1050,12 +1050,15 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [2]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [3
 pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.106 \item E
+l.109 \item E
              nv B, a more demanding environment with time-varying load and i...
  <./figures/fig1_axiom.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1068,11 +1071,17 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.1}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.148 
+l.151 
       ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
+LaTeX Font Info:    Trying to load font information for OT1+phv on input line 2
+28.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
+)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7
@@ -1080,17 +1089,12 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.2}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.206 
-      ]
-LaTeX Font Info:    Trying to load font information for OT1+phv on input line 2
-25.
- (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1phv.fd
-File: ot1phv.fd 2020/03/25 scalable font definitions for OT1/phv.
-)
+l.252 \end{figure}
+                  ]
 <figures/fig_architecture.pdf, id=272, 332.95293pt x 210.02666pt>
 File: figures/fig_architecture.pdf Graphic file (type pdf)
 <use figures/fig_architecture.pdf>
-Package pdftex.def Info: figures/fig_architecture.pdf  used on input line 257.
+Package pdftex.def Info: figures/fig_architecture.pdf  used on input line 260.
 (pdftex.def)             Requested size: 332.9521pt x 210.02614pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1100,7 +1104,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.267 
+l.270 
       ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1109,7 +1113,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.279 
+l.282 
        <./figures/fig_architecture.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1118,15 +1122,15 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.328 
+l.331 
       ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11]
-<figures/fig_learning.pdf, id=342, 338.5878pt x 210.5504pt>
+<figures/fig_learning.pdf, id=343, 338.5878pt x 210.5504pt>
 File: figures/fig_learning.pdf Graphic file (type pdf)
 <use figures/fig_learning.pdf>
-Package pdftex.def Info: figures/fig_learning.pdf  used on input line 344.
+Package pdftex.def Info: figures/fig_learning.pdf  used on input line 347.
 (pdftex.def)             Requested size: 338.58696pt x 210.54988pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1136,14 +1140,19 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.352 
+l.355 
        <./figures/fig_learning.pdf>]
 <figures/fig6_scaling_trend.pdf, id=361, 338.5878pt x 295.90868pt>
 File: figures/fig6_scaling_trend.pdf Graphic file (type pdf)
 <use figures/fig6_scaling_trend.pdf>
-Package pdftex.def Info: figures/fig6_scaling_trend.pdf  used on input line 380
+Package pdftex.def Info: figures/fig6_scaling_trend.pdf  used on input line 383
 .
 (pdftex.def)             Requested size: 338.58696pt x 295.90794pt.
+<figures/fig13_gnb_map.pdf, id=362, 338.5878pt x 187.78818pt>
+File: figures/fig13_gnb_map.pdf Graphic file (type pdf)
+<use figures/fig13_gnb_map.pdf>
+Package pdftex.def Info: figures/fig13_gnb_map.pdf  used on input line 392.
+(pdftex.def)             Requested size: 338.58696pt x 187.7877pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1152,13 +1161,10 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.3}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.386 
+l.398 
       ]
-<figures/fig13_gnb_map.pdf, id=368, 338.5878pt x 187.78818pt>
-File: figures/fig13_gnb_map.pdf Graphic file (type pdf)
-<use figures/fig13_gnb_map.pdf>
-Package pdftex.def Info: figures/fig13_gnb_map.pdf  used on input line 389.
-(pdftex.def)             Requested size: 338.58696pt x 187.7877pt.
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1167,16 +1173,13 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.397 
+l.402 
        <./figures/fig6_scaling_trend.pdf>]
-LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 424.
+LaTeX Font Info:    Calculating math sizes for size <8.03> on input line 427.
 
 
 LaTeX Font Warning: Font shape `U/wasy/m/n' in size <4.015> not available
-(Font)              size <5> substituted on input line 424.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(Font)              size <5> substituted on input line 427.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1186,8 +1189,14 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.430 
+l.433 
        <./figures/fig13_gnb_map.pdf>]
+<figures/fig11_envB.pdf, id=424, 239.00314pt x 147.95433pt>
+File: figures/fig11_envB.pdf Graphic file (type pdf)
+<use figures/fig11_envB.pdf>
+Package pdftex.def Info: figures/fig11_envB.pdf  used on input line 466.
+(pdftex.def)             Requested size: 239.00255pt x 147.95396pt.
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [16
@@ -1195,14 +1204,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.4}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.435 
+l.472 
       ]
-<figures/fig11_envB.pdf, id=430, 239.00314pt x 147.95433pt>
-File: figures/fig11_envB.pdf Graphic file (type pdf)
-<use figures/fig11_envB.pdf>
-Package pdftex.def Info: figures/fig11_envB.pdf  used on input line 463.
-(pdftex.def)             Requested size: 239.00255pt x 147.95396pt.
-
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17
@@ -1210,20 +1213,18 @@ pdfTeX warning (ext4): destination with the same identifier (name{table.5}) has
  been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.470 A
-       t nineteen gNBs, where cluster-level compliance saturates, AXIOM earn...
-
+l.474 
+      
 pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.470 A
-       t nineteen gNBs, where cluster-level compliance saturates, AXIOM earn...
- <./figures/fig11_envB.pdf>]
-<figures/fig_pergnb_envb.pdf, id=450, 338.5878pt x 165.02599pt>
+l.474 
+       <./figures/fig11_envB.pdf>]
+<figures/fig_pergnb_envb.pdf, id=451, 338.5878pt x 165.02599pt>
 File: figures/fig_pergnb_envb.pdf Graphic file (type pdf)
 <use figures/fig_pergnb_envb.pdf>
-Package pdftex.def Info: figures/fig_pergnb_envb.pdf  used on input line 474.
+Package pdftex.def Info: figures/fig_pergnb_envb.pdf  used on input line 477.
 (pdftex.def)             Requested size: 345.95728pt x 168.62895pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1233,7 +1234,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
 s been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.484 
+l.493 
        <./figures/fig_pergnb_envb.pdf>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1241,40 +1242,41 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <figures/fig_capability.pdf, id=485, 338.5878pt x 284.52756pt>
 File: figures/fig_capability.pdf Graphic file (type pdf)
 <use figures/fig_capability.pdf>
-Package pdftex.def Info: figures/fig_capability.pdf  used on input line 505.
+Package pdftex.def Info: figures/fig_capability.pdf  used on input line 508.
 (pdftex.def)             Requested size: 345.95728pt x 290.73958pt.
 <figures/fig_regime.pdf, id=486, 338.5878pt x 119.50157pt>
 File: figures/fig_regime.pdf Graphic file (type pdf)
 <use figures/fig_regime.pdf>
-Package pdftex.def Info: figures/fig_regime.pdf  used on input line 512.
+Package pdftex.def Info: figures/fig_regime.pdf  used on input line 515.
 (pdftex.def)             Requested size: 338.58696pt x 119.50127pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [20]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21
+ [20
 pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.522 
-      
+l.521 
+       <./figures/fig_capability.pdf>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21
 pdfTeX warning (ext4): destination with the same identifier (name{figure.11}) h
 as been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.522 
-       <./figures/fig_capability.pdf> <./figures/fig_regime.pdf>]
+l.528 T
+       hree directions for future work follow from these limits. First, exte...
+ <./figures/fig_regime.pdf>]
 
 Package hyperref Warning: Difference (4) between bookmark levels is greater 
-(hyperref)                than one, level fixed on input line 530.
+(hyperref)                than one, level fixed on input line 533.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [22{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] (./main.bbl
+(./main.bbl
 Underfull \hbox (badness 1102) in paragraph at lines 17--20
 []\OT1/cmr/m/n/10 AlQahtani SA (2025) Dynamic slice allo-ca-tion in 5G cloud RA
 N. \OT1/cmr/m/it/10.03749 Wire-
@@ -1285,6 +1287,12 @@ Underfull \hbox (badness 5908) in paragraph at lines 17--20
 \OT1/cmr/m/it/10.03749 less Per-sonal Com-mu-ni-ca-tions \OT1/cmr/m/n/10 143(3-
 4):427--467. [][]$https : / / doi . org / 10 . 1007 /
  []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -1327,11 +1335,11 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 Here is how much of TeX's memory you used:
  28615 strings out of 476106
  578484 string characters out of 5793934
- 1952975 words of memory out of 5000000
+ 1965975 words of memory out of 5000000
  50018 multiletter control sequences out of 15000+600000
  594386 words of font info for 167 fonts, out of 8000000 for 9000
  69 hyphenation exceptions out of 8191
- 90i,19n,93p,1994b,1106s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,19n,93p,1994b,1116s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texli
@@ -1362,10 +1370,10 @@ onts/type1/urw/helvetic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/helvetic/uhvro8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/zapfding
 /uzdr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/wasy-type1/wasy7.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/wasy-type1/wasy9.pfb>
-Output written on main.pdf (27 pages, 861503 bytes).
+Output written on main.pdf (27 pages, 861508 bytes).
 PDF statistics:
- 797 PDF objects out of 1000 (max. 8388607)
- 607 compressed objects within 7 object streams
+ 794 PDF objects out of 1000 (max. 8388607)
+ 604 compressed objects within 7 object streams
  115 named destinations out of 1000 (max. 500000)
  194 words of extra memory for PDF output out of 10000 (max. 10000000)
 
