@@ -201,4 +201,3 @@ Materials availability: Not applicable.
 Code availability: The framework, the experiment scripts, and the verification scripts that recompute every table value and key result sentence of this paper from the stored logs are available from the corresponding author on reasonable request.
 Use of artificial intelligence tools: Opus agents running in Visual Studio Code were used for experimental scripting and analysis and for transposing code and data into the research text. The authors checked their outputs and take full responsibility for them.
 Author contributions: M. P. Kunasegran: conceptualisation, methodology, software, investigation, writing (original draft). W. L. Pang: conceptualisation, funding acquisition, supervision, writing (review and editing). S. K. Phang: supervision, writing (review and editing).
-itemize

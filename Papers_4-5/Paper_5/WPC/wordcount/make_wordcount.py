@@ -17,6 +17,7 @@ def clean(src):
     s = re.sub(r"\$[^$]*\$", " M ", s)
     open("/tmp/wc_in.tex", "w").write(s)
     out = subprocess.run(["detex", "-n", "/tmp/wc_in.tex"], capture_output=True, text=True).stdout
+    out = re.sub(r"\s*itemize\s*$", "", out)
     out = out.replace("~", " ").replace("{,}", ",")
     return re.sub(r"[ \t]+", " ", re.sub(r"\n{3,}", "\n\n", out)).strip() + "\n"
 for src, dst in (("main.tex", "wordcount/main_words.txt"), ("supplementary.tex", "wordcount/OR1_words.txt")):
