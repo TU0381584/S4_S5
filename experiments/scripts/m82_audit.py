@@ -166,8 +166,7 @@ def run(C):
            and have("m73/A_n37_hex", "axiom2", S30_19) == 75 and all(have(f"m73/A_n37_{t}", "axiom2", S15) == 45 for t in ("ring", "fully_connected"))
            and all(have(f"m64/n7_{t}", "axiom2", S15) == 15 for t in LAY) and have("m75/D_envB_n19_hex", "axiom2", S15) == 15
            and min(seeds_of("m64/n3_fully_connected", "axiom2", range(900, 930))) == 900 and max(seeds_of("m64/n3_fully_connected", "axiom2", range(900, 930))) == 11029
-           and "The Env B three-gNB campaigns use 60 seeds, 900 to 929 and 11000 to 11029, with a disjoint replication sample, 1000 to 1009. The Env A campaigns use the same 60 seeds plus 15 more, 75 in all, at three gNBs, 45 seeds per layout at seven gNBs, 75 at nineteen, and at thirty-seven 75 on the hex layout and 45 on each other layout. A first pre-registered extension added the seeds from 11000 with unchanged settings, and a second added 15 seeds, 14000 to 14014, to every Env A cell." in C.main
-           and "The Env B scaling campaigns use 15 seeds per layout." in C.main, None)
+           and "Env B at three gNBs uses 60 seeds and its scaling campaigns 15 per layout. Env A uses 75 seeds at three gNBs, 45 per layout at seven gNBs, 75 per layout at nineteen, and at thirty-seven 75 on the hex layout and 45 on each other layout." in C.main, None)
     an = open(f"{SC}/m2_correctness_metrics.py").read()
     vf = open(f"{SC}/m66_verify.py").read()
     C.note("M82 bootstrap CIs use 10,000 resamples", "def bootstrap_ci(values, n_boot=10000, alpha=0.05, seed=0):" in an
@@ -205,7 +204,7 @@ def run(C):
     C.note("M82 abstract and contributions: AXIOM above 93% and every learned baseline below 84% at 7, 19 and 37 gNBs",
            min(pl[n_]["axiom2"] for n_ in pl) > 93 and max(pl[n_][a] for n_ in pl for a in ARMS[1:]) < 84
            and "At 7, 19, and 37 gNBs, AXIOM keeps the mean cluster-level compliance of Ultra-Reliable Low-Latency Communication (URLLC) and Enhanced Mobile Broadband (eMBB) above 93\\% when trained only at 7 gNBs, while the DQN and MAPPO baselines stay below 84\\%" in C.main
-           and "AXIOM keeps cluster-level priority-slice compliance above 93\\% at 7, 19, and 37 gNBs, while both DQN baselines and MAPPO stay below 84\\%" in C.main,
+           and "AXIOM keeps cluster-level priority-slice compliance above 93\\% at 7, 19, and 37 gNBs, while the DQN baselines and MAPPO stay below 84\\%" in C.main,
            {n_: {a: round(v, 1) for a, v in pl[n_].items()} for n_ in pl})
     f74 = {a: seeds_of("m74/A_n37_hex", a, list(range(6100, 6120))) for a in ARMS}
     fp = {a: 100 * mean(f74[a], prio) for a in ARMS}

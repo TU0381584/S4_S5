@@ -71,3 +71,21 @@ V1 text 4.2/3.9/4.99 is the paired hex lead; Table S8 caption said 1,620 runs bu
 - M Sec 1, contribution 1: sentence on size transfer precedent [1] added (Phase 4).
 - M layout: the longer legend and Section 2 text pushed the paper to 28 pages and left a 44% gap on page 22, because the class's widow and club penalties forced the Conclusion heading to the next page. Set \widowpenalty=100 and \clubpenalty=100 after \setcounter{totalnumber}{5}. Back to 27 pages with the earlier float spacing, no gap above 6%.
 - m66_verify.py: Table 1 AXIOM-row check now quotes footnote letters h and i. Verifier 770/770 (full uncached run flagged only this string; the cached rerun passes). Submission package rebuilt.
+
+## 2026-11-18 author action list (15 items)
+- 1 Sizes: Section 3 now says 1 gNB is the live rig and earlier studies, 3 the smallest fully connected cluster, and 7, 19, 37 the hex clusters with one, two, three rings around a centre gNB. No recorded reason for stopping at 37 was found in the preregistrations, so none is stated.
+- 2 Abstract, Introduction and Section 7: "cannot follow the load" now "cannot adapt to dynamic load".
+- 3 Abstract sentence replaced by the "self-learning capability ... manually tuned rules" framing; Section 7 opening and the Conclusion's closing sentence rewritten as a trade-off (small share of reward under known conditions against scalability and tuning-free adaptation).
+- 4 Abstract and Conclusion: per-gNB lead stated as about 4% to 5% more compliance (Table S8 per-gNB means: 98.4 to 99.3 against 93.9 to 95.1), and the 37-gNB lead as 63% more cluster-level compliance (94.2 against 57.9). Fresh-seed 36.5-point clause dropped.
+- 5 Abstract: "though not at 19" removed. Conclusion: "not a replacement" and "still earns the most" sentences removed.
+- 6 Fig. 1 float moved to the bottom of page 2 (float placed before the second Introduction paragraph, option b).
+- 7 Introduction: "AXIOM targets this setting." merged into the next sentence; "Fig. 1 shows the system context." merged into the preceding sentence.
+- 8 "5 s" now "5 seconds" / "5-second"; "10 ms to 1 s" now "10 milliseconds to 1 second".
+- 9 Fig. 1 PRB bar: mMTC segment lightened to 45% tint and white separators added, in the figure and its legend swatch.
+- 10 Contributions 1 to 4 shortened (see word counts in the commit).
+- 11 Env A and Env B defined as Environment A (Env A) and Environment B (Env B) at first use.
+- 12 Table 1 legend cut from 123 to 97 words.
+- 13 Experimental Setup first paragraph cut by about 30%; seed ranges removed, per-layout counts kept.
+- 14 Fig. 4: step badges moved clear of arrowheads and diamond leaders.
+- 15 Declarations: "Opus agents running in Visual Studio Code were used ...".
+- Verifier count now 767 (three fresh-seed and per-point abstract/conclusion claims replaced by one per-cent check); main.tex quotes 767. Abstract 248 words after trimming the protocol sentence.

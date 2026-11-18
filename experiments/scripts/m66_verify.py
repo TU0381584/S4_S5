@@ -2013,7 +2013,7 @@ def main():
         C.claim(f"reframe: M73 table {b_}", q_, bp_[b_], "{:.1f}")
     C.claim("reframe: M73 table AXIOM", "AXIOM keeps a pooled priority-slice compliance of 94.2\\% with 95\\% CI", float(np.mean(p37_)), "{:.1f}")
     gap37_ = float(np.mean(p37_)) - max(bp_[b_] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
-    C.claim("reframe: M73 lead over best baseline", "its lead over the best learned baseline reaches 36.3 points", gap37_, "{:.1f}")
+    C.claim("reframe: M73 lead over best baseline", "against 16.9, 31.8, and 36.3 points at cluster level", gap37_, "{:.1f}")
     C.claim("reframe: M73 rule gap", "within 5.8 at thirty-seven", bp_["rule_static"] - float(np.mean(p37_)), "{:.1f}")
     col37_ = [100 * prio(r_) for t_, ss_ in (("hex", S30_19), ("ring", S15), ("fully_connected", S15))
               for r_ in seeds_of(f"m73/A_n37_{t_}", "axiom2", ss_).values() if r_["collapsed"]]
@@ -2449,11 +2449,10 @@ def main():
            all(v is None or v["episodes"] == 50 for v in CACHE.values()), sorted({v["episodes"] for v in CACHE.values() if v}))
 
     # ---------------- abstract and conclusion (2026-10-24): every number recomputed from the stored results
-    C.claim("abstract: lead over best learned baseline at 37 gNBs", "its lead over the best learned baseline reaches 36.3 points, and 36.5 points on 20 fresh seeds", gap37_, "{:.1f}")
-    fg_ = min(t74_[(b_, "p")]["diff"] for b_ in ("single_agent_dqn", "independent_dqn", "mappo_tuned"))
-    C.claim("abstract: fresh-seed lead at 37 gNBs", "its lead over the best learned baseline reaches 36.3 points, and 36.5 points on 20 fresh seeds", fg_, "{:.1f}")
-    C.claim("conclusion: lead at 37 gNBs", "its lead over the best learned baseline reaches 36.3 points, and 36.5 points on 20 fresh seeds", gap37_, "{:.1f}")
-    C.claim("conclusion: fresh-seed lead at 37 gNBs", "its lead over the best learned baseline reaches 36.3 points, and 36.5 points on 20 fresh seeds", fg_, "{:.1f}")
+    # 2026-11-18: abstract and conclusion state gains in per cent, not points; the fresh-seed 36.5 clause was dropped
+    rel37_ = 100 * gap37_ / (float(np.mean(p37_)) - gap37_)
+    C.note("conclusion (2026-11-18): AXIOM keeps 63% more cluster-level compliance than the best learned baseline at 37 gNBs", f"{rel37_:.0f}" == "63"
+           and "it keeps 63\\% more cluster-level compliance than the best learned baseline" in C.main, round(rel37_, 2))
     C.claim("abstract: URLLC served at 37", "There it serves 99.8\\% of URLLC demand", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
     C.claim("conclusion: URLLC served at 37", "AXIOM serves 99.8\\% of the offered URLLC demand", 100 * km_("A_n37_hex", "axiom2", "urllc", "served_over_offered"), "{:.1f}")
     rat_ = [d_ / km_("A_n37_hex", "axiom2", "urllc", "delay_steps") for d_ in dl_]
@@ -2499,7 +2498,7 @@ def main():
     C.claim("conclusion: VDN gap at 19 gNBs", "trails it by 13.6 points at nineteen", dv_[("A19", "p")]["diff"], "{:.1f}")
     C.note("conclusion: static rule earns more than AXIOM at 19 gNBs under coupling",
            mean(seeds_of("m75/D_envB_n19_hex", "rule_static", S15)) > mean(seeds_of("m75/D_envB_n19_hex", "axiom2", S15))
-           and "A rule tuned for known conditions still earns the most under those conditions" in C.main and "which earn 1.31 and 3.81 more per step" in C.main, None)
+           and "which earn 1.31 and 3.81 more per step" in C.main, None)
 
     # ---------------- M78 audit (2026-10-25): every remaining reported number traced to its source
     def r1_(x_):  # round half up to one decimal, as the text does
@@ -2636,7 +2635,7 @@ def main():
     stv_ = [paired(seeds_of("m75/D_envB_n19_hex", "rule_static", S15), seeds_of("m75/D_envB_n19_hex", "axiom2", S15))["diff"]] + list(st_)
     C.note("conclusion: known static and tuned rules match or beat AXIOM where their conditions hold", min(stv_) > 0
            and mean(A["heuristic"]) > mean(A["axiom2"]) and mean(B["rule_local"]) > mean(B["axiom2"])
-           and "A rule tuned for known conditions still earns the most under those conditions, and AXIOM reaches 95\\% of its reward" in C.main, [round(x_, 2) for x_ in stv_])
+           and "under the rule's own conditions it already reaches 95\\% of the rule's reward" in C.main, [round(x_, 2) for x_ in stv_])
 
     # ---------------- M79/M80 (2026-10-27): Env B seven-gNB convergence, further reruns, fresh seeds at 19 gNBs
     mo_ = lambda r: r["blocks"] > 0 and r["mmtc"] == r["blocks"]
@@ -3044,7 +3043,7 @@ def main():
     ab92_ = C.main[C.main.index("\\abstract{") + 10:]; ab92_ = ab92_[:ab92_.index("}\n")]
     C.note("M92 abstract and contribution 1: transferred AXIOM above 95% in Env A at 19 and 37 gNBs, abstract at most 250 words",
            min(tA92_) > 95 and len(ab92_.split()) <= 250 and "when trained only at 7 gNBs, while the DQN and MAPPO baselines stay below 84\\%" in ab92_
-           and "A policy trained at seven gNBs runs unchanged at 19 and 37 gNBs and keeps above 95\\% priority-slice compliance there in Env A" in C.main,
+           and "Trained at seven gNBs, it runs unchanged at 19 and 37 gNBs and keeps above 95\\% priority-slice compliance in Env A" in C.main,
            (tA92_, len(ab92_.split())))
     fm92_ = lambda x_, nd_: f"{x_:.{nd_}f}".replace("-", "$-$")
     # OR1 Table S6 (compact since 2026-11-07): AXIOM from 7, AXIOM trained at the size, MAPPO from 7, per setting
@@ -3556,11 +3555,12 @@ def main():
            and "Per gNB, AXIOM keeps 98.4\\% to 99.3\\% from seven to thirty-seven gNBs and the baselines 83.6\\% to 95.1\\%" in C.main
            and "Its lead over the closest baseline is 4.2, 3.9, and 4.99 points at seven, nineteen, and thirty-seven gNBs, at Holm-adjusted $p<0.001$, against 16.9, 31.8, and 36.3 points at cluster level" in C.main,
            {"pg": lead_pg_, "cl": lead_cl_})
-    C.note("M110 decision rule (5 points and Holm p < 0.05 at 19 and at 37 gNBs): missed at both sizes once the M111 seeds are pooled; abstract and conclusion quote 3.9 to 5.0 points per gNB",
+    C.note("M110 decision rule (5 points and Holm p < 0.05 at 19 and at 37 gNBs): missed at both sizes once the M111 seeds are pooled; abstract and conclusion quote about 4% to 5% more per-gNB compliance",
            lead_pg_[19] < 5 and lead_pg_[37] < 5 and f"{5 - lead_pg_[19]:.1f}" == "1.1" and f"{5 - lead_pg_[37]:.2f}" == "0.01"
            and "the pre-registered 5-point rule for the per-gNB lead, which is missed at nineteen and thirty-seven gNBs, by 1.1 points and by 0.01 points" in C.main
-           and "Per gNB, its lead over the closest of them is 3.9 to 5.0 points" in C.main
-           and "per gNB its lead over the closest baseline is 3.9 to 5.0 points" in C.main
+           and "Per gNB, it keeps about 4\\% to 5\\% more compliance than the closest of them" in C.main
+           and "per gNB AXIOM keeps about 4\\% to 5\\% more compliance than the closest baseline" in C.main
+           and all(4 <= 100 * (mu110_[(n_, "axiom2")][0] / max(mu110_[(n_, b_)][0] for b_ in A110_[1:]) - 1) < 5 for n_ in (7, 19, 37))
            and "so by that rule the scaling lead is not met per gNB at either size, by 1.1 points at nineteen and by 0.01 points at thirty-seven" in C.tex, lead_pg_)
     C.note("M110 OR1: AXIOM leads every learned baseline per gNB at 7, 19 and 37 gNBs (Holm p < 0.001) and DQN-SA by 0.59 points at 3 gNBs (Holm p 0.049); closest lead 3.93 at 19 and 4.99 at 37",
            all(d_ > 0 and p_ < 0.001 for n_ in (7, 19, 37) for d_, p_ in t110_[n_].values()) and f"{t110_[3]['single_agent_dqn'][0]:.2f}" == "0.59" and f"{t110_[3]['single_agent_dqn'][1]:.3f}" == "0.049"
@@ -3583,12 +3583,12 @@ def main():
     C.note("reframing: abstract, contribution 3 and conclusion round these shares to 85% to 95% and 95%",
            f"{min(sh7_):.1f}" == "85.5" and f"{max(sh3_, sh19_):.1f}" == "95.5"
            and "AXIOM reaches 85.5\\% to 95.5\\% of a tuned rule's reward" in C.main
-           and "reaches 95\\% of the reward of a rule tuned for those conditions" in C.main
-           and "and AXIOM reaches 95\\% of its reward" in C.main, None)
+           and "reaches 95\\% of a tuned rule's reward" in C.main
+           and "it already reaches 95\\% of the rule's reward" in C.main, None)
     gap92_ = [mu92_(C92_[k_]["static rule"]) - mu92_(C92_[k_][f"AXIOM-7to{k_.split('_n')[1]}"]) for k_ in KA92_]
     C.note("reframing: AXIOM trained at 7 gNBs stays within 5 points of the static rule's compliance at 19 and 37 gNBs in Env A, every layout",
            0 < min(gap92_) and max(gap92_) < 5
-           and "keeps above 95\\% priority-slice compliance there in Env A, within 5 points of the static rule" in C.main
+           and "keeps above 95\\% priority-slice compliance in Env A, within 5 points of the static rule" in C.main
            and "stays within 5 points of its compliance at nineteen and thirty-seven gNBs even when trained at seven" in C.main, [round(g_, 2) for g_ in gap92_])
     C.note("reframing: static rule leaves URLLC at 61.5% in Env B at 3 gNBs and AXIOM earns 42% more",
            f"{100 * mean(rb3_['rule_static'], lambda r: r['sla']['urllc']):.1f}" == "61.5" and f"{100 * (mean(rb3_['axiom2']) / mean(rb3_['rule_static']) - 1):.0f}" == "42"
@@ -3642,7 +3642,7 @@ def main():
            and "At three gNBs the leads over DQN-SA and the MLP encoder change sign on these seeds, and only the lead over MAPPO in reward is significant. The leads over the static rule are not significant" in C.tex
            and "the smallest compliance lead over the three layouts and three baselines is 10.9, 26.9, and 34.2 points" in C.tex, h3n_)
     C.note("M111 sample disclosure: the second extension (15 seeds, 14000 to 14014, every Env A cell) is described in Sec. 5 and OR1 S4",
-           "a second added 15 seeds, 14000 to 14014, to every Env A cell" in C.main and "second seed extension" in C.tex and os.path.exists("/home/kmanojp/oranslice_rig/docs/PAPER5_M111_preregistration.md"), None)
+           "two pre-registered extensions that were decided after earlier seeds had been analysed" in C.main and "second seed extension" in C.tex and os.path.exists("/home/kmanojp/oranslice_rig/docs/PAPER5_M111_preregistration.md"), None)
 
     # ---------------- M82 pre-submission audit: every number no earlier check tied to its printed text
     import m82_audit
