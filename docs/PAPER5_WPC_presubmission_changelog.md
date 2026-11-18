@@ -89,3 +89,7 @@ V1 text 4.2/3.9/4.99 is the paired hex lead; Table S8 caption said 1,620 runs bu
 - 14 Fig. 4: step badges moved clear of arrowheads and diamond leaders.
 - 15 Declarations: "Opus agents running in Visual Studio Code were used ...".
 - Verifier count now 767 (three fresh-seed and per-point abstract/conclusion claims replaced by one per-cent check); main.tex quotes 767. Abstract 248 words after trimming the protocol sentence.
+
+## 2026-11-18 hygiene pass
+- main.tex and supplementary.tex: every comment removed (dated process notes, 'restored', 'pre-audit'); unused icon macros, unused Okabe-Ito colours, unused algorithm packages and TikZ libraries, and seven unreferenced section labels removed from main.tex. refs.bib pruned from 66 to the 43 cited entries (Online Resource 1 cites none). make_submission.py updated for the new preamble. The AI-assistance sentences in Sec. 5 and OR1 S1 and the Declarations item are kept as disclosures.
+- Fig. 4: boxes and diamonds narrowed so the arrows between steps lengthen, and the live-testbed callout arrow lengthened; natural width 117.0 mm.

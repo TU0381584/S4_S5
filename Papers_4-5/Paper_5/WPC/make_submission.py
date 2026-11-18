@@ -40,8 +40,8 @@ def labels_from_aux(aux):
 def tikz_preamble(main):
     """Packages, fonts, colours and icon macros that the inline TikZ figures rely on."""
     pre = main[:main.index("\\begin{document}")]
-    start = pre.index("% --- reusable vector icons")
-    macros = pre[start:pre.index("\n\n", pre.index("\\newcommand{\\uephone}")) + 1]
+    fig_font = re.search(r"\\newcommand\{\\figfont\}[^\n]*\n", pre).group(0)
+    macros = fig_font
     return ("\\documentclass[border=0pt]{standalone}\n\\usepackage{amsmath,amssymb}\n\\usepackage{xcolor}\n\\usepackage{tikz}\n"
             "\\renewcommand{\\sfdefault}{phv}\n"
             "\\usetikzlibrary{arrows.meta,fit,shapes.symbols,shapes.geometric,positioning,calc}\n"
@@ -103,13 +103,10 @@ def main():
     pre_end = new_tex.index("\\begin{document}")
     pre_tex = new_tex[:pre_end]
     for line in ("\\usepackage{tikz}\n",
-                 "% figure lettering in Helvetica, as the journal asks; \\sffamily appears only inside figures\n",
                  "\\renewcommand{\\sfdefault}{phv}\n"):
         pre_tex = pre_tex.replace(line, "", 1)
     pre_tex = re.sub(r"\\usetikzlibrary\{[^}]*\}\n", "", pre_tex, count=1)
-    i0 = pre_tex.index("% --- reusable vector icons")
-    i1 = pre_tex.index("\n\n", pre_tex.index("\\newcommand{\\uephone}"))
-    pre_tex = pre_tex[:i0] + pre_tex[i1 + 2:]
+    pre_tex = re.sub(r"\\newcommand\{\\figfont\}[^\n]*\n", "", pre_tex, count=1)
     new_tex = pre_tex + new_tex[pre_end:]
     assert "tikzpicture" not in new_tex and "\\figfont" not in new_tex
     open(os.path.join(OUT, "main.tex"), "w").write(new_tex)

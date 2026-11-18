@@ -15,9 +15,6 @@
 \usepackage{xcolor}
 \usepackage{colortbl}
 \providecommand{\figfont}{\sffamily\fontsize{8}{9.6}\selectfont}
-% Online Resource layout: captions in the journal's style (small type, label then a quad, caption above tables
-% with a gap to the top rule), supplement numbering S1, S2, ... so no table or figure shares a number with the
-% main paper, and more room between floats and the surrounding text
 \usepackage[font=small,labelfont=bf,labelsep=quad,skip=6pt]{caption}
 \captionsetup[table]{position=top}
 \captionsetup[figure]{name=Fig.}
@@ -87,7 +84,6 @@ Fig.~\ref{fig:s-forest} sets each reported comparison with a learned baseline be
 
 Online Resource 2, a CSV file, gives the interquartile means of reward per gNB per step and of priority-slice compliance, and the probability that a run of AXIOM beats a run of each other policy, with ties counted as one half. They are computed with the rliable library, version 1.2.0, on the main paper's pooled runs, each with a stratified bootstrap 95\% CI over 10{,}000 resamples. The IQM drops the worst quarter of runs, where AXIOM's few collapses sit. AXIOM's IQM of priority-slice compliance in Env A is therefore 100.0\% at every size, against means of 94.2\% to 98.7\%, and the mean stays the more conservative summary for AXIOM. An independent implementation reproduces every IQM and every probability of improvement to within $10^{-6}$, and Fig.~\ref{fig:s-rliable} shows the fraction of runs above each compliance level.
 
-
 \begin{figure}[!htbp]
 \centering
 \begin{minipage}[t]{0.5\textwidth}\centering
@@ -103,8 +99,6 @@ Online Resource 2, a CSV file, gives the interquartile means of reward per gNB p
 \end{figure}
 
 Fig.~\ref{fig:s-rliable-int} sets the same interquartile means and probabilities of improvement side by side for every setting.
-
-
 
 Table~\ref{tab:s-split} lists every three-gNB comparison of the main paper on the original seeds, the added seeds, the pooled sample, and the confirmation seeds. The $p$ values are Holm-adjusted within each sample's own family. In Env A, AXIOM's reward lead over DQN-SA and the static rule's reward lead are significant only in the pooled sample, and the pooled compliance lead over DQN-SA is within chance. That family is the main paper's on the original and pooled seeds, and on the added and confirmation seeds it holds only the comparisons that those runs repeated. For the scaling study it gives the smallest of the nine compliance leads at each size, with the largest adjusted $p$ among them. At seven gNBs the added seeds alone leave the smallest lead, over DQN-SA on the ring layout, within chance. The confirmation seeds then gave AXIOM 11.8 points more compliance than DQN-SA on that layout, at $p<0.001$.
 
@@ -223,7 +217,6 @@ M66d D2, Env A, 102\% load & AXIOM's mean reward above both DQN baselines & $12.
 \bottomrule
 \end{tabular}}
 \end{table}
-
 
 \section*{S3. Live testbed}
 Every live measurement comes from the single-host, software-radio O-RAN stack of Fig.~\ref{fig:testbed}, which runs without a near-real-time RIC because the ORANSlice fork cited in the main paper applies slicing control through a lightweight UDP E2 agent. AXIOM itself is not deployed there, since its multi-gNB policy needs at least two live gNBs. A single-agent DQN checkpoint instead exercises the control path, PRB-ratio actuation, and real-time inference at one and at two UEs per slice. A capacity probe showed every slice served at about 100\% of offered demand, so the rig never ran short of capacity and shows the pipeline working, not admission under contention. It starts the Open5GS core and the gNB on the rfsim radio, attaches up to six UEs, and runs the checkpoint through the UDP E2 agent on ports 6600 and 6655. It drives iperf3 UDP traffic on every slice to load the rig. A scheduler-configuration error that granted fewer PRBs than the gNB scheduler's five-PRB floor was fixed at the root. Instrumentation then confirmed zero below-floor grants across more than 100{,}000 readings. Every one of the 14 loss readings at one UE per slice and the 48 at two UEs per slice was 0.000\%.
@@ -428,11 +421,7 @@ Env A, 19 gNBs, hex & 86.428 & 89.161 & 76.388 & 83.4\% & 97.0\% & 56.4\% \\
 \end{minipage}
 \end{table}
 
-
-
 The stored logs hold only cluster-level SLA flags, so a pre-registered re-evaluation loaded each of the 2{,}130 stored Env A checkpoints behind the main paper's scaling figure, 1{,}620 of the original samples and 510 of the second seed extension, and recorded whether each gNB met each SLA. All 2{,}130 re-evaluations reproduced their stored results exactly. Table~\ref{tab:s-pergnb} sets per-gNB compliance, the mean over gNBs of the share of steps on which a gNB complies, beside the cluster-level value. At seven, nineteen, and thirty-seven gNBs AXIOM leads every learned baseline per gNB at Holm-adjusted $p<0.001$, by less than at cluster level. At three gNBs its lead over DQN-SA is 0.59 points, at Holm-adjusted $p=0.049$. Its lead over the closest baseline is 4.2 points at seven gNBs, 3.9 at nineteen, and 4.99 at thirty-seven, the last paired on the hex layout, the only one the baselines ran on. The pre-registered rule asked for at least 5 points at nineteen and at thirty-seven gNBs, so by that rule the scaling lead is not met per gNB at either size, by 1.1 points at nineteen and by 0.01 points at thirty-seven. The static rule was not re-evaluated, since its cluster-level compliance of at least 99.97\% is a lower bound on its per-gNB value.
-
-
 
 A further pre-registered run on ten fresh seeds, 13000 to 13009, tests whether AXIOM's lead at scale comes from an unequal comparison. It gives the DQN baselines AXIOM's Huber loss and layer normalisation, adds one MLP Q-network shared by all gNBs that reads a gNB's own features and the slice as a one-hot input, and trains QMIX on that shared network at nineteen gNBs. Table~\ref{tab:s-parity} lists the result. AXIOM leads both parity baselines and the parameter-shared network on compliance and on reward at every size, at Holm-adjusted $p\leq0.024$. The closest of them stays 28.9 points below AXIOM at nineteen gNBs and 38.1 points below at thirty-seven. The lead therefore comes neither from the baselines' loss or normalisation nor from parameter sharing alone. The MLP encoder stays within chance of AXIOM at every size, and the shared head falls 38.1 points behind at thirty-seven gNBs, at Holm-adjusted $p=0.023$. QMIX matches AXIOM at nineteen gNBs, although its training loss ended 4.2 to 6.0 times above its lowest level in all ten seeds, which fails the stability rule fixed in advance. In Env B at three gNBs the parameter-shared network is within chance of AXIOM on compliance and earns 0.35 less reward per step, at $p=0.027$. Training for 1{,}500 episodes at nineteen gNBs moved no baseline towards AXIOM.
 
@@ -578,11 +567,7 @@ Tuned local rule, carried over & 84.09 & 84.5\% & 55.7\% & 0 \\
 
 Table~\ref{tab:s-envb19} lists Env B at nineteen gNBs on the hex layout. Per-gNB compliance counts a slice as compliant at a gNB and step when that gNB meets the slice's SLA, whereas the cluster-level metric counts a violation at any gNB as a violation of the cluster. AXIOM makes exactly the static rule's decisions in 9 of the 15 seeds. In 4 of the other 6 it also blocks only mMTC, one collapses and blocks nothing, and one also blocks other slices. On 15 fresh seeds, 7000 to 7014, in Env B at nineteen gNBs AXIOM kept 76.9\% per-gNB priority-slice compliance. It earned 5.90 to 22.00 more reward per step than each learned baseline and kept 6.9 to 11.1 points more per-gNB priority-slice compliance, at Holm-adjusted $p\leq0.011$.
 
-
-
 At seven gNBs the tuned rules earn 26.5 to 27.3 per step and beat AXIOM in all 15 seeds under every layout, while AXIOM earns 23.4 to 23.6, no more than the static rule's 23.6. The reward charges each slice's SLA penalty once for the cluster when any gNB violates it, so shedding eMBB at one gNB pays only when the other gNBs also comply. Table~\ref{tab:s-conv} lists three changes on the ring layout. The per-gNB SLA penalty raised AXIOM's compliance by 10.7 points, a learning rate of 0.003 by 14.9, and 900 training episodes by 21.7. The Holm-adjusted $p$ values are 0.007, 0.007, and 0.0004. With 900 episodes for every learner, AXIOM keeps 12.8 to 15.2 points more compliance and earns 0.44 to 0.82 more reward per gNB than each baseline, at Holm-adjusted $p\leq0.0012$. The tuned rule still keeps more compliance than AXIOM in all 15 seeds. At nineteen gNBs the longer budget does not help. After 900 episodes seven of eight seeds still shed only mMTC, against all eight after 300. Under uneven load, with each gNB's multiplier drawn between 75\% and 125\% per seed, AXIOM does not beat the nominally tuned rule at seven gNBs, earning 0.36 more reward per step at $p=0.23$. It still beats every learned baseline there, by 1.18 to 4.28 reward per step at unadjusted $p\leq0.005$. Under the per-gNB SLA penalty every learned baseline kept 13.7 to 18.5 percentage points less per-gNB compliance than AXIOM, in every seed.
-
-
 
 \begin{table}[!htbp]
 \caption{Env B, seven gNBs, ring layout, 15 seeds, reward per gNB per step, priority-slice compliance, and seeds that shed only mMTC}
@@ -636,8 +621,6 @@ Checkpoints & Seeds & 1 & 2 & 3 & Difference & $p$ & Difference & $p$ \\
 \end{table}
 
 Across sizes, panels a and c of the main paper's scaling figure show AXIOM staying between 4.2 and 4.7 reward per gNB per step and above 93\% priority-slice compliance, while every baseline loses compliance as the cluster grows. MAPPO is the only learned policy that never collapses at thirty-seven gNBs, where AXIOM collapses in 13 of 165 runs. In Env B every policy loses compliance as the cluster grows, and AXIOM's cluster-level priority-slice compliance falls from 64.1\% at three gNBs to 35.1\% at seven and 24.7\% at nineteen. AXIOM earns the most reward per gNB and keeps the most compliance at three and nineteen gNBs. At seven gNBs it earns 3.36 reward per gNB per step against 3.37 for DQN-SA, which keeps more compliance, 44.3\% against 35.1\%. On the ring layout AXIOM keeps less compliance than DQN-SA, at Holm-adjusted $p=0.012$. That gap reflects the training budget. In Env A at nineteen gNBs AXIOM stays within 3.1 points of the static rule at 105\% of the nominal shares (all layouts pooled), 2.1 at 110\%, and 0.2 at 120\% (hex layout), and every baseline stays below AXIOM at each load. In Env B, past the tuning load at nineteen gNBs AXIOM out-earns the carried tuned rule. On 15 fresh seeds it leads that rule by 6.84, 8.25, and 9.39 at the same loads, again winning 14 of 15 seeds at Holm-adjusted $p<0.001$, while the rule leads by 3.33 at nominal load.
-
-
 
 In Env B the static rule also pulls ahead of the tuned rule past its tuning load. At nineteen gNBs it leads the tuned rule by 8.05 to 10.63 reward per step, in all 15 seeds at Holm-adjusted $p<0.001$, and its lead of 1.8 to 2.0 over AXIOM stays within chance, at Holm-adjusted $p\geq0.08$. Charging the SLA penalty per violating gNB raised AXIOM's priority-slice compliance by 10.7 points in Env B at seven gNBs on the ring layout, at Holm-adjusted $p=0.007$. At nineteen gNBs on the hex layout it raised AXIOM's per-gNB compliance by only 1.9 points, at $p=0.65$. The load-shift comparison re-tunes rules only offline on shifted training streams, and a rule that re-tunes itself online was not tested.
 
