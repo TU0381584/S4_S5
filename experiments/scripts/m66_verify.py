@@ -3241,7 +3241,7 @@ def main():
     C.note("Table 1 AXIOM row: evaluated up to 37 cells, the same 7,782 parameters at every size, measured zero-shot transfer, rule baselines",
            ax37n_ == 75 and len({par_[k_][0] for k_ in ("axiom2",)} | set(par_["axiom2"])) == 1 and par_["axiom2"][0] == 7782
            and all(len(v_) == 15 for v_ in C92_["A_hex_n37"].values()) and len(seeds_of("m64/n3_fully_connected", "rule_local", S30)) == 60   # stored 30 plus M107
-           and "AXIOM & Per-slice admission across a gNB cluster & \\gyes & \\gyes$^{c}$ & \\gyes$^{d}$ & 37 & \\gyes & \\gyes & \\gyes \\\\" in C.main, ax37n_)
+           and "AXIOM & Per-slice admission across a gNB cluster & \\gyes & \\gyes$^{h}$ & \\gyes$^{i}$ & 37 & \\gyes & \\gyes & \\gyes \\\\" in C.main, ax37n_)
     # ---------------- M96 (prereg 32de84d0): fresh-seed transfer, fresh-seed load-shift lead, learned baselines past the tuning load
     F96_ = list(range(8000, 8020))
     a96_ = {n_: {"ax": seeds_of(f"m96/A_fresh/transfer_n{n_}", "axiom2_transfer", F96_), "mp": seeds_of(f"m96/A_fresh/transfer_n{n_}", "mappo_tuned_transfer", F96_),
