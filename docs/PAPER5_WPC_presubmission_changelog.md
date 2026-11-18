@@ -61,3 +61,12 @@ V1 text 4.2/3.9/4.99 is the paired hex lead; Table S8 caption said 1,620 runs bu
 ## Phase 3 verifier updates (strings changed only where the new value is proven)
 - m66_verify.py: p of the static rule over AXIOM now 0.0066 (printed to 4 decimals); the "within 5.3" check now tests 3.1 / 2.1 / 0.2 and 5.2 from the same paired cells as Fig. 11a; quoted abstract, Sec 6, Sec 7 and Sec 5 sentences updated to the new wording; S12 p-value format; new check for the 13 collapsed runs and the 56-67% range (770 checks now; main.tex quotes 770).
 - m82_audit.py: Table S12 p parser accepts "<0.0001" and 4-decimal values (round-to-printed-digits instead of 6% relative tolerance); quoted strings for seeds, abstract and Table S17 updated.
+
+## Table 1 and Section 2 corrections (verified against full text, as the author instructed)
+- M Table 1 body: all five prior-work rows reset to the supplied cells (Sulaiman: multi-agent ✓^a, max cells 9^b, size-invariant ✗, transfer ✗; Ahmadi: ✓^a, graph ✓^c, 52^b, size-invariant ✓^d, transfer ✓, rules ✓; Zangooei unchanged in content; Mohajer: federated ✗, n.r. for cells, size-invariant and transfer, rules ✗; Bouroudi: multi-agent ◐^f, graph ✓^g, transfer ✗, rules ✓). Footnote-f markers removed from the three name cells. Existing macros only (\gyes, \gpart, \gno, \gnr). Reason: verified against full text.
+- M Table 1 AXIOM row: footnote letters c, d -> h, i. Reason: letters now follow first appearance.
+- M Table 1 legend and footnotes: replaced by the supplied a to i block; the "Full text not available to us" note deleted. No stale marker remains (a to i all appear in the body and in the legend; checked on the rendered page, docs/table1_page5.png).
+- M Sec 2: Ahmadi sentence (3.1), "Two more core studies ..." (3.2) and "Beyond comparisons with greedy admission ..." (3.3) replaced as supplied.
+- M Sec 2: closing paragraph before "Robustness studies" (3.4) replaced by the supplied text. The first search for the end of the old passage matched an earlier "independent seeds." and left the old last sentence behind, which duplicated the Table 1 sentence; that leftover was removed.
+- M Sec 1, contribution 1: sentence on size transfer precedent [1] added (Phase 4).
+- M layout: the longer legend and Section 2 text pushed the paper to 28 pages and left a 44% gap on page 22, because the class's widow and club penalties forced the Conclusion heading to the next page. Set \widowpenalty=100 and \clubpenalty=100 after \setcounter{totalnumber}{5}. Back to 27 pages with the earlier float spacing, no gap above 6%.
