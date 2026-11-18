@@ -1,0 +1,26 @@
+18 November 2026
+
+The Editor
+Wireless Personal Communications
+
+Dear Editor,
+
+We submit our manuscript "AXIOM: A Shared Controller for Scalable Multi-Agent 5G Slice Admission" for consideration in Wireless Personal Communications. The paper addresses admission control for network slices across a cluster of 5G base stations, namely gNodeBs (gNBs), under the Open Radio Access Network (O-RAN) architecture. We believe it fits the journal's scope on wireless networks and learning-based network control.
+
+The paper presents AXIOM, a multi-agent controller in which one graph-attention encoder is shared by every gNB and one decision head serves each slice. Its size stays at 7,782 parameters at every cluster size. Trained at seven gNBs, AXIOM runs unchanged at 19 and 37 gNBs and keeps the mean cluster-level compliance of its priority slices above 93%, while the deep Q-network and multi-agent proximal policy optimisation baselines stay below 84%. Under time-varying and coupled load, AXIOM earns 26% to 36% more reward than the multi-agent baseline. To demonstrate its self-learning capability, we compare AXIOM against manually tuned rules. It reaches 85.5% to 95.5% of such a rule's reward without any tuning, and it overtakes the rule when the load rises past the conditions the rule was tuned for.
+
+A second contribution is the evaluation protocol. It combines trivial-policy checks, per-slice correctness metrics, tuned rule baselines, independent seed samples, and a pre-registered analysis. A separate verification script recomputes every table value and key result sentence of the paper from the stored logs. The study rests on offline simulation, and its live testbed check covers a single gNB.
+
+The manuscript is original, has not been published elsewhere, and is not under consideration by another journal. It builds on our earlier work on slice admission at a single gNB, including a conference paper that validated the single-agent case on a live gNB and a systematic review, both of which the manuscript cites. All authors have approved the submission.
+
+Online Resource 1 gives the supporting results, and Online Resource 2 gives the interquartile means and probabilities of improvement for every setting. The Statements and Declarations in the manuscript cover funding, competing interests, ethics, data and code availability, the use of AI tools, and author contributions.
+
+Thank you for considering our work. We look forward to your reply.
+
+Sincerely,
+
+Wai Leong Pang, corresponding author
+waileong.pang@taylors.edu.my
+On behalf of Manoj Prasad Kunasegran, Wai Leong Pang, and Swee King Phang
+School of Engineering, Faculty of Innovation and Technology
+Taylor's University, Subang Jaya, Selangor, Malaysia
