@@ -34,7 +34,7 @@
 }
 \begin{document}
 \begin{tikzpicture}[
-  font=\figfont, x=0.92cm, y=1cm,
+  font=\figfont, x=0.90cm, y=1cm,
   every node/.append style={execute at begin node={\hyphenpenalty=10000\exhyphenpenalty=10000}},
   st/.style={draw=black!60, fill=gray!7, rounded corners=2pt, align=center, text width=2.1cm, minimum height=0.78cm, inner sep=2pt},
   gate/.style={draw=blue!55!black, fill=blue!6, line width=0.7pt, diamond, aspect=1.9, align=center, text width=1.5cm, inner sep=0pt},
@@ -57,7 +57,7 @@
                             10/4.2/-5.0/st/{Reported result}}{
   \node[\s] (p\i) at (\x,\y) {\t};
 }
-\foreach \i in {1,2,3,6,8,9,10}{\node[num] at ([shift={(-0.12,0.10)}]p\i.north west) {\i};}
+\foreach \i in {1,2,3,6,8,9,10}{\node[num] at ([shift={(0.02,0.12)}]p\i.north west) {\i};}
 \foreach \i in {4,5,7}{\node[num] at ($(p\i.north)!0.5!(p\i.east)$) {\i};}
 \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\draw[ar] (p\a) -- (p\b);}
 % one failure per box or gate (restored 2026-11-17, at most four words each); Online Resource 1, Section S4, lists them all
