@@ -57,8 +57,8 @@
                             10/4.2/-5.0/st/{Reported result}}{
   \node[\s] (p\i) at (\x,\y) {\t};
 }
-\foreach \i in {1,2,3,6,8,9,10}{\node[num] at ([shift={(-0.06,0.04)}]p\i.north west) {\i};}
-\foreach \i in {4,5,7}{\node[num] at ($(p\i.north)!0.5!(p\i.west)$) {\i};}
+\foreach \i in {1,2,3,6,8,9,10}{\node[num] at ([shift={(-0.12,0.10)}]p\i.north west) {\i};}
+\foreach \i in {4,5,7}{\node[num] at ($(p\i.north)!0.5!(p\i.east)$) {\i};}
 \foreach \a/\b in {1/2,2/3,3/4,4/5,5/6,6/7,7/8,8/9,9/10}{\draw[ar] (p\a) -- (p\b);}
 % one failure per box or gate (restored 2026-11-17, at most four words each); Online Resource 1, Section S4, lists them all
 \node[fail, anchor=south] (f2) at (4.2,1.1) {\gno\enspace Static AXIOM, Env B};
